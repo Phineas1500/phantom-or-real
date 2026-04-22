@@ -141,7 +141,7 @@ def compute_structural_annotations(ontology: Ontology, task_type: str) -> dict:
 
 **IMPORTANT: Use the existing `KnowledgeBase` class from `evaluate.py`.** This class already parses theories into internal `membership`, `inheritance`, `properties`, and `negated_properties` dicts. The key method is `get_all_concepts_for_entity(entity)` which returns `(concept, proof_depth)` tuples. **An entity is a direct member iff the target concept appears at proof_depth=1.**
 
-**Implementation pattern (verified working on 100 h=2 examples, yielding 92% `has_direct_member=True` rate that matches prior Gemma 2 analysis):**
+**Implementation pattern.** *Post-implementation update (2026-04):* on all 44,000 shipped rows, `has_direct_member` is a deterministic **100%**, not the ~92% this doc originally cited. The 92% figure reflected an upstream bug in `benchmark/evaluate.py::normalize_to_singular`: the function stemmed the proper nouns **Thomas / Charles / James / Nicholas** (four of the ~100 entity names in `morphology.py`), so their membership facts were mis-routed to `KnowledgeBase.inheritance` and silently missed. The bug is fixed by a monkey-patch in `src/bd_path.py::_apply_normalize_singular_patch` — we patch rather than edit upstream because `third_party_beyond_deduction` is a symlink that may back other work. **Analysis consequence:** the within-height split on `has_direct_member` in Phase 4.2 is **vacuous on this dataset** — every row has it set to `True`. `num_direct_paths`, the max non-direct proof depth, and the target-concept branching factor are also deterministic per height (see `results/README.md`). The within-height "structural slicing" angle is therefore a dead end on this dataset; probe analyses cannot rely on it to decorrelate shortcut-availability from depth. Pre-implementation pattern kept below for reference:
 
 ```python
 import re
@@ -562,7 +562,7 @@ Before passing the dataset to Teammate B, verify all of the following:
 - [ ] Accuracy at h=1 is high (>70%) for both models on both tasks.
 - [ ] Accuracy decreases monotonically with height for infer_property (may be non-monotonic for infer_subtype on weak accuracy metric, but should decrease for strong accuracy).
 - [ ] Gemma 3 27B beats Gemma 3 4B at most (height, task) combinations.
-- [ ] `has_direct_member` rate is reasonable (~70-95% depending on height, matching prior Gemma 2 analysis).
+- [ ] `has_direct_member` rate is 100% at every cell (post-patch; pre-patch drafts of this plan expected ~70-95%, which reflected an upstream `normalize_to_singular` bug on the entity names Thomas/Charles/James/Nicholas — see Phase 2.1 note).
 - [ ] Error Type 2 is the most common error type across all heights (matches paper's headline finding).
 
 **Class balance check:**
@@ -592,7 +592,7 @@ Map these consistently in the output JSONL using the v2 paper names for clarity:
 
 **The reusable primitive IS in `benchmark/evaluate.py`:** the `KnowledgeBase` class and its `get_all_concepts_for_entity(entity)` method, which returns `(concept, proof_depth)` tuples. Proof depth of 1 means direct membership, which is exactly what `has_direct_member` should detect.
 
-Verified: computing `has_direct_member` using this method on 100 generated h=2 examples yields 92% True, matching the prior Gemma 2 9B analysis finding (92/100) exactly.
+Verified post-implementation: computing `has_direct_member` using this method **through the `src/bd_path.py` patched normalizer** on all 44,000 shipped rows yields 100% True in every cell (not 92%). The 92% figure cited earlier — including the prior Gemma 2 9B "92/100" — reflected the upstream `normalize_to_singular` bug on four entity names (Thomas/Charles/James/Nicholas), not a property of the generator. See Phase 2.1 and `results/README.md` for the full write-up.
 
 ### Pseudo-root handling
 

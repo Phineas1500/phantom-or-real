@@ -60,11 +60,19 @@ def main() -> int:
                 f"avg_parent_salience={parent_salience_avg:.2f}"
             )
 
-    # Sanity: infer_property h=2 should be in 80-95% per plan
-    r = results[("property", 2)]
-    if not (0.70 <= r <= 0.99):
-        print(f"WARN: infer_property h=2 has_direct_member rate {r:.2%} outside expected 70-99%")
-        return 1
+    # Post-patch expectation: has_direct_member is deterministically 100% across
+    # all cells of the InAbHyD single-hypothesis generator. The pre-patch plan
+    # cited ~92% for h=2, but that figure reflected the upstream
+    # normalize_to_singular bug on Thomas/Charles/James/Nicholas (fixed in
+    # src/bd_path.py::_apply_normalize_singular_patch). If this fails, either
+    # the patch regressed or the generator changed behavior.
+    for (task_type, height), rate in results.items():
+        if rate < 0.99:
+            print(
+                f"WARN: {task_type} h={height} has_direct_member rate {rate:.2%} "
+                f"< 0.99 — the normalize_to_singular patch may have regressed."
+            )
+            return 1
     print("OK")
     return 0
 

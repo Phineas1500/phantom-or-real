@@ -119,11 +119,16 @@ python scripts/run_inference.py \
 
 ### Error-type classification (Phase 5)
 
+The default judge model is `gpt-5.4-mini`, not `gpt-5.4-nano`. The plan §5.3
+agreement check (`scripts/error_classify_agreement.py`) came in at 57.5% on
+this dataset, below the 85% threshold the plan uses for sticking with nano,
+so the shipped dataset was classified with mini. Override with `--model
+gpt-5.4-nano` only if you're re-running for the cheaper tier.
+
 ```bash
-OPENAI_API_KEY=... python -m src.error_classification \
+OPENAI_API_KEY_GPT=... python -m src.error_classification \
   --input  results/full/gemma3_27b_infer_property.jsonl \
   --output results/full/gemma3_27b_infer_property.with_errortype.jsonl \
-  --model gpt-5.4-nano \
   --concurrency 16
 ```
 
