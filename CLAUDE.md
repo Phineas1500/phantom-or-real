@@ -184,6 +184,37 @@ python scripts/check_modal_endpoint.py --model gemma3-27b
 concatenates system+user into a single user message, matching the upstream
 `gemma3_27b_modal.py` test. This is automatic; no flag needed.
 
+## Handoff notes for Teammate B
+
+- **Entity-name mangling in any pre-patch data.** The `bd_path` monkey-patch
+  (`src/bd_path.py::_apply_normalize_singular_patch`) fixes an upstream
+  `normalize_to_singular` bug that stemmed four proper nouns:
+  `Thomas → thoma`, `Charles → charle`, `James → jame`, `Nicholas → nichola`.
+  The shipped JSONLs under `results/full/with_errortype/` are post-patch and
+  clean — a full scan of 44,000 rows finds zero mangled forms in
+  `ontology_fol_structured.{inheritance,membership}` or
+  `structural.target_concept`. But if you run any pre-commit `30d910e` scratch
+  files, notebooks, or partial reruns that predate the patch, filter or
+  search with both the proper and the mangled forms and expect mangled entries
+  to be wrong.
+- **Within-height structural slicing is vacuous.** `has_direct_member = 100%`
+  on every (task, height) cell of the shipped dataset; `num_direct_paths`,
+  max non-direct proof depth, and target-concept branching factor are
+  deterministic per height as well. The only `structural` feature with any
+  within-height variance is `parent_salience`, and even that is 4984/5000 at
+  the modal value for h=4. Probe analyses cannot use these slices to
+  decorrelate shortcut-availability from depth on this dataset.
+- **Scoring is unaffected by the normalize-proper-nouns fix.** The same
+  mangling was applied to both predictions and ground truth pre-patch, so
+  `is_correct_strong` / `is_correct_weak` are symmetric across the bug. After
+  the fix landed, `scripts/rescore_jsonl.py` was run end-to-end over the
+  shipped files and reported `changed_correct = 20, 19, 5, 1` across
+  `(27b property, 27b subtype, 4b property, 4b subtype)`. Those flips are
+  attributable to the separate Gemma-3-specific parser extensions in
+  `src/gemma3_parse.py` (canonicalizing `"Being X is a property of Y"`,
+  `"X is (not) a property of Y"`, etc.), not to the normalize fix. The
+  scoring-axis of the shipped dataset matches the patched code.
+
 ## Coding conventions followed here
 
 - Write no comments that merely describe what the code does. Keep docstrings
