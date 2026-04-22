@@ -14,7 +14,14 @@ venv/
 # Data and results — too large / reproducible
 data/
 results/
-docs/figures/
+
+# Scratch figures from iteration are ignored, but the final Stage 1 figures
+# referenced by docs/behavioral_results_draft.md are tracked so the draft
+# renders on a fresh clone without needing to rerun scripts/make_plots.py.
+docs/figures/*
+!docs/figures/full_with_errortype/
+docs/figures/full_with_errortype/*
+!docs/figures/full_with_errortype/*.png
 
 # Run logs (inference, classification, etc.)
 logs/

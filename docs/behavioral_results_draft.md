@@ -161,18 +161,32 @@ slice is empty (see Structural properties above).
 
 ## Implications for Components 2 and 3
 
-Three concrete things Stage 1 results imply for the probe and causal
+Four concrete things Stage 1 results imply for the probe and causal
 validation work downstream:
 
 1. The "shortcut-availability" interpretation of the Ma et al. phantom
    concern is ruled out by construction. Probe analyses should state
    this explicitly and focus on the remaining phantom interpretations
    (shortcut *usage*, surface-lexical features).
-2. 4B vs 27B output-strategy divergence means cross-model probe transfer
-   is a meaningful test: a probe trained on 27B failure-prediction that
-   transfers cleanly to 4B cannot be relying on model-specific strategy
-   signals.
-3. The dominant 27B × property error mode is "unnecessary hypotheses"
+2. **Cross-task probe transfer (`infer_property` ↔ `infer_subtype`) is
+   the cleanest experiment the dataset structure enables** and should be
+   on Teammate B's shortlist. The two tasks share the same ontology-tree
+   generation (identical theories/observations schema, identical
+   structural invariants at each height) but differ in the surface form
+   of the ground truth hypothesis (`"Every X is Y"` where Y is a
+   property vs Y is a concept). A failure-prediction probe trained on
+   `infer_property` pre-CoT activations that transfers cleanly to
+   `infer_subtype` cannot be detecting task-specific lexical cues —
+   which is a direct behavioral test of the phantom surface-feature
+   concern. Conversely, a probe that fails to transfer suggests the
+   learned representation is task-surface-bound, which is the
+   Ma et al. failure mode.
+3. Cross-model probe transfer (4B ↔ 27B) is a complementary diagnostic.
+   The 4B vs 27B output-strategy divergence means a probe that
+   transfers across models cannot be relying on model-specific strategy
+   signals (e.g., "this model tends to fall back to entity-level
+   enumeration at depth ≥3").
+4. The dominant 27B × property error mode is "unnecessary hypotheses"
    and the dominant subtype error mode is `wrong_direction`. Targeted
    steering probes — e.g., can we cause 27B to produce a concept-level
    generalization on examples it would otherwise hedge on? — should
