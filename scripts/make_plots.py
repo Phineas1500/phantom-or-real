@@ -96,6 +96,42 @@ def structural_bars(per_task_summaries: dict[str, dict], out_path: Path) -> None
     plt.close(fig)
 
 
+def output_strategy(per_task_summaries: dict[str, dict], out_path: Path) -> None:
+    """Fraction of responses whose first parsed hypothesis is entity-level.
+
+    One subplot per task; one line per model. 27B stays concept-level across
+    depths; 4B falls back to entity-level enumeration as height increases.
+    """
+    tasks = sorted({s["task"] for s in per_task_summaries.values()})
+    fig, axes = plt.subplots(1, len(tasks), figsize=(6 * len(tasks), 4), sharey=True)
+    if len(tasks) == 1:
+        axes = [axes]
+
+    for ax, task in zip(axes, tasks):
+        for key, s in per_task_summaries.items():
+            if s["task"] != task:
+                continue
+            xs, ys = [], []
+            for h in HEIGHTS:
+                hkey = f"h{h}"
+                strat = s["output_strategy"].get(hkey)
+                if not strat or strat["entity_frac"] is None:
+                    continue
+                xs.append(h)
+                ys.append(strat["entity_frac"])
+            ax.plot(xs, ys, marker="o", label=s["model"])
+        ax.set_xlabel("Tree height")
+        ax.set_title(task)
+        ax.set_xticks(HEIGHTS)
+        ax.set_ylim(0, 1)
+        ax.grid(True, alpha=0.3)
+        ax.legend()
+    axes[0].set_ylabel("Fraction of responses with entity-level first hypothesis")
+    fig.tight_layout()
+    fig.savefig(out_path)
+    plt.close(fig)
+
+
 def error_type_stack(per_task_summaries: dict[str, dict], out_path: Path) -> None:
     categories = ["wrong_direction", "trivial", "unnecessary", "hallucinated", "unclassified"]
     fig, axes = plt.subplots(
@@ -146,6 +182,7 @@ def main() -> None:
         raise SystemExit("No non-empty JSONL inputs")
 
     accuracy_vs_depth(summaries, args.output_dir / "accuracy_vs_depth.png")
+    output_strategy(summaries, args.output_dir / "output_strategy.png")
     structural_bars(summaries, args.output_dir / "structural_slicing.png")
     error_type_stack(summaries, args.output_dir / "error_type_stack.png")
 
