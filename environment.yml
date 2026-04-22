@@ -1,0 +1,40 @@
+name: phantom
+# Loose environment spec intended to reproduce the project on a fresh Linux + NVIDIA GPU host.
+# - Assumes CUDA 12.x driver is already installed on the host (WSL or bare metal).
+# - For an exact pinned reproduction, use environment.lock.yml instead (conda env create -f environment.lock.yml).
+# - vLLM is installed via a separate step (see scripts/install_vllm.sh) because its wheel pinning is fragile.
+channels:
+  - conda-forge
+dependencies:
+  - python=3.12
+  - pip
+  - pip:
+      # PyTorch cu128 wheels
+      - --extra-index-url https://download.pytorch.org/whl/cu128
+      - torch==2.11.0+cu128
+      - torchvision==0.26.0+cu128
+      - torchaudio==2.11.0+cu128
+
+      # API + inference clients
+      - openai>=2.32
+      - tenacity>=9
+      - huggingface_hub>=1.10
+
+      # Modeling / tokenization (needed to apply Gemma 3 chat template for probe-pos verification)
+      - transformers>=5.5
+      - accelerate>=1.0
+      - safetensors>=0.7
+
+      # Data + analysis
+      - numpy>=2.0
+      - pandas>=2.2
+      - matplotlib>=3.8
+      - pyyaml>=6
+      - tqdm>=4.66
+      - pydantic>=2
+      - python-dotenv>=1
+      - pytest>=8
+
+      # Runtime deps used by beyond-deduction benchmark code
+      - sympy
+      - networkx
