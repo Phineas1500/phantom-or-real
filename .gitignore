@@ -11,9 +11,25 @@ __pycache__/
 .venv/
 venv/
 
-# Data and results — too large / reproducible
-data/
-results/
+# Data and results. Most of this is scratch / redundant; we track only the
+# primary handoff artifacts so teammates can clone and read the dataset
+# directly.
+data/*
+!data/full/
+data/full/*
+!data/full/*.pkl
+!data/pilot/
+data/pilot/*
+!data/pilot/*.pkl
+
+results/*
+!results/full/
+results/full/*
+!results/full/with_errortype/
+!results/full/*.json
+!results/error_agreement_4b.json
+results/full/with_errortype/*
+!results/full/with_errortype/*.jsonl
 
 # Scratch figures from iteration are ignored, but the final Stage 1 figures
 # referenced by docs/behavioral_results_draft.md are tracked so the draft

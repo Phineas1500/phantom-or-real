@@ -1,0 +1,210 @@
+{
+  "results/full/with_errortype/gemma3_27b_infer_property.jsonl": {
+    "file": "results/full/with_errortype/gemma3_27b_infer_property.jsonl",
+    "n": 11000,
+    "task": "infer_property",
+    "model": "gemma3-27b",
+    "per_height": {
+      "1": {
+        "n": 1000,
+        "positive_n": 960,
+        "negative_n": 40,
+        "strong_accuracy": 0.96,
+        "parse_fail_rate": 0.003,
+        "failure_modes": {
+          "parse_error": 3
+        }
+      },
+      "2": {
+        "n": 2000,
+        "positive_n": 1153,
+        "negative_n": 847,
+        "strong_accuracy": 0.5765,
+        "parse_fail_rate": 0.0955,
+        "failure_modes": {
+          "parse_error": 191
+        }
+      },
+      "3": {
+        "n": 3000,
+        "positive_n": 1177,
+        "negative_n": 1823,
+        "strong_accuracy": 0.3923333333333333,
+        "parse_fail_rate": 0.08766666666666667,
+        "failure_modes": {
+          "parse_error": 263
+        }
+      },
+      "4": {
+        "n": 5000,
+        "positive_n": 1320,
+        "negative_n": 3680,
+        "strong_accuracy": 0.264,
+        "parse_fail_rate": 0.1036,
+        "failure_modes": {
+          "parse_error": 518
+        }
+      }
+    },
+    "has_direct_member_rate": 1.0,
+    "integrity_issues": [],
+    "warnings": [
+      "h=2 parse_fail_rate 0.096 > 0.05",
+      "h=3 parse_fail_rate 0.088 > 0.05",
+      "h=4 parse_fail_rate 0.104 > 0.05"
+    ]
+  },
+  "results/full/with_errortype/gemma3_27b_infer_subtype.jsonl": {
+    "file": "results/full/with_errortype/gemma3_27b_infer_subtype.jsonl",
+    "n": 11000,
+    "task": "infer_subtype",
+    "model": "gemma3-27b",
+    "per_height": {
+      "1": {
+        "n": 1000,
+        "positive_n": 973,
+        "negative_n": 27,
+        "strong_accuracy": 0.973,
+        "parse_fail_rate": 0.0,
+        "failure_modes": {}
+      },
+      "2": {
+        "n": 2000,
+        "positive_n": 650,
+        "negative_n": 1350,
+        "strong_accuracy": 0.325,
+        "parse_fail_rate": 0.0675,
+        "failure_modes": {
+          "parse_error": 135
+        }
+      },
+      "3": {
+        "n": 3000,
+        "positive_n": 343,
+        "negative_n": 2657,
+        "strong_accuracy": 0.11433333333333333,
+        "parse_fail_rate": 0.019666666666666666,
+        "failure_modes": {
+          "parse_error": 59
+        }
+      },
+      "4": {
+        "n": 5000,
+        "positive_n": 277,
+        "negative_n": 4723,
+        "strong_accuracy": 0.0554,
+        "parse_fail_rate": 0.0138,
+        "failure_modes": {
+          "parse_error": 69
+        }
+      }
+    },
+    "has_direct_member_rate": 1.0,
+    "integrity_issues": [],
+    "warnings": [
+      "h=2 parse_fail_rate 0.068 > 0.05"
+    ]
+  },
+  "results/full/with_errortype/gemma3_4b_infer_property.jsonl": {
+    "file": "results/full/with_errortype/gemma3_4b_infer_property.jsonl",
+    "n": 11000,
+    "task": "infer_property",
+    "model": "gemma3-4b",
+    "per_height": {
+      "1": {
+        "n": 1000,
+        "positive_n": 740,
+        "negative_n": 260,
+        "strong_accuracy": 0.74,
+        "parse_fail_rate": 0.045,
+        "failure_modes": {
+          "parse_error": 45
+        }
+      },
+      "2": {
+        "n": 2000,
+        "positive_n": 592,
+        "negative_n": 1408,
+        "strong_accuracy": 0.296,
+        "parse_fail_rate": 0.033,
+        "failure_modes": {
+          "parse_error": 66
+        }
+      },
+      "3": {
+        "n": 3000,
+        "positive_n": 614,
+        "negative_n": 2386,
+        "strong_accuracy": 0.20466666666666666,
+        "parse_fail_rate": 0.019333333333333334,
+        "failure_modes": {
+          "parse_error": 58
+        }
+      },
+      "4": {
+        "n": 5000,
+        "positive_n": 821,
+        "negative_n": 4179,
+        "strong_accuracy": 0.1642,
+        "parse_fail_rate": 0.022,
+        "failure_modes": {
+          "parse_error": 110
+        }
+      }
+    },
+    "has_direct_member_rate": 1.0,
+    "integrity_issues": [],
+    "warnings": []
+  },
+  "results/full/with_errortype/gemma3_4b_infer_subtype.jsonl": {
+    "file": "results/full/with_errortype/gemma3_4b_infer_subtype.jsonl",
+    "n": 11000,
+    "task": "infer_subtype",
+    "model": "gemma3-4b",
+    "per_height": {
+      "1": {
+        "n": 1000,
+        "positive_n": 769,
+        "negative_n": 231,
+        "strong_accuracy": 0.769,
+        "parse_fail_rate": 0.017,
+        "failure_modes": {
+          "parse_error": 17
+        }
+      },
+      "2": {
+        "n": 2000,
+        "positive_n": 232,
+        "negative_n": 1768,
+        "strong_accuracy": 0.116,
+        "parse_fail_rate": 0.0075,
+        "failure_modes": {
+          "parse_error": 15
+        }
+      },
+      "3": {
+        "n": 3000,
+        "positive_n": 40,
+        "negative_n": 2960,
+        "strong_accuracy": 0.013333333333333334,
+        "parse_fail_rate": 0.0013333333333333333,
+        "failure_modes": {
+          "parse_error": 4
+        }
+      },
+      "4": {
+        "n": 5000,
+        "positive_n": 45,
+        "negative_n": 4955,
+        "strong_accuracy": 0.009,
+        "parse_fail_rate": 0.0016,
+        "failure_modes": {
+          "parse_error": 8
+        }
+      }
+    },
+    "has_direct_member_rate": 1.0,
+    "integrity_issues": [],
+    "warnings": []
+  }
+}

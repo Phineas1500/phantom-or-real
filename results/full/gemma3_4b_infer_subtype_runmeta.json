@@ -1,0 +1,36 @@
+{
+  "model": "gemma3-4b",
+  "model_slug": "gemma3_4b",
+  "task": "ontology",
+  "n_rows": 11000,
+  "per_height": {
+    "h1": {
+      "n": 1000,
+      "strong_accuracy": 0.769,
+      "parse_fail_rate": 0.017,
+      "elapsed_seconds": 31.71470780900563,
+      "throughput_ips": 31.53111187472591
+    },
+    "h2": {
+      "n": 2000,
+      "strong_accuracy": 0.1165,
+      "parse_fail_rate": 0.0075,
+      "elapsed_seconds": 95.28399280300073,
+      "throughput_ips": 20.989884461863305
+    },
+    "h3": {
+      "n": 3000,
+      "strong_accuracy": 0.013333333333333334,
+      "parse_fail_rate": 0.0013333333333333333,
+      "elapsed_seconds": 203.16670267400332,
+      "throughput_ips": 14.766199187736644
+    },
+    "h4": {
+      "n": 5000,
+      "strong_accuracy": 0.009,
+      "parse_fail_rate": 0.0016,
+      "elapsed_seconds": 337.70781483099563,
+      "throughput_ips": 14.805698240954914
+    }
+  }
+}

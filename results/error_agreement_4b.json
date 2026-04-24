@@ -1,0 +1,28 @@
+{
+  "n": 200,
+  "agreement_rate": 0.575,
+  "nano_distribution": {
+    "unnecessary": 61,
+    "wrong_direction": 106,
+    "trivial": 30,
+    "hallucinated": 3
+  },
+  "mini_distribution": {
+    "trivial": 50,
+    "wrong_direction": 134,
+    "hallucinated": 2,
+    "unnecessary": 14
+  },
+  "disagreements": {
+    "unnecessary <> trivial": 24,
+    "trivial <> wrong_direction": 10,
+    "unnecessary <> wrong_direction": 30,
+    "wrong_direction <> hallucinated": 1,
+    "wrong_direction <> unnecessary": 6,
+    "wrong_direction <> trivial": 8,
+    "hallucinated <> wrong_direction": 3,
+    "trivial <> unnecessary": 2,
+    "unnecessary <> hallucinated": 1
+  },
+  "recommendation": "step_up_to_mini"
+}

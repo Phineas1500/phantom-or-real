@@ -1,0 +1,36 @@
+{
+  "model": "gemma3-4b",
+  "model_slug": "gemma3_4b",
+  "task": "property",
+  "n_rows": 11000,
+  "per_height": {
+    "h1": {
+      "n": 1000,
+      "strong_accuracy": 0.74,
+      "parse_fail_rate": 0.045,
+      "elapsed_seconds": 30.863505380999413,
+      "throughput_ips": 32.400726607536704
+    },
+    "h2": {
+      "n": 2000,
+      "strong_accuracy": 0.295,
+      "parse_fail_rate": 0.0345,
+      "elapsed_seconds": 76.73482855199836,
+      "throughput_ips": 26.0637840435745
+    },
+    "h3": {
+      "n": 3000,
+      "strong_accuracy": 0.204,
+      "parse_fail_rate": 0.019666666666666666,
+      "elapsed_seconds": 166.94872804100305,
+      "throughput_ips": 17.969588838455792
+    },
+    "h4": {
+      "n": 5000,
+      "strong_accuracy": 0.164,
+      "parse_fail_rate": 0.0226,
+      "elapsed_seconds": 276.874940806003,
+      "throughput_ips": 18.058694605747412
+    }
+  }
+}

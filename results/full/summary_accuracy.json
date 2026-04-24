@@ -1,0 +1,724 @@
+{
+  "gemma3-27b__infer_property": {
+    "by_height": {
+      "h1": {
+        "n": 1000,
+        "positive_n": 960,
+        "negative_n": 40,
+        "strong_accuracy": 0.96,
+        "weak_accuracy": 0.96,
+        "strong_ci95": [
+          0.9459900625744302,
+          0.9704891907260906
+        ],
+        "weak_ci95": [
+          0.9459900625744302,
+          0.9704891907260906
+        ],
+        "parse_fail_rate": 0.003,
+        "failure_modes": {
+          "parse_error": 3
+        }
+      },
+      "h2": {
+        "n": 2000,
+        "positive_n": 1153,
+        "negative_n": 847,
+        "strong_accuracy": 0.5765,
+        "weak_accuracy": 0.7655,
+        "strong_ci95": [
+          0.5547181502418939,
+          0.5979885307652277
+        ],
+        "weak_ci95": [
+          0.7464329779892119,
+          0.7835490325649156
+        ],
+        "parse_fail_rate": 0.0955,
+        "failure_modes": {
+          "parse_error": 191
+        }
+      },
+      "h3": {
+        "n": 3000,
+        "positive_n": 1177,
+        "negative_n": 1823,
+        "strong_accuracy": 0.3923333333333333,
+        "weak_accuracy": 0.6003333333333334,
+        "strong_ci95": [
+          0.3750091328146488,
+          0.40993292271850584
+        ],
+        "weak_ci95": [
+          0.5826874256616643,
+          0.6177226092749317
+        ],
+        "parse_fail_rate": 0.08766666666666667,
+        "failure_modes": {
+          "parse_error": 263
+        }
+      },
+      "h4": {
+        "n": 5000,
+        "positive_n": 1320,
+        "negative_n": 3680,
+        "strong_accuracy": 0.264,
+        "weak_accuracy": 0.4242,
+        "strong_ci95": [
+          0.25196619907270873,
+          0.2763961695522295
+        ],
+        "weak_ci95": [
+          0.4105642237406254,
+          0.437952164148232
+        ],
+        "parse_fail_rate": 0.1036,
+        "failure_modes": {
+          "parse_error": 518
+        }
+      }
+    },
+    "output_strategy": {
+      "h1": {
+        "entity_level": 0,
+        "concept_level": 997,
+        "unparseable": 3,
+        "entity_frac": 0.0,
+        "concept_frac": 0.997
+      },
+      "h2": {
+        "entity_level": 20,
+        "concept_level": 1789,
+        "unparseable": 191,
+        "entity_frac": 0.01,
+        "concept_frac": 0.8945
+      },
+      "h3": {
+        "entity_level": 86,
+        "concept_level": 2651,
+        "unparseable": 263,
+        "entity_frac": 0.028666666666666667,
+        "concept_frac": 0.8836666666666667
+      },
+      "h4": {
+        "entity_level": 111,
+        "concept_level": 4371,
+        "unparseable": 518,
+        "entity_frac": 0.0222,
+        "concept_frac": 0.8742
+      }
+    },
+    "error_types": {
+      "h1": {
+        "unnecessary": 20,
+        "unclassified": 7,
+        "trivial": 8,
+        "wrong_direction": 5
+      },
+      "h2": {
+        "unnecessary": 579,
+        "wrong_direction": 133,
+        "unclassified": 121,
+        "trivial": 13,
+        "hallucinated": 1
+      },
+      "h3": {
+        "wrong_direction": 546,
+        "unnecessary": 1107,
+        "unclassified": 134,
+        "trivial": 33,
+        "hallucinated": 3
+      },
+      "h4": {
+        "wrong_direction": 1526,
+        "unclassified": 312,
+        "unnecessary": 1783,
+        "hallucinated": 8,
+        "trivial": 51
+      }
+    },
+    "error_types_by_structure": {
+      "h1": {
+        "has_direct_member": {
+          "unnecessary": 20,
+          "unclassified": 7,
+          "trivial": 8,
+          "wrong_direction": 5
+        },
+        "no_direct_member": {}
+      },
+      "h2": {
+        "has_direct_member": {
+          "unnecessary": 579,
+          "wrong_direction": 133,
+          "unclassified": 121,
+          "trivial": 13,
+          "hallucinated": 1
+        },
+        "no_direct_member": {}
+      },
+      "h3": {
+        "has_direct_member": {
+          "wrong_direction": 546,
+          "unnecessary": 1107,
+          "unclassified": 134,
+          "trivial": 33,
+          "hallucinated": 3
+        },
+        "no_direct_member": {}
+      },
+      "h4": {
+        "has_direct_member": {
+          "wrong_direction": 1526,
+          "unclassified": 312,
+          "unnecessary": 1783,
+          "hallucinated": 8,
+          "trivial": 51
+        },
+        "no_direct_member": {}
+      }
+    }
+  },
+  "gemma3-27b__infer_subtype": {
+    "by_height": {
+      "h1": {
+        "n": 1000,
+        "positive_n": 973,
+        "negative_n": 27,
+        "strong_accuracy": 0.973,
+        "weak_accuracy": 0.974,
+        "strong_ci95": [
+          0.9610010105865644,
+          0.9813787433507103
+        ],
+        "weak_ci95": [
+          0.9621759154980226,
+          0.9821961846420791
+        ],
+        "parse_fail_rate": 0.0,
+        "failure_modes": {}
+      },
+      "h2": {
+        "n": 2000,
+        "positive_n": 650,
+        "negative_n": 1350,
+        "strong_accuracy": 0.325,
+        "weak_accuracy": 0.6135,
+        "strong_ci95": [
+          0.30482500482787267,
+          0.3458459863323069
+        ],
+        "weak_ci95": [
+          0.591960353813923,
+          0.6346044604907607
+        ],
+        "parse_fail_rate": 0.0675,
+        "failure_modes": {
+          "parse_error": 135
+        }
+      },
+      "h3": {
+        "n": 3000,
+        "positive_n": 343,
+        "negative_n": 2657,
+        "strong_accuracy": 0.11433333333333333,
+        "weak_accuracy": 0.36233333333333334,
+        "strong_ci95": [
+          0.10343595887173787,
+          0.12621716265104815
+        ],
+        "weak_ci95": [
+          0.34531878263331584,
+          0.37970000663972714
+        ],
+        "parse_fail_rate": 0.019666666666666666,
+        "failure_modes": {
+          "parse_error": 59
+        }
+      },
+      "h4": {
+        "n": 5000,
+        "positive_n": 277,
+        "negative_n": 4723,
+        "strong_accuracy": 0.0554,
+        "weak_accuracy": 0.2396,
+        "strong_ci95": [
+          0.04939369774094005,
+          0.0620889678973967
+        ],
+        "weak_ci95": [
+          0.22797138645412343,
+          0.2516284474015286
+        ],
+        "parse_fail_rate": 0.0138,
+        "failure_modes": {
+          "parse_error": 69
+        }
+      }
+    },
+    "output_strategy": {
+      "h1": {
+        "entity_level": 0,
+        "concept_level": 1000,
+        "unparseable": 0,
+        "entity_frac": 0.0,
+        "concept_frac": 1.0
+      },
+      "h2": {
+        "entity_level": 65,
+        "concept_level": 1800,
+        "unparseable": 135,
+        "entity_frac": 0.0325,
+        "concept_frac": 0.9
+      },
+      "h3": {
+        "entity_level": 147,
+        "concept_level": 2794,
+        "unparseable": 59,
+        "entity_frac": 0.049,
+        "concept_frac": 0.9313333333333333
+      },
+      "h4": {
+        "entity_level": 456,
+        "concept_level": 4475,
+        "unparseable": 69,
+        "entity_frac": 0.0912,
+        "concept_frac": 0.895
+      }
+    },
+    "error_types": {
+      "h1": {
+        "wrong_direction": 21,
+        "unclassified": 3,
+        "trivial": 2,
+        "unnecessary": 1
+      },
+      "h2": {
+        "wrong_direction": 703,
+        "unnecessary": 590,
+        "unclassified": 45,
+        "trivial": 11,
+        "hallucinated": 1
+      },
+      "h3": {
+        "wrong_direction": 1930,
+        "unclassified": 193,
+        "trivial": 28,
+        "unnecessary": 504,
+        "hallucinated": 2
+      },
+      "h4": {
+        "unclassified": 342,
+        "wrong_direction": 3543,
+        "unnecessary": 774,
+        "hallucinated": 21,
+        "trivial": 43
+      }
+    },
+    "error_types_by_structure": {
+      "h1": {
+        "has_direct_member": {
+          "wrong_direction": 21,
+          "unclassified": 3,
+          "trivial": 2,
+          "unnecessary": 1
+        },
+        "no_direct_member": {}
+      },
+      "h2": {
+        "has_direct_member": {
+          "wrong_direction": 703,
+          "unnecessary": 590,
+          "unclassified": 45,
+          "trivial": 11,
+          "hallucinated": 1
+        },
+        "no_direct_member": {}
+      },
+      "h3": {
+        "has_direct_member": {
+          "wrong_direction": 1930,
+          "unclassified": 193,
+          "trivial": 28,
+          "unnecessary": 504,
+          "hallucinated": 2
+        },
+        "no_direct_member": {}
+      },
+      "h4": {
+        "has_direct_member": {
+          "unclassified": 342,
+          "wrong_direction": 3543,
+          "unnecessary": 774,
+          "hallucinated": 21,
+          "trivial": 43
+        },
+        "no_direct_member": {}
+      }
+    }
+  },
+  "gemma3-4b__infer_property": {
+    "by_height": {
+      "h1": {
+        "n": 1000,
+        "positive_n": 740,
+        "negative_n": 260,
+        "strong_accuracy": 0.74,
+        "weak_accuracy": 0.74,
+        "strong_ci95": [
+          0.7119312432576527,
+          0.76623184542088
+        ],
+        "weak_ci95": [
+          0.7119312432576527,
+          0.76623184542088
+        ],
+        "parse_fail_rate": 0.045,
+        "failure_modes": {
+          "parse_error": 45
+        }
+      },
+      "h2": {
+        "n": 2000,
+        "positive_n": 592,
+        "negative_n": 1408,
+        "strong_accuracy": 0.296,
+        "weak_accuracy": 0.383,
+        "strong_ci95": [
+          0.27639985423466956,
+          0.3163823297463397
+        ],
+        "weak_ci95": [
+          0.36193847909601823,
+          0.4045101264225018
+        ],
+        "parse_fail_rate": 0.033,
+        "failure_modes": {
+          "parse_error": 66
+        }
+      },
+      "h3": {
+        "n": 3000,
+        "positive_n": 614,
+        "negative_n": 2386,
+        "strong_accuracy": 0.20466666666666666,
+        "weak_accuracy": 0.3383333333333333,
+        "strong_ci95": [
+          0.1906111062794207,
+          0.2194776280932573
+        ],
+        "weak_ci95": [
+          0.32161846573528063,
+          0.3554617105296729
+        ],
+        "parse_fail_rate": 0.019333333333333334,
+        "failure_modes": {
+          "parse_error": 58
+        }
+      },
+      "h4": {
+        "n": 5000,
+        "positive_n": 821,
+        "negative_n": 4179,
+        "strong_accuracy": 0.1642,
+        "weak_accuracy": 0.254,
+        "strong_ci95": [
+          0.15418996623798878,
+          0.17472564132241045
+        ],
+        "weak_ci95": [
+          0.24212618172509198,
+          0.26625154150259783
+        ],
+        "parse_fail_rate": 0.022,
+        "failure_modes": {
+          "parse_error": 110
+        }
+      }
+    },
+    "output_strategy": {
+      "h1": {
+        "entity_level": 1,
+        "concept_level": 954,
+        "unparseable": 45,
+        "entity_frac": 0.001,
+        "concept_frac": 0.954
+      },
+      "h2": {
+        "entity_level": 231,
+        "concept_level": 1703,
+        "unparseable": 66,
+        "entity_frac": 0.1155,
+        "concept_frac": 0.8515
+      },
+      "h3": {
+        "entity_level": 746,
+        "concept_level": 2196,
+        "unparseable": 58,
+        "entity_frac": 0.24866666666666667,
+        "concept_frac": 0.732
+      },
+      "h4": {
+        "entity_level": 1295,
+        "concept_level": 3595,
+        "unparseable": 110,
+        "entity_frac": 0.259,
+        "concept_frac": 0.719
+      }
+    },
+    "error_types": {
+      "h1": {
+        "wrong_direction": 105,
+        "trivial": 141,
+        "unclassified": 2,
+        "hallucinated": 7,
+        "unnecessary": 5
+      },
+      "h2": {
+        "wrong_direction": 909,
+        "trivial": 274,
+        "unnecessary": 136,
+        "unclassified": 84,
+        "hallucinated": 5
+      },
+      "h3": {
+        "trivial": 583,
+        "unnecessary": 350,
+        "wrong_direction": 1205,
+        "hallucinated": 32,
+        "unclassified": 216
+      },
+      "h4": {
+        "wrong_direction": 2309,
+        "trivial": 1021,
+        "unnecessary": 477,
+        "unclassified": 311,
+        "hallucinated": 61
+      }
+    },
+    "error_types_by_structure": {
+      "h1": {
+        "has_direct_member": {
+          "wrong_direction": 105,
+          "trivial": 141,
+          "unclassified": 2,
+          "hallucinated": 7,
+          "unnecessary": 5
+        },
+        "no_direct_member": {}
+      },
+      "h2": {
+        "has_direct_member": {
+          "wrong_direction": 909,
+          "trivial": 274,
+          "unnecessary": 136,
+          "unclassified": 84,
+          "hallucinated": 5
+        },
+        "no_direct_member": {}
+      },
+      "h3": {
+        "has_direct_member": {
+          "trivial": 583,
+          "unnecessary": 350,
+          "wrong_direction": 1205,
+          "hallucinated": 32,
+          "unclassified": 216
+        },
+        "no_direct_member": {}
+      },
+      "h4": {
+        "has_direct_member": {
+          "wrong_direction": 2309,
+          "trivial": 1021,
+          "unnecessary": 477,
+          "unclassified": 311,
+          "hallucinated": 61
+        },
+        "no_direct_member": {}
+      }
+    }
+  },
+  "gemma3-4b__infer_subtype": {
+    "by_height": {
+      "h1": {
+        "n": 1000,
+        "positive_n": 769,
+        "negative_n": 231,
+        "strong_accuracy": 0.769,
+        "weak_accuracy": 0.769,
+        "strong_ci95": [
+          0.7418771517803808,
+          0.7940639767801412
+        ],
+        "weak_ci95": [
+          0.7418771517803808,
+          0.7940639767801412
+        ],
+        "parse_fail_rate": 0.017,
+        "failure_modes": {
+          "parse_error": 17
+        }
+      },
+      "h2": {
+        "n": 2000,
+        "positive_n": 232,
+        "negative_n": 1768,
+        "strong_accuracy": 0.116,
+        "weak_accuracy": 0.27,
+        "strong_ci95": [
+          0.1026958434563985,
+          0.13077650286079548
+        ],
+        "weak_ci95": [
+          0.25099721557969784,
+          0.28988465851653816
+        ],
+        "parse_fail_rate": 0.0075,
+        "failure_modes": {
+          "parse_error": 15
+        }
+      },
+      "h3": {
+        "n": 3000,
+        "positive_n": 40,
+        "negative_n": 2960,
+        "strong_accuracy": 0.013333333333333334,
+        "weak_accuracy": 0.25166666666666665,
+        "strong_ci95": [
+          0.009806999344136478,
+          0.018104459102940097
+        ],
+        "weak_ci95": [
+          0.236461501732018,
+          0.2675070164481684
+        ],
+        "parse_fail_rate": 0.0013333333333333333,
+        "failure_modes": {
+          "parse_error": 4
+        }
+      },
+      "h4": {
+        "n": 5000,
+        "positive_n": 45,
+        "negative_n": 4955,
+        "strong_accuracy": 0.009,
+        "weak_accuracy": 0.1902,
+        "strong_ci95": [
+          0.0067331929242076495,
+          0.01202071807089659
+        ],
+        "weak_ci95": [
+          0.17956101397580215,
+          0.20131467161744288
+        ],
+        "parse_fail_rate": 0.0016,
+        "failure_modes": {
+          "parse_error": 8
+        }
+      }
+    },
+    "output_strategy": {
+      "h1": {
+        "entity_level": 1,
+        "concept_level": 982,
+        "unparseable": 17,
+        "entity_frac": 0.001,
+        "concept_frac": 0.982
+      },
+      "h2": {
+        "entity_level": 407,
+        "concept_level": 1578,
+        "unparseable": 15,
+        "entity_frac": 0.2035,
+        "concept_frac": 0.789
+      },
+      "h3": {
+        "entity_level": 1521,
+        "concept_level": 1475,
+        "unparseable": 4,
+        "entity_frac": 0.507,
+        "concept_frac": 0.49166666666666664
+      },
+      "h4": {
+        "entity_level": 2516,
+        "concept_level": 2476,
+        "unparseable": 8,
+        "entity_frac": 0.5032,
+        "concept_frac": 0.4952
+      }
+    },
+    "error_types": {
+      "h1": {
+        "unclassified": 8,
+        "hallucinated": 3,
+        "wrong_direction": 181,
+        "trivial": 37,
+        "unnecessary": 2
+      },
+      "h2": {
+        "wrong_direction": 1320,
+        "trivial": 278,
+        "unnecessary": 36,
+        "hallucinated": 5,
+        "unclassified": 129
+      },
+      "h3": {
+        "wrong_direction": 1882,
+        "trivial": 778,
+        "unclassified": 146,
+        "unnecessary": 119,
+        "hallucinated": 35
+      },
+      "h4": {
+        "wrong_direction": 3180,
+        "hallucinated": 145,
+        "trivial": 1126,
+        "unnecessary": 198,
+        "unclassified": 306
+      }
+    },
+    "error_types_by_structure": {
+      "h1": {
+        "has_direct_member": {
+          "unclassified": 8,
+          "hallucinated": 3,
+          "wrong_direction": 181,
+          "trivial": 37,
+          "unnecessary": 2
+        },
+        "no_direct_member": {}
+      },
+      "h2": {
+        "has_direct_member": {
+          "wrong_direction": 1320,
+          "trivial": 278,
+          "unnecessary": 36,
+          "hallucinated": 5,
+          "unclassified": 129
+        },
+        "no_direct_member": {}
+      },
+      "h3": {
+        "has_direct_member": {
+          "wrong_direction": 1882,
+          "trivial": 778,
+          "unclassified": 146,
+          "unnecessary": 119,
+          "hallucinated": 35
+        },
+        "no_direct_member": {}
+      },
+      "h4": {
+        "has_direct_member": {
+          "wrong_direction": 3180,
+          "hallucinated": 145,
+          "trivial": 1126,
+          "unnecessary": 198,
+          "unclassified": 306
+        },
+        "no_direct_member": {}
+      }
+    }
+  }
+}
