@@ -48,6 +48,7 @@ from .bd_path import ensure_on_path
 from .config import SYSTEM_PROMPT, make_user_prompt
 from .env_loader import load_env
 from .export import build_row, write_jsonl
+from .messages import build_messages
 
 load_env()
 
@@ -64,24 +65,6 @@ from .gemma3_parse import parse_hypotheses as parse_hypotheses_from_response  # 
 
 
 REFUSAL_HINTS = ("cannot", "unable to", "not able to", "i can't", "i cannot")
-
-
-def build_messages(system: str, user: str, model_name: str) -> list[dict[str, str]]:
-    """Construct the chat messages list, handling Gemma's lack of a system role.
-
-    Gemma 2/3 tokenizers don't define a `system` role in the chat template. When
-    served through vLLM, passing a system message causes a template error. The
-    upstream paper's Modal client concatenates system and user into one user
-    message (see beyond-deduction/deployment/gemma3_27b_modal.py). We mirror
-    that here when the model name looks like Gemma; override via the caller.
-    """
-    if "gemma" in model_name.lower():
-        combined = f"{system}\n\n{user}"
-        return [{"role": "user", "content": combined}]
-    return [
-        {"role": "system", "content": system},
-        {"role": "user", "content": user},
-    ]
 
 
 @dataclass

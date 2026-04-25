@@ -1,0 +1,102 @@
+{
+  "chat_template_probe": {
+    "add_generation_prompt": true,
+    "message_builder": "src.messages.build_messages",
+    "system": "You are a helpful assitant that performs abduction and induction reasoning.\n        Your job is to come up with hypotheses that explain observations with given theories. Each hypothesis should explain as many observations as possible.\n        You can come up with multiple hypotheses and each hypothesis should take one line with the format A is B or A is not B.\n    .   Only output final hypotheses.\n ",
+    "user": "Q: Alex is a dax. We observe that: Alex is not noisy. Please come up with hypothesis to explain observations."
+  },
+  "created_at_utc": "2026-04-25T21:47:23.015180+00:00",
+  "created_by": "scripts/stage2_write_invariants.py",
+  "gpt_judge_snapshot": null,
+  "hf_cache_root": "/scratch/scholar/skiron/hf-cache",
+  "models": {
+    "google/gemma-3-27b-it": {
+      "cache": {
+        "available_snapshots": [
+          "005ad3404e59d6023443cb575daa05336842228a"
+        ],
+        "refs_main": "005ad3404e59d6023443cb575daa05336842228a",
+        "repo_cache_dir": "/scratch/scholar/skiron/hf-cache/hub/models--google--gemma-3-27b-it",
+        "repo_id": "google/gemma-3-27b-it",
+        "selected_commit": "005ad3404e59d6023443cb575daa05336842228a",
+        "selected_snapshot_path": "/scratch/scholar/skiron/hf-cache/hub/models--google--gemma-3-27b-it/snapshots/005ad3404e59d6023443cb575daa05336842228a"
+      },
+      "chat_template_sha256": "7de1c58e208eda46e9c7f86397df37ec49883aeece39fb961e0a6b24088dd3c4",
+      "config_class": "Gemma3Config",
+      "eos_token_id": 1,
+      "hf_repo_id": "google/gemma-3-27b-it",
+      "local_files_only": true,
+      "model_revision_hash": "005ad3404e59d6023443cb575daa05336842228a",
+      "pad_token_id": 0,
+      "rendered_chat_char_count": 573,
+      "rendered_chat_sha256": "5dbdd822d579375da03d6ab3bae9ff09387a6412911d8ff417c501f3bcc75e0d",
+      "status": "ok",
+      "token_count": 115,
+      "token_ids_sha256": "54bff9d1499c662c4005927ca7aa369ebe5c42d3cb6b9e851bad7aa33966e835",
+      "tokenizer_class": "GemmaTokenizer",
+      "tokenizer_name_or_path": "google/gemma-3-27b-it",
+      "tokenizer_revision_hash": "005ad3404e59d6023443cb575daa05336842228a"
+    },
+    "google/gemma-3-4b-it": {
+      "cache": {
+        "available_snapshots": [
+          "093f9f388b31de276ce2de164bdc2081324b9767"
+        ],
+        "refs_main": "093f9f388b31de276ce2de164bdc2081324b9767",
+        "repo_cache_dir": "/scratch/scholar/skiron/hf-cache/hub/models--google--gemma-3-4b-it",
+        "repo_id": "google/gemma-3-4b-it",
+        "selected_commit": "093f9f388b31de276ce2de164bdc2081324b9767",
+        "selected_snapshot_path": "/scratch/scholar/skiron/hf-cache/hub/models--google--gemma-3-4b-it/snapshots/093f9f388b31de276ce2de164bdc2081324b9767"
+      },
+      "chat_template_sha256": "7de1c58e208eda46e9c7f86397df37ec49883aeece39fb961e0a6b24088dd3c4",
+      "config_class": "Gemma3Config",
+      "eos_token_id": 1,
+      "hf_repo_id": "google/gemma-3-4b-it",
+      "local_files_only": true,
+      "model_revision_hash": "093f9f388b31de276ce2de164bdc2081324b9767",
+      "pad_token_id": 0,
+      "rendered_chat_char_count": 573,
+      "rendered_chat_sha256": "5dbdd822d579375da03d6ab3bae9ff09387a6412911d8ff417c501f3bcc75e0d",
+      "status": "ok",
+      "token_count": 115,
+      "token_ids_sha256": "54bff9d1499c662c4005927ca7aa369ebe5c42d3cb6b9e851bad7aa33966e835",
+      "tokenizer_class": "GemmaTokenizer",
+      "tokenizer_name_or_path": "google/gemma-3-4b-it",
+      "tokenizer_revision_hash": "093f9f388b31de276ce2de164bdc2081324b9767"
+    }
+  },
+  "output_path": "docs/stage2_invariants.json",
+  "python_packages": {
+    "sae-lens": "6.39.0",
+    "torch": "2.10.0",
+    "transformer-lens": "3.0.0",
+    "transformers": "5.5.4"
+  },
+  "sae_releases": {
+    "entries": {},
+    "status": "pin_after_layer_selection"
+  },
+  "schema_version": 1,
+  "stage1_jsonls": {
+    "results/full/with_errortype/gemma3_27b_infer_property.jsonl": {
+      "bytes": 30179592,
+      "rows": 11000,
+      "sha256": "22787b5fbc315f257264a5cab9277ea005f5dbe8cbfe675ce6fe3f1c8197b570"
+    },
+    "results/full/with_errortype/gemma3_27b_infer_subtype.jsonl": {
+      "bytes": 30628541,
+      "rows": 11000,
+      "sha256": "9430dd767916469d3ffea35aab3f525e3c27889cc5275ca0e70a60ec365dcd6a"
+    },
+    "results/full/with_errortype/gemma3_4b_infer_property.jsonl": {
+      "bytes": 28571858,
+      "rows": 11000,
+      "sha256": "7637e0a8a2e80351ce8573199f7a1477acf4e6b94775c709f4391086ac7f7224"
+    },
+    "results/full/with_errortype/gemma3_4b_infer_subtype.jsonl": {
+      "bytes": 29032410,
+      "rows": 11000,
+      "sha256": "7de7ea604a5f4f6f2318056ff56c5a457eb0c8a82741f0325378d8925c6fa205"
+    }
+  }
+}
