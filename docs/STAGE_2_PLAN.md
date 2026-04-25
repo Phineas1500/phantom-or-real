@@ -184,6 +184,11 @@ network calls and never hit the wire.
   to `scripts/run_inference.py` for Stage 1.
 - `scripts/stage2_train_probes.py` — probe training orchestrator, writes
   `results/stage2/probes/`.
+- `scripts/stage2_j2_measure.py` — Scholar J-node measurement utility
+  for Gemma 3 27B TransformerLens batch-size and SAE headroom checks.
+  The paired `scripts/stage2_j2_measure.sbatch` wrapper is not part of
+  the production pipeline, but records the measured J-node operating
+  envelope used below.
 - `scripts/validate_activations.py` — 5-tier equivalence check (see
   A.1) between TransformerLens greedy decode and Stage 1 vLLM outputs
   on 50 prompts, plus a 200-row label-agreement check and a
@@ -212,13 +217,10 @@ network calls and never hit the wire.
 
 ### Environment additions
 
-`environment.yml` and `environment.lock.yml` need `transformer-lens`
-(pin `>= 2.17.0`; prefer `>= 3.0.0` if SAE Lens compatibility is
-clean, because Gemma 3 support landed in v2.17.0 and the newer
-TransformerBridge system is formalized in v3.0), `sae-lens`, and
-optionally `scikit-learn` (already in the lock file? verify; if not,
-add). Capture the resolved versions in `environment.lock.yml` at the
-same time.
+`environment.yml` and `environment.lock.yml` now include
+`transformer-lens==3.0.0`, `sae-lens==6.39.0`, and
+`scikit-learn==1.8.0` as resolved in the Scholar `phantom`
+environment used for the J-node pilot.
 
 ### Test conventions
 
@@ -307,6 +309,41 @@ exist):
   tokenizer revision, chat template, stop conditions, and prompt
   construction must also match. The invariant is accepted only after
   the 5-tier equivalence check in A.1 passes.
+- **Scholar J-node fallback: 2x A40 (about 92 GB aggregate VRAM).**
+  A 2026-04-24 pilot on `scholar-j001` (`sbatch`
+  `scripts/stage2_tl_27b_j2_pilot.sbatch`, job `449067`) successfully
+  loaded `google/gemma-3-27b-it` through TransformerLens 3.0 with
+  `n_devices=2`, captured 10 last-position residual activations at
+  `blocks.30.hook_resid_post`, and wrote a `[10, 5376]` bf16
+  safetensors artifact. Two operational constraints matter: request
+  high CPU RAM (`--mem=180G`; the default loader OOM-killed at 120G)
+  and use `HookedTransformer.from_pretrained_no_processing` for bf16.
+  TransformerLens 3.0's automatic multi-GPU mover can place neighboring
+  blocks on alternating GPUs while `forward()` uses deterministic
+  pipeline devices; the pilot works around this by re-placing whole
+  blocks with `get_device_for_block_index()` before forwarding.
+
+  Follow-up measurement on 2026-04-25 (`scripts/stage2_j2_measure.sbatch`,
+  job `449081`, artifact
+  `results/stage2/pilots/j2_stage2_measure_L30_h4_20260425T040105Z.json`)
+  used 64 height-4 `infer_property` prompts (202-217 tokens after the
+  Gemma chat template), peaked at 104,741,572K MaxRSS, and showed raw
+  extraction batches 1, 4, 8, 16, 32, and 64 all succeed. Batch 32
+  reached 5.54 rows/s with peak reserved memory 28.9 GiB per GPU;
+  batch 64 reached 5.69 rows/s with peak reserved memory 30.2 GiB per
+  GPU. Use **batch 32** as the conservative 27B J-node raw-extraction
+  default and only raise to 64 after checking token lengths for the
+  target shard. The same job loaded Gemma Scope 2 layer-30 residual SAEs
+  alongside the resident model:
+  `layer_30_width_16k_l0_small` loaded in 4.4 s with peak reserved
+  memory 27.7 GiB on `cuda:0`; `layer_30_width_262k_l0_small` loaded
+  in 13.0 s with peak reserved memory 37.5 GiB on `cuda:0` and encoded
+  cached residual chunks up to 512 rows, peaking at 34.4 GiB reserved
+  during encoding after cache cleanup. Therefore run SAE feature
+  extraction from cached residuals, one SAE/layer at a time, with
+  chunk size 512 as the initial J-node setting. Do not keep multiple
+  large SAEs resident with the 27B model unless a separate measurement
+  proves the extra headroom.
 - **Colab Pro vs. Pro+ operational details.** Treat Pro sessions as
   interruptible and checkpoint aggressively. Colab's official FAQ
   states Pro+ supports up to 24 hours of continuous execution when

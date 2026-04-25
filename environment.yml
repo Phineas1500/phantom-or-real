@@ -24,11 +24,14 @@ dependencies:
       - transformers>=5.5
       - accelerate>=1.0
       - safetensors>=0.7
+      - transformer-lens>=3.0
+      - sae-lens>=6.39
 
       # Data + analysis
       - numpy>=2.0
       - pandas>=2.2
       - matplotlib>=3.8
+      - scikit-learn>=1.8
       - pyyaml>=6
       - tqdm>=4.66
       - pydantic>=2
