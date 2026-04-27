@@ -56,6 +56,12 @@ As of 2026-04-27:
 - Full extraction job `449835` completed on 2026-04-27. It wrote six 27B raw
   residual files under `results/stage2/activations/`; both full validation
   reports are `ok`. Each file has shape `[11000, 5376]` and dtype bf16.
+- `docs/raw_probe_27b_s1.json` records 27B S1 raw-residual logistic probes for
+  layers 15, 30, and 45. Best layer is L45 for both tasks: property test AUC
+  0.897, subtype test AUC 0.914. Both beat the matching B0 baselines.
+- `docs/raw_probe_27b_s1_label_shuffle.json` records a bounded shuffled-label
+  sanity check. Best selected-layer test AUCs are near chance: property 0.493,
+  subtype 0.481.
 
 Measured jobs:
 
@@ -217,6 +223,12 @@ Current 27B S1 thresholds:
 Train one raw-residual probe with shuffled labels on S1. Expected AUC is about
 0.50. Add S2 only after there is an evaluable heldout design.
 
+Current 27B status: done in `docs/raw_probe_27b_s1_label_shuffle.json`.
+This control used the same S1 splits and layers as the main raw probe, with
+`C=1.0` and `max_iter=300` to keep noisy-label optimization bounded. Some
+fits reached the iteration cap, but selected-layer test AUCs stayed near
+chance: 0.493 for property and 0.481 for subtype.
+
 ## Phase A: Activation Extraction
 
 ### A.1 Extraction Contract
@@ -344,6 +356,16 @@ Probe requirements:
 - report aggregate AUC and per-height AUC;
 - report delta over B0 baselines;
 - include confidence intervals by bootstrap over examples.
+
+Current 27B S1 point metrics are in `docs/raw_probe_27b_s1.json`:
+
+| Task | B0 threshold | Best raw layer | Val AUC | Test AUC | Delta vs B0 |
+| --- | ---: | --- | ---: | ---: | ---: |
+| `infer_property` | 0.743 | L45 | 0.881 | 0.897 | +0.153 |
+| `infer_subtype` | 0.841 | L45 | 0.917 | 0.914 | +0.073 |
+
+All selected raw layers beat the task-matched B0 thresholds on S1. Bootstrap
+confidence intervals and transfer diagnostics are still pending.
 
 Transfer and comparison:
 
@@ -474,7 +496,7 @@ Phase 0:
   but non-evaluable.
 - [x] B0 metadata baselines for Gemma 3 27B S1.
 - [ ] Redesign or replace S2 before reporting heldout-topology results.
-- [ ] Label-shuffle sanity check.
+- [x] Label-shuffle sanity check.
 
 Phase A:
 
@@ -488,8 +510,9 @@ Phase A:
 
 Phase B:
 
-- [ ] Raw residual probes for Gemma 3 27B, both tasks, and selected layers.
-- [ ] S1 metrics.
+- [x] Raw residual probes for Gemma 3 27B, both tasks, and selected layers.
+- [x] S1 point metrics.
+- [ ] Bootstrap confidence intervals for raw residual probes.
 - [ ] S2 metrics only after redesign.
 - [ ] Cross-task transfer tables.
 - [ ] Cross-model comparison tables after teammate 4B results are available.

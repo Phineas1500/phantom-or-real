@@ -15,6 +15,7 @@ import numpy as np
 
 SPLIT_FRACTIONS = {"train": 0.70, "val": 0.15, "test": 0.15}
 SPLITS = tuple(SPLIT_FRACTIONS)
+DEFAULT_C_VALUES = (0.01, 0.1, 1.0, 10.0)
 
 
 def read_jsonl(path: Path) -> list[dict[str, Any]]:
@@ -31,6 +32,11 @@ def write_json(path: Path, data: Any) -> None:
     with path.open("w") as f:
         json.dump(data, f, indent=2, sort_keys=True)
         f.write("\n")
+
+
+def read_json(path: Path) -> dict[str, Any]:
+    with path.open() as f:
+        return json.load(f)
 
 
 def _safe_auc(labels: list[int], scores: list[float]) -> float | None:
@@ -80,24 +86,63 @@ def _has_two_classes(labels: list[int], indices: list[int]) -> bool:
     return len({labels[idx] for idx in indices}) == 2
 
 
+def read_split_assignments(path: Path) -> dict[tuple[str, int], dict[str, Any]]:
+    return {
+        (row["source_file"], int(row["row_index"])): row
+        for row in read_jsonl(path)
+    }
+
+
+def split_indices_from_assignments(
+    sidecar_rows: list[dict[str, Any]],
+    *,
+    assignments: dict[tuple[str, int], dict[str, Any]],
+    source_file: str,
+    split_field: str,
+) -> dict[str, list[int]]:
+    split_indices = {split: [] for split in SPLITS}
+    missing = []
+    for idx, row in enumerate(sidecar_rows):
+        key = (source_file, int(row["row_index"]))
+        assignment = assignments.get(key)
+        if assignment is None:
+            missing.append(key)
+            continue
+        split = assignment[split_field]
+        if split not in split_indices:
+            raise ValueError(f"unknown split {split!r} for {key}")
+        split_indices[split].append(idx)
+    if missing:
+        raise KeyError(f"{len(missing)} sidecar rows missing split assignments; sample={missing[:5]}")
+    return split_indices
+
+
+def shuffled_labels(labels: list[int], *, seed: int) -> list[int]:
+    rng = random.Random(seed)
+    shuffled = list(labels)
+    rng.shuffle(shuffled)
+    return shuffled
+
+
 def _predict_scores(model, x: np.ndarray, indices: list[int]) -> list[float]:
     if not indices:
         return []
     return [float(score) for score in model.predict_proba(x[indices])[:, 1]]
 
 
-def train_logistic_probe(
+def train_logistic_probe_with_splits(
     x: np.ndarray,
     labels: list[int],
     sidecar_rows: list[dict[str, Any]],
     *,
-    seed: int,
+    splits: dict[str, list[int]],
+    c_values: tuple[float, ...] = DEFAULT_C_VALUES,
+    max_iter: int = 2000,
 ) -> dict[str, Any]:
     from sklearn.linear_model import LogisticRegression
     from sklearn.pipeline import make_pipeline
     from sklearn.preprocessing import StandardScaler
 
-    splits = stratified_split_indices(labels, seed=seed)
     train_indices = splits["train"]
     val_indices = splits["val"]
     test_indices = splits["test"]
@@ -108,11 +153,13 @@ def train_logistic_probe(
     if not _has_two_classes(labels, val_indices) or not _has_two_classes(labels, test_indices):
         return {"status": "skipped_no_evaluable_holdout", "split_counts": split_counts}
 
+    if not c_values:
+        raise ValueError("at least one C value is required")
     best = None
-    for c_value in (0.01, 0.1, 1.0, 10.0):
+    for c_value in c_values:
         model = make_pipeline(
             StandardScaler(),
-            LogisticRegression(C=c_value, class_weight="balanced", max_iter=2000),
+            LogisticRegression(C=c_value, class_weight="balanced", max_iter=max_iter),
         )
         model.fit(x[train_indices], [labels[idx] for idx in train_indices])
         val_scores = _predict_scores(model, x, val_indices)
@@ -141,11 +188,33 @@ def train_logistic_probe(
     return {
         "status": "ok",
         "best_c": best["c"],
+        "c_values": list(c_values),
+        "max_iter": max_iter,
         "val_auc": best["val_auc"],
         "test_auc": _safe_auc([labels[idx] for idx in test_indices], test_scores),
         "split_counts": split_counts,
         "per_height": per_height,
     }
+
+
+def train_logistic_probe(
+    x: np.ndarray,
+    labels: list[int],
+    sidecar_rows: list[dict[str, Any]],
+    *,
+    seed: int,
+    c_values: tuple[float, ...] = DEFAULT_C_VALUES,
+    max_iter: int = 2000,
+) -> dict[str, Any]:
+    splits = stratified_split_indices(labels, seed=seed)
+    return train_logistic_probe_with_splits(
+        x,
+        labels,
+        sidecar_rows,
+        splits=splits,
+        c_values=c_values,
+        max_iter=max_iter,
+    )
 
 
 def load_activation_matrix(path: Path) -> np.ndarray:
@@ -161,6 +230,12 @@ def run_raw_activation_probe(
     sidecar_path: Path,
     seed: int,
     drop_parse_failed: bool = True,
+    split_assignments: dict[tuple[str, int], dict[str, Any]] | None = None,
+    source_file: str | None = None,
+    split_family: str = "s1",
+    shuffle_labels: bool = False,
+    c_values: tuple[float, ...] = DEFAULT_C_VALUES,
+    max_iter: int = 2000,
 ) -> dict[str, Any]:
     x_all = load_activation_matrix(activation_path)
     sidecar_all = read_jsonl(sidecar_path)
@@ -175,12 +250,44 @@ def run_raw_activation_probe(
     x = x_all[keep_indices]
     sidecar = [sidecar_all[idx] for idx in keep_indices]
     labels = [int(row["is_correct_strong"]) for row in sidecar]
-    result = train_logistic_probe(x, labels, sidecar, seed=seed)
+    if shuffle_labels:
+        labels = shuffled_labels(labels, seed=seed)
+    if split_assignments is None:
+        result = train_logistic_probe(
+            x,
+            labels,
+            sidecar,
+            seed=seed,
+            c_values=c_values,
+            max_iter=max_iter,
+        )
+        split_mode = "stratified_random"
+    else:
+        if source_file is None:
+            raise ValueError("source_file is required when split_assignments are provided")
+        splits = split_indices_from_assignments(
+            sidecar,
+            assignments=split_assignments,
+            source_file=source_file,
+            split_field=f"{split_family}_split",
+        )
+        result = train_logistic_probe_with_splits(
+            x,
+            labels,
+            sidecar,
+            splits=splits,
+            c_values=c_values,
+            max_iter=max_iter,
+        )
+        split_mode = split_family
     result.update(
         {
             "activation_path": str(activation_path),
             "sidecar_path": str(sidecar_path),
             "drop_parse_failed": drop_parse_failed,
+            "shuffle_labels": shuffle_labels,
+            "split_mode": split_mode,
+            "source_file": source_file,
             "input_rows": len(sidecar_all),
             "kept_rows": len(sidecar),
             "d_model": int(x.shape[1]) if x.ndim == 2 else None,
@@ -197,7 +304,13 @@ def run_probe_grid(
     layers: list[int],
     seed: int,
     drop_parse_failed: bool = True,
+    splits_path: Path | None = None,
+    split_family: str = "s1",
+    shuffle_labels: bool = False,
+    c_values: tuple[float, ...] = DEFAULT_C_VALUES,
+    max_iter: int = 2000,
 ) -> dict[str, Any]:
+    split_assignments = read_split_assignments(splits_path) if splits_path is not None else None
     report: dict[str, Any] = {
         "schema_version": 1,
         "created_at_utc": datetime.now(timezone.utc).isoformat(),
@@ -207,6 +320,11 @@ def run_probe_grid(
         "layers": layers,
         "seed": seed,
         "drop_parse_failed": drop_parse_failed,
+        "splits_path": str(splits_path) if splits_path is not None else None,
+        "split_family": split_family,
+        "shuffle_labels": shuffle_labels,
+        "c_values": list(c_values),
+        "max_iter": max_iter,
         "results": {},
         "best_by_task": {},
     }
@@ -214,11 +332,18 @@ def run_probe_grid(
         report["results"][task] = {}
         for layer in layers:
             prefix = activation_dir / f"{model_key}_{task}_L{layer}"
+            meta = read_json(prefix.with_suffix(".meta.json"))
             report["results"][task][f"L{layer}"] = run_raw_activation_probe(
                 activation_path=prefix.with_suffix(".safetensors"),
                 sidecar_path=prefix.with_suffix(".example_ids.jsonl"),
                 seed=seed + layer,
                 drop_parse_failed=drop_parse_failed,
+                split_assignments=split_assignments,
+                source_file=meta.get("jsonl_path"),
+                split_family=split_family,
+                shuffle_labels=shuffle_labels,
+                c_values=c_values,
+                max_iter=max_iter,
             )
         ok_layers = {
             layer_key: data

@@ -13,6 +13,10 @@ from src.activations import parse_int_list  # noqa: E402
 from src.stage2_probes import run_probe_grid, write_json  # noqa: E402
 
 
+def parse_float_list(value: str) -> tuple[float, ...]:
+    return tuple(float(part.strip()) for part in value.split(",") if part.strip())
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--activation-dir", type=Path, required=True)
@@ -22,6 +26,11 @@ def main() -> None:
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--seed", type=int, default=20260427)
     parser.add_argument("--keep-parse-failed", action="store_true")
+    parser.add_argument("--splits", type=Path, default=None)
+    parser.add_argument("--split-family", choices=("s1", "s2"), default="s1")
+    parser.add_argument("--shuffle-labels", action="store_true")
+    parser.add_argument("--c-values", type=parse_float_list, default=(0.01, 0.1, 1.0, 10.0))
+    parser.add_argument("--max-iter", type=int, default=2000)
     args = parser.parse_args()
 
     report = run_probe_grid(
@@ -31,6 +40,11 @@ def main() -> None:
         layers=args.layers,
         seed=args.seed,
         drop_parse_failed=not args.keep_parse_failed,
+        splits_path=args.splits,
+        split_family=args.split_family,
+        shuffle_labels=args.shuffle_labels,
+        c_values=args.c_values,
+        max_iter=args.max_iter,
     )
     write_json(args.output, report)
     print(args.output)

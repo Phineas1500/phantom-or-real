@@ -181,3 +181,26 @@ final report is easier to assemble.
   192.1. Sidecar validation found zero sampled row-order/token-count
   mismatches. Extraction rates while capturing three layers were 6.34 rows/s for
   property and 6.19 rows/s for subtype.
+
+#### Stage 2 Raw Residual Probes
+
+- Added split-aware raw probe support so `scripts/stage2_probe_raw.py` can use
+  the precomputed `results/stage2/splits.jsonl` S1 assignments rather than
+  making a fresh random split.
+- Full 27B S1 raw residual probes used layers 15, 30, and 45 with
+  `parse_failed=True` filtered. All selected layers beat the strongest B0
+  metadata baselines on test AUC.
+- Best raw residual layer for both tasks was L45. `infer_property` reached
+  val/test AUC 0.881/0.897, beating the B0 prompt baseline test AUC 0.743 by
+  about +0.153. `infer_subtype` reached val/test AUC 0.917/0.914, beating the
+  B0 height baseline test AUC 0.841 by about +0.073.
+- Per-layer test AUCs increased with depth: property L15/L30/L45 =
+  0.786/0.856/0.897; subtype L15/L30/L45 = 0.854/0.909/0.914.
+- Shuffled-label sanity check stayed near chance. The bounded control used the
+  same layers and S1 split, with `C=1.0` and `max_iter=300`; noisy-label fits
+  hit the iteration cap, but best selected-layer test AUCs were 0.493 for
+  property and 0.481 for subtype.
+- Interpretation for the report: 27B raw residuals contain predictive signal
+  about Stage 1 success beyond height/prompt metadata. This justifies moving to
+  SAE feature extraction/probing, while keeping bootstrap CIs and transfer
+  diagnostics as pending Phase B work.
