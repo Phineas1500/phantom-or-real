@@ -53,6 +53,9 @@ As of 2026-04-27:
   non-parse height-4 rows per 27B task. Artifact validation passed for all six
   files. `docs/layer_selection.json` keeps `[15, 30, 45]` for full extraction
   because the pilot was h4-only and subtype holdouts had only four positives.
+- Full extraction job `449835` completed on 2026-04-27. It wrote six 27B raw
+  residual files under `results/stage2/activations/`; both full validation
+  reports are `ok`. Each file has shape `[11000, 5376]` and dtype bf16.
 
 Measured jobs:
 
@@ -326,6 +329,9 @@ Current full extraction script: `scripts/stage2_extract_27b_full.sbatch`. It
 extracts all rows for property and subtype at layers 15, 30, and 45, then writes
 full artifact validation reports under `docs/`.
 
+Current full extraction status: done for 27B. Property ran at 6.34 rows/s and
+subtype ran at 6.19 rows/s while capturing three layers.
+
 ## Phase B: Raw Residual Probes
 
 Train probes on raw residuals for each `(model, task, layer)`.
@@ -476,9 +482,9 @@ Phase A:
 - [x] 27B input validation reports for both tasks.
 - [x] Pilot artifact validation reports for both tasks.
 - [x] `docs/layer_selection.json` for Gemma 3 27B.
-- [ ] `results/stage2/equivalence_report.json` or equivalent merged report.
-- [ ] 6 raw residual activation files for Gemma 3 27B.
-- [ ] 6 `.example_ids.jsonl` sidecars for Gemma 3 27B.
+- [x] Full artifact validation reports for both 27B tasks.
+- [x] 6 raw residual activation files for Gemma 3 27B.
+- [x] 6 `.example_ids.jsonl` sidecars for Gemma 3 27B.
 
 Phase B:
 

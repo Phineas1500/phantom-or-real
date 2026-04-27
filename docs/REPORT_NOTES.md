@@ -172,3 +172,12 @@ final report is easier to assemble.
 - Added `scripts/stage2_extract_27b_full.sbatch` for full 27B raw residual
   extraction: both tasks, all rows, selected layers 15/30/45, batch size 32,
   2x A40, followed by full artifact validation reports.
+- Full extraction job `449835` succeeded on `scholar-j002` from 03:47:45 to
+  04:56:55 EDT. It wrote all six 27B raw residual files under
+  `results/stage2/activations/`: property/subtype x layers 15, 30, and 45.
+  Each file has shape `[11000, 5376]`, dtype bf16, and matching sidecars.
+- Full artifact validation passed for both tasks. Property prompt lengths were
+  134-223 tokens, mean 186.7; subtype prompt lengths were 140-230 tokens, mean
+  192.1. Sidecar validation found zero sampled row-order/token-count
+  mismatches. Extraction rates while capturing three layers were 6.34 rows/s for
+  property and 6.19 rows/s for subtype.
