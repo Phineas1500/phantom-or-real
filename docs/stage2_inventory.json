@@ -1,0 +1,589 @@
+{
+  "low_count_threshold": 100,
+  "low_count_cells": [
+    {
+      "model": "gemma3-27b",
+      "task": "infer_property",
+      "height": 1,
+      "positive": 960,
+      "negative": 37
+    },
+    {
+      "model": "gemma3-27b",
+      "task": "infer_subtype",
+      "height": 1,
+      "positive": 973,
+      "negative": 27
+    },
+    {
+      "model": "gemma3-4b",
+      "task": "infer_subtype",
+      "height": 3,
+      "positive": 40,
+      "negative": 2956
+    },
+    {
+      "model": "gemma3-4b",
+      "task": "infer_subtype",
+      "height": 4,
+      "positive": 45,
+      "negative": 4947
+    }
+  ],
+  "per_model_task_height": [
+    {
+      "model": "gemma3-27b",
+      "task": "infer_property",
+      "height": 1,
+      "total": 1000,
+      "positive": 960,
+      "negative": 37,
+      "parse_failed": 3,
+      "below_threshold_positive": false,
+      "below_threshold_negative": true
+    },
+    {
+      "model": "gemma3-27b",
+      "task": "infer_property",
+      "height": 2,
+      "total": 2000,
+      "positive": 1153,
+      "negative": 656,
+      "parse_failed": 191,
+      "below_threshold_positive": false,
+      "below_threshold_negative": false
+    },
+    {
+      "model": "gemma3-27b",
+      "task": "infer_property",
+      "height": 3,
+      "total": 3000,
+      "positive": 1177,
+      "negative": 1560,
+      "parse_failed": 263,
+      "below_threshold_positive": false,
+      "below_threshold_negative": false
+    },
+    {
+      "model": "gemma3-27b",
+      "task": "infer_property",
+      "height": 4,
+      "total": 5000,
+      "positive": 1320,
+      "negative": 3162,
+      "parse_failed": 518,
+      "below_threshold_positive": false,
+      "below_threshold_negative": false
+    },
+    {
+      "model": "gemma3-27b",
+      "task": "infer_subtype",
+      "height": 1,
+      "total": 1000,
+      "positive": 973,
+      "negative": 27,
+      "parse_failed": 0,
+      "below_threshold_positive": false,
+      "below_threshold_negative": true
+    },
+    {
+      "model": "gemma3-27b",
+      "task": "infer_subtype",
+      "height": 2,
+      "total": 2000,
+      "positive": 650,
+      "negative": 1215,
+      "parse_failed": 135,
+      "below_threshold_positive": false,
+      "below_threshold_negative": false
+    },
+    {
+      "model": "gemma3-27b",
+      "task": "infer_subtype",
+      "height": 3,
+      "total": 3000,
+      "positive": 343,
+      "negative": 2598,
+      "parse_failed": 59,
+      "below_threshold_positive": false,
+      "below_threshold_negative": false
+    },
+    {
+      "model": "gemma3-27b",
+      "task": "infer_subtype",
+      "height": 4,
+      "total": 5000,
+      "positive": 277,
+      "negative": 4654,
+      "parse_failed": 69,
+      "below_threshold_positive": false,
+      "below_threshold_negative": false
+    },
+    {
+      "model": "gemma3-4b",
+      "task": "infer_property",
+      "height": 1,
+      "total": 1000,
+      "positive": 740,
+      "negative": 215,
+      "parse_failed": 45,
+      "below_threshold_positive": false,
+      "below_threshold_negative": false
+    },
+    {
+      "model": "gemma3-4b",
+      "task": "infer_property",
+      "height": 2,
+      "total": 2000,
+      "positive": 592,
+      "negative": 1342,
+      "parse_failed": 66,
+      "below_threshold_positive": false,
+      "below_threshold_negative": false
+    },
+    {
+      "model": "gemma3-4b",
+      "task": "infer_property",
+      "height": 3,
+      "total": 3000,
+      "positive": 614,
+      "negative": 2328,
+      "parse_failed": 58,
+      "below_threshold_positive": false,
+      "below_threshold_negative": false
+    },
+    {
+      "model": "gemma3-4b",
+      "task": "infer_property",
+      "height": 4,
+      "total": 5000,
+      "positive": 821,
+      "negative": 4069,
+      "parse_failed": 110,
+      "below_threshold_positive": false,
+      "below_threshold_negative": false
+    },
+    {
+      "model": "gemma3-4b",
+      "task": "infer_subtype",
+      "height": 1,
+      "total": 1000,
+      "positive": 769,
+      "negative": 214,
+      "parse_failed": 17,
+      "below_threshold_positive": false,
+      "below_threshold_negative": false
+    },
+    {
+      "model": "gemma3-4b",
+      "task": "infer_subtype",
+      "height": 2,
+      "total": 2000,
+      "positive": 232,
+      "negative": 1753,
+      "parse_failed": 15,
+      "below_threshold_positive": false,
+      "below_threshold_negative": false
+    },
+    {
+      "model": "gemma3-4b",
+      "task": "infer_subtype",
+      "height": 3,
+      "total": 3000,
+      "positive": 40,
+      "negative": 2956,
+      "parse_failed": 4,
+      "below_threshold_positive": true,
+      "below_threshold_negative": false
+    },
+    {
+      "model": "gemma3-4b",
+      "task": "infer_subtype",
+      "height": 4,
+      "total": 5000,
+      "positive": 45,
+      "negative": 4947,
+      "parse_failed": 8,
+      "below_threshold_positive": true,
+      "below_threshold_negative": false
+    }
+  ],
+  "raw_cells": [
+    {
+      "model": "gemma3-27b",
+      "task": "infer_property",
+      "height": 1,
+      "parse_failed": false,
+      "is_correct_strong": false,
+      "count": 37
+    },
+    {
+      "model": "gemma3-27b",
+      "task": "infer_property",
+      "height": 1,
+      "parse_failed": false,
+      "is_correct_strong": true,
+      "count": 960
+    },
+    {
+      "model": "gemma3-27b",
+      "task": "infer_property",
+      "height": 1,
+      "parse_failed": true,
+      "is_correct_strong": false,
+      "count": 3
+    },
+    {
+      "model": "gemma3-27b",
+      "task": "infer_property",
+      "height": 2,
+      "parse_failed": false,
+      "is_correct_strong": false,
+      "count": 656
+    },
+    {
+      "model": "gemma3-27b",
+      "task": "infer_property",
+      "height": 2,
+      "parse_failed": false,
+      "is_correct_strong": true,
+      "count": 1153
+    },
+    {
+      "model": "gemma3-27b",
+      "task": "infer_property",
+      "height": 2,
+      "parse_failed": true,
+      "is_correct_strong": false,
+      "count": 191
+    },
+    {
+      "model": "gemma3-27b",
+      "task": "infer_property",
+      "height": 3,
+      "parse_failed": false,
+      "is_correct_strong": false,
+      "count": 1560
+    },
+    {
+      "model": "gemma3-27b",
+      "task": "infer_property",
+      "height": 3,
+      "parse_failed": false,
+      "is_correct_strong": true,
+      "count": 1177
+    },
+    {
+      "model": "gemma3-27b",
+      "task": "infer_property",
+      "height": 3,
+      "parse_failed": true,
+      "is_correct_strong": false,
+      "count": 263
+    },
+    {
+      "model": "gemma3-27b",
+      "task": "infer_property",
+      "height": 4,
+      "parse_failed": false,
+      "is_correct_strong": false,
+      "count": 3162
+    },
+    {
+      "model": "gemma3-27b",
+      "task": "infer_property",
+      "height": 4,
+      "parse_failed": false,
+      "is_correct_strong": true,
+      "count": 1320
+    },
+    {
+      "model": "gemma3-27b",
+      "task": "infer_property",
+      "height": 4,
+      "parse_failed": true,
+      "is_correct_strong": false,
+      "count": 518
+    },
+    {
+      "model": "gemma3-27b",
+      "task": "infer_subtype",
+      "height": 1,
+      "parse_failed": false,
+      "is_correct_strong": false,
+      "count": 27
+    },
+    {
+      "model": "gemma3-27b",
+      "task": "infer_subtype",
+      "height": 1,
+      "parse_failed": false,
+      "is_correct_strong": true,
+      "count": 973
+    },
+    {
+      "model": "gemma3-27b",
+      "task": "infer_subtype",
+      "height": 2,
+      "parse_failed": false,
+      "is_correct_strong": false,
+      "count": 1215
+    },
+    {
+      "model": "gemma3-27b",
+      "task": "infer_subtype",
+      "height": 2,
+      "parse_failed": false,
+      "is_correct_strong": true,
+      "count": 650
+    },
+    {
+      "model": "gemma3-27b",
+      "task": "infer_subtype",
+      "height": 2,
+      "parse_failed": true,
+      "is_correct_strong": false,
+      "count": 135
+    },
+    {
+      "model": "gemma3-27b",
+      "task": "infer_subtype",
+      "height": 3,
+      "parse_failed": false,
+      "is_correct_strong": false,
+      "count": 2598
+    },
+    {
+      "model": "gemma3-27b",
+      "task": "infer_subtype",
+      "height": 3,
+      "parse_failed": false,
+      "is_correct_strong": true,
+      "count": 343
+    },
+    {
+      "model": "gemma3-27b",
+      "task": "infer_subtype",
+      "height": 3,
+      "parse_failed": true,
+      "is_correct_strong": false,
+      "count": 59
+    },
+    {
+      "model": "gemma3-27b",
+      "task": "infer_subtype",
+      "height": 4,
+      "parse_failed": false,
+      "is_correct_strong": false,
+      "count": 4654
+    },
+    {
+      "model": "gemma3-27b",
+      "task": "infer_subtype",
+      "height": 4,
+      "parse_failed": false,
+      "is_correct_strong": true,
+      "count": 277
+    },
+    {
+      "model": "gemma3-27b",
+      "task": "infer_subtype",
+      "height": 4,
+      "parse_failed": true,
+      "is_correct_strong": false,
+      "count": 69
+    },
+    {
+      "model": "gemma3-4b",
+      "task": "infer_property",
+      "height": 1,
+      "parse_failed": false,
+      "is_correct_strong": false,
+      "count": 215
+    },
+    {
+      "model": "gemma3-4b",
+      "task": "infer_property",
+      "height": 1,
+      "parse_failed": false,
+      "is_correct_strong": true,
+      "count": 740
+    },
+    {
+      "model": "gemma3-4b",
+      "task": "infer_property",
+      "height": 1,
+      "parse_failed": true,
+      "is_correct_strong": false,
+      "count": 45
+    },
+    {
+      "model": "gemma3-4b",
+      "task": "infer_property",
+      "height": 2,
+      "parse_failed": false,
+      "is_correct_strong": false,
+      "count": 1342
+    },
+    {
+      "model": "gemma3-4b",
+      "task": "infer_property",
+      "height": 2,
+      "parse_failed": false,
+      "is_correct_strong": true,
+      "count": 592
+    },
+    {
+      "model": "gemma3-4b",
+      "task": "infer_property",
+      "height": 2,
+      "parse_failed": true,
+      "is_correct_strong": false,
+      "count": 66
+    },
+    {
+      "model": "gemma3-4b",
+      "task": "infer_property",
+      "height": 3,
+      "parse_failed": false,
+      "is_correct_strong": false,
+      "count": 2328
+    },
+    {
+      "model": "gemma3-4b",
+      "task": "infer_property",
+      "height": 3,
+      "parse_failed": false,
+      "is_correct_strong": true,
+      "count": 614
+    },
+    {
+      "model": "gemma3-4b",
+      "task": "infer_property",
+      "height": 3,
+      "parse_failed": true,
+      "is_correct_strong": false,
+      "count": 58
+    },
+    {
+      "model": "gemma3-4b",
+      "task": "infer_property",
+      "height": 4,
+      "parse_failed": false,
+      "is_correct_strong": false,
+      "count": 4069
+    },
+    {
+      "model": "gemma3-4b",
+      "task": "infer_property",
+      "height": 4,
+      "parse_failed": false,
+      "is_correct_strong": true,
+      "count": 821
+    },
+    {
+      "model": "gemma3-4b",
+      "task": "infer_property",
+      "height": 4,
+      "parse_failed": true,
+      "is_correct_strong": false,
+      "count": 110
+    },
+    {
+      "model": "gemma3-4b",
+      "task": "infer_subtype",
+      "height": 1,
+      "parse_failed": false,
+      "is_correct_strong": false,
+      "count": 214
+    },
+    {
+      "model": "gemma3-4b",
+      "task": "infer_subtype",
+      "height": 1,
+      "parse_failed": false,
+      "is_correct_strong": true,
+      "count": 769
+    },
+    {
+      "model": "gemma3-4b",
+      "task": "infer_subtype",
+      "height": 1,
+      "parse_failed": true,
+      "is_correct_strong": false,
+      "count": 17
+    },
+    {
+      "model": "gemma3-4b",
+      "task": "infer_subtype",
+      "height": 2,
+      "parse_failed": false,
+      "is_correct_strong": false,
+      "count": 1753
+    },
+    {
+      "model": "gemma3-4b",
+      "task": "infer_subtype",
+      "height": 2,
+      "parse_failed": false,
+      "is_correct_strong": true,
+      "count": 232
+    },
+    {
+      "model": "gemma3-4b",
+      "task": "infer_subtype",
+      "height": 2,
+      "parse_failed": true,
+      "is_correct_strong": false,
+      "count": 15
+    },
+    {
+      "model": "gemma3-4b",
+      "task": "infer_subtype",
+      "height": 3,
+      "parse_failed": false,
+      "is_correct_strong": false,
+      "count": 2956
+    },
+    {
+      "model": "gemma3-4b",
+      "task": "infer_subtype",
+      "height": 3,
+      "parse_failed": false,
+      "is_correct_strong": true,
+      "count": 40
+    },
+    {
+      "model": "gemma3-4b",
+      "task": "infer_subtype",
+      "height": 3,
+      "parse_failed": true,
+      "is_correct_strong": false,
+      "count": 4
+    },
+    {
+      "model": "gemma3-4b",
+      "task": "infer_subtype",
+      "height": 4,
+      "parse_failed": false,
+      "is_correct_strong": false,
+      "count": 4947
+    },
+    {
+      "model": "gemma3-4b",
+      "task": "infer_subtype",
+      "height": 4,
+      "parse_failed": false,
+      "is_correct_strong": true,
+      "count": 45
+    },
+    {
+      "model": "gemma3-4b",
+      "task": "infer_subtype",
+      "height": 4,
+      "parse_failed": true,
+      "is_correct_strong": false,
+      "count": 8
+    }
+  ]
+}
