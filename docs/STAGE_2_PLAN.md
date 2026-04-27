@@ -86,6 +86,11 @@ As of 2026-04-27:
   top-weight stability analysis. It refits the saved-best-C SAE probes on
   train-active features, reproduces the saved metrics, and finds same-sign
   top-10 task overlap of 4 features for both width-16K and width-262K.
+- `docs/sae_reconstruction_probe_27b_l45_s1.json` records the L45
+  raw-vs-SAE reconstruction diagnostic. SAE reconstructions explain about
+  94.8-95.5% of raw residual energy, but reconstruction probes match sparse
+  SAE-feature probes while raw-minus-reconstruction error probes recover the
+  full raw probe signal.
 
 Measured jobs:
 
@@ -524,11 +529,29 @@ Current L45 top-feature stability notes:
   IDs are not width-comparable and several high-weight features are very dense,
   so this is not yet a clean localized mechanism.
 
+Current L45 reconstruction/error diagnostic:
+
+| Task | SAE width | Energy explained | Reconstruction test AUC | Error test AUC | Raw L45 test AUC |
+| --- | --- | ---: | ---: | ---: | ---: |
+| `infer_property` | 16K | 0.948 | 0.786 | 0.894 | 0.897 |
+| `infer_property` | 262K | 0.955 | 0.806 | 0.897 | 0.897 |
+| `infer_subtype` | 16K | 0.948 | 0.877 | 0.916 | 0.914 |
+| `infer_subtype` | 262K | 0.954 | 0.870 | 0.915 | 0.914 |
+
+Interpretation: the Gemma Scope L45 residual SAEs reconstruct most activation
+energy, but the correctness-predictive raw direction is largely in the small
+reconstruction error rather than in the decoded SAE subspace. This explains why
+sparse SAE-feature probes trail raw residual probes even when top-k truncation
+is absent. It also argues against moving directly to SAE-feature steering as the
+main causal test; a raw-direction or reconstruction-error diagnostic should be
+used before selecting a steering target.
+
 Outputs:
 
 - `results/stage2/sae_probes/`;
 - `results/stage2/sae_probe_auc.json`;
 - `docs/sae_feature_stability_27b_l45_s1.json`;
+- `docs/sae_reconstruction_probe_27b_l45_s1.json`;
 - `results/stage2/stable_features.json` if a later pass selects a steering set.
 
 ## Phase E: Steering Validation
@@ -626,6 +649,7 @@ Phase C/D:
 - [x] L45 width-262K top-128 SAE probe metrics.
 - [x] L45 width-16K top-512 truncation diagnostic.
 - [x] L45 width-16K/262K top-feature stability diagnostic.
+- [x] L45 width-16K/262K reconstruction/error probe diagnostic.
 - [ ] Additional SAE release IDs pinned.
 - [ ] SAE feature extraction complete.
 - [ ] Broader SAE probe metrics.

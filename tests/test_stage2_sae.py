@@ -12,6 +12,7 @@ from src.stage2_feature_stability import (
     pairwise_column_correlations,
     summarize_correlation_matches,
 )
+from src.stage2_reconstruction import ReconstructionStats, decode_topk_linear, dense_topk_features
 from src.stage2_sae import (
     derive_sae_feature_prefix,
     sae_file_name,
@@ -126,3 +127,58 @@ def test_pairwise_column_correlations_and_best_matches() -> None:
     assert corr[1, 1] == pytest.approx(-1.0)
     assert matches[0]["abs_correlation"] == pytest.approx(1.0)
     assert summary["threshold_counts"]["0.9"] == 2
+
+
+class _FakeLinearSae:
+    def __init__(self) -> None:
+        self.W_dec = torch.tensor(
+            [
+                [1.0, 0.0, 0.5],
+                [0.0, 2.0, 0.0],
+                [-1.0, 1.0, 0.0],
+                [0.0, 0.0, 3.0],
+            ]
+        )
+        self.b_dec = torch.tensor([0.5, -0.5, 1.0])
+        self.d_head = None
+
+    def hook_sae_recons(self, x: torch.Tensor) -> torch.Tensor:
+        return x
+
+    def run_time_activation_norm_fn_out(self, x: torch.Tensor) -> torch.Tensor:
+        return x
+
+    def reshape_fn_out(self, x: torch.Tensor, d_head) -> torch.Tensor:
+        return x
+
+
+def test_decode_topk_linear_matches_dense_decode() -> None:
+    sae = _FakeLinearSae()
+    top_indices = torch.tensor([[0, 3], [2, 1]], dtype=torch.int64)
+    top_values = torch.tensor([[2.0, 1.0], [4.0, 0.5]], dtype=torch.float32)
+
+    sparse_decoded = decode_topk_linear(sae, top_indices, top_values, dtype=torch.float32)
+    dense_features = dense_topk_features(
+        top_indices,
+        top_values,
+        d_sae=4,
+        dtype=torch.float32,
+        device="cpu",
+    )
+    dense_decoded = dense_features @ sae.W_dec + sae.b_dec
+
+    assert sparse_decoded == pytest.approx(dense_decoded)
+
+
+def test_reconstruction_stats_reports_energy_explained() -> None:
+    stats = ReconstructionStats()
+    raw = torch.tensor([[1.0, 0.0], [0.0, 2.0]])
+    reconstruction = torch.tensor([[1.0, 0.0], [0.0, 1.0]])
+
+    stats.update(raw, reconstruction)
+    summary = stats.to_dict()
+
+    assert summary["rows"] == 2
+    assert summary["mse"] == pytest.approx(0.25)
+    assert summary["energy_explained"] == pytest.approx(0.8)
+    assert summary["relative_error_l2"] == pytest.approx((1.0 / 5.0) ** 0.5)

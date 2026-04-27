@@ -304,3 +304,30 @@ final report is easier to assemble.
   gives candidate feature pairs but does not yet establish a localized
   mechanism, especially because several high-weight features are dense across
   examples.
+- Added `scripts/stage2_sae_reconstruction_diagnostics.py`,
+  `src/stage2_reconstruction.py`, and
+  `scripts/stage2_sae_reconstruct_27b_L45.sbatch` for raw-vs-SAE
+  reconstruction diagnostics. The script reconstructs cached L45 residuals from
+  stored sparse top-k SAE activations, writes reconstruction and
+  raw-minus-reconstruction error activation files, then trains the same dense
+  S1 probes on both components.
+- Reconstruction job `450072` completed on `scholar-j001`. It wrote the summary
+  artifact `docs/sae_reconstruction_probe_27b_l45_s1.json` plus ignored
+  reconstruction/error activation files under
+  `results/stage2/sae_reconstructions/`. Three dense lbfgs fits emitted
+  max-iteration warnings, consistent with earlier dense raw-probe behavior.
+- L45 SAE reconstructions explain most raw residual energy: 0.948/0.948 for
+  width-16K property/subtype and 0.955/0.954 for width-262K property/subtype.
+  Mean row cosine is about 0.978-0.980.
+- Reconstruction probes track the sparse SAE-feature probes, not the raw probe:
+  width-16K property/subtype reconstruction test AUCs are 0.786/0.877, and
+  width-262K reconstruction test AUCs are 0.806/0.870.
+- Raw-minus-reconstruction error probes recover essentially the full raw L45
+  signal despite the error being only about 4-5% of activation energy. Error
+  test AUCs are 0.894/0.916 for width-16K property/subtype and 0.897/0.915 for
+  width-262K property/subtype, compared with raw L45 test AUCs 0.897/0.914.
+- Interpretation update: the raw-SAE gap is not caused by top-k truncation or
+  by too little reconstructed activation energy. The correctness-predictive
+  direction appears to live mainly in the SAE reconstruction error, so SAE
+  feature steering is not yet the right main causal test without an additional
+  raw-direction or reconstruction-error diagnostic.
