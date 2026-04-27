@@ -126,3 +126,22 @@ final report is easier to assemble.
 - Added focused tests for Stage 2 Phase 0 helpers. The tests cover topology
   hashes ignoring symbol names, inventory warnings, split assignment coverage,
   and explicit non-evaluability warnings for degenerate S2 splits.
+
+#### Stage 2 Activation Validation
+
+- Implemented `scripts/validate_activations.py`, which checks Stage 1 JSONL
+  hashes, local model/tokenizer/chat-template invariants, Gemma prompt
+  reconstruction, prompt token counts, and optional activation artifacts
+  (`.safetensors`, `.meta.json`, and `.example_ids.jsonl`).
+- Ran the validator on both 27B Stage 1 JSONLs with local Hugging Face cache and
+  `n_ctx=4096`. Both reports are `ok`: property prompt lengths are 134-223
+  tokens with mean 186.7; subtype prompt lengths are 140-230 tokens with mean
+  192.1.
+- The validator records Stage 1 serving-stack top-5-logit and greedy-output
+  byte-match checks as skipped because they require the original serving stack
+  or a comparable live endpoint. Local extraction should still proceed because
+  hashes, tokenizer revision, chat template, and prompt tokenization pass.
+- Added `scripts/stage2_extract_27b_pilot.sbatch`, a 2x A40 pilot job that
+  extracts layer 30 for 16 height-4 rows from each 27B task, then validates the
+  written activation artifacts. This is the next gate before layer-selection
+  extraction.

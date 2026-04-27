@@ -42,6 +42,10 @@ As of 2026-04-27:
 - `docs/stage2_b0_summary_27b_s1.json` records 27B S1 metadata baselines.
   Strongest pre-output baselines are AUC 0.743 for `infer_property`
   (`b0_prompt`) and AUC 0.841 for `infer_subtype` (`b0_height`).
+- `scripts/validate_activations.py` validates Stage 2 extraction inputs and
+  optional written artifacts. The 27B property and subtype input reports are
+  `ok` in `docs/stage2_equivalence_27b_infer_property.json` and
+  `docs/stage2_equivalence_27b_infer_subtype.json`.
 
 Measured jobs:
 
@@ -117,6 +121,10 @@ python scripts/stage2_write_invariants.py \
 - `src/messages.py`: prompt construction.
 - `src/activations.py`: residual extraction library.
 - `scripts/stage2_extract.py`: raw residual extraction CLI.
+- `scripts/validate_activations.py`: input/artifact validation gate for
+  extraction.
+- `scripts/stage2_extract_27b_pilot.sbatch`: small 27B layer-30 extraction
+  pilot for both tasks on 2x A40.
 - `scripts/stage2_write_invariants.py`: invariant writer.
 - `scripts/stage2_j2_measure.py`: measurement-only J-node utility.
 - `docs/STAGE_2_PLAN_ARCHIVE.md`: old long-form plan kept for reference.
@@ -250,6 +258,16 @@ Required tiers:
 5. Label agreement on 200 regenerated rows is at least 98% if byte match fails.
 
 Proceed only if tiers 1-3 pass and tier 5 passes when needed.
+
+Current validator status:
+
+- Local tiers 1-2 pass for both 27B task JSONLs.
+- Property prompt token counts: min 134, mean 186.7, max 223.
+- Subtype prompt token counts: min 140, mean 192.1, max 230.
+- Tiers requiring the original Stage 1 serving stack are recorded as skipped.
+- After the pilot extraction, rerun validator with `--activation-dir` and
+  `--layers` to check safetensors shape, metadata, sidecar row order, hook
+  names, and token counts.
 
 ### A.3 Layer Selection Pilot
 
@@ -420,8 +438,10 @@ Phase 0:
 
 Phase A:
 
-- [ ] `scripts/validate_activations.py`.
-- [ ] `results/stage2/equivalence_report.json`.
+- [x] `scripts/validate_activations.py`.
+- [x] 27B input validation reports for both tasks.
+- [ ] Pilot artifact validation reports for both tasks.
+- [ ] `results/stage2/equivalence_report.json` or equivalent merged report.
 - [ ] `docs/layer_selection.json`.
 - [ ] 6 raw residual activation files for Gemma 3 27B.
 - [ ] 6 `.example_ids.jsonl` sidecars for Gemma 3 27B.
