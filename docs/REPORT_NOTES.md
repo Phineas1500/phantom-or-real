@@ -169,3 +169,6 @@ final report is easier to assemble.
   validation also favored L45 but test AUC dropped to 0.5625; subtype holdouts
   had only four positives each. Decision recorded in `docs/layer_selection.json`:
   keep the early/mid/late set `[15, 30, 45]` for full 27B extraction.
+- Added `scripts/stage2_extract_27b_full.sbatch` for full 27B raw residual
+  extraction: both tasks, all rows, selected layers 15/30/45, batch size 32,
+  2x A40, followed by full artifact validation reports.

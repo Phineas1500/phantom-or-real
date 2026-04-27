@@ -134,6 +134,8 @@ python scripts/stage2_write_invariants.py \
   pilot for both tasks on 2x A40.
 - `scripts/stage2_layerpilot_27b_h4.sbatch`: layer-selection pilot for 27B
   height-4 rows across layers 15, 30, and 45.
+- `scripts/stage2_extract_27b_full.sbatch`: full 27B raw residual extraction
+  for both tasks and selected layers.
 - `scripts/stage2_probe_raw.py`: quick logistic probe runner for raw residual
   safetensors.
 - `scripts/stage2_write_invariants.py`: invariant writer.
@@ -319,6 +321,10 @@ After layer selection:
 - verify row counts and shapes immediately after each file.
 
 Expected full raw residual files for this 27B run: 6.
+
+Current full extraction script: `scripts/stage2_extract_27b_full.sbatch`. It
+extracts all rows for property and subtype at layers 15, 30, and 45, then writes
+full artifact validation reports under `docs/`.
 
 ## Phase B: Raw Residual Probes
 
