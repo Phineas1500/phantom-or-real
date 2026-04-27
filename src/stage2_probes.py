@@ -47,6 +47,41 @@ def _safe_auc(labels: list[int], scores: list[float]) -> float | None:
     return float(roc_auc_score(labels, scores))
 
 
+def bootstrap_auc_ci(
+    labels: list[int],
+    scores: list[float],
+    *,
+    seed: int,
+    samples: int,
+    alpha: float = 0.05,
+) -> dict[str, Any] | None:
+    if samples <= 0 or len(set(labels)) < 2:
+        return None
+    from sklearn.metrics import roc_auc_score
+
+    label_array = np.array(labels)
+    score_array = np.array(scores)
+    rng = np.random.default_rng(seed)
+    aucs = []
+    for _ in range(samples):
+        indices = rng.integers(0, len(label_array), len(label_array))
+        sampled_labels = label_array[indices]
+        if len(set(int(label) for label in sampled_labels)) < 2:
+            continue
+        aucs.append(float(roc_auc_score(sampled_labels, score_array[indices])))
+    if not aucs:
+        return None
+    low, high = np.quantile(aucs, [alpha / 2.0, 1.0 - alpha / 2.0])
+    return {
+        "alpha": alpha,
+        "samples_requested": samples,
+        "samples_used": len(aucs),
+        "low": float(low),
+        "mean": float(np.mean(aucs)),
+        "high": float(high),
+    }
+
+
 def stratified_split_indices(labels: list[int], *, seed: int) -> dict[str, list[int]]:
     by_label: dict[int, list[int]] = defaultdict(list)
     for idx, label in enumerate(labels):
@@ -138,6 +173,8 @@ def train_logistic_probe_with_splits(
     splits: dict[str, list[int]],
     c_values: tuple[float, ...] = DEFAULT_C_VALUES,
     max_iter: int = 2000,
+    bootstrap_samples: int = 0,
+    bootstrap_seed: int = 0,
 ) -> dict[str, Any]:
     from sklearn.linear_model import LogisticRegression
     from sklearn.pipeline import make_pipeline
@@ -176,6 +213,7 @@ def train_logistic_probe_with_splits(
     assert best is not None
     model = best["model"]
     test_scores = _predict_scores(model, x, test_indices)
+    test_labels = [labels[idx] for idx in test_indices]
     per_height = {}
     for height in sorted({sidecar_rows[idx].get("height") for idx in test_indices}):
         height_indices = [idx for idx in test_indices if sidecar_rows[idx].get("height") == height]
@@ -191,7 +229,13 @@ def train_logistic_probe_with_splits(
         "c_values": list(c_values),
         "max_iter": max_iter,
         "val_auc": best["val_auc"],
-        "test_auc": _safe_auc([labels[idx] for idx in test_indices], test_scores),
+        "test_auc": _safe_auc(test_labels, test_scores),
+        "test_auc_ci": bootstrap_auc_ci(
+            test_labels,
+            test_scores,
+            seed=bootstrap_seed,
+            samples=bootstrap_samples,
+        ),
         "split_counts": split_counts,
         "per_height": per_height,
     }
@@ -205,6 +249,7 @@ def train_logistic_probe(
     seed: int,
     c_values: tuple[float, ...] = DEFAULT_C_VALUES,
     max_iter: int = 2000,
+    bootstrap_samples: int = 0,
 ) -> dict[str, Any]:
     splits = stratified_split_indices(labels, seed=seed)
     return train_logistic_probe_with_splits(
@@ -214,6 +259,8 @@ def train_logistic_probe(
         splits=splits,
         c_values=c_values,
         max_iter=max_iter,
+        bootstrap_samples=bootstrap_samples,
+        bootstrap_seed=seed,
     )
 
 
@@ -224,18 +271,11 @@ def load_activation_matrix(path: Path) -> np.ndarray:
     return tensor.to(dtype=tensor.dtype).float().cpu().numpy()
 
 
-def run_raw_activation_probe(
+def load_probe_dataset(
     *,
     activation_path: Path,
     sidecar_path: Path,
-    seed: int,
     drop_parse_failed: bool = True,
-    split_assignments: dict[tuple[str, int], dict[str, Any]] | None = None,
-    source_file: str | None = None,
-    split_family: str = "s1",
-    shuffle_labels: bool = False,
-    c_values: tuple[float, ...] = DEFAULT_C_VALUES,
-    max_iter: int = 2000,
 ) -> dict[str, Any]:
     x_all = load_activation_matrix(activation_path)
     sidecar_all = read_jsonl(sidecar_path)
@@ -250,6 +290,38 @@ def run_raw_activation_probe(
     x = x_all[keep_indices]
     sidecar = [sidecar_all[idx] for idx in keep_indices]
     labels = [int(row["is_correct_strong"]) for row in sidecar]
+    return {
+        "x": x,
+        "sidecar": sidecar,
+        "labels": labels,
+        "input_rows": len(sidecar_all),
+        "kept_rows": len(sidecar),
+        "d_model": int(x.shape[1]) if x.ndim == 2 else None,
+    }
+
+
+def run_raw_activation_probe(
+    *,
+    activation_path: Path,
+    sidecar_path: Path,
+    seed: int,
+    drop_parse_failed: bool = True,
+    split_assignments: dict[tuple[str, int], dict[str, Any]] | None = None,
+    source_file: str | None = None,
+    split_family: str = "s1",
+    shuffle_labels: bool = False,
+    c_values: tuple[float, ...] = DEFAULT_C_VALUES,
+    max_iter: int = 2000,
+    bootstrap_samples: int = 0,
+) -> dict[str, Any]:
+    dataset = load_probe_dataset(
+        activation_path=activation_path,
+        sidecar_path=sidecar_path,
+        drop_parse_failed=drop_parse_failed,
+    )
+    x = dataset["x"]
+    sidecar = dataset["sidecar"]
+    labels = dataset["labels"]
     if shuffle_labels:
         labels = shuffled_labels(labels, seed=seed)
     if split_assignments is None:
@@ -260,6 +332,7 @@ def run_raw_activation_probe(
             seed=seed,
             c_values=c_values,
             max_iter=max_iter,
+            bootstrap_samples=bootstrap_samples,
         )
         split_mode = "stratified_random"
     else:
@@ -278,6 +351,8 @@ def run_raw_activation_probe(
             splits=splits,
             c_values=c_values,
             max_iter=max_iter,
+            bootstrap_samples=bootstrap_samples,
+            bootstrap_seed=seed,
         )
         split_mode = split_family
     result.update(
@@ -288,9 +363,9 @@ def run_raw_activation_probe(
             "shuffle_labels": shuffle_labels,
             "split_mode": split_mode,
             "source_file": source_file,
-            "input_rows": len(sidecar_all),
-            "kept_rows": len(sidecar),
-            "d_model": int(x.shape[1]) if x.ndim == 2 else None,
+            "input_rows": dataset["input_rows"],
+            "kept_rows": dataset["kept_rows"],
+            "d_model": dataset["d_model"],
         }
     )
     return result
@@ -309,6 +384,7 @@ def run_probe_grid(
     shuffle_labels: bool = False,
     c_values: tuple[float, ...] = DEFAULT_C_VALUES,
     max_iter: int = 2000,
+    bootstrap_samples: int = 0,
 ) -> dict[str, Any]:
     split_assignments = read_split_assignments(splits_path) if splits_path is not None else None
     report: dict[str, Any] = {
@@ -325,6 +401,7 @@ def run_probe_grid(
         "shuffle_labels": shuffle_labels,
         "c_values": list(c_values),
         "max_iter": max_iter,
+        "bootstrap_samples": bootstrap_samples,
         "results": {},
         "best_by_task": {},
     }
@@ -344,6 +421,7 @@ def run_probe_grid(
                 shuffle_labels=shuffle_labels,
                 c_values=c_values,
                 max_iter=max_iter,
+                bootstrap_samples=bootstrap_samples,
             )
         ok_layers = {
             layer_key: data
@@ -359,4 +437,254 @@ def run_probe_grid(
             }
         else:
             report["best_by_task"][task] = None
+    return report
+
+
+def _split_counts_for_transfer(
+    labels: list[int],
+    splits: dict[str, list[int]],
+) -> dict[str, dict[str, int]]:
+    return {split: _class_counts(labels, indices) for split, indices in splits.items()}
+
+
+def _per_height_auc(
+    *,
+    model: Any,
+    x: np.ndarray,
+    labels: list[int],
+    sidecar_rows: list[dict[str, Any]],
+    indices: list[int],
+) -> dict[str, Any]:
+    per_height = {}
+    for height in sorted({sidecar_rows[idx].get("height") for idx in indices}):
+        height_indices = [idx for idx in indices if sidecar_rows[idx].get("height") == height]
+        scores = _predict_scores(model, x, height_indices)
+        per_height[f"h{height}"] = {
+            **_class_counts(labels, height_indices),
+            "auc": _safe_auc([labels[idx] for idx in height_indices], scores),
+        }
+    return per_height
+
+
+def train_cross_task_transfer(
+    *,
+    source: dict[str, Any],
+    target: dict[str, Any],
+    source_splits: dict[str, list[int]],
+    target_splits: dict[str, list[int]],
+    c_values: tuple[float, ...] = DEFAULT_C_VALUES,
+    max_iter: int = 2000,
+    bootstrap_samples: int = 0,
+    bootstrap_seed: int = 0,
+) -> dict[str, Any]:
+    from sklearn.linear_model import LogisticRegression
+    from sklearn.pipeline import make_pipeline
+    from sklearn.preprocessing import StandardScaler
+
+    source_labels = source["labels"]
+    target_labels = target["labels"]
+    train_indices = source_splits["train"]
+    val_indices = source_splits["val"]
+    source_test_indices = source_splits["test"]
+    target_test_indices = target_splits["test"]
+
+    source_split_counts = _split_counts_for_transfer(source_labels, source_splits)
+    target_split_counts = _split_counts_for_transfer(target_labels, target_splits)
+    if not _has_two_classes(source_labels, train_indices):
+        return {
+            "status": "skipped_one_class_source_train",
+            "source_split_counts": source_split_counts,
+            "target_split_counts": target_split_counts,
+        }
+    if not _has_two_classes(source_labels, val_indices) or not _has_two_classes(source_labels, source_test_indices):
+        return {
+            "status": "skipped_no_evaluable_source_holdout",
+            "source_split_counts": source_split_counts,
+            "target_split_counts": target_split_counts,
+        }
+    if not _has_two_classes(target_labels, target_test_indices):
+        return {
+            "status": "skipped_no_evaluable_target_test",
+            "source_split_counts": source_split_counts,
+            "target_split_counts": target_split_counts,
+        }
+    if not c_values:
+        raise ValueError("at least one C value is required")
+
+    best = None
+    for c_value in c_values:
+        model = make_pipeline(
+            StandardScaler(),
+            LogisticRegression(C=c_value, class_weight="balanced", max_iter=max_iter),
+        )
+        model.fit(source["x"][train_indices], [source_labels[idx] for idx in train_indices])
+        val_scores = _predict_scores(model, source["x"], val_indices)
+        val_auc = _safe_auc([source_labels[idx] for idx in val_indices], val_scores)
+        rank_auc = val_auc if val_auc is not None else -math.inf
+        if best is None or rank_auc > best["rank_auc"]:
+            best = {
+                "model": model,
+                "c": c_value,
+                "source_val_auc": val_auc,
+                "rank_auc": rank_auc,
+            }
+
+    assert best is not None
+    model = best["model"]
+    source_test_scores = _predict_scores(model, source["x"], source_test_indices)
+    source_test_labels = [source_labels[idx] for idx in source_test_indices]
+    target_test_scores = _predict_scores(model, target["x"], target_test_indices)
+    target_test_labels = [target_labels[idx] for idx in target_test_indices]
+    return {
+        "status": "ok",
+        "best_c": best["c"],
+        "c_values": list(c_values),
+        "max_iter": max_iter,
+        "source_val_auc": best["source_val_auc"],
+        "source_test_auc": _safe_auc(source_test_labels, source_test_scores),
+        "source_test_auc_ci": bootstrap_auc_ci(
+            source_test_labels,
+            source_test_scores,
+            seed=bootstrap_seed,
+            samples=bootstrap_samples,
+        ),
+        "target_test_auc": _safe_auc(target_test_labels, target_test_scores),
+        "target_test_auc_ci": bootstrap_auc_ci(
+            target_test_labels,
+            target_test_scores,
+            seed=bootstrap_seed + 100_003,
+            samples=bootstrap_samples,
+        ),
+        "source_split_counts": source_split_counts,
+        "target_split_counts": target_split_counts,
+        "target_per_height": _per_height_auc(
+            model=model,
+            x=target["x"],
+            labels=target_labels,
+            sidecar_rows=target["sidecar"],
+            indices=target_test_indices,
+        ),
+    }
+
+
+def _load_dataset_for_grid(
+    *,
+    activation_dir: Path,
+    model_key: str,
+    task: str,
+    layer: int,
+    drop_parse_failed: bool,
+) -> dict[str, Any]:
+    prefix = activation_dir / f"{model_key}_{task}_L{layer}"
+    meta = read_json(prefix.with_suffix(".meta.json"))
+    dataset = load_probe_dataset(
+        activation_path=prefix.with_suffix(".safetensors"),
+        sidecar_path=prefix.with_suffix(".example_ids.jsonl"),
+        drop_parse_failed=drop_parse_failed,
+    )
+    dataset.update(
+        {
+            "task": task,
+            "layer": layer,
+            "activation_path": str(prefix.with_suffix(".safetensors")),
+            "sidecar_path": str(prefix.with_suffix(".example_ids.jsonl")),
+            "source_file": meta.get("jsonl_path"),
+        }
+    )
+    return dataset
+
+
+def run_cross_task_transfer_grid(
+    *,
+    activation_dir: Path,
+    model_key: str,
+    tasks: list[str],
+    layers: list[int],
+    splits_path: Path,
+    seed: int,
+    split_family: str = "s1",
+    drop_parse_failed: bool = True,
+    c_values: tuple[float, ...] = DEFAULT_C_VALUES,
+    max_iter: int = 2000,
+    bootstrap_samples: int = 0,
+) -> dict[str, Any]:
+    split_assignments = read_split_assignments(splits_path)
+    report: dict[str, Any] = {
+        "schema_version": 1,
+        "created_at_utc": datetime.now(timezone.utc).isoformat(),
+        "activation_dir": str(activation_dir),
+        "model_key": model_key,
+        "tasks": tasks,
+        "layers": layers,
+        "splits_path": str(splits_path),
+        "split_family": split_family,
+        "seed": seed,
+        "drop_parse_failed": drop_parse_failed,
+        "c_values": list(c_values),
+        "max_iter": max_iter,
+        "bootstrap_samples": bootstrap_samples,
+        "results": {},
+        "best_by_transfer": {},
+    }
+
+    for layer in layers:
+        layer_datasets = {
+            task: _load_dataset_for_grid(
+                activation_dir=activation_dir,
+                model_key=model_key,
+                task=task,
+                layer=layer,
+                drop_parse_failed=drop_parse_failed,
+            )
+            for task in tasks
+        }
+        layer_splits = {
+            task: split_indices_from_assignments(
+                dataset["sidecar"],
+                assignments=split_assignments,
+                source_file=dataset["source_file"],
+                split_field=f"{split_family}_split",
+            )
+            for task, dataset in layer_datasets.items()
+        }
+        for source_task in tasks:
+            for target_task in tasks:
+                if source_task == target_task:
+                    continue
+                transfer_key = f"{source_task}_to_{target_task}"
+                report["results"].setdefault(transfer_key, {})
+                report["results"][transfer_key][f"L{layer}"] = {
+                    **train_cross_task_transfer(
+                        source=layer_datasets[source_task],
+                        target=layer_datasets[target_task],
+                        source_splits=layer_splits[source_task],
+                        target_splits=layer_splits[target_task],
+                        c_values=c_values,
+                        max_iter=max_iter,
+                        bootstrap_samples=bootstrap_samples,
+                        bootstrap_seed=seed + layer * 10_009,
+                    ),
+                    "source_task": source_task,
+                    "target_task": target_task,
+                    "layer": layer,
+                    "source_file": layer_datasets[source_task]["source_file"],
+                    "target_file": layer_datasets[target_task]["source_file"],
+                }
+
+    for transfer_key, by_layer in report["results"].items():
+        ok_layers = {
+            layer_key: data
+            for layer_key, data in by_layer.items()
+            if data.get("status") == "ok" and data.get("source_val_auc") is not None
+        }
+        if ok_layers:
+            best_key, best_data = max(ok_layers.items(), key=lambda item: item[1]["source_val_auc"])
+            report["best_by_transfer"][transfer_key] = {
+                "layer": best_key,
+                "source_val_auc": best_data["source_val_auc"],
+                "source_test_auc": best_data["source_test_auc"],
+                "target_test_auc": best_data["target_test_auc"],
+            }
+        else:
+            report["best_by_transfer"][transfer_key] = None
     return report

@@ -62,6 +62,10 @@ As of 2026-04-27:
 - `docs/raw_probe_27b_s1_label_shuffle.json` records a bounded shuffled-label
   sanity check. Best selected-layer test AUCs are near chance: property 0.493,
   subtype 0.481.
+- `docs/raw_probe_transfer_27b_s1.json` records cross-task raw-probe transfer.
+  L45 transfers property-to-subtype at target test AUC 0.862 and
+  subtype-to-property at target test AUC 0.786, so there is shared signal but
+  not full task invariance.
 
 Measured jobs:
 
@@ -359,13 +363,22 @@ Probe requirements:
 
 Current 27B S1 point metrics are in `docs/raw_probe_27b_s1.json`:
 
-| Task | B0 threshold | Best raw layer | Val AUC | Test AUC | Delta vs B0 |
-| --- | ---: | --- | ---: | ---: | ---: |
-| `infer_property` | 0.743 | L45 | 0.881 | 0.897 | +0.153 |
-| `infer_subtype` | 0.841 | L45 | 0.917 | 0.914 | +0.073 |
+| Task | B0 threshold | Best raw layer | Val AUC | Test AUC | 95% bootstrap CI | Delta vs B0 |
+| --- | ---: | --- | ---: | ---: | --- | ---: |
+| `infer_property` | 0.743 | L45 | 0.881 | 0.897 | [0.881, 0.912] | +0.153 |
+| `infer_subtype` | 0.841 | L45 | 0.917 | 0.914 | [0.896, 0.932] | +0.073 |
 
-All selected raw layers beat the task-matched B0 thresholds on S1. Bootstrap
-confidence intervals and transfer diagnostics are still pending.
+All selected raw layers beat the task-matched B0 thresholds on S1. Per-height
+AUCs are useful diagnostics, but h1 values are unstable because the S1 heldout
+has only 4-5 negatives for h1.
+
+Cross-task transfer uses source-task validation to select the layer/C and
+evaluates only once on the target-task test split:
+
+| Direction | Selected layer | Source test AUC | Target test AUC | Target 95% bootstrap CI |
+| --- | --- | ---: | ---: | ---: |
+| `infer_property` -> `infer_subtype` | L45 | 0.897 | 0.862 | [0.837, 0.884] |
+| `infer_subtype` -> `infer_property` | L45 | 0.914 | 0.786 | [0.763, 0.809] |
 
 Transfer and comparison:
 
@@ -512,9 +525,9 @@ Phase B:
 
 - [x] Raw residual probes for Gemma 3 27B, both tasks, and selected layers.
 - [x] S1 point metrics.
-- [ ] Bootstrap confidence intervals for raw residual probes.
+- [x] Bootstrap confidence intervals for raw residual probes.
 - [ ] S2 metrics only after redesign.
-- [ ] Cross-task transfer tables.
+- [x] Cross-task transfer tables.
 - [ ] Cross-model comparison tables after teammate 4B results are available.
 - [ ] Diagnostics against prompt length and name scrambling.
 

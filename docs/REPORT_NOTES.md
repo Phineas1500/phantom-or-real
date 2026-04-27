@@ -204,3 +204,16 @@ final report is easier to assemble.
   about Stage 1 success beyond height/prompt metadata. This justifies moving to
   SAE feature extraction/probing, while keeping bootstrap CIs and transfer
   diagnostics as pending Phase B work.
+- Reran the full 27B S1 raw probes with 1,000 bootstrap samples over heldout
+  examples. L45 property test AUC 0.897 has 95% CI [0.881, 0.912]; L45 subtype
+  test AUC 0.914 has 95% CI [0.896, 0.932]. These intervals remain clearly
+  above the matching B0 thresholds.
+- Per-height diagnostic caveat: h1 heldout cells have only 5 negatives for
+  property and 4 negatives for subtype, so h1 AUCs are unstable and should not
+  be overinterpreted. The deeper-height cells provide more reliable per-height
+  checks.
+- Cross-task transfer is positive but weaker than within-task probing.
+  Property-trained L45 transfers to subtype at target test AUC 0.862, 95% CI
+  [0.837, 0.884]. Subtype-trained L45 transfers to property at target test AUC
+  0.786, 95% CI [0.763, 0.809]. This suggests a shared success/failure signal
+  plus task-specific components.
