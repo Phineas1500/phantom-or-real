@@ -145,3 +145,17 @@ final report is easier to assemble.
   extracts layer 30 for 16 height-4 rows from each 27B task, then validates the
   written activation artifacts. This is the next gate before layer-selection
   extraction.
+- Pilot job `449831` succeeded on `scholar-j002` from 03:14:18 to 03:25:52 EDT.
+  It extracted layer-30 residuals for 16 height-4 rows from each 27B task and
+  validated both artifact sets. Each safetensors file has shape `[16, 5376]`
+  and dtype bf16; sidecar validation found zero row-order or token-count
+  mismatches.
+- The pilot confirmed the TransformerLens whole-block remapping is working:
+  blocks 0, 1, and 30 were on `cuda:0`, while blocks 31, 60, 61, `ln_final`,
+  and `unembed` were on `cuda:1`. Recorded extraction rates were 2.03 rows/s
+  for property and 5.52 rows/s for subtype on this tiny run.
+- Added `scripts/stage2_probe_raw.py` and
+  `scripts/stage2_layerpilot_27b_h4.sbatch` for the next layer-selection gate.
+  The layer pilot extracts layers 15, 30, and 45 on 512 non-parse height-4 rows
+  per 27B task, validates artifacts, and trains quick logistic probes to write
+  `docs/layer_selection_pilot_27b_h4.json`.

@@ -46,6 +46,9 @@ As of 2026-04-27:
   optional written artifacts. The 27B property and subtype input reports are
   `ok` in `docs/stage2_equivalence_27b_infer_property.json` and
   `docs/stage2_equivalence_27b_infer_subtype.json`.
+- Pilot job `449831` extracted layer 30 for 16 height-4 rows from each 27B
+  task. Both artifact validation reports are `ok`; outputs have shape
+  `[16, 5376]`, dtype bf16, and zero sidecar mismatches.
 
 Measured jobs:
 
@@ -125,6 +128,10 @@ python scripts/stage2_write_invariants.py \
   extraction.
 - `scripts/stage2_extract_27b_pilot.sbatch`: small 27B layer-30 extraction
   pilot for both tasks on 2x A40.
+- `scripts/stage2_layerpilot_27b_h4.sbatch`: layer-selection pilot for 27B
+  height-4 rows across layers 15, 30, and 45.
+- `scripts/stage2_probe_raw.py`: quick logistic probe runner for raw residual
+  safetensors.
 - `scripts/stage2_write_invariants.py`: invariant writer.
 - `scripts/stage2_j2_measure.py`: measurement-only J-node utility.
 - `docs/STAGE_2_PLAN_ARCHIVE.md`: old long-form plan kept for reference.
@@ -269,17 +276,30 @@ Current validator status:
   `--layers` to check safetensors shape, metadata, sidecar row order, hook
   names, and token counts.
 
+Pilot artifact status:
+
+- Job `449831` ran on `scholar-j002` from 03:14:18 to 03:25:52 EDT on
+  2026-04-27.
+- Property L30 pilot: 16 rows, shape `[16, 5376]`, bf16, 2.03 rows/s.
+- Subtype L30 pilot: 16 rows, shape `[16, 5376]`, bf16, 5.52 rows/s.
+- Whole-block device map was as expected: blocks 0, 1, and 30 on `cuda:0`;
+  blocks 31, 60, and 61 plus final/unembed on `cuda:1`.
+
 ### A.3 Layer Selection Pilot
 
 Run a full-layer sweep on a subset before committing to full extraction:
 
-- Start with 500 rows per model/task if compute allows.
+- For the current 27B run, start with 512 non-parse height-4 rows per task.
 - Filter `parse_failed=True` for the main pilot.
-- Train quick probes per layer.
+- Train quick logistic probes per layer with `scripts/stage2_probe_raw.py`.
 - Pick three layers per model based on probe performance and stability.
 - Early/mid/late is acceptable only if the pilot is inconclusive.
 
 Write selected layers to `docs/layer_selection.json`.
+
+Current pilot job script: `scripts/stage2_layerpilot_27b_h4.sbatch` extracts
+layers 15, 30, and 45 for 27B property/subtype, validates artifacts, and writes
+`docs/layer_selection_pilot_27b_h4.json`.
 
 ### A.4 Full Extraction
 
@@ -440,7 +460,7 @@ Phase A:
 
 - [x] `scripts/validate_activations.py`.
 - [x] 27B input validation reports for both tasks.
-- [ ] Pilot artifact validation reports for both tasks.
+- [x] Pilot artifact validation reports for both tasks.
 - [ ] `results/stage2/equivalence_report.json` or equivalent merged report.
 - [ ] `docs/layer_selection.json`.
 - [ ] 6 raw residual activation files for Gemma 3 27B.
