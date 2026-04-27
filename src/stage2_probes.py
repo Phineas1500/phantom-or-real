@@ -165,6 +165,25 @@ def _predict_scores(model, x: np.ndarray, indices: list[int]) -> list[float]:
     return [float(score) for score in model.predict_proba(x[indices])[:, 1]]
 
 
+def _is_sparse_matrix(x: Any) -> bool:
+    try:
+        from scipy import sparse
+    except Exception:  # noqa: BLE001
+        return False
+    return bool(sparse.issparse(x))
+
+
+def _make_logistic_pipeline(x: Any, *, c_value: float, max_iter: int, solver: str = "lbfgs"):
+    from sklearn.linear_model import LogisticRegression
+    from sklearn.pipeline import make_pipeline
+    from sklearn.preprocessing import StandardScaler
+
+    return make_pipeline(
+        StandardScaler(with_mean=not _is_sparse_matrix(x)),
+        LogisticRegression(C=c_value, class_weight="balanced", max_iter=max_iter, solver=solver),
+    )
+
+
 def train_logistic_probe_with_splits(
     x: np.ndarray,
     labels: list[int],
@@ -173,13 +192,10 @@ def train_logistic_probe_with_splits(
     splits: dict[str, list[int]],
     c_values: tuple[float, ...] = DEFAULT_C_VALUES,
     max_iter: int = 2000,
+    solver: str = "lbfgs",
     bootstrap_samples: int = 0,
     bootstrap_seed: int = 0,
 ) -> dict[str, Any]:
-    from sklearn.linear_model import LogisticRegression
-    from sklearn.pipeline import make_pipeline
-    from sklearn.preprocessing import StandardScaler
-
     train_indices = splits["train"]
     val_indices = splits["val"]
     test_indices = splits["test"]
@@ -194,10 +210,7 @@ def train_logistic_probe_with_splits(
         raise ValueError("at least one C value is required")
     best = None
     for c_value in c_values:
-        model = make_pipeline(
-            StandardScaler(),
-            LogisticRegression(C=c_value, class_weight="balanced", max_iter=max_iter),
-        )
+        model = _make_logistic_pipeline(x, c_value=c_value, max_iter=max_iter, solver=solver)
         model.fit(x[train_indices], [labels[idx] for idx in train_indices])
         val_scores = _predict_scores(model, x, val_indices)
         val_auc = _safe_auc([labels[idx] for idx in val_indices], val_scores)
@@ -228,6 +241,7 @@ def train_logistic_probe_with_splits(
         "best_c": best["c"],
         "c_values": list(c_values),
         "max_iter": max_iter,
+        "solver": solver,
         "val_auc": best["val_auc"],
         "test_auc": _safe_auc(test_labels, test_scores),
         "test_auc_ci": bootstrap_auc_ci(
@@ -249,6 +263,7 @@ def train_logistic_probe(
     seed: int,
     c_values: tuple[float, ...] = DEFAULT_C_VALUES,
     max_iter: int = 2000,
+    solver: str = "lbfgs",
     bootstrap_samples: int = 0,
 ) -> dict[str, Any]:
     splits = stratified_split_indices(labels, seed=seed)
@@ -259,6 +274,7 @@ def train_logistic_probe(
         splits=splits,
         c_values=c_values,
         max_iter=max_iter,
+        solver=solver,
         bootstrap_samples=bootstrap_samples,
         bootstrap_seed=seed,
     )
@@ -312,6 +328,7 @@ def run_raw_activation_probe(
     shuffle_labels: bool = False,
     c_values: tuple[float, ...] = DEFAULT_C_VALUES,
     max_iter: int = 2000,
+    solver: str = "lbfgs",
     bootstrap_samples: int = 0,
 ) -> dict[str, Any]:
     dataset = load_probe_dataset(
@@ -332,6 +349,7 @@ def run_raw_activation_probe(
             seed=seed,
             c_values=c_values,
             max_iter=max_iter,
+            solver=solver,
             bootstrap_samples=bootstrap_samples,
         )
         split_mode = "stratified_random"
@@ -351,6 +369,7 @@ def run_raw_activation_probe(
             splits=splits,
             c_values=c_values,
             max_iter=max_iter,
+            solver=solver,
             bootstrap_samples=bootstrap_samples,
             bootstrap_seed=seed,
         )
@@ -384,6 +403,7 @@ def run_probe_grid(
     shuffle_labels: bool = False,
     c_values: tuple[float, ...] = DEFAULT_C_VALUES,
     max_iter: int = 2000,
+    solver: str = "lbfgs",
     bootstrap_samples: int = 0,
 ) -> dict[str, Any]:
     split_assignments = read_split_assignments(splits_path) if splits_path is not None else None
@@ -401,6 +421,7 @@ def run_probe_grid(
         "shuffle_labels": shuffle_labels,
         "c_values": list(c_values),
         "max_iter": max_iter,
+        "solver": solver,
         "bootstrap_samples": bootstrap_samples,
         "results": {},
         "best_by_task": {},
@@ -421,6 +442,7 @@ def run_probe_grid(
                 shuffle_labels=shuffle_labels,
                 c_values=c_values,
                 max_iter=max_iter,
+                solver=solver,
                 bootstrap_samples=bootstrap_samples,
             )
         ok_layers = {
@@ -474,13 +496,10 @@ def train_cross_task_transfer(
     target_splits: dict[str, list[int]],
     c_values: tuple[float, ...] = DEFAULT_C_VALUES,
     max_iter: int = 2000,
+    solver: str = "lbfgs",
     bootstrap_samples: int = 0,
     bootstrap_seed: int = 0,
 ) -> dict[str, Any]:
-    from sklearn.linear_model import LogisticRegression
-    from sklearn.pipeline import make_pipeline
-    from sklearn.preprocessing import StandardScaler
-
     source_labels = source["labels"]
     target_labels = target["labels"]
     train_indices = source_splits["train"]
@@ -513,10 +532,7 @@ def train_cross_task_transfer(
 
     best = None
     for c_value in c_values:
-        model = make_pipeline(
-            StandardScaler(),
-            LogisticRegression(C=c_value, class_weight="balanced", max_iter=max_iter),
-        )
+        model = _make_logistic_pipeline(source["x"], c_value=c_value, max_iter=max_iter, solver=solver)
         model.fit(source["x"][train_indices], [source_labels[idx] for idx in train_indices])
         val_scores = _predict_scores(model, source["x"], val_indices)
         val_auc = _safe_auc([source_labels[idx] for idx in val_indices], val_scores)
@@ -540,6 +556,7 @@ def train_cross_task_transfer(
         "best_c": best["c"],
         "c_values": list(c_values),
         "max_iter": max_iter,
+        "solver": solver,
         "source_val_auc": best["source_val_auc"],
         "source_test_auc": _safe_auc(source_test_labels, source_test_scores),
         "source_test_auc_ci": bootstrap_auc_ci(
@@ -606,6 +623,7 @@ def run_cross_task_transfer_grid(
     drop_parse_failed: bool = True,
     c_values: tuple[float, ...] = DEFAULT_C_VALUES,
     max_iter: int = 2000,
+    solver: str = "lbfgs",
     bootstrap_samples: int = 0,
 ) -> dict[str, Any]:
     split_assignments = read_split_assignments(splits_path)
@@ -622,6 +640,7 @@ def run_cross_task_transfer_grid(
         "drop_parse_failed": drop_parse_failed,
         "c_values": list(c_values),
         "max_iter": max_iter,
+        "solver": solver,
         "bootstrap_samples": bootstrap_samples,
         "results": {},
         "best_by_transfer": {},
@@ -661,6 +680,7 @@ def run_cross_task_transfer_grid(
                         target_splits=layer_splits[target_task],
                         c_values=c_values,
                         max_iter=max_iter,
+                        solver=solver,
                         bootstrap_samples=bootstrap_samples,
                         bootstrap_seed=seed + layer * 10_009,
                     ),

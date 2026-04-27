@@ -217,3 +217,39 @@ final report is easier to assemble.
   [0.837, 0.884]. Subtype-trained L45 transfers to property at target test AUC
   0.786, 95% CI [0.763, 0.809]. This suggests a shared success/failure signal
   plus task-specific components.
+
+#### Stage 2 SAE Feature Extraction
+
+- Added cached-residual SAE extraction tooling. The extractor reads a raw
+  residual `.safetensors` file, loads a Gemma Scope SAE through SAE Lens, and
+  writes sparse top-k features (`top_values`, `top_indices`, `l0`) plus a
+  copied sidecar and metadata/checksums.
+- Verified remotely that Gemma Scope 2 has L45 residual SAEs for 27B at both
+  width-16K and width-262K. The local cache initially only had layer-30 SAEs
+  from the earlier measurement job.
+- Pinned the L45 width-16K SAE in `docs/stage2_invariants.json`:
+  `gemma-scope-2-27b-it-res-all/layer_45_width_16k_l0_small`, HF snapshot
+  `5c58dd4cddd52cef653059d85e12a86bf6222a28`, config SHA-256
+  `847532cdf078e129e0dce8efce2bb417b6b29d6afe7762efbf060d5a36caf94a`,
+  params SHA-256
+  `e6aeef8fa7cdf7d7fa9f345a6ded25b55725be54929934910d792acb2bd9a9c4`.
+- SAE pilot job `449999` ran on `scholar-j001` and encoded 512 L45 rows for
+  each 27B task with the width-16K SAE. Both outputs have `top_values` and
+  `top_indices` shape `[512, 128]`, `l0` shape `[512]`, bf16 top values, and
+  int64 top indices.
+- Pilot mean L0 was 17.57 for property and 17.96 for subtype. The property
+  encode loop ran at 285 rows/s, while subtype ran at 2,088 rows/s after the
+  SAE/model path was warm in cache. This supports moving to full L45 width-16K
+  feature extraction before trying width-262K.
+- Full L45 width-16K SAE extraction job `450004` completed for both 27B tasks.
+  Each full feature file has 11,000 rows with `top_values`/`top_indices` shape
+  `[11000, 128]` and `l0` shape `[11000]`. Full-run mean L0 was 14.34 for
+  property and 14.08 for subtype.
+- First SAE probes on L45 width-16K top-128 features beat B0 but are weaker
+  than raw residual probes. Property test AUC was 0.786, 95% CI [0.763, 0.808],
+  compared with B0 0.743 and raw L45 0.897. Subtype test AUC was 0.876, 95% CI
+  [0.852, 0.899], compared with B0 0.841 and raw L45 0.914.
+- Interpretation for the report: sparse Gemma Scope features retain some
+  correctness signal, but top-128 width-16K features do not yet localize the
+  full raw-residual signal. Width-262K and/or more retained features should be
+  tested before selecting features for steering.
