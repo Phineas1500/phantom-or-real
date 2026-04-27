@@ -78,6 +78,10 @@ As of 2026-04-27:
 - Full SAE extraction job `450029` encoded all 11,000 L45 rows for each 27B
   task with `layer_45_width_262k_l0_small`. `docs/sae_probe_27b_l45_262k_s1.json`
   records probes: property test AUC 0.806, subtype test AUC 0.870.
+- Top-512 diagnostic job `450038` encoded all 11,000 L45 rows for each 27B
+  task with the width-16K SAE. `docs/sae_probe_27b_l45_16k_top512_s1.json`
+  exactly matches the top-128 probe metrics because all ranks after 128 are
+  zero; observed max L0 was 24 for property and 23 for subtype.
 
 Measured jobs:
 
@@ -452,6 +456,10 @@ Current pilot status:
 - Full L45 width-262K extraction job `450029` wrote two full feature files
   under `results/stage2/sae_features/`. Each has `top_values`/`top_indices`
   shape `[11000, 128]` and `l0` shape `[11000]`.
+- L45 width-16K top-512 diagnostic job `450038` wrote two full feature files.
+  Each has `top_values`/`top_indices` shape `[11000, 512]`; ranks after 128 are
+  all zero because the largest observed L0 was 24 for property and 23 for
+  subtype.
 
 Outputs:
 
@@ -473,19 +481,24 @@ Required comparisons:
 Only features that are stable and beat B0 baselines should be considered for
 causal validation.
 
-Current L45 top-128 S1 metrics:
+Current L45 S1 metrics:
 
-| Task | B0 threshold | SAE width | SAE test AUC | 95% bootstrap CI | Raw L45 test AUC |
-| --- | ---: | --- | ---: | --- | ---: |
-| `infer_property` | 0.743 | 16K | 0.786 | [0.763, 0.808] | 0.897 |
-| `infer_property` | 0.743 | 262K | 0.806 | [0.784, 0.828] | 0.897 |
-| `infer_subtype` | 0.841 | 16K | 0.876 | [0.852, 0.899] | 0.914 |
-| `infer_subtype` | 0.841 | 262K | 0.870 | [0.845, 0.895] | 0.914 |
+| Task | B0 threshold | SAE width | Top-k | SAE test AUC | 95% bootstrap CI | Raw L45 test AUC |
+| --- | ---: | --- | ---: | ---: | --- | ---: |
+| `infer_property` | 0.743 | 16K | 128 | 0.786 | [0.763, 0.808] | 0.897 |
+| `infer_property` | 0.743 | 16K | 512 | 0.786 | [0.763, 0.808] | 0.897 |
+| `infer_property` | 0.743 | 262K | 128 | 0.806 | [0.784, 0.828] | 0.897 |
+| `infer_subtype` | 0.841 | 16K | 128 | 0.876 | [0.852, 0.899] | 0.914 |
+| `infer_subtype` | 0.841 | 16K | 512 | 0.876 | [0.852, 0.899] | 0.914 |
+| `infer_subtype` | 0.841 | 262K | 128 | 0.870 | [0.845, 0.895] | 0.914 |
 
 Both SAE widths beat B0 but do not recover the full raw-residual signal. Width
-262K modestly improves property but not subtype. Next checks should test more
-retained SAE features, for example top-512 on width-16K or width-262K, before
-any steering decision.
+262K modestly improves property but not subtype. Top-512 on width-16K exactly
+matches top-128 because top-128 already retains every nonzero active feature.
+Observed top-128 max L0 was 24/23 for width-16K property/subtype and 22/22 for
+width-262K property/subtype, so a top-512 width-262K rerun is not useful. Next
+checks should focus on feature stability, adjacent layers, and raw-vs-SAE
+reconstruction/residual diagnostics before any steering decision.
 
 Outputs:
 
@@ -586,6 +599,7 @@ Phase C/D:
 - [x] L45 width-16K top-128 SAE probe metrics.
 - [x] L45 width-262K full top-128 SAE extraction complete.
 - [x] L45 width-262K top-128 SAE probe metrics.
+- [x] L45 width-16K top-512 truncation diagnostic.
 - [ ] Additional SAE release IDs pinned.
 - [ ] SAE feature extraction complete.
 - [ ] Broader SAE probe metrics.

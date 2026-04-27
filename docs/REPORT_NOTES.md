@@ -269,7 +269,16 @@ final report is easier to assemble.
   property test AUC 0.806, 95% CI [0.784, 0.828], vs width-16K 0.786 and raw
   L45 0.897; subtype test AUC 0.870, 95% CI [0.845, 0.895], vs width-16K 0.876
   and raw L45 0.914.
+- L45 width-16K top-512 diagnostic job `450038` completed on `scholar-j001`.
+  The extracted feature files have `top_values`/`top_indices` shape
+  `[11000, 512]`, but ranks after 128 are all zero. Observed max L0 was 24 for
+  property and 23 for subtype.
+- Top-512 width-16K probes exactly matched top-128: property test AUC 0.786,
+  95% CI [0.763, 0.808]; subtype test AUC 0.876, 95% CI [0.852, 0.899].
+  Existing top-128 files also already cover all nonzero activations for the
+  width-262K SAE, where max L0 was 22 for both tasks.
 - Interpretation update: increasing SAE width alone does not close the raw-SAE
-  gap at top-128. The next useful diagnostic is retaining more SAE features
-  per row, such as top-512, before deciding that the signal is not well
-  localized in Gemma Scope residual SAEs.
+  gap, and top-k truncation is not the explanation because top-128 already
+  keeps every nonzero active feature for the tested L45 SAEs. Do not spend time
+  on a top-512 width-262K rerun. Next useful checks are feature stability,
+  adjacent-layer probes, and raw-vs-SAE reconstruction/residual diagnostics.
