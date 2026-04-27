@@ -1,0 +1,621 @@
+{
+  "created_at_utc": "2026-04-27T06:57:14.659052+00:00",
+  "families": {
+    "s1": {
+      "gemma3-27b__infer_property": {
+        "h1": {
+          "is_evaluable": true,
+          "split_counts": {
+            "test": {
+              "n": 150,
+              "negative_n": 6,
+              "non_parse_negative_n": 5,
+              "non_parse_positive_n": 144,
+              "parse_failed_n": 1,
+              "positive_n": 144,
+              "topology_group_n": 1
+            },
+            "train": {
+              "n": 700,
+              "negative_n": 28,
+              "non_parse_negative_n": 26,
+              "non_parse_positive_n": 672,
+              "parse_failed_n": 2,
+              "positive_n": 672,
+              "topology_group_n": 1
+            },
+            "val": {
+              "n": 150,
+              "negative_n": 6,
+              "non_parse_negative_n": 6,
+              "non_parse_positive_n": 144,
+              "parse_failed_n": 0,
+              "positive_n": 144,
+              "topology_group_n": 1
+            }
+          },
+          "topology_group_n": 1
+        },
+        "h2": {
+          "is_evaluable": true,
+          "split_counts": {
+            "test": {
+              "n": 300,
+              "negative_n": 127,
+              "non_parse_negative_n": 89,
+              "non_parse_positive_n": 173,
+              "parse_failed_n": 38,
+              "positive_n": 173,
+              "topology_group_n": 2
+            },
+            "train": {
+              "n": 1400,
+              "negative_n": 593,
+              "non_parse_negative_n": 460,
+              "non_parse_positive_n": 807,
+              "parse_failed_n": 133,
+              "positive_n": 807,
+              "topology_group_n": 2
+            },
+            "val": {
+              "n": 300,
+              "negative_n": 127,
+              "non_parse_negative_n": 107,
+              "non_parse_positive_n": 173,
+              "parse_failed_n": 20,
+              "positive_n": 173,
+              "topology_group_n": 2
+            }
+          },
+          "topology_group_n": 2
+        },
+        "h3": {
+          "is_evaluable": true,
+          "split_counts": {
+            "test": {
+              "n": 450,
+              "negative_n": 273,
+              "non_parse_negative_n": 240,
+              "non_parse_positive_n": 177,
+              "parse_failed_n": 33,
+              "positive_n": 177,
+              "topology_group_n": 2
+            },
+            "train": {
+              "n": 2100,
+              "negative_n": 1277,
+              "non_parse_negative_n": 1085,
+              "non_parse_positive_n": 823,
+              "parse_failed_n": 192,
+              "positive_n": 823,
+              "topology_group_n": 2
+            },
+            "val": {
+              "n": 450,
+              "negative_n": 273,
+              "non_parse_negative_n": 235,
+              "non_parse_positive_n": 177,
+              "parse_failed_n": 38,
+              "positive_n": 177,
+              "topology_group_n": 2
+            }
+          },
+          "topology_group_n": 2
+        },
+        "h4": {
+          "is_evaluable": true,
+          "split_counts": {
+            "test": {
+              "n": 750,
+              "negative_n": 552,
+              "non_parse_negative_n": 486,
+              "non_parse_positive_n": 198,
+              "parse_failed_n": 66,
+              "positive_n": 198,
+              "topology_group_n": 2
+            },
+            "train": {
+              "n": 3500,
+              "negative_n": 2576,
+              "non_parse_negative_n": 2191,
+              "non_parse_positive_n": 924,
+              "parse_failed_n": 385,
+              "positive_n": 924,
+              "topology_group_n": 2
+            },
+            "val": {
+              "n": 750,
+              "negative_n": 552,
+              "non_parse_negative_n": 485,
+              "non_parse_positive_n": 198,
+              "parse_failed_n": 67,
+              "positive_n": 198,
+              "topology_group_n": 2
+            }
+          },
+          "topology_group_n": 2
+        }
+      },
+      "gemma3-27b__infer_subtype": {
+        "h1": {
+          "is_evaluable": true,
+          "split_counts": {
+            "test": {
+              "n": 150,
+              "negative_n": 4,
+              "non_parse_negative_n": 4,
+              "non_parse_positive_n": 146,
+              "parse_failed_n": 0,
+              "positive_n": 146,
+              "topology_group_n": 1
+            },
+            "train": {
+              "n": 700,
+              "negative_n": 19,
+              "non_parse_negative_n": 19,
+              "non_parse_positive_n": 681,
+              "parse_failed_n": 0,
+              "positive_n": 681,
+              "topology_group_n": 1
+            },
+            "val": {
+              "n": 150,
+              "negative_n": 4,
+              "non_parse_negative_n": 4,
+              "non_parse_positive_n": 146,
+              "parse_failed_n": 0,
+              "positive_n": 146,
+              "topology_group_n": 1
+            }
+          },
+          "topology_group_n": 1
+        },
+        "h2": {
+          "is_evaluable": true,
+          "split_counts": {
+            "test": {
+              "n": 300,
+              "negative_n": 202,
+              "non_parse_negative_n": 187,
+              "non_parse_positive_n": 98,
+              "parse_failed_n": 15,
+              "positive_n": 98,
+              "topology_group_n": 2
+            },
+            "train": {
+              "n": 1400,
+              "negative_n": 946,
+              "non_parse_negative_n": 848,
+              "non_parse_positive_n": 454,
+              "parse_failed_n": 98,
+              "positive_n": 454,
+              "topology_group_n": 2
+            },
+            "val": {
+              "n": 300,
+              "negative_n": 202,
+              "non_parse_negative_n": 180,
+              "non_parse_positive_n": 98,
+              "parse_failed_n": 22,
+              "positive_n": 98,
+              "topology_group_n": 2
+            }
+          },
+          "topology_group_n": 2
+        },
+        "h3": {
+          "is_evaluable": true,
+          "split_counts": {
+            "test": {
+              "n": 450,
+              "negative_n": 399,
+              "non_parse_negative_n": 388,
+              "non_parse_positive_n": 51,
+              "parse_failed_n": 11,
+              "positive_n": 51,
+              "topology_group_n": 2
+            },
+            "train": {
+              "n": 2100,
+              "negative_n": 1859,
+              "non_parse_negative_n": 1819,
+              "non_parse_positive_n": 241,
+              "parse_failed_n": 40,
+              "positive_n": 241,
+              "topology_group_n": 2
+            },
+            "val": {
+              "n": 450,
+              "negative_n": 399,
+              "non_parse_negative_n": 391,
+              "non_parse_positive_n": 51,
+              "parse_failed_n": 8,
+              "positive_n": 51,
+              "topology_group_n": 2
+            }
+          },
+          "topology_group_n": 2
+        },
+        "h4": {
+          "is_evaluable": true,
+          "split_counts": {
+            "test": {
+              "n": 750,
+              "negative_n": 708,
+              "non_parse_negative_n": 700,
+              "non_parse_positive_n": 42,
+              "parse_failed_n": 8,
+              "positive_n": 42,
+              "topology_group_n": 2
+            },
+            "train": {
+              "n": 3500,
+              "negative_n": 3307,
+              "non_parse_negative_n": 3260,
+              "non_parse_positive_n": 193,
+              "parse_failed_n": 47,
+              "positive_n": 193,
+              "topology_group_n": 2
+            },
+            "val": {
+              "n": 750,
+              "negative_n": 708,
+              "non_parse_negative_n": 694,
+              "non_parse_positive_n": 42,
+              "parse_failed_n": 14,
+              "positive_n": 42,
+              "topology_group_n": 2
+            }
+          },
+          "topology_group_n": 2
+        }
+      }
+    },
+    "s2": {
+      "gemma3-27b__infer_property": {
+        "h1": {
+          "is_evaluable": false,
+          "split_counts": {
+            "test": {
+              "n": 0,
+              "negative_n": 0,
+              "non_parse_negative_n": 0,
+              "non_parse_positive_n": 0,
+              "parse_failed_n": 0,
+              "positive_n": 0,
+              "topology_group_n": 0
+            },
+            "train": {
+              "n": 1000,
+              "negative_n": 40,
+              "non_parse_negative_n": 37,
+              "non_parse_positive_n": 960,
+              "parse_failed_n": 3,
+              "positive_n": 960,
+              "topology_group_n": 1
+            },
+            "val": {
+              "n": 0,
+              "negative_n": 0,
+              "non_parse_negative_n": 0,
+              "non_parse_positive_n": 0,
+              "parse_failed_n": 0,
+              "positive_n": 0,
+              "topology_group_n": 0
+            }
+          },
+          "topology_group_n": 1
+        },
+        "h2": {
+          "is_evaluable": false,
+          "split_counts": {
+            "test": {
+              "n": 0,
+              "negative_n": 0,
+              "non_parse_negative_n": 0,
+              "non_parse_positive_n": 0,
+              "parse_failed_n": 0,
+              "positive_n": 0,
+              "topology_group_n": 0
+            },
+            "train": {
+              "n": 2000,
+              "negative_n": 847,
+              "non_parse_negative_n": 656,
+              "non_parse_positive_n": 1153,
+              "parse_failed_n": 191,
+              "positive_n": 1153,
+              "topology_group_n": 2
+            },
+            "val": {
+              "n": 0,
+              "negative_n": 0,
+              "non_parse_negative_n": 0,
+              "non_parse_positive_n": 0,
+              "parse_failed_n": 0,
+              "positive_n": 0,
+              "topology_group_n": 0
+            }
+          },
+          "topology_group_n": 2
+        },
+        "h3": {
+          "is_evaluable": false,
+          "split_counts": {
+            "test": {
+              "n": 0,
+              "negative_n": 0,
+              "non_parse_negative_n": 0,
+              "non_parse_positive_n": 0,
+              "parse_failed_n": 0,
+              "positive_n": 0,
+              "topology_group_n": 0
+            },
+            "train": {
+              "n": 3000,
+              "negative_n": 1823,
+              "non_parse_negative_n": 1560,
+              "non_parse_positive_n": 1177,
+              "parse_failed_n": 263,
+              "positive_n": 1177,
+              "topology_group_n": 2
+            },
+            "val": {
+              "n": 0,
+              "negative_n": 0,
+              "non_parse_negative_n": 0,
+              "non_parse_positive_n": 0,
+              "parse_failed_n": 0,
+              "positive_n": 0,
+              "topology_group_n": 0
+            }
+          },
+          "topology_group_n": 2
+        },
+        "h4": {
+          "is_evaluable": false,
+          "split_counts": {
+            "test": {
+              "n": 0,
+              "negative_n": 0,
+              "non_parse_negative_n": 0,
+              "non_parse_positive_n": 0,
+              "parse_failed_n": 0,
+              "positive_n": 0,
+              "topology_group_n": 0
+            },
+            "train": {
+              "n": 5000,
+              "negative_n": 3680,
+              "non_parse_negative_n": 3162,
+              "non_parse_positive_n": 1320,
+              "parse_failed_n": 518,
+              "positive_n": 1320,
+              "topology_group_n": 2
+            },
+            "val": {
+              "n": 0,
+              "negative_n": 0,
+              "non_parse_negative_n": 0,
+              "non_parse_positive_n": 0,
+              "parse_failed_n": 0,
+              "positive_n": 0,
+              "topology_group_n": 0
+            }
+          },
+          "topology_group_n": 2
+        }
+      },
+      "gemma3-27b__infer_subtype": {
+        "h1": {
+          "is_evaluable": false,
+          "split_counts": {
+            "test": {
+              "n": 0,
+              "negative_n": 0,
+              "non_parse_negative_n": 0,
+              "non_parse_positive_n": 0,
+              "parse_failed_n": 0,
+              "positive_n": 0,
+              "topology_group_n": 0
+            },
+            "train": {
+              "n": 1000,
+              "negative_n": 27,
+              "non_parse_negative_n": 27,
+              "non_parse_positive_n": 973,
+              "parse_failed_n": 0,
+              "positive_n": 973,
+              "topology_group_n": 1
+            },
+            "val": {
+              "n": 0,
+              "negative_n": 0,
+              "non_parse_negative_n": 0,
+              "non_parse_positive_n": 0,
+              "parse_failed_n": 0,
+              "positive_n": 0,
+              "topology_group_n": 0
+            }
+          },
+          "topology_group_n": 1
+        },
+        "h2": {
+          "is_evaluable": false,
+          "split_counts": {
+            "test": {
+              "n": 0,
+              "negative_n": 0,
+              "non_parse_negative_n": 0,
+              "non_parse_positive_n": 0,
+              "parse_failed_n": 0,
+              "positive_n": 0,
+              "topology_group_n": 0
+            },
+            "train": {
+              "n": 2000,
+              "negative_n": 1350,
+              "non_parse_negative_n": 1215,
+              "non_parse_positive_n": 650,
+              "parse_failed_n": 135,
+              "positive_n": 650,
+              "topology_group_n": 2
+            },
+            "val": {
+              "n": 0,
+              "negative_n": 0,
+              "non_parse_negative_n": 0,
+              "non_parse_positive_n": 0,
+              "parse_failed_n": 0,
+              "positive_n": 0,
+              "topology_group_n": 0
+            }
+          },
+          "topology_group_n": 2
+        },
+        "h3": {
+          "is_evaluable": false,
+          "split_counts": {
+            "test": {
+              "n": 0,
+              "negative_n": 0,
+              "non_parse_negative_n": 0,
+              "non_parse_positive_n": 0,
+              "parse_failed_n": 0,
+              "positive_n": 0,
+              "topology_group_n": 0
+            },
+            "train": {
+              "n": 3000,
+              "negative_n": 2657,
+              "non_parse_negative_n": 2598,
+              "non_parse_positive_n": 343,
+              "parse_failed_n": 59,
+              "positive_n": 343,
+              "topology_group_n": 2
+            },
+            "val": {
+              "n": 0,
+              "negative_n": 0,
+              "non_parse_negative_n": 0,
+              "non_parse_positive_n": 0,
+              "parse_failed_n": 0,
+              "positive_n": 0,
+              "topology_group_n": 0
+            }
+          },
+          "topology_group_n": 2
+        },
+        "h4": {
+          "is_evaluable": false,
+          "split_counts": {
+            "test": {
+              "n": 0,
+              "negative_n": 0,
+              "non_parse_negative_n": 0,
+              "non_parse_positive_n": 0,
+              "parse_failed_n": 0,
+              "positive_n": 0,
+              "topology_group_n": 0
+            },
+            "train": {
+              "n": 5000,
+              "negative_n": 4723,
+              "non_parse_negative_n": 4654,
+              "non_parse_positive_n": 277,
+              "parse_failed_n": 69,
+              "positive_n": 277,
+              "topology_group_n": 2
+            },
+            "val": {
+              "n": 0,
+              "negative_n": 0,
+              "non_parse_negative_n": 0,
+              "non_parse_positive_n": 0,
+              "parse_failed_n": 0,
+              "positive_n": 0,
+              "topology_group_n": 0
+            }
+          },
+          "topology_group_n": 2
+        }
+      }
+    }
+  },
+  "filters": {
+    "models": [
+      "gemma3-27b"
+    ],
+    "tasks": "all"
+  },
+  "output": "results/stage2/splits.jsonl",
+  "schema_version": 1,
+  "seed": 20260427,
+  "total_rows": 22000,
+  "warnings": [
+    {
+      "family": "s2",
+      "height": 1,
+      "model": "gemma3-27b",
+      "reason": "each train/val/test split needs at least one non-parse positive and negative row",
+      "task": "infer_property",
+      "type": "split_not_evaluable"
+    },
+    {
+      "family": "s2",
+      "height": 2,
+      "model": "gemma3-27b",
+      "reason": "each train/val/test split needs at least one non-parse positive and negative row",
+      "task": "infer_property",
+      "type": "split_not_evaluable"
+    },
+    {
+      "family": "s2",
+      "height": 3,
+      "model": "gemma3-27b",
+      "reason": "each train/val/test split needs at least one non-parse positive and negative row",
+      "task": "infer_property",
+      "type": "split_not_evaluable"
+    },
+    {
+      "family": "s2",
+      "height": 4,
+      "model": "gemma3-27b",
+      "reason": "each train/val/test split needs at least one non-parse positive and negative row",
+      "task": "infer_property",
+      "type": "split_not_evaluable"
+    },
+    {
+      "family": "s2",
+      "height": 1,
+      "model": "gemma3-27b",
+      "reason": "each train/val/test split needs at least one non-parse positive and negative row",
+      "task": "infer_subtype",
+      "type": "split_not_evaluable"
+    },
+    {
+      "family": "s2",
+      "height": 2,
+      "model": "gemma3-27b",
+      "reason": "each train/val/test split needs at least one non-parse positive and negative row",
+      "task": "infer_subtype",
+      "type": "split_not_evaluable"
+    },
+    {
+      "family": "s2",
+      "height": 3,
+      "model": "gemma3-27b",
+      "reason": "each train/val/test split needs at least one non-parse positive and negative row",
+      "task": "infer_subtype",
+      "type": "split_not_evaluable"
+    },
+    {
+      "family": "s2",
+      "height": 4,
+      "model": "gemma3-27b",
+      "reason": "each train/val/test split needs at least one non-parse positive and negative row",
+      "task": "infer_subtype",
+      "type": "split_not_evaluable"
+    }
+  ]
+}

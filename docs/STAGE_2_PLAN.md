@@ -7,7 +7,7 @@ plan so this file can stay useful during execution.
 
 ## Current Status
 
-As of 2026-04-25:
+As of 2026-04-27:
 
 - The Scholar `phantom` environment is the active environment for this project.
   It includes `transformer-lens==3.0.0`, `sae-lens==6.39.0`, and
@@ -32,6 +32,16 @@ As of 2026-04-25:
     batch 32 as the conservative default;
   - load and encode one SAE per layer at a time from cached residuals;
   - SAE chunk size 512 worked for both width-16K and width-262K layer-30 SAEs.
+- Current execution ownership: this workspace run is focused on Gemma 3 27B.
+  The scripts remain model-filterable so a teammate can run the same controls
+  for Gemma 3 4B, but current generated Phase 0 artifacts are 27B-only.
+- `docs/stage2_inventory.json` and `docs/stage2_splits_summary.json` have been
+  generated for Gemma 3 27B. S1 is evaluable for both tasks and all heights.
+  The planned topology-heldout S2 is not evaluable on this shipped dataset
+  because canonical topology leaves only one or two groups per task/height.
+- `docs/stage2_b0_summary_27b_s1.json` records 27B S1 metadata baselines.
+  Strongest pre-output baselines are AUC 0.743 for `infer_property`
+  (`b0_prompt`) and AUC 0.841 for `infer_subtype` (`b0_height`).
 
 Measured jobs:
 
@@ -46,9 +56,9 @@ Primary question: do raw residual or SAE-feature probes reveal a signal for
 whether Gemma solves the InAbHyD reasoning task, beyond metadata baselines such
 as height and prompt length?
 
-In scope:
+Current 27B scope:
 
-- Models: Gemma 3 4B and Gemma 3 27B.
+- Model: Gemma 3 27B. Gemma 3 4B can be merged later from the teammate run.
 - Tasks: `infer_property` and `infer_subtype`.
 - Labels: Stage 1 `is_correct_strong`, with `parse_failed=True` filtered for
   the main probe training.
@@ -57,7 +67,6 @@ In scope:
   compute path are clean.
 - Probe families: difference-of-means and logistic regression.
 - Cross-task transfer within each model.
-- Cross-model comparison as tables, not raw probe transfer.
 - Steering validation on 27B `infer_property` only, after stable SAE features
   have been selected.
 
@@ -66,6 +75,7 @@ Out of scope:
 - `infer_membership_relation`.
 - Multi-hypothesis examples.
 - Training new SAEs.
+- Running 4B in this workspace unless ownership changes.
 - Steering on 4B.
 - Steering on `infer_subtype`.
 - Cross-model-family comparisons.
@@ -130,10 +140,12 @@ Create `docs/stage2_inventory.json` with counts by:
 - `(model, task, height)` totals and class balance after
   `parse_failed=False` filtering.
 
-Known cells to watch:
+Known 27B cells to watch:
 
-- 4B `infer_subtype`, h=3: low positive count.
-- 4B `infer_subtype`, h=4: low positive count.
+- `infer_property`, h=1: only 37 non-parse negative rows.
+- `infer_subtype`, h=1: only 27 non-parse negative rows.
+- `infer_property`, h=2-4: parse-failure rates are 9.55%, 8.77%, and 10.36%.
+- `infer_subtype`, h=2: parse-failure rate is 6.75%.
 
 ### 0.3 Splits
 
@@ -142,12 +154,17 @@ Write `results/stage2/splits.jsonl`.
 Required split families:
 
 - S1: height-stratified random split, 70/15/15.
-- S2: ontology-topology-held-out split, also 70/15/15 where possible.
+- S2: ontology-topology-held-out split. Current implementation records this
+  split but marks it non-evaluable for 27B because canonical topology has too
+  few groups to form train/val/test holdouts.
 - S3: name-scrambled generalization set, generated later for diagnostics.
 
 S2 grouping must canonicalize ontology topology rather than raw concept names.
 Record residual class or height imbalance when exact stratification is not
 possible.
+
+Do not report S2 probe metrics until an alternative heldout definition is
+chosen or a richer topology generator produces enough groups.
 
 ### 0.4 Metadata Baselines
 
@@ -166,10 +183,15 @@ Post-output diagnostics are useful but not fair baselines:
 Every activation or SAE probe should report delta over the strongest matching
 pre-output B0 baseline, not only absolute AUC.
 
+Current 27B S1 thresholds:
+
+- `infer_property`: beat `b0_prompt`, test AUC 0.743.
+- `infer_subtype`: beat `b0_height`, test AUC 0.841.
+
 ### 0.5 Label-Shuffle Check
 
-Train one raw-residual probe with shuffled labels on S1 and S2. Expected AUC is
-about 0.50. Anything materially higher suggests leakage.
+Train one raw-residual probe with shuffled labels on S1. Expected AUC is about
+0.50. Add S2 only after there is an evaluable heldout design.
 
 ## Phase A: Activation Extraction
 
@@ -187,7 +209,7 @@ For each `(model, task, layer)`:
 - sidecar preserves Stage 1 row order and includes row index, example ID,
   height, label, parse-failed flag, token count, and hook name.
 
-Example 4B command:
+Example 4B command for teammate use:
 
 ```bash
 python scripts/stage2_extract.py \
@@ -245,12 +267,12 @@ Write selected layers to `docs/layer_selection.json`.
 
 After layer selection:
 
-- extract both models;
+- extract Gemma 3 27B for this workspace run;
 - extract both tasks;
 - extract all three selected layers;
 - verify row counts and shapes immediately after each file.
 
-Expected full raw residual files: 12.
+Expected full raw residual files for this 27B run: 6.
 
 ## Phase B: Raw Residual Probes
 
@@ -258,7 +280,7 @@ Train probes on raw residuals for each `(model, task, layer)`.
 
 Probe requirements:
 
-- train on S1 and S2;
+- train on S1 now; add S2 only after the heldout definition is redesigned;
 - filter `parse_failed=True` for main analyses;
 - standardize features using train statistics only;
 - report aggregate AUC and per-height AUC;
@@ -389,9 +411,11 @@ Phase 0:
   JSONL SHA-256s.
 - [ ] SAE release IDs pinned in `docs/stage2_invariants.json`.
 - [ ] GPT judge snapshot pinned if judge calls are used.
-- [ ] `docs/stage2_inventory.json`.
-- [ ] `results/stage2/splits.jsonl`.
-- [ ] B0 metadata baselines.
+- [x] `docs/stage2_inventory.json` for Gemma 3 27B.
+- [x] `results/stage2/splits.jsonl` for Gemma 3 27B; S1 evaluable, S2 recorded
+  but non-evaluable.
+- [x] B0 metadata baselines for Gemma 3 27B S1.
+- [ ] Redesign or replace S2 before reporting heldout-topology results.
 - [ ] Label-shuffle sanity check.
 
 Phase A:
@@ -399,15 +423,16 @@ Phase A:
 - [ ] `scripts/validate_activations.py`.
 - [ ] `results/stage2/equivalence_report.json`.
 - [ ] `docs/layer_selection.json`.
-- [ ] 12 raw residual activation files.
-- [ ] 12 `.example_ids.jsonl` sidecars.
+- [ ] 6 raw residual activation files for Gemma 3 27B.
+- [ ] 6 `.example_ids.jsonl` sidecars for Gemma 3 27B.
 
 Phase B:
 
-- [ ] Raw residual probes for both models, both tasks, and selected layers.
-- [ ] S1 and S2 metrics.
+- [ ] Raw residual probes for Gemma 3 27B, both tasks, and selected layers.
+- [ ] S1 metrics.
+- [ ] S2 metrics only after redesign.
 - [ ] Cross-task transfer tables.
-- [ ] Cross-model comparison tables.
+- [ ] Cross-model comparison tables after teammate 4B results are available.
 - [ ] Diagnostics against prompt length and name scrambling.
 
 Phase C/D:

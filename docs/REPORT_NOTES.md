@@ -99,3 +99,30 @@ final report is easier to assemble.
   checklist. Removed budget arithmetic, stale alternatives, and verbose
   justification while keeping invariants, measured compute defaults, extraction
   contracts, and deliverables.
+
+### 2026-04-27
+
+#### Stage 2 Phase 0 Controls
+
+- Current execution scope is Gemma 3 27B only; the teammate is handling Gemma 3
+  4B. The new Stage 2 Phase 0 scripts keep `--models`/`--tasks` filters so the
+  same controls can be rerun for 4B later without changing code.
+- Generated `docs/stage2_inventory.json` for 27B only: 22,000 rows across
+  `infer_property` and `infer_subtype`. Warnings: low non-parse negative counts
+  at height 1 for property (37) and subtype (27); high parse-failure rates for
+  property h=2-4 (9.55%, 8.77%, 10.36%) and subtype h=2 (6.75%).
+- Generated `results/stage2/splits.jsonl` and
+  `docs/stage2_splits_summary.json` for 27B only. S1 is evaluable for both
+  tasks and all heights after filtering parse failures.
+- Important caveat: the planned canonical ontology-topology-heldout S2 is not
+  evaluable on the shipped dataset. After anonymizing names, each task/height
+  cell has only one or two topology groups, so S2 cannot form train/val/test
+  heldouts. Do not report S2 probe metrics until the heldout design changes.
+- Ran metadata-only B0 baselines on 27B S1 using local Hugging Face tokenizer
+  prompt lengths. Strongest pre-output baselines: `infer_property` uses
+  `b0_prompt` with test AUC 0.743; `infer_subtype` uses `b0_height` with test
+  AUC 0.841. Activation probes should be interpreted as useful only if they
+  beat these thresholds on the matching task/split.
+- Added focused tests for Stage 2 Phase 0 helpers. The tests cover topology
+  hashes ignoring symbol names, inventory warnings, split assignment coverage,
+  and explicit non-evaluability warnings for degenerate S2 splits.

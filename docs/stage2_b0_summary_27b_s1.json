@@ -1,0 +1,80 @@
+{
+  "best_pre_output_baseline": {
+    "gemma3-27b__infer_property": {
+      "s1": {
+        "feature_set": "b0_prompt",
+        "test_auc": 0.743183420273509,
+        "val_auc": 0.7234072819879396
+      }
+    },
+    "gemma3-27b__infer_subtype": {
+      "s1": {
+        "feature_set": "b0_height",
+        "test_auc": 0.8410757662584132,
+        "val_auc": 0.8419688392224537
+      }
+    }
+  },
+  "created_at_utc": "2026-04-27T06:58:48.003271+00:00",
+  "filters": {
+    "models": [
+      "gemma3-27b"
+    ],
+    "split_families": [
+      "s1"
+    ],
+    "tasks": "all"
+  },
+  "prompt_length_mode": "hf_tokenizer",
+  "results": {
+    "gemma3-27b__infer_property": {
+      "s1": {
+        "b0_height": {
+          "n_test": 1512,
+          "n_train": 6988,
+          "test_auc": 0.7161858522486959,
+          "val_auc": 0.707785426309252
+        },
+        "b0_namefreq": {
+          "n_test": 1512,
+          "n_train": 6988,
+          "test_auc": 0.7421542365712674,
+          "val_auc": 0.7282421639175902
+        },
+        "b0_prompt": {
+          "n_test": 1512,
+          "n_train": 6988,
+          "test_auc": 0.743183420273509,
+          "val_auc": 0.7234072819879396
+        }
+      }
+    },
+    "gemma3-27b__infer_subtype": {
+      "s1": {
+        "b0_height": {
+          "n_test": 1616,
+          "n_train": 7515,
+          "test_auc": 0.8410757662584132,
+          "val_auc": 0.8419688392224537
+        },
+        "b0_namefreq": {
+          "n_test": 1616,
+          "n_train": 7515,
+          "test_auc": 0.8374866306438402,
+          "val_auc": 0.8482274180234911
+        },
+        "b0_prompt": {
+          "n_test": 1616,
+          "n_train": 7515,
+          "test_auc": 0.8381988896184194,
+          "val_auc": 0.8482052037516397
+        }
+      }
+    }
+  },
+  "schema_version": 1,
+  "source": "results/stage2/baselines/b0_metadata_27b_s1.json",
+  "split_families": [
+    "s1"
+  ]
+}
