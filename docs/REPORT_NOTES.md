@@ -159,3 +159,13 @@ final report is easier to assemble.
   The layer pilot extracts layers 15, 30, and 45 on 512 non-parse height-4 rows
   per 27B task, validates artifacts, and trains quick logistic probes to write
   `docs/layer_selection_pilot_27b_h4.json`.
+- Layer-selection job `449832` succeeded on `scholar-j001` from 03:30:37 to
+  03:43:48 EDT. It extracted six pilot files: property/subtype x layers 15, 30,
+  and 45, each with shape `[512, 5376]`, and validation passed for all artifacts.
+  Extraction throughput was about 5.70 rows/s for property and 5.59 rows/s for
+  subtype when capturing three layers.
+- Quick h4-only probe results were inconclusive for choosing one best layer.
+  Property validation favored L45 (val AUC 0.791, test AUC 0.683), while subtype
+  validation also favored L45 but test AUC dropped to 0.5625; subtype holdouts
+  had only four positives each. Decision recorded in `docs/layer_selection.json`:
+  keep the early/mid/late set `[15, 30, 45]` for full 27B extraction.

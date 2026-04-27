@@ -1,0 +1,26 @@
+{
+  "created_at_utc": "2026-04-27T07:50:00Z",
+  "decisions": {
+    "gemma3-27b": {
+      "candidate_layers": [
+        15,
+        30,
+        45
+      ],
+      "selected_layers": [
+        15,
+        30,
+        45
+      ],
+      "source": "docs/layer_selection_pilot_27b_h4.json",
+      "status": "selected_for_full_extraction",
+      "rationale": "A 512-row non-parse height-4 pilot validated extraction across layers 15, 30, and 45. L45 had the best validation AUC for both tasks, but subtype had only four positives in each holdout split and L45 test AUC dropped to 0.5625. Keep the early/mid/late layer set instead of narrowing layer choice from this small, imbalanced pilot.",
+      "caveats": [
+        "Pilot rows were height 4 only.",
+        "Subtype holdout splits had only four positive examples each.",
+        "Pilot AUCs are for layer selection only and should not be reported as final probe results."
+      ]
+    }
+  },
+  "schema_version": 1
+}
