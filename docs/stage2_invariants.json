@@ -85,9 +85,21 @@
         "sae_id": "layer_45_width_16k_l0_small",
         "sae_params_sha256": "e6aeef8fa7cdf7d7fa9f345a6ded25b55725be54929934910d792acb2bd9a9c4",
         "sae_release": "gemma-scope-2-27b-it-res-all"
+      },
+      "gemma-scope-2-27b-it-res-all/layer_45_width_262k_l0_small": {
+        "architecture": "jumprelu",
+        "d_in": 5376,
+        "d_sae": 262144,
+        "hf_repo_id": "google/gemma-scope-2-27b-it",
+        "hf_snapshot_revision": "5c58dd4cddd52cef653059d85e12a86bf6222a28",
+        "hf_subfolder": "resid_post_all",
+        "sae_config_sha256": "430435aaaed94f11bad0bab89c6ff4b7ae1ace122df6e9ca4f36e9d5e022667e",
+        "sae_id": "layer_45_width_262k_l0_small",
+        "sae_params_sha256": "c2153afab970b0d63c76cc6f40e2dbeb86db8a3604b0bc54aee457b1e01dc757",
+        "sae_release": "gemma-scope-2-27b-it-res-all"
       }
     },
-    "status": "partially_pinned_after_l45_16k_pilot"
+    "status": "pinned_l45_16k_and_262k"
   },
   "schema_version": 1,
   "stage1_jsonls": {

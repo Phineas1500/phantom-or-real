@@ -67,7 +67,7 @@ As of 2026-04-27:
   subtype-to-property at target test AUC 0.786, so there is shared signal but
   not full task invariance.
 - `docs/stage2_invariants.json` now pins the Gemma Scope 2 27B residual L45
-  width-16K SAE: `layer_45_width_16k_l0_small` at HF snapshot
+  width-16K and width-262K SAEs at HF snapshot
   `5c58dd4cddd52cef653059d85e12a86bf6222a28`.
 - SAE pilot job `449999` encoded 512 L45 rows for each 27B task with the
   width-16K SAE. Outputs are sparse top-128 feature files under
@@ -75,6 +75,9 @@ As of 2026-04-27:
 - Full SAE extraction job `450004` encoded all 11,000 L45 rows for each 27B
   task with `layer_45_width_16k_l0_small`. `docs/sae_probe_27b_l45_16k_s1.json`
   records first SAE probes: property test AUC 0.786, subtype test AUC 0.876.
+- Full SAE extraction job `450029` encoded all 11,000 L45 rows for each 27B
+  task with `layer_45_width_262k_l0_small`. `docs/sae_probe_27b_l45_262k_s1.json`
+  records probes: property test AUC 0.806, subtype test AUC 0.870.
 
 Measured jobs:
 
@@ -440,11 +443,15 @@ Current pilot status:
   `gemma-scope-2-27b-it-res-all/layer_45_width_16k_l0_small`.
 - Pilot tensors have `top_values`/`top_indices` shape `[512, 128]` and `l0`
   shape `[512]`. Mean L0 was 17.57 for property and 17.96 for subtype.
-- The L45 width-16K SAE is pinned in `docs/stage2_invariants.json`; width-262K
-  and any additional layers still need pinning before full extraction.
+- The L45 width-16K and width-262K SAEs are pinned in
+  `docs/stage2_invariants.json`; any additional layers still need pinning
+  before extraction.
 - Full L45 width-16K extraction job `450004` wrote two full feature files under
   `results/stage2/sae_features/`. Each has `top_values`/`top_indices` shape
   `[11000, 128]` and `l0` shape `[11000]`.
+- Full L45 width-262K extraction job `450029` wrote two full feature files
+  under `results/stage2/sae_features/`. Each has `top_values`/`top_indices`
+  shape `[11000, 128]` and `l0` shape `[11000]`.
 
 Outputs:
 
@@ -466,16 +473,19 @@ Required comparisons:
 Only features that are stable and beat B0 baselines should be considered for
 causal validation.
 
-Current L45 width-16K top-128 S1 metrics:
+Current L45 top-128 S1 metrics:
 
-| Task | B0 threshold | SAE test AUC | 95% bootstrap CI | Raw L45 test AUC |
-| --- | ---: | ---: | --- | ---: |
-| `infer_property` | 0.743 | 0.786 | [0.763, 0.808] | 0.897 |
-| `infer_subtype` | 0.841 | 0.876 | [0.852, 0.899] | 0.914 |
+| Task | B0 threshold | SAE width | SAE test AUC | 95% bootstrap CI | Raw L45 test AUC |
+| --- | ---: | --- | ---: | --- | ---: |
+| `infer_property` | 0.743 | 16K | 0.786 | [0.763, 0.808] | 0.897 |
+| `infer_property` | 0.743 | 262K | 0.806 | [0.784, 0.828] | 0.897 |
+| `infer_subtype` | 0.841 | 16K | 0.876 | [0.852, 0.899] | 0.914 |
+| `infer_subtype` | 0.841 | 262K | 0.870 | [0.845, 0.895] | 0.914 |
 
-This SAE feature set beats B0 but does not recover the full raw-residual signal.
-Next checks should test width-262K and/or more retained SAE features before any
-steering decision.
+Both SAE widths beat B0 but do not recover the full raw-residual signal. Width
+262K modestly improves property but not subtype. Next checks should test more
+retained SAE features, for example top-512 on width-16K or width-262K, before
+any steering decision.
 
 Outputs:
 
@@ -538,8 +548,9 @@ Phase 0:
 
 - [x] `docs/stage2_invariants.json` with model/tokenizer revisions and Stage 1
   JSONL SHA-256s.
-- [x] L45 width-16K SAE release pinned in `docs/stage2_invariants.json`.
-- [ ] Remaining SAE release IDs pinned before full SAE extraction.
+- [x] L45 width-16K and width-262K SAE releases pinned in
+  `docs/stage2_invariants.json`.
+- [ ] Additional SAE release IDs pinned before additional SAE extraction.
 - [ ] GPT judge snapshot pinned if judge calls are used.
 - [x] `docs/stage2_inventory.json` for Gemma 3 27B.
 - [x] `results/stage2/splits.jsonl` for Gemma 3 27B; S1 evaluable, S2 recorded
@@ -573,7 +584,9 @@ Phase C/D:
 - [x] L45 width-16K SAE pilot extraction complete.
 - [x] L45 width-16K full top-128 SAE extraction complete.
 - [x] L45 width-16K top-128 SAE probe metrics.
-- [ ] Remaining SAE release IDs pinned.
+- [x] L45 width-262K full top-128 SAE extraction complete.
+- [x] L45 width-262K top-128 SAE probe metrics.
+- [ ] Additional SAE release IDs pinned.
 - [ ] SAE feature extraction complete.
 - [ ] Broader SAE probe metrics.
 - [ ] Stable feature set selected.

@@ -253,3 +253,23 @@ final report is easier to assemble.
   correctness signal, but top-128 width-16K features do not yet localize the
   full raw-residual signal. Width-262K and/or more retained features should be
   tested before selecting features for steering.
+- Pinned the L45 width-262K SAE in `docs/stage2_invariants.json`:
+  `gemma-scope-2-27b-it-res-all/layer_45_width_262k_l0_small`, HF snapshot
+  `5c58dd4cddd52cef653059d85e12a86bf6222a28`, config SHA-256
+  `430435aaaed94f11bad0bab89c6ff4b7ae1ace122df6e9ca4f36e9d5e022667e`,
+  params SHA-256
+  `c2153afab970b0d63c76cc6f40e2dbeb86db8a3604b0bc54aee457b1e01dc757`.
+- Full L45 width-262K SAE extraction initially queued with 120 GB RAM but was
+  resubmitted at 80 GB because an A40 had enough GPU capacity but not 120 GB
+  allocatable node memory. Job `450029` completed on `scholar-j001`.
+- Width-262K full feature files have 11,000 rows with `top_values`/`top_indices`
+  shape `[11000, 128]` and `l0` shape `[11000]`. Mean L0 was 14.54 for property
+  and 14.66 for subtype. The cached params blob is about 11 GB.
+- Width-262K top-128 SAE probes slightly improved property but not subtype:
+  property test AUC 0.806, 95% CI [0.784, 0.828], vs width-16K 0.786 and raw
+  L45 0.897; subtype test AUC 0.870, 95% CI [0.845, 0.895], vs width-16K 0.876
+  and raw L45 0.914.
+- Interpretation update: increasing SAE width alone does not close the raw-SAE
+  gap at top-128. The next useful diagnostic is retaining more SAE features
+  per row, such as top-512, before deciding that the signal is not well
+  localized in Gemma Scope residual SAEs.
