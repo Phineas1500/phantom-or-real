@@ -82,6 +82,10 @@ As of 2026-04-27:
   task with the width-16K SAE. `docs/sae_probe_27b_l45_16k_top512_s1.json`
   exactly matches the top-128 probe metrics because all ranks after 128 are
   zero; observed max L0 was 24 for property and 23 for subtype.
+- `docs/sae_feature_stability_27b_l45_s1.json` records the first L45 SAE
+  top-weight stability analysis. It refits the saved-best-C SAE probes on
+  train-active features, reproduces the saved metrics, and finds same-sign
+  top-10 task overlap of 4 features for both width-16K and width-262K.
 
 Measured jobs:
 
@@ -500,11 +504,32 @@ width-262K property/subtype, so a top-512 width-262K rerun is not useful. Next
 checks should focus on feature stability, adjacent layers, and raw-vs-SAE
 reconstruction/residual diagnostics before any steering decision.
 
+Current L45 top-feature stability notes:
+
+- `docs/sae_feature_stability_27b_l45_s1.json` refits the saved-best-C probes
+  on train-active SAE columns, then records standardized logistic coefficients,
+  feature activation densities, same-width task overlap, and cross-width
+  activation-pattern correlations.
+- The effective train-active feature support is small: 62/46 distinct width-16K
+  features for property/subtype and 82/82 distinct width-262K features, despite
+  nominal SAE widths of 16,384 and 262,144.
+- Same-width task overlap is meaningful but not complete. Width-16K has 4/10
+  same-sign top-10 overlap features (`1096`, `19`, `180`, `4329`) and 14/15
+  same-sign top-25 overlaps. Width-262K has 4/10 same-sign top-10 overlap
+  features (`368`, `160112`, `64600`, `9994`) and 6/7 same-sign top-25
+  overlaps.
+- Cross-width top-50 activation-pattern matches are partial. For property,
+  16/50 width-16K top features have a best width-262K match at abs correlation
+  at least 0.5; for subtype, 17/46 do. These are useful candidates, but feature
+  IDs are not width-comparable and several high-weight features are very dense,
+  so this is not yet a clean localized mechanism.
+
 Outputs:
 
 - `results/stage2/sae_probes/`;
 - `results/stage2/sae_probe_auc.json`;
-- `results/stage2/stable_features.json`.
+- `docs/sae_feature_stability_27b_l45_s1.json`;
+- `results/stage2/stable_features.json` if a later pass selects a steering set.
 
 ## Phase E: Steering Validation
 
@@ -600,6 +625,7 @@ Phase C/D:
 - [x] L45 width-262K full top-128 SAE extraction complete.
 - [x] L45 width-262K top-128 SAE probe metrics.
 - [x] L45 width-16K top-512 truncation diagnostic.
+- [x] L45 width-16K/262K top-feature stability diagnostic.
 - [ ] Additional SAE release IDs pinned.
 - [ ] SAE feature extraction complete.
 - [ ] Broader SAE probe metrics.

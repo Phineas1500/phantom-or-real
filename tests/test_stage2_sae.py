@@ -2,8 +2,16 @@ from __future__ import annotations
 
 from pathlib import Path
 
+import pytest
 import torch
 
+from src.stage2_feature_stability import (
+    best_correlation_matches,
+    coefficient_weights,
+    feature_overlap,
+    pairwise_column_correlations,
+    summarize_correlation_matches,
+)
 from src.stage2_sae import (
     derive_sae_feature_prefix,
     sae_file_name,
@@ -60,3 +68,61 @@ def test_topk_tensors_to_csr_builds_sparse_feature_matrix() -> None:
     assert matrix[0, 3] == 1.5
     assert matrix[1, 0] == 2.0
     assert matrix[1, 2] == 4.0
+
+
+def test_coefficient_weights_rank_by_standardized_abs_weight() -> None:
+    rows = coefficient_weights([0.1, -2.0, 1.5], scaler_scale=[1.0, 4.0, 0.5], top_n=2)
+
+    assert [row["feature"] for row in rows] == [1, 2]
+    assert rows[0]["association"] == "incorrect"
+    assert rows[0]["input_weight"] == -0.5
+    assert rows[1]["association"] == "correct"
+
+
+def test_feature_overlap_counts_signed_agreement() -> None:
+    left = [
+        {"feature": 1, "sign": "positive"},
+        {"feature": 2, "sign": "negative"},
+        {"feature": 3, "sign": "positive"},
+    ]
+    right = [
+        {"feature": 2, "sign": "negative"},
+        {"feature": 3, "sign": "negative"},
+        {"feature": 4, "sign": "positive"},
+    ]
+
+    overlap = feature_overlap(left, right, top_n=3)
+
+    assert overlap["overlap_n"] == 2
+    assert overlap["signed_agreement_n"] == 1
+    assert overlap["signed_agreement_features"] == [2]
+
+
+def test_pairwise_column_correlations_and_best_matches() -> None:
+    left = torch.tensor(
+        [
+            [0.0, 1.0],
+            [1.0, 0.0],
+            [2.0, -1.0],
+            [3.0, -2.0],
+        ],
+        dtype=torch.float32,
+    ).numpy()
+    right = torch.tensor(
+        [
+            [0.0, -1.0],
+            [1.0, 0.0],
+            [2.0, 1.0],
+            [3.0, 2.0],
+        ],
+        dtype=torch.float32,
+    ).numpy()
+
+    corr = pairwise_column_correlations(left, right)
+    matches = best_correlation_matches(corr, left_features=[10, 11], right_features=[20, 21])
+    summary = summarize_correlation_matches(matches, thresholds=(0.9,))
+
+    assert corr[0, 0] == pytest.approx(1.0)
+    assert corr[1, 1] == pytest.approx(-1.0)
+    assert matches[0]["abs_correlation"] == pytest.approx(1.0)
+    assert summary["threshold_counts"]["0.9"] == 2

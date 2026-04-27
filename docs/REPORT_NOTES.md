@@ -282,3 +282,25 @@ final report is easier to assemble.
   keeps every nonzero active feature for the tested L45 SAEs. Do not spend time
   on a top-512 width-262K rerun. Next useful checks are feature stability,
   adjacent-layer probes, and raw-vs-SAE reconstruction/residual diagnostics.
+- Added `scripts/stage2_analyze_sae_features.py` and
+  `src/stage2_feature_stability.py` to inspect L45 SAE top-weight stability.
+  The script refits the saved-best-C sparse logistic probes, ranks standardized
+  coefficients, records feature activation densities, measures same-width
+  property/subtype overlap, and compares cross-width top-feature activation
+  patterns by correlation.
+- `docs/sae_feature_stability_27b_l45_s1.json` reproduces the saved SAE probe
+  metrics after reducing each fit to train-active SAE features only. Effective
+  train-active support is small: 62/46 distinct width-16K features for
+  property/subtype and 82/82 distinct width-262K features, out of nominal
+  widths 16,384 and 262,144.
+- Same-width task overlap is nontrivial. Width-16K has four same-sign top-10
+  overlap features across property/subtype (`1096`, `19`, `180`, `4329`) and
+  14 same-sign overlaps in the top-25 set. Width-262K also has four same-sign
+  top-10 overlaps (`368`, `160112`, `64600`, `9994`) and six same-sign overlaps
+  in the top-25 set.
+- Cross-width feature correspondence is partial rather than clean. Among top
+  width-16K features, 16/50 for property and 17/46 for subtype have a best
+  width-262K activation-pattern match with abs correlation at least 0.5. This
+  gives candidate feature pairs but does not yet establish a localized
+  mechanism, especially because several high-weight features are dense across
+  examples.
