@@ -96,6 +96,14 @@ As of 2026-04-27:
   94.8-95.5% of raw residual energy, but reconstruction probes match sparse
   SAE-feature probes while raw-minus-reconstruction error probes recover the
   full raw probe signal.
+- `docs/sae_probe_27b_l45_16k_s3_target_symbol.json` and
+  `docs/sae_probe_27b_l45_262k_s3_target_symbol.json` record 27B S3
+  target-symbol-heldout SAE probes. Property still beats B0, but subtype only
+  barely clears its stronger S3 B0 threshold.
+- `docs/sae_reconstruction_probe_27b_l45_s3_target_symbol.json` records S3
+  reconstruction/error probes from the cached reconstruction artifacts. The S3
+  result matches S1: reconstruction probes track SAE-feature probes, while
+  raw-minus-reconstruction error probes recover the raw L45 signal.
 - `docs/raw_steering_pilot_27b_l45_property.json` records the first 27B
   `infer_property` raw-direction steering pilot. Prompt-only L45 raw +/-2 SD
   interventions on 8 balanced S1 test rows caused zero strong-correctness flips;
@@ -542,6 +550,20 @@ width-262K property/subtype, so a top-512 width-262K rerun is not useful. Next
 checks should focus on feature stability, adjacent layers, and raw-vs-SAE
 reconstruction/residual diagnostics before any steering decision.
 
+Current L45 S3 target-symbol-heldout SAE metrics:
+
+| Task | B0 threshold | SAE width | Top-k | SAE test AUC | 95% bootstrap CI | Raw L45 test AUC |
+| --- | ---: | --- | ---: | ---: | --- | ---: |
+| `infer_property` | 0.711 | 16K | 128 | 0.799 | [0.777, 0.820] | 0.884 |
+| `infer_property` | 0.711 | 262K | 128 | 0.779 | [0.757, 0.802] | 0.884 |
+| `infer_subtype` | 0.859 | 16K | 128 | 0.865 | [0.838, 0.889] | 0.917 |
+| `infer_subtype` | 0.859 | 262K | 128 | 0.867 | [0.839, 0.892] | 0.917 |
+
+Interpretation: the SAE-heldout result is weaker than raw S3. Property remains
+comfortably above B0, but subtype is only marginally above the metadata
+baseline, so S3 strengthens the conclusion that the raw residual signal is more
+robust than the tested Gemma Scope SAE feature representations.
+
 Current L45 top-feature stability notes:
 
 - `docs/sae_feature_stability_27b_l45_s1.json` refits the saved-best-C probes
@@ -579,12 +601,28 @@ is absent. It also argues against moving directly to SAE-feature steering as the
 main causal test; a raw-direction or reconstruction-error diagnostic should be
 used before selecting a steering target.
 
+Current L45 S3 target-symbol-heldout reconstruction/error diagnostic:
+
+| Task | SAE width | Energy explained | Reconstruction test AUC | Error test AUC | Raw L45 test AUC |
+| --- | --- | ---: | ---: | ---: | ---: |
+| `infer_property` | 16K | 0.948 | 0.799 | 0.881 | 0.884 |
+| `infer_property` | 262K | 0.955 | 0.788 | 0.886 | 0.884 |
+| `infer_subtype` | 16K | 0.948 | 0.865 | 0.916 | 0.917 |
+| `infer_subtype` | 262K | 0.954 | 0.867 | 0.914 | 0.917 |
+
+The S3 component probe result repeats the S1 pattern under heldout target
+symbols. This reduces the chance that the raw-SAE gap is a random-split lexical
+artifact.
+
 Outputs:
 
 - `results/stage2/sae_probes/`;
 - `results/stage2/sae_probe_auc.json`;
 - `docs/sae_feature_stability_27b_l45_s1.json`;
 - `docs/sae_reconstruction_probe_27b_l45_s1.json`;
+- `docs/sae_probe_27b_l45_16k_s3_target_symbol.json`;
+- `docs/sae_probe_27b_l45_262k_s3_target_symbol.json`;
+- `docs/sae_reconstruction_probe_27b_l45_s3_target_symbol.json`;
 - `results/stage2/stable_features.json` if a later pass selects a steering set.
 
 ## Phase E: Steering Validation
@@ -702,6 +740,8 @@ Phase C/D:
 - [x] L45 width-16K top-512 truncation diagnostic.
 - [x] L45 width-16K/262K top-feature stability diagnostic.
 - [x] L45 width-16K/262K reconstruction/error probe diagnostic.
+- [x] L45 width-16K/262K S3 target-symbol SAE probe metrics.
+- [x] L45 width-16K/262K S3 reconstruction/error probe diagnostic.
 - [ ] Additional SAE release IDs pinned.
 - [ ] SAE feature extraction complete.
 - [ ] Broader SAE probe metrics.

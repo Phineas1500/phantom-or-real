@@ -332,6 +332,93 @@ def run_diagnostics(
     return report
 
 
+def run_existing_component_probes(
+    *,
+    activation_dir: Path,
+    feature_dir: Path,
+    out_dir: Path,
+    model_key: str,
+    tasks: list[str],
+    layer: int,
+    sae_ids: list[str],
+    top_k: int,
+    splits_path: Path,
+    split_family: str,
+    c_values: tuple[float, ...],
+    max_iter: int,
+    solver: str,
+    bootstrap_samples: int,
+    seed: int,
+) -> dict[str, Any]:
+    split_assignments = read_split_assignments(splits_path)
+    report: dict[str, Any] = {
+        "schema_version": 1,
+        "created_at_utc": datetime.now(timezone.utc).isoformat(),
+        "mode": "probe_existing_components",
+        "activation_dir": str(activation_dir),
+        "feature_dir": str(feature_dir),
+        "out_dir": str(out_dir),
+        "model_key": model_key,
+        "tasks": tasks,
+        "layer": layer,
+        "sae_ids": sae_ids,
+        "top_k": top_k,
+        "splits_path": str(splits_path),
+        "split_family": split_family,
+        "c_values": list(c_values),
+        "max_iter": max_iter,
+        "solver": solver,
+        "bootstrap_samples": bootstrap_samples,
+        "seed": seed,
+        "results": {},
+    }
+    for sae_id in sae_ids:
+        report["results"][sae_id] = {}
+        for task in tasks:
+            recon_prefix = output_prefix(
+                out_dir=out_dir,
+                model_key=model_key,
+                task=task,
+                layer=layer,
+                sae_id=sae_id,
+                top_k=top_k,
+                kind="reconstruction",
+            )
+            error_prefix = output_prefix(
+                out_dir=out_dir,
+                model_key=model_key,
+                task=task,
+                layer=layer,
+                sae_id=sae_id,
+                top_k=top_k,
+                kind="error",
+            )
+            recon_meta = read_json(recon_prefix.with_suffix(".meta.json"))
+            probe_results = {}
+            for kind, prefix in (("reconstruction", recon_prefix), ("error", error_prefix)):
+                probe_results[kind] = run_raw_activation_probe(
+                    activation_path=prefix.with_suffix(".safetensors"),
+                    sidecar_path=prefix.with_suffix(".example_ids.jsonl"),
+                    seed=seed + layer,
+                    drop_parse_failed=True,
+                    split_assignments=split_assignments,
+                    source_file=recon_meta.get("jsonl_path"),
+                    split_family=split_family,
+                    c_values=c_values,
+                    max_iter=max_iter,
+                    solver=solver,
+                    bootstrap_samples=bootstrap_samples,
+                )
+            report["results"][sae_id][task] = {
+                "reconstruction_prefix": str(recon_prefix),
+                "error_prefix": str(error_prefix),
+                "reconstruction_stats": recon_meta.get("reconstruction_stats"),
+                "sparse_decode_check": recon_meta.get("sparse_decode_check"),
+                "probes": probe_results,
+            }
+    return report
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--activation-dir", type=Path, required=True)
@@ -343,8 +430,13 @@ def main() -> None:
     parser.add_argument("--sae-ids", nargs="+", required=True)
     parser.add_argument("--top-k", type=int, default=128)
     parser.add_argument("--splits", type=Path, required=True)
-    parser.add_argument("--split-family", choices=("s1", "s2"), default="s1")
+    parser.add_argument("--split-family", choices=("s1", "s2", "s3"), default="s1")
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument(
+        "--reuse-existing",
+        action="store_true",
+        help="Probe existing reconstruction/error files without re-decoding SAE features.",
+    )
     parser.add_argument("--device", default="cuda:0")
     parser.add_argument("--dtype", default="bfloat16")
     parser.add_argument("--output-dtype", default="bfloat16")
@@ -357,28 +449,47 @@ def main() -> None:
     parser.add_argument("--seed", type=int, default=20260427)
     args = parser.parse_args()
 
-    report = run_diagnostics(
-        activation_dir=args.activation_dir,
-        feature_dir=args.feature_dir,
-        out_dir=args.out_dir,
-        model_key=args.model_key,
-        tasks=args.tasks,
-        layer=args.layer,
-        sae_ids=args.sae_ids,
-        top_k=args.top_k,
-        splits_path=args.splits,
-        split_family=args.split_family,
-        device=args.device,
-        dtype=torch_dtype(args.dtype),
-        output_dtype=torch_dtype(args.output_dtype),
-        chunk_size=args.chunk_size,
-        verify_dense_rows=args.verify_dense_rows,
-        c_values=args.c_values,
-        max_iter=args.max_iter,
-        solver=args.solver,
-        bootstrap_samples=args.bootstrap_samples,
-        seed=args.seed,
-    )
+    if args.reuse_existing:
+        report = run_existing_component_probes(
+            activation_dir=args.activation_dir,
+            feature_dir=args.feature_dir,
+            out_dir=args.out_dir,
+            model_key=args.model_key,
+            tasks=args.tasks,
+            layer=args.layer,
+            sae_ids=args.sae_ids,
+            top_k=args.top_k,
+            splits_path=args.splits,
+            split_family=args.split_family,
+            c_values=args.c_values,
+            max_iter=args.max_iter,
+            solver=args.solver,
+            bootstrap_samples=args.bootstrap_samples,
+            seed=args.seed,
+        )
+    else:
+        report = run_diagnostics(
+            activation_dir=args.activation_dir,
+            feature_dir=args.feature_dir,
+            out_dir=args.out_dir,
+            model_key=args.model_key,
+            tasks=args.tasks,
+            layer=args.layer,
+            sae_ids=args.sae_ids,
+            top_k=args.top_k,
+            splits_path=args.splits,
+            split_family=args.split_family,
+            device=args.device,
+            dtype=torch_dtype(args.dtype),
+            output_dtype=torch_dtype(args.output_dtype),
+            chunk_size=args.chunk_size,
+            verify_dense_rows=args.verify_dense_rows,
+            c_values=args.c_values,
+            max_iter=args.max_iter,
+            solver=args.solver,
+            bootstrap_samples=args.bootstrap_samples,
+            seed=args.seed,
+        )
     write_json(args.output, report)
     print(args.output)
     for sae_id, by_task in report["results"].items():

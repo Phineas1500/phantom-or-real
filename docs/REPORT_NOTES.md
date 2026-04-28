@@ -356,6 +356,23 @@ final report is easier to assemble.
   direction appears to live mainly in the SAE reconstruction error, so SAE
   feature steering is not yet the right main causal test without an additional
   raw-direction or reconstruction-error diagnostic.
+- Ran S3 target-symbol-heldout probes on the cached L45 SAE features. Width-16K
+  test AUCs were 0.799 for property, 95% CI [0.777, 0.820], and 0.865 for
+  subtype, 95% CI [0.838, 0.889]. Width-262K test AUCs were 0.779 for property,
+  95% CI [0.757, 0.802], and 0.867 for subtype, 95% CI [0.839, 0.892].
+  Property stays above the S3 B0 baseline (0.711), but subtype only barely
+  exceeds its stronger S3 B0 baseline (0.859).
+- Added a `--reuse-existing` mode to
+  `scripts/stage2_sae_reconstruction_diagnostics.py` so existing
+  reconstruction/error activation files can be probed on a new split family
+  without re-decoding the SAE features.
+- S3 reconstruction/error probes repeat the S1 conclusion. Reconstruction AUCs
+  track the SAE probes: 16K property/subtype 0.799/0.865 and 262K
+  property/subtype 0.788/0.867. Error probes recover the raw-level S3 signal:
+  16K property/subtype 0.881/0.916 and 262K property/subtype 0.886/0.914,
+  compared with raw L45 S3 property/subtype 0.884/0.917. Several dense lbfgs
+  fits again reached the 2,000-iteration cap, matching the earlier S1 dense
+  diagnostic behavior.
 
 #### Stage 2 Steering Pilot
 

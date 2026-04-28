@@ -153,7 +153,7 @@ def main() -> None:
     parser.add_argument("--sae-id", required=True)
     parser.add_argument("--top-k", type=int, default=128)
     parser.add_argument("--splits", type=Path, required=True)
-    parser.add_argument("--split-family", choices=("s1", "s2"), default="s1")
+    parser.add_argument("--split-family", choices=("s1", "s2", "s3"), default="s1")
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--seed", type=int, default=20260427)
     parser.add_argument("--keep-parse-failed", action="store_true")
