@@ -331,3 +331,34 @@ final report is easier to assemble.
   direction appears to live mainly in the SAE reconstruction error, so SAE
   feature steering is not yet the right main causal test without an additional
   raw-direction or reconstruction-error diagnostic.
+
+#### Stage 2 Steering Pilot
+
+- Added a raw L45 direction steering pilot for Gemma 3 27B `infer_property`.
+  The script refits the same S1 standardized logistic probe used in
+  `docs/raw_probe_27b_s1.json`, recovers the raw residual-space direction, and
+  applies prompt-only interventions at the final pre-generation L45 residual.
+- TransformerLens 3.0 generation needed two implementation fixes on Scholar:
+  set `BD_PATH=/scratch/scholar/$USER/beyond-deduction` in the Slurm job so
+  generated outputs can be scored on compute nodes, and set PyTorch's default
+  dtype to the model dtype during `model.generate()` so the TL KV cache is bf16
+  rather than float32.
+- The bounded pilot job `450140` ran on `scholar-j001` and wrote
+  `docs/raw_steering_pilot_27b_l45_property.json` plus ignored row-level outputs
+  under `results/stage2/steering/`. It used 8 balanced S1 test rows
+  (h3/h4 x original correct/incorrect), conditions baseline, raw +/-2 SD, and
+  orthogonal-control +/-2 SD, with `max_new_tokens=64`.
+- Pilot result: prompt-only raw L45 steering caused zero strong-correctness
+  flips. Strong accuracy was 3/8 for baseline and 3/8 for every raw and
+  orthogonal condition. The only output change occurred on one h4 row and
+  appeared identically for raw and orthogonal controls, producing one parse
+  failure in every steered condition. Seven of eight rows had byte-identical
+  outputs across all conditions. All generations hit the 64-token cap, so the
+  pilot should be interpreted as a bounded causal/plumbing check rather than a
+  polished generation protocol.
+- Interpretation update: the raw L45 probe direction is predictive but this
+  small prompt-only intervention did not produce direction-specific causal
+  control. The next steering test, if pursued, should change the intervention
+  design rather than simply scaling this exact pilot: likely all-token or
+  later-token steering, a larger strength sweep, and a smaller/faster row set
+  for iteration.

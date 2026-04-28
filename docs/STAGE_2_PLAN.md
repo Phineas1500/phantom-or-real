@@ -91,6 +91,10 @@ As of 2026-04-27:
   94.8-95.5% of raw residual energy, but reconstruction probes match sparse
   SAE-feature probes while raw-minus-reconstruction error probes recover the
   full raw probe signal.
+- `docs/raw_steering_pilot_27b_l45_property.json` records the first 27B
+  `infer_property` raw-direction steering pilot. Prompt-only L45 raw +/-2 SD
+  interventions on 8 balanced S1 test rows caused zero strong-correctness flips;
+  the one changed output also appeared for matched orthogonal controls.
 
 Measured jobs:
 
@@ -558,6 +562,24 @@ Outputs:
 
 Scope: Gemma 3 27B on `infer_property` only.
 
+Current pilot status:
+
+- `scripts/stage2_steer_raw_direction.py` refits the saved S1 raw L45 logistic
+  probe, recovers the raw residual-space direction, samples a matched
+  orthogonal control direction, and runs deterministic local TL generation.
+- `scripts/stage2_steer_raw_27b_L45_property_pilot.sbatch` is the bounded
+  Scholar job. Current defaults are 8 balanced S1 test rows, prompt-only
+  interventions, raw +/-2 SD, orthogonal +/-2 SD, and `max_new_tokens=64`.
+- Job `450140` completed on `scholar-j001` in 1,997 seconds. The pilot found no
+  strong-correctness flips for either raw direction or orthogonal controls.
+  Strong accuracy was 3/8 for every condition; parse failures were 0/8 baseline
+  and 1/8 for every steered condition. All generations reached the 64-token
+  cap, so future runs should improve the stop/length protocol before scaling.
+- Interpretation: prompt-only steering at this strength is not enough evidence
+  for causal control. If steering remains a priority, test a different
+  intervention design next, such as all-token L45 steering or a strength sweep,
+  before scaling up sample size.
+
 Run a staged steering experiment:
 
 1. Small pilot on a balanced subset to confirm intervention plumbing and output
@@ -657,7 +679,7 @@ Phase C/D:
 
 Phase E:
 
-- [ ] Steering pilot.
+- [x] Steering pilot.
 - [ ] Main steering run if justified by Phase D.
-- [ ] Orthogonal-direction baseline.
-- [ ] Qualitative examples and quantitative steering metrics.
+- [x] Orthogonal-direction baseline for the pilot.
+- [x] Pilot qualitative examples and quantitative steering metrics.
