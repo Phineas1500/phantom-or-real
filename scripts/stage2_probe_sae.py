@@ -23,6 +23,7 @@ from src.stage2_probes import (  # noqa: E402
     train_logistic_probe_with_splits,
     write_json,
 )
+from src.stage2_paths import DEFAULT_ACTIVATION_SITE, activation_stem  # noqa: E402
 from src.stage2_sae import topk_tensors_to_csr  # noqa: E402
 
 
@@ -78,12 +79,14 @@ def run_sae_probe_grid(
     max_iter: int,
     solver: str,
     bootstrap_samples: int,
+    activation_site: str = DEFAULT_ACTIVATION_SITE,
 ) -> dict[str, Any]:
     split_assignments = read_split_assignments(splits_path)
     report: dict[str, Any] = {
         "schema_version": 1,
         "created_at_utc": datetime.now(timezone.utc).isoformat(),
         "feature_dir": str(feature_dir),
+        "activation_site": activation_site,
         "model_key": model_key,
         "tasks": tasks,
         "layer": layer,
@@ -101,7 +104,13 @@ def run_sae_probe_grid(
         "best_by_task": {},
     }
     for task in tasks:
-        prefix = feature_dir / f"{model_key}_{task}_L{layer}_{sae_id}_top{top_k}"
+        activation_name = activation_stem(
+            model_key=model_key,
+            task=task,
+            layer=layer,
+            activation_site=activation_site,
+        )
+        prefix = feature_dir / f"{activation_name}_{sae_id}_top{top_k}"
         dataset = load_sae_dataset(feature_prefix=prefix, drop_parse_failed=drop_parse_failed)
         source_file = dataset["meta"]["source_activation_meta"]["jsonl_path"]
         splits = split_indices_from_assignments(
@@ -147,6 +156,7 @@ def run_sae_probe_grid(
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--feature-dir", type=Path, required=True)
+    parser.add_argument("--activation-site", default=DEFAULT_ACTIVATION_SITE)
     parser.add_argument("--model-key", required=True)
     parser.add_argument("--tasks", nargs="+", required=True)
     parser.add_argument("--layer", type=int, required=True)
@@ -165,6 +175,7 @@ def main() -> None:
 
     report = run_sae_probe_grid(
         feature_dir=args.feature_dir,
+        activation_site=args.activation_site,
         model_key=args.model_key,
         tasks=args.tasks,
         layer=args.layer,

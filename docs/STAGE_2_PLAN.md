@@ -108,6 +108,12 @@ As of 2026-04-27:
   `infer_property` raw-direction steering pilot. Prompt-only L45 raw +/-2 SD
   interventions on 8 balanced S1 test rows caused zero strong-correctness flips;
   the one changed output also appeared for matched orthogonal controls.
+- `docs/stage2_results_pack.md` and `docs/report_outline.md` summarize the
+  current 27B report story while Gemma 3 4B teammate results remain pending.
+- The next scoped Gemma Scope 2 branch is a single L45 MLP-output site pilot,
+  not a broad artifact sweep. It uses `mlp_out_all/layer_45_width_16k_l0_small`
+  and extracts `blocks.{layer}.ln2_post.hook_normalized` into
+  site-suffixed activation files.
 
 Measured jobs:
 
@@ -614,6 +620,20 @@ The S3 component probe result repeats the S1 pattern under heldout target
 symbols. This reduces the chance that the raw-SAE gap is a random-split lexical
 artifact.
 
+Targeted Gemma Scope site pilot:
+
+- `scripts/stage2_mlp_site_27b_L45_16k.sbatch` is the first non-residual site
+  pilot. It extracts L45 `mlp_out` activations for both 27B tasks, encodes
+  `gemma-scope-2-27b-it-mlp-all/layer_45_width_16k_l0_small`, and writes raw
+  same-site plus sparse SAE S1/S3 probe summaries.
+- The purpose is to answer one question: does an MLP-site sparse dictionary
+  expose more of the correctness signal than the tested residual SAEs? If it
+  does not, skip crosscoders and keep the report focused on the stronger
+  residual-SAE reconstruction-error finding.
+- Crosscoders should be attempted only if this site pilot suggests sparse
+  non-residual artifacts recover substantially more signal. Any crosscoder
+  pilot needs a fair raw-concat baseline over the same layer set.
+
 Outputs:
 
 - `results/stage2/sae_probes/`;
@@ -623,6 +643,12 @@ Outputs:
 - `docs/sae_probe_27b_l45_16k_s3_target_symbol.json`;
 - `docs/sae_probe_27b_l45_262k_s3_target_symbol.json`;
 - `docs/sae_reconstruction_probe_27b_l45_s3_target_symbol.json`;
+- `docs/raw_probe_27b_l45_mlp_out_s1.json` and
+  `docs/raw_probe_27b_l45_mlp_out_s3_target_symbol.json` if the MLP site pilot
+  completes;
+- `docs/sae_probe_27b_l45_mlp_out_16k_s1.json` and
+  `docs/sae_probe_27b_l45_mlp_out_16k_s3_target_symbol.json` if the MLP site
+  pilot completes;
 - `results/stage2/stable_features.json` if a later pass selects a steering set.
 
 ## Phase E: Steering Validation
@@ -742,6 +768,7 @@ Phase C/D:
 - [x] L45 width-16K/262K reconstruction/error probe diagnostic.
 - [x] L45 width-16K/262K S3 target-symbol SAE probe metrics.
 - [x] L45 width-16K/262K S3 reconstruction/error probe diagnostic.
+- [ ] L45 MLP-output width-16K site pilot.
 - [ ] Additional SAE release IDs pinned.
 - [ ] SAE feature extraction complete.
 - [ ] Broader SAE probe metrics.

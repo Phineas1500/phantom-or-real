@@ -20,6 +20,7 @@ from src.stage2_sae import (
     snapshot_revision_from_path,
     topk_tensors_to_csr,
 )
+from src.stage2_paths import activation_stem, hook_name_for_layer, normalize_activation_site
 
 
 def test_slice_rows_honors_skip_and_limit() -> None:
@@ -56,6 +57,28 @@ def test_derive_sae_feature_prefix_includes_slice() -> None:
         "results/stage2/sae_features/"
         "gemma3_27b_infer_property_L45_layer_45_width_16k_l0_small_top128_skip10_n512"
     )
+
+
+def test_activation_stem_preserves_residual_default_and_adds_site_suffix() -> None:
+    assert (
+        activation_stem(model_key="gemma3_27b", task="infer_property", layer=45)
+        == "gemma3_27b_infer_property_L45"
+    )
+    assert (
+        activation_stem(
+            model_key="gemma3_27b",
+            task="infer_property",
+            layer=45,
+            activation_site="mlp-out",
+        )
+        == "gemma3_27b_infer_property_L45_mlp_out"
+    )
+    assert normalize_activation_site("") == "resid_post"
+    assert hook_name_for_layer(layer=45, hook_template="blocks.{layer}.ln2_post.hook_normalized") == (
+        "blocks.45.ln2_post.hook_normalized"
+    )
+    with pytest.raises(ValueError, match="hook-template"):
+        hook_name_for_layer(layer=45, hook_template="blocks.45.hook_mlp_out")
 
 
 def test_topk_tensors_to_csr_builds_sparse_feature_matrix() -> None:

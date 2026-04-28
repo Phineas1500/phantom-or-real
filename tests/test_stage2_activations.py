@@ -12,6 +12,7 @@ sys.path.insert(0, str(ROOT))
 
 from src.activations import (  # noqa: E402
     EncodedExample,
+    hook_name_for_layer,
     make_padded_batch,
     parse_int_list,
     read_stage1_rows,
@@ -101,6 +102,44 @@ def test_write_activation_outputs_creates_safetensors_sidecar_and_meta(tmp_path:
     assert meta["hook_name"] == "blocks.30.hook_resid_post"
 
 
+def test_write_activation_outputs_can_use_named_non_residual_site(tmp_path: Path) -> None:
+    activations = {45: torch.arange(6, dtype=torch.float32).reshape(2, 3).to(torch.bfloat16)}
+    sidecar_rows = [
+        {"row_index": 0, "example_id": "ex0", "token_count": 5},
+        {"row_index": 1, "example_id": "ex1", "token_count": 6},
+    ]
+
+    written = write_activation_outputs(
+        activations,
+        sidecar_rows,
+        out_dir=tmp_path,
+        model_key="gemma3_27b",
+        task="infer_property",
+        metadata={"row_count": 2},
+        activation_site="mlp-out",
+        hook_template="blocks.{layer}.ln2_post.hook_normalized",
+    )
+
+    prefix = tmp_path / "gemma3_27b_infer_property_L45_mlp_out"
+    assert set(written) == {
+        prefix.with_suffix(".safetensors"),
+        prefix.with_suffix(".example_ids.jsonl"),
+        prefix.with_suffix(".meta.json"),
+    }
+
+    sidecar = [json.loads(line) for line in prefix.with_suffix(".example_ids.jsonl").read_text().splitlines()]
+    assert {row["hook_name"] for row in sidecar} == {"blocks.45.ln2_post.hook_normalized"}
+
+    meta = json.loads(prefix.with_suffix(".meta.json").read_text())
+    assert meta["activation_site"] == "mlp_out"
+    assert meta["hook_name"] == "blocks.45.ln2_post.hook_normalized"
+    assert meta["hook_template"] == "blocks.{layer}.ln2_post.hook_normalized"
+
+
 def test_parse_layers_and_model_slug() -> None:
     assert parse_int_list("4, 12,30") == [4, 12, 30]
     assert slugify_model_name("google/gemma-3-27b-it") == "gemma3_27b"
+
+
+def test_hook_template_requires_layer_placeholder() -> None:
+    assert hook_name_for_layer(layer=45, hook_template="blocks.{layer}.hook_mlp_out") == "blocks.45.hook_mlp_out"

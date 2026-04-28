@@ -26,6 +26,8 @@ def main() -> None:
     parser.add_argument("--n-devices", type=int, default=1)
     parser.add_argument("--n-ctx", type=int, default=4096)
     parser.add_argument("--out-dir", type=Path, default=Path("results/stage2/activations"))
+    parser.add_argument("--activation-site", default="resid_post")
+    parser.add_argument("--hook-template", default="blocks.{layer}.hook_resid_post")
     parser.add_argument("--height", type=int, default=None)
     parser.add_argument("--limit", type=int, default=None)
     parser.add_argument("--skip", type=int, default=0)
@@ -43,6 +45,8 @@ def main() -> None:
         n_devices=args.n_devices,
         n_ctx=args.n_ctx,
         out_dir=args.out_dir,
+        activation_site=args.activation_site,
+        hook_template=args.hook_template,
         height=args.height,
         limit=args.limit,
         skip=args.skip,

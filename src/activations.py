@@ -12,6 +12,13 @@ from typing import Any
 import torch
 
 from .messages import render_chat_text
+from .stage2_paths import (
+    DEFAULT_ACTIVATION_SITE,
+    DEFAULT_HOOK_TEMPLATE,
+    activation_stem,
+    hook_name_for_layer,
+    normalize_activation_site,
+)
 
 
 @dataclass(frozen=True)
@@ -239,8 +246,13 @@ def tokenizer_pad_token_id(tokenizer) -> int:
     return int(pad_token_id)
 
 
-def validate_hooks(model, layers: list[int]) -> list[str]:
-    hooks = [f"blocks.{layer}.hook_resid_post" for layer in layers]
+def validate_hooks(
+    model,
+    layers: list[int],
+    *,
+    hook_template: str = DEFAULT_HOOK_TEMPLATE,
+) -> list[str]:
+    hooks = [hook_name_for_layer(layer=layer, hook_template=hook_template) for layer in layers]
     missing = [hook for hook in hooks if hook not in model.hook_dict]
     if missing:
         sample = sorted(model.hook_dict.keys())[:20]
@@ -268,14 +280,15 @@ def extract_residual_activations(
     *,
     layers: list[int],
     batch_size: int,
+    hook_template: str = DEFAULT_HOOK_TEMPLATE,
 ) -> tuple[dict[int, torch.Tensor], list[dict[str, Any]], dict[str, Any]]:
-    """Extract last-pre-CoT residual activations for all requested layers."""
+    """Extract last-pre-CoT activations for all requested layers."""
     if batch_size <= 0:
         raise ValueError("batch_size must be positive")
     if not examples:
         raise ValueError("no examples to extract")
 
-    hooks = validate_hooks(model, layers)
+    hooks = validate_hooks(model, layers, hook_template=hook_template)
     pad_token_id = tokenizer_pad_token_id(model.tokenizer)
     input_device = input_device_for_model(model)
     token_counts = [example.token_count for example in examples]
@@ -306,7 +319,7 @@ def extract_residual_activations(
             for layer in layers:
                 activation = captured.get(layer)
                 if activation is None:
-                    raise RuntimeError(f"hook blocks.{layer}.hook_resid_post did not capture")
+                    raise RuntimeError(f"hook {hook_name_for_layer(layer=layer, hook_template=hook_template)} did not capture")
                 expected = (len(chunk), model.cfg.d_model)
                 if tuple(activation.shape) != expected:
                     raise RuntimeError(
@@ -351,15 +364,23 @@ def write_activation_outputs(
     model_key: str,
     task: str,
     metadata: dict[str, Any],
+    activation_site: str = DEFAULT_ACTIVATION_SITE,
+    hook_template: str = DEFAULT_HOOK_TEMPLATE,
 ) -> list[Path]:
     """Write one safetensors file plus sidecars per layer."""
     from safetensors.torch import save_file
 
     out_dir.mkdir(parents=True, exist_ok=True)
     written: list[Path] = []
+    normalized_site = normalize_activation_site(activation_site)
     for layer, activations in activations_by_layer.items():
-        prefix = out_dir / f"{model_key}_{task}_L{layer}"
-        hook_name = f"blocks.{layer}.hook_resid_post"
+        prefix = out_dir / activation_stem(
+            model_key=model_key,
+            task=task,
+            layer=layer,
+            activation_site=normalized_site,
+        )
+        hook_name = hook_name_for_layer(layer=layer, hook_template=hook_template)
         save_file({"activations": activations.contiguous()}, prefix.with_suffix(".safetensors"))
         with prefix.with_suffix(".example_ids.jsonl").open("w") as f:
             for sidecar in sidecar_rows:
@@ -369,7 +390,9 @@ def write_activation_outputs(
         meta = {
             **metadata,
             "layer": layer,
+            "activation_site": normalized_site,
             "hook_name": hook_name,
+            "hook_template": hook_template,
             "shape": list(activations.shape),
             "dtype": str(activations.dtype),
             "activation_file": str(prefix.with_suffix(".safetensors")),
@@ -404,6 +427,8 @@ def run_extraction(
     skip: int = 0,
     drop_parse_failed: bool = False,
     load_mode: str = "no-processing",
+    activation_site: str = DEFAULT_ACTIVATION_SITE,
+    hook_template: str = DEFAULT_HOOK_TEMPLATE,
 ) -> list[Path]:
     """Load the TL model, extract activations, and write Stage 2 artifacts."""
     rows = read_stage1_rows(
@@ -437,7 +462,9 @@ def run_extraction(
         examples,
         layers=layers,
         batch_size=batch_size,
+        hook_template=hook_template,
     )
+    normalized_site = normalize_activation_site(activation_site)
     metadata = {
         "created_at_utc": datetime.now(timezone.utc).isoformat(),
         "jsonl_path": str(jsonl_path),
@@ -446,6 +473,8 @@ def run_extraction(
         "model_key": model_key,
         "task": task,
         "layers": layers,
+        "activation_site": normalized_site,
+        "hook_template": hook_template,
         "batch_size": batch_size,
         "n_devices": n_devices,
         "n_ctx": n_ctx,
@@ -469,4 +498,6 @@ def run_extraction(
         model_key=model_key,
         task=task,
         metadata=metadata,
+        activation_site=normalized_site,
+        hook_template=hook_template,
     )

@@ -404,3 +404,27 @@ final report is easier to assemble.
   design rather than simply scaling this exact pilot: likely all-token or
   later-token steering, a larger strength sweep, and a smaller/faster row set
   for iteration.
+
+### 2026-04-28
+
+#### Report Scaffold And Site-Pilot Plan
+
+- Added `docs/stage2_results_pack.md` and `docs/report_outline.md` as compact
+  report scaffolds for the current 27B story. They leave teammate Gemma 3 4B
+  results as a later comparison rather than blocking the 27B write-up.
+- Decided not to launch a broad Gemma Scope 2 sweep. The next optional
+  mechanistic branch is a single 27B L45 MLP-output site pilot, because it
+  directly tests whether the residual-SAE gap is specific to residual
+  dictionaries or whether MLP-site sparse features expose more of the raw
+  correctness signal.
+- SAE Lens metadata confirms Gemma Scope 2 has 27B-IT L45 `mlp_out_all` and
+  `transcoder_all` artifacts, including `layer_45_width_16k_l0_small`.
+  These artifacts are not currently in the local HF cache, so the first pilot
+  job will need to download them.
+- Added site-aware extraction/probe plumbing so Stage 2 activation artifacts can
+  be named with non-residual sites such as
+  `gemma3_27b_infer_property_L45_mlp_out` while preserving existing residual
+  filenames. The first planned hook is
+  `blocks.{layer}.ln2_post.hook_normalized`, matching Gemma 3's
+  post-feedforward layernorm output used by the Gemma Scope `mlp_out_all`
+  configs.

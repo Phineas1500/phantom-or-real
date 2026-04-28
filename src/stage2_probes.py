@@ -12,6 +12,8 @@ from typing import Any
 
 import numpy as np
 
+from .stage2_paths import DEFAULT_ACTIVATION_SITE, activation_stem
+
 
 SPLIT_FRACTIONS = {"train": 0.70, "val": 0.15, "test": 0.15}
 SPLITS = tuple(SPLIT_FRACTIONS)
@@ -405,12 +407,14 @@ def run_probe_grid(
     max_iter: int = 2000,
     solver: str = "lbfgs",
     bootstrap_samples: int = 0,
+    activation_site: str = DEFAULT_ACTIVATION_SITE,
 ) -> dict[str, Any]:
     split_assignments = read_split_assignments(splits_path) if splits_path is not None else None
     report: dict[str, Any] = {
         "schema_version": 1,
         "created_at_utc": datetime.now(timezone.utc).isoformat(),
         "activation_dir": str(activation_dir),
+        "activation_site": activation_site,
         "model_key": model_key,
         "tasks": tasks,
         "layers": layers,
@@ -429,7 +433,12 @@ def run_probe_grid(
     for task in tasks:
         report["results"][task] = {}
         for layer in layers:
-            prefix = activation_dir / f"{model_key}_{task}_L{layer}"
+            prefix = activation_dir / activation_stem(
+                model_key=model_key,
+                task=task,
+                layer=layer,
+                activation_site=activation_site,
+            )
             meta = read_json(prefix.with_suffix(".meta.json"))
             report["results"][task][f"L{layer}"] = run_raw_activation_probe(
                 activation_path=prefix.with_suffix(".safetensors"),
@@ -591,8 +600,14 @@ def _load_dataset_for_grid(
     task: str,
     layer: int,
     drop_parse_failed: bool,
+    activation_site: str = DEFAULT_ACTIVATION_SITE,
 ) -> dict[str, Any]:
-    prefix = activation_dir / f"{model_key}_{task}_L{layer}"
+    prefix = activation_dir / activation_stem(
+        model_key=model_key,
+        task=task,
+        layer=layer,
+        activation_site=activation_site,
+    )
     meta = read_json(prefix.with_suffix(".meta.json"))
     dataset = load_probe_dataset(
         activation_path=prefix.with_suffix(".safetensors"),
@@ -625,12 +640,14 @@ def run_cross_task_transfer_grid(
     max_iter: int = 2000,
     solver: str = "lbfgs",
     bootstrap_samples: int = 0,
+    activation_site: str = DEFAULT_ACTIVATION_SITE,
 ) -> dict[str, Any]:
     split_assignments = read_split_assignments(splits_path)
     report: dict[str, Any] = {
         "schema_version": 1,
         "created_at_utc": datetime.now(timezone.utc).isoformat(),
         "activation_dir": str(activation_dir),
+        "activation_site": activation_site,
         "model_key": model_key,
         "tasks": tasks,
         "layers": layers,
@@ -654,6 +671,7 @@ def run_cross_task_transfer_grid(
                 task=task,
                 layer=layer,
                 drop_parse_failed=drop_parse_failed,
+                activation_site=activation_site,
             )
             for task in tasks
         }

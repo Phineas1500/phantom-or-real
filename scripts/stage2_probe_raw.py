@@ -20,6 +20,7 @@ def parse_float_list(value: str) -> tuple[float, ...]:
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--activation-dir", type=Path, required=True)
+    parser.add_argument("--activation-site", default="resid_post")
     parser.add_argument("--model-key", required=True)
     parser.add_argument("--tasks", nargs="+", required=True)
     parser.add_argument("--layers", type=parse_int_list, required=True)
@@ -36,6 +37,7 @@ def main() -> None:
 
     report = run_probe_grid(
         activation_dir=args.activation_dir,
+        activation_site=args.activation_site,
         model_key=args.model_key,
         tasks=args.tasks,
         layers=args.layers,
