@@ -1,0 +1,725 @@
+{
+  "activation_dir": "results/stage2/activations",
+  "bootstrap_samples": 1000,
+  "c_values": [
+    0.01,
+    0.1,
+    1.0,
+    10.0
+  ],
+  "created_at_utc": "2026-04-28T01:23:56.871742+00:00",
+  "feature_dir": "results/stage2/sae_features",
+  "layer": 45,
+  "max_iter": 2000,
+  "mode": "probe_existing_components",
+  "model_key": "gemma3_27b",
+  "out_dir": "results/stage2/sae_reconstructions",
+  "results": {
+    "layer_45_width_16k_l0_small": {
+      "infer_property": {
+        "error_prefix": "results/stage2/sae_reconstructions/gemma3_27b_infer_property_L45_layer_45_width_16k_l0_small_top128_error",
+        "probes": {
+          "error": {
+            "activation_path": "results/stage2/sae_reconstructions/gemma3_27b_infer_property_L45_layer_45_width_16k_l0_small_top128_error.safetensors",
+            "best_c": 0.01,
+            "c_values": [
+              0.01,
+              0.1,
+              1.0,
+              10.0
+            ],
+            "d_model": 5376,
+            "drop_parse_failed": true,
+            "input_rows": 11000,
+            "kept_rows": 10025,
+            "max_iter": 2000,
+            "per_height": {
+              "h1": {
+                "auc": 0.9760348583877996,
+                "n": 159,
+                "negative_n": 6,
+                "positive_n": 153
+              },
+              "h2": {
+                "auc": 0.8212341197822141,
+                "n": 269,
+                "negative_n": 95,
+                "positive_n": 174
+              },
+              "h3": {
+                "auc": 0.8386387655886703,
+                "n": 439,
+                "negative_n": 249,
+                "positive_n": 190
+              },
+              "h4": {
+                "auc": 0.8525769956002514,
+                "n": 659,
+                "negative_n": 444,
+                "positive_n": 215
+              }
+            },
+            "shuffle_labels": false,
+            "sidecar_path": "results/stage2/sae_reconstructions/gemma3_27b_infer_property_L45_layer_45_width_16k_l0_small_top128_error.example_ids.jsonl",
+            "solver": "lbfgs",
+            "source_file": "results/full/with_errortype/gemma3_27b_infer_property.jsonl",
+            "split_counts": {
+              "test": {
+                "n": 1526,
+                "negative_n": 794,
+                "positive_n": 732
+              },
+              "train": {
+                "n": 6990,
+                "negative_n": 3811,
+                "positive_n": 3179
+              },
+              "val": {
+                "n": 1509,
+                "negative_n": 810,
+                "positive_n": 699
+              }
+            },
+            "split_mode": "s3",
+            "status": "ok",
+            "test_auc": 0.8810236610645413,
+            "test_auc_ci": {
+              "alpha": 0.05,
+              "high": 0.897524977647764,
+              "low": 0.8652700475982442,
+              "mean": 0.881184244974081,
+              "samples_requested": 1000,
+              "samples_used": 1000
+            },
+            "val_auc": 0.87571486603437
+          },
+          "reconstruction": {
+            "activation_path": "results/stage2/sae_reconstructions/gemma3_27b_infer_property_L45_layer_45_width_16k_l0_small_top128_reconstruction.safetensors",
+            "best_c": 0.01,
+            "c_values": [
+              0.01,
+              0.1,
+              1.0,
+              10.0
+            ],
+            "d_model": 5376,
+            "drop_parse_failed": true,
+            "input_rows": 11000,
+            "kept_rows": 10025,
+            "max_iter": 2000,
+            "per_height": {
+              "h1": {
+                "auc": 0.6525054466230937,
+                "n": 159,
+                "negative_n": 6,
+                "positive_n": 153
+              },
+              "h2": {
+                "auc": 0.6373865698729582,
+                "n": 269,
+                "negative_n": 95,
+                "positive_n": 174
+              },
+              "h3": {
+                "auc": 0.7214542380046501,
+                "n": 439,
+                "negative_n": 249,
+                "positive_n": 190
+              },
+              "h4": {
+                "auc": 0.7497485857950974,
+                "n": 659,
+                "negative_n": 444,
+                "positive_n": 215
+              }
+            },
+            "shuffle_labels": false,
+            "sidecar_path": "results/stage2/sae_reconstructions/gemma3_27b_infer_property_L45_layer_45_width_16k_l0_small_top128_reconstruction.example_ids.jsonl",
+            "solver": "lbfgs",
+            "source_file": "results/full/with_errortype/gemma3_27b_infer_property.jsonl",
+            "split_counts": {
+              "test": {
+                "n": 1526,
+                "negative_n": 794,
+                "positive_n": 732
+              },
+              "train": {
+                "n": 6990,
+                "negative_n": 3811,
+                "positive_n": 3179
+              },
+              "val": {
+                "n": 1509,
+                "negative_n": 810,
+                "positive_n": 699
+              }
+            },
+            "split_mode": "s3",
+            "status": "ok",
+            "test_auc": 0.7986280298963538,
+            "test_auc_ci": {
+              "alpha": 0.05,
+              "high": 0.8195321729445115,
+              "low": 0.7766696865633098,
+              "mean": 0.7989442154899307,
+              "samples_requested": 1000,
+              "samples_used": 1000
+            },
+            "val_auc": 0.7744432081103516
+          }
+        },
+        "reconstruction_prefix": "results/stage2/sae_reconstructions/gemma3_27b_infer_property_L45_layer_45_width_16k_l0_small_top128_reconstruction",
+        "reconstruction_stats": {
+          "elements": 59136000,
+          "energy_explained": 0.9482910588209261,
+          "global_cosine": 0.9768394892346665,
+          "mean_error_l2": 12153.154931818182,
+          "mean_raw_l2": 53421.35236363636,
+          "mean_reconstruction_l2": 56333.326272727274,
+          "mean_row_cosine": 0.9771886485706676,
+          "mse": 27497.062857142857,
+          "relative_error_l2": 0.22739600079832964,
+          "rmse": 165.82238346237475,
+          "rows": 11000
+        },
+        "sparse_decode_check": {
+          "max_abs_diff": 256.0,
+          "mean_abs_diff": 0.1750217080116272,
+          "rows": 8
+        }
+      },
+      "infer_subtype": {
+        "error_prefix": "results/stage2/sae_reconstructions/gemma3_27b_infer_subtype_L45_layer_45_width_16k_l0_small_top128_error",
+        "probes": {
+          "error": {
+            "activation_path": "results/stage2/sae_reconstructions/gemma3_27b_infer_subtype_L45_layer_45_width_16k_l0_small_top128_error.safetensors",
+            "best_c": 0.01,
+            "c_values": [
+              0.01,
+              0.1,
+              1.0,
+              10.0
+            ],
+            "d_model": 5376,
+            "drop_parse_failed": true,
+            "input_rows": 11000,
+            "kept_rows": 10737,
+            "max_iter": 2000,
+            "per_height": {
+              "h1": {
+                "auc": 0.7973856209150327,
+                "n": 154,
+                "negative_n": 1,
+                "positive_n": 153
+              },
+              "h2": {
+                "auc": 0.7813227235192552,
+                "n": 250,
+                "negative_n": 173,
+                "positive_n": 77
+              },
+              "h3": {
+                "auc": 0.7468486352357321,
+                "n": 453,
+                "negative_n": 403,
+                "positive_n": 50
+              },
+              "h4": {
+                "auc": 0.8514281326781328,
+                "n": 741,
+                "negative_n": 704,
+                "positive_n": 37
+              }
+            },
+            "shuffle_labels": false,
+            "sidecar_path": "results/stage2/sae_reconstructions/gemma3_27b_infer_subtype_L45_layer_45_width_16k_l0_small_top128_error.example_ids.jsonl",
+            "solver": "lbfgs",
+            "source_file": "results/full/with_errortype/gemma3_27b_infer_subtype.jsonl",
+            "split_counts": {
+              "test": {
+                "n": 1598,
+                "negative_n": 1281,
+                "positive_n": 317
+              },
+              "train": {
+                "n": 7497,
+                "negative_n": 5913,
+                "positive_n": 1584
+              },
+              "val": {
+                "n": 1642,
+                "negative_n": 1300,
+                "positive_n": 342
+              }
+            },
+            "split_mode": "s3",
+            "status": "ok",
+            "test_auc": 0.9161587580680511,
+            "test_auc_ci": {
+              "alpha": 0.05,
+              "high": 0.9334525549015623,
+              "low": 0.8965673925967065,
+              "mean": 0.9158188656963132,
+              "samples_requested": 1000,
+              "samples_used": 1000
+            },
+            "val_auc": 0.9104903283850653
+          },
+          "reconstruction": {
+            "activation_path": "results/stage2/sae_reconstructions/gemma3_27b_infer_subtype_L45_layer_45_width_16k_l0_small_top128_reconstruction.safetensors",
+            "best_c": 0.01,
+            "c_values": [
+              0.01,
+              0.1,
+              1.0,
+              10.0
+            ],
+            "d_model": 5376,
+            "drop_parse_failed": true,
+            "input_rows": 11000,
+            "kept_rows": 10737,
+            "max_iter": 2000,
+            "per_height": {
+              "h1": {
+                "auc": 0.6274509803921569,
+                "n": 154,
+                "negative_n": 1,
+                "positive_n": 153
+              },
+              "h2": {
+                "auc": 0.6326852338413032,
+                "n": 250,
+                "negative_n": 173,
+                "positive_n": 77
+              },
+              "h3": {
+                "auc": 0.5701736972704714,
+                "n": 453,
+                "negative_n": 403,
+                "positive_n": 50
+              },
+              "h4": {
+                "auc": 0.6645039926289926,
+                "n": 741,
+                "negative_n": 704,
+                "positive_n": 37
+              }
+            },
+            "shuffle_labels": false,
+            "sidecar_path": "results/stage2/sae_reconstructions/gemma3_27b_infer_subtype_L45_layer_45_width_16k_l0_small_top128_reconstruction.example_ids.jsonl",
+            "solver": "lbfgs",
+            "source_file": "results/full/with_errortype/gemma3_27b_infer_subtype.jsonl",
+            "split_counts": {
+              "test": {
+                "n": 1598,
+                "negative_n": 1281,
+                "positive_n": 317
+              },
+              "train": {
+                "n": 7497,
+                "negative_n": 5913,
+                "positive_n": 1584
+              },
+              "val": {
+                "n": 1642,
+                "negative_n": 1300,
+                "positive_n": 342
+              }
+            },
+            "split_mode": "s3",
+            "status": "ok",
+            "test_auc": 0.8650748503362664,
+            "test_auc_ci": {
+              "alpha": 0.05,
+              "high": 0.8891520320120647,
+              "low": 0.8376648770216509,
+              "mean": 0.8645783544888666,
+              "samples_requested": 1000,
+              "samples_used": 1000
+            },
+            "val_auc": 0.8829329734592892
+          }
+        },
+        "reconstruction_prefix": "results/stage2/sae_reconstructions/gemma3_27b_infer_subtype_L45_layer_45_width_16k_l0_small_top128_reconstruction",
+        "reconstruction_stats": {
+          "elements": 59136000,
+          "energy_explained": 0.9475517434020413,
+          "global_cosine": 0.9772222575024921,
+          "mean_error_l2": 11918.468772727272,
+          "mean_raw_l2": 52001.71436363636,
+          "mean_reconstruction_l2": 55342.512272727276,
+          "mean_row_cosine": 0.9776151872114701,
+          "mse": 26447.475255411257,
+          "relative_error_l2": 0.22901584355227209,
+          "rmse": 162.62679747019325,
+          "rows": 11000
+        },
+        "sparse_decode_check": {
+          "max_abs_diff": 256.0,
+          "mean_abs_diff": 0.18277157843112946,
+          "rows": 8
+        }
+      }
+    },
+    "layer_45_width_262k_l0_small": {
+      "infer_property": {
+        "error_prefix": "results/stage2/sae_reconstructions/gemma3_27b_infer_property_L45_layer_45_width_262k_l0_small_top128_error",
+        "probes": {
+          "error": {
+            "activation_path": "results/stage2/sae_reconstructions/gemma3_27b_infer_property_L45_layer_45_width_262k_l0_small_top128_error.safetensors",
+            "best_c": 0.01,
+            "c_values": [
+              0.01,
+              0.1,
+              1.0,
+              10.0
+            ],
+            "d_model": 5376,
+            "drop_parse_failed": true,
+            "input_rows": 11000,
+            "kept_rows": 10025,
+            "max_iter": 2000,
+            "per_height": {
+              "h1": {
+                "auc": 0.9814814814814815,
+                "n": 159,
+                "negative_n": 6,
+                "positive_n": 153
+              },
+              "h2": {
+                "auc": 0.8226860254083483,
+                "n": 269,
+                "negative_n": 95,
+                "positive_n": 174
+              },
+              "h3": {
+                "auc": 0.8426971042062987,
+                "n": 439,
+                "negative_n": 249,
+                "positive_n": 190
+              },
+              "h4": {
+                "auc": 0.8598051539912005,
+                "n": 659,
+                "negative_n": 444,
+                "positive_n": 215
+              }
+            },
+            "shuffle_labels": false,
+            "sidecar_path": "results/stage2/sae_reconstructions/gemma3_27b_infer_property_L45_layer_45_width_262k_l0_small_top128_error.example_ids.jsonl",
+            "solver": "lbfgs",
+            "source_file": "results/full/with_errortype/gemma3_27b_infer_property.jsonl",
+            "split_counts": {
+              "test": {
+                "n": 1526,
+                "negative_n": 794,
+                "positive_n": 732
+              },
+              "train": {
+                "n": 6990,
+                "negative_n": 3811,
+                "positive_n": 3179
+              },
+              "val": {
+                "n": 1509,
+                "negative_n": 810,
+                "positive_n": 699
+              }
+            },
+            "split_mode": "s3",
+            "status": "ok",
+            "test_auc": 0.8858033612751373,
+            "test_auc_ci": {
+              "alpha": 0.05,
+              "high": 0.9022903947915049,
+              "low": 0.870386748089148,
+              "mean": 0.8859347737284051,
+              "samples_requested": 1000,
+              "samples_used": 1000
+            },
+            "val_auc": 0.8734735689432875
+          },
+          "reconstruction": {
+            "activation_path": "results/stage2/sae_reconstructions/gemma3_27b_infer_property_L45_layer_45_width_262k_l0_small_top128_reconstruction.safetensors",
+            "best_c": 0.01,
+            "c_values": [
+              0.01,
+              0.1,
+              1.0,
+              10.0
+            ],
+            "d_model": 5376,
+            "drop_parse_failed": true,
+            "input_rows": 11000,
+            "kept_rows": 10025,
+            "max_iter": 2000,
+            "per_height": {
+              "h1": {
+                "auc": 0.9063180827886711,
+                "n": 159,
+                "negative_n": 6,
+                "positive_n": 153
+              },
+              "h2": {
+                "auc": 0.6231094978826376,
+                "n": 269,
+                "negative_n": 95,
+                "positive_n": 174
+              },
+              "h3": {
+                "auc": 0.6921158317480447,
+                "n": 439,
+                "negative_n": 249,
+                "positive_n": 190
+              },
+              "h4": {
+                "auc": 0.7457573852922689,
+                "n": 659,
+                "negative_n": 444,
+                "positive_n": 215
+              }
+            },
+            "shuffle_labels": false,
+            "sidecar_path": "results/stage2/sae_reconstructions/gemma3_27b_infer_property_L45_layer_45_width_262k_l0_small_top128_reconstruction.example_ids.jsonl",
+            "solver": "lbfgs",
+            "source_file": "results/full/with_errortype/gemma3_27b_infer_property.jsonl",
+            "split_counts": {
+              "test": {
+                "n": 1526,
+                "negative_n": 794,
+                "positive_n": 732
+              },
+              "train": {
+                "n": 6990,
+                "negative_n": 3811,
+                "positive_n": 3179
+              },
+              "val": {
+                "n": 1509,
+                "negative_n": 810,
+                "positive_n": 699
+              }
+            },
+            "split_mode": "s3",
+            "status": "ok",
+            "test_auc": 0.788364922712695,
+            "test_auc_ci": {
+              "alpha": 0.05,
+              "high": 0.8099361455564978,
+              "low": 0.7651481001758972,
+              "mean": 0.7886632742634745,
+              "samples_requested": 1000,
+              "samples_used": 1000
+            },
+            "val_auc": 0.7875006623218355
+          }
+        },
+        "reconstruction_prefix": "results/stage2/sae_reconstructions/gemma3_27b_infer_property_L45_layer_45_width_262k_l0_small_top128_reconstruction",
+        "reconstruction_stats": {
+          "elements": 59136000,
+          "energy_explained": 0.9552919975946065,
+          "global_cosine": 0.9796074147028978,
+          "mean_error_l2": 11298.868431818182,
+          "mean_raw_l2": 53421.35236363636,
+          "mean_reconstruction_l2": 55873.78036363636,
+          "mean_row_cosine": 0.9797864629572088,
+          "mse": 23774.20083116883,
+          "relative_error_l2": 0.21144266931107714,
+          "rmse": 154.18884794682407,
+          "rows": 11000
+        },
+        "sparse_decode_check": {
+          "max_abs_diff": 4.0,
+          "mean_abs_diff": 0.17157435417175293,
+          "rows": 8
+        }
+      },
+      "infer_subtype": {
+        "error_prefix": "results/stage2/sae_reconstructions/gemma3_27b_infer_subtype_L45_layer_45_width_262k_l0_small_top128_error",
+        "probes": {
+          "error": {
+            "activation_path": "results/stage2/sae_reconstructions/gemma3_27b_infer_subtype_L45_layer_45_width_262k_l0_small_top128_error.safetensors",
+            "best_c": 0.01,
+            "c_values": [
+              0.01,
+              0.1,
+              1.0,
+              10.0
+            ],
+            "d_model": 5376,
+            "drop_parse_failed": true,
+            "input_rows": 11000,
+            "kept_rows": 10737,
+            "max_iter": 2000,
+            "per_height": {
+              "h1": {
+                "auc": 0.8627450980392157,
+                "n": 154,
+                "negative_n": 1,
+                "positive_n": 153
+              },
+              "h2": {
+                "auc": 0.7880789730500711,
+                "n": 250,
+                "negative_n": 173,
+                "positive_n": 77
+              },
+              "h3": {
+                "auc": 0.7372704714640198,
+                "n": 453,
+                "negative_n": 403,
+                "positive_n": 50
+              },
+              "h4": {
+                "auc": 0.8463221744471745,
+                "n": 741,
+                "negative_n": 704,
+                "positive_n": 37
+              }
+            },
+            "shuffle_labels": false,
+            "sidecar_path": "results/stage2/sae_reconstructions/gemma3_27b_infer_subtype_L45_layer_45_width_262k_l0_small_top128_error.example_ids.jsonl",
+            "solver": "lbfgs",
+            "source_file": "results/full/with_errortype/gemma3_27b_infer_subtype.jsonl",
+            "split_counts": {
+              "test": {
+                "n": 1598,
+                "negative_n": 1281,
+                "positive_n": 317
+              },
+              "train": {
+                "n": 7497,
+                "negative_n": 5913,
+                "positive_n": 1584
+              },
+              "val": {
+                "n": 1642,
+                "negative_n": 1300,
+                "positive_n": 342
+              }
+            },
+            "split_mode": "s3",
+            "status": "ok",
+            "test_auc": 0.9143192054708835,
+            "test_auc_ci": {
+              "alpha": 0.05,
+              "high": 0.9316207404006711,
+              "low": 0.8942119625528094,
+              "mean": 0.9138837694122101,
+              "samples_requested": 1000,
+              "samples_used": 1000
+            },
+            "val_auc": 0.907714799820063
+          },
+          "reconstruction": {
+            "activation_path": "results/stage2/sae_reconstructions/gemma3_27b_infer_subtype_L45_layer_45_width_262k_l0_small_top128_reconstruction.safetensors",
+            "best_c": 0.1,
+            "c_values": [
+              0.01,
+              0.1,
+              1.0,
+              10.0
+            ],
+            "d_model": 5376,
+            "drop_parse_failed": true,
+            "input_rows": 11000,
+            "kept_rows": 10737,
+            "max_iter": 2000,
+            "per_height": {
+              "h1": {
+                "auc": 0.738562091503268,
+                "n": 154,
+                "negative_n": 1,
+                "positive_n": 153
+              },
+              "h2": {
+                "auc": 0.6767509946700697,
+                "n": 250,
+                "negative_n": 173,
+                "positive_n": 77
+              },
+              "h3": {
+                "auc": 0.5969727047146403,
+                "n": 453,
+                "negative_n": 403,
+                "positive_n": 50
+              },
+              "h4": {
+                "auc": 0.6189726658476659,
+                "n": 741,
+                "negative_n": 704,
+                "positive_n": 37
+              }
+            },
+            "shuffle_labels": false,
+            "sidecar_path": "results/stage2/sae_reconstructions/gemma3_27b_infer_subtype_L45_layer_45_width_262k_l0_small_top128_reconstruction.example_ids.jsonl",
+            "solver": "lbfgs",
+            "source_file": "results/full/with_errortype/gemma3_27b_infer_subtype.jsonl",
+            "split_counts": {
+              "test": {
+                "n": 1598,
+                "negative_n": 1281,
+                "positive_n": 317
+              },
+              "train": {
+                "n": 7497,
+                "negative_n": 5913,
+                "positive_n": 1584
+              },
+              "val": {
+                "n": 1642,
+                "negative_n": 1300,
+                "positive_n": 342
+              }
+            },
+            "split_mode": "s3",
+            "status": "ok",
+            "test_auc": 0.8674537095181454,
+            "test_auc_ci": {
+              "alpha": 0.05,
+              "high": 0.8922725769647503,
+              "low": 0.8384465091642691,
+              "mean": 0.8670148796917984,
+              "samples_requested": 1000,
+              "samples_used": 1000
+            },
+            "val_auc": 0.8764035087719299
+          }
+        },
+        "reconstruction_prefix": "results/stage2/sae_reconstructions/gemma3_27b_infer_subtype_L45_layer_45_width_262k_l0_small_top128_reconstruction",
+        "reconstruction_stats": {
+          "elements": 59136000,
+          "energy_explained": 0.9543594453754454,
+          "global_cosine": 0.9794305111270398,
+          "mean_error_l2": 11107.38225,
+          "mean_raw_l2": 52001.71436363636,
+          "mean_reconstruction_l2": 54590.85590909091,
+          "mean_row_cosine": 0.9795871165882457,
+          "mse": 23014.634181818183,
+          "relative_error_l2": 0.21363650115220145,
+          "rmse": 151.70574867755732,
+          "rows": 11000
+        },
+        "sparse_decode_check": {
+          "max_abs_diff": 256.0,
+          "mean_abs_diff": 0.20073823630809784,
+          "rows": 8
+        }
+      }
+    }
+  },
+  "sae_ids": [
+    "layer_45_width_16k_l0_small",
+    "layer_45_width_262k_l0_small"
+  ],
+  "schema_version": 1,
+  "seed": 20260427,
+  "solver": "lbfgs",
+  "split_family": "s3",
+  "splits_path": "results/stage2/splits.jsonl",
+  "tasks": [
+    "infer_property",
+    "infer_subtype"
+  ],
+  "top_k": 128
+}

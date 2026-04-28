@@ -1,0 +1,142 @@
+{
+  "check_counts": {
+    "failed": 0,
+    "ok": 5,
+    "skipped": 2,
+    "warning": 0
+  },
+  "checks": [
+    {
+      "details": {
+        "expected_rows": 11000,
+        "expected_sha256": "22787b5fbc315f257264a5cab9277ea005f5dbe8cbfe675ce6fe3f1c8197b570",
+        "jsonl_path": "results/full/with_errortype/gemma3_27b_infer_property.jsonl",
+        "observed_rows": 11000,
+        "observed_sha256": "22787b5fbc315f257264a5cab9277ea005f5dbe8cbfe675ce6fe3f1c8197b570"
+      },
+      "name": "stage1_jsonl_invariants",
+      "status": "ok"
+    },
+    {
+      "details": {
+        "config_class": "Gemma3Config",
+        "expected_chat_template_sha256": "7de1c58e208eda46e9c7f86397df37ec49883aeece39fb961e0a6b24088dd3c4",
+        "expected_model_revision_hash": "005ad3404e59d6023443cb575daa05336842228a",
+        "expected_tokenizer_revision_hash": "005ad3404e59d6023443cb575daa05336842228a",
+        "local_files_only": true,
+        "model_name": "google/gemma-3-27b-it",
+        "observed_chat_template_sha256": "7de1c58e208eda46e9c7f86397df37ec49883aeece39fb961e0a6b24088dd3c4",
+        "observed_model_revision_hash": "005ad3404e59d6023443cb575daa05336842228a",
+        "observed_tokenizer_revision_hash": "005ad3404e59d6023443cb575daa05336842228a",
+        "tokenizer_class": "GemmaTokenizer"
+      },
+      "name": "model_tokenizer_invariants",
+      "status": "ok"
+    },
+    {
+      "details": {
+        "messages": [
+          {
+            "content": "system\n\nuser",
+            "role": "user"
+          }
+        ],
+        "model_name": "google/gemma-3-27b-it"
+      },
+      "name": "message_builder_contract",
+      "status": "ok"
+    },
+    {
+      "details": {
+        "drop_parse_failed": false,
+        "first_example_id": "property_h4_00000",
+        "first_token_ids_sha256": "0d0d6eddd2f4a85b7fc29dc194a879f9326aa37ecc36af9ff808e33dba6716c9",
+        "height": 4,
+        "limit": 16,
+        "n_ctx": 4096,
+        "row_count": 16,
+        "row_index_first": 6000,
+        "row_index_last": 6015,
+        "skip": 0,
+        "token_count_max": 215,
+        "token_count_mean": 208.25,
+        "token_count_min": 202,
+        "too_long_count": 0,
+        "too_long_row_indices_sample": []
+      },
+      "name": "prompt_encoding",
+      "status": "ok"
+    },
+    {
+      "details": {
+        "activation_dtype": "torch.bfloat16",
+        "activation_shape": [
+          16,
+          5376
+        ],
+        "expected_hook_name": "blocks.30.hook_resid_post",
+        "expected_jsonl_sha256": "22787b5fbc315f257264a5cab9277ea005f5dbe8cbfe675ce6fe3f1c8197b570",
+        "meta_dtype": "torch.bfloat16",
+        "meta_hook_name": "blocks.30.hook_resid_post",
+        "meta_jsonl_sha256": "22787b5fbc315f257264a5cab9277ea005f5dbe8cbfe675ce6fe3f1c8197b570",
+        "meta_row_count": 16,
+        "meta_shape": [
+          16,
+          5376
+        ],
+        "prefix": "results/stage2/pilots/extract_27b_L30_h4/gemma3_27b_infer_property_L30",
+        "sidecar": {
+          "expected_rows": 16,
+          "mismatch_count_sampled": 0,
+          "mismatches": [],
+          "sidecar_rows": 16
+        }
+      },
+      "name": "activation_artifact_L30",
+      "status": "ok"
+    },
+    {
+      "details": {
+        "reason": "requires the original Stage 1 serving stack or a live comparable endpoint"
+      },
+      "name": "stage1_serving_top5_logits",
+      "status": "skipped"
+    },
+    {
+      "details": {
+        "reason": "requires the original Stage 1 serving stack or a live comparable endpoint"
+      },
+      "name": "greedy_output_byte_match",
+      "status": "skipped"
+    }
+  ],
+  "created_at_utc": "2026-04-27T07:21:26.306712+00:00",
+  "errors": [],
+  "inputs": {
+    "activation_dir": "results/stage2/pilots/extract_27b_L30_h4",
+    "drop_parse_failed": false,
+    "height": 4,
+    "hf_cache": "/scratch/scholar/skiron/hf-cache",
+    "invariants_path": "docs/stage2_invariants.json",
+    "jsonl_path": "results/full/with_errortype/gemma3_27b_infer_property.jsonl",
+    "layers": [
+      30
+    ],
+    "limit": 16,
+    "local_files_only": true,
+    "model_key": "gemma3_27b",
+    "model_name": "google/gemma-3-27b-it",
+    "n_ctx": 4096,
+    "skip": 0,
+    "task": null
+  },
+  "prompt_token_count": {
+    "max": 215,
+    "mean": 208.25,
+    "min": 202,
+    "std": 3.6827299656640586
+  },
+  "schema_version": 1,
+  "status": "ok",
+  "warnings": []
+}

@@ -99,3 +99,308 @@ final report is easier to assemble.
   checklist. Removed budget arithmetic, stale alternatives, and verbose
   justification while keeping invariants, measured compute defaults, extraction
   contracts, and deliverables.
+
+### 2026-04-27
+
+#### Stage 2 Phase 0 Controls
+
+- Current execution scope is Gemma 3 27B only; the teammate is handling Gemma 3
+  4B. The new Stage 2 Phase 0 scripts keep `--models`/`--tasks` filters so the
+  same controls can be rerun for 4B later without changing code.
+- Generated `docs/stage2_inventory.json` for 27B only: 22,000 rows across
+  `infer_property` and `infer_subtype`. Warnings: low non-parse negative counts
+  at height 1 for property (37) and subtype (27); high parse-failure rates for
+  property h=2-4 (9.55%, 8.77%, 10.36%) and subtype h=2 (6.75%).
+- Generated `results/stage2/splits.jsonl` and
+  `docs/stage2_splits_summary.json` for 27B only. S1 is evaluable for both
+  tasks and all heights after filtering parse failures.
+- Important caveat: the planned canonical ontology-topology-heldout S2 is not
+  evaluable on the shipped dataset. After anonymizing names, each task/height
+  cell has only one or two topology groups, so S2 cannot form train/val/test
+  heldouts. Do not report S2 probe metrics until the heldout design changes.
+- Ran metadata-only B0 baselines on 27B S1 using local Hugging Face tokenizer
+  prompt lengths. Strongest pre-output baselines: `infer_property` uses
+  `b0_prompt` with test AUC 0.743; `infer_subtype` uses `b0_height` with test
+  AUC 0.841. Activation probes should be interpreted as useful only if they
+  beat these thresholds on the matching task/split.
+- Added focused tests for Stage 2 Phase 0 helpers. The tests cover topology
+  hashes ignoring symbol names, inventory warnings, split assignment coverage,
+  and explicit non-evaluability warnings for degenerate S2 splits.
+
+#### Stage 2 Activation Validation
+
+- Implemented `scripts/validate_activations.py`, which checks Stage 1 JSONL
+  hashes, local model/tokenizer/chat-template invariants, Gemma prompt
+  reconstruction, prompt token counts, and optional activation artifacts
+  (`.safetensors`, `.meta.json`, and `.example_ids.jsonl`).
+- Ran the validator on both 27B Stage 1 JSONLs with local Hugging Face cache and
+  `n_ctx=4096`. Both reports are `ok`: property prompt lengths are 134-223
+  tokens with mean 186.7; subtype prompt lengths are 140-230 tokens with mean
+  192.1.
+- The validator records Stage 1 serving-stack top-5-logit and greedy-output
+  byte-match checks as skipped because they require the original serving stack
+  or a comparable live endpoint. Local extraction should still proceed because
+  hashes, tokenizer revision, chat template, and prompt tokenization pass.
+- Added `scripts/stage2_extract_27b_pilot.sbatch`, a 2x A40 pilot job that
+  extracts layer 30 for 16 height-4 rows from each 27B task, then validates the
+  written activation artifacts. This is the next gate before layer-selection
+  extraction.
+- Pilot job `449831` succeeded on `scholar-j002` from 03:14:18 to 03:25:52 EDT.
+  It extracted layer-30 residuals for 16 height-4 rows from each 27B task and
+  validated both artifact sets. Each safetensors file has shape `[16, 5376]`
+  and dtype bf16; sidecar validation found zero row-order or token-count
+  mismatches.
+- The pilot confirmed the TransformerLens whole-block remapping is working:
+  blocks 0, 1, and 30 were on `cuda:0`, while blocks 31, 60, 61, `ln_final`,
+  and `unembed` were on `cuda:1`. Recorded extraction rates were 2.03 rows/s
+  for property and 5.52 rows/s for subtype on this tiny run.
+- Added `scripts/stage2_probe_raw.py` and
+  `scripts/stage2_layerpilot_27b_h4.sbatch` for the next layer-selection gate.
+  The layer pilot extracts layers 15, 30, and 45 on 512 non-parse height-4 rows
+  per 27B task, validates artifacts, and trains quick logistic probes to write
+  `docs/layer_selection_pilot_27b_h4.json`.
+- Layer-selection job `449832` succeeded on `scholar-j001` from 03:30:37 to
+  03:43:48 EDT. It extracted six pilot files: property/subtype x layers 15, 30,
+  and 45, each with shape `[512, 5376]`, and validation passed for all artifacts.
+  Extraction throughput was about 5.70 rows/s for property and 5.59 rows/s for
+  subtype when capturing three layers.
+- Quick h4-only probe results were inconclusive for choosing one best layer.
+  Property validation favored L45 (val AUC 0.791, test AUC 0.683), while subtype
+  validation also favored L45 but test AUC dropped to 0.5625; subtype holdouts
+  had only four positives each. Decision recorded in `docs/layer_selection.json`:
+  keep the early/mid/late set `[15, 30, 45]` for full 27B extraction.
+- Added `scripts/stage2_extract_27b_full.sbatch` for full 27B raw residual
+  extraction: both tasks, all rows, selected layers 15/30/45, batch size 32,
+  2x A40, followed by full artifact validation reports.
+- Full extraction job `449835` succeeded on `scholar-j002` from 03:47:45 to
+  04:56:55 EDT. It wrote all six 27B raw residual files under
+  `results/stage2/activations/`: property/subtype x layers 15, 30, and 45.
+  Each file has shape `[11000, 5376]`, dtype bf16, and matching sidecars.
+- Full artifact validation passed for both tasks. Property prompt lengths were
+  134-223 tokens, mean 186.7; subtype prompt lengths were 140-230 tokens, mean
+  192.1. Sidecar validation found zero sampled row-order/token-count
+  mismatches. Extraction rates while capturing three layers were 6.34 rows/s for
+  property and 6.19 rows/s for subtype.
+
+#### Stage 2 Raw Residual Probes
+
+- Added split-aware raw probe support so `scripts/stage2_probe_raw.py` can use
+  the precomputed `results/stage2/splits.jsonl` S1 assignments rather than
+  making a fresh random split.
+- Full 27B S1 raw residual probes used layers 15, 30, and 45 with
+  `parse_failed=True` filtered. All selected layers beat the strongest B0
+  metadata baselines on test AUC.
+- Best raw residual layer for both tasks was L45. `infer_property` reached
+  val/test AUC 0.881/0.897, beating the B0 prompt baseline test AUC 0.743 by
+  about +0.153. `infer_subtype` reached val/test AUC 0.917/0.914, beating the
+  B0 height baseline test AUC 0.841 by about +0.073.
+- Per-layer test AUCs increased with depth: property L15/L30/L45 =
+  0.786/0.856/0.897; subtype L15/L30/L45 = 0.854/0.909/0.914.
+- Shuffled-label sanity check stayed near chance. The bounded control used the
+  same layers and S1 split, with `C=1.0` and `max_iter=300`; noisy-label fits
+  hit the iteration cap, but best selected-layer test AUCs were 0.493 for
+  property and 0.481 for subtype.
+- Interpretation for the report: 27B raw residuals contain predictive signal
+  about Stage 1 success beyond height/prompt metadata. This justifies moving to
+  SAE feature extraction/probing, while keeping bootstrap CIs and transfer
+  diagnostics as pending Phase B work.
+- Reran the full 27B S1 raw probes with 1,000 bootstrap samples over heldout
+  examples. L45 property test AUC 0.897 has 95% CI [0.881, 0.912]; L45 subtype
+  test AUC 0.914 has 95% CI [0.896, 0.932]. These intervals remain clearly
+  above the matching B0 thresholds.
+- Per-height diagnostic caveat: h1 heldout cells have only 5 negatives for
+  property and 4 negatives for subtype, so h1 AUCs are unstable and should not
+  be overinterpreted. The deeper-height cells provide more reliable per-height
+  checks.
+- Cross-task transfer is positive but weaker than within-task probing.
+  Property-trained L45 transfers to subtype at target test AUC 0.862, 95% CI
+  [0.837, 0.884]. Subtype-trained L45 transfers to property at target test AUC
+  0.786, 95% CI [0.763, 0.809]. This suggests a shared success/failure signal
+  plus task-specific components.
+- Added an evaluable replacement for the failed topology-heldout S2:
+  target-symbol-heldout S3. The group key is the hypothesis subject
+  (`target_concept` for property, target subtype for subtype), assigned
+  globally per 27B task so train/val/test do not share target symbols across
+  heights. This is not a full name-scrambled regeneration, but it tests whether
+  probes survive unseen target lexical items using existing Stage 1 labels.
+- Regenerated `results/stage2/splits.jsonl` and
+  `docs/stage2_splits_summary.json` with S3. S3 is evaluable for both 27B tasks
+  and all heights; S2 remains non-evaluable and should not be reported as a
+  topology-heldout result.
+- S3 metadata baselines are in `docs/stage2_b0_summary_27b_s3.json`.
+  Strongest pre-output B0 baselines are property `b0_namefreq` test AUC 0.711
+  and subtype `b0_prompt` test AUC 0.859.
+- S3 raw residual probes are in `docs/raw_probe_27b_s3_target_symbol.json`.
+  L45 remains best for both tasks. Property reaches val/test AUC 0.875/0.884,
+  95% CI [0.868, 0.901], beating B0 by +0.173. Subtype reaches val/test AUC
+  0.909/0.917, 95% CI [0.898, 0.934], beating B0 by +0.058.
+- S3 cross-task transfer is positive but weaker than within-task, matching the
+  S1 pattern. Property-trained L45 transfers to subtype at target test AUC
+  0.846, 95% CI [0.823, 0.872]. Subtype-trained L45 transfers to property at
+  target test AUC 0.788, 95% CI [0.766, 0.810].
+- Interpretation update: the main raw-probe claim is stronger after S3. The
+  27B raw L45 correctness signal is not only memorizing repeated target symbols
+  in the random S1 split, though full name-scramble/model-regeneration
+  invariance remains untested.
+
+#### Stage 2 SAE Feature Extraction
+
+- Added cached-residual SAE extraction tooling. The extractor reads a raw
+  residual `.safetensors` file, loads a Gemma Scope SAE through SAE Lens, and
+  writes sparse top-k features (`top_values`, `top_indices`, `l0`) plus a
+  copied sidecar and metadata/checksums.
+- Verified remotely that Gemma Scope 2 has L45 residual SAEs for 27B at both
+  width-16K and width-262K. The local cache initially only had layer-30 SAEs
+  from the earlier measurement job.
+- Pinned the L45 width-16K SAE in `docs/stage2_invariants.json`:
+  `gemma-scope-2-27b-it-res-all/layer_45_width_16k_l0_small`, HF snapshot
+  `5c58dd4cddd52cef653059d85e12a86bf6222a28`, config SHA-256
+  `847532cdf078e129e0dce8efce2bb417b6b29d6afe7762efbf060d5a36caf94a`,
+  params SHA-256
+  `e6aeef8fa7cdf7d7fa9f345a6ded25b55725be54929934910d792acb2bd9a9c4`.
+- SAE pilot job `449999` ran on `scholar-j001` and encoded 512 L45 rows for
+  each 27B task with the width-16K SAE. Both outputs have `top_values` and
+  `top_indices` shape `[512, 128]`, `l0` shape `[512]`, bf16 top values, and
+  int64 top indices.
+- Pilot mean L0 was 17.57 for property and 17.96 for subtype. The property
+  encode loop ran at 285 rows/s, while subtype ran at 2,088 rows/s after the
+  SAE/model path was warm in cache. This supports moving to full L45 width-16K
+  feature extraction before trying width-262K.
+- Full L45 width-16K SAE extraction job `450004` completed for both 27B tasks.
+  Each full feature file has 11,000 rows with `top_values`/`top_indices` shape
+  `[11000, 128]` and `l0` shape `[11000]`. Full-run mean L0 was 14.34 for
+  property and 14.08 for subtype.
+- First SAE probes on L45 width-16K top-128 features beat B0 but are weaker
+  than raw residual probes. Property test AUC was 0.786, 95% CI [0.763, 0.808],
+  compared with B0 0.743 and raw L45 0.897. Subtype test AUC was 0.876, 95% CI
+  [0.852, 0.899], compared with B0 0.841 and raw L45 0.914.
+- Interpretation for the report: sparse Gemma Scope features retain some
+  correctness signal, but top-128 width-16K features do not yet localize the
+  full raw-residual signal. Width-262K and/or more retained features should be
+  tested before selecting features for steering.
+- Pinned the L45 width-262K SAE in `docs/stage2_invariants.json`:
+  `gemma-scope-2-27b-it-res-all/layer_45_width_262k_l0_small`, HF snapshot
+  `5c58dd4cddd52cef653059d85e12a86bf6222a28`, config SHA-256
+  `430435aaaed94f11bad0bab89c6ff4b7ae1ace122df6e9ca4f36e9d5e022667e`,
+  params SHA-256
+  `c2153afab970b0d63c76cc6f40e2dbeb86db8a3604b0bc54aee457b1e01dc757`.
+- Full L45 width-262K SAE extraction initially queued with 120 GB RAM but was
+  resubmitted at 80 GB because an A40 had enough GPU capacity but not 120 GB
+  allocatable node memory. Job `450029` completed on `scholar-j001`.
+- Width-262K full feature files have 11,000 rows with `top_values`/`top_indices`
+  shape `[11000, 128]` and `l0` shape `[11000]`. Mean L0 was 14.54 for property
+  and 14.66 for subtype. The cached params blob is about 11 GB.
+- Width-262K top-128 SAE probes slightly improved property but not subtype:
+  property test AUC 0.806, 95% CI [0.784, 0.828], vs width-16K 0.786 and raw
+  L45 0.897; subtype test AUC 0.870, 95% CI [0.845, 0.895], vs width-16K 0.876
+  and raw L45 0.914.
+- L45 width-16K top-512 diagnostic job `450038` completed on `scholar-j001`.
+  The extracted feature files have `top_values`/`top_indices` shape
+  `[11000, 512]`, but ranks after 128 are all zero. Observed max L0 was 24 for
+  property and 23 for subtype.
+- Top-512 width-16K probes exactly matched top-128: property test AUC 0.786,
+  95% CI [0.763, 0.808]; subtype test AUC 0.876, 95% CI [0.852, 0.899].
+  Existing top-128 files also already cover all nonzero activations for the
+  width-262K SAE, where max L0 was 22 for both tasks.
+- Interpretation update: increasing SAE width alone does not close the raw-SAE
+  gap, and top-k truncation is not the explanation because top-128 already
+  keeps every nonzero active feature for the tested L45 SAEs. Do not spend time
+  on a top-512 width-262K rerun. Next useful checks are feature stability,
+  adjacent-layer probes, and raw-vs-SAE reconstruction/residual diagnostics.
+- Added `scripts/stage2_analyze_sae_features.py` and
+  `src/stage2_feature_stability.py` to inspect L45 SAE top-weight stability.
+  The script refits the saved-best-C sparse logistic probes, ranks standardized
+  coefficients, records feature activation densities, measures same-width
+  property/subtype overlap, and compares cross-width top-feature activation
+  patterns by correlation.
+- `docs/sae_feature_stability_27b_l45_s1.json` reproduces the saved SAE probe
+  metrics after reducing each fit to train-active SAE features only. Effective
+  train-active support is small: 62/46 distinct width-16K features for
+  property/subtype and 82/82 distinct width-262K features, out of nominal
+  widths 16,384 and 262,144.
+- Same-width task overlap is nontrivial. Width-16K has four same-sign top-10
+  overlap features across property/subtype (`1096`, `19`, `180`, `4329`) and
+  14 same-sign overlaps in the top-25 set. Width-262K also has four same-sign
+  top-10 overlaps (`368`, `160112`, `64600`, `9994`) and six same-sign overlaps
+  in the top-25 set.
+- Cross-width feature correspondence is partial rather than clean. Among top
+  width-16K features, 16/50 for property and 17/46 for subtype have a best
+  width-262K activation-pattern match with abs correlation at least 0.5. This
+  gives candidate feature pairs but does not yet establish a localized
+  mechanism, especially because several high-weight features are dense across
+  examples.
+- Added `scripts/stage2_sae_reconstruction_diagnostics.py`,
+  `src/stage2_reconstruction.py`, and
+  `scripts/stage2_sae_reconstruct_27b_L45.sbatch` for raw-vs-SAE
+  reconstruction diagnostics. The script reconstructs cached L45 residuals from
+  stored sparse top-k SAE activations, writes reconstruction and
+  raw-minus-reconstruction error activation files, then trains the same dense
+  S1 probes on both components.
+- Reconstruction job `450072` completed on `scholar-j001`. It wrote the summary
+  artifact `docs/sae_reconstruction_probe_27b_l45_s1.json` plus ignored
+  reconstruction/error activation files under
+  `results/stage2/sae_reconstructions/`. Three dense lbfgs fits emitted
+  max-iteration warnings, consistent with earlier dense raw-probe behavior.
+- L45 SAE reconstructions explain most raw residual energy: 0.948/0.948 for
+  width-16K property/subtype and 0.955/0.954 for width-262K property/subtype.
+  Mean row cosine is about 0.978-0.980.
+- Reconstruction probes track the sparse SAE-feature probes, not the raw probe:
+  width-16K property/subtype reconstruction test AUCs are 0.786/0.877, and
+  width-262K reconstruction test AUCs are 0.806/0.870.
+- Raw-minus-reconstruction error probes recover essentially the full raw L45
+  signal despite the error being only about 4-5% of activation energy. Error
+  test AUCs are 0.894/0.916 for width-16K property/subtype and 0.897/0.915 for
+  width-262K property/subtype, compared with raw L45 test AUCs 0.897/0.914.
+- Interpretation update: the raw-SAE gap is not caused by top-k truncation or
+  by too little reconstructed activation energy. The correctness-predictive
+  direction appears to live mainly in the SAE reconstruction error, so SAE
+  feature steering is not yet the right main causal test without an additional
+  raw-direction or reconstruction-error diagnostic.
+- Ran S3 target-symbol-heldout probes on the cached L45 SAE features. Width-16K
+  test AUCs were 0.799 for property, 95% CI [0.777, 0.820], and 0.865 for
+  subtype, 95% CI [0.838, 0.889]. Width-262K test AUCs were 0.779 for property,
+  95% CI [0.757, 0.802], and 0.867 for subtype, 95% CI [0.839, 0.892].
+  Property stays above the S3 B0 baseline (0.711), but subtype only barely
+  exceeds its stronger S3 B0 baseline (0.859).
+- Added a `--reuse-existing` mode to
+  `scripts/stage2_sae_reconstruction_diagnostics.py` so existing
+  reconstruction/error activation files can be probed on a new split family
+  without re-decoding the SAE features.
+- S3 reconstruction/error probes repeat the S1 conclusion. Reconstruction AUCs
+  track the SAE probes: 16K property/subtype 0.799/0.865 and 262K
+  property/subtype 0.788/0.867. Error probes recover the raw-level S3 signal:
+  16K property/subtype 0.881/0.916 and 262K property/subtype 0.886/0.914,
+  compared with raw L45 S3 property/subtype 0.884/0.917. Several dense lbfgs
+  fits again reached the 2,000-iteration cap, matching the earlier S1 dense
+  diagnostic behavior.
+
+#### Stage 2 Steering Pilot
+
+- Added a raw L45 direction steering pilot for Gemma 3 27B `infer_property`.
+  The script refits the same S1 standardized logistic probe used in
+  `docs/raw_probe_27b_s1.json`, recovers the raw residual-space direction, and
+  applies prompt-only interventions at the final pre-generation L45 residual.
+- TransformerLens 3.0 generation needed two implementation fixes on Scholar:
+  set `BD_PATH=/scratch/scholar/$USER/beyond-deduction` in the Slurm job so
+  generated outputs can be scored on compute nodes, and set PyTorch's default
+  dtype to the model dtype during `model.generate()` so the TL KV cache is bf16
+  rather than float32.
+- The bounded pilot job `450140` ran on `scholar-j001` and wrote
+  `docs/raw_steering_pilot_27b_l45_property.json` plus ignored row-level outputs
+  under `results/stage2/steering/`. It used 8 balanced S1 test rows
+  (h3/h4 x original correct/incorrect), conditions baseline, raw +/-2 SD, and
+  orthogonal-control +/-2 SD, with `max_new_tokens=64`.
+- Pilot result: prompt-only raw L45 steering caused zero strong-correctness
+  flips. Strong accuracy was 3/8 for baseline and 3/8 for every raw and
+  orthogonal condition. The only output change occurred on one h4 row and
+  appeared identically for raw and orthogonal controls, producing one parse
+  failure in every steered condition. Seven of eight rows had byte-identical
+  outputs across all conditions. All generations hit the 64-token cap, so the
+  pilot should be interpreted as a bounded causal/plumbing check rather than a
+  polished generation protocol.
+- Interpretation update: the raw L45 probe direction is predictive but this
+  small prompt-only intervention did not produce direction-specific causal
+  control. The next steering test, if pursued, should change the intervention
+  design rather than simply scaling this exact pilot: likely all-token or
+  later-token steering, a larger strength sweep, and a smaller/faster row set
+  for iteration.

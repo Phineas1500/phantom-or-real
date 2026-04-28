@@ -1,4 +1,465 @@
 {
+  "by_model_task_height": {
+    "gemma3-27b__infer_property": {
+      "h1": {
+        "error_types": {
+          "none": 960,
+          "trivial": 8,
+          "unclassified": 7,
+          "unnecessary": 20,
+          "wrong_direction": 5
+        },
+        "failure_modes": {
+          "none": 997,
+          "parse_error": 3
+        },
+        "n": 1000,
+        "negative_n": 40,
+        "non_parse_failed_n": 997,
+        "non_parse_failed_negative_n": 37,
+        "non_parse_failed_positive_n": 960,
+        "non_parse_failed_positive_rate": 0.9628886659979939,
+        "parse_failed_n": 3,
+        "parse_failed_rate": 0.003,
+        "positive_n": 960,
+        "positive_rate": 0.96
+      },
+      "h2": {
+        "error_types": {
+          "hallucinated": 1,
+          "none": 1153,
+          "trivial": 13,
+          "unclassified": 121,
+          "unnecessary": 579,
+          "wrong_direction": 133
+        },
+        "failure_modes": {
+          "none": 1809,
+          "parse_error": 191
+        },
+        "n": 2000,
+        "negative_n": 847,
+        "non_parse_failed_n": 1809,
+        "non_parse_failed_negative_n": 656,
+        "non_parse_failed_positive_n": 1153,
+        "non_parse_failed_positive_rate": 0.6373687119955777,
+        "parse_failed_n": 191,
+        "parse_failed_rate": 0.0955,
+        "positive_n": 1153,
+        "positive_rate": 0.5765
+      },
+      "h3": {
+        "error_types": {
+          "hallucinated": 3,
+          "none": 1177,
+          "trivial": 33,
+          "unclassified": 134,
+          "unnecessary": 1107,
+          "wrong_direction": 546
+        },
+        "failure_modes": {
+          "none": 2737,
+          "parse_error": 263
+        },
+        "n": 3000,
+        "negative_n": 1823,
+        "non_parse_failed_n": 2737,
+        "non_parse_failed_negative_n": 1560,
+        "non_parse_failed_positive_n": 1177,
+        "non_parse_failed_positive_rate": 0.4300328827183047,
+        "parse_failed_n": 263,
+        "parse_failed_rate": 0.08766666666666667,
+        "positive_n": 1177,
+        "positive_rate": 0.3923333333333333
+      },
+      "h4": {
+        "error_types": {
+          "hallucinated": 8,
+          "none": 1320,
+          "trivial": 51,
+          "unclassified": 312,
+          "unnecessary": 1783,
+          "wrong_direction": 1526
+        },
+        "failure_modes": {
+          "none": 4482,
+          "parse_error": 518
+        },
+        "n": 5000,
+        "negative_n": 3680,
+        "non_parse_failed_n": 4482,
+        "non_parse_failed_negative_n": 3162,
+        "non_parse_failed_positive_n": 1320,
+        "non_parse_failed_positive_rate": 0.29451137884872824,
+        "parse_failed_n": 518,
+        "parse_failed_rate": 0.1036,
+        "positive_n": 1320,
+        "positive_rate": 0.264
+      }
+    },
+    "gemma3-27b__infer_subtype": {
+      "h1": {
+        "error_types": {
+          "none": 973,
+          "trivial": 2,
+          "unclassified": 3,
+          "unnecessary": 1,
+          "wrong_direction": 21
+        },
+        "failure_modes": {
+          "none": 1000
+        },
+        "n": 1000,
+        "negative_n": 27,
+        "non_parse_failed_n": 1000,
+        "non_parse_failed_negative_n": 27,
+        "non_parse_failed_positive_n": 973,
+        "non_parse_failed_positive_rate": 0.973,
+        "parse_failed_n": 0,
+        "parse_failed_rate": 0.0,
+        "positive_n": 973,
+        "positive_rate": 0.973
+      },
+      "h2": {
+        "error_types": {
+          "hallucinated": 1,
+          "none": 650,
+          "trivial": 11,
+          "unclassified": 45,
+          "unnecessary": 590,
+          "wrong_direction": 703
+        },
+        "failure_modes": {
+          "none": 1865,
+          "parse_error": 135
+        },
+        "n": 2000,
+        "negative_n": 1350,
+        "non_parse_failed_n": 1865,
+        "non_parse_failed_negative_n": 1215,
+        "non_parse_failed_positive_n": 650,
+        "non_parse_failed_positive_rate": 0.3485254691689008,
+        "parse_failed_n": 135,
+        "parse_failed_rate": 0.0675,
+        "positive_n": 650,
+        "positive_rate": 0.325
+      },
+      "h3": {
+        "error_types": {
+          "hallucinated": 2,
+          "none": 343,
+          "trivial": 28,
+          "unclassified": 193,
+          "unnecessary": 504,
+          "wrong_direction": 1930
+        },
+        "failure_modes": {
+          "none": 2941,
+          "parse_error": 59
+        },
+        "n": 3000,
+        "negative_n": 2657,
+        "non_parse_failed_n": 2941,
+        "non_parse_failed_negative_n": 2598,
+        "non_parse_failed_positive_n": 343,
+        "non_parse_failed_positive_rate": 0.11662699761985719,
+        "parse_failed_n": 59,
+        "parse_failed_rate": 0.019666666666666666,
+        "positive_n": 343,
+        "positive_rate": 0.11433333333333333
+      },
+      "h4": {
+        "error_types": {
+          "hallucinated": 21,
+          "none": 277,
+          "trivial": 43,
+          "unclassified": 342,
+          "unnecessary": 774,
+          "wrong_direction": 3543
+        },
+        "failure_modes": {
+          "none": 4931,
+          "parse_error": 69
+        },
+        "n": 5000,
+        "negative_n": 4723,
+        "non_parse_failed_n": 4931,
+        "non_parse_failed_negative_n": 4654,
+        "non_parse_failed_positive_n": 277,
+        "non_parse_failed_positive_rate": 0.05617521800851754,
+        "parse_failed_n": 69,
+        "parse_failed_rate": 0.0138,
+        "positive_n": 277,
+        "positive_rate": 0.0554
+      }
+    }
+  },
+  "created_at_utc": "2026-04-27T06:57:14.222636+00:00",
+  "files": {
+    "results/full/with_errortype/gemma3_27b_infer_property.jsonl": {
+      "bytes": 30179592,
+      "rows": 11000,
+      "sha256": "22787b5fbc315f257264a5cab9277ea005f5dbe8cbfe675ce6fe3f1c8197b570"
+    },
+    "results/full/with_errortype/gemma3_27b_infer_subtype.jsonl": {
+      "bytes": 30628541,
+      "rows": 11000,
+      "sha256": "9430dd767916469d3ffea35aab3f525e3c27889cc5275ca0e70a60ec365dcd6a"
+    },
+    "results/full/with_errortype/gemma3_4b_infer_property.jsonl": {
+      "bytes": 28571858,
+      "rows": 11000,
+      "sha256": "7637e0a8a2e80351ce8573199f7a1477acf4e6b94775c709f4391086ac7f7224"
+    },
+    "results/full/with_errortype/gemma3_4b_infer_subtype.jsonl": {
+      "bytes": 29032410,
+      "rows": 11000,
+      "sha256": "7de7ea604a5f4f6f2318056ff56c5a457eb0c8a82741f0325378d8925c6fa205"
+    }
+  },
+  "filters": {
+    "models": [
+      "gemma3-27b"
+    ],
+    "tasks": "all"
+  },
+  "low_class_threshold": 100,
+  "per_cell_counts": [
+    {
+      "count": 37,
+      "height": 1,
+      "is_correct_strong": false,
+      "model": "gemma3-27b",
+      "parse_failed": false,
+      "task": "infer_property"
+    },
+    {
+      "count": 960,
+      "height": 1,
+      "is_correct_strong": true,
+      "model": "gemma3-27b",
+      "parse_failed": false,
+      "task": "infer_property"
+    },
+    {
+      "count": 3,
+      "height": 1,
+      "is_correct_strong": false,
+      "model": "gemma3-27b",
+      "parse_failed": true,
+      "task": "infer_property"
+    },
+    {
+      "count": 656,
+      "height": 2,
+      "is_correct_strong": false,
+      "model": "gemma3-27b",
+      "parse_failed": false,
+      "task": "infer_property"
+    },
+    {
+      "count": 1153,
+      "height": 2,
+      "is_correct_strong": true,
+      "model": "gemma3-27b",
+      "parse_failed": false,
+      "task": "infer_property"
+    },
+    {
+      "count": 191,
+      "height": 2,
+      "is_correct_strong": false,
+      "model": "gemma3-27b",
+      "parse_failed": true,
+      "task": "infer_property"
+    },
+    {
+      "count": 1560,
+      "height": 3,
+      "is_correct_strong": false,
+      "model": "gemma3-27b",
+      "parse_failed": false,
+      "task": "infer_property"
+    },
+    {
+      "count": 1177,
+      "height": 3,
+      "is_correct_strong": true,
+      "model": "gemma3-27b",
+      "parse_failed": false,
+      "task": "infer_property"
+    },
+    {
+      "count": 263,
+      "height": 3,
+      "is_correct_strong": false,
+      "model": "gemma3-27b",
+      "parse_failed": true,
+      "task": "infer_property"
+    },
+    {
+      "count": 3162,
+      "height": 4,
+      "is_correct_strong": false,
+      "model": "gemma3-27b",
+      "parse_failed": false,
+      "task": "infer_property"
+    },
+    {
+      "count": 1320,
+      "height": 4,
+      "is_correct_strong": true,
+      "model": "gemma3-27b",
+      "parse_failed": false,
+      "task": "infer_property"
+    },
+    {
+      "count": 518,
+      "height": 4,
+      "is_correct_strong": false,
+      "model": "gemma3-27b",
+      "parse_failed": true,
+      "task": "infer_property"
+    },
+    {
+      "count": 27,
+      "height": 1,
+      "is_correct_strong": false,
+      "model": "gemma3-27b",
+      "parse_failed": false,
+      "task": "infer_subtype"
+    },
+    {
+      "count": 973,
+      "height": 1,
+      "is_correct_strong": true,
+      "model": "gemma3-27b",
+      "parse_failed": false,
+      "task": "infer_subtype"
+    },
+    {
+      "count": 1215,
+      "height": 2,
+      "is_correct_strong": false,
+      "model": "gemma3-27b",
+      "parse_failed": false,
+      "task": "infer_subtype"
+    },
+    {
+      "count": 650,
+      "height": 2,
+      "is_correct_strong": true,
+      "model": "gemma3-27b",
+      "parse_failed": false,
+      "task": "infer_subtype"
+    },
+    {
+      "count": 135,
+      "height": 2,
+      "is_correct_strong": false,
+      "model": "gemma3-27b",
+      "parse_failed": true,
+      "task": "infer_subtype"
+    },
+    {
+      "count": 2598,
+      "height": 3,
+      "is_correct_strong": false,
+      "model": "gemma3-27b",
+      "parse_failed": false,
+      "task": "infer_subtype"
+    },
+    {
+      "count": 343,
+      "height": 3,
+      "is_correct_strong": true,
+      "model": "gemma3-27b",
+      "parse_failed": false,
+      "task": "infer_subtype"
+    },
+    {
+      "count": 59,
+      "height": 3,
+      "is_correct_strong": false,
+      "model": "gemma3-27b",
+      "parse_failed": true,
+      "task": "infer_subtype"
+    },
+    {
+      "count": 4654,
+      "height": 4,
+      "is_correct_strong": false,
+      "model": "gemma3-27b",
+      "parse_failed": false,
+      "task": "infer_subtype"
+    },
+    {
+      "count": 277,
+      "height": 4,
+      "is_correct_strong": true,
+      "model": "gemma3-27b",
+      "parse_failed": false,
+      "task": "infer_subtype"
+    },
+    {
+      "count": 69,
+      "height": 4,
+      "is_correct_strong": false,
+      "model": "gemma3-27b",
+      "parse_failed": true,
+      "task": "infer_subtype"
+    }
+  ],
+  "schema_version": 1,
+  "total_rows": 22000,
+  "warnings": [
+    {
+      "count": 37,
+      "height": 1,
+      "label": "negative",
+      "model": "gemma3-27b",
+      "task": "infer_property",
+      "threshold": 100,
+      "type": "low_non_parse_class_count"
+    },
+    {
+      "height": 2,
+      "model": "gemma3-27b",
+      "parse_failed_rate": 0.0955,
+      "task": "infer_property",
+      "type": "high_parse_failure_rate"
+    },
+    {
+      "height": 3,
+      "model": "gemma3-27b",
+      "parse_failed_rate": 0.08766666666666667,
+      "task": "infer_property",
+      "type": "high_parse_failure_rate"
+    },
+    {
+      "height": 4,
+      "model": "gemma3-27b",
+      "parse_failed_rate": 0.1036,
+      "task": "infer_property",
+      "type": "high_parse_failure_rate"
+    },
+    {
+      "count": 27,
+      "height": 1,
+      "label": "negative",
+      "model": "gemma3-27b",
+      "task": "infer_subtype",
+      "threshold": 100,
+      "type": "low_non_parse_class_count"
+    },
+    {
+      "height": 2,
+      "model": "gemma3-27b",
+      "parse_failed_rate": 0.0675,
+      "task": "infer_subtype",
+      "type": "high_parse_failure_rate"
+    }
+  ],
   "low_count_threshold": 100,
   "low_count_cells": [
     {
