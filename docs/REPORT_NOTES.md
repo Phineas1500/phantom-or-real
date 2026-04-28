@@ -428,3 +428,24 @@ final report is easier to assemble.
   `blocks.{layer}.ln2_post.hook_normalized`, matching Gemma 3's
   post-feedforward layernorm output used by the Gemma Scope `mlp_out_all`
   configs.
+- Scholar job `451090` completed the L45 MLP-output site pilot on
+  `scholar-j000`. Raw L45 `mlp_out` activations carry essentially the same
+  correctness signal as raw residuals: S1 property/subtype test AUCs
+  0.895/0.916 and S3 property/subtype test AUCs 0.892/0.915.
+- The Gemma Scope 2 L45 `mlp_out_all` width-16K SAE does not recover that
+  signal. MLP-out SAE test AUCs were S1 property/subtype 0.577/0.674 and S3
+  property/subtype 0.550/0.702. This is weaker than the residual SAE result,
+  not stronger.
+- Interpretation update: the raw correctness signal is present at the
+  post-MLP site, but the tested MLP-output sparse dictionary exposes little of
+  it. This argues against spending project time on a broad Gemma Scope sweep or
+  a crosscoder pilot unless there is a separate reason; the strongest current
+  result remains that sparse Gemma Scope dictionaries tested so far miss a
+  behaviorally important direction that raw activations expose.
+- GORMAN access works through `queue.cs.purdue.edu` with the dedicated SSH key.
+  The cluster has two `gorman-gpu` DGX-1 nodes, each with 8x Tesla V100 SXM2
+  32GB and 512 GB RAM. A tiny diagnostic job `9883` verified `nvidia-smi` on
+  `gorman2`; job `9884` verified a scratch Python venv with
+  `torch==2.11.0+cu126` and `transformer-lens==3.0.0` can see a V100. A
+  4-GPU 27B fp16 load pilot was submitted as `9885` but canceled because it was
+  scheduled for May 1 and Scholar had already completed the MLP-site run.

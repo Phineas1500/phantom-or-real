@@ -265,11 +265,12 @@ def _capture_hook(
     layer: int,
     captured: dict[int, torch.Tensor],
     last_positions: list[int],
+    output_dtype: torch.dtype = torch.bfloat16,
 ):
     def capture_last_position(act: torch.Tensor, hook) -> None:  # noqa: ARG001
         positions = torch.tensor(last_positions, device=act.device)
         batch_indices = torch.arange(len(last_positions), device=act.device)
-        captured[layer] = act[batch_indices, positions, :].detach().to("cpu", dtype=torch.bfloat16)
+        captured[layer] = act[batch_indices, positions, :].detach().to("cpu", dtype=output_dtype)
 
     return capture_last_position
 
@@ -281,6 +282,7 @@ def extract_residual_activations(
     layers: list[int],
     batch_size: int,
     hook_template: str = DEFAULT_HOOK_TEMPLATE,
+    output_dtype: torch.dtype = torch.bfloat16,
 ) -> tuple[dict[int, torch.Tensor], list[dict[str, Any]], dict[str, Any]]:
     """Extract last-pre-CoT activations for all requested layers."""
     if batch_size <= 0:
@@ -307,7 +309,15 @@ def extract_residual_activations(
             )
             captured: dict[int, torch.Tensor] = {}
             fwd_hooks = [
-                (hook_name, _capture_hook(layer=layer, captured=captured, last_positions=last_positions))
+                (
+                    hook_name,
+                    _capture_hook(
+                        layer=layer,
+                        captured=captured,
+                        last_positions=last_positions,
+                        output_dtype=output_dtype,
+                    ),
+                )
                 for layer, hook_name in zip(layers, hooks, strict=True)
             ]
             model.run_with_hooks(
@@ -429,6 +439,8 @@ def run_extraction(
     load_mode: str = "no-processing",
     activation_site: str = DEFAULT_ACTIVATION_SITE,
     hook_template: str = DEFAULT_HOOK_TEMPLATE,
+    dtype: torch.dtype = torch.bfloat16,
+    output_dtype: torch.dtype = torch.bfloat16,
 ) -> list[Path]:
     """Load the TL model, extract activations, and write Stage 2 artifacts."""
     rows = read_stage1_rows(
@@ -445,7 +457,7 @@ def run_extraction(
         model_name,
         n_devices=n_devices,
         n_ctx=n_ctx,
-        dtype=torch.bfloat16,
+        dtype=dtype,
         load_mode=load_mode,
     )
     examples = encode_stage1_rows(rows, tokenizer=model.tokenizer, model_name=model_name)
@@ -463,6 +475,7 @@ def run_extraction(
         layers=layers,
         batch_size=batch_size,
         hook_template=hook_template,
+        output_dtype=output_dtype,
     )
     normalized_site = normalize_activation_site(activation_site)
     metadata = {
@@ -479,7 +492,8 @@ def run_extraction(
         "n_devices": n_devices,
         "n_ctx": n_ctx,
         "load_mode": load_mode,
-        "dtype": "torch.bfloat16",
+        "dtype": str(dtype),
+        "output_dtype": str(output_dtype),
         "row_count": len(examples),
         "drop_parse_failed": drop_parse_failed,
         "height": height,

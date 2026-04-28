@@ -114,6 +114,13 @@ As of 2026-04-27:
   not a broad artifact sweep. It uses `mlp_out_all/layer_45_width_16k_l0_small`
   and extracts `blocks.{layer}.ln2_post.hook_normalized` into
   site-suffixed activation files.
+- Scholar job `451090` completed the L45 MLP-output site pilot. Raw same-site
+  probes match raw residual strength, but the L45 MLP-output width-16K SAE is
+  much weaker than the residual SAEs.
+- GORMAN access is configured through `queue.cs.purdue.edu`. A scratch venv
+  with CUDA 12.6 PyTorch and TransformerLens imports on a V100, so GORMAN is a
+  plausible fallback for 27B fp16 extraction. It is not needed for the current
+  MLP-site result because Scholar completed job `451090`.
 
 Measured jobs:
 
@@ -626,13 +633,14 @@ Targeted Gemma Scope site pilot:
   pilot. It extracts L45 `mlp_out` activations for both 27B tasks, encodes
   `gemma-scope-2-27b-it-mlp-all/layer_45_width_16k_l0_small`, and writes raw
   same-site plus sparse SAE S1/S3 probe summaries.
-- The purpose is to answer one question: does an MLP-site sparse dictionary
-  expose more of the correctness signal than the tested residual SAEs? If it
-  does not, skip crosscoders and keep the report focused on the stronger
-  residual-SAE reconstruction-error finding.
-- Crosscoders should be attempted only if this site pilot suggests sparse
-  non-residual artifacts recover substantially more signal. Any crosscoder
-  pilot needs a fair raw-concat baseline over the same layer set.
+- Result: the MLP site itself carries the signal, but the MLP-output SAE does
+  not. Raw L45 `mlp_out` test AUCs were S1 property/subtype 0.895/0.916 and S3
+  property/subtype 0.892/0.915. The width-16K MLP-output SAE reached only
+  0.577/0.674 on S1 and 0.550/0.702 on S3.
+- Interpretation: non-residual site features do not rescue the SAE story. Do
+  not spend project time on a crosscoder pilot unless the report needs it as a
+  clearly labeled future-work check; any such pilot would need a raw-concat
+  baseline over the same layer set.
 
 Outputs:
 
@@ -644,11 +652,9 @@ Outputs:
 - `docs/sae_probe_27b_l45_262k_s3_target_symbol.json`;
 - `docs/sae_reconstruction_probe_27b_l45_s3_target_symbol.json`;
 - `docs/raw_probe_27b_l45_mlp_out_s1.json` and
-  `docs/raw_probe_27b_l45_mlp_out_s3_target_symbol.json` if the MLP site pilot
-  completes;
+  `docs/raw_probe_27b_l45_mlp_out_s3_target_symbol.json`;
 - `docs/sae_probe_27b_l45_mlp_out_16k_s1.json` and
-  `docs/sae_probe_27b_l45_mlp_out_16k_s3_target_symbol.json` if the MLP site
-  pilot completes;
+  `docs/sae_probe_27b_l45_mlp_out_16k_s3_target_symbol.json`;
 - `results/stage2/stable_features.json` if a later pass selects a steering set.
 
 ## Phase E: Steering Validation
@@ -768,8 +774,8 @@ Phase C/D:
 - [x] L45 width-16K/262K reconstruction/error probe diagnostic.
 - [x] L45 width-16K/262K S3 target-symbol SAE probe metrics.
 - [x] L45 width-16K/262K S3 reconstruction/error probe diagnostic.
-- [ ] L45 MLP-output width-16K site pilot.
-- [ ] Additional SAE release IDs pinned.
+- [x] L45 MLP-output width-16K site pilot.
+- [x] Additional SAE release IDs pinned.
 - [ ] SAE feature extraction complete.
 - [ ] Broader SAE probe metrics.
 - [ ] Stable feature set selected.

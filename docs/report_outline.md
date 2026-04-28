@@ -66,6 +66,10 @@ SAEs can still miss the signal that matters for prediction.
   features in tested L45 residual SAEs.
 - Reconstruction/error diagnostic is the pivot result: about 95% energy
   reconstructed, but error probes recover raw-level AUC.
+- L45 MLP-output raw activations also carry raw-level signal, but the
+  MLP-output width-16K SAE is weak. This supports the interpretation that the
+  sparse dictionaries tested here miss the predictive direction rather than the
+  signal existing only at one residual site.
 - Steering pilot is null/inconclusive, not a causal success claim.
 
 ## 6. Discussion
@@ -77,9 +81,8 @@ SAEs can still miss the signal that matters for prediction.
   mechanistic claims: high reconstruction energy does not imply retention of a
   behaviorally relevant direction.
 - S3 heldout target symbols reduce but do not eliminate lexical-confound risk.
-- Future work: a targeted Gemma Scope site pilot with MLP/transcoder artifacts,
-  a fair crosscoder pilot with raw-concat baseline, and a stronger steering
-  protocol.
+- Future work: a fair crosscoder pilot with raw-concat baseline, alternative
+  sparse dictionaries, and a stronger steering protocol.
 
 ## Core Tables/Figures
 
@@ -87,6 +90,7 @@ SAEs can still miss the signal that matters for prediction.
 - Table 2: B0 vs raw L45 probes on S1/S3.
 - Table 3: raw vs residual SAE probes on S1/S3.
 - Table 4: reconstruction vs error probes.
+- Small table: MLP-output raw vs MLP-output SAE pilot.
 - Small appendix table: steering pilot summary and null result.
 
 ## One-Sentence Abstract Candidate

@@ -7,10 +7,19 @@ import argparse
 import sys
 from pathlib import Path
 
+import torch
+
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from src.activations import parse_int_list, run_extraction  # noqa: E402
 from src.env_loader import load_env  # noqa: E402
+
+
+def torch_dtype(name: str) -> torch.dtype:
+    try:
+        return getattr(torch, name)
+    except AttributeError as exc:
+        raise ValueError(f"unknown torch dtype {name!r}") from exc
 
 
 def main() -> None:
@@ -28,6 +37,8 @@ def main() -> None:
     parser.add_argument("--out-dir", type=Path, default=Path("results/stage2/activations"))
     parser.add_argument("--activation-site", default="resid_post")
     parser.add_argument("--hook-template", default="blocks.{layer}.hook_resid_post")
+    parser.add_argument("--dtype", default="bfloat16")
+    parser.add_argument("--output-dtype", default="bfloat16")
     parser.add_argument("--height", type=int, default=None)
     parser.add_argument("--limit", type=int, default=None)
     parser.add_argument("--skip", type=int, default=0)
@@ -47,6 +58,8 @@ def main() -> None:
         out_dir=args.out_dir,
         activation_site=args.activation_site,
         hook_template=args.hook_template,
+        dtype=torch_dtype(args.dtype),
+        output_dtype=torch_dtype(args.output_dtype),
         height=args.height,
         limit=args.limit,
         skip=args.skip,

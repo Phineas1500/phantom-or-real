@@ -71,6 +71,25 @@ Interpretation: residual SAE features retain some predictive signal, but they
 trail raw residual probes. On S3 subtype they only barely clear the stronger B0
 baseline.
 
+## MLP-Output Site Pilot
+
+The L45 post-MLP site was extracted at
+`blocks.45.ln2_post.hook_normalized` and probed with the same S1/S3 splits. The
+raw MLP-output activations carry essentially the same signal as raw residuals,
+but the Gemma Scope 2 `mlp_out_all` width-16K SAE exposes little of it.
+
+| Split | Task | Raw `mlp_out` AUC | MLP-out SAE 16K AUC | Raw residual L45 AUC |
+| --- | --- | ---: | ---: | ---: |
+| S1 random | `infer_property` | 0.895 | 0.577 | 0.897 |
+| S1 random | `infer_subtype` | 0.916 | 0.674 | 0.914 |
+| S3 target-symbol heldout | `infer_property` | 0.892 | 0.550 | 0.884 |
+| S3 target-symbol heldout | `infer_subtype` | 0.915 | 0.702 | 0.917 |
+
+Interpretation: moving from residual stream to MLP-output activations does not
+rescue the tested sparse dictionary story. The behaviorally relevant signal is
+visible in raw activations at multiple sites, but not well exposed by the
+tested Gemma Scope residual or MLP-output sparse features.
+
 ## Reconstruction/Error Diagnostic
 
 | Split | Task | SAE width | Energy explained | Reconstruction AUC | Error AUC | Raw L45 AUC |

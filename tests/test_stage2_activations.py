@@ -100,6 +100,7 @@ def test_write_activation_outputs_creates_safetensors_sidecar_and_meta(tmp_path:
     meta = json.loads(prefix.with_suffix(".meta.json").read_text())
     assert meta["shape"] == [2, 3]
     assert meta["hook_name"] == "blocks.30.hook_resid_post"
+    assert meta["dtype"] == "torch.bfloat16"
 
 
 def test_write_activation_outputs_can_use_named_non_residual_site(tmp_path: Path) -> None:
