@@ -30,7 +30,7 @@ def main() -> None:
     parser.add_argument("--summary", type=Path, default=Path("docs/stage2_b0_summary.json"))
     parser.add_argument("--hf-cache", type=Path, default=None)
     parser.add_argument("--length-mode", choices=["tokenizer", "whitespace"], default="tokenizer")
-    parser.add_argument("--split-families", nargs="+", choices=["s1", "s2"], default=None)
+    parser.add_argument("--split-families", nargs="+", choices=["s1", "s2", "s3"], default=None)
     parser.add_argument("--models", nargs="+", default=None)
     parser.add_argument("--tasks", nargs="+", default=None)
     args = parser.parse_args()

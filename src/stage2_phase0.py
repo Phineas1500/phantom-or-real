@@ -15,7 +15,7 @@ from typing import Any
 
 SPLIT_FRACTIONS = {"train": 0.70, "val": 0.15, "test": 0.15}
 SPLITS = tuple(SPLIT_FRACTIONS)
-SPLIT_FAMILY_FIELDS = {"s1": "s1_split", "s2": "s2_split"}
+SPLIT_FAMILY_FIELDS = {"s1": "s1_split", "s2": "s2_split", "s3": "s3_split"}
 FEATURE_SETS = ("b0_height", "b0_prompt", "b0_namefreq")
 
 
@@ -266,6 +266,21 @@ def canonical_topology_hash(row: dict[str, Any]) -> str:
     return stable_hash(canonical_topology(row), length=16)
 
 
+def target_symbol(row: dict[str, Any]) -> str:
+    """Return the main target symbol for lexical heldout diagnostics.
+
+    For both in-scope tasks this is the hypothesis subject: the property task's
+    target concept, or the subtype task's predicted subtype. Holding this
+    symbol out globally tests whether a probe survives unseen target names
+    without requiring a new generation run.
+    """
+    hypothesis = row["ontology_fol_structured"].get("hypothesis", {})
+    subject = hypothesis.get("subject") or row.get("structural", {}).get("target_concept")
+    if not subject:
+        raise ValueError(f"row has no hypothesis subject or target_concept: {row.get('example_id')}")
+    return str(subject).lower()
+
+
 def _seed_for(seed: int, *parts: Any) -> int:
     return int(stable_hash([seed, *parts], length=8), 16)
 
@@ -305,6 +320,34 @@ def _group_counts(records: list[dict[str, Any]]) -> dict[str, int]:
         "positive": sum(record["is_correct_strong"] for record in records),
         "negative": sum(not record["is_correct_strong"] for record in records),
     }
+
+
+def _balanced_count_keys(records: list[dict[str, Any]]) -> list[str]:
+    keys = ["n", "positive", "negative"]
+    for height in sorted({record["height"] for record in records}):
+        keys.extend(
+            [
+                f"h{height}_n",
+                f"h{height}_positive",
+                f"h{height}_negative",
+            ]
+        )
+    return keys
+
+
+def _balanced_group_counts(records: list[dict[str, Any]], keys: list[str]) -> dict[str, int]:
+    counts = {key: 0 for key in keys}
+    counts["n"] = len(records)
+    counts["positive"] = sum(record["is_correct_strong"] for record in records)
+    counts["negative"] = len(records) - counts["positive"]
+    for record in records:
+        height = record["height"]
+        counts[f"h{height}_n"] += 1
+        if record["is_correct_strong"]:
+            counts[f"h{height}_positive"] += 1
+        else:
+            counts[f"h{height}_negative"] += 1
+    return counts
 
 
 def _score_group_candidate(
@@ -362,16 +405,64 @@ def _group_heldout_split(records: list[dict[str, Any]], *, seed: int) -> dict[st
     return {record["row_id"]: group_assignment[record["topology_hash"]] for record in records}
 
 
+def _target_symbol_heldout_split(records: list[dict[str, Any]], *, seed: int) -> dict[str, str]:
+    groups: dict[str, list[dict[str, Any]]] = defaultdict(list)
+    for record in records:
+        groups[record["target_symbol"]].append(record)
+
+    if len(groups) < 3:
+        return {record["row_id"]: "train" for record in records}
+
+    keys = _balanced_count_keys(records)
+    total = _balanced_group_counts(records, keys)
+    target_counts = {
+        split: {key: total[key] * frac for key in keys}
+        for split, frac in SPLIT_FRACTIONS.items()
+    }
+    split_counts = {split: {key: 0 for key in keys} for split in SPLITS}
+
+    group_items = list(groups.items())
+    rng = random.Random(_seed_for(seed, "s3", records[0]["model"], records[0]["task"]))
+    rng.shuffle(group_items)
+    group_items.sort(key=lambda item: len(item[1]), reverse=True)
+
+    group_assignment = {}
+    for symbol, group_records in group_items:
+        group_count = _balanced_group_counts(group_records, keys)
+        def candidate_score(candidate_split: str) -> float:
+            score = 0.0
+            for split in SPLITS:
+                for key in keys:
+                    candidate_value = split_counts[split][key]
+                    if split == candidate_split:
+                        candidate_value += group_count[key]
+                    score += abs(candidate_value - target_counts[split][key]) / max(total[key], 1)
+            return score
+
+        best_split = min(SPLITS, key=candidate_score)
+        group_assignment[symbol] = best_split
+        for key in keys:
+            split_counts[best_split][key] += group_count[key]
+
+    return {record["row_id"]: group_assignment[record["target_symbol"]] for record in records}
+
+
 def make_split_assignments(records: list[dict[str, Any]], *, seed: int) -> list[dict[str, Any]]:
     grouped: dict[tuple[str, str, int], list[dict[str, Any]]] = defaultdict(list)
+    grouped_by_task: dict[tuple[str, str], list[dict[str, Any]]] = defaultdict(list)
     for record in records:
         grouped[(record["model"], record["task"], record["height"])].append(record)
+        record["target_symbol"] = target_symbol(record["row"])
+        grouped_by_task[(record["model"], record["task"])].append(record)
 
     s1: dict[str, str] = {}
     s2: dict[str, str] = {}
+    s3: dict[str, str] = {}
     for _cell, cell_records in sorted(grouped.items()):
         s1.update(_stratified_row_split(cell_records, seed=seed))
         s2.update(_group_heldout_split(cell_records, seed=seed))
+    for _cell, cell_records in sorted(grouped_by_task.items()):
+        s3.update(_target_symbol_heldout_split(cell_records, seed=seed))
 
     assignments = []
     for record in records:
@@ -386,8 +477,10 @@ def make_split_assignments(records: list[dict[str, Any]], *, seed: int) -> list[
                 "is_correct_strong": record["is_correct_strong"],
                 "parse_failed": record["parse_failed"],
                 "topology_hash": record["topology_hash"],
+                "target_symbol": record["target_symbol"],
                 "s1_split": s1[record["row_id"]],
                 "s2_split": s2[record["row_id"]],
+                "s3_split": s3[record["row_id"]],
             }
         )
     return assignments
@@ -423,6 +516,7 @@ def summarize_split_assignments(assignments: list[dict[str, Any]]) -> dict[str, 
                         for row in subset
                     ),
                     "topology_group_n": len({row["topology_hash"] for row in subset}),
+                    "target_symbol_group_n": len({row.get("target_symbol") for row in subset}),
                 }
             is_evaluable = all(
                 split_counts[split]["non_parse_positive_n"] > 0
@@ -444,6 +538,7 @@ def summarize_split_assignments(assignments: list[dict[str, Any]]) -> dict[str, 
                 "is_evaluable": is_evaluable,
                 "split_counts": split_counts,
                 "topology_group_n": len({row["topology_hash"] for row in rows}),
+                "target_symbol_group_n": len({row.get("target_symbol") for row in rows}),
             }
         summary["families"][family] = family_summary
     return summary
@@ -478,8 +573,9 @@ def read_split_assignments(path: Path) -> dict[tuple[str, int], dict[str, Any]]:
 def attach_splits(records: list[dict[str, Any]], assignments: dict[tuple[str, int], dict[str, Any]]) -> None:
     for record in records:
         split_row = assignments[(record["source_file"], record["row_index"])]
-        record["s1_split"] = split_row["s1_split"]
-        record["s2_split"] = split_row["s2_split"]
+        for field in SPLIT_FAMILY_FIELDS.values():
+            if field in split_row:
+                record[field] = split_row[field]
 
 
 def row_names(row: dict[str, Any]) -> set[str]:

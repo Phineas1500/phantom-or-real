@@ -217,6 +217,31 @@ final report is easier to assemble.
   [0.837, 0.884]. Subtype-trained L45 transfers to property at target test AUC
   0.786, 95% CI [0.763, 0.809]. This suggests a shared success/failure signal
   plus task-specific components.
+- Added an evaluable replacement for the failed topology-heldout S2:
+  target-symbol-heldout S3. The group key is the hypothesis subject
+  (`target_concept` for property, target subtype for subtype), assigned
+  globally per 27B task so train/val/test do not share target symbols across
+  heights. This is not a full name-scrambled regeneration, but it tests whether
+  probes survive unseen target lexical items using existing Stage 1 labels.
+- Regenerated `results/stage2/splits.jsonl` and
+  `docs/stage2_splits_summary.json` with S3. S3 is evaluable for both 27B tasks
+  and all heights; S2 remains non-evaluable and should not be reported as a
+  topology-heldout result.
+- S3 metadata baselines are in `docs/stage2_b0_summary_27b_s3.json`.
+  Strongest pre-output B0 baselines are property `b0_namefreq` test AUC 0.711
+  and subtype `b0_prompt` test AUC 0.859.
+- S3 raw residual probes are in `docs/raw_probe_27b_s3_target_symbol.json`.
+  L45 remains best for both tasks. Property reaches val/test AUC 0.875/0.884,
+  95% CI [0.868, 0.901], beating B0 by +0.173. Subtype reaches val/test AUC
+  0.909/0.917, 95% CI [0.898, 0.934], beating B0 by +0.058.
+- S3 cross-task transfer is positive but weaker than within-task, matching the
+  S1 pattern. Property-trained L45 transfers to subtype at target test AUC
+  0.846, 95% CI [0.823, 0.872]. Subtype-trained L45 transfers to property at
+  target test AUC 0.788, 95% CI [0.766, 0.810].
+- Interpretation update: the main raw-probe claim is stronger after S3. The
+  27B raw L45 correctness signal is not only memorizing repeated target symbols
+  in the random S1 split, though full name-scramble/model-regeneration
+  invariance remains untested.
 
 #### Stage 2 SAE Feature Extraction
 

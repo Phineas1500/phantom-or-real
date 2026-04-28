@@ -36,12 +36,17 @@ As of 2026-04-27:
   The scripts remain model-filterable so a teammate can run the same controls
   for Gemma 3 4B, but current generated Phase 0 artifacts are 27B-only.
 - `docs/stage2_inventory.json` and `docs/stage2_splits_summary.json` have been
-  generated for Gemma 3 27B. S1 is evaluable for both tasks and all heights.
-  The planned topology-heldout S2 is not evaluable on this shipped dataset
-  because canonical topology leaves only one or two groups per task/height.
+  generated for Gemma 3 27B. S1 and the replacement target-symbol-heldout S3
+  are evaluable for both tasks and all heights. The planned topology-heldout S2
+  is not evaluable on this shipped dataset because canonical topology leaves
+  only one or two groups per task/height.
 - `docs/stage2_b0_summary_27b_s1.json` records 27B S1 metadata baselines.
   Strongest pre-output baselines are AUC 0.743 for `infer_property`
   (`b0_prompt`) and AUC 0.841 for `infer_subtype` (`b0_height`).
+- `docs/stage2_b0_summary_27b_s3.json` records 27B S3 target-symbol-heldout
+  metadata baselines. Strongest pre-output baselines are AUC 0.711 for
+  `infer_property` (`b0_namefreq`) and AUC 0.859 for `infer_subtype`
+  (`b0_prompt`).
 - `scripts/validate_activations.py` validates Stage 2 extraction inputs and
   optional written artifacts. The 27B property and subtype input reports are
   `ok` in `docs/stage2_equivalence_27b_infer_property.json` and
@@ -220,14 +225,18 @@ Required split families:
 - S2: ontology-topology-held-out split. Current implementation records this
   split but marks it non-evaluable for 27B because canonical topology has too
   few groups to form train/val/test holdouts.
-- S3: name-scrambled generalization set, generated later for diagnostics.
+- S3: target-symbol-heldout split. The heldout group is the hypothesis subject
+  (`target_concept` for property and target subtype for subtype), assigned
+  globally per `(model, task)` so train/val/test do not share target symbols.
+  This is an existing-data replacement for the non-evaluable S2, not a full
+  name-scrambled regeneration.
 
 S2 grouping must canonicalize ontology topology rather than raw concept names.
 Record residual class or height imbalance when exact stratification is not
 possible.
 
-Do not report S2 probe metrics until an alternative heldout definition is
-chosen or a richer topology generator produces enough groups.
+Do not report S2 probe metrics unless a richer topology generator produces
+enough groups. Use S3 for the current heldout-symbol generalization diagnostic.
 
 ### 0.4 Metadata Baselines
 
@@ -383,7 +392,8 @@ Train probes on raw residuals for each `(model, task, layer)`.
 
 Probe requirements:
 
-- train on S1 now; add S2 only after the heldout definition is redesigned;
+- train on S1 for the main random-split result and S3 for target-symbol
+  heldout generalization;
 - filter `parse_failed=True` for main analyses;
 - standardize features using train statistics only;
 - report aggregate AUC and per-height AUC;
@@ -408,6 +418,25 @@ evaluates only once on the target-task test split:
 | --- | --- | ---: | ---: | ---: |
 | `infer_property` -> `infer_subtype` | L45 | 0.897 | 0.862 | [0.837, 0.884] |
 | `infer_subtype` -> `infer_property` | L45 | 0.914 | 0.786 | [0.763, 0.809] |
+
+Current 27B S3 target-symbol-heldout metrics:
+
+| Task | B0 threshold | Best raw layer | Val AUC | Test AUC | 95% bootstrap CI | Delta vs B0 |
+| --- | ---: | --- | ---: | ---: | --- | ---: |
+| `infer_property` | 0.711 | L45 | 0.875 | 0.884 | [0.868, 0.901] | +0.173 |
+| `infer_subtype` | 0.859 | L45 | 0.909 | 0.917 | [0.898, 0.934] | +0.058 |
+
+S3 cross-task transfer:
+
+| Direction | Selected layer | Source test AUC | Target test AUC | Target 95% bootstrap CI |
+| --- | --- | ---: | ---: | ---: |
+| `infer_property` -> `infer_subtype` | L45 | 0.884 | 0.846 | [0.823, 0.872] |
+| `infer_subtype` -> `infer_property` | L45 | 0.917 | 0.788 | [0.766, 0.810] |
+
+Interpretation: the raw L45 success/failure signal survives heldout target
+symbols and still beats task-matched metadata baselines. S3 does not prove full
+name-scramble invariance, but it reduces the risk that S1 was driven only by
+repeated target lexical items.
 
 Transfer and comparison:
 
@@ -637,9 +666,10 @@ Phase 0:
 - [ ] GPT judge snapshot pinned if judge calls are used.
 - [x] `docs/stage2_inventory.json` for Gemma 3 27B.
 - [x] `results/stage2/splits.jsonl` for Gemma 3 27B; S1 evaluable, S2 recorded
-  but non-evaluable.
+  but non-evaluable, S3 target-symbol heldout evaluable.
 - [x] B0 metadata baselines for Gemma 3 27B S1.
-- [ ] Redesign or replace S2 before reporting heldout-topology results.
+- [x] B0 metadata baselines for Gemma 3 27B S3.
+- [x] Replace S2 for current reporting with S3 target-symbol heldout.
 - [x] Label-shuffle sanity check.
 
 Phase A:
@@ -657,7 +687,7 @@ Phase B:
 - [x] Raw residual probes for Gemma 3 27B, both tasks, and selected layers.
 - [x] S1 point metrics.
 - [x] Bootstrap confidence intervals for raw residual probes.
-- [ ] S2 metrics only after redesign.
+- [x] S3 target-symbol-heldout raw residual probes.
 - [x] Cross-task transfer tables.
 - [ ] Cross-model comparison tables after teammate 4B results are available.
 - [ ] Diagnostics against prompt length and name scrambling.

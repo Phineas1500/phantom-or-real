@@ -15,6 +15,7 @@ from src.stage2_phase0 import (  # noqa: E402
     make_split_assignments,
     row_names,
     summarize_split_assignments,
+    target_symbol,
     write_jsonl,
 )
 
@@ -83,6 +84,10 @@ def test_row_names_collects_symbols() -> None:
     assert {"alice", "dax", "wug", "quiet"} <= names
 
 
+def test_target_symbol_uses_hypothesis_subject() -> None:
+    assert target_symbol(_row(idx=0, child="dax", parent="wug")) == "wug"
+
+
 def test_inventory_flags_low_classes_and_parse_warnings(tmp_path: Path) -> None:
     path = tmp_path / "rows.jsonl"
     rows = [_row(idx=i, correct=(i == 0), parse_failed=(i in {2, 3})) for i in range(10)]
@@ -114,14 +119,24 @@ def test_split_assignments_cover_every_row_and_attach(tmp_path: Path) -> None:
     assert summary["total_rows"] == len(rows)
     assert {row["s1_split"] for row in assignments} == {"train", "val", "test"}
     assert {row["s2_split"] for row in assignments} <= {"train", "val", "test"}
+    assert {row["s3_split"] for row in assignments} == {"train", "val", "test"}
+    assert all(row["target_symbol"] for row in assignments)
     assert summary["families"]["s1"]["gemma3-4b__infer_property"]["h2"]["is_evaluable"]
     assert not summary["families"]["s2"]["gemma3-4b__infer_property"]["h2"]["is_evaluable"]
+    assert summary["families"]["s3"]["gemma3-4b__infer_property"]["h2"]["is_evaluable"]
     assert any(
         warning["type"] == "split_not_evaluable" and warning["family"] == "s2"
         for warning in summary["warnings"]
     )
+    by_split = {}
+    for row in assignments:
+        by_split.setdefault(row["s3_split"], set()).add(row["target_symbol"])
+    assert by_split["train"].isdisjoint(by_split["val"])
+    assert by_split["train"].isdisjoint(by_split["test"])
+    assert by_split["val"].isdisjoint(by_split["test"])
 
     split_path = tmp_path / "splits.jsonl"
     write_jsonl(split_path, assignments)
     attach_splits(records, {(row["source_file"], row["row_index"]): row for row in assignments})
     assert all(record["s1_split"] for record in records)
+    assert all(record["s3_split"] for record in records)

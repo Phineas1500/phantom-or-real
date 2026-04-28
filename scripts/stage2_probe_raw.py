@@ -27,7 +27,7 @@ def main() -> None:
     parser.add_argument("--seed", type=int, default=20260427)
     parser.add_argument("--keep-parse-failed", action="store_true")
     parser.add_argument("--splits", type=Path, default=None)
-    parser.add_argument("--split-family", choices=("s1", "s2"), default="s1")
+    parser.add_argument("--split-family", choices=("s1", "s2", "s3"), default="s1")
     parser.add_argument("--shuffle-labels", action="store_true")
     parser.add_argument("--c-values", type=parse_float_list, default=(0.01, 0.1, 1.0, 10.0))
     parser.add_argument("--max-iter", type=int, default=2000)
