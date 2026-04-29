@@ -71,7 +71,7 @@ Interpretation: residual SAE features retain some predictive signal, but they
 trail raw residual probes. On S3 subtype they only barely clear the stronger B0
 baseline.
 
-## MLP-Output Site Pilot
+## MLP-Output Site
 
 The L45 post-MLP site was extracted at
 `blocks.45.ln2_post.hook_normalized` and probed with the same S1/S3 splits. The
@@ -79,20 +79,23 @@ raw MLP-output activations carry essentially the same signal as raw residuals,
 but the Gemma Scope 2 `mlp_out_all` width-16K SAE exposes little of it.
 Later exact-hook auditing for the 262K transcoder showed this bare normalized
 site is missing the learned RMSNorm weight relative to `blocks.45.hook_mlp_out`,
-so treat the MLP-output SAE row as exploratory rather than a final negative
-claim about that SAE family.
+so that first MLP-output SAE row is superseded.
 
-| Split | Task | Raw `mlp_out` AUC | MLP-out SAE 16K AUC | Raw residual L45 AUC |
-| --- | --- | ---: | ---: | ---: |
-| S1 random | `infer_property` | 0.895 | 0.577 | 0.897 |
-| S1 random | `infer_subtype` | 0.916 | 0.674 | 0.914 |
-| S3 target-symbol heldout | `infer_property` | 0.892 | 0.550 | 0.884 |
-| S3 target-symbol heldout | `infer_subtype` | 0.915 | 0.702 | 0.917 |
+The exact-hook rerun encodes `blocks.45.hook_mlp_out` with the same
+`mlp_out_all/layer_45_width_16k_l0_small` SAE. Its feature density is no longer
+pathological: mean L0 is about `23.6` for property and `22.5` for subtype,
+compared with exactly `2.0` under the old bare-normalized site.
+
+| Split | Task | Raw exact `mlp_out` AUC | Exact MLP-out SAE 16K AUC | Old MLP-out SAE pilot AUC | Raw residual L45 AUC |
+| --- | --- | ---: | ---: | ---: | ---: |
+| S1 random | `infer_property` | 0.896 | 0.811 | 0.577 | 0.897 |
+| S1 random | `infer_subtype` | 0.916 | 0.878 | 0.674 | 0.914 |
+| S3 target-symbol heldout | `infer_property` | 0.892 | 0.807 | 0.550 | 0.884 |
+| S3 target-symbol heldout | `infer_subtype` | 0.915 | 0.879 | 0.702 | 0.917 |
 
 Interpretation: the behaviorally relevant signal is visible in raw activations
-at multiple sites. The MLP-output SAE pilot should not be over-weighted because
-of the later exact-hook scale finding; the reportable non-residual sparse result
-is the corrected exact 262K transcoder below.
+at multiple sites. Exact-hook MLP-output SAE features are meaningful and roughly
+residual-SAE-like, but still trail raw exact `hook_mlp_out`.
 
 ## Skip-Transcoder Pilot
 
@@ -156,6 +159,28 @@ moderate-to-strong correctness signal. It still does not reach the raw exact
 input/output probes, so it is supporting evidence for partial sparse
 localization rather than a complete sparse mechanism.
 
+## Sparse Feature-Family Concat
+
+We tested whether residual sparse features and corrected exact transcoder
+features are complementary by concatenating sparse top-k matrices and training
+the same split-aware logistic probes.
+
+| Split | Task | Residual 262K + exact TC 262K | All L45 sparse concat | Raw exact `mlp_in` |
+| --- | --- | ---: | ---: | ---: |
+| S1 random | `infer_property` | 0.815 | 0.822 | 0.897 |
+| S1 random | `infer_subtype` | 0.870 | 0.884 | 0.916 |
+| S3 target-symbol heldout | `infer_property` | 0.800 | 0.814 | 0.885 |
+| S3 target-symbol heldout | `infer_subtype` | 0.881 | 0.885 | 0.914 |
+
+`All L45 sparse concat` means residual SAE 16K + residual SAE 262K + exact
+262K transcoder. It is the best sparse-only L45 probe so far, with 95%
+bootstrap CIs of `0.802-0.843`/`0.859-0.906` on S1 property/subtype and
+`0.793-0.836`/`0.861-0.908` on S3 property/subtype.
+
+Interpretation: sparse feature families are complementary, especially for
+property, but the combined sparse representation still trails raw exact
+activations. This narrows the gap a little; it does not erase it.
+
 ## Crosscoder Pilot
 
 Scholar job `451181` completed a bounded 27B crosscoder pilot over residual
@@ -189,17 +214,18 @@ every feature source tried so far.
 | Raw concat L16/31/40/53 | 0.893 | 0.904 | 0.883 | 0.903 |
 | Residual SAE 16K | 0.786 | 0.876 | 0.799 | 0.865 |
 | Residual SAE 262K | 0.806 | 0.870 | 0.779 | 0.867 |
-| MLP-out SAE 16K | 0.577 | 0.674 | 0.550 | 0.702 |
+| MLP-out SAE 16K old bare-norm | 0.577 | 0.674 | 0.550 | 0.702 |
+| Exact MLP-out SAE 16K | 0.811 | 0.878 | 0.807 | 0.879 |
 | Skip-transcoder 16K | 0.722 | 0.821 | 0.722 | 0.841 |
 | Exact transcoder 262K | 0.795 | 0.873 | 0.802 | 0.885 |
+| All L45 sparse concat | 0.822 | 0.884 | 0.814 | 0.885 |
 | Crosscoder 65K | 0.787 | 0.868 | 0.724 | 0.853 |
 
-Interpretation: the corrected 262K transcoder moves above the old
-skip-transcoder and crosscoder pilots, and is broadly comparable to residual
-SAEs. It still trails raw activations. The main ordering is therefore raw
-activations/reconstruction-error probes first, residual SAEs and the exact 262K
-transcoder as partial sparse signals next, crosscoders lower on S3, and the
-MLP-output SAE last.
+Interpretation: the all-L45 sparse concat is the strongest sparse-only result
+so far, but it still trails raw activations. The main ordering is therefore raw
+activations/reconstruction-error probes first, all-L45 sparse concat and the
+best individual sparse dictionaries next, crosscoders lower on S3, and the old
+bare-normalized MLP-output SAE last.
 
 ## Dense Active-Feature Probe Check
 

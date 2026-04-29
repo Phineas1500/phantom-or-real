@@ -67,7 +67,11 @@ SAEs can still miss the signal that matters for prediction.
 - Reconstruction/error diagnostic is the pivot result: about 95% energy
   reconstructed, but error probes recover raw-level AUC.
 - L45 MLP-output and 16K skip-transcoder pilots used bare normalized hooks; keep
-  them as exploratory motivation, not as final negative claims.
+  the old rows as exploratory motivation, not as final negative claims.
+- Exact-hook L45 MLP-output SAE rerun: encoding `blocks.45.hook_mlp_out`
+  improves the MLP-output SAE from old S1/S3 `0.577/0.674` and `0.550/0.702`
+  to S1 `0.811/0.878` and S3 `0.807/0.879` for property/subtype. This is
+  meaningful and residual-SAE-like, but still below raw exact `hook_mlp_out`.
 - Exact-hook L45 262K transcoder probe: after correcting the input to
   `ln2.hook_normalized * ln2.w` and the target to `hook_mlp_out`, the
   Neuronpedia-visible all-layer transcoder is substantially stronger than the
@@ -78,15 +82,20 @@ SAEs can still miss the signal that matters for prediction.
   components carry more signal than sparse latents alone but still trail raw
   exact activations, supporting partial rather than complete sparse
   localization.
+- Sparse feature-family concat: combining residual SAE 16K, residual SAE 262K,
+  and exact 262K transcoder features gives the best sparse-only L45 probe so
+  far, S1 `0.822/0.884` and S3 `0.814/0.885`, but still remains below raw exact
+  activations. This is positive evidence for complementary sparse views, not a
+  full bridge to raw.
 - Crosscoder pilot: raw concat over layers `{16,31,40,53}` nearly matches raw
   L45, but the 65K crosscoder over those same layers trails raw concat on every
   task/split. Treat this as an appendix-style multi-layer check supporting the
   main sparse-dictionary cautionary story.
-- Cross-method comparison: after exact-hook correction, the 262K transcoder
-  moves above the old 16K skip-transcoder and crosscoder pilots, but still does
-  not improve over raw activations. Crosscoders remain useful as a bounded
-  multi-layer null: they trail the fair raw-concat baseline substantially and do
-  not robustly beat metadata baselines on S3.
+- Cross-method comparison: after exact-hook correction and sparse-family
+  concat, the best sparse-only result moves up but still does not improve over
+  raw activations. Crosscoders remain useful as a bounded multi-layer null:
+  they trail the fair raw-concat baseline substantially and do not robustly beat
+  metadata baselines on S3.
 - Dense active-feature probe check: centered dense probes over train-active
   sparse columns do not close the raw-vs-sparse gap, so sparse CSR scaling is
   not the main explanation.
@@ -120,9 +129,11 @@ SAEs can still miss the signal that matters for prediction.
 - Table 2: B0 vs raw L45 probes on S1/S3.
 - Table 3: raw vs residual SAE probes on S1/S3.
 - Table 4: reconstruction vs error probes.
-- Small table: MLP-output raw vs MLP-output SAE pilot.
+- Small table: exact MLP-output raw vs exact MLP-output SAE, with old pilot
+  shown as superseded.
 - Small table: raw exact `mlp_in` vs exact 262K transcoder.
 - Appendix table: exact 262K transcoder latent/skip/full/error component probe.
+- Small table: sparse feature-family concat.
 - Appendix table: raw-concat vs crosscoder pilot.
 - Appendix or compact main table: all feature sources ranked by S1/S3 AUC.
 - Appendix table: dense-active sparse-feature scaling sanity check.

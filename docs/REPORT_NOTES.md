@@ -688,3 +688,54 @@ final report is easier to assemble.
   "okay/affirmation", "technical contexts", "code and structure",
   "pronouns and scope", and several very dense generic features. Treat the old
   Neuronpedia audit as superseded for report-critical claims.
+
+#### Sparse-Feature Combination Follow-Up
+
+- Promising remaining routes for narrowing the sparse-vs-raw gap, in priority
+  order: combine sparse feature families; rerun exact-hook MLP-output SAE if a
+  matching artifact path is clean; rerun exact-hook 16K skip-transcoder for a
+  fairer width comparison; try higher-L0/denser 262K transcoder variants if
+  available; and, only if compute/time remain, do a multi-layer exact
+  transcoder concat. Nonlinear probes are lower priority because they weaken
+  the clean linear-probe interpretability story.
+- Added `scripts/stage2_probe_sparse_concat.py` to horizontally concatenate
+  sparse top-k feature artifacts while preserving the existing S1/S3 split-aware
+  logistic probe protocol. The script aligns sidecars, filters parse failures,
+  keeps the matrix sparse, and reports per-block widths/L0s.
+- Primary concat result, residual SAE 262K + exact 262K transcoder: S1
+  property/subtype AUCs are `0.815/0.870`; S3 property/subtype AUCs are
+  `0.800/0.881`. This gives only a small property improvement over standalone
+  residual/transcoder features and does not bridge to raw activations.
+- All-L45 sparse concat, residual SAE 16K + residual SAE 262K + exact 262K
+  transcoder, is stronger: S1 property/subtype AUCs are `0.822/0.884`; S3
+  property/subtype AUCs are `0.814/0.885`. Bootstrap 95% CIs are roughly
+  property `0.802-0.843` and subtype `0.859-0.906` on S1, and property
+  `0.793-0.836` and subtype `0.861-0.908` on S3.
+- Interpretation: sparse feature families are complementary, especially for
+  property, but even the combined sparse feature set remains below raw exact
+  activations (`0.897/0.916` S1 exact `mlp_in`, `0.885/0.914` S3 exact
+  `mlp_in`). This strengthens the "partial sparse localization, not complete
+  localization" story rather than fully rescuing sparse features.
+
+#### Exact-Hook MLP-Output SAE Rerun
+
+- Ran the exact-hook L45 MLP-output SAE rerun as Scholar job `451338`; output
+  reports are `docs/sae_probe_27b_l45_mlp_out_hook_16k_s1.json` and
+  `docs/sae_probe_27b_l45_mlp_out_hook_16k_s3_target_symbol.json`. The job
+  reused cached exact `blocks.45.hook_mlp_out` activations from the 262K
+  transcoder rerun, so it did not reload Gemma 27B.
+- This fixes the old bare-normalized MLP-output pilot. The Gemma Scope
+  `mlp_out_all/layer_45_width_16k_l0_small` config now records
+  `hook_name=blocks.45.hook_mlp_out`, with mean L0 `23.58` for property and
+  `22.45` for subtype. The old bare `ln2_post.hook_normalized` encoding had
+  mean L0 exactly `2.0`, another sign that the old site was wrong-scale for
+  this artifact.
+- Exact MLP-output SAE AUCs improved sharply over the old pilot. Old
+  bare-normalized S1 property/subtype AUCs were `0.577/0.674`, and exact-hook
+  S1 is `0.811/0.878`. Old S3 was `0.550/0.702`, and exact-hook S3 is
+  `0.807/0.879`.
+- Exact raw `hook_mlp_out` still remains stronger: S1 property/subtype
+  `0.896/0.916`; S3 property/subtype `0.892/0.915`. Interpretation: exact
+  MLP-output SAE features are meaningful and roughly residual-SAE-like, but
+  still partial. This reinforces the hook/scale caution and weakens the old
+  "MLP-output SAE is useless" read.
