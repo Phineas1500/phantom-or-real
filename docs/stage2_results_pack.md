@@ -109,8 +109,54 @@ story.
 
 Interpretation: computation-oriented sparse features expose some correctness
 signal, but the tested skip-transcoder still misses a large part of the
-raw-activation signal. A crosscoder pilot should be treated as optional future
-work unless the report needs one more explicit multi-layer check.
+raw-activation signal. The running crosscoder pilot should be treated as a
+bounded appendix-style multi-layer check unless it changes the main pattern.
+
+## Crosscoder Pilot
+
+Scholar job `451181` completed a bounded 27B crosscoder pilot over residual
+layers `{16,31,40,53}` with
+`crosscoder/layer_16_31_40_53_width_65k_l0_medium`. The fair comparison is the
+raw-concat baseline over exactly those same layers.
+
+| Split | Task | Raw concat AUC | Crosscoder 65K AUC | Raw residual L45 AUC |
+| --- | --- | ---: | ---: | ---: |
+| S1 random | `infer_property` | 0.893 | 0.787 | 0.897 |
+| S1 random | `infer_subtype` | 0.904 | 0.868 | 0.914 |
+| S3 target-symbol heldout | `infer_property` | 0.883 | 0.724 | 0.884 |
+| S3 target-symbol heldout | `infer_subtype` | 0.903 | 0.853 | 0.917 |
+
+Interpretation: the multi-layer crosscoder does not rescue the sparse-feature
+localization story. Raw concat over the crosscoder layers nearly matches raw
+L45, but the 65K crosscoder features trail raw concat on every task/split and
+are especially weak for S3 property. This strengthens the conclusion that the
+tested Gemma Scope sparse dictionaries expose only part of the correctness
+signal.
+
+## Cross-Method Sparse Feature Comparison
+
+This table is the clearest compact view of where crosscoders sit relative to
+every feature source tried so far.
+
+| Method | S1 property | S1 subtype | S3 property | S3 subtype |
+| --- | ---: | ---: | ---: | ---: |
+| Metadata B0 | 0.743 | 0.841 | 0.711 | 0.859 |
+| Raw L45 residual | 0.897 | 0.914 | 0.884 | 0.917 |
+| Raw concat L16/31/40/53 | 0.893 | 0.904 | 0.883 | 0.903 |
+| Residual SAE 16K | 0.786 | 0.876 | 0.799 | 0.865 |
+| Residual SAE 262K | 0.806 | 0.870 | 0.779 | 0.867 |
+| MLP-out SAE 16K | 0.577 | 0.674 | 0.550 | 0.702 |
+| Skip-transcoder 16K | 0.722 | 0.821 | 0.722 | 0.841 |
+| Crosscoder 65K | 0.787 | 0.868 | 0.724 | 0.853 |
+
+Interpretation: crosscoders are a middle-tier sparse representation in these
+experiments. They are much better than the weak MLP-output SAE and usually
+better than the skip-transcoder, but they are not better than residual SAEs and
+trail the fair raw-concat baseline by a large margin. On S3 they do not
+robustly beat metadata baselines: property barely clears B0, while subtype is
+below B0. The main ordering is therefore raw activations/reconstruction-error
+probes first, residual SAEs next, crosscoders and skip-transcoders as partial
+but incomplete sparse signals, and MLP-output SAE last.
 
 ## Reconstruction/Error Diagnostic
 

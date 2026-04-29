@@ -470,3 +470,34 @@ final report is easier to assemble.
   skip-transcoder result, keep crosscoders as optional future work rather than
   the next main experiment; any such pilot must compare against a raw-concat
   baseline over the same layers.
+- Submitted Scholar job `451181` for a bounded 27B crosscoder pilot while
+  report cleanup proceeds. The job extracts residual layers `{16,31,40,53}`,
+  probes a raw concatenated baseline over those same layers, encodes
+  `crosscoder/layer_16_31_40_53_width_65k_l0_medium`, and probes the
+  crosscoder features on S1 and S3. The first submission attempt requested
+  220 GB and was rejected by Slurm, so the running job uses the known-good
+  180 GB J-node memory request.
+- Trimmed `docs/STAGE_2_PLAN.md` from 829 lines to a short operational status
+  plan. The report-critical tables are now concentrated in
+  `docs/stage2_results_pack.md`, while chronological details remain in this
+  file and metric JSONs.
+- Crosscoder job `451181` completed successfully in 1:47:54 with max RSS about
+  108 GB. It wrote raw residual layers `{16,31,40,53}` for both 27B tasks,
+  encoded both tasks with
+  `crosscoder/layer_16_31_40_53_width_65k_l0_medium`, and wrote S1/S3
+  raw-concat and crosscoder probe JSONs.
+- Crosscoder result: raw concat over layers `{16,31,40,53}` nearly matches raw
+  L45, but crosscoder features trail raw concat on every split. S1
+  property/subtype AUCs: raw concat 0.893/0.904, crosscoder 0.787/0.868. S3
+  property/subtype AUCs: raw concat 0.883/0.903, crosscoder 0.724/0.853.
+  Interpretation: the multi-layer crosscoder pilot strengthens the sparse
+  dictionary cautionary story rather than rescuing feature localization.
+- Pinned the completed crosscoder artifact in `docs/stage2_invariants.json`:
+  HF snapshot `5c58dd4cddd52cef653059d85e12a86bf6222a28`, config SHA-256
+  `80f946678ba690be490d79a8e3bed3b1c34266f650c6226b10b63f508d007628`, and
+  four parameter-shard hashes recorded under the crosscoder entry.
+- Added a cross-method comparison to `docs/stage2_results_pack.md`. Main
+  report insight: crosscoders are middle-tier. They beat the weak MLP-output
+  SAE and usually beat the skip-transcoder, but they do not improve on
+  residual SAEs, trail the fair raw-concat baseline substantially, and do not
+  robustly beat metadata baselines on S3.

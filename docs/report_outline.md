@@ -73,6 +73,14 @@ SAEs can still miss the signal that matters for prediction.
 - L45 skip-transcoder features are stronger than the MLP-output SAE but still
   trail raw `mlp_in`, so computation-oriented sparse features do not rescue the
   main SAE localization claim.
+- Crosscoder pilot: raw concat over layers `{16,31,40,53}` nearly matches raw
+  L45, but the 65K crosscoder over those same layers trails raw concat on every
+  task/split. Treat this as an appendix-style multi-layer check supporting the
+  main sparse-dictionary cautionary story.
+- Cross-method comparison: crosscoders are middle-tier. They beat the weak
+  MLP-output SAE and usually beat the skip-transcoder, but they do not improve
+  on residual SAEs and they trail the fair raw-concat baseline substantially.
+  On S3, crosscoders do not robustly beat metadata baselines.
 - Steering pilot is null/inconclusive, not a causal success claim.
 
 ## 6. Discussion
@@ -84,8 +92,8 @@ SAEs can still miss the signal that matters for prediction.
   mechanistic claims: high reconstruction energy does not imply retention of a
   behaviorally relevant direction.
 - S3 heldout target symbols reduce but do not eliminate lexical-confound risk.
-- Future work: an optional fair crosscoder pilot with raw-concat baseline,
-  alternative sparse dictionaries, and a stronger steering protocol.
+- Future work: alternative sparse dictionaries, name-scrambled regeneration,
+  and a stronger steering protocol.
 
 ## Core Tables/Figures
 
@@ -95,6 +103,8 @@ SAEs can still miss the signal that matters for prediction.
 - Table 4: reconstruction vs error probes.
 - Small table: MLP-output raw vs MLP-output SAE pilot.
 - Small table: raw `mlp_in` vs skip-transcoder pilot.
+- Appendix table: raw-concat vs crosscoder pilot.
+- Appendix or compact main table: all feature sources ranked by S1/S3 AUC.
 - Small appendix table: steering pilot summary and null result.
 
 ## One-Sentence Abstract Candidate

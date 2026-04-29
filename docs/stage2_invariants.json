@@ -122,9 +122,42 @@
         "sae_id": "layer_45_width_16k_l0_small_affine",
         "sae_params_sha256": "00cf90cb287e496b7e2da5c48f589598575ac8901416e343d6d29aa930367f4f",
         "sae_release": "gemma-scope-2-27b-it-transcoders-all"
+      },
+      "gemma-scope-2-27b-it-crosscoder/layer_16_31_40_53_width_65k_l0_medium": {
+        "affine_connection": false,
+        "architecture": "jump_relu",
+        "crosscoder_config_sha256": "80f946678ba690be490d79a8e3bed3b1c34266f650c6226b10b63f508d007628",
+        "crosscoder_id": "layer_16_31_40_53_width_65k_l0_medium",
+        "crosscoder_param_sha256": {
+          "params_layer_0": "82dd03fe95b00ad73d159b3caa0240a15bada4bca09edea172d02b3b1f8d0a10",
+          "params_layer_1": "805fb397877b692735eb3a36d4087d5ca3e71f48195939ec091d680f6b721459",
+          "params_layer_2": "3cd663c7e6fab9807de26c5a602f17097f6d3d736312bca974212fda585c13a1",
+          "params_layer_3": "a2396c4c68643b863fb035ed1036d08280ad527e7107518f24d785c48e38aaae"
+        },
+        "d_in": 5376,
+        "d_sae": 65536,
+        "hf_hook_point_in": "model.layers.{16,31,40,53}.output",
+        "hf_hook_point_out": "model.layers.{16,31,40,53}.output",
+        "hf_repo_id": "google/gemma-scope-2-27b-it",
+        "hf_snapshot_revision": "5c58dd4cddd52cef653059d85e12a86bf6222a28",
+        "hf_subfolder": "crosscoder",
+        "l0": 50,
+        "layers": [
+          16,
+          31,
+          40,
+          53
+        ],
+        "shard_widths": [
+          16384,
+          16384,
+          16384,
+          16384
+        ],
+        "type": "crosscoder"
       }
     },
-    "status": "pinned_l45_residual_mlp_and_skip_transcoder_artifacts"
+    "status": "pinned_l45_residual_mlp_skip_transcoder_and_crosscoder_artifacts"
   },
   "schema_version": 1,
   "stage1_jsonls": {

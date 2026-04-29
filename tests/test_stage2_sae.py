@@ -5,6 +5,7 @@ from pathlib import Path
 import pytest
 import torch
 
+from src.stage2_crosscoder import combine_shard_topk, crosscoder_feature_prefix, verify_matching_sidecars
 from src.stage2_feature_stability import (
     best_correlation_matches,
     coefficient_weights,
@@ -41,6 +42,23 @@ def test_sae_file_name_joins_subfolder_and_id() -> None:
     assert (
         sae_file_name("resid_post_all/", "layer_45_width_16k_l0_small", "params.safetensors")
         == "resid_post_all/layer_45_width_16k_l0_small/params.safetensors"
+    )
+
+
+def test_crosscoder_feature_prefix_includes_slice() -> None:
+    prefix = crosscoder_feature_prefix(
+        out_dir=Path("results/stage2/crosscoder_features"),
+        model_key="gemma3_27b",
+        task="infer_property",
+        crosscoder_id="layer_16_31_40_53_width_65k_l0_medium",
+        top_k=128,
+        skip=10,
+        limit=512,
+    )
+
+    assert prefix == Path(
+        "results/stage2/crosscoder_features/"
+        "gemma3_27b_infer_property_crosscoder_layer_16_31_40_53_width_65k_l0_medium_top128_skip10_n512"
     )
 
 
@@ -125,6 +143,31 @@ def test_topk_tensors_to_csr_builds_sparse_feature_matrix() -> None:
     assert matrix[0, 3] == 1.5
     assert matrix[1, 0] == 2.0
     assert matrix[1, 2] == 4.0
+
+
+def test_combine_shard_topk_offsets_global_indices() -> None:
+    values, indices = combine_shard_topk(
+        [
+            torch.tensor([[0.1, 0.9], [0.8, 0.2]]),
+            torch.tensor([[0.7, 0.3], [0.4, 1.0]]),
+        ],
+        [
+            torch.tensor([[0, 1], [0, 1]]),
+            torch.tensor([[2, 3], [2, 3]]),
+        ],
+        top_k=2,
+    )
+
+    assert torch.allclose(values, torch.tensor([[0.9, 0.7], [1.0, 0.8]]))
+    assert indices.tolist() == [[1, 2], [3, 0]]
+
+
+def test_verify_matching_sidecars_rejects_mismatched_rows() -> None:
+    rows = [{"row_index": 0, "example_id": "a"}]
+
+    verify_matching_sidecars(rows, [{"row_index": 0, "example_id": "a"}])
+    with pytest.raises(ValueError, match="sidecar row"):
+        verify_matching_sidecars(rows, [{"row_index": 1, "example_id": "a"}])
 
 
 def test_coefficient_weights_rank_by_standardized_abs_weight() -> None:
