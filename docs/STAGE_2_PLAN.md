@@ -115,6 +115,25 @@ Current scientific story:
   encoding instability is also not the explanation.
 - Steering has not established a causal feature or direction.
 
+Current objective:
+
+- Treat raw activations as the predictive reference, not as a target that sparse
+  dictionaries must beat. The sparse-feature goal is to recover an
+  interpretable and ideally causal part of the raw success/failure signal.
+- A learned dictionary result is valuable if it beats metadata, captures a
+  meaningful fraction of raw-probe AUC, produces stable/top-weight features,
+  and yields candidates that can be tested causally. Matching raw AUC would be
+  excellent, but partial localization is already scientifically useful.
+- Use Neuronpedia only for visible feature sources and only as an interpretation
+  aid. It can help identify generic/lexical features vs plausible reasoning
+  features, but it does not establish causality.
+- Next concrete task: build a feature-candidate shortlist from the best
+  Neuronpedia-visible sparse sources, especially corrected L45 262K transcoder
+  features and L40 residual SAE features. Rank candidates by probe weight,
+  task/split stability, activation density, and Neuronpedia explanation quality.
+  Move to steering only if the shortlist contains non-generic task-aligned
+  candidates.
+
 ## Active Scope
 
 Keep the remaining Stage 2 work narrow:
@@ -349,12 +368,19 @@ Immediate:
 
 - Keep `docs/REPORT_NOTES.md`, `docs/stage2_results_pack.md`, and
   `docs/report_outline.md` aligned with any new result interpretation.
+- Build a compact feature-candidate shortlist for Neuronpedia-visible sparse
+  artifacts. Start with the corrected L45 262K transcoder and L40 residual
+  SAE 16K/262K, using coefficient rank, stability, activation density, and
+  Neuronpedia explanations.
 - Run the full test suite after doc/code updates.
 
 Report-critical:
 
 - Keep the final narrative centered on raw-probe signal plus sparse-feature
   localization failure.
+- State that raw probes are the predictive reference; sparse probes are judged
+  by how much interpretable/candidate-causal signal they recover, not by
+  whether they beat raw activations.
 - Add teammate 4B results only as a comparison once available.
 - Include S3 as a heldout-target diagnostic, not a full name-scramble result.
 - State explicitly that S2 topology-heldout was not evaluable on the shipped
@@ -368,6 +394,9 @@ Most relevant to the raw-vs-sparse gap:
 - L40 did not materially change the sparse-vs-raw conclusion. Treat it as the
   last residual-layer sparse sweep unless the final report specifically needs a
   Neuronpedia-facing L40 feature audit.
+- Do not start another broad dictionary sweep unless the feature-candidate
+  audit reveals a specific reason. The next work should be interpretation and
+  candidate validation, not AUC chasing.
 - Try a higher-L0 or denser 262K transcoder variant only if the artifact exists
   cleanly and exact hook/scale alignment can be verified.
 

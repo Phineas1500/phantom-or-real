@@ -428,11 +428,12 @@ appeared under both raw and orthogonal steering.
 ## Current Report Claim
 
 Gemma 3 27B pre-generation residuals contain a robust signal for
-reasoning-task success/failure beyond metadata baselines. The tested Gemma
-Scope 2 residual SAEs partially expose this signal, but reconstruction/error
-diagnostics show the strongest correctness-predictive component is concentrated
-in the small residual subspace that those SAEs fail to reconstruct. A corrected
-exact-hook 262K transcoder partially improves the sparse-feature picture but
-still trails raw activations, and Neuronpedia-facing top features remain
-generic rather than clean ontology-reasoning mechanisms. Causal steering is
-currently inconclusive.
+reasoning-task success/failure beyond metadata baselines. Raw activations are
+the predictive reference, not a bar that sparse dictionaries must beat. The
+tested Gemma Scope 2 sparse dictionaries partially expose this signal, but
+reconstruction/error diagnostics show the strongest correctness-predictive
+component is concentrated in the small residual subspace that residual SAEs
+fail to reconstruct. Corrected exact-hook transcoders and multi-layer sparse
+concats improve the sparse-feature picture but still trail raw activations.
+Neuronpedia-facing top features remain generic rather than clean
+ontology-reasoning mechanisms, and causal steering is currently inconclusive.

@@ -18,6 +18,9 @@ Phantom or Real? Sparse Feature Probes for Ontology Reasoning Failures
   or do they only provide correlational artifacts?
 - Final claim: raw residuals strongly predict success/failure, but tested
   residual SAE features do not cleanly localize the strongest signal.
+- Framing note: raw activations are the predictive reference. Sparse features
+  do not need to beat raw to be useful; they need to recover interpretable and
+  ideally causal parts of the raw signal.
 
 ## 2. Related Work
 
@@ -143,6 +146,9 @@ SAEs can still miss the signal that matters for prediction.
 - Future work: alternative sparse dictionaries, name-scrambled regeneration,
   optional Neuronpedia-facing layer-40/53 residual audit, and a stronger
   steering protocol.
+- Near-term finishing step: build a feature-candidate shortlist from
+  Neuronpedia-visible dictionaries, then run steering only for candidates that
+  look non-generic and task-aligned.
 
 ## Core Tables/Figures
 

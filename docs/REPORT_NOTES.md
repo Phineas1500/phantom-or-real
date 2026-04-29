@@ -1028,3 +1028,31 @@ exact-16K, and L30 runs below. Those later sections supersede this queue.
   all-sparse (`0.887 -> 0.883`).
 - Regenerated `docs/figures/stage2/` so the probe overview and sparse
   progression figures include the L30+L40+L45 all-sparse result.
+
+#### Current Aim And Next Objective
+
+- Clarified the project target: the goal is not to make a learned sparse
+  dictionary beat raw activations. Raw activations are the predictive reference
+  or upper baseline. The goal is to test whether learned sparse dictionaries
+  recover an interpretable and ideally causal part of the raw success/failure
+  signal.
+- A sparse probe is useful if it beats metadata baselines, captures a meaningful
+  fraction of the raw signal, has stable/top-weight features that can be
+  interpreted, and exposes candidates that survive causal checks. Sparse AUC
+  matching or beating raw would be excellent but is not required for a strong
+  report.
+- Neuronpedia should be used as an interpretation aid for feature dictionaries
+  that are actually public there, not as causal evidence. For this project,
+  the most relevant Neuronpedia-facing candidates are the corrected L45 262K
+  transcoder and the L40 residual SAE dictionaries; L45 residual SAE top
+  features remain hard to audit directly through public Neuronpedia dashboards.
+- Next objective: stop broad sparse-dictionary sweeping and build a feature
+  candidate shortlist. Rank top sparse features by probe coefficient,
+  task/split stability, activation density, and Neuronpedia explanation quality.
+  Only if a feature looks task-aligned rather than generic/lexical should it
+  move to steering.
+- Steering should be framed as a causal validation of candidate features, not
+  as the main discovery engine. The steering target is a small set of top
+  candidate features with matched controls; success would be output/correctness
+  changes beyond controls, while another null result still supports the
+  phantom/partial-localization conclusion.
