@@ -989,3 +989,25 @@ exact-16K, and L30 runs below. Those later sections supersede this queue.
   the raw score still adds strong predictive information when evaluated
   conditionally on metadata. This supports the raw-probe claim against shallow
   metadata confounds, while not directly explaining the sparse-vs-raw gap.
+
+#### L40 Residual SAE Decision
+
+- Scholar job `451606` completed the individual raw-probe decision check for
+  cached crosscoder layers `{16,31,40,53}`. Outputs are
+  `docs/raw_probe_27b_crosscoder_layers_individual_s1.json` and
+  `docs/raw_probe_27b_crosscoder_layers_individual_s3_target_symbol.json`.
+- Best individual raw layers: S1 property L53 `0.902`, S1 subtype L40
+  `0.906`, S3 property L40 `0.892`, and S3 subtype L40 `0.909`. L45 remains
+  slightly stronger overall when averaged across the four task/split cells, but
+  L40 is the most consistent Neuronpedia-visible residual layer and is close to
+  L45 on every cell.
+- Decision: run L40 residual SAE 16K/262K extraction and add L40 to the sparse
+  concat family. This tests whether the missing raw signal is partly available
+  in a neighboring/Neuronpedia-visible residual dictionary and whether L40 adds
+  complementary sparse signal to L45 and L30.
+- Added `scripts/stage2_sae_extract_27b_L40_resid.sbatch` and
+  `scripts/stage2_probe_27b_L40_resid_concat.sbatch`. Extraction job `451685`
+  and dependent probe job `451686` were submitted. The probe job covers L40
+  16K/262K standalone, L40 residual concat, L40+L45 residual concat,
+  L40+L45 all-sparse concat, L30+L40+L45 residual concat, and
+  L30+L40+L45 all-sparse concat.

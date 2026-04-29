@@ -42,6 +42,24 @@ Label-shuffle control stayed near chance on S1: property 0.493 and subtype
 0.481. The main raw-probe claim is therefore robust to metadata baselines,
 label shuffle, and heldout target symbols.
 
+## Raw Layer-40 Decision Check
+
+After the crosscoder pilot, we probed individual raw residual layers
+`{16,31,40,53}` to decide whether another residual SAE layer was worth
+extracting. L45 remains slightly strongest overall among the original raw probe
+layers, but L40 is the most consistent Neuronpedia-visible candidate.
+
+| Split | Task | L16 AUC | L31 AUC | L40 AUC | L53 AUC | Best |
+| --- | --- | ---: | ---: | ---: | ---: | --- |
+| S1 random | `infer_property` | 0.776 | 0.852 | 0.890 | 0.902 | L53 |
+| S1 random | `infer_subtype` | 0.856 | 0.910 | 0.906 | 0.907 | L40 by validation |
+| S3 target-symbol heldout | `infer_property` | 0.769 | 0.860 | 0.892 | 0.878 | L40 |
+| S3 target-symbol heldout | `infer_subtype` | 0.833 | 0.899 | 0.909 | 0.913 | L40 by validation |
+
+Decision: extract L40 residual SAE 16K/262K features and test whether they add
+complementary sparse signal to the L45 and L30+L45 sparse families. This is a
+targeted follow-up, not a change to the main raw-layer conclusion.
+
 ## Metadata Residualization Diagnostic
 
 We also tested whether the raw L45 probe score still helps after accounting for

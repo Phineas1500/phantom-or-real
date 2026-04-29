@@ -62,6 +62,10 @@ Completed:
 - L30 residual SAE 16K/262K extraction and probes completed as Scholar jobs
   `451569` and `451571`, including L30-only, L45 five-block, L30+L45
   residual-only, and L30+L45 all-sparse concat probes.
+- Individual raw probes at crosscoder layers `{16,31,40,53}` completed as
+  Scholar job `451606`. L40 is the most consistent Neuronpedia-visible raw
+  layer, so L40 residual SAE 16K/262K extraction/probing is now queued as jobs
+  `451685` and `451686`.
 
 Current scientific story:
 
@@ -96,6 +100,9 @@ Current scientific story:
   best sparse-only result so far is the L30+L45 all-sparse concat, which
   reaches S1 `0.839/0.887` and S3 `0.834/0.892` for property/subtype, still
   below raw exact activations.
+- L40 is the active next sparse test. It does not clearly beat L45 as a raw
+  single layer, but it is strong and stable across S1/S3, and it is
+  Neuronpedia-visible for residual dashboards.
 - Refreshed exact Neuronpedia audit still shows mostly generic/lexical/code
   feature explanations rather than clean ontology-reasoning mechanisms.
 - The multi-layer crosscoder pilot also does not rescue sparse-feature
@@ -357,14 +364,12 @@ Optional only if time remains:
 
 Most relevant to the raw-vs-sparse gap:
 
-- Finish job `451606`, which probes cached raw residual activations at
-  `{16,31,40,53}` individually. Use it to decide whether L40, L53, or neither
-  deserves another residual SAE extraction.
-- If L40 or L53 looks strong, run residual SAE 16K/262K extraction for that
-  layer and add it to the sparse concat. This is the cleanest next attempt to
-  test whether the missing signal is distributed across layers.
-- Consider a multi-layer exact sparse concat near L40/L45/L53 after the raw
-  layer decision check.
+- Monitor L40 residual SAE jobs `451685` and `451686`.
+- If L40 sparse features improve the concat, update the report tables and
+  optionally run dense-active and leave-one-block-out validation for the new
+  best L40-inclusive concat.
+- If L40 does not help, stop sparse exploration unless a clean higher-L0 or
+  denser transcoder artifact exists.
 - Try a higher-L0 or denser 262K transcoder variant only if the artifact exists
   cleanly and exact hook/scale alignment can be verified.
 
@@ -389,6 +394,10 @@ Low priority unless the final report specifically needs them:
 - `results/stage2/splits.jsonl`: S1/S2/S3 split assignments.
 - `scripts/stage2_probe_raw.py`: raw activation probes.
 - `scripts/stage2_probe_raw_concat.py`: raw-concat crosscoder baseline.
+- `docs/raw_probe_27b_crosscoder_layers_individual_s1.json`: individual raw
+  probes for layers 16/31/40/53 on S1.
+- `docs/raw_probe_27b_crosscoder_layers_individual_s3_target_symbol.json`:
+  individual raw probes for layers 16/31/40/53 on S3.
 - `scripts/stage2_extract_crosscoder_features.py`: crosscoder sparse feature
   extraction.
 - `scripts/stage2_probe_crosscoder.py`: crosscoder feature probes.
@@ -423,6 +432,10 @@ Low priority unless the final report specifically needs them:
   SAE 16K/262K extraction script.
 - `scripts/stage2_probe_27b_L30_resid_concat.sbatch`: completed L30 residual
   SAE and L30+L45 sparse concat probe script.
+- `scripts/stage2_sae_extract_27b_L40_resid.sbatch`: queued L40 residual SAE
+  16K/262K extraction script.
+- `scripts/stage2_probe_27b_L40_resid_concat.sbatch`: dependent L40 and
+  L30/L40/L45 sparse concat probe script.
 - `scripts/stage2_neuronpedia_feature_audit.py`: Neuronpedia API audit for top
   sparse probe features.
 - `scripts/stage2_crosscoder_27b_layers_16_31_40_53_65k.sbatch`: completed
@@ -448,6 +461,7 @@ Low priority unless the final report specifically needs them:
 - [x] Skip-transcoder 16K pilot, now exploratory because of exact-hook caveat.
 - [x] Steering pilot and orthogonal controls.
 - [x] Crosscoder width-65K pilot over layers 16/31/40/53.
+- [x] Individual raw probes at layers 16/31/40/53.
 - [x] Crosscoder invariants pinned.
 - [x] Dense active-feature scaling sanity check.
 - [x] bf16-vs-fp32 sparse encoding sanity check.
@@ -462,5 +476,6 @@ Low priority unless the final report specifically needs them:
 - [x] L30 residual SAE 16K/262K extraction and L30+L45 sparse concat probe.
 - [x] Corrected exact dense-active sparse scaling check.
 - [x] 262K transcoder invariants pinned.
+- [ ] L40 residual SAE 16K/262K extraction and L40-inclusive concat probes.
 - [ ] Teammate 4B comparison tables.
 - [ ] Final report figures/tables assembled.
