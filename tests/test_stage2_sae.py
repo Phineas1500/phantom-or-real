@@ -6,6 +6,12 @@ import pytest
 import torch
 
 from src.stage2_crosscoder import combine_shard_topk, crosscoder_feature_prefix, verify_matching_sidecars
+from src.stage2_dense_active import (
+    dense_active_matrix,
+    sparse_feature_source_file,
+    sparse_feature_width,
+    train_active_feature_ids,
+)
 from src.stage2_feature_stability import (
     best_correlation_matches,
     coefficient_weights,
@@ -143,6 +149,29 @@ def test_topk_tensors_to_csr_builds_sparse_feature_matrix() -> None:
     assert matrix[0, 3] == 1.5
     assert matrix[1, 0] == 2.0
     assert matrix[1, 2] == 4.0
+
+
+def test_train_active_feature_ids_and_dense_active_matrix() -> None:
+    matrix = topk_tensors_to_csr(
+        torch.tensor([[1, 3], [0, 2], [3, 4]], dtype=torch.int64),
+        torch.tensor([[0.5, 1.5], [2.0, 4.0], [3.0, 5.0]], dtype=torch.float32),
+        d_sae=6,
+    )
+
+    active = train_active_feature_ids(matrix, [0, 2])
+    dense = dense_active_matrix(matrix, active)
+
+    assert active.tolist() == [1, 3, 4]
+    assert dense.shape == (3, 3)
+    assert dense[0].tolist() == [0.5, 1.5, 0.0]
+    assert dense[2].tolist() == [0.0, 3.0, 5.0]
+
+
+def test_sparse_feature_metadata_helpers_support_sae_and_crosscoder() -> None:
+    assert sparse_feature_width({"sae_cfg": {"d_sae": 16}}) == 16
+    assert sparse_feature_width({"crosscoder_cfg": {"d_sae": 65}}) == 65
+    assert sparse_feature_source_file({"source_file": "a.jsonl"}) == "a.jsonl"
+    assert sparse_feature_source_file({"source_activation_meta": {"jsonl_path": "b.jsonl"}}) == "b.jsonl"
 
 
 def test_combine_shard_topk_offsets_global_indices() -> None:

@@ -52,6 +52,8 @@ Current scientific story:
 - The multi-layer crosscoder pilot also does not rescue sparse-feature
   localization: raw concat over the crosscoder layers nearly matches raw L45,
   but crosscoder features trail raw concat.
+- Dense active-feature probes rule out sparse CSR scaling/centering as the main
+  cause of the raw-vs-sparse gap.
 - Steering has not established a causal feature or direction.
 
 ## Active Scope
@@ -217,6 +219,8 @@ Report-critical:
 Optional only if time remains:
 
 - Stronger prompt-length/name-frequency residualization.
+- Float32 encoding or hook/L0 sanity checks for the weakest non-residual
+  sparse artifacts.
 - Name-scramble regeneration.
 - A better steering null with all-token/decode-step intervention.
 
@@ -232,6 +236,8 @@ Optional only if time remains:
 - `scripts/stage2_extract_crosscoder_features.py`: crosscoder sparse feature
   extraction.
 - `scripts/stage2_probe_crosscoder.py`: crosscoder feature probes.
+- `scripts/stage2_probe_dense_active_sparse.py`: dense active-column scaling
+  check for sparse artifacts.
 - `scripts/stage2_crosscoder_27b_layers_16_31_40_53_65k.sbatch`: completed
   crosscoder pilot job script.
 
@@ -254,5 +260,6 @@ Optional only if time remains:
 - [x] Steering pilot and orthogonal controls.
 - [x] Crosscoder width-65K pilot over layers 16/31/40/53.
 - [x] Crosscoder invariants pinned.
+- [x] Dense active-feature scaling sanity check.
 - [ ] Teammate 4B comparison tables.
 - [ ] Final report figures/tables assembled.

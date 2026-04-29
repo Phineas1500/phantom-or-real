@@ -158,6 +158,26 @@ below B0. The main ordering is therefore raw activations/reconstruction-error
 probes first, residual SAEs next, crosscoders and skip-transcoders as partial
 but incomplete sparse signals, and MLP-output SAE last.
 
+## Dense Active-Feature Probe Check
+
+To test whether sparse CSR scaling was causing the raw-vs-sparse gap, we
+reran the sparse artifact probes after selecting train-active feature columns,
+materializing them as dense matrices, and using ordinary centered scaling.
+
+| Method | S1 property | S1 subtype | S3 property | S3 subtype |
+| --- | ---: | ---: | ---: | ---: |
+| Residual SAE 16K dense-active | 0.787 | 0.877 | 0.799 | 0.865 |
+| Residual SAE 262K dense-active | 0.806 | 0.870 | 0.779 | 0.868 |
+| MLP-out SAE 16K dense-active | 0.617 | 0.740 | 0.611 | 0.763 |
+| Skip-transcoder 16K dense-active | 0.722 | 0.821 | 0.724 | 0.841 |
+| Crosscoder 65K dense-active | 0.786 | 0.868 | 0.725 | 0.854 |
+
+Interpretation: dense centering/scaling does not remedy the disparity. Residual
+SAE, skip-transcoder, and crosscoder AUCs are essentially unchanged from the
+standard sparse probes. MLP-out SAE improves from extremely weak to still weak,
+but remains far below raw `mlp_out`. This rules out sparse-matrix scaling as the
+main explanation for the raw-vs-sparse gap.
+
 ## Reconstruction/Error Diagnostic
 
 | Split | Task | SAE width | Energy explained | Reconstruction AUC | Error AUC | Raw L45 AUC |

@@ -501,3 +501,23 @@ final report is easier to assemble.
   SAE and usually beat the skip-transcoder, but they do not improve on
   residual SAEs, trail the fair raw-concat baseline substantially, and do not
   robustly beat metadata baselines on S3.
+
+### 2026-04-29
+
+#### Dense Active-Feature Sanity Check
+
+- Added `scripts/stage2_probe_dense_active_sparse.py` and
+  `src/stage2_dense_active.py` to test whether sparse CSR scaling/centering is
+  causing the raw-vs-sparse probe gap. The script selects train-active feature
+  columns from SAE/transcoder/crosscoder top-k artifacts, materializes those
+  columns as dense arrays, and reruns the same split-aware logistic probe with
+  ordinary centered scaling.
+- Dense-active probes do not remedy the gap. Residual SAE, skip-transcoder, and
+  crosscoder AUCs are essentially unchanged from the standard sparse probes.
+  Crosscoder dense-active AUCs were S1 property/subtype 0.786/0.868 and S3
+  property/subtype 0.725/0.854, matching the standard crosscoder result
+  0.787/0.868 and 0.724/0.853.
+- MLP-out SAE improves under dense-active centering but remains weak:
+  S1 property/subtype 0.617/0.740 and S3 property/subtype 0.611/0.763. This
+  means sparse scaling contributed somewhat to the weakest MLP-out numbers, but
+  it does not explain the main raw-vs-sparse disparity.

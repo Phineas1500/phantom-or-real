@@ -81,6 +81,9 @@ SAEs can still miss the signal that matters for prediction.
   MLP-output SAE and usually beat the skip-transcoder, but they do not improve
   on residual SAEs and they trail the fair raw-concat baseline substantially.
   On S3, crosscoders do not robustly beat metadata baselines.
+- Dense active-feature probe check: centered dense probes over train-active
+  sparse columns do not close the raw-vs-sparse gap, so sparse CSR scaling is
+  not the main explanation.
 - Steering pilot is null/inconclusive, not a causal success claim.
 
 ## 6. Discussion
@@ -105,6 +108,7 @@ SAEs can still miss the signal that matters for prediction.
 - Small table: raw `mlp_in` vs skip-transcoder pilot.
 - Appendix table: raw-concat vs crosscoder pilot.
 - Appendix or compact main table: all feature sources ranked by S1/S3 AUC.
+- Appendix table: dense-active sparse-feature scaling sanity check.
 - Small appendix table: steering pilot summary and null result.
 
 ## One-Sentence Abstract Candidate
