@@ -138,6 +138,12 @@ Current objective:
   exact transcoders; then, if useful for proposal coverage, an MLP probe on the
   best sparse concat. Stop AUC chasing after these unless a specific
   feature-candidate result motivates another run.
+- Treat nonlinear sparse probes as predictive/comparison evidence only. They
+  can improve AUC, but feature attribution and steering are less direct because
+  the probe score depends on interactions rather than one coefficient per
+  feature.
+- L53 residual SAE extraction/probing is currently running as extraction job
+  `451709` and dependent probe job `451710`.
 
 ## Active Scope
 
@@ -472,6 +478,10 @@ Low priority unless the final report specifically needs them:
   SAE 16K/262K extraction script.
 - `scripts/stage2_probe_27b_L40_resid_concat.sbatch`: completed L40 and
   L30/L40/L45 sparse concat probe script.
+- `scripts/stage2_sae_extract_27b_L53_resid.sbatch`: queued L53 residual SAE
+  16K/262K extraction script.
+- `scripts/stage2_probe_27b_L53_resid_concat.sbatch`: dependent L53 and
+  L30/L53/L45 sparse concat probe script.
 - `scripts/stage2_neuronpedia_feature_audit.py`: Neuronpedia API audit for top
   sparse probe features.
 - `scripts/stage2_crosscoder_27b_layers_16_31_40_53_65k.sbatch`: completed
@@ -513,5 +523,6 @@ Low priority unless the final report specifically needs them:
 - [x] Corrected exact dense-active sparse scaling check.
 - [x] 262K transcoder invariants pinned.
 - [x] L40 residual SAE 16K/262K extraction and L40-inclusive concat probes.
+- [ ] L53 residual SAE 16K/262K extraction and L53-inclusive concat probes.
 - [ ] Teammate 4B comparison tables.
 - [ ] Final report figures/tables assembled.

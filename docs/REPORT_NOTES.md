@@ -1074,3 +1074,34 @@ exact-16K, and L30 runs below. Those later sections supersede this queue.
 - Do not prioritize metadata+sparse probes for the main mechanistic story:
   they may improve prediction but answer a different question by mixing prompt
   metadata with learned feature activations.
+
+#### Nonlinear Sparse Probe Caveat
+
+- Nonlinear probes, such as an MLP over sparse features, may improve predictive
+  AUC but are weaker mechanistic evidence than linear sparse probes. A linear
+  probe assigns one coefficient to each feature, so the ranking maps directly
+  to candidate success/failure features and to decoder-vector steering
+  directions.
+- With an MLP probe, prediction can depend on nonlinear interactions among
+  features. A feature may matter only when another feature is present or only
+  in a particular activation range, so "top feature" is no longer defined by a
+  single probe coefficient. Attribution then requires extra methods such as
+  gradients, feature ablations, SHAP, or integrated gradients.
+- For steering, linear probes give direct interventions: steer individual top
+  features, or form a small coefficient-weighted decoder direction at a known
+  site. MLP probes can still show that sparse features contain nonlinear
+  predictive signal, but they do not directly say which feature activation to
+  amplify or suppress. Treat any MLP result as proposal-facing predictive
+  support, not the main feature-level causal evidence.
+
+#### L53 Residual SAE Run
+
+- Added `scripts/stage2_sae_extract_27b_L53_resid.sbatch` and
+  `scripts/stage2_probe_27b_L53_resid_concat.sbatch` as the first item in the
+  final bounded AUC queue. The setup mirrors L40 but tests whether the
+  Neuronpedia-visible L53 residual dictionaries help property, where raw L53
+  was strongest on S1.
+- Submitted extraction job `451709` and dependent probe job `451710`. The
+  probe job covers L53 16K/262K standalone, L53 residual concat, L53+L45
+  residual concat, L53+L45 all-sparse concat, L30+L53+L45 residual concat, and
+  L30+L53+L45 all-sparse concat.
