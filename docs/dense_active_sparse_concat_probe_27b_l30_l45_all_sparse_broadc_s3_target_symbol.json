@@ -1,0 +1,427 @@
+{
+  "best_by_task": {
+    "infer_property": {
+      "best_c": 0.001,
+      "combo_name": "dense_active_l30_l45_all_sparse_broadc",
+      "test_auc": 0.8344310470606049,
+      "val_auc": 0.8454900298486373
+    },
+    "infer_subtype": {
+      "best_c": 0.001,
+      "combo_name": "dense_active_l30_l45_all_sparse_broadc",
+      "test_auc": 0.892633663073752,
+      "val_auc": 0.9071255060728745
+    }
+  },
+  "bootstrap_samples": 1000,
+  "c_values": [
+    0.0001,
+    0.0003,
+    0.001,
+    0.003,
+    0.01,
+    0.03,
+    0.1,
+    0.3,
+    1.0,
+    3.0,
+    10.0
+  ],
+  "combo_name": "dense_active_l30_l45_all_sparse_broadc",
+  "created_at_utc": "2026-04-29T19:52:49.419951+00:00",
+  "drop_parse_failed": true,
+  "feature_patterns": [
+    "results/stage2/sae_features/gemma3_27b_{task}_L30_layer_30_width_16k_l0_small_top128",
+    "results/stage2/sae_features/gemma3_27b_{task}_L30_layer_30_width_262k_l0_small_top128",
+    "results/stage2/sae_features/gemma3_27b_{task}_L45_layer_45_width_16k_l0_small_top128",
+    "results/stage2/sae_features/gemma3_27b_{task}_L45_layer_45_width_262k_l0_small_top128",
+    "results/stage2/sae_features/gemma3_27b_{task}_L45_mlp_in_weighted_layer_45_width_16k_l0_small_affine_top128",
+    "results/stage2/sae_features/gemma3_27b_{task}_L45_mlp_in_weighted_layer_45_width_262k_l0_small_affine_top128",
+    "results/stage2/sae_features/gemma3_27b_{task}_L45_mlp_out_hook_layer_45_width_16k_l0_small_top128"
+  ],
+  "max_iter": 2000,
+  "probe_variant": "dense_train_active_sparse_hstack_centered",
+  "results": {
+    "infer_property": {
+      "active_feature_ids_sample": [
+        57,
+        64,
+        184,
+        240,
+        359,
+        476,
+        560,
+        562,
+        565,
+        598,
+        619,
+        674,
+        709,
+        1426,
+        1734,
+        2108,
+        2605,
+        3856,
+        4799,
+        6958,
+        7144,
+        9871,
+        11429,
+        13549,
+        15376
+      ],
+      "active_feature_n": 836,
+      "active_feature_source": "train_nonzero_concat_columns",
+      "best_c": 0.001,
+      "c_values": [
+        0.0001,
+        0.0003,
+        0.001,
+        0.003,
+        0.01,
+        0.03,
+        0.1,
+        0.3,
+        1.0,
+        3.0,
+        10.0
+      ],
+      "d_sparse_concat": 851968,
+      "feature_blocks": [
+        {
+          "d_sparse": 16384,
+          "feature_path": "results/stage2/sae_features/gemma3_27b_infer_property_L30_layer_30_width_16k_l0_small_top128.safetensors",
+          "feature_prefix": "results/stage2/sae_features/gemma3_27b_infer_property_L30_layer_30_width_16k_l0_small_top128",
+          "hf_snapshot_revision": "5c58dd4cddd52cef653059d85e12a86bf6222a28",
+          "kept_mean_l0": 16.38932668329177,
+          "kept_nnz": 164303,
+          "sae_id": "layer_30_width_16k_l0_small",
+          "sae_release": "gemma-scope-2-27b-it-res-all",
+          "sidecar_path": "results/stage2/sae_features/gemma3_27b_infer_property_L30_layer_30_width_16k_l0_small_top128.example_ids.jsonl"
+        },
+        {
+          "d_sparse": 262144,
+          "feature_path": "results/stage2/sae_features/gemma3_27b_infer_property_L30_layer_30_width_262k_l0_small_top128.safetensors",
+          "feature_prefix": "results/stage2/sae_features/gemma3_27b_infer_property_L30_layer_30_width_262k_l0_small_top128",
+          "hf_snapshot_revision": "5c58dd4cddd52cef653059d85e12a86bf6222a28",
+          "kept_mean_l0": 23.191122194513717,
+          "kept_nnz": 232491,
+          "sae_id": "layer_30_width_262k_l0_small",
+          "sae_release": "gemma-scope-2-27b-it-res-all",
+          "sidecar_path": "results/stage2/sae_features/gemma3_27b_infer_property_L30_layer_30_width_262k_l0_small_top128.example_ids.jsonl"
+        },
+        {
+          "d_sparse": 16384,
+          "feature_path": "results/stage2/sae_features/gemma3_27b_infer_property_L45_layer_45_width_16k_l0_small_top128.safetensors",
+          "feature_prefix": "results/stage2/sae_features/gemma3_27b_infer_property_L45_layer_45_width_16k_l0_small_top128",
+          "hf_snapshot_revision": "5c58dd4cddd52cef653059d85e12a86bf6222a28",
+          "kept_mean_l0": 14.36638403990025,
+          "kept_nnz": 144023,
+          "sae_id": "layer_45_width_16k_l0_small",
+          "sae_release": "gemma-scope-2-27b-it-res-all",
+          "sidecar_path": "results/stage2/sae_features/gemma3_27b_infer_property_L45_layer_45_width_16k_l0_small_top128.example_ids.jsonl"
+        },
+        {
+          "d_sparse": 262144,
+          "feature_path": "results/stage2/sae_features/gemma3_27b_infer_property_L45_layer_45_width_262k_l0_small_top128.safetensors",
+          "feature_prefix": "results/stage2/sae_features/gemma3_27b_infer_property_L45_layer_45_width_262k_l0_small_top128",
+          "hf_snapshot_revision": "5c58dd4cddd52cef653059d85e12a86bf6222a28",
+          "kept_mean_l0": 14.516907730673317,
+          "kept_nnz": 145532,
+          "sae_id": "layer_45_width_262k_l0_small",
+          "sae_release": "gemma-scope-2-27b-it-res-all",
+          "sidecar_path": "results/stage2/sae_features/gemma3_27b_infer_property_L45_layer_45_width_262k_l0_small_top128.example_ids.jsonl"
+        },
+        {
+          "d_sparse": 16384,
+          "feature_path": "results/stage2/sae_features/gemma3_27b_infer_property_L45_mlp_in_weighted_layer_45_width_16k_l0_small_affine_top128.safetensors",
+          "feature_prefix": "results/stage2/sae_features/gemma3_27b_infer_property_L45_mlp_in_weighted_layer_45_width_16k_l0_small_affine_top128",
+          "hf_snapshot_revision": "5c58dd4cddd52cef653059d85e12a86bf6222a28",
+          "kept_mean_l0": 19.809376558603493,
+          "kept_nnz": 198589,
+          "sae_id": "layer_45_width_16k_l0_small_affine",
+          "sae_release": "gemma-scope-2-27b-it-transcoders-all",
+          "sidecar_path": "results/stage2/sae_features/gemma3_27b_infer_property_L45_mlp_in_weighted_layer_45_width_16k_l0_small_affine_top128.example_ids.jsonl"
+        },
+        {
+          "d_sparse": 262144,
+          "feature_path": "results/stage2/sae_features/gemma3_27b_infer_property_L45_mlp_in_weighted_layer_45_width_262k_l0_small_affine_top128.safetensors",
+          "feature_prefix": "results/stage2/sae_features/gemma3_27b_infer_property_L45_mlp_in_weighted_layer_45_width_262k_l0_small_affine_top128",
+          "hf_snapshot_revision": "5c58dd4cddd52cef653059d85e12a86bf6222a28",
+          "kept_mean_l0": 19.490374064837905,
+          "kept_nnz": 195391,
+          "sae_id": "layer_45_width_262k_l0_small_affine",
+          "sae_release": "gemma-scope-2-27b-it-transcoders-all",
+          "sidecar_path": "results/stage2/sae_features/gemma3_27b_infer_property_L45_mlp_in_weighted_layer_45_width_262k_l0_small_affine_top128.example_ids.jsonl"
+        },
+        {
+          "d_sparse": 16384,
+          "feature_path": "results/stage2/sae_features/gemma3_27b_infer_property_L45_mlp_out_hook_layer_45_width_16k_l0_small_top128.safetensors",
+          "feature_prefix": "results/stage2/sae_features/gemma3_27b_infer_property_L45_mlp_out_hook_layer_45_width_16k_l0_small_top128",
+          "hf_snapshot_revision": "5c58dd4cddd52cef653059d85e12a86bf6222a28",
+          "kept_mean_l0": 23.529576059850374,
+          "kept_nnz": 235884,
+          "sae_id": "layer_45_width_16k_l0_small",
+          "sae_release": "gemma-scope-2-27b-it-mlp-all",
+          "sidecar_path": "results/stage2/sae_features/gemma3_27b_infer_property_L45_mlp_out_hook_layer_45_width_16k_l0_small_top128.example_ids.jsonl"
+        }
+      ],
+      "input_rows": 11000,
+      "kept_mean_l0_concat": 131.2930673316708,
+      "kept_nnz_concat": 1316213,
+      "kept_rows": 10025,
+      "max_iter": 2000,
+      "per_height": {
+        "h1": {
+          "auc": 0.8104575163398693,
+          "n": 159,
+          "negative_n": 6,
+          "positive_n": 153
+        },
+        "h2": {
+          "auc": 0.7034482758620689,
+          "n": 269,
+          "negative_n": 95,
+          "positive_n": 174
+        },
+        "h3": {
+          "auc": 0.7772352568167407,
+          "n": 439,
+          "negative_n": 249,
+          "positive_n": 190
+        },
+        "h4": {
+          "auc": 0.786549340037712,
+          "n": 659,
+          "negative_n": 444,
+          "positive_n": 215
+        }
+      },
+      "solver": "liblinear",
+      "source_file": "results/full/with_errortype/gemma3_27b_infer_property.jsonl",
+      "split_counts": {
+        "test": {
+          "n": 1526,
+          "negative_n": 794,
+          "positive_n": 732
+        },
+        "train": {
+          "n": 6990,
+          "negative_n": 3811,
+          "positive_n": 3179
+        },
+        "val": {
+          "n": 1509,
+          "negative_n": 810,
+          "positive_n": 699
+        }
+      },
+      "status": "ok",
+      "test_auc": 0.8344310470606049,
+      "test_auc_ci": {
+        "alpha": 0.05,
+        "high": 0.8557947580651917,
+        "low": 0.8130376140245701,
+        "mean": 0.8347526140424243,
+        "samples_requested": 1000,
+        "samples_used": 1000
+      },
+      "val_auc": 0.8454900298486373
+    },
+    "infer_subtype": {
+      "active_feature_ids_sample": [
+        57,
+        64,
+        184,
+        240,
+        359,
+        476,
+        560,
+        562,
+        565,
+        598,
+        619,
+        674,
+        709,
+        1426,
+        1734,
+        2108,
+        2605,
+        3856,
+        4799,
+        6958,
+        7144,
+        9871,
+        11429,
+        13549,
+        15376
+      ],
+      "active_feature_n": 684,
+      "active_feature_source": "train_nonzero_concat_columns",
+      "best_c": 0.001,
+      "c_values": [
+        0.0001,
+        0.0003,
+        0.001,
+        0.003,
+        0.01,
+        0.03,
+        0.1,
+        0.3,
+        1.0,
+        3.0,
+        10.0
+      ],
+      "d_sparse_concat": 851968,
+      "feature_blocks": [
+        {
+          "d_sparse": 16384,
+          "feature_path": "results/stage2/sae_features/gemma3_27b_infer_subtype_L30_layer_30_width_16k_l0_small_top128.safetensors",
+          "feature_prefix": "results/stage2/sae_features/gemma3_27b_infer_subtype_L30_layer_30_width_16k_l0_small_top128",
+          "hf_snapshot_revision": "5c58dd4cddd52cef653059d85e12a86bf6222a28",
+          "kept_mean_l0": 16.286951662475552,
+          "kept_nnz": 174873,
+          "sae_id": "layer_30_width_16k_l0_small",
+          "sae_release": "gemma-scope-2-27b-it-res-all",
+          "sidecar_path": "results/stage2/sae_features/gemma3_27b_infer_subtype_L30_layer_30_width_16k_l0_small_top128.example_ids.jsonl"
+        },
+        {
+          "d_sparse": 262144,
+          "feature_path": "results/stage2/sae_features/gemma3_27b_infer_subtype_L30_layer_30_width_262k_l0_small_top128.safetensors",
+          "feature_prefix": "results/stage2/sae_features/gemma3_27b_infer_subtype_L30_layer_30_width_262k_l0_small_top128",
+          "hf_snapshot_revision": "5c58dd4cddd52cef653059d85e12a86bf6222a28",
+          "kept_mean_l0": 23.014156654559002,
+          "kept_nnz": 247103,
+          "sae_id": "layer_30_width_262k_l0_small",
+          "sae_release": "gemma-scope-2-27b-it-res-all",
+          "sidecar_path": "results/stage2/sae_features/gemma3_27b_infer_subtype_L30_layer_30_width_262k_l0_small_top128.example_ids.jsonl"
+        },
+        {
+          "d_sparse": 16384,
+          "feature_path": "results/stage2/sae_features/gemma3_27b_infer_subtype_L45_layer_45_width_16k_l0_small_top128.safetensors",
+          "feature_prefix": "results/stage2/sae_features/gemma3_27b_infer_subtype_L45_layer_45_width_16k_l0_small_top128",
+          "hf_snapshot_revision": "5c58dd4cddd52cef653059d85e12a86bf6222a28",
+          "kept_mean_l0": 14.075719474713607,
+          "kept_nnz": 151131,
+          "sae_id": "layer_45_width_16k_l0_small",
+          "sae_release": "gemma-scope-2-27b-it-res-all",
+          "sidecar_path": "results/stage2/sae_features/gemma3_27b_infer_subtype_L45_layer_45_width_16k_l0_small_top128.example_ids.jsonl"
+        },
+        {
+          "d_sparse": 262144,
+          "feature_path": "results/stage2/sae_features/gemma3_27b_infer_subtype_L45_layer_45_width_262k_l0_small_top128.safetensors",
+          "feature_prefix": "results/stage2/sae_features/gemma3_27b_infer_subtype_L45_layer_45_width_262k_l0_small_top128",
+          "hf_snapshot_revision": "5c58dd4cddd52cef653059d85e12a86bf6222a28",
+          "kept_mean_l0": 14.671789140355779,
+          "kept_nnz": 157531,
+          "sae_id": "layer_45_width_262k_l0_small",
+          "sae_release": "gemma-scope-2-27b-it-res-all",
+          "sidecar_path": "results/stage2/sae_features/gemma3_27b_infer_subtype_L45_layer_45_width_262k_l0_small_top128.example_ids.jsonl"
+        },
+        {
+          "d_sparse": 16384,
+          "feature_path": "results/stage2/sae_features/gemma3_27b_infer_subtype_L45_mlp_in_weighted_layer_45_width_16k_l0_small_affine_top128.safetensors",
+          "feature_prefix": "results/stage2/sae_features/gemma3_27b_infer_subtype_L45_mlp_in_weighted_layer_45_width_16k_l0_small_affine_top128",
+          "hf_snapshot_revision": "5c58dd4cddd52cef653059d85e12a86bf6222a28",
+          "kept_mean_l0": 19.573251373754307,
+          "kept_nnz": 210158,
+          "sae_id": "layer_45_width_16k_l0_small_affine",
+          "sae_release": "gemma-scope-2-27b-it-transcoders-all",
+          "sidecar_path": "results/stage2/sae_features/gemma3_27b_infer_subtype_L45_mlp_in_weighted_layer_45_width_16k_l0_small_affine_top128.example_ids.jsonl"
+        },
+        {
+          "d_sparse": 262144,
+          "feature_path": "results/stage2/sae_features/gemma3_27b_infer_subtype_L45_mlp_in_weighted_layer_45_width_262k_l0_small_affine_top128.safetensors",
+          "feature_prefix": "results/stage2/sae_features/gemma3_27b_infer_subtype_L45_mlp_in_weighted_layer_45_width_262k_l0_small_affine_top128",
+          "hf_snapshot_revision": "5c58dd4cddd52cef653059d85e12a86bf6222a28",
+          "kept_mean_l0": 17.8727763807395,
+          "kept_nnz": 191900,
+          "sae_id": "layer_45_width_262k_l0_small_affine",
+          "sae_release": "gemma-scope-2-27b-it-transcoders-all",
+          "sidecar_path": "results/stage2/sae_features/gemma3_27b_infer_subtype_L45_mlp_in_weighted_layer_45_width_262k_l0_small_affine_top128.example_ids.jsonl"
+        },
+        {
+          "d_sparse": 16384,
+          "feature_path": "results/stage2/sae_features/gemma3_27b_infer_subtype_L45_mlp_out_hook_layer_45_width_16k_l0_small_top128.safetensors",
+          "feature_prefix": "results/stage2/sae_features/gemma3_27b_infer_subtype_L45_mlp_out_hook_layer_45_width_16k_l0_small_top128",
+          "hf_snapshot_revision": "5c58dd4cddd52cef653059d85e12a86bf6222a28",
+          "kept_mean_l0": 22.386234516159075,
+          "kept_nnz": 240361,
+          "sae_id": "layer_45_width_16k_l0_small",
+          "sae_release": "gemma-scope-2-27b-it-mlp-all",
+          "sidecar_path": "results/stage2/sae_features/gemma3_27b_infer_subtype_L45_mlp_out_hook_layer_45_width_16k_l0_small_top128.example_ids.jsonl"
+        }
+      ],
+      "input_rows": 11000,
+      "kept_mean_l0_concat": 127.88087920275682,
+      "kept_nnz_concat": 1373057,
+      "kept_rows": 10737,
+      "max_iter": 2000,
+      "per_height": {
+        "h1": {
+          "auc": 0.3006535947712418,
+          "n": 154,
+          "negative_n": 1,
+          "positive_n": 153
+        },
+        "h2": {
+          "auc": 0.7054275204564223,
+          "n": 250,
+          "negative_n": 173,
+          "positive_n": 77
+        },
+        "h3": {
+          "auc": 0.6769727047146401,
+          "n": 453,
+          "negative_n": 403,
+          "positive_n": 50
+        },
+        "h4": {
+          "auc": 0.7387515356265357,
+          "n": 741,
+          "negative_n": 704,
+          "positive_n": 37
+        }
+      },
+      "solver": "liblinear",
+      "source_file": "results/full/with_errortype/gemma3_27b_infer_subtype.jsonl",
+      "split_counts": {
+        "test": {
+          "n": 1598,
+          "negative_n": 1281,
+          "positive_n": 317
+        },
+        "train": {
+          "n": 7497,
+          "negative_n": 5913,
+          "positive_n": 1584
+        },
+        "val": {
+          "n": 1642,
+          "negative_n": 1300,
+          "positive_n": 342
+        }
+      },
+      "status": "ok",
+      "test_auc": 0.892633663073752,
+      "test_auc_ci": {
+        "alpha": 0.05,
+        "high": 0.9133756723649297,
+        "low": 0.8697230147040274,
+        "mean": 0.8924572482417756,
+        "samples_requested": 1000,
+        "samples_used": 1000
+      },
+      "val_auc": 0.9071255060728745
+    }
+  },
+  "schema_version": 1,
+  "seed": 20260429,
+  "solver": "liblinear",
+  "split_family": "s3",
+  "splits_path": "results/stage2/splits.jsonl",
+  "tasks": [
+    "infer_property",
+    "infer_subtype"
+  ]
+}

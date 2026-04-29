@@ -193,11 +193,26 @@ is S1/S3 `0.752/0.860` and `0.748/0.860`, L30 262K is
 `0.770/0.867` and `0.771/0.866`, and L30 residual 16K+262K concat is
 `0.786/0.872` and `0.788/0.864`.
 
+A leave-one-block-out validation of the L30+L45 all-sparse concat shows that
+the gain is distributed. Removing any one sparse block changes AUC by at most
+about `0.007`. The most important property contributors are L45 residual 262K
+on S1, L30 residual 262K on both splits, exact MLP-output 16K on both splits,
+and L45 residual 16K on S3. Subtype effects are smaller and partly redundant.
+The aggregate validation report is
+`docs/sparse_concat_ablation_27b_l30_l45_all_sparse_summary.json`.
+
+The dense-active/centered version of the same L30+L45 all-sparse concat is
+effectively unchanged: S1 property/subtype `0.839/0.888` and S3
+`0.834/0.893`, with `826/681` train-active columns on S1 and `836/684` on S3.
+As with the earlier L45-only dense-active check, centering/scaling sparse
+active columns does not reveal a hidden bridge to the raw activation result.
+
 Interpretation: sparse feature families are complementary, especially for
 property. Adding L30 residual features to the corrected L45 sparse family gives
 the strongest sparse-only property result so far and the strongest S3 subtype
-result, but the combined sparse representation still trails raw exact
-activations. This narrows the gap; it does not erase it.
+result, but no single sparse block explains the improvement and the combined
+sparse representation still trails raw exact activations. This narrows the gap;
+it does not erase it.
 
 ## Crosscoder Pilot
 

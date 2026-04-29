@@ -887,10 +887,63 @@ exact-16K, and L30 runs below. Those later sections supersede this queue.
   `0.813-0.856`/`0.869-0.913`. Relative to the previous low-C four-block L45
   concat, this is `+0.009/-0.001` on S1 property/subtype and `+0.006/+0.004`
   on S3.
+- Ran a leave-one-sparse-block-out validation for the L30+L45 all-sparse
+  concat. The validator is
+  `scripts/stage2_validate_l30_l45_sparse_ablation.py`; the aggregate report
+  is `docs/sparse_concat_ablation_27b_l30_l45_all_sparse_summary.json`.
+  Using the full concat's selected C values and no bootstrap CIs, removing any
+  single block changes AUC by at most about `0.007`. The largest property drops
+  are from removing L45 residual 262K on S1 (`-0.007`), L30 residual 262K on S1
+  and S3 (`-0.004/-0.004`), exact MLP-output 16K on S1/S3
+  (`-0.004/-0.004`), and L45 residual 16K on S3 (`-0.004`). Subtype effects
+  are smaller and occasionally mixed, with the largest drop from removing L45
+  residual 16K on S1 (`-0.005`).
+- Ran a dense-active/centered version of the same L30+L45 all-sparse concat.
+  Outputs are
+  `docs/dense_active_sparse_concat_probe_27b_l30_l45_all_sparse_broadc_s1.json`
+  and
+  `docs/dense_active_sparse_concat_probe_27b_l30_l45_all_sparse_broadc_s3_target_symbol.json`.
+  Active columns are `826/681` for S1 property/subtype and `836/684` for S3.
+  AUCs are S1 `0.839/0.888` and S3 `0.834/0.893`, essentially unchanged from
+  the sparse-hstack version (`0.839/0.887` and `0.834/0.892`).
+- Submitted Scholar job `451606` via
+  `scripts/stage2_probe_27b_crosscoder_layers_individual_raw.sbatch` to probe
+  cached raw residual activations at the crosscoder layers `{16,31,40,53}`
+  individually. This is the decision check for whether the next sparse
+  extraction should target L40, L53, or both.
 - Interpretation: L30 residual sparse features are not strong standalone
   property probes, but they do add complementary signal when combined with the
-  corrected L45 sparse family. This is the best positive sparse-localization
-  result so far, but it still trails raw L45 residual probes (`0.897/0.914` S1,
-  `0.884/0.917` S3) and exact raw same-site probes. The main narrative remains
-  narrowed partial localization, not a full sparse replacement for raw
-  activations.
+  corrected L45 sparse family. The leave-one-out result argues that the final
+  gain is distributed across partially redundant sparse families rather than
+  being driven by a single artifact; the dense-active check argues that sparse
+  matrix scaling/centering is not hiding a major extra gain. This is the best
+  positive sparse-localization result so far, but it still trails raw L45
+  residual probes (`0.897/0.914` S1, `0.884/0.917` S3) and exact raw same-site
+  probes. The main narrative remains narrowed partial localization, not a full
+  sparse replacement for raw activations.
+
+#### Stage 2 Remaining-Work Audit
+
+- Audited `docs/STAGE_2_PLAN.md` against current artifacts. The main completed
+  experimental arc now includes 27B raw residual probes, S1/S3 controls,
+  residual SAE probes, reconstruction/error diagnostics, exact-hook MLP-output
+  SAE, exact-hook 16K/262K affine transcoders, crosscoder pilot, sparse
+  feature-family concat, L30+L45 concat validation, dense-active scaling checks,
+  dtype sanity checks, Neuronpedia audits, and the first steering pilot.
+- The unfinished report-critical items are narrow: merge teammate 4B comparison
+  tables when available, assemble final report figures/tables, keep docs
+  aligned with new results, and run the full test suite after code/doc updates.
+- The most useful remaining experiments for the SAE-vs-raw discrepancy are:
+  first, job `451606` probing cached raw residual activations at
+  `{16,31,40,53}` individually; second, if L40 or L53 has strong raw signal,
+  extract residual SAE 16K/262K at that layer and add it to the sparse concat;
+  third, consider a multi-layer exact sparse concat near L40/L45/L53. A
+  higher-L0 or denser transcoder variant is worth trying only if the artifact
+  exists cleanly and exact hook/scale alignment can be verified.
+- Useful but not central: stronger prompt-length/name-frequency
+  residualization. It would defend the raw-probe claim against shallow metadata
+  confounds but probably will not explain the sparse-vs-raw gap.
+- Low priority unless the report needs them: name-scramble regeneration,
+  paraphrase-preserving B.3 tests, a stronger steering null, and another
+  crosscoder variant. These are scientifically defensible but either expensive
+  or unlikely to address the current sparse-localization gap directly.

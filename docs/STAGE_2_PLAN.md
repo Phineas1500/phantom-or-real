@@ -280,6 +280,19 @@ complementarity in the all-sparse concat, where it gives the current strongest
 sparse-only property result and the strongest S3 subtype sparse result. The
 raw-vs-sparse gap remains.
 
+Leave-one-block-out validation of the L30+L45 all-sparse concat supports this
+as a distributed complementarity result. With the full concat's selected C
+values and no bootstrap CIs, removing any single block changes AUC by at most
+about `0.007`. The biggest property drops come from removing L45 residual 262K
+on S1, L30 residual 262K on both splits, exact MLP-output 16K on both splits,
+and L45 residual 16K on S3. The aggregate report is
+`docs/sparse_concat_ablation_27b_l30_l45_all_sparse_summary.json`.
+
+A dense-active/centered rerun of the same L30+L45 all-sparse concat is
+effectively unchanged: S1 `0.839/0.888` and S3 `0.834/0.893`. This reinforces
+the earlier L45-only conclusion that sparse-column scaling/centering is not
+the missing bridge to raw activations.
+
 ### Crosscoder Pilot
 
 Job `451181` tested the smallest available 27B IT crosscoder:
@@ -335,13 +348,30 @@ Report-critical:
 
 Optional only if time remains:
 
-- Crosscoder `l0_big` variant over layers 16/31/40/53.
-- Higher-L0 or denser 262K transcoder variant, if available.
-- Multi-layer exact transcoder concat near L40/L45/L53.
+Most relevant to the raw-vs-sparse gap:
+
+- Finish job `451606`, which probes cached raw residual activations at
+  `{16,31,40,53}` individually. Use it to decide whether L40, L53, or neither
+  deserves another residual SAE extraction.
+- If L40 or L53 looks strong, run residual SAE 16K/262K extraction for that
+  layer and add it to the sparse concat. This is the cleanest next attempt to
+  test whether the missing signal is distributed across layers.
+- Consider a multi-layer exact sparse concat near L40/L45/L53 after the raw
+  layer decision check.
+- Try a higher-L0 or denser 262K transcoder variant only if the artifact exists
+  cleanly and exact hook/scale alignment can be verified.
+
+Useful for report defensibility, but less likely to explain the sparse gap:
+
 - Stronger prompt-length/name-frequency residualization.
 - Optional Neuronpedia-facing layer-40 or layer-53 residual SAE probe if the
   final report needs a residual feature-dashboard audit.
+
+Low priority unless the final report specifically needs them:
+
+- Crosscoder `l0_big` variant over layers 16/31/40/53.
 - Name-scramble regeneration.
+- Paraphrase-preserving B.3 test.
 - A better steering null with all-token/decode-step intervention.
 
 ## Key Files
