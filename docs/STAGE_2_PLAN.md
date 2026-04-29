@@ -110,13 +110,12 @@ As of 2026-04-27:
   the one changed output also appeared for matched orthogonal controls.
 - `docs/stage2_results_pack.md` and `docs/report_outline.md` summarize the
   current 27B report story while Gemma 3 4B teammate results remain pending.
-- The next scoped Gemma Scope 2 branch is a single L45 MLP-output site pilot,
-  not a broad artifact sweep. It uses `mlp_out_all/layer_45_width_16k_l0_small`
-  and extracts `blocks.{layer}.ln2_post.hook_normalized` into
-  site-suffixed activation files.
 - Scholar job `451090` completed the L45 MLP-output site pilot. Raw same-site
   probes match raw residual strength, but the L45 MLP-output width-16K SAE is
   much weaker than the residual SAEs.
+- Scholar job `451137` completed the L45 skip-transcoder pilot. Raw `mlp_in`
+  probes match raw residual strength, but the L45 affine skip-transcoder only
+  partially recovers that signal.
 - GORMAN access is configured through `queue.cs.purdue.edu`. A scratch venv
   with CUDA 12.6 PyTorch and TransformerLens imports on a V100, so GORMAN is a
   plausible fallback for 27B fp16 extraction. It is not needed for the current
@@ -142,8 +141,9 @@ Current 27B scope:
 - Labels: Stage 1 `is_correct_strong`, with `parse_failed=True` filtered for
   the main probe training.
 - Feature sources: raw residual stream, Gemma Scope 2 residual SAEs
-  width-16K and width-262K, and skip-transcoder features only if the catalog and
-  compute path are clean.
+  width-16K and width-262K, the completed MLP-output SAE pilot, and one L45
+  skip-transcoder pilot. A crosscoder pilot remains optional and requires a
+  fair raw-concat baseline over the same layer set.
 - Probe families: difference-of-means and logistic regression.
 - Cross-task transfer within each model.
 - Steering validation on 27B `infer_property` only, after stable SAE features
@@ -638,9 +638,25 @@ Targeted Gemma Scope site pilot:
   property/subtype 0.892/0.915. The width-16K MLP-output SAE reached only
   0.577/0.674 on S1 and 0.550/0.702 on S3.
 - Interpretation: non-residual site features do not rescue the SAE story. Do
-  not spend project time on a crosscoder pilot unless the report needs it as a
-  clearly labeled future-work check; any such pilot would need a raw-concat
-  baseline over the same layer set.
+  not treat the MLP-output SAE null as the final Gemma Scope 2 check, because
+  computation-oriented sparse artifacts may still behave differently.
+
+Targeted skip-transcoder pilot:
+
+- `scripts/stage2_transcoder_27b_L45_16k_affine.sbatch` tests the L45
+  skip-transcoder path. It extracts raw `mlp_in` activations from
+  `blocks.{layer}.ln2.hook_normalized`, encodes
+  `gemma-scope-2-27b-it-transcoders-all/layer_45_width_16k_l0_small_affine`,
+  and writes raw same-site plus sparse transcoder S1/S3 probe summaries.
+- Result: raw `mlp_in` activations again carry raw-level correctness signal.
+  Raw L45 `mlp_in` test AUCs were S1 property/subtype 0.897/0.915 and S3
+  property/subtype 0.885/0.914. The affine skip-transcoder reached 0.722/0.821
+  on S1 and 0.722/0.841 on S3.
+- Interpretation: the skip-transcoder exposes more signal than the weak
+  MLP-output SAE, but it still does not close the raw-activation gap. Keep
+  crosscoders as optional future work unless the report needs a final explicit
+  multi-layer check; any crosscoder pilot must include a raw-concat baseline
+  over `{16,31,40,53}`.
 
 Outputs:
 
@@ -655,6 +671,10 @@ Outputs:
   `docs/raw_probe_27b_l45_mlp_out_s3_target_symbol.json`;
 - `docs/sae_probe_27b_l45_mlp_out_16k_s1.json` and
   `docs/sae_probe_27b_l45_mlp_out_16k_s3_target_symbol.json`;
+- `docs/raw_probe_27b_l45_mlp_in_s1.json` and
+  `docs/raw_probe_27b_l45_mlp_in_s3_target_symbol.json`;
+- `docs/transcoder_probe_27b_l45_16k_affine_s1.json` and
+  `docs/transcoder_probe_27b_l45_16k_affine_s3_target_symbol.json`;
 - `results/stage2/stable_features.json` if a later pass selects a steering set.
 
 ## Phase E: Steering Validation
@@ -775,9 +795,10 @@ Phase C/D:
 - [x] L45 width-16K/262K S3 target-symbol SAE probe metrics.
 - [x] L45 width-16K/262K S3 reconstruction/error probe diagnostic.
 - [x] L45 MLP-output width-16K site pilot.
+- [x] L45 skip-transcoder width-16K affine pilot.
 - [x] Additional SAE release IDs pinned.
-- [ ] SAE feature extraction complete.
-- [ ] Broader SAE probe metrics.
+- [x] Targeted sparse-artifact feature extraction complete.
+- [x] Targeted sparse-artifact probe metrics complete.
 - [ ] Stable feature set selected.
 
 Phase E:

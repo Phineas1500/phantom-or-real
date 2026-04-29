@@ -63,14 +63,21 @@ def sae_file_name(subfolder: str, sae_id: str, file_name: str) -> str:
 
 def summarize_sae_cfg(sae: Any, sae_cfg_dict: dict[str, Any]) -> dict[str, Any]:
     parameter = next(sae.parameters())
+    metadata = sae_cfg_dict.get("metadata") or {}
+    hook_name = sae_cfg_dict.get("hook_name") or metadata.get("hook_name")
+    hf_hook_name = sae_cfg_dict.get("hf_hook_name") or metadata.get("hf_hook_name")
+    d_out = getattr(sae.cfg, "d_out", None)
     return {
         "architecture": sae_cfg_dict.get("architecture"),
         "d_in": int(sae.cfg.d_in),
         "d_sae": int(sae.cfg.d_sae),
+        "d_out": int(d_out) if d_out is not None else None,
         "device": str(parameter.device),
         "dtype": str(parameter.dtype),
-        "hf_hook_name": sae_cfg_dict.get("hf_hook_name"),
-        "hook_name": sae_cfg_dict.get("hook_name"),
+        "hf_hook_name": hf_hook_name,
+        "hook_name": hook_name,
+        "hf_hook_name_out": sae_cfg_dict.get("hf_hook_name_out") or metadata.get("hf_hook_name_out"),
+        "hook_name_out": sae_cfg_dict.get("hook_name_out") or metadata.get("hook_name_out"),
     }
 
 

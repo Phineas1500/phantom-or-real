@@ -449,3 +449,24 @@ final report is easier to assemble.
   `torch==2.11.0+cu126` and `transformer-lens==3.0.0` can see a V100. A
   4-GPU 27B fp16 load pilot was submitted as `9885` but canceled because it was
   scheduled for May 1 and Scholar had already completed the MLP-site run.
+- Ran one additional computation-oriented sparse-artifact check before stopping
+  the Gemma Scope 2 branch: the L45 width-16K affine skip-transcoder. The first
+  submission, Scholar job `451126`, failed because the metadata hook
+  `blocks.45.hook_mlp_in` did not fire under the local TransformerLens Gemma 3
+  extraction path. The corrected job `451137` used
+  `blocks.45.ln2.hook_normalized` for the pre-MLP normalized site and completed
+  on `scholar-j001` in 1:14:18.
+- Raw L45 `mlp_in` activations match the raw residual/MLP-output story:
+  S1 property/subtype test AUCs 0.897/0.915 and S3 property/subtype test AUCs
+  0.885/0.914.
+- The affine skip-transcoder features expose some signal but do not close the
+  raw gap. Skip-transcoder test AUCs were S1 property/subtype 0.722/0.821 and
+  S3 property/subtype 0.722/0.841. This is better than the weak MLP-output SAE
+  but still far below raw activations, and weaker than the residual SAEs for
+  property.
+- Crosscoders are feasible but heavier: the 27B IT repo has weakly causal
+  crosscoders over residual layers `{16,31,40,53}`, but the smallest width is
+  65K and uses four parameter shards of about 1.76 GB each. Given the
+  skip-transcoder result, keep crosscoders as optional future work rather than
+  the next main experiment; any such pilot must compare against a raw-concat
+  baseline over the same layers.

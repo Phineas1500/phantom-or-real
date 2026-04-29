@@ -109,9 +109,22 @@
         "sae_id": "layer_45_width_16k_l0_small",
         "sae_params_sha256": "92aa11f934f5e667835c2ca3c0b147e6f509518a36cef32975b785a2dc473388",
         "sae_release": "gemma-scope-2-27b-it-mlp-all"
+      },
+      "gemma-scope-2-27b-it-transcoders-all/layer_45_width_16k_l0_small_affine": {
+        "architecture": "jumprelu_skip_transcoder",
+        "d_in": 5376,
+        "d_out": 5376,
+        "d_sae": 16384,
+        "hf_repo_id": "google/gemma-scope-2-27b-it",
+        "hf_snapshot_revision": "5c58dd4cddd52cef653059d85e12a86bf6222a28",
+        "hf_subfolder": "transcoder_all",
+        "sae_config_sha256": "2351812d62fb9acbf394c8268834eac72ec2f2bbd942f84bdc2621e4f3695b8b",
+        "sae_id": "layer_45_width_16k_l0_small_affine",
+        "sae_params_sha256": "00cf90cb287e496b7e2da5c48f589598575ac8901416e343d6d29aa930367f4f",
+        "sae_release": "gemma-scope-2-27b-it-transcoders-all"
       }
     },
-    "status": "pinned_l45_residual_and_mlp_site_saes"
+    "status": "pinned_l45_residual_mlp_and_skip_transcoder_artifacts"
   },
   "schema_version": 1,
   "stage1_jsonls": {

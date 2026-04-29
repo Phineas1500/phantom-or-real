@@ -1,0 +1,194 @@
+{
+  "activation_dir": "results/stage2/activations",
+  "activation_site": "mlp_in",
+  "best_by_task": {
+    "infer_property": {
+      "layer": "L45",
+      "test_auc": 0.8845972526186838,
+      "val_auc": 0.8746851763542274
+    },
+    "infer_subtype": {
+      "layer": "L45",
+      "test_auc": 0.913878402371964,
+      "val_auc": 0.9107242465137203
+    }
+  },
+  "bootstrap_samples": 1000,
+  "c_values": [
+    0.01,
+    0.1,
+    1.0,
+    10.0
+  ],
+  "created_at_utc": "2026-04-29T02:01:58.607441+00:00",
+  "drop_parse_failed": true,
+  "layers": [
+    45
+  ],
+  "max_iter": 2000,
+  "model_key": "gemma3_27b",
+  "results": {
+    "infer_property": {
+      "L45": {
+        "activation_path": "results/stage2/activations/gemma3_27b_infer_property_L45_mlp_in.safetensors",
+        "best_c": 0.01,
+        "c_values": [
+          0.01,
+          0.1,
+          1.0,
+          10.0
+        ],
+        "d_model": 5376,
+        "drop_parse_failed": true,
+        "input_rows": 11000,
+        "kept_rows": 10025,
+        "max_iter": 2000,
+        "per_height": {
+          "h1": {
+            "auc": 0.9793028322440087,
+            "n": 159,
+            "negative_n": 6,
+            "positive_n": 153
+          },
+          "h2": {
+            "auc": 0.8226255293405929,
+            "n": 269,
+            "negative_n": 95,
+            "positive_n": 174
+          },
+          "h3": {
+            "auc": 0.8378144155569648,
+            "n": 439,
+            "negative_n": 249,
+            "positive_n": 190
+          },
+          "h4": {
+            "auc": 0.8585899853341713,
+            "n": 659,
+            "negative_n": 444,
+            "positive_n": 215
+          }
+        },
+        "shuffle_labels": false,
+        "sidecar_path": "results/stage2/activations/gemma3_27b_infer_property_L45_mlp_in.example_ids.jsonl",
+        "solver": "lbfgs",
+        "source_file": "results/full/with_errortype/gemma3_27b_infer_property.jsonl",
+        "split_counts": {
+          "test": {
+            "n": 1526,
+            "negative_n": 794,
+            "positive_n": 732
+          },
+          "train": {
+            "n": 6990,
+            "negative_n": 3811,
+            "positive_n": 3179
+          },
+          "val": {
+            "n": 1509,
+            "negative_n": 810,
+            "positive_n": 699
+          }
+        },
+        "split_mode": "s3",
+        "status": "ok",
+        "test_auc": 0.8845972526186838,
+        "test_auc_ci": {
+          "alpha": 0.05,
+          "high": 0.9010696151099021,
+          "low": 0.8683615587654196,
+          "mean": 0.8848035615498561,
+          "samples_requested": 1000,
+          "samples_used": 1000
+        },
+        "val_auc": 0.8746851763542274
+      }
+    },
+    "infer_subtype": {
+      "L45": {
+        "activation_path": "results/stage2/activations/gemma3_27b_infer_subtype_L45_mlp_in.safetensors",
+        "best_c": 0.01,
+        "c_values": [
+          0.01,
+          0.1,
+          1.0,
+          10.0
+        ],
+        "d_model": 5376,
+        "drop_parse_failed": true,
+        "input_rows": 11000,
+        "kept_rows": 10737,
+        "max_iter": 2000,
+        "per_height": {
+          "h1": {
+            "auc": 0.8496732026143791,
+            "n": 154,
+            "negative_n": 1,
+            "positive_n": 153
+          },
+          "h2": {
+            "auc": 0.7772689738007657,
+            "n": 250,
+            "negative_n": 173,
+            "positive_n": 77
+          },
+          "h3": {
+            "auc": 0.7280397022332507,
+            "n": 453,
+            "negative_n": 403,
+            "positive_n": 50
+          },
+          "h4": {
+            "auc": 0.8515433046683047,
+            "n": 741,
+            "negative_n": 704,
+            "positive_n": 37
+          }
+        },
+        "shuffle_labels": false,
+        "sidecar_path": "results/stage2/activations/gemma3_27b_infer_subtype_L45_mlp_in.example_ids.jsonl",
+        "solver": "lbfgs",
+        "source_file": "results/full/with_errortype/gemma3_27b_infer_subtype.jsonl",
+        "split_counts": {
+          "test": {
+            "n": 1598,
+            "negative_n": 1281,
+            "positive_n": 317
+          },
+          "train": {
+            "n": 7497,
+            "negative_n": 5913,
+            "positive_n": 1584
+          },
+          "val": {
+            "n": 1642,
+            "negative_n": 1300,
+            "positive_n": 342
+          }
+        },
+        "split_mode": "s3",
+        "status": "ok",
+        "test_auc": 0.913878402371964,
+        "test_auc_ci": {
+          "alpha": 0.05,
+          "high": 0.9305135109884051,
+          "low": 0.8944103574924943,
+          "mean": 0.9135383923535092,
+          "samples_requested": 1000,
+          "samples_used": 1000
+        },
+        "val_auc": 0.9107242465137203
+      }
+    }
+  },
+  "schema_version": 1,
+  "seed": 20260427,
+  "shuffle_labels": false,
+  "solver": "lbfgs",
+  "split_family": "s3",
+  "splits_path": "results/stage2/splits.jsonl",
+  "tasks": [
+    "infer_property",
+    "infer_subtype"
+  ]
+}

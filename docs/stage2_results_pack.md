@@ -90,6 +90,28 @@ rescue the tested sparse dictionary story. The behaviorally relevant signal is
 visible in raw activations at multiple sites, but not well exposed by the
 tested Gemma Scope residual or MLP-output sparse features.
 
+## Skip-Transcoder Pilot
+
+The L45 pre-MLP normalized site was extracted at
+`blocks.45.ln2.hook_normalized` and encoded with the Gemma Scope 2 affine
+skip-transcoder `transcoder_all/layer_45_width_16k_l0_small_affine`. The raw
+`mlp_in` activations again carry raw-residual-level signal, while
+skip-transcoder features are intermediate: stronger than the MLP-output SAE,
+but still below raw activations and not a clean rescue of the sparse-feature
+story.
+
+| Split | Task | Raw `mlp_in` AUC | Skip-transcoder 16K AUC | Raw residual L45 AUC |
+| --- | --- | ---: | ---: | ---: |
+| S1 random | `infer_property` | 0.897 | 0.722 | 0.897 |
+| S1 random | `infer_subtype` | 0.915 | 0.821 | 0.914 |
+| S3 target-symbol heldout | `infer_property` | 0.885 | 0.722 | 0.884 |
+| S3 target-symbol heldout | `infer_subtype` | 0.914 | 0.841 | 0.917 |
+
+Interpretation: computation-oriented sparse features expose some correctness
+signal, but the tested skip-transcoder still misses a large part of the
+raw-activation signal. A crosscoder pilot should be treated as optional future
+work unless the report needs one more explicit multi-layer check.
+
 ## Reconstruction/Error Diagnostic
 
 | Split | Task | SAE width | Energy explained | Reconstruction AUC | Error AUC | Raw L45 AUC |

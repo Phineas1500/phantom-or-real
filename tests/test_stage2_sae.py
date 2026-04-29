@@ -18,6 +18,7 @@ from src.stage2_sae import (
     sae_file_name,
     slice_rows,
     snapshot_revision_from_path,
+    summarize_sae_cfg,
     topk_tensors_to_csr,
 )
 from src.stage2_paths import activation_stem, hook_name_for_layer, normalize_activation_site
@@ -41,6 +42,38 @@ def test_sae_file_name_joins_subfolder_and_id() -> None:
         sae_file_name("resid_post_all/", "layer_45_width_16k_l0_small", "params.safetensors")
         == "resid_post_all/layer_45_width_16k_l0_small/params.safetensors"
     )
+
+
+def test_summarize_sae_cfg_reads_transcoder_metadata_hooks() -> None:
+    class _Cfg:
+        d_in = 3
+        d_sae = 5
+        d_out = 7
+
+    class _FakeSae(torch.nn.Module):
+        def __init__(self) -> None:
+            super().__init__()
+            self.weight = torch.nn.Parameter(torch.ones(1, dtype=torch.bfloat16))
+            self.cfg = _Cfg()
+
+    summary = summarize_sae_cfg(
+        _FakeSae(),
+        {
+            "architecture": "jumprelu_skip_transcoder",
+            "metadata": {
+                "hook_name": "blocks.45.hook_mlp_in",
+                "hf_hook_name": "model.layers.45.pre_feedforward_layernorm.output",
+                "hook_name_out": "blocks.45.hook_mlp_out",
+                "hf_hook_name_out": "model.layers.45.post_feedforward_layernorm.output",
+            },
+        },
+    )
+
+    assert summary["architecture"] == "jumprelu_skip_transcoder"
+    assert summary["d_out"] == 7
+    assert summary["hook_name"] == "blocks.45.hook_mlp_in"
+    assert summary["hook_name_out"] == "blocks.45.hook_mlp_out"
+    assert summary["hf_hook_name_out"] == "model.layers.45.post_feedforward_layernorm.output"
 
 
 def test_derive_sae_feature_prefix_includes_slice() -> None:
