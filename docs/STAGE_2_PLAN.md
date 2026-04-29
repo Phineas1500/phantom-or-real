@@ -29,6 +29,10 @@ Completed:
 - Raw residual probes show a strong pre-generation correctness signal. Best
   layer is L45 for both tasks.
 - Label-shuffle, cross-task transfer, and S3 heldout-target controls completed.
+- Prompt/name metadata residualization diagnostic completed. Adding the raw L45
+  probe score to the rich `b0_namefreq` metadata baseline improves test AUC by
+  `+0.155/+0.078` on S1 property/subtype and `+0.173/+0.071` on S3
+  property/subtype, nearly recovering raw-probe performance.
 - L45 residual SAE probes completed for Gemma Scope 2 widths 16K and 262K.
 - Top-512 diagnostic completed; top-128 already captured all active residual
   SAE features in the tested files.
@@ -63,6 +67,9 @@ Current scientific story:
 
 - Raw pre-generation activations robustly predict ontology reasoning
   success/failure beyond metadata baselines.
+- The metadata residualization diagnostic supports this as a conditional
+  activation signal: raw L45 scores add `+0.06` to `+0.18` AUC over prompt/name
+  metadata across the two tasks and S1/S3 splits.
 - Tested Gemma Scope residual SAE features retain some signal, but trail raw
   residual probes.
 - Reconstruction/error diagnostics are the main pivot: residual SAEs reconstruct
@@ -363,7 +370,6 @@ Most relevant to the raw-vs-sparse gap:
 
 Useful for report defensibility, but less likely to explain the sparse gap:
 
-- Stronger prompt-length/name-frequency residualization.
 - Optional Neuronpedia-facing layer-40 or layer-53 residual SAE probe if the
   final report needs a residual feature-dashboard audit.
 
@@ -388,6 +394,8 @@ Low priority unless the final report specifically needs them:
 - `scripts/stage2_probe_crosscoder.py`: crosscoder feature probes.
 - `scripts/stage2_probe_dense_active_sparse.py`: dense active-column scaling
   check for sparse artifacts.
+- `scripts/stage2_probe_metadata_residualization.py`: raw-score conditional
+  metadata and residualization diagnostic.
 - `scripts/stage2_probe_sparse_concat.py`: sparse hstack probe for combining
   multiple top-k feature artifacts.
 - `scripts/stage2_mlp_out_exact_27b_L45_16k.sbatch`: exact `hook_mlp_out`
@@ -430,6 +438,7 @@ Low priority unless the final report specifically needs them:
 - [x] Raw residual probes with bootstrap CIs.
 - [x] Label-shuffle controls.
 - [x] Cross-task transfer.
+- [x] Prompt/name metadata residualization diagnostic.
 - [x] Residual SAE 16K/262K extraction and probes.
 - [x] Top-k truncation diagnostic.
 - [x] SAE feature-stability diagnostic.

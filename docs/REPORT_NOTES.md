@@ -958,3 +958,34 @@ exact-16K, and L30 runs below. Those later sections supersede this queue.
   `stage2_site_transcoder_auc.png`, and `stage2_figure_data.csv`.
 - Updated `.gitignore` to track `docs/figures/stage2/` as final report
   figures, matching the existing tracked Stage 1 figure exception.
+
+#### Test Suite Check
+
+- Ran the full CPU test suite after the validation, figure, and residualization
+  updates. The first run failed during collection because `BD_PATH` was not set
+  and `src.inference` could not locate `beyond-deduction`.
+- Reran with `BD_PATH=/scratch/scholar/skiron/beyond-deduction`; all tests
+  passed. Latest run: `58 passed in 4.09s`.
+
+#### Metadata Residualization Diagnostic
+
+- Added `scripts/stage2_probe_metadata_residualization.py` and wrote
+  `docs/raw_probe_metadata_residualization_27b_l45.json`. The diagnostic
+  refits the L45 raw probe using the same validation-selected C values as the
+  main raw reports, then compares metadata-only probes, metadata plus the raw
+  probe score, and raw-score residuals after regressing out metadata.
+- Against the rich `b0_namefreq` metadata set, adding the raw L45 score nearly
+  recovers the raw-probe AUC and adds substantial conditional signal over
+  metadata alone: S1 property `0.742 -> 0.897` (`+0.155`), S1 subtype
+  `0.837 -> 0.915` (`+0.078`), S3 property `0.711 -> 0.884` (`+0.173`), and
+  S3 subtype `0.846 -> 0.917` (`+0.071`).
+- The analogous `b0_prompt` diagnostic gives the same qualitative result:
+  conditional gains are `+0.154`, `+0.078`, `+0.182`, and `+0.060` for S1
+  property, S1 subtype, S3 property, and S3 subtype respectively.
+- Raw-score-only residualization is deliberately conservative and drops more,
+  especially for subtype: `b0_namefreq` residualized raw AUCs are S1
+  `0.794/0.679` and S3 `0.776/0.618`. Interpretation: height/prompt/name
+  metadata explain a large height-aligned part of the raw score variance, but
+  the raw score still adds strong predictive information when evaluated
+  conditionally on metadata. This supports the raw-probe claim against shallow
+  metadata confounds, while not directly explaining the sparse-vs-raw gap.

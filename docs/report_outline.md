@@ -60,6 +60,10 @@ SAEs can still miss the signal that matters for prediction.
 
 - Behavioral depth effect: accuracy collapses monotonically with height.
 - Raw residual probes beat metadata baselines on S1 and S3.
+- Metadata residualization diagnostic: adding the raw L45 probe score to rich
+  prompt/name metadata gives `+0.06` to `+0.18` AUC over metadata-only probes
+  across S1/S3 and both tasks, supporting a genuine conditional activation
+  signal.
 - Cross-task transfer is positive but weaker than within-task probing.
 - Residual SAE probes beat B0 in most settings but trail raw residuals.
 - Top-k truncation is not the issue: top-128 already captures all active
@@ -155,6 +159,8 @@ SAEs can still miss the signal that matters for prediction.
 - Appendix table: exact 262K transcoder latent/skip/full/error component probe.
 - Small table: sparse feature-family concat.
 - Appendix table: raw-concat vs crosscoder pilot.
+- Appendix table: metadata residualization / metadata-plus-raw-score
+  diagnostic.
 - Appendix or compact main table: all feature sources ranked by S1/S3 AUC.
 - Appendix table: dense-active sparse-feature scaling sanity check.
 - Appendix table: bf16-vs-fp32 sparse encoding stability check.

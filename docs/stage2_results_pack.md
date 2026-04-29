@@ -42,6 +42,28 @@ Label-shuffle control stayed near chance on S1: property 0.493 and subtype
 0.481. The main raw-probe claim is therefore robust to metadata baselines,
 label shuffle, and heldout target symbols.
 
+## Metadata Residualization Diagnostic
+
+We also tested whether the raw L45 probe score still helps after accounting for
+prompt/name metadata. The table uses the rich `b0_namefreq` metadata set, which
+includes height, prompt-length features, structural counts, parent salience, and
+name-frequency summaries.
+
+| Split | Task | Raw L45 AUC | `b0_namefreq` AUC | `b0_namefreq` + raw score AUC | Gain over metadata |
+| --- | --- | ---: | ---: | ---: | ---: |
+| S1 random | `infer_property` | 0.897 | 0.742 | 0.897 | +0.155 |
+| S1 random | `infer_subtype` | 0.914 | 0.837 | 0.915 | +0.078 |
+| S3 target-symbol heldout | `infer_property` | 0.884 | 0.711 | 0.884 | +0.173 |
+| S3 target-symbol heldout | `infer_subtype` | 0.917 | 0.846 | 0.917 | +0.071 |
+
+The same diagnostic with `b0_prompt` gives similar conditional gains
+(`+0.154`, `+0.078`, `+0.182`, `+0.060`). Regressing the raw score on metadata
+and probing only the residualized score is more conservative, especially for
+subtype, because metadata captures much of the height-aligned score variance.
+For reporting, the clean takeaway is that raw activations add substantial
+conditional signal over prompt/name metadata; this defends the raw-probe claim
+but does not explain why sparse dictionaries trail raw activations.
+
 ## Cross-Task Transfer
 
 | Split | Direction | Source test AUC | Target test AUC |

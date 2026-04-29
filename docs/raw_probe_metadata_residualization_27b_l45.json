@@ -1,0 +1,751 @@
+{
+  "activation_dir": "results/stage2/activations",
+  "created_at_utc": "2026-04-29T21:29:00.754465+00:00",
+  "diagnostic": "raw_score_metadata_residualization",
+  "layer": 45,
+  "max_iter": 2000,
+  "metadata_c_values": [
+    0.01,
+    0.1,
+    1.0,
+    10.0
+  ],
+  "metadata_sets": [
+    "prompt_token_count",
+    "b0_prompt",
+    "b0_namefreq"
+  ],
+  "model_key": "gemma3_27b",
+  "results": {
+    "s1": {
+      "infer_property": {
+        "activation_prefix": "results/stage2/activations/gemma3_27b_infer_property_L45",
+        "d_model": 5376,
+        "input_rows": 11000,
+        "kept_rows": 10025,
+        "metadata_only": {
+          "b0_namefreq": {
+            "best_c": 0.1,
+            "feature_count": 14,
+            "feature_names": [
+              "height",
+              "prompt_token_count",
+              "prompt_char_count",
+              "num_theories_axioms",
+              "num_observations",
+              "num_direct_paths",
+              "parent_salience",
+              "namefreq_pos_sum",
+              "namefreq_neg_sum",
+              "namefreq_pos_mean",
+              "namefreq_neg_mean",
+              "namefreq_pos_max",
+              "namefreq_neg_max",
+              "namefreq_distinct_names"
+            ],
+            "test_auc": 0.7421542365712674,
+            "val_auc": 0.7282421639175902
+          },
+          "b0_prompt": {
+            "best_c": 10.0,
+            "feature_count": 7,
+            "feature_names": [
+              "height",
+              "prompt_token_count",
+              "prompt_char_count",
+              "num_theories_axioms",
+              "num_observations",
+              "num_direct_paths",
+              "parent_salience"
+            ],
+            "test_auc": 0.743183420273509,
+            "val_auc": 0.7234072819879396
+          },
+          "prompt_token_count": {
+            "best_c": 0.01,
+            "feature_count": 1,
+            "feature_names": [
+              "prompt_token_count"
+            ],
+            "test_auc": 0.6916352389679966,
+            "val_auc": 0.6961848323144286
+          }
+        },
+        "metadata_plus_raw_score": {
+          "b0_namefreq": {
+            "best_c": 0.01,
+            "feature_count": 15,
+            "feature_names": [
+              "height",
+              "prompt_token_count",
+              "prompt_char_count",
+              "num_theories_axioms",
+              "num_observations",
+              "num_direct_paths",
+              "parent_salience",
+              "namefreq_pos_sum",
+              "namefreq_neg_sum",
+              "namefreq_pos_mean",
+              "namefreq_neg_mean",
+              "namefreq_pos_max",
+              "namefreq_neg_max",
+              "namefreq_distinct_names",
+              "raw_probe_score"
+            ],
+            "test_auc": 0.8972860566755957,
+            "test_auc_delta_vs_metadata": 0.15513182010432824,
+            "test_auc_delta_vs_raw": 0.000741928662061242,
+            "val_auc": 0.881716270323158
+          },
+          "b0_prompt": {
+            "best_c": 0.01,
+            "feature_count": 8,
+            "feature_names": [
+              "height",
+              "prompt_token_count",
+              "prompt_char_count",
+              "num_theories_axioms",
+              "num_observations",
+              "num_direct_paths",
+              "parent_salience",
+              "raw_probe_score"
+            ],
+            "test_auc": 0.8973318764979556,
+            "test_auc_delta_vs_metadata": 0.15414845622444662,
+            "test_auc_delta_vs_raw": 0.0007877484844212024,
+            "val_auc": 0.8818463801705654
+          },
+          "prompt_token_count": {
+            "best_c": 0.01,
+            "feature_count": 2,
+            "feature_names": [
+              "prompt_token_count",
+              "raw_probe_score"
+            ],
+            "test_auc": 0.8971591710136755,
+            "test_auc_delta_vs_metadata": 0.20552393204567887,
+            "test_auc_delta_vs_raw": 0.0006150430001410356,
+            "val_auc": 0.8817162703231582
+          }
+        },
+        "raw": {
+          "best_c_from_report": 0.01,
+          "refit_test_auc": 0.8965441280135344,
+          "refit_train_auc": 0.9912818760911558,
+          "refit_val_auc": 0.8814838073957906,
+          "reported_test_auc": 0.8965441280135344
+        },
+        "raw_residualized": {
+          "b0_namefreq": {
+            "feature_count": 14,
+            "feature_names": [
+              "height",
+              "prompt_token_count",
+              "prompt_char_count",
+              "num_theories_axioms",
+              "num_observations",
+              "num_direct_paths",
+              "parent_salience",
+              "namefreq_pos_sum",
+              "namefreq_neg_sum",
+              "namefreq_pos_mean",
+              "namefreq_neg_mean",
+              "namefreq_pos_max",
+              "namefreq_neg_max",
+              "namefreq_distinct_names"
+            ],
+            "metadata_set": "b0_namefreq",
+            "test_auc": 0.7939553080501903,
+            "test_auc_delta_vs_metadata": 0.05180107147892288,
+            "test_auc_drop_vs_raw": 0.10258881996334412,
+            "test_pearson": 0.49850900206318816,
+            "train_r2_raw_score": 0.4009676650544409,
+            "val_auc": 0.7871316156520413
+          },
+          "b0_prompt": {
+            "feature_count": 7,
+            "feature_names": [
+              "height",
+              "prompt_token_count",
+              "prompt_char_count",
+              "num_theories_axioms",
+              "num_observations",
+              "num_direct_paths",
+              "parent_salience"
+            ],
+            "metadata_set": "b0_prompt",
+            "test_auc": 0.8022116875793036,
+            "test_auc_delta_vs_metadata": 0.05902826730579458,
+            "test_auc_drop_vs_raw": 0.09433244043423084,
+            "test_pearson": 0.5130431090849579,
+            "train_r2_raw_score": 0.3420073884928214,
+            "val_auc": 0.7927697090396854
+          },
+          "prompt_token_count": {
+            "feature_count": 1,
+            "feature_names": [
+              "prompt_token_count"
+            ],
+            "metadata_set": "prompt_token_count",
+            "test_auc": 0.8209378965176936,
+            "test_auc_delta_vs_metadata": 0.12930265754969694,
+            "test_auc_drop_vs_raw": 0.07560623149584089,
+            "test_pearson": 0.540743039791924,
+            "train_r2_raw_score": 0.29151771697980366,
+            "val_auc": 0.8095799013246918
+          }
+        },
+        "source_file": "results/full/with_errortype/gemma3_27b_infer_property.jsonl"
+      },
+      "infer_subtype": {
+        "activation_prefix": "results/stage2/activations/gemma3_27b_infer_subtype_L45",
+        "d_model": 5376,
+        "input_rows": 11000,
+        "kept_rows": 10737,
+        "metadata_only": {
+          "b0_namefreq": {
+            "best_c": 0.01,
+            "feature_count": 14,
+            "feature_names": [
+              "height",
+              "prompt_token_count",
+              "prompt_char_count",
+              "num_theories_axioms",
+              "num_observations",
+              "num_direct_paths",
+              "parent_salience",
+              "namefreq_pos_sum",
+              "namefreq_neg_sum",
+              "namefreq_pos_mean",
+              "namefreq_neg_mean",
+              "namefreq_pos_max",
+              "namefreq_neg_max",
+              "namefreq_distinct_names"
+            ],
+            "test_auc": 0.8374866306438402,
+            "val_auc": 0.8482274180234911
+          },
+          "b0_prompt": {
+            "best_c": 10.0,
+            "feature_count": 7,
+            "feature_names": [
+              "height",
+              "prompt_token_count",
+              "prompt_char_count",
+              "num_theories_axioms",
+              "num_observations",
+              "num_direct_paths",
+              "parent_salience"
+            ],
+            "test_auc": 0.8381988896184194,
+            "val_auc": 0.8482052037516397
+          },
+          "prompt_token_count": {
+            "best_c": 0.01,
+            "feature_count": 1,
+            "feature_names": [
+              "prompt_token_count"
+            ],
+            "test_auc": 0.8375562324980337,
+            "val_auc": 0.8366865192106685
+          }
+        },
+        "metadata_plus_raw_score": {
+          "b0_namefreq": {
+            "best_c": 0.01,
+            "feature_count": 15,
+            "feature_names": [
+              "height",
+              "prompt_token_count",
+              "prompt_char_count",
+              "num_theories_axioms",
+              "num_observations",
+              "num_direct_paths",
+              "parent_salience",
+              "namefreq_pos_sum",
+              "namefreq_neg_sum",
+              "namefreq_pos_mean",
+              "namefreq_neg_mean",
+              "namefreq_pos_max",
+              "namefreq_neg_max",
+              "namefreq_distinct_names",
+              "raw_probe_score"
+            ],
+            "test_auc": 0.9154198267841857,
+            "test_auc_delta_vs_metadata": 0.07793319614034544,
+            "test_auc_delta_vs_raw": 0.0009465852170302824,
+            "val_auc": 0.9189997497971487
+          },
+          "b0_prompt": {
+            "best_c": 0.01,
+            "feature_count": 8,
+            "feature_names": [
+              "height",
+              "prompt_token_count",
+              "prompt_char_count",
+              "num_theories_axioms",
+              "num_observations",
+              "num_direct_paths",
+              "parent_salience",
+              "raw_probe_score"
+            ],
+            "test_auc": 0.9161390459441839,
+            "test_auc_delta_vs_metadata": 0.07794015632576456,
+            "test_auc_delta_vs_raw": 0.001665804377028568,
+            "val_auc": 0.9193154262918768
+          },
+          "prompt_token_count": {
+            "best_c": 0.01,
+            "feature_count": 2,
+            "feature_names": [
+              "prompt_token_count",
+              "raw_probe_score"
+            ],
+            "test_auc": 0.9158142372912814,
+            "test_auc_delta_vs_metadata": 0.07825800479324774,
+            "test_auc_delta_vs_raw": 0.0013409957241260484,
+            "val_auc": 0.9190535317184728
+          }
+        },
+        "raw": {
+          "best_c_from_report": 0.01,
+          "refit_test_auc": 0.9144732415671554,
+          "refit_train_auc": 0.9972510186751938,
+          "refit_val_auc": 0.9174728109004263,
+          "reported_test_auc": 0.9144732415671554
+        },
+        "raw_residualized": {
+          "b0_namefreq": {
+            "feature_count": 14,
+            "feature_names": [
+              "height",
+              "prompt_token_count",
+              "prompt_char_count",
+              "num_theories_axioms",
+              "num_observations",
+              "num_direct_paths",
+              "parent_salience",
+              "namefreq_pos_sum",
+              "namefreq_neg_sum",
+              "namefreq_pos_mean",
+              "namefreq_neg_mean",
+              "namefreq_pos_max",
+              "namefreq_neg_max",
+              "namefreq_distinct_names"
+            ],
+            "metadata_set": "b0_namefreq",
+            "test_auc": 0.6786343188182533,
+            "test_auc_delta_vs_metadata": -0.1588523118255869,
+            "test_auc_drop_vs_raw": 0.23583892274890206,
+            "test_pearson": 0.2698151448527549,
+            "train_r2_raw_score": 0.5905738051284988,
+            "val_auc": 0.6807902668752469
+          },
+          "b0_prompt": {
+            "feature_count": 7,
+            "feature_names": [
+              "height",
+              "prompt_token_count",
+              "prompt_char_count",
+              "num_theories_axioms",
+              "num_observations",
+              "num_direct_paths",
+              "parent_salience"
+            ],
+            "metadata_set": "b0_prompt",
+            "test_auc": 0.6842349480190153,
+            "test_auc_delta_vs_metadata": -0.15396394159940407,
+            "test_auc_drop_vs_raw": 0.23023829354814007,
+            "test_pearson": 0.27728951431237425,
+            "train_r2_raw_score": 0.5742591482492578,
+            "val_auc": 0.6866992631876779
+          },
+          "prompt_token_count": {
+            "feature_count": 1,
+            "feature_names": [
+              "prompt_token_count"
+            ],
+            "metadata_set": "prompt_token_count",
+            "test_auc": 0.7641355565712269,
+            "test_auc_delta_vs_metadata": -0.07342067592680679,
+            "test_auc_drop_vs_raw": 0.15033768499592848,
+            "test_pearson": 0.375415208302636,
+            "train_r2_raw_score": 0.47501199368011593,
+            "val_auc": 0.7666262133084534
+          }
+        },
+        "source_file": "results/full/with_errortype/gemma3_27b_infer_subtype.jsonl"
+      }
+    },
+    "s3": {
+      "infer_property": {
+        "activation_prefix": "results/stage2/activations/gemma3_27b_infer_property_L45",
+        "d_model": 5376,
+        "input_rows": 11000,
+        "kept_rows": 10025,
+        "metadata_only": {
+          "b0_namefreq": {
+            "best_c": 0.01,
+            "feature_count": 14,
+            "feature_names": [
+              "height",
+              "prompt_token_count",
+              "prompt_char_count",
+              "num_theories_axioms",
+              "num_observations",
+              "num_direct_paths",
+              "parent_salience",
+              "namefreq_pos_sum",
+              "namefreq_neg_sum",
+              "namefreq_pos_mean",
+              "namefreq_neg_mean",
+              "namefreq_pos_max",
+              "namefreq_neg_max",
+              "namefreq_distinct_names"
+            ],
+            "test_auc": 0.7109399732969952,
+            "val_auc": 0.7286723538034936
+          },
+          "b0_prompt": {
+            "best_c": 0.01,
+            "feature_count": 7,
+            "feature_names": [
+              "height",
+              "prompt_token_count",
+              "prompt_char_count",
+              "num_theories_axioms",
+              "num_observations",
+              "num_direct_paths",
+              "parent_salience"
+            ],
+            "test_auc": 0.7032336099984859,
+            "val_auc": 0.7334481357848073
+          },
+          "prompt_token_count": {
+            "best_c": 0.01,
+            "feature_count": 1,
+            "feature_names": [
+              "prompt_token_count"
+            ],
+            "test_auc": 0.6843006290347001,
+            "val_auc": 0.7199191084265
+          }
+        },
+        "metadata_plus_raw_score": {
+          "b0_namefreq": {
+            "best_c": 0.01,
+            "feature_count": 15,
+            "feature_names": [
+              "height",
+              "prompt_token_count",
+              "prompt_char_count",
+              "num_theories_axioms",
+              "num_observations",
+              "num_direct_paths",
+              "parent_salience",
+              "namefreq_pos_sum",
+              "namefreq_neg_sum",
+              "namefreq_pos_mean",
+              "namefreq_neg_mean",
+              "namefreq_pos_max",
+              "namefreq_neg_max",
+              "namefreq_distinct_names",
+              "raw_probe_score"
+            ],
+            "test_auc": 0.8841516290209357,
+            "test_auc_delta_vs_metadata": 0.17321165572394048,
+            "test_auc_delta_vs_raw": -6.538106839559799e-05,
+            "val_auc": 0.8754817287483001
+          },
+          "b0_prompt": {
+            "best_c": 0.01,
+            "feature_count": 8,
+            "feature_names": [
+              "height",
+              "prompt_token_count",
+              "prompt_char_count",
+              "num_theories_axioms",
+              "num_observations",
+              "num_direct_paths",
+              "parent_salience",
+              "raw_probe_score"
+            ],
+            "test_auc": 0.8849860979201939,
+            "test_auc_delta_vs_metadata": 0.18175248792170795,
+            "test_auc_delta_vs_raw": 0.0007690878308626026,
+            "val_auc": 0.87639838216853
+          },
+          "prompt_token_count": {
+            "best_c": 0.01,
+            "feature_count": 2,
+            "feature_names": [
+              "prompt_token_count",
+              "raw_probe_score"
+            ],
+            "test_auc": 0.8847830724972816,
+            "test_auc_delta_vs_metadata": 0.20048244346258148,
+            "test_auc_delta_vs_raw": 0.0005660624079503185,
+            "val_auc": 0.8761440505837264
+          }
+        },
+        "raw": {
+          "best_c_from_report": 0.01,
+          "refit_test_auc": 0.8842170100893313,
+          "refit_train_auc": 0.9912775463553171,
+          "refit_val_auc": 0.8747399282926227,
+          "reported_test_auc": 0.8842187306437627
+        },
+        "raw_residualized": {
+          "b0_namefreq": {
+            "feature_count": 14,
+            "feature_names": [
+              "height",
+              "prompt_token_count",
+              "prompt_char_count",
+              "num_theories_axioms",
+              "num_observations",
+              "num_direct_paths",
+              "parent_salience",
+              "namefreq_pos_sum",
+              "namefreq_neg_sum",
+              "namefreq_pos_mean",
+              "namefreq_neg_mean",
+              "namefreq_pos_max",
+              "namefreq_neg_max",
+              "namefreq_distinct_names"
+            ],
+            "metadata_set": "b0_namefreq",
+            "test_auc": 0.7757842287098595,
+            "test_auc_delta_vs_metadata": 0.06484425541286432,
+            "test_auc_drop_vs_raw": 0.10843278137947177,
+            "test_pearson": 0.46641935921394284,
+            "train_r2_raw_score": 0.39204255020427137,
+            "val_auc": 0.768363976756919
+          },
+          "b0_prompt": {
+            "feature_count": 7,
+            "feature_names": [
+              "height",
+              "prompt_token_count",
+              "prompt_char_count",
+              "num_theories_axioms",
+              "num_observations",
+              "num_direct_paths",
+              "parent_salience"
+            ],
+            "metadata_set": "b0_prompt",
+            "test_auc": 0.7890221745055126,
+            "test_auc_delta_vs_metadata": 0.08578856450702665,
+            "test_auc_drop_vs_raw": 0.0951948355838187,
+            "test_pearson": 0.4868088638356235,
+            "train_r2_raw_score": 0.3360357934580239,
+            "val_auc": 0.7655257069181725
+          },
+          "prompt_token_count": {
+            "feature_count": 1,
+            "feature_names": [
+              "prompt_token_count"
+            ],
+            "metadata_set": "prompt_token_count",
+            "test_auc": 0.8110538740003579,
+            "test_auc_delta_vs_metadata": 0.12675324496565776,
+            "test_auc_drop_vs_raw": 0.0731631360889734,
+            "test_pearson": 0.5214990463637528,
+            "train_r2_raw_score": 0.2834143329525609,
+            "val_auc": 0.775222098588813
+          }
+        },
+        "source_file": "results/full/with_errortype/gemma3_27b_infer_property.jsonl"
+      },
+      "infer_subtype": {
+        "activation_prefix": "results/stage2/activations/gemma3_27b_infer_subtype_L45",
+        "d_model": 5376,
+        "input_rows": 11000,
+        "kept_rows": 10737,
+        "metadata_only": {
+          "b0_namefreq": {
+            "best_c": 0.01,
+            "feature_count": 14,
+            "feature_names": [
+              "height",
+              "prompt_token_count",
+              "prompt_char_count",
+              "num_theories_axioms",
+              "num_observations",
+              "num_direct_paths",
+              "parent_salience",
+              "namefreq_pos_sum",
+              "namefreq_neg_sum",
+              "namefreq_pos_mean",
+              "namefreq_neg_mean",
+              "namefreq_pos_max",
+              "namefreq_neg_max",
+              "namefreq_distinct_names"
+            ],
+            "test_auc": 0.8461646436513273,
+            "val_auc": 0.8551551956815115
+          },
+          "b0_prompt": {
+            "best_c": 1.0,
+            "feature_count": 7,
+            "feature_names": [
+              "height",
+              "prompt_token_count",
+              "prompt_char_count",
+              "num_theories_axioms",
+              "num_observations",
+              "num_direct_paths",
+              "parent_salience"
+            ],
+            "test_auc": 0.8586819741083588,
+            "val_auc": 0.863774179037337
+          },
+          "prompt_token_count": {
+            "best_c": 0.01,
+            "feature_count": 1,
+            "feature_names": [
+              "prompt_token_count"
+            ],
+            "test_auc": 0.8457620106531519,
+            "val_auc": 0.8435391363022942
+          }
+        },
+        "metadata_plus_raw_score": {
+          "b0_namefreq": {
+            "best_c": 0.01,
+            "feature_count": 15,
+            "feature_names": [
+              "height",
+              "prompt_token_count",
+              "prompt_char_count",
+              "num_theories_axioms",
+              "num_observations",
+              "num_direct_paths",
+              "parent_salience",
+              "namefreq_pos_sum",
+              "namefreq_neg_sum",
+              "namefreq_pos_mean",
+              "namefreq_neg_mean",
+              "namefreq_pos_max",
+              "namefreq_neg_max",
+              "namefreq_distinct_names",
+              "raw_probe_score"
+            ],
+            "test_auc": 0.9169812621744152,
+            "test_auc_delta_vs_metadata": 0.07081661852308796,
+            "test_auc_delta_vs_raw": 0.00018961921014992722,
+            "val_auc": 0.9113675213675213
+          },
+          "b0_prompt": {
+            "best_c": 0.01,
+            "feature_count": 8,
+            "feature_names": [
+              "height",
+              "prompt_token_count",
+              "prompt_char_count",
+              "num_theories_axioms",
+              "num_observations",
+              "num_direct_paths",
+              "parent_salience",
+              "raw_probe_score"
+            ],
+            "test_auc": 0.9185253043142064,
+            "test_auc_delta_vs_metadata": 0.059843330205847645,
+            "test_auc_delta_vs_raw": 0.001733661349941129,
+            "val_auc": 0.9119478182636077
+          },
+          "prompt_token_count": {
+            "best_c": 0.01,
+            "feature_count": 2,
+            "feature_names": [
+              "prompt_token_count",
+              "raw_probe_score"
+            ],
+            "test_auc": 0.9178136166293585,
+            "test_auc_delta_vs_metadata": 0.07205160597620652,
+            "test_auc_delta_vs_raw": 0.0010219736650931566,
+            "val_auc": 0.9113900134952767
+          }
+        },
+        "raw": {
+          "best_c_from_report": 0.01,
+          "refit_test_auc": 0.9167916429642653,
+          "refit_train_auc": 0.997421257219583,
+          "refit_val_auc": 0.9093567251461989,
+          "reported_test_auc": 0.9167916429642653
+        },
+        "raw_residualized": {
+          "b0_namefreq": {
+            "feature_count": 14,
+            "feature_names": [
+              "height",
+              "prompt_token_count",
+              "prompt_char_count",
+              "num_theories_axioms",
+              "num_observations",
+              "num_direct_paths",
+              "parent_salience",
+              "namefreq_pos_sum",
+              "namefreq_neg_sum",
+              "namefreq_pos_mean",
+              "namefreq_neg_mean",
+              "namefreq_pos_max",
+              "namefreq_neg_max",
+              "namefreq_distinct_names"
+            ],
+            "metadata_set": "b0_namefreq",
+            "test_auc": 0.618148774739766,
+            "test_auc_delta_vs_metadata": -0.22801586891156123,
+            "test_auc_drop_vs_raw": 0.29864286822449926,
+            "test_pearson": 0.18893281514828209,
+            "train_r2_raw_score": 0.5800132333261161,
+            "val_auc": 0.638549257759784
+          },
+          "b0_prompt": {
+            "feature_count": 7,
+            "feature_names": [
+              "height",
+              "prompt_token_count",
+              "prompt_char_count",
+              "num_theories_axioms",
+              "num_observations",
+              "num_direct_paths",
+              "parent_salience"
+            ],
+            "metadata_set": "b0_prompt",
+            "test_auc": 0.6356602319264573,
+            "test_auc_delta_vs_metadata": -0.22302174218190152,
+            "test_auc_drop_vs_raw": 0.28113141103780803,
+            "test_pearson": 0.20916398136226783,
+            "train_r2_raw_score": 0.561113142499222,
+            "val_auc": 0.6654903283850653
+          },
+          "prompt_token_count": {
+            "feature_count": 1,
+            "feature_names": [
+              "prompt_token_count"
+            ],
+            "metadata_set": "prompt_token_count",
+            "test_auc": 0.7643279476552477,
+            "test_auc_delta_vs_metadata": -0.08143406299790423,
+            "test_auc_drop_vs_raw": 0.1524636953090176,
+            "test_pearson": 0.3564968610877676,
+            "train_r2_raw_score": 0.46449836729840366,
+            "val_auc": 0.7467139001349528
+          }
+        },
+        "source_file": "results/full/with_errortype/gemma3_27b_infer_subtype.jsonl"
+      }
+    }
+  },
+  "schema_version": 1,
+  "split_families": [
+    "s1",
+    "s3"
+  ],
+  "splits_path": "results/stage2/splits.jsonl",
+  "tasks": [
+    "infer_property",
+    "infer_subtype"
+  ]
+}
