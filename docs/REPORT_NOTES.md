@@ -1056,3 +1056,21 @@ exact-16K, and L30 runs below. Those later sections supersede this queue.
   candidate features with matched controls; success would be output/correctness
   changes beyond controls, while another null result still supports the
   phantom/partial-localization conclusion.
+
+#### Final AUC-Maximization Queue
+
+- Before fully moving from AUC chasing to feature interpretation, keep one
+  bounded queue:
+  1. L53 residual SAE 16K/262K plus the same concat probes used for L40. This
+     is clean because L53 raw S1 property is strong (`0.902`) and L53 is
+     Neuronpedia-visible. Expected outcome is a small/mixed gain, not a raw-gap
+     bridge.
+  2. Inventory whether higher-L0 or denser exact transcoder artifacts exist and
+     have clean hook/scale alignment. Run only if the artifact path and exact
+     input/output convention are straightforward.
+  3. Optionally run an MLP probe on the best sparse concat as a proposal-facing
+     predictive comparison. Treat it as less mechanistic than linear sparse
+     probes.
+- Do not prioritize metadata+sparse probes for the main mechanistic story:
+  they may improve prediction but answer a different question by mixing prompt
+  metadata with learned feature activations.

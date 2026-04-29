@@ -133,6 +133,11 @@ Current objective:
   task/split stability, activation density, and Neuronpedia explanation quality.
   Move to steering only if the shortlist contains non-generic task-aligned
   candidates.
+- One final bounded AUC queue is allowed before that transition: L53 residual
+  SAE 16K/262K plus concat probes; then an inventory of clean higher-L0/denser
+  exact transcoders; then, if useful for proposal coverage, an MLP probe on the
+  best sparse concat. Stop AUC chasing after these unless a specific
+  feature-candidate result motivates another run.
 
 ## Active Scope
 
@@ -368,6 +373,9 @@ Immediate:
 
 - Keep `docs/REPORT_NOTES.md`, `docs/stage2_results_pack.md`, and
   `docs/report_outline.md` aligned with any new result interpretation.
+- Run the final bounded AUC queue in order: L53 residual SAE 16K/262K plus
+  concat probes; clean higher-L0/denser exact transcoder inventory; optional
+  MLP probe on best sparse concat.
 - Build a compact feature-candidate shortlist for Neuronpedia-visible sparse
   artifacts. Start with the corrected L45 262K transcoder and L40 residual
   SAE 16K/262K, using coefficient rank, stability, activation density, and
@@ -394,9 +402,10 @@ Most relevant to the raw-vs-sparse gap:
 - L40 did not materially change the sparse-vs-raw conclusion. Treat it as the
   last residual-layer sparse sweep unless the final report specifically needs a
   Neuronpedia-facing L40 feature audit.
-- Do not start another broad dictionary sweep unless the feature-candidate
-  audit reveals a specific reason. The next work should be interpretation and
-  candidate validation, not AUC chasing.
+- L53 is the only remaining residual-layer sweep currently approved because raw
+  L53 is strong on S1 property and Neuronpedia-visible. After L53, do not start
+  another broad dictionary sweep unless the feature-candidate audit reveals a
+  specific reason.
 - Try a higher-L0 or denser 262K transcoder variant only if the artifact exists
   cleanly and exact hook/scale alignment can be verified.
 
