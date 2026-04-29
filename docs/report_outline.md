@@ -139,10 +139,16 @@ SAEs can still miss the signal that matters for prediction.
 
 ## Core Tables/Figures
 
-- Table/Figure 1: strong accuracy vs height for 27B property/subtype.
-- Table 2: B0 vs raw L45 probes on S1/S3.
-- Table 3: raw vs residual SAE probes on S1/S3.
-- Table 4: reconstruction vs error probes.
+- Figure 1: strong accuracy vs height for 27B property/subtype:
+  `docs/figures/stage2/stage2_behavior_accuracy_27b.png`.
+- Figure 2: B0, residual SAE, best sparse concat, and raw L45 probes on S1/S3:
+  `docs/figures/stage2/stage2_probe_overview_auc.png`.
+- Figure 3: reconstruction vs error probes:
+  `docs/figures/stage2/stage2_reconstruction_error_auc.png`.
+- Figure 4: sparse feature-family progression:
+  `docs/figures/stage2/stage2_sparse_progression_auc.png`.
+- Figure 5: exact-hook MLP/transcoder sparse artifacts vs same-site raw
+  activations: `docs/figures/stage2/stage2_site_transcoder_auc.png`.
 - Small table: exact MLP-output raw vs exact MLP-output SAE, with old pilot
   shown as superseded.
 - Small table: raw exact `mlp_in` vs exact 262K transcoder.

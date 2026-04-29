@@ -1,0 +1,89 @@
+figure,split,task,method,auc
+probe_overview,s1,infer_property,B0 metadata,0.743183
+probe_overview,s1,infer_property,Residual SAE 16K,0.786393
+probe_overview,s1,infer_property,Residual SAE 262K,0.806408
+probe_overview,s1,infer_property,Best sparse concat,0.838903
+probe_overview,s1,infer_property,Raw L45,0.896544
+probe_overview,s1,infer_subtype,B0 metadata,0.841076
+probe_overview,s1,infer_subtype,Residual SAE 16K,0.875501
+probe_overview,s1,infer_subtype,Residual SAE 262K,0.870144
+probe_overview,s1,infer_subtype,Best sparse concat,0.886600
+probe_overview,s1,infer_subtype,Raw L45,0.914473
+probe_overview,s3,infer_property,B0 metadata,0.710940
+probe_overview,s3,infer_property,Residual SAE 16K,0.798590
+probe_overview,s3,infer_property,Residual SAE 262K,0.779114
+probe_overview,s3,infer_property,Best sparse concat,0.834223
+probe_overview,s3,infer_property,Raw L45,0.884219
+probe_overview,s3,infer_subtype,B0 metadata,0.858682
+probe_overview,s3,infer_subtype,Residual SAE 16K,0.865001
+probe_overview,s3,infer_subtype,Residual SAE 262K,0.867493
+probe_overview,s3,infer_subtype,Best sparse concat,0.891890
+probe_overview,s3,infer_subtype,Raw L45,0.916792
+reconstruction_error,s1,infer_property,Raw L45,0.896544
+reconstruction_error,s1,infer_property,16K recon,0.786467
+reconstruction_error,s1,infer_property,16K error,0.893846
+reconstruction_error,s1,infer_property,262K recon,0.806172
+reconstruction_error,s1,infer_property,262K error,0.897341
+reconstruction_error,s1,infer_subtype,Raw L45,0.914473
+reconstruction_error,s1,infer_subtype,16K recon,0.876937
+reconstruction_error,s1,infer_subtype,16K error,0.916448
+reconstruction_error,s1,infer_subtype,262K recon,0.870232
+reconstruction_error,s1,infer_subtype,262K error,0.914784
+reconstruction_error,s3,infer_property,Raw L45,0.884219
+reconstruction_error,s3,infer_property,16K recon,0.798628
+reconstruction_error,s3,infer_property,16K error,0.881024
+reconstruction_error,s3,infer_property,262K recon,0.788365
+reconstruction_error,s3,infer_property,262K error,0.885803
+reconstruction_error,s3,infer_subtype,Raw L45,0.916792
+reconstruction_error,s3,infer_subtype,16K recon,0.865075
+reconstruction_error,s3,infer_subtype,16K error,0.916159
+reconstruction_error,s3,infer_subtype,262K recon,0.867454
+reconstruction_error,s3,infer_subtype,262K error,0.914319
+sparse_progression,s1,infer_property,L45 SAE 262K,0.806408
+sparse_progression,s1,infer_property,Exact TC 262K,0.794974
+sparse_progression,s1,infer_property,L45 four-block,0.830250
+sparse_progression,s1,infer_property,L45 five-block,0.831753
+sparse_progression,s1,infer_property,L30+L45 all,0.838903
+sparse_progression,s1,infer_property,Raw L45,0.896544
+sparse_progression,s1,infer_subtype,L45 SAE 262K,0.870144
+sparse_progression,s1,infer_subtype,Exact TC 262K,0.873088
+sparse_progression,s1,infer_subtype,L45 four-block,0.887500
+sparse_progression,s1,infer_subtype,L45 five-block,0.882848
+sparse_progression,s1,infer_subtype,L30+L45 all,0.886600
+sparse_progression,s1,infer_subtype,Raw L45,0.914473
+sparse_progression,s3,infer_property,L45 SAE 262K,0.779114
+sparse_progression,s3,infer_property,Exact TC 262K,0.802221
+sparse_progression,s3,infer_property,L45 four-block,0.827680
+sparse_progression,s3,infer_property,L45 five-block,0.829379
+sparse_progression,s3,infer_property,L30+L45 all,0.834223
+sparse_progression,s3,infer_property,Raw L45,0.884219
+sparse_progression,s3,infer_subtype,L45 SAE 262K,0.867493
+sparse_progression,s3,infer_subtype,Exact TC 262K,0.885381
+sparse_progression,s3,infer_subtype,L45 four-block,0.887603
+sparse_progression,s3,infer_subtype,L45 five-block,0.888895
+sparse_progression,s3,infer_subtype,L30+L45 all,0.891890
+sparse_progression,s3,infer_subtype,Raw L45,0.916792
+site_transcoder,s1,infer_property,Raw mlp_in,0.897302
+site_transcoder,s1,infer_property,TC 16K,0.786658
+site_transcoder,s1,infer_property,TC 262K,0.794974
+site_transcoder,s1,infer_property,TC full 262K,0.862264
+site_transcoder,s1,infer_property,MLP-out SAE,0.811132
+site_transcoder,s1,infer_property,Raw mlp_out,0.895605
+site_transcoder,s1,infer_subtype,Raw mlp_in,0.915524
+site_transcoder,s1,infer_subtype,TC 16K,0.868473
+site_transcoder,s1,infer_subtype,TC 262K,0.873088
+site_transcoder,s1,infer_subtype,TC full 262K,0.897381
+site_transcoder,s1,infer_subtype,MLP-out SAE,0.877512
+site_transcoder,s1,infer_subtype,Raw mlp_out,0.915752
+site_transcoder,s3,infer_property,Raw mlp_in,0.884725
+site_transcoder,s3,infer_property,TC 16K,0.785049
+site_transcoder,s3,infer_property,TC 262K,0.802221
+site_transcoder,s3,infer_property,TC full 262K,0.851110
+site_transcoder,s3,infer_property,MLP-out SAE,0.807415
+site_transcoder,s3,infer_property,Raw mlp_out,0.891996
+site_transcoder,s3,infer_subtype,Raw mlp_in,0.913999
+site_transcoder,s3,infer_subtype,TC 16K,0.880178
+site_transcoder,s3,infer_subtype,TC 262K,0.885381
+site_transcoder,s3,infer_subtype,TC full 262K,0.889440
+site_transcoder,s3,infer_subtype,MLP-out SAE,0.879030
+site_transcoder,s3,infer_subtype,Raw mlp_out,0.914861

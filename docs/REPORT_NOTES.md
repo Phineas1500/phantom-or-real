@@ -947,3 +947,14 @@ exact-16K, and L30 runs below. Those later sections supersede this queue.
   paraphrase-preserving B.3 tests, a stronger steering null, and another
   crosscoder variant. These are scientifically defensible but either expensive
   or unlikely to address the current sparse-localization gap directly.
+
+#### Stage 2 Figure Assembly
+
+- Added `scripts/stage2_make_report_figures.py` to generate report-ready Stage
+  2 plots from committed JSON outputs.
+- Generated `docs/figures/stage2/` with five figures and a plotted-data CSV:
+  `stage2_behavior_accuracy_27b.png`, `stage2_probe_overview_auc.png`,
+  `stage2_reconstruction_error_auc.png`, `stage2_sparse_progression_auc.png`,
+  `stage2_site_transcoder_auc.png`, and `stage2_figure_data.csv`.
+- Updated `.gitignore` to track `docs/figures/stage2/` as final report
+  figures, matching the existing tracked Stage 1 figure exception.
