@@ -32,6 +32,7 @@ from src.stage2_probes import (  # noqa: E402
     split_indices_from_assignments,
     write_json,
 )
+from src.stage2_paths import DEFAULT_ACTIVATION_SITE, activation_stem  # noqa: E402
 from src.stage2_sae import topk_tensors_to_csr  # noqa: E402
 
 
@@ -208,6 +209,7 @@ def load_best_c_values(paths: list[Path]) -> dict[tuple[str, str], dict[str, Any
 def run_analysis(
     *,
     feature_dir: Path,
+    activation_site: str,
     model_key: str,
     tasks: list[str],
     layer: int,
@@ -232,6 +234,7 @@ def run_analysis(
         "schema_version": 1,
         "created_at_utc": datetime.now(timezone.utc).isoformat(),
         "feature_dir": str(feature_dir),
+        "activation_site": activation_site,
         "model_key": model_key,
         "tasks": tasks,
         "layer": layer,
@@ -259,7 +262,13 @@ def run_analysis(
         models[sae_id] = {}
         report["models"][sae_id] = {}
         for task in tasks:
-            prefix = feature_dir / f"{model_key}_{task}_L{layer}_{sae_id}_top{top_k}"
+            feature_stem = activation_stem(
+                model_key=model_key,
+                task=task,
+                layer=layer,
+                activation_site=activation_site,
+            )
+            prefix = feature_dir / f"{feature_stem}_{sae_id}_top{top_k}"
             dataset = load_sae_dataset(feature_prefix=prefix, drop_parse_failed=drop_parse_failed)
             source_file = dataset["meta"]["source_activation_meta"]["jsonl_path"]
             splits = split_indices_from_assignments(
@@ -414,13 +423,14 @@ def run_analysis(
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--feature-dir", type=Path, required=True)
+    parser.add_argument("--activation-site", default=DEFAULT_ACTIVATION_SITE)
     parser.add_argument("--model-key", required=True)
     parser.add_argument("--tasks", nargs="+", required=True)
     parser.add_argument("--layer", type=int, required=True)
     parser.add_argument("--sae-ids", nargs="+", required=True)
     parser.add_argument("--top-k", type=int, default=128)
     parser.add_argument("--splits", type=Path, required=True)
-    parser.add_argument("--split-family", choices=("s1", "s2"), default="s1")
+    parser.add_argument("--split-family", choices=("s1", "s2", "s3"), default="s1")
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--output-top-n", type=int, default=100)
     parser.add_argument("--overlap-top-ns", type=parse_int_list, default=(10, 25, 50, 100))
@@ -435,6 +445,7 @@ def main() -> None:
     best_c_values = load_best_c_values(args.probe_reports)
     report = run_analysis(
         feature_dir=args.feature_dir,
+        activation_site=args.activation_site,
         model_key=args.model_key,
         tasks=args.tasks,
         layer=args.layer,

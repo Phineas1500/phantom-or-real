@@ -77,6 +77,10 @@ The L45 post-MLP site was extracted at
 `blocks.45.ln2_post.hook_normalized` and probed with the same S1/S3 splits. The
 raw MLP-output activations carry essentially the same signal as raw residuals,
 but the Gemma Scope 2 `mlp_out_all` width-16K SAE exposes little of it.
+Later exact-hook auditing for the 262K transcoder showed this bare normalized
+site is missing the learned RMSNorm weight relative to `blocks.45.hook_mlp_out`,
+so treat the MLP-output SAE row as exploratory rather than a final negative
+claim about that SAE family.
 
 | Split | Task | Raw `mlp_out` AUC | MLP-out SAE 16K AUC | Raw residual L45 AUC |
 | --- | --- | ---: | ---: | ---: |
@@ -85,10 +89,10 @@ but the Gemma Scope 2 `mlp_out_all` width-16K SAE exposes little of it.
 | S3 target-symbol heldout | `infer_property` | 0.892 | 0.550 | 0.884 |
 | S3 target-symbol heldout | `infer_subtype` | 0.915 | 0.702 | 0.917 |
 
-Interpretation: moving from residual stream to MLP-output activations does not
-rescue the tested sparse dictionary story. The behaviorally relevant signal is
-visible in raw activations at multiple sites, but not well exposed by the
-tested Gemma Scope residual or MLP-output sparse features.
+Interpretation: the behaviorally relevant signal is visible in raw activations
+at multiple sites. The MLP-output SAE pilot should not be over-weighted because
+of the later exact-hook scale finding; the reportable non-residual sparse result
+is the corrected exact 262K transcoder below.
 
 ## Skip-Transcoder Pilot
 
@@ -99,18 +103,58 @@ skip-transcoder `transcoder_all/layer_45_width_16k_l0_small_affine`. The raw
 skip-transcoder features are intermediate: stronger than the MLP-output SAE,
 but still below raw activations and not a clean rescue of the sparse-feature
 story.
+This 16K pilot also used the bare normalized input and is therefore
+preliminary; the corrected 262K rerun below is the reportable transcoder
+comparison.
 
-| Split | Task | Raw `mlp_in` AUC | Skip-transcoder 16K AUC | Raw residual L45 AUC |
-| --- | --- | ---: | ---: | ---: |
-| S1 random | `infer_property` | 0.897 | 0.722 | 0.897 |
-| S1 random | `infer_subtype` | 0.915 | 0.821 | 0.914 |
-| S3 target-symbol heldout | `infer_property` | 0.885 | 0.722 | 0.884 |
-| S3 target-symbol heldout | `infer_subtype` | 0.914 | 0.841 | 0.917 |
+We also ran the Neuronpedia-visible L45 262K affine transcoder
+`transcoder_all/layer_45_width_262k_l0_small_affine`. The first run reused the
+bare `ln2.hook_normalized` input and is now superseded: a hook audit showed the
+Gemma Scope 2 target is better matched by learned-weighted
+`ln2.hook_normalized * ln2.w` and `blocks.45.hook_mlp_out`, with the affine
+skip applied as `x @ W_skip`. The corrected exact-hook rerun is Scholar job
+`451226`.
+
+The corrected 262K transcoder is no longer weak. It beats the earlier 16K
+skip-transcoder pilot and is roughly residual-SAE-like, but it still trails raw
+same-site activations. Exact input feature density is safely below `top_k=128`
+with mean L0 `19.5` for property and `17.9` for subtype.
+
+| Split | Task | Raw exact `mlp_in` AUC | Skip-transcoder 16K AUC | Exact transcoder 262K AUC | Raw residual L45 AUC |
+| --- | --- | ---: | ---: | ---: | ---: |
+| S1 random | `infer_property` | 0.897 | 0.722 | 0.795 | 0.897 |
+| S1 random | `infer_subtype` | 0.916 | 0.821 | 0.873 | 0.914 |
+| S3 target-symbol heldout | `infer_property` | 0.885 | 0.722 | 0.802 | 0.884 |
+| S3 target-symbol heldout | `infer_subtype` | 0.914 | 0.841 | 0.885 | 0.917 |
 
 Interpretation: computation-oriented sparse features expose some correctness
-signal, but the tested skip-transcoder still misses a large part of the
-raw-activation signal. The running crosscoder pilot should be treated as a
-bounded appendix-style multi-layer check unless it changes the main pattern.
+signal, and the exact 262K artifact is materially better than the first
+bare-normalized run. The main conclusion is still unchanged: even corrected
+transcoder features do not close the gap to raw activations.
+
+## 262K Transcoder Component Diagnostic
+
+We split the corrected exact-hook L45 262K affine transcoder into decoded
+sparse latents, the affine skip path, the full latent+skip output, and
+`target - full` against the exact `blocks.45.hook_mlp_out` target. This was a
+quick diagnostic run with `C=1.0`, `liblinear`, and no bootstrap resampling.
+The full component now has interpretable reconstruction statistics: energy
+explained is `0.672` for property and `0.661` for subtype, with global cosine
+`0.821/0.814`.
+
+| Split | Task | Latent AUC | Affine skip AUC | Full AUC | Error AUC | Raw exact `mlp_in` AUC |
+| --- | --- | ---: | ---: | ---: | ---: | ---: |
+| S1 random | `infer_property` | 0.791 | 0.856 | 0.862 | 0.864 | 0.897 |
+| S1 random | `infer_subtype` | 0.867 | 0.890 | 0.897 | 0.888 | 0.916 |
+| S3 target-symbol heldout | `infer_property` | 0.796 | 0.844 | 0.851 | 0.861 | 0.885 |
+| S3 target-symbol heldout | `infer_subtype` | 0.883 | 0.882 | 0.889 | 0.886 | 0.914 |
+
+Interpretation: the old negative-energy diagnostic was a target-site/scale
+mismatch, not a property of the artifact. With exact hooks, the 262K
+transcoder reconstructs a substantial part of the MLP output and exposes
+moderate-to-strong correctness signal. It still does not reach the raw exact
+input/output probes, so it is supporting evidence for partial sparse
+localization rather than a complete sparse mechanism.
 
 ## Crosscoder Pilot
 
@@ -147,16 +191,15 @@ every feature source tried so far.
 | Residual SAE 262K | 0.806 | 0.870 | 0.779 | 0.867 |
 | MLP-out SAE 16K | 0.577 | 0.674 | 0.550 | 0.702 |
 | Skip-transcoder 16K | 0.722 | 0.821 | 0.722 | 0.841 |
+| Exact transcoder 262K | 0.795 | 0.873 | 0.802 | 0.885 |
 | Crosscoder 65K | 0.787 | 0.868 | 0.724 | 0.853 |
 
-Interpretation: crosscoders are a middle-tier sparse representation in these
-experiments. They are much better than the weak MLP-output SAE and usually
-better than the skip-transcoder, but they are not better than residual SAEs and
-trail the fair raw-concat baseline by a large margin. On S3 they do not
-robustly beat metadata baselines: property barely clears B0, while subtype is
-below B0. The main ordering is therefore raw activations/reconstruction-error
-probes first, residual SAEs next, crosscoders and skip-transcoders as partial
-but incomplete sparse signals, and MLP-output SAE last.
+Interpretation: the corrected 262K transcoder moves above the old
+skip-transcoder and crosscoder pilots, and is broadly comparable to residual
+SAEs. It still trails raw activations. The main ordering is therefore raw
+activations/reconstruction-error probes first, residual SAEs and the exact 262K
+transcoder as partial sparse signals next, crosscoders lower on S3, and the
+MLP-output SAE last.
 
 ## Dense Active-Feature Probe Check
 
@@ -170,13 +213,58 @@ materializing them as dense matrices, and using ordinary centered scaling.
 | Residual SAE 262K dense-active | 0.806 | 0.870 | 0.779 | 0.868 |
 | MLP-out SAE 16K dense-active | 0.617 | 0.740 | 0.611 | 0.763 |
 | Skip-transcoder 16K dense-active | 0.722 | 0.821 | 0.724 | 0.841 |
+| Transcoder 262K old bare-norm dense-active | 0.654 | 0.811 | 0.653 | 0.831 |
 | Crosscoder 65K dense-active | 0.786 | 0.868 | 0.725 | 0.854 |
 
 Interpretation: dense centering/scaling does not remedy the disparity. Residual
-SAE, skip-transcoder, and crosscoder AUCs are essentially unchanged from the
-standard sparse probes. MLP-out SAE improves from extremely weak to still weak,
-but remains far below raw `mlp_out`. This rules out sparse-matrix scaling as the
-main explanation for the raw-vs-sparse gap.
+SAE, old bare-normalized transcoder, and crosscoder AUCs are essentially
+unchanged from the standard sparse probes. MLP-out SAE improves from extremely
+weak to still weak, but remains far below raw `mlp_out`. This rules out
+sparse-matrix scaling as the main explanation for the raw-vs-sparse gap. For
+the 262K transcoder specifically, the later exact-hook rerun shows the dominant
+issue was hook/scale alignment, not sparse matrix scaling.
+
+## Dtype And Feature-Audit Sanity Checks
+
+Scholar job `451218` compared the existing bfloat16 sparse encodings against
+float32 re-encodings of the first 512 rows for the main sparse artifacts. The
+comparison checks L0 stability, active-feature overlap, and top feature ID
+agreement.
+
+| Method | Task | bf16 L0 | fp32 L0 | Active Jaccard | Top-1 match |
+| --- | --- | ---: | ---: | ---: | ---: |
+| Residual SAE 16K | `infer_property` | 17.570 | 17.629 | 0.995 | 0.998 |
+| Residual SAE 16K | `infer_subtype` | 17.963 | 18.012 | 0.995 | 0.988 |
+| MLP-out SAE 16K | `infer_property` | 2.000 | 2.000 | 1.000 | 1.000 |
+| MLP-out SAE 16K | `infer_subtype` | 2.000 | 2.000 | 1.000 | 1.000 |
+| Skip-transcoder 16K | `infer_property` | 5.332 | 5.379 | 0.991 | 1.000 |
+| Skip-transcoder 16K | `infer_subtype` | 6.043 | 6.102 | 0.990 | 1.000 |
+| Crosscoder 65K | `infer_property` | 43.988 | 44.201 | 0.994 | 0.984 |
+| Crosscoder 65K | `infer_subtype` | 41.678 | 41.930 | 0.992 | 0.994 |
+
+Interpretation: bfloat16 encoding is not causing the sparse/raw gap. Active
+sets are nearly identical under fp32 re-encoding, and the weak MLP-output/skip
+L0 values persist exactly or nearly exactly in fp32.
+
+Neuronpedia is not a direct audit route for the present top L45 residual SAE
+features. Its public `gemma-3-27b-it` residual dashboards currently cover layers
+`16`, `31`, `40`, and `53`; our main residual SAE feature probes are layer `45`.
+We therefore used the public all-layer `gemmascope-2-transcoder-262k` source for
+an L45 Neuronpedia audit, and reran that audit after the exact-hook correction.
+The corrected top features differ from the old bare-normalized audit, but still
+look mostly generic or lexical rather than ontology-reasoning-specific:
+
+- Property top explanations include "exhibit", "for all", "okay/affirmation",
+  "technical contexts", "abstract concepts", "assuming", "exactly", and
+  "model".
+- Subtype top explanations include "code and structure", "explanatory
+  fragments", "Code keywords", "pronouns and scope", "entity classification",
+  "technical contexts", and "American".
+
+Interpretation: the Neuronpedia-facing 262K transcoder audit reinforces the
+same cautionary story. It provides inspectable L45 dashboard links, but the
+features look like broad lexical/style/code correlates, not clean sparse
+ontology-reasoning features.
 
 ## Reconstruction/Error Diagnostic
 
@@ -218,5 +306,8 @@ Gemma 3 27B pre-generation residuals contain a robust signal for
 reasoning-task success/failure beyond metadata baselines. The tested Gemma
 Scope 2 residual SAEs partially expose this signal, but reconstruction/error
 diagnostics show the strongest correctness-predictive component is concentrated
-in the small residual subspace that those SAEs fail to reconstruct. Causal
-steering is currently inconclusive.
+in the small residual subspace that those SAEs fail to reconstruct. A corrected
+exact-hook 262K transcoder partially improves the sparse-feature picture but
+still trails raw activations, and Neuronpedia-facing top features remain
+generic rather than clean ontology-reasoning mechanisms. Causal steering is
+currently inconclusive.

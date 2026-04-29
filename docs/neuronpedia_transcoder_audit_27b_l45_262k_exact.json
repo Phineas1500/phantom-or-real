@@ -1,0 +1,1431 @@
+{
+  "schema_version": 1,
+  "created_at_utc": "2026-04-29T08:36:26.068049+00:00",
+  "feature_report": "docs/transcoder_feature_stability_27b_l45_262k_affine_exact_s1.json",
+  "model_id": "gemma-3-27b-it",
+  "source_id": "45-gemmascope-2-transcoder-262k",
+  "sae_id": "layer_45_width_262k_l0_small_affine",
+  "top_n": 10,
+  "rows": [
+    {
+      "task": "infer_property",
+      "rank": 1,
+      "feature": 18578,
+      "association": "correct",
+      "sign": "positive",
+      "weight": 0.4288027892251863,
+      "activation_all": {
+        "density": 0.005885286783042394,
+        "max": 448.0,
+        "mean_all": 1.6746134663341645,
+        "mean_nonzero": 284.54237288135596,
+        "nonzero_n": 59
+      },
+      "url": "https://www.neuronpedia.org/gemma-3-27b-it/45-gemmascope-2-transcoder-262k/18578",
+      "api_url": "https://www.neuronpedia.org/api/feature/gemma-3-27b-it/45-gemmascope-2-transcoder-262k/18578",
+      "neuronpedia": {
+        "error": null,
+        "explanations": [
+          "exhibit"
+        ],
+        "positive_logits": [
+          " exhibit",
+          " exhibiting",
+          " exhibits",
+          " Exhibit",
+          " Exhib",
+          " exhib",
+          " Exhibits",
+          "Exhibit"
+        ],
+        "negative_logits": [
+          "istert",
+          "\u8bca\u65ad",
+          "Duck",
+          "odu",
+          " Duck",
+          " duckys",
+          "\u0dc0\u0dcf",
+          " Ducks"
+        ],
+        "frac_nonzero": 0.003485008856873664,
+        "max_act_approx": 2950.8022,
+        "hook_name": "blocks.45.hook_mlp_out",
+        "source": {
+          "id": "45-gemmascope-2-transcoder-262k",
+          "modelId": "gemma-3-27b-it",
+          "hasDashboards": true,
+          "inferenceEnabled": false,
+          "saelensConfig": null,
+          "saelensRelease": "gemma-scope-2-27b-it-transcoders-all",
+          "saelensSaeId": "layer_45_width_262k_l0_small_affine",
+          "hfRepoId": "google/gemma-scope-2-27b-it",
+          "hfFolderId": "transcoder_all/layer_45_width_262k_l0_small_affine",
+          "visibility": "PUBLIC",
+          "defaultOfModelId": null,
+          "setName": "gemmascope-2-transcoder-262k",
+          "creatorId": "clkht01d40000jv08hvalcvly",
+          "hasUmap": false,
+          "hasUmapLogSparsity": false,
+          "hasUmapClusters": false,
+          "num_prompts": 238145,
+          "num_tokens_in_prompt": 512,
+          "dataset": "lmsys + oasst1",
+          "notes": null,
+          "cosSimMatchModelId": null,
+          "cosSimMatchSourceId": null,
+          "createdAt": "2026-01-24T03:45:18.903Z"
+        }
+      }
+    },
+    {
+      "task": "infer_property",
+      "rank": 2,
+      "feature": 53191,
+      "association": "correct",
+      "sign": "positive",
+      "weight": 0.4169534633385284,
+      "activation_all": {
+        "density": 0.01057356608478803,
+        "max": 536.0,
+        "mean_all": 3.3833416458852867,
+        "mean_nonzero": 319.9811320754717,
+        "nonzero_n": 106
+      },
+      "url": "https://www.neuronpedia.org/gemma-3-27b-it/45-gemmascope-2-transcoder-262k/53191",
+      "api_url": "https://www.neuronpedia.org/api/feature/gemma-3-27b-it/45-gemmascope-2-transcoder-262k/53191",
+      "neuronpedia": {
+        "error": null,
+        "explanations": [
+          "for all"
+        ],
+        "positive_logits": [
+          "ForAll",
+          "forall",
+          " \u0432\u0441\u0435\u0445",
+          "getAll",
+          " \u05d1\u05db\u05dc",
+          " GetAll",
+          "GetAll",
+          " \ubaa8\ub4e0"
+        ],
+        "negative_logits": [
+          "\u0b9f\u0bc1\u0ba4\u0bcd\u0ba4",
+          "ppro",
+          "\u0642\u06cc\u0642",
+          "hesized",
+          "\u092e\u093e\u0936",
+          " \u09a6\u0995\u09cd\u09b7\u09bf",
+          "+'/",
+          "\ud33d"
+        ],
+        "frac_nonzero": 0.003310132386055618,
+        "max_act_approx": 2776.3787,
+        "hook_name": "blocks.45.hook_mlp_out",
+        "source": {
+          "id": "45-gemmascope-2-transcoder-262k",
+          "modelId": "gemma-3-27b-it",
+          "hasDashboards": true,
+          "inferenceEnabled": false,
+          "saelensConfig": null,
+          "saelensRelease": "gemma-scope-2-27b-it-transcoders-all",
+          "saelensSaeId": "layer_45_width_262k_l0_small_affine",
+          "hfRepoId": "google/gemma-scope-2-27b-it",
+          "hfFolderId": "transcoder_all/layer_45_width_262k_l0_small_affine",
+          "visibility": "PUBLIC",
+          "defaultOfModelId": null,
+          "setName": "gemmascope-2-transcoder-262k",
+          "creatorId": "clkht01d40000jv08hvalcvly",
+          "hasUmap": false,
+          "hasUmapLogSparsity": false,
+          "hasUmapClusters": false,
+          "num_prompts": 238145,
+          "num_tokens_in_prompt": 512,
+          "dataset": "lmsys + oasst1",
+          "notes": null,
+          "cosSimMatchModelId": null,
+          "cosSimMatchSourceId": null,
+          "createdAt": "2026-01-24T03:45:18.903Z"
+        }
+      }
+    },
+    {
+      "task": "infer_property",
+      "rank": 3,
+      "feature": 168384,
+      "association": "correct",
+      "sign": "positive",
+      "weight": 0.3741929749313988,
+      "activation_all": {
+        "density": 0.9955112219451372,
+        "max": 596.0,
+        "mean_all": 396.0059850374065,
+        "mean_nonzero": 397.79158316633266,
+        "nonzero_n": 9980
+      },
+      "url": "https://www.neuronpedia.org/gemma-3-27b-it/45-gemmascope-2-transcoder-262k/168384",
+      "api_url": "https://www.neuronpedia.org/api/feature/gemma-3-27b-it/45-gemmascope-2-transcoder-262k/168384",
+      "neuronpedia": {
+        "error": null,
+        "explanations": [
+          "okay/affirmation"
+        ],
+        "positive_logits": [
+          " okay",
+          "okay",
+          " \u062a\u0634\u0648\u0641",
+          "Flip",
+          " Okay",
+          "Roses",
+          "Cheers",
+          "\u7ed4"
+        ],
+        "negative_logits": [
+          " \u0c9c\u0ca8\u0cb0",
+          "umlahan",
+          "\u0441\u0443\u0441",
+          " Nathan",
+          " Retention",
+          " Real",
+          " Amo",
+          " Kamane"
+        ],
+        "frac_nonzero": 6.761940021081301e-05,
+        "max_act_approx": 1365.0013,
+        "hook_name": "blocks.45.hook_mlp_out",
+        "source": {
+          "id": "45-gemmascope-2-transcoder-262k",
+          "modelId": "gemma-3-27b-it",
+          "hasDashboards": true,
+          "inferenceEnabled": false,
+          "saelensConfig": null,
+          "saelensRelease": "gemma-scope-2-27b-it-transcoders-all",
+          "saelensSaeId": "layer_45_width_262k_l0_small_affine",
+          "hfRepoId": "google/gemma-scope-2-27b-it",
+          "hfFolderId": "transcoder_all/layer_45_width_262k_l0_small_affine",
+          "visibility": "PUBLIC",
+          "defaultOfModelId": null,
+          "setName": "gemmascope-2-transcoder-262k",
+          "creatorId": "clkht01d40000jv08hvalcvly",
+          "hasUmap": false,
+          "hasUmapLogSparsity": false,
+          "hasUmapClusters": false,
+          "num_prompts": 238145,
+          "num_tokens_in_prompt": 512,
+          "dataset": "lmsys + oasst1",
+          "notes": null,
+          "cosSimMatchModelId": null,
+          "cosSimMatchSourceId": null,
+          "createdAt": "2026-01-24T03:45:18.903Z"
+        }
+      }
+    },
+    {
+      "task": "infer_property",
+      "rank": 4,
+      "feature": 58142,
+      "association": "correct",
+      "sign": "positive",
+      "weight": 0.3715885766305606,
+      "activation_all": {
+        "density": 0.10922693266832918,
+        "max": 636.0,
+        "mean_all": 41.42364089775561,
+        "mean_nonzero": 379.24383561643833,
+        "nonzero_n": 1095
+      },
+      "url": "https://www.neuronpedia.org/gemma-3-27b-it/45-gemmascope-2-transcoder-262k/58142",
+      "api_url": "https://www.neuronpedia.org/api/feature/gemma-3-27b-it/45-gemmascope-2-transcoder-262k/58142",
+      "neuronpedia": {
+        "error": null,
+        "explanations": [
+          "technical contexts"
+        ],
+        "positive_logits": [
+          "VE",
+          "\ub818",
+          " Pole",
+          "\ud3f4",
+          "pole",
+          " \u0438\u043d\u0441\u0443",
+          "alam",
+          " pole"
+        ],
+        "negative_logits": [
+          "DBO",
+          " zp",
+          " Dors",
+          " Reflection",
+          " transformation",
+          " transformations",
+          "Monica",
+          " Rotation"
+        ],
+        "frac_nonzero": 0.000615871472678192,
+        "max_act_approx": 1350.5677,
+        "hook_name": "blocks.45.hook_mlp_out",
+        "source": {
+          "id": "45-gemmascope-2-transcoder-262k",
+          "modelId": "gemma-3-27b-it",
+          "hasDashboards": true,
+          "inferenceEnabled": false,
+          "saelensConfig": null,
+          "saelensRelease": "gemma-scope-2-27b-it-transcoders-all",
+          "saelensSaeId": "layer_45_width_262k_l0_small_affine",
+          "hfRepoId": "google/gemma-scope-2-27b-it",
+          "hfFolderId": "transcoder_all/layer_45_width_262k_l0_small_affine",
+          "visibility": "PUBLIC",
+          "defaultOfModelId": null,
+          "setName": "gemmascope-2-transcoder-262k",
+          "creatorId": "clkht01d40000jv08hvalcvly",
+          "hasUmap": false,
+          "hasUmapLogSparsity": false,
+          "hasUmapClusters": false,
+          "num_prompts": 238145,
+          "num_tokens_in_prompt": 512,
+          "dataset": "lmsys + oasst1",
+          "notes": null,
+          "cosSimMatchModelId": null,
+          "cosSimMatchSourceId": null,
+          "createdAt": "2026-01-24T03:45:18.903Z"
+        }
+      }
+    },
+    {
+      "task": "infer_property",
+      "rank": 5,
+      "feature": 125853,
+      "association": "incorrect",
+      "sign": "negative",
+      "weight": -0.3119053780805894,
+      "activation_all": {
+        "density": 0.6918703241895262,
+        "max": 784.0,
+        "mean_all": 259.3272817955112,
+        "mean_nonzero": 374.820645905421,
+        "nonzero_n": 6936
+      },
+      "url": "https://www.neuronpedia.org/gemma-3-27b-it/45-gemmascope-2-transcoder-262k/125853",
+      "api_url": "https://www.neuronpedia.org/api/feature/gemma-3-27b-it/45-gemmascope-2-transcoder-262k/125853",
+      "neuronpedia": {
+        "error": null,
+        "explanations": [
+          "abstract concepts"
+        ],
+        "positive_logits": [
+          "ariamente",
+          "pase",
+          " \u09ae\u09c1\u09a6\u09cd\u09b0\u09bf\u09a4",
+          "servlet",
+          "\u090f\u0902",
+          " bagged",
+          " mitten",
+          "pa"
+        ],
+        "negative_logits": [
+          " hyperactivity",
+          " disobedience",
+          " achieving",
+          " suboptimal",
+          " disobey",
+          " \u0441\u043d\u0438\u0436\u0435\u043d\u0438\u0435",
+          "optimal",
+          " heroism"
+        ],
+        "frac_nonzero": 0.0006608722025854315,
+        "max_act_approx": 771.2832,
+        "hook_name": "blocks.45.hook_mlp_out",
+        "source": {
+          "id": "45-gemmascope-2-transcoder-262k",
+          "modelId": "gemma-3-27b-it",
+          "hasDashboards": true,
+          "inferenceEnabled": false,
+          "saelensConfig": null,
+          "saelensRelease": "gemma-scope-2-27b-it-transcoders-all",
+          "saelensSaeId": "layer_45_width_262k_l0_small_affine",
+          "hfRepoId": "google/gemma-scope-2-27b-it",
+          "hfFolderId": "transcoder_all/layer_45_width_262k_l0_small_affine",
+          "visibility": "PUBLIC",
+          "defaultOfModelId": null,
+          "setName": "gemmascope-2-transcoder-262k",
+          "creatorId": "clkht01d40000jv08hvalcvly",
+          "hasUmap": false,
+          "hasUmapLogSparsity": false,
+          "hasUmapClusters": false,
+          "num_prompts": 238145,
+          "num_tokens_in_prompt": 512,
+          "dataset": "lmsys + oasst1",
+          "notes": null,
+          "cosSimMatchModelId": null,
+          "cosSimMatchSourceId": null,
+          "createdAt": "2026-01-24T03:45:18.903Z"
+        }
+      }
+    },
+    {
+      "task": "infer_property",
+      "rank": 6,
+      "feature": 26514,
+      "association": "correct",
+      "sign": "positive",
+      "weight": 0.3077800490014367,
+      "activation_all": {
+        "density": 0.9508229426433915,
+        "max": 1020.0,
+        "mean_all": 430.6481795511222,
+        "mean_nonzero": 452.92152748636175,
+        "nonzero_n": 9532
+      },
+      "url": "https://www.neuronpedia.org/gemma-3-27b-it/45-gemmascope-2-transcoder-262k/26514",
+      "api_url": "https://www.neuronpedia.org/api/feature/gemma-3-27b-it/45-gemmascope-2-transcoder-262k/26514",
+      "neuronpedia": {
+        "error": null,
+        "explanations": [
+          "assuming"
+        ],
+        "positive_logits": [
+          " AST",
+          " Plex",
+          "opoietic",
+          "Entrance",
+          "\u17e8",
+          " Bear",
+          " ActivityCompat",
+          " \u101b\u103e"
+        ],
+        "negative_logits": [
+          "\u731c\u6d4b",
+          " guesses",
+          "\u731c",
+          " \u043f\u0440\u0435\u0434\u043f\u043e",
+          " conjecture",
+          " conjectures",
+          " guessed",
+          " guess"
+        ],
+        "frac_nonzero": 0.001247194038063603,
+        "max_act_approx": 2063.9985,
+        "hook_name": "blocks.45.hook_mlp_out",
+        "source": {
+          "id": "45-gemmascope-2-transcoder-262k",
+          "modelId": "gemma-3-27b-it",
+          "hasDashboards": true,
+          "inferenceEnabled": false,
+          "saelensConfig": null,
+          "saelensRelease": "gemma-scope-2-27b-it-transcoders-all",
+          "saelensSaeId": "layer_45_width_262k_l0_small_affine",
+          "hfRepoId": "google/gemma-scope-2-27b-it",
+          "hfFolderId": "transcoder_all/layer_45_width_262k_l0_small_affine",
+          "visibility": "PUBLIC",
+          "defaultOfModelId": null,
+          "setName": "gemmascope-2-transcoder-262k",
+          "creatorId": "clkht01d40000jv08hvalcvly",
+          "hasUmap": false,
+          "hasUmapLogSparsity": false,
+          "hasUmapClusters": false,
+          "num_prompts": 238145,
+          "num_tokens_in_prompt": 512,
+          "dataset": "lmsys + oasst1",
+          "notes": null,
+          "cosSimMatchModelId": null,
+          "cosSimMatchSourceId": null,
+          "createdAt": "2026-01-24T03:45:18.903Z"
+        }
+      }
+    },
+    {
+      "task": "infer_property",
+      "rank": 7,
+      "feature": 3989,
+      "association": "incorrect",
+      "sign": "negative",
+      "weight": -0.2970688157684383,
+      "activation_all": {
+        "density": 0.8610473815461347,
+        "max": 900.0,
+        "mean_all": 351.15571072319204,
+        "mean_nonzero": 407.8239110287303,
+        "nonzero_n": 8632
+      },
+      "url": "https://www.neuronpedia.org/gemma-3-27b-it/45-gemmascope-2-transcoder-262k/3989",
+      "api_url": "https://www.neuronpedia.org/api/feature/gemma-3-27b-it/45-gemmascope-2-transcoder-262k/3989",
+      "neuronpedia": {
+        "error": null,
+        "explanations": [
+          "exactly"
+        ],
+        "positive_logits": [
+          " exactly",
+          "Exactly",
+          "exactly",
+          " Exactly",
+          " exactement",
+          " exatamente",
+          " exactamente",
+          " esattamente"
+        ],
+        "negative_logits": [
+          " Particular",
+          "iling",
+          "\ubc27",
+          " Kampala",
+          "\u83b3",
+          "\u1798\u17be\u179b",
+          " \u0c95\u0cc8",
+          "\u91ba"
+        ],
+        "frac_nonzero": 0.001981953019020676,
+        "max_act_approx": 4632.8843,
+        "hook_name": "blocks.45.hook_mlp_out",
+        "source": {
+          "id": "45-gemmascope-2-transcoder-262k",
+          "modelId": "gemma-3-27b-it",
+          "hasDashboards": true,
+          "inferenceEnabled": false,
+          "saelensConfig": null,
+          "saelensRelease": "gemma-scope-2-27b-it-transcoders-all",
+          "saelensSaeId": "layer_45_width_262k_l0_small_affine",
+          "hfRepoId": "google/gemma-scope-2-27b-it",
+          "hfFolderId": "transcoder_all/layer_45_width_262k_l0_small_affine",
+          "visibility": "PUBLIC",
+          "defaultOfModelId": null,
+          "setName": "gemmascope-2-transcoder-262k",
+          "creatorId": "clkht01d40000jv08hvalcvly",
+          "hasUmap": false,
+          "hasUmapLogSparsity": false,
+          "hasUmapClusters": false,
+          "num_prompts": 238145,
+          "num_tokens_in_prompt": 512,
+          "dataset": "lmsys + oasst1",
+          "notes": null,
+          "cosSimMatchModelId": null,
+          "cosSimMatchSourceId": null,
+          "createdAt": "2026-01-24T03:45:18.903Z"
+        }
+      }
+    },
+    {
+      "task": "infer_property",
+      "rank": 8,
+      "feature": 15249,
+      "association": "correct",
+      "sign": "positive",
+      "weight": 0.2947315117061086,
+      "activation_all": {
+        "density": 0.971072319201995,
+        "max": 888.0,
+        "mean_all": 435.1573067331671,
+        "mean_nonzero": 448.12039034411913,
+        "nonzero_n": 9735
+      },
+      "url": "https://www.neuronpedia.org/gemma-3-27b-it/45-gemmascope-2-transcoder-262k/15249",
+      "api_url": "https://www.neuronpedia.org/api/feature/gemma-3-27b-it/45-gemmascope-2-transcoder-262k/15249",
+      "neuronpedia": {
+        "error": null,
+        "explanations": [
+          "model"
+        ],
+        "positive_logits": [
+          "(\"|",
+          " \u0b0f",
+          " FAMILY",
+          "heva",
+          "('|",
+          "Envelope",
+          " \u0685\u0647",
+          " \u0905\u092d\u093f\u0935\u094d\u092f\u0915\u094d\u0924\u093f"
+        ],
+        "negative_logits": [
+          "Word",
+          " word",
+          " Word",
+          "word",
+          " definition",
+          "definition",
+          "Definition",
+          " Syn"
+        ],
+        "frac_nonzero": 0.001754829292217165,
+        "max_act_approx": 1538.7589,
+        "hook_name": "blocks.45.hook_mlp_out",
+        "source": {
+          "id": "45-gemmascope-2-transcoder-262k",
+          "modelId": "gemma-3-27b-it",
+          "hasDashboards": true,
+          "inferenceEnabled": false,
+          "saelensConfig": null,
+          "saelensRelease": "gemma-scope-2-27b-it-transcoders-all",
+          "saelensSaeId": "layer_45_width_262k_l0_small_affine",
+          "hfRepoId": "google/gemma-scope-2-27b-it",
+          "hfFolderId": "transcoder_all/layer_45_width_262k_l0_small_affine",
+          "visibility": "PUBLIC",
+          "defaultOfModelId": null,
+          "setName": "gemmascope-2-transcoder-262k",
+          "creatorId": "clkht01d40000jv08hvalcvly",
+          "hasUmap": false,
+          "hasUmapLogSparsity": false,
+          "hasUmapClusters": false,
+          "num_prompts": 238145,
+          "num_tokens_in_prompt": 512,
+          "dataset": "lmsys + oasst1",
+          "notes": null,
+          "cosSimMatchModelId": null,
+          "cosSimMatchSourceId": null,
+          "createdAt": "2026-01-24T03:45:18.903Z"
+        }
+      }
+    },
+    {
+      "task": "infer_property",
+      "rank": 9,
+      "feature": 146644,
+      "association": "correct",
+      "sign": "positive",
+      "weight": 0.2768801472307121,
+      "activation_all": {
+        "density": 0.013366583541147132,
+        "max": 452.0,
+        "mean_all": 4.117705735660848,
+        "mean_nonzero": 308.05970149253733,
+        "nonzero_n": 134
+      },
+      "url": "https://www.neuronpedia.org/gemma-3-27b-it/45-gemmascope-2-transcoder-262k/146644",
+      "api_url": "https://www.neuronpedia.org/api/feature/gemma-3-27b-it/45-gemmascope-2-transcoder-262k/146644",
+      "neuronpedia": {
+        "error": null,
+        "explanations": [
+          "technical concepts"
+        ],
+        "positive_logits": [
+          " h\u00e0ng",
+          "arris",
+          "roix",
+          "\u30cd\u30a4",
+          "ovable",
+          " COUN",
+          " parall\u00e8les",
+          " \u05e0\u05d5"
+        ],
+        "negative_logits": [
+          "\u09be\u0995\u09c7\u0993",
+          " \u0938\u0902\u0915\u094d\u0930\u092e\u0923",
+          " \u0437\u0430\u0440",
+          "geoip",
+          "\u50f9\u683c",
+          "\u0baa\u0bcd\u0baa\u0bbe\u0bb3",
+          " eLearning",
+          " antihist"
+        ],
+        "frac_nonzero": 0.002343891487328482,
+        "max_act_approx": 933.7524,
+        "hook_name": "blocks.45.hook_mlp_out",
+        "source": {
+          "id": "45-gemmascope-2-transcoder-262k",
+          "modelId": "gemma-3-27b-it",
+          "hasDashboards": true,
+          "inferenceEnabled": false,
+          "saelensConfig": null,
+          "saelensRelease": "gemma-scope-2-27b-it-transcoders-all",
+          "saelensSaeId": "layer_45_width_262k_l0_small_affine",
+          "hfRepoId": "google/gemma-scope-2-27b-it",
+          "hfFolderId": "transcoder_all/layer_45_width_262k_l0_small_affine",
+          "visibility": "PUBLIC",
+          "defaultOfModelId": null,
+          "setName": "gemmascope-2-transcoder-262k",
+          "creatorId": "clkht01d40000jv08hvalcvly",
+          "hasUmap": false,
+          "hasUmapLogSparsity": false,
+          "hasUmapClusters": false,
+          "num_prompts": 238145,
+          "num_tokens_in_prompt": 512,
+          "dataset": "lmsys + oasst1",
+          "notes": null,
+          "cosSimMatchModelId": null,
+          "cosSimMatchSourceId": null,
+          "createdAt": "2026-01-24T03:45:18.903Z"
+        }
+      }
+    },
+    {
+      "task": "infer_property",
+      "rank": 10,
+      "feature": 22581,
+      "association": "correct",
+      "sign": "positive",
+      "weight": 0.26790179825570826,
+      "activation_all": {
+        "density": 0.9442394014962594,
+        "max": 728.0,
+        "mean_all": 367.13695760598506,
+        "mean_nonzero": 388.8176632157194,
+        "nonzero_n": 9466
+      },
+      "url": "https://www.neuronpedia.org/gemma-3-27b-it/45-gemmascope-2-transcoder-262k/22581",
+      "api_url": "https://www.neuronpedia.org/api/feature/gemma-3-27b-it/45-gemmascope-2-transcoder-262k/22581",
+      "neuronpedia": {
+        "error": null,
+        "explanations": [
+          "conduct studies"
+        ],
+        "positive_logits": [
+          " conducted",
+          " conduct",
+          "Conduct",
+          " Conduct",
+          "conduct",
+          " conducting",
+          " Conducting",
+          " conducts"
+        ],
+        "negative_logits": [
+          " sadd",
+          "presented",
+          "\u5129",
+          "\u0e40\u0e27",
+          " \u0bb5\u0bbf\u0bb0\u0bc8",
+          "\u9cb8",
+          " \u0d1c\u0d42",
+          " overlying"
+        ],
+        "frac_nonzero": 0.00123314132967493,
+        "max_act_approx": 1522.8264,
+        "hook_name": "blocks.45.hook_mlp_out",
+        "source": {
+          "id": "45-gemmascope-2-transcoder-262k",
+          "modelId": "gemma-3-27b-it",
+          "hasDashboards": true,
+          "inferenceEnabled": false,
+          "saelensConfig": null,
+          "saelensRelease": "gemma-scope-2-27b-it-transcoders-all",
+          "saelensSaeId": "layer_45_width_262k_l0_small_affine",
+          "hfRepoId": "google/gemma-scope-2-27b-it",
+          "hfFolderId": "transcoder_all/layer_45_width_262k_l0_small_affine",
+          "visibility": "PUBLIC",
+          "defaultOfModelId": null,
+          "setName": "gemmascope-2-transcoder-262k",
+          "creatorId": "clkht01d40000jv08hvalcvly",
+          "hasUmap": false,
+          "hasUmapLogSparsity": false,
+          "hasUmapClusters": false,
+          "num_prompts": 238145,
+          "num_tokens_in_prompt": 512,
+          "dataset": "lmsys + oasst1",
+          "notes": null,
+          "cosSimMatchModelId": null,
+          "cosSimMatchSourceId": null,
+          "createdAt": "2026-01-24T03:45:18.903Z"
+        }
+      }
+    },
+    {
+      "task": "infer_subtype",
+      "rank": 1,
+      "feature": 7267,
+      "association": "correct",
+      "sign": "positive",
+      "weight": 0.5188249703452321,
+      "activation_all": {
+        "density": 0.9063052994318711,
+        "max": 1152.0,
+        "mean_all": 538.8637421998696,
+        "mean_nonzero": 594.5719864351043,
+        "nonzero_n": 9731
+      },
+      "url": "https://www.neuronpedia.org/gemma-3-27b-it/45-gemmascope-2-transcoder-262k/7267",
+      "api_url": "https://www.neuronpedia.org/api/feature/gemma-3-27b-it/45-gemmascope-2-transcoder-262k/7267",
+      "neuronpedia": {
+        "error": null,
+        "explanations": [
+          "code and structure"
+        ],
+        "positive_logits": [
+          " ''",
+          "\u3068\u3082",
+          "\uff1a\uff08",
+          "ManyToMany",
+          "\u0d46\u0d19\u0d4d\u0d15",
+          "\"=\"",
+          " Szt",
+          "holi"
+        ],
+        "negative_logits": [
+          "\u09be\u09a8",
+          " valueForKey",
+          "\u09a6\u09be\u09b8",
+          "planned",
+          " divisors",
+          "uje",
+          " cups",
+          "\u0410\u0440\u0445\u0456\u0432\u043e\u0432\u0430\u043d\u043e"
+        ],
+        "frac_nonzero": 0.001943375435023043,
+        "max_act_approx": 1429.9622,
+        "hook_name": "blocks.45.hook_mlp_out",
+        "source": {
+          "id": "45-gemmascope-2-transcoder-262k",
+          "modelId": "gemma-3-27b-it",
+          "hasDashboards": true,
+          "inferenceEnabled": false,
+          "saelensConfig": null,
+          "saelensRelease": "gemma-scope-2-27b-it-transcoders-all",
+          "saelensSaeId": "layer_45_width_262k_l0_small_affine",
+          "hfRepoId": "google/gemma-scope-2-27b-it",
+          "hfFolderId": "transcoder_all/layer_45_width_262k_l0_small_affine",
+          "visibility": "PUBLIC",
+          "defaultOfModelId": null,
+          "setName": "gemmascope-2-transcoder-262k",
+          "creatorId": "clkht01d40000jv08hvalcvly",
+          "hasUmap": false,
+          "hasUmapLogSparsity": false,
+          "hasUmapClusters": false,
+          "num_prompts": 238145,
+          "num_tokens_in_prompt": 512,
+          "dataset": "lmsys + oasst1",
+          "notes": null,
+          "cosSimMatchModelId": null,
+          "cosSimMatchSourceId": null,
+          "createdAt": "2026-01-24T03:45:18.903Z"
+        }
+      }
+    },
+    {
+      "task": "infer_subtype",
+      "rank": 2,
+      "feature": 48654,
+      "association": "correct",
+      "sign": "positive",
+      "weight": 0.5166363888206144,
+      "activation_all": {
+        "density": 0.07422930054950172,
+        "max": 648.0,
+        "mean_all": 26.056067802924467,
+        "mean_nonzero": 351.02132998745293,
+        "nonzero_n": 797
+      },
+      "url": "https://www.neuronpedia.org/gemma-3-27b-it/45-gemmascope-2-transcoder-262k/48654",
+      "api_url": "https://www.neuronpedia.org/api/feature/gemma-3-27b-it/45-gemmascope-2-transcoder-262k/48654",
+      "neuronpedia": {
+        "error": null,
+        "explanations": [
+          "explanatory fragments"
+        ],
+        "positive_logits": [
+          " Broad",
+          "Broad",
+          " Wass",
+          " \u099c\u09c7",
+          "unum",
+          " ris",
+          "<unused62>",
+          " skating"
+        ],
+        "negative_logits": [
+          "\u09a8\u09be\u09b0\u09c0",
+          "\ud835\ude5d",
+          " \u092e\u093e\u0907\u0928\u0938",
+          "\u043c\u043e\u0433\u0430",
+          " \u041e\u043d\u043b\u0430\u0439\u043d",
+          "\u0648\u064a\u0631",
+          " \uad1c",
+          "\u764c"
+        ],
+        "frac_nonzero": 0.004670834896892484,
+        "max_act_approx": 1264.782,
+        "hook_name": "blocks.45.hook_mlp_out",
+        "source": {
+          "id": "45-gemmascope-2-transcoder-262k",
+          "modelId": "gemma-3-27b-it",
+          "hasDashboards": true,
+          "inferenceEnabled": false,
+          "saelensConfig": null,
+          "saelensRelease": "gemma-scope-2-27b-it-transcoders-all",
+          "saelensSaeId": "layer_45_width_262k_l0_small_affine",
+          "hfRepoId": "google/gemma-scope-2-27b-it",
+          "hfFolderId": "transcoder_all/layer_45_width_262k_l0_small_affine",
+          "visibility": "PUBLIC",
+          "defaultOfModelId": null,
+          "setName": "gemmascope-2-transcoder-262k",
+          "creatorId": "clkht01d40000jv08hvalcvly",
+          "hasUmap": false,
+          "hasUmapLogSparsity": false,
+          "hasUmapClusters": false,
+          "num_prompts": 238145,
+          "num_tokens_in_prompt": 512,
+          "dataset": "lmsys + oasst1",
+          "notes": null,
+          "cosSimMatchModelId": null,
+          "cosSimMatchSourceId": null,
+          "createdAt": "2026-01-24T03:45:18.903Z"
+        }
+      }
+    },
+    {
+      "task": "infer_subtype",
+      "rank": 3,
+      "feature": 3477,
+      "association": "correct",
+      "sign": "positive",
+      "weight": 0.419476543207715,
+      "activation_all": {
+        "density": 0.0044705224923162895,
+        "max": 332.0,
+        "mean_all": 1.0715283598770606,
+        "mean_nonzero": 239.6875,
+        "nonzero_n": 48
+      },
+      "url": "https://www.neuronpedia.org/gemma-3-27b-it/45-gemmascope-2-transcoder-262k/3477",
+      "api_url": "https://www.neuronpedia.org/api/feature/gemma-3-27b-it/45-gemmascope-2-transcoder-262k/3477",
+      "neuronpedia": {
+        "error": null,
+        "explanations": [
+          "Code keywords"
+        ],
+        "positive_logits": [
+          "LoggerFactory",
+          " Space",
+          " \u0985\u0995\u09cd\u09b7\u09b0\u09c7",
+          " Greetings",
+          "uolo",
+          "icile",
+          " \u3044\u305f",
+          "unker"
+        ],
+        "negative_logits": [
+          " python",
+          " minecraft",
+          " matlab",
+          "minecraft",
+          " Roblox",
+          " SPSS",
+          " MATLAB",
+          " linux"
+        ],
+        "frac_nonzero": 0.001763125695641248,
+        "max_act_approx": 1205.5327,
+        "hook_name": "blocks.45.hook_mlp_out",
+        "source": {
+          "id": "45-gemmascope-2-transcoder-262k",
+          "modelId": "gemma-3-27b-it",
+          "hasDashboards": true,
+          "inferenceEnabled": false,
+          "saelensConfig": null,
+          "saelensRelease": "gemma-scope-2-27b-it-transcoders-all",
+          "saelensSaeId": "layer_45_width_262k_l0_small_affine",
+          "hfRepoId": "google/gemma-scope-2-27b-it",
+          "hfFolderId": "transcoder_all/layer_45_width_262k_l0_small_affine",
+          "visibility": "PUBLIC",
+          "defaultOfModelId": null,
+          "setName": "gemmascope-2-transcoder-262k",
+          "creatorId": "clkht01d40000jv08hvalcvly",
+          "hasUmap": false,
+          "hasUmapLogSparsity": false,
+          "hasUmapClusters": false,
+          "num_prompts": 238145,
+          "num_tokens_in_prompt": 512,
+          "dataset": "lmsys + oasst1",
+          "notes": null,
+          "cosSimMatchModelId": null,
+          "cosSimMatchSourceId": null,
+          "createdAt": "2026-01-24T03:45:18.903Z"
+        }
+      }
+    },
+    {
+      "task": "infer_subtype",
+      "rank": 4,
+      "feature": 9737,
+      "association": "correct",
+      "sign": "positive",
+      "weight": 0.4063521615254882,
+      "activation_all": {
+        "density": 1.0,
+        "max": 1472.0,
+        "mean_all": 965.9510105243551,
+        "mean_nonzero": 965.9510105243551,
+        "nonzero_n": 10737
+      },
+      "url": "https://www.neuronpedia.org/gemma-3-27b-it/45-gemmascope-2-transcoder-262k/9737",
+      "api_url": "https://www.neuronpedia.org/api/feature/gemma-3-27b-it/45-gemmascope-2-transcoder-262k/9737",
+      "neuronpedia": {
+        "error": null,
+        "explanations": [
+          "pronouns and scope"
+        ],
+        "positive_logits": [
+          " You",
+          " Everyone",
+          " Nobody",
+          "Nobody",
+          " Everything",
+          "Everything",
+          " Hes",
+          " It"
+        ],
+        "negative_logits": [
+          " quantas",
+          " \u0915\u093f\u0924\u0928\u0940",
+          " combien",
+          " \u0b8e\u0ba4\u0bcd\u0ba4\u0ba9\u0bc8",
+          " \u0995\u09a4\u099f\u09be",
+          " quantos",
+          " \u0e01\u0e35\u0e48",
+          " think"
+        ],
+        "frac_nonzero": 0.006395714592097769,
+        "max_act_approx": 1572.8533,
+        "hook_name": "blocks.45.hook_mlp_out",
+        "source": {
+          "id": "45-gemmascope-2-transcoder-262k",
+          "modelId": "gemma-3-27b-it",
+          "hasDashboards": true,
+          "inferenceEnabled": false,
+          "saelensConfig": null,
+          "saelensRelease": "gemma-scope-2-27b-it-transcoders-all",
+          "saelensSaeId": "layer_45_width_262k_l0_small_affine",
+          "hfRepoId": "google/gemma-scope-2-27b-it",
+          "hfFolderId": "transcoder_all/layer_45_width_262k_l0_small_affine",
+          "visibility": "PUBLIC",
+          "defaultOfModelId": null,
+          "setName": "gemmascope-2-transcoder-262k",
+          "creatorId": "clkht01d40000jv08hvalcvly",
+          "hasUmap": false,
+          "hasUmapLogSparsity": false,
+          "hasUmapClusters": false,
+          "num_prompts": 238145,
+          "num_tokens_in_prompt": 512,
+          "dataset": "lmsys + oasst1",
+          "notes": null,
+          "cosSimMatchModelId": null,
+          "cosSimMatchSourceId": null,
+          "createdAt": "2026-01-24T03:45:18.903Z"
+        }
+      }
+    },
+    {
+      "task": "infer_subtype",
+      "rank": 5,
+      "feature": 168384,
+      "association": "correct",
+      "sign": "positive",
+      "weight": 0.397594785208683,
+      "activation_all": {
+        "density": 0.9616280152742852,
+        "max": 604.0,
+        "mean_all": 350.18720312936574,
+        "mean_nonzero": 364.16077481840193,
+        "nonzero_n": 10325
+      },
+      "url": "https://www.neuronpedia.org/gemma-3-27b-it/45-gemmascope-2-transcoder-262k/168384",
+      "api_url": "https://www.neuronpedia.org/api/feature/gemma-3-27b-it/45-gemmascope-2-transcoder-262k/168384",
+      "neuronpedia": {
+        "error": null,
+        "explanations": [
+          "okay/affirmation"
+        ],
+        "positive_logits": [
+          " okay",
+          "okay",
+          " \u062a\u0634\u0648\u0641",
+          "Flip",
+          " Okay",
+          "Roses",
+          "Cheers",
+          "\u7ed4"
+        ],
+        "negative_logits": [
+          " \u0c9c\u0ca8\u0cb0",
+          "umlahan",
+          "\u0441\u0443\u0441",
+          " Nathan",
+          " Retention",
+          " Real",
+          " Amo",
+          " Kamane"
+        ],
+        "frac_nonzero": 6.761940021081301e-05,
+        "max_act_approx": 1365.0013,
+        "hook_name": "blocks.45.hook_mlp_out",
+        "source": {
+          "id": "45-gemmascope-2-transcoder-262k",
+          "modelId": "gemma-3-27b-it",
+          "hasDashboards": true,
+          "inferenceEnabled": false,
+          "saelensConfig": null,
+          "saelensRelease": "gemma-scope-2-27b-it-transcoders-all",
+          "saelensSaeId": "layer_45_width_262k_l0_small_affine",
+          "hfRepoId": "google/gemma-scope-2-27b-it",
+          "hfFolderId": "transcoder_all/layer_45_width_262k_l0_small_affine",
+          "visibility": "PUBLIC",
+          "defaultOfModelId": null,
+          "setName": "gemmascope-2-transcoder-262k",
+          "creatorId": "clkht01d40000jv08hvalcvly",
+          "hasUmap": false,
+          "hasUmapLogSparsity": false,
+          "hasUmapClusters": false,
+          "num_prompts": 238145,
+          "num_tokens_in_prompt": 512,
+          "dataset": "lmsys + oasst1",
+          "notes": null,
+          "cosSimMatchModelId": null,
+          "cosSimMatchSourceId": null,
+          "createdAt": "2026-01-24T03:45:18.903Z"
+        }
+      }
+    },
+    {
+      "task": "infer_subtype",
+      "rank": 6,
+      "feature": 90784,
+      "association": "correct",
+      "sign": "positive",
+      "weight": 0.39357772221111254,
+      "activation_all": {
+        "density": 0.005029337803855826,
+        "max": 376.0,
+        "mean_all": 1.47788022725156,
+        "mean_nonzero": 293.85185185185185,
+        "nonzero_n": 54
+      },
+      "url": "https://www.neuronpedia.org/gemma-3-27b-it/45-gemmascope-2-transcoder-262k/90784",
+      "api_url": "https://www.neuronpedia.org/api/feature/gemma-3-27b-it/45-gemmascope-2-transcoder-262k/90784",
+      "neuronpedia": {
+        "error": null,
+        "explanations": [
+          "entity classification"
+        ],
+        "positive_logits": [
+          "\u017eit\u00ed",
+          " Viv",
+          "Viv",
+          " createApp",
+          "ci\u0142",
+          " shortcuts",
+          " minimizar",
+          " varm"
+        ],
+        "negative_logits": [
+          " human",
+          "human",
+          "Human",
+          " Human",
+          "\u4eba\u9593\u306e",
+          " \u0447\u0435\u043b\u043e\u0432\u0435",
+          " \u0939\u094d\u092f\u0942\u092e\u0928",
+          " HUMAN"
+        ],
+        "frac_nonzero": 0.0004804668439255927,
+        "max_act_approx": 1123.3081,
+        "hook_name": "blocks.45.hook_mlp_out",
+        "source": {
+          "id": "45-gemmascope-2-transcoder-262k",
+          "modelId": "gemma-3-27b-it",
+          "hasDashboards": true,
+          "inferenceEnabled": false,
+          "saelensConfig": null,
+          "saelensRelease": "gemma-scope-2-27b-it-transcoders-all",
+          "saelensSaeId": "layer_45_width_262k_l0_small_affine",
+          "hfRepoId": "google/gemma-scope-2-27b-it",
+          "hfFolderId": "transcoder_all/layer_45_width_262k_l0_small_affine",
+          "visibility": "PUBLIC",
+          "defaultOfModelId": null,
+          "setName": "gemmascope-2-transcoder-262k",
+          "creatorId": "clkht01d40000jv08hvalcvly",
+          "hasUmap": false,
+          "hasUmapLogSparsity": false,
+          "hasUmapClusters": false,
+          "num_prompts": 238145,
+          "num_tokens_in_prompt": 512,
+          "dataset": "lmsys + oasst1",
+          "notes": null,
+          "cosSimMatchModelId": null,
+          "cosSimMatchSourceId": null,
+          "createdAt": "2026-01-24T03:45:18.903Z"
+        }
+      }
+    },
+    {
+      "task": "infer_subtype",
+      "rank": 7,
+      "feature": 58142,
+      "association": "correct",
+      "sign": "positive",
+      "weight": 0.3811630773234905,
+      "activation_all": {
+        "density": 0.10403278383161033,
+        "max": 652.0,
+        "mean_all": 38.699823041818014,
+        "mean_nonzero": 371.99641897940916,
+        "nonzero_n": 1117
+      },
+      "url": "https://www.neuronpedia.org/gemma-3-27b-it/45-gemmascope-2-transcoder-262k/58142",
+      "api_url": "https://www.neuronpedia.org/api/feature/gemma-3-27b-it/45-gemmascope-2-transcoder-262k/58142",
+      "neuronpedia": {
+        "error": null,
+        "explanations": [
+          "technical contexts"
+        ],
+        "positive_logits": [
+          "VE",
+          "\ub818",
+          " Pole",
+          "\ud3f4",
+          "pole",
+          " \u0438\u043d\u0441\u0443",
+          "alam",
+          " pole"
+        ],
+        "negative_logits": [
+          "DBO",
+          " zp",
+          " Dors",
+          " Reflection",
+          " transformation",
+          " transformations",
+          "Monica",
+          " Rotation"
+        ],
+        "frac_nonzero": 0.000615871472678192,
+        "max_act_approx": 1350.5677,
+        "hook_name": "blocks.45.hook_mlp_out",
+        "source": {
+          "id": "45-gemmascope-2-transcoder-262k",
+          "modelId": "gemma-3-27b-it",
+          "hasDashboards": true,
+          "inferenceEnabled": false,
+          "saelensConfig": null,
+          "saelensRelease": "gemma-scope-2-27b-it-transcoders-all",
+          "saelensSaeId": "layer_45_width_262k_l0_small_affine",
+          "hfRepoId": "google/gemma-scope-2-27b-it",
+          "hfFolderId": "transcoder_all/layer_45_width_262k_l0_small_affine",
+          "visibility": "PUBLIC",
+          "defaultOfModelId": null,
+          "setName": "gemmascope-2-transcoder-262k",
+          "creatorId": "clkht01d40000jv08hvalcvly",
+          "hasUmap": false,
+          "hasUmapLogSparsity": false,
+          "hasUmapClusters": false,
+          "num_prompts": 238145,
+          "num_tokens_in_prompt": 512,
+          "dataset": "lmsys + oasst1",
+          "notes": null,
+          "cosSimMatchModelId": null,
+          "cosSimMatchSourceId": null,
+          "createdAt": "2026-01-24T03:45:18.903Z"
+        }
+      }
+    },
+    {
+      "task": "infer_subtype",
+      "rank": 8,
+      "feature": 36643,
+      "association": "correct",
+      "sign": "positive",
+      "weight": 0.3659313326648496,
+      "activation_all": {
+        "density": 0.0054018813448821834,
+        "max": 326.0,
+        "mean_all": 1.3955481046847351,
+        "mean_nonzero": 258.3448275862069,
+        "nonzero_n": 58
+      },
+      "url": "https://www.neuronpedia.org/gemma-3-27b-it/45-gemmascope-2-transcoder-262k/36643",
+      "api_url": "https://www.neuronpedia.org/api/feature/gemma-3-27b-it/45-gemmascope-2-transcoder-262k/36643",
+      "neuronpedia": {
+        "error": null,
+        "explanations": [
+          "American"
+        ],
+        "positive_logits": [
+          " American",
+          "American",
+          " Amerikan",
+          " \u0905\u092e\u0947\u0930",
+          " Americans",
+          "AMERICAN",
+          " americanos",
+          " \u0986\u09ae\u09c7\u09b0\u09bf\u0995\u09be\u09a8"
+        ],
+        "negative_logits": [
+          " events",
+          " event",
+          "\u30a4\u30d9\u30f3\u30c8",
+          " Events",
+          "\u4e8b\u4ef6",
+          "events",
+          " eventi",
+          " \uc774\ubca4\ud2b8"
+        ],
+        "frac_nonzero": 0.001604075123951382,
+        "max_act_approx": 1560.3254,
+        "hook_name": "blocks.45.hook_mlp_out",
+        "source": {
+          "id": "45-gemmascope-2-transcoder-262k",
+          "modelId": "gemma-3-27b-it",
+          "hasDashboards": true,
+          "inferenceEnabled": false,
+          "saelensConfig": null,
+          "saelensRelease": "gemma-scope-2-27b-it-transcoders-all",
+          "saelensSaeId": "layer_45_width_262k_l0_small_affine",
+          "hfRepoId": "google/gemma-scope-2-27b-it",
+          "hfFolderId": "transcoder_all/layer_45_width_262k_l0_small_affine",
+          "visibility": "PUBLIC",
+          "defaultOfModelId": null,
+          "setName": "gemmascope-2-transcoder-262k",
+          "creatorId": "clkht01d40000jv08hvalcvly",
+          "hasUmap": false,
+          "hasUmapLogSparsity": false,
+          "hasUmapClusters": false,
+          "num_prompts": 238145,
+          "num_tokens_in_prompt": 512,
+          "dataset": "lmsys + oasst1",
+          "notes": null,
+          "cosSimMatchModelId": null,
+          "cosSimMatchSourceId": null,
+          "createdAt": "2026-01-24T03:45:18.903Z"
+        }
+      }
+    },
+    {
+      "task": "infer_subtype",
+      "rank": 9,
+      "feature": 22581,
+      "association": "correct",
+      "sign": "positive",
+      "weight": 0.3221311229490651,
+      "activation_all": {
+        "density": 0.6475738101890659,
+        "max": 664.0,
+        "mean_all": 219.9605103846512,
+        "mean_nonzero": 339.6686322450741,
+        "nonzero_n": 6953
+      },
+      "url": "https://www.neuronpedia.org/gemma-3-27b-it/45-gemmascope-2-transcoder-262k/22581",
+      "api_url": "https://www.neuronpedia.org/api/feature/gemma-3-27b-it/45-gemmascope-2-transcoder-262k/22581",
+      "neuronpedia": {
+        "error": null,
+        "explanations": [
+          "conduct studies"
+        ],
+        "positive_logits": [
+          " conducted",
+          " conduct",
+          "Conduct",
+          " Conduct",
+          "conduct",
+          " conducting",
+          " Conducting",
+          " conducts"
+        ],
+        "negative_logits": [
+          " sadd",
+          "presented",
+          "\u5129",
+          "\u0e40\u0e27",
+          " \u0bb5\u0bbf\u0bb0\u0bc8",
+          "\u9cb8",
+          " \u0d1c\u0d42",
+          " overlying"
+        ],
+        "frac_nonzero": 0.00123314132967493,
+        "max_act_approx": 1522.8264,
+        "hook_name": "blocks.45.hook_mlp_out",
+        "source": {
+          "id": "45-gemmascope-2-transcoder-262k",
+          "modelId": "gemma-3-27b-it",
+          "hasDashboards": true,
+          "inferenceEnabled": false,
+          "saelensConfig": null,
+          "saelensRelease": "gemma-scope-2-27b-it-transcoders-all",
+          "saelensSaeId": "layer_45_width_262k_l0_small_affine",
+          "hfRepoId": "google/gemma-scope-2-27b-it",
+          "hfFolderId": "transcoder_all/layer_45_width_262k_l0_small_affine",
+          "visibility": "PUBLIC",
+          "defaultOfModelId": null,
+          "setName": "gemmascope-2-transcoder-262k",
+          "creatorId": "clkht01d40000jv08hvalcvly",
+          "hasUmap": false,
+          "hasUmapLogSparsity": false,
+          "hasUmapClusters": false,
+          "num_prompts": 238145,
+          "num_tokens_in_prompt": 512,
+          "dataset": "lmsys + oasst1",
+          "notes": null,
+          "cosSimMatchModelId": null,
+          "cosSimMatchSourceId": null,
+          "createdAt": "2026-01-24T03:45:18.903Z"
+        }
+      }
+    },
+    {
+      "task": "infer_subtype",
+      "rank": 10,
+      "feature": 8311,
+      "association": "incorrect",
+      "sign": "negative",
+      "weight": -0.3089668339693816,
+      "activation_all": {
+        "density": 0.0016764459346186086,
+        "max": 294.0,
+        "mean_all": 0.3975039582751234,
+        "mean_nonzero": 237.11111111111111,
+        "nonzero_n": 18
+      },
+      "url": "https://www.neuronpedia.org/gemma-3-27b-it/45-gemmascope-2-transcoder-262k/8311",
+      "api_url": "https://www.neuronpedia.org/api/feature/gemma-3-27b-it/45-gemmascope-2-transcoder-262k/8311",
+      "neuronpedia": {
+        "error": null,
+        "explanations": [
+          "code elements"
+        ],
+        "positive_logits": [
+          "\u0131\u011f\u0131n",
+          "Raised",
+          "Related",
+          "Expired",
+          "Exclusive",
+          "\u0d3f\u0d15\u0d33\u0d41\u0d1f\u0d46",
+          "iological",
+          "Top"
+        ],
+        "negative_logits": [
+          " Arrays",
+          " Rxg",
+          " :\"",
+          " \u104a",
+          "undra",
+          " capitalise",
+          " Automat",
+          " \u043b\u044f"
+        ],
+        "frac_nonzero": 0.004235201769881915,
+        "max_act_approx": 1210.6611,
+        "hook_name": "blocks.45.hook_mlp_out",
+        "source": {
+          "id": "45-gemmascope-2-transcoder-262k",
+          "modelId": "gemma-3-27b-it",
+          "hasDashboards": true,
+          "inferenceEnabled": false,
+          "saelensConfig": null,
+          "saelensRelease": "gemma-scope-2-27b-it-transcoders-all",
+          "saelensSaeId": "layer_45_width_262k_l0_small_affine",
+          "hfRepoId": "google/gemma-scope-2-27b-it",
+          "hfFolderId": "transcoder_all/layer_45_width_262k_l0_small_affine",
+          "visibility": "PUBLIC",
+          "defaultOfModelId": null,
+          "setName": "gemmascope-2-transcoder-262k",
+          "creatorId": "clkht01d40000jv08hvalcvly",
+          "hasUmap": false,
+          "hasUmapLogSparsity": false,
+          "hasUmapClusters": false,
+          "num_prompts": 238145,
+          "num_tokens_in_prompt": 512,
+          "dataset": "lmsys + oasst1",
+          "notes": null,
+          "cosSimMatchModelId": null,
+          "cosSimMatchSourceId": null,
+          "createdAt": "2026-01-24T03:45:18.903Z"
+        }
+      }
+    }
+  ]
+}

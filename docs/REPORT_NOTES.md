@@ -425,9 +425,10 @@ final report is easier to assemble.
   be named with non-residual sites such as
   `gemma3_27b_infer_property_L45_mlp_out` while preserving existing residual
   filenames. The first planned hook is
-  `blocks.{layer}.ln2_post.hook_normalized`, matching Gemma 3's
-  post-feedforward layernorm output used by the Gemma Scope `mlp_out_all`
-  configs.
+  `blocks.{layer}.ln2_post.hook_normalized`. Later exact-hook auditing showed
+  this bare normalized hook is missing the learned RMSNorm weight relative to
+  `blocks.{layer}.hook_mlp_out`, so treat the MLP-output SAE pilot below as
+  exploratory rather than report-central.
 - Scholar job `451090` completed the L45 MLP-output site pilot on
   `scholar-j000`. Raw L45 `mlp_out` activations carry essentially the same
   correctness signal as raw residuals: S1 property/subtype test AUCs
@@ -438,10 +439,10 @@ final report is easier to assemble.
   not stronger.
 - Interpretation update: the raw correctness signal is present at the
   post-MLP site, but the tested MLP-output sparse dictionary exposes little of
-  it. This argues against spending project time on a broad Gemma Scope sweep or
-  a crosscoder pilot unless there is a separate reason; the strongest current
-  result remains that sparse Gemma Scope dictionaries tested so far miss a
-  behaviorally important direction that raw activations expose.
+  it under the bare-normalized pilot extraction. After the 262K exact-hook
+  audit, do not use this as a primary negative claim about MLP-output SAEs
+  without an exact `hook_mlp_out` rerun; use it only as a motivation for the
+  later exact 262K transcoder check.
 - GORMAN access works through `queue.cs.purdue.edu` with the dedicated SSH key.
   The cluster has two `gorman-gpu` DGX-1 nodes, each with 8x Tesla V100 SXM2
   32GB and 512 GB RAM. A tiny diagnostic job `9883` verified `nvidia-smi` on
@@ -464,6 +465,10 @@ final report is easier to assemble.
   S3 property/subtype 0.722/0.841. This is better than the weak MLP-output SAE
   but still far below raw activations, and weaker than the residual SAEs for
   property.
+- Later 262K exact-hook auditing showed this 16K skip-transcoder pilot also
+  used the bare pre-MLP normalized input rather than learned-weighted
+  `ln2.hook_normalized * ln2.w`. Treat the 16K result as a preliminary pilot,
+  not the final transcoder comparison.
 - Crosscoders are feasible but heavier: the 27B IT repo has weakly causal
   crosscoders over residual layers `{16,31,40,53}`, but the smallest width is
   65K and uses four parameter shards of about 1.76 GB each. Given the
@@ -521,3 +526,165 @@ final report is easier to assemble.
   S1 property/subtype 0.617/0.740 and S3 property/subtype 0.611/0.763. This
   means sparse scaling contributed somewhat to the weakest MLP-out numbers, but
   it does not explain the main raw-vs-sparse disparity.
+
+#### Dtype/Neuronpedia Follow-Ups
+
+- Scholar job `451218` compared existing bfloat16 sparse encodings against
+  float32 re-encodings of the first 512 rows for the L45 residual SAE, L45
+  MLP-output SAE, L45 affine skip-transcoder, and `{16,31,40,53}` crosscoder
+  artifacts. It completed on `scholar-j001` in 4:43 and wrote
+  `docs/sparse_dtype_sanity_27b.json`.
+- The bf16-vs-fp32 sanity check does not explain the raw-vs-sparse gap. Mean
+  active-feature Jaccard was 0.995/0.995 for residual SAE property/subtype,
+  1.000/1.000 for MLP-output SAE, 0.991/0.990 for skip-transcoder, and
+  0.994/0.992 for crosscoder. The weak non-residual L0 values persist under
+  fp32: MLP-output stays exactly L0=2 and skip-transcoder stays around L0=5-6.
+- Neuronpedia is not a direct audit path for our current top L45 residual SAE
+  features. Its public `gemma-3-27b-it` residual dashboards currently cover
+  layers `16`, `31`, `40`, and `53`, while our main residual SAE feature
+  probes are layer `45`. Querying the API for
+  `45-gemmascope-2-res-16k/180` returned "not available." See
+  `docs/neuronpedia_feature_audit_27b.md`.
+- Correction/clarification: Neuronpedia does expose all-layer
+  `gemmascope-2-transcoder-262k` sources, including layer `45`. That gives a
+  possible L45 Neuronpedia audit route, but it would require a same-source
+  L45 262K transcoder probe. It does not directly audit the completed L45
+  residual SAE probes or the L45 16K affine skip-transcoder pilot.
+- The local L45 feature-stability output has an important cautionary pattern:
+  several top probe features are nearly always active, for example 16K feature
+  `1096` and 262K feature `160112`. These are predictive but not obviously
+  satisfying sparse mechanistic candidates. If we want to use Neuronpedia in
+  the report, the clean route is an auxiliary residual SAE probe at layer `40`
+  or `53`, not retrofitting links onto the current L45 result.
+
+#### L45 262K Transcoder And Neuronpedia Audit (Superseded Bare-Normalized Run)
+
+- Ran the Neuronpedia-facing L45 262K affine transcoder as Scholar job
+  `451219`. It reused existing L45 `mlp_in` activations, downloaded/cached the
+  11 GB HF artifact
+  `transcoder_all/layer_45_width_262k_l0_small_affine`, encoded both 27B
+  tasks, ran S1/S3 probes, exported top S1 features, and queried Neuronpedia
+  source `45-gemmascope-2-transcoder-262k`. Job completed on `scholar-j003` in
+  4:28 with max RSS about 7.5 GB.
+- The 262K transcoder does not rescue the computation-feature story. S1
+  property/subtype AUCs were 0.654/0.811; S3 property/subtype AUCs were
+  0.653/0.831. This is worse than the L45 16K affine skip-transcoder on
+  property and slightly weaker/comparable on subtype.
+- Despite being width 262K, the artifact produced only 23 distinct active
+  top-k features across each full task dataset. Mean L0 was 6.73 for property
+  and 5.97 for subtype, with max L0 12/11. Dense-active centered probes were
+  effectively identical to the standard sparse probes, so sparse scaling is not
+  the explanation.
+- Neuronpedia audit result: top L45 262K transcoder features mostly look like
+  generic lexical/style/code features, not ontology-reasoning mechanisms.
+  Property top explanations include "accessories", "titles and labels", "code
+  syntax", "numbers", and "code and symbols"; subtype includes "open", "to
+  be", "titles and labels", "code elements", "code syntax", "quotes", and
+  "months". See `docs/neuronpedia_transcoder_audit_27b_l45_262k.md`.
+- Pinned the 262K transcoder in `docs/stage2_invariants.json`: HF snapshot
+  `5c58dd4cddd52cef653059d85e12a86bf6222a28`, config SHA-256
+  `7b008b0ec1a40fb50a5d95d5f0d74177ac2c50409fb115821304ef44ae915bdb`, and
+  params SHA-256
+  `0957750683ed72117c903f9f808ee536f38fe7ded44f54dd3de62e4d06c892e5`.
+- Follow-up probe sanity checks do not suggest an easy post-hoc rescue. An
+  expanded C grid `0.001,0.01,0.1,1,10,100,1000` left S1 AUCs effectively
+  unchanged: property 0.654 and subtype 0.811. Binary active-feature probes
+  were worse, with S1 property/subtype AUCs 0.648/0.732. This points away from
+  regularization range or activation-magnitude scaling as the cause of the weak
+  262K result.
+
+#### L45 262K Transcoder Component Diagnostic (Superseded Cached-Target Run)
+
+- Added `scripts/stage2_transcoder_component_diagnostics.py` and
+  `scripts/stage2_transcoder_components_27b_L45_262k_affine.sbatch` to split
+  the L45 262K affine transcoder into four dense probe targets: decoded sparse
+  latent output, affine skip output, full latent+skip output, and
+  `target - full` error against our cached `mlp_out` target. The completed quick
+  run is Scholar job `451224`; outputs are
+  `docs/transcoder_component_probe_27b_l45_262k_affine_s1.json` and
+  `docs/transcoder_component_probe_27b_l45_262k_affine_s3_target_symbol.json`.
+- Component AUCs show that the sparse latents are the weak part, not the dense
+  affine path. S1 property latent/skip/full/error AUCs were
+  0.646/0.859/0.864/0.861; S1 subtype was 0.806/0.893/0.898/0.897. S3 property
+  was 0.647/0.837/0.846/0.845; S3 subtype was 0.822/0.879/0.889/0.887.
+- Interpretation: the 262K transcoder's affine skip/full dense components
+  recover much more correctness signal than the sparse latent features, with
+  subtype nearly raw-level and property still below raw but far above the
+  latent probe. This supports the broader conclusion that the relevant
+  correctness signal is present in dense activation geometry but is not cleanly
+  localized by the tested sparse feature latents.
+- Important caveat: reconstruction-quality numbers from this diagnostic should
+  not be interpreted like the residual-SAE reconstruction/error result. The
+  full component has huge negative energy explained against our cached
+  `blocks.45.ln2_post.hook_normalized` target (about `-1.57e5`) and mean row
+  cosine about `-0.026`, indicating a target-site or scale mismatch with the
+  Gemma Scope 2 transcoder training target. Treat the component AUCs as a
+  predictive decomposition of available transformations, not as faithful
+  transcoder reconstruction evidence.
+
+#### L45 262K Transcoder Hook Audit
+
+- Ran a 16-row exact-hook audit as Scholar job `451225`; output is
+  `docs/transcoder_hook_audit_27b_l45_262k.json`. The audit compared
+  `hook_mlp_in`, `ln2.hook_normalized`, learned-weighted `ln2`, `hook_mlp_out`,
+  `ln2_post.hook_normalized`, and learned-weighted `ln2_post`.
+- The cached `mlp_out` target was missing the learned post-MLP RMSNorm weight:
+  `hook_mlp_out` and weighted `ln2_post` are effectively identical
+  (global cosine `0.999997`, mean L2 about `5007`), while
+  `ln2_post.hook_normalized` has mean L2 about `73` and only cosine `0.542`
+  with `hook_mlp_out`.
+- The best input is learned-weighted `ln2`, not bare `ln2.hook_normalized` or
+  `hook_mlp_in`. On the audit sample, exact weighted input gives feature L0
+  about `34.0`, while the old bare-normalized input gives L0 about `7.25`.
+  This likely explains the unusually tiny L0 and weak 262K latent probe we saw
+  before.
+- The Gemma Scope `affine_skip_connection` tensor appears to need the
+  untransposed multiplication `x @ W_skip` for this square L45 artifact. With
+  weighted `ln2` input and `hook_mlp_out` target, full untransposed
+  reconstruction explains about `0.687` of target energy with global cosine
+  `0.831`; SAE Lens' generic `x @ W_skip.T` path explains only about `0.380`.
+- Added `scripts/stage2_extract_exact_transcoder_hooks.py` and patched
+  `scripts/stage2_transcoder_component_diagnostics.py` with
+  `--skip-orientation untransposed` so the full exact-hook rerun can produce
+  interpretable reconstruction stats.
+
+#### L45 262K Exact-Hook Transcoder Rerun
+
+- Ran the corrected exact-hook 262K affine transcoder rerun as Scholar job
+  `451226`; job completed on `scholar-j003` at 2026-04-29 05:02:39 EDT. The
+  rerun fixed four old-design issues: the input uses learned-weighted
+  `ln2.hook_normalized * ln2.w`, the target uses `blocks.45.hook_mlp_out`,
+  component diagnostics use the audit-selected untransposed skip path
+  `x @ W_skip`, and Neuronpedia/top-feature analysis was refreshed from the
+  corrected exact feature files.
+- Corrected exact sparse 262K probes improve substantially over the old
+  bare-normalized run. Exact S1 property/subtype AUCs are `0.795/0.873`, and
+  exact S3 property/subtype AUCs are `0.802/0.885`. The old S1/S3 AUCs were
+  `0.654/0.811` and `0.653/0.831`, so the old result should be treated as a
+  hook/scale-mismatch diagnostic rather than the final 262K transcoder number.
+- Exact input feature density is no longer anomalously tiny but still safely
+  below top-k: mean L0 is `19.51` for property and `17.93` for subtype with
+  `top_k=128`.
+- Same-site exact raw activations remain stronger than the corrected sparse
+  262K features. Exact raw `mlp_in_weighted` S1 property/subtype AUCs are
+  `0.897/0.916`; exact raw `mlp_out_hook` S1 is `0.896/0.916`. S3 exact raw
+  `mlp_in_weighted` is `0.885/0.914`, and exact raw `mlp_out_hook` is
+  `0.892/0.915`.
+- Corrected component diagnostics now have interpretable reconstruction
+  statistics. Full latent+skip output explains `0.672` target energy for
+  property and `0.661` for subtype, with global cosine `0.821/0.814`; this
+  replaces the old nonsensical negative-energy result against the wrong-scale
+  cached target.
+- Exact component AUCs remain below raw but show that dense decoded components
+  carry more signal than sparse latents alone. S1 property latent/skip/full/error
+  AUCs are `0.791/0.856/0.862/0.864`; S1 subtype is
+  `0.867/0.890/0.897/0.888`. S3 property is
+  `0.796/0.844/0.851/0.861`; S3 subtype is
+  `0.883/0.882/0.889/0.886`.
+- Refreshed the Neuronpedia audit using corrected exact top features:
+  `docs/neuronpedia_transcoder_audit_27b_l45_262k_exact.json` and `.md`.
+  Corrected top features differ from the old audit but still do not look like
+  clean ontology-reasoning mechanisms. Examples include "exhibit", "for all",
+  "okay/affirmation", "technical contexts", "code and structure",
+  "pronouns and scope", and several very dense generic features. Treat the old
+  Neuronpedia audit as superseded for report-critical claims.

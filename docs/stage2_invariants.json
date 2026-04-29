@@ -123,6 +123,20 @@
         "sae_params_sha256": "00cf90cb287e496b7e2da5c48f589598575ac8901416e343d6d29aa930367f4f",
         "sae_release": "gemma-scope-2-27b-it-transcoders-all"
       },
+      "gemma-scope-2-27b-it-transcoders-all/layer_45_width_262k_l0_small_affine": {
+        "architecture": "jumprelu_skip_transcoder",
+        "d_in": 5376,
+        "d_out": 5376,
+        "d_sae": 262144,
+        "hf_repo_id": "google/gemma-scope-2-27b-it",
+        "hf_snapshot_revision": "5c58dd4cddd52cef653059d85e12a86bf6222a28",
+        "hf_subfolder": "transcoder_all",
+        "neuronpedia_source_id": "45-gemmascope-2-transcoder-262k",
+        "sae_config_sha256": "7b008b0ec1a40fb50a5d95d5f0d74177ac2c50409fb115821304ef44ae915bdb",
+        "sae_id": "layer_45_width_262k_l0_small_affine",
+        "sae_params_sha256": "0957750683ed72117c903f9f808ee536f38fe7ded44f54dd3de62e4d06c892e5",
+        "sae_release": "gemma-scope-2-27b-it-transcoders-all"
+      },
       "gemma-scope-2-27b-it-crosscoder/layer_16_31_40_53_width_65k_l0_medium": {
         "affine_connection": false,
         "architecture": "jump_relu",
@@ -157,7 +171,7 @@
         "type": "crosscoder"
       }
     },
-    "status": "pinned_l45_residual_mlp_skip_transcoder_and_crosscoder_artifacts"
+    "status": "pinned_l45_residual_mlp_skip_transcoder_262k_transcoder_and_crosscoder_artifacts"
   },
   "schema_version": 1,
   "stage1_jsonls": {

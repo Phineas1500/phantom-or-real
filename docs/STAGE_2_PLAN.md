@@ -7,7 +7,7 @@ metrics.
 
 ## Current Status
 
-As of 2026-04-28, the active workspace scope is Gemma 3 27B. Gemma 3 4B results
+As of 2026-04-29, the active workspace scope is Gemma 3 27B. Gemma 3 4B results
 will be merged later from the teammate run.
 
 Completed:
@@ -33,10 +33,27 @@ Completed:
 - Top-512 diagnostic completed; top-128 already captured all active residual
   SAE features in the tested files.
 - Feature-stability and reconstruction/error diagnostics completed.
-- L45 MLP-output SAE and L45 affine skip-transcoder pilots completed.
+- L45 MLP-output SAE and L45 16K affine skip-transcoder pilots completed, but
+  both used bare normalized hooks and are now treated as exploratory after the
+  exact-hook audit.
 - First steering pilot completed; result is null/inconclusive, not causal
   evidence.
 - A bounded 27B crosscoder pilot completed as Scholar job `451181`.
+- Dense active-feature scaling and bf16-vs-fp32 sparse encoding sanity checks
+  completed.
+- Neuronpedia availability audited for the current top features. It is not a
+  direct audit path for the L45 residual SAE features because public
+  `gemma-3-27b-it` residual dashboards currently cover layers 16/31/40/53, not
+  45. Neuronpedia does have all-layer `gemmascope-2-transcoder-262k`
+  dashboards, including layer 45.
+- L45 262K affine transcoder exact-hook audit completed as Scholar job
+  `451225`; it found the old 262K input/target were missing learned RMSNorm
+  weights and that the raw Gemma Scope affine skip tensor matches `x @ W_skip`
+  for this artifact.
+- Corrected L45 262K affine transcoder rerun completed as Scholar job
+  `451226`, including exact weighted-input extraction, exact raw input/output
+  probes, exact sparse probes, exact component diagnostics, and refreshed
+  Neuronpedia audit.
 
 Current scientific story:
 
@@ -47,13 +64,24 @@ Current scientific story:
 - Reconstruction/error diagnostics are the main pivot: residual SAEs reconstruct
   about 95% of activation energy, yet the raw-minus-reconstruction error
   recovers nearly the full raw probe signal.
-- MLP-output and skip-transcoder pilots do not rescue sparse-feature
-  localization.
+- The corrected Neuronpedia-facing L45 262K transcoder is no longer weak:
+  exact S1 property/subtype AUCs are `0.795/0.873`, and exact S3 AUCs are
+  `0.802/0.885`. This is residual-SAE-like but still below raw same-site
+  activations.
+- Corrected 262K component diagnostics are now interpretable: full output
+  explains `0.672/0.661` energy for property/subtype, with global cosine
+  `0.821/0.814`. Dense full/error components still trail raw exact
+  activations, so this is partial sparse localization rather than a clean
+  sparse mechanism.
+- Refreshed exact Neuronpedia audit still shows mostly generic/lexical/code
+  feature explanations rather than clean ontology-reasoning mechanisms.
 - The multi-layer crosscoder pilot also does not rescue sparse-feature
   localization: raw concat over the crosscoder layers nearly matches raw L45,
   but crosscoder features trail raw concat.
 - Dense active-feature probes rule out sparse CSR scaling/centering as the main
   cause of the raw-vs-sparse gap.
+- Float32 re-encoding shows nearly identical sparse active sets, so bf16
+  encoding instability is also not the explanation.
 - Steering has not established a causal feature or direction.
 
 ## Active Scope
@@ -65,8 +93,9 @@ Keep the remaining Stage 2 work narrow:
 - Label: `is_correct_strong`, with `parse_failed=True` filtered for main
   probe training.
 - Main feature sources: raw residual L45, residual SAE L45 16K/262K,
-  reconstruction/error components, MLP-output pilot, skip-transcoder pilot, and
-  the bounded crosscoder pilot.
+  residual-SAE reconstruction/error components, corrected exact-hook L45 262K
+  transcoder, exploratory MLP-output/16K-transcoder pilots, and the bounded
+  crosscoder pilot.
 - Main splits: S1 random and S3 target-symbol heldout.
 - Main report claim: raw activations contain a robust correctness signal, but
   the tested sparse dictionaries do not cleanly localize it.
@@ -93,7 +122,12 @@ Do not interpret a result unless these hold:
 6. Raw residual hooks are `blocks.{L}.hook_resid_post`.
 7. Any non-residual hook or sparse dictionary is recorded with its exact site,
    release ID, config hash, and parameter hash before being treated as final.
-8. Any GPT judge calls use a dated model snapshot, not a moving alias.
+8. For Gemma Scope 2 non-residual dictionaries, exact hook/scale alignment must
+   be checked before interpreting weak sparse-feature results. For the L45 262K
+   transcoder, the reportable input is `ln2.hook_normalized * ln2.w`, the
+   target is `blocks.45.hook_mlp_out`, and the affine skip path uses
+   `x @ W_skip`.
+9. Any GPT judge calls use a dated model snapshot, not a moving alias.
 
 ## Key Results To Report
 
@@ -153,15 +187,33 @@ Label-shuffle S1 controls stayed near chance: property 0.493, subtype 0.481.
 
 ### Site And Sparse-Artifact Pilots
 
-| Split | Task | Raw `mlp_out` | MLP-out SAE 16K | Raw `mlp_in` | Skip-transcoder 16K |
-| --- | --- | ---: | ---: | ---: | ---: |
-| S1 | `infer_property` | 0.895 | 0.577 | 0.897 | 0.722 |
-| S1 | `infer_subtype` | 0.916 | 0.674 | 0.915 | 0.821 |
-| S3 | `infer_property` | 0.892 | 0.550 | 0.885 | 0.722 |
-| S3 | `infer_subtype` | 0.915 | 0.702 | 0.914 | 0.841 |
+| Split | Task | Raw `mlp_out` | MLP-out SAE 16K pilot | Raw exact `mlp_in` | Transcoder 16K pilot | Exact transcoder 262K |
+| --- | --- | ---: | ---: | ---: | ---: | ---: |
+| S1 | `infer_property` | 0.896 | 0.577 | 0.897 | 0.722 | 0.795 |
+| S1 | `infer_subtype` | 0.916 | 0.674 | 0.916 | 0.821 | 0.873 |
+| S3 | `infer_property` | 0.892 | 0.550 | 0.885 | 0.722 | 0.802 |
+| S3 | `infer_subtype` | 0.915 | 0.702 | 0.914 | 0.841 | 0.885 |
 
 Interpretation: raw same-site activations carry the signal, while tested sparse
-features only partially expose it.
+features only partially expose it. The MLP-output SAE and 16K transcoder rows
+are kept as exploratory pilots because exact-hook auditing later found missing
+learned RMSNorm weights in those bare-normalized extraction sites.
+
+### 262K Transcoder Component Diagnostic
+
+Quick diagnostic settings: `C=1.0`, `liblinear`, no bootstrap resampling. The
+old cached-target diagnostic is superseded by the exact-hook rerun below.
+
+| Split | Task | Latent | Affine skip | Full | Error | Full energy | Raw exact `mlp_in` |
+| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| S1 | `infer_property` | 0.791 | 0.856 | 0.862 | 0.864 | 0.672 | 0.897 |
+| S1 | `infer_subtype` | 0.867 | 0.890 | 0.897 | 0.888 | 0.661 | 0.916 |
+| S3 | `infer_property` | 0.796 | 0.844 | 0.851 | 0.861 | 0.672 | 0.885 |
+| S3 | `infer_subtype` | 0.883 | 0.882 | 0.889 | 0.886 | 0.661 | 0.914 |
+
+Interpretation: the exact 262K transcoder reconstructs a substantial part of
+the MLP output and exposes moderate-to-strong correctness signal, but the full
+and error components still trail raw exact activations.
 
 ### Crosscoder Pilot
 
@@ -219,8 +271,8 @@ Report-critical:
 Optional only if time remains:
 
 - Stronger prompt-length/name-frequency residualization.
-- Float32 encoding or hook/L0 sanity checks for the weakest non-residual
-  sparse artifacts.
+- Optional Neuronpedia-facing layer-40 or layer-53 residual SAE probe if the
+  final report needs a residual feature-dashboard audit.
 - Name-scramble regeneration.
 - A better steering null with all-token/decode-step intervention.
 
@@ -238,6 +290,25 @@ Optional only if time remains:
 - `scripts/stage2_probe_crosscoder.py`: crosscoder feature probes.
 - `scripts/stage2_probe_dense_active_sparse.py`: dense active-column scaling
   check for sparse artifacts.
+- `scripts/stage2_sparse_dtype_sanity_report.py`: bf16-vs-fp32 sparse encoding
+  comparison report.
+- `scripts/stage2_sparse_dtype_sanity_27b.sbatch`: completed dtype sanity job
+  script.
+- `scripts/stage2_transcoder_27b_L45_262k_affine.sbatch`: completed
+  Neuronpedia-facing 262K transcoder job script.
+- `scripts/stage2_transcoder_component_diagnostics.py`: splits an affine
+  transcoder into latent, skip, full, and error component activation files and
+  probes each component.
+- `scripts/stage2_transcoder_components_27b_L45_262k_affine.sbatch`:
+  superseded bare-normalized L45 262K component diagnostic job script.
+- `scripts/stage2_transcoder_hook_audit.py`: audits exact Gemma Scope
+  transcoder input/output hook alignment.
+- `scripts/stage2_extract_exact_transcoder_hooks.py`: extracts weighted
+  transcoder input and exact `hook_mlp_out` target activations.
+- `scripts/stage2_transcoder_exact_27b_L45_262k_affine.sbatch`: corrected
+  exact-hook 262K transcoder rerun script.
+- `scripts/stage2_neuronpedia_feature_audit.py`: Neuronpedia API audit for top
+  sparse probe features.
 - `scripts/stage2_crosscoder_27b_layers_16_31_40_53_65k.sbatch`: completed
   crosscoder pilot job script.
 
@@ -255,11 +326,19 @@ Optional only if time remains:
 - [x] Top-k truncation diagnostic.
 - [x] SAE feature-stability diagnostic.
 - [x] Reconstruction/error diagnostic.
-- [x] MLP-output SAE pilot.
-- [x] Skip-transcoder pilot.
+- [x] MLP-output SAE pilot, now exploratory because of exact-hook caveat.
+- [x] Skip-transcoder 16K pilot, now exploratory because of exact-hook caveat.
 - [x] Steering pilot and orthogonal controls.
 - [x] Crosscoder width-65K pilot over layers 16/31/40/53.
 - [x] Crosscoder invariants pinned.
 - [x] Dense active-feature scaling sanity check.
+- [x] bf16-vs-fp32 sparse encoding sanity check.
+- [x] Neuronpedia availability audit for current L45 features.
+- [x] L45 262K transcoder initial bare-normalized probe.
+- [x] L45 262K transcoder hook audit.
+- [x] L45 262K exact-hook transcoder probe.
+- [x] L45 262K exact-hook component diagnostic.
+- [x] L45 262K exact-hook Neuronpedia audit.
+- [x] 262K transcoder invariants pinned.
 - [ ] Teammate 4B comparison tables.
 - [ ] Final report figures/tables assembled.

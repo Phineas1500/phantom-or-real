@@ -66,24 +66,39 @@ SAEs can still miss the signal that matters for prediction.
   features in tested L45 residual SAEs.
 - Reconstruction/error diagnostic is the pivot result: about 95% energy
   reconstructed, but error probes recover raw-level AUC.
-- L45 MLP-output raw activations also carry raw-level signal, but the
-  MLP-output width-16K SAE is weak. This supports the interpretation that the
-  sparse dictionaries tested here miss the predictive direction rather than the
-  signal existing only at one residual site.
-- L45 skip-transcoder features are stronger than the MLP-output SAE but still
-  trail raw `mlp_in`, so computation-oriented sparse features do not rescue the
-  main SAE localization claim.
+- L45 MLP-output and 16K skip-transcoder pilots used bare normalized hooks; keep
+  them as exploratory motivation, not as final negative claims.
+- Exact-hook L45 262K transcoder probe: after correcting the input to
+  `ln2.hook_normalized * ln2.w` and the target to `hook_mlp_out`, the
+  Neuronpedia-visible all-layer transcoder is substantially stronger than the
+  old bare-normalized run. It reaches S1 property/subtype AUCs `0.795/0.873`
+  and S3 AUCs `0.802/0.885`, roughly residual-SAE-like but still below raw.
+- Exact 262K component diagnostic: full latent+skip output has interpretable
+  energy explained around `0.67/0.66` for property/subtype. Dense full/error
+  components carry more signal than sparse latents alone but still trail raw
+  exact activations, supporting partial rather than complete sparse
+  localization.
 - Crosscoder pilot: raw concat over layers `{16,31,40,53}` nearly matches raw
   L45, but the 65K crosscoder over those same layers trails raw concat on every
   task/split. Treat this as an appendix-style multi-layer check supporting the
   main sparse-dictionary cautionary story.
-- Cross-method comparison: crosscoders are middle-tier. They beat the weak
-  MLP-output SAE and usually beat the skip-transcoder, but they do not improve
-  on residual SAEs and they trail the fair raw-concat baseline substantially.
-  On S3, crosscoders do not robustly beat metadata baselines.
+- Cross-method comparison: after exact-hook correction, the 262K transcoder
+  moves above the old 16K skip-transcoder and crosscoder pilots, but still does
+  not improve over raw activations. Crosscoders remain useful as a bounded
+  multi-layer null: they trail the fair raw-concat baseline substantially and do
+  not robustly beat metadata baselines on S3.
 - Dense active-feature probe check: centered dense probes over train-active
   sparse columns do not close the raw-vs-sparse gap, so sparse CSR scaling is
   not the main explanation.
+- bf16-vs-fp32 sparse encoding sanity check: re-encoding sampled rows in fp32
+  leaves active sets nearly unchanged, so dtype instability is not the main
+  explanation.
+- Neuronpedia availability check: current public Gemma 3 27B-IT residual
+  dashboards do not include L45, so Neuronpedia cannot directly interpret the
+  exact top L45 residual SAE features in the main result. Public all-layer
+  `gemmascope-2-transcoder-262k` dashboards do include L45, and the corrected
+  exact same-source probe/audit did not reveal clean ontology-reasoning
+  features.
 - Steering pilot is null/inconclusive, not a causal success claim.
 
 ## 6. Discussion
@@ -96,7 +111,8 @@ SAEs can still miss the signal that matters for prediction.
   behaviorally relevant direction.
 - S3 heldout target symbols reduce but do not eliminate lexical-confound risk.
 - Future work: alternative sparse dictionaries, name-scrambled regeneration,
-  and a stronger steering protocol.
+  optional Neuronpedia-facing layer-40/53 residual audit, and a stronger
+  steering protocol.
 
 ## Core Tables/Figures
 
@@ -105,10 +121,13 @@ SAEs can still miss the signal that matters for prediction.
 - Table 3: raw vs residual SAE probes on S1/S3.
 - Table 4: reconstruction vs error probes.
 - Small table: MLP-output raw vs MLP-output SAE pilot.
-- Small table: raw `mlp_in` vs skip-transcoder pilot.
+- Small table: raw exact `mlp_in` vs exact 262K transcoder.
+- Appendix table: exact 262K transcoder latent/skip/full/error component probe.
 - Appendix table: raw-concat vs crosscoder pilot.
 - Appendix or compact main table: all feature sources ranked by S1/S3 AUC.
 - Appendix table: dense-active sparse-feature scaling sanity check.
+- Appendix table: bf16-vs-fp32 sparse encoding stability check.
+- Appendix table/note: corrected L45 262K transcoder Neuronpedia feature audit.
 - Small appendix table: steering pilot summary and null result.
 
 ## One-Sentence Abstract Candidate
