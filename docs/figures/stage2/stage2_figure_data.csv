@@ -2,7 +2,7 @@ figure,split,task,method,auc
 probe_overview,s1,infer_property,B0 metadata,0.743183
 probe_overview,s1,infer_property,Residual SAE 16K,0.786393
 probe_overview,s1,infer_property,Residual SAE 262K,0.806408
-probe_overview,s1,infer_property,Best sparse concat,0.838903
+probe_overview,s1,infer_property,Best sparse concat,0.839333
 probe_overview,s1,infer_property,Raw L45,0.896544
 probe_overview,s1,infer_subtype,B0 metadata,0.841076
 probe_overview,s1,infer_subtype,Residual SAE 16K,0.875501
@@ -12,12 +12,12 @@ probe_overview,s1,infer_subtype,Raw L45,0.914473
 probe_overview,s3,infer_property,B0 metadata,0.710940
 probe_overview,s3,infer_property,Residual SAE 16K,0.798590
 probe_overview,s3,infer_property,Residual SAE 262K,0.779114
-probe_overview,s3,infer_property,Best sparse concat,0.834223
+probe_overview,s3,infer_property,Best sparse concat,0.835408
 probe_overview,s3,infer_property,Raw L45,0.884219
 probe_overview,s3,infer_subtype,B0 metadata,0.858682
 probe_overview,s3,infer_subtype,Residual SAE 16K,0.865001
 probe_overview,s3,infer_subtype,Residual SAE 262K,0.867493
-probe_overview,s3,infer_subtype,Best sparse concat,0.891890
+probe_overview,s3,infer_subtype,Best sparse concat,0.895525
 probe_overview,s3,infer_subtype,Raw L45,0.916792
 reconstruction_error,s1,infer_property,Raw L45,0.896544
 reconstruction_error,s1,infer_property,16K recon,0.786467
@@ -44,24 +44,28 @@ sparse_progression,s1,infer_property,Exact TC 262K,0.794974
 sparse_progression,s1,infer_property,L45 four-block,0.830250
 sparse_progression,s1,infer_property,L45 five-block,0.831753
 sparse_progression,s1,infer_property,L30+L45 all,0.838903
+sparse_progression,s1,infer_property,L30+L40+L45 all,0.839333
 sparse_progression,s1,infer_property,Raw L45,0.896544
 sparse_progression,s1,infer_subtype,L45 SAE 262K,0.870144
 sparse_progression,s1,infer_subtype,Exact TC 262K,0.873088
 sparse_progression,s1,infer_subtype,L45 four-block,0.887500
 sparse_progression,s1,infer_subtype,L45 five-block,0.882848
 sparse_progression,s1,infer_subtype,L30+L45 all,0.886600
+sparse_progression,s1,infer_subtype,L30+L40+L45 all,0.882825
 sparse_progression,s1,infer_subtype,Raw L45,0.914473
 sparse_progression,s3,infer_property,L45 SAE 262K,0.779114
 sparse_progression,s3,infer_property,Exact TC 262K,0.802221
 sparse_progression,s3,infer_property,L45 four-block,0.827680
 sparse_progression,s3,infer_property,L45 five-block,0.829379
 sparse_progression,s3,infer_property,L30+L45 all,0.834223
+sparse_progression,s3,infer_property,L30+L40+L45 all,0.835408
 sparse_progression,s3,infer_property,Raw L45,0.884219
 sparse_progression,s3,infer_subtype,L45 SAE 262K,0.867493
 sparse_progression,s3,infer_subtype,Exact TC 262K,0.885381
 sparse_progression,s3,infer_subtype,L45 four-block,0.887603
 sparse_progression,s3,infer_subtype,L45 five-block,0.888895
 sparse_progression,s3,infer_subtype,L30+L45 all,0.891890
+sparse_progression,s3,infer_subtype,L30+L40+L45 all,0.895525
 sparse_progression,s3,infer_subtype,Raw L45,0.916792
 site_transcoder,s1,infer_property,Raw mlp_in,0.897302
 site_transcoder,s1,infer_property,TC 16K,0.786658

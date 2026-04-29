@@ -210,12 +210,12 @@ We tested whether residual sparse features and corrected exact transcoder
 features are complementary by concatenating sparse top-k matrices and training
 the same split-aware logistic probes.
 
-| Split | Task | Residual 262K + exact TC 262K | L45 four-block low-C | L45 five-block | L30+L45 all sparse | Raw exact `mlp_out` |
+| Split | Task | L45 five-block | L30+L45 all sparse | L40+L45 all sparse | L30+L40+L45 all sparse | Raw exact `mlp_out` |
 | --- | --- | ---: | ---: | ---: | ---: | ---: |
-| S1 random | `infer_property` | 0.815 | 0.830 | 0.832 | 0.839 | 0.896 |
-| S1 random | `infer_subtype` | 0.870 | 0.888 | 0.883 | 0.887 | 0.916 |
-| S3 target-symbol heldout | `infer_property` | 0.800 | 0.828 | 0.829 | 0.834 | 0.892 |
-| S3 target-symbol heldout | `infer_subtype` | 0.881 | 0.888 | 0.889 | 0.892 | 0.915 |
+| S1 random | `infer_property` | 0.832 | 0.839 | 0.834 | 0.839 | 0.896 |
+| S1 random | `infer_subtype` | 0.883 | 0.887 | 0.879 | 0.883 | 0.916 |
+| S3 target-symbol heldout | `infer_property` | 0.829 | 0.834 | 0.832 | 0.835 | 0.892 |
+| S3 target-symbol heldout | `infer_subtype` | 0.889 | 0.892 | 0.894 | 0.896 | 0.915 |
 
 `L45 four-block low-C` means residual SAE 16K + residual SAE 262K + exact 262K
 transcoder + exact MLP-output SAE 16K, with validation-selected `C` from the
@@ -233,6 +233,13 @@ is S1/S3 `0.752/0.860` and `0.748/0.860`, L30 262K is
 `0.770/0.867` and `0.771/0.866`, and L30 residual 16K+262K concat is
 `0.786/0.872` and `0.788/0.864`.
 
+The L40 follow-up is more mixed. Standalone L40 residual SAE features are weak
+for property: L40 16K is S1/S3 `0.764/0.850` and `0.756/0.860`, L40 262K is
+`0.776/0.863` and `0.763/0.871`, and L40 residual 16K+262K concat is
+`0.785/0.864` and `0.772/0.876`. Adding L40 to L45 all-sparse gives
+S1 `0.834/0.879` and S3 `0.832/0.894`; adding L40 to the current L30+L45
+stack gives S1 `0.839/0.883` and S3 `0.835/0.896`.
+
 A leave-one-block-out validation of the L30+L45 all-sparse concat shows that
 the gain is distributed. Removing any one sparse block changes AUC by at most
 about `0.007`. The most important property contributors are L45 residual 262K
@@ -249,10 +256,10 @@ active columns does not reveal a hidden bridge to the raw activation result.
 
 Interpretation: sparse feature families are complementary, especially for
 property. Adding L30 residual features to the corrected L45 sparse family gives
-the strongest sparse-only property result so far and the strongest S3 subtype
-result, but no single sparse block explains the improvement and the combined
-sparse representation still trails raw exact activations. This narrows the gap;
-it does not erase it.
+the strongest overall sparse-only result. Adding L40 produces a tiny S3 gain,
+especially subtype, but hurts S1 subtype. No L40-inclusive sparse stack closes
+the raw activation gap, so the result is best treated as a small robustness
+check rather than a new mechanistic direction.
 
 ## Crosscoder Pilot
 
@@ -295,17 +302,23 @@ every feature source tried so far.
 | L30 residual SAE 16K | 0.752 | 0.860 | 0.748 | 0.860 |
 | L30 residual SAE 262K | 0.770 | 0.867 | 0.771 | 0.866 |
 | L30 residual concat | 0.786 | 0.872 | 0.788 | 0.864 |
+| L40 residual SAE 16K | 0.764 | 0.850 | 0.756 | 0.860 |
+| L40 residual SAE 262K | 0.776 | 0.863 | 0.763 | 0.871 |
+| L40 residual concat | 0.785 | 0.864 | 0.772 | 0.876 |
 | All L45 sparse concat low-C | 0.830 | 0.888 | 0.828 | 0.888 |
 | All L45 sparse concat + exact TC16K | 0.832 | 0.883 | 0.829 | 0.889 |
 | L30+L45 residual concat | 0.827 | 0.889 | 0.816 | 0.874 |
 | L30+L45 all sparse concat | 0.839 | 0.887 | 0.834 | 0.892 |
+| L40+L45 all sparse concat | 0.834 | 0.879 | 0.832 | 0.894 |
+| L30+L40+L45 all sparse concat | 0.839 | 0.883 | 0.835 | 0.896 |
 | Crosscoder 65K | 0.787 | 0.868 | 0.724 | 0.853 |
 
-Interpretation: the L30+L45 all-sparse concat is now the strongest sparse-only
-result, especially for property, but it still trails raw activations. The main
-ordering is therefore raw activations/reconstruction-error probes first,
-multi-block sparse concat next, the best individual sparse dictionaries after
-that, crosscoders lower on S3, and the old bare-normalized MLP-output SAE last.
+Interpretation: the L30+L45 all-sparse concat remains the strongest overall
+sparse-only result, while L30+L40+L45 gives the best S3 subtype. Both still
+trail raw activations. The main ordering is therefore raw
+activations/reconstruction-error probes first, multi-block sparse concat next,
+the best individual sparse dictionaries after that, crosscoders lower on S3,
+and the old bare-normalized MLP-output SAE last.
 
 ## Dense Active-Feature Probe Check
 

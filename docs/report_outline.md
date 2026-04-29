@@ -108,9 +108,9 @@ SAEs can still miss the signal that matters for prediction.
   L45, but the 65K crosscoder over those same layers trails raw concat on every
   task/split. Treat this as an appendix-style multi-layer check supporting the
   main sparse-dictionary cautionary story.
-- Individual raw probes over layers `{16,31,40,53}` motivate L40 as the next
-  Neuronpedia-visible residual SAE layer: L40 is stable across S1/S3, though it
-  does not replace L45 as the main raw-layer result.
+- L40 residual SAE follow-up: L40 is a stable Neuronpedia-visible raw layer, but
+  its sparse residual features are weak standalone. Adding L40 to L30+L45 gives
+  a tiny S3 gain, S3 `0.835/0.896`, but hurts S1 subtype, S1 `0.839/0.883`.
 - Cross-method comparison: after exact-hook correction and sparse-family
   concat, the best sparse-only result moves up but still does not improve over
   raw activations. Crosscoders remain useful as a bounded multi-layer null:

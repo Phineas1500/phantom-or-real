@@ -58,6 +58,14 @@ def raw_l45_auc(docs: Path, split: str, task: str) -> float:
     return float(read_json(path)["results"][task]["L45"]["test_auc"])
 
 
+def best_sparse_concat_auc(docs: Path, split: str, task: str) -> float:
+    candidates = [
+        docs / f"sparse_concat_probe_27b_l30_l45_all_sparse_broadc_{SPLIT_SUFFIX[split]}.json",
+        docs / f"sparse_concat_probe_27b_l30_l40_l45_all_sparse_broadc_{SPLIT_SUFFIX[split]}.json",
+    ]
+    return max(best_auc(path, task) for path in candidates)
+
+
 def baseline_auc(docs: Path, split: str, task: str) -> float:
     path = docs / f"stage2_b0_summary_27b_{split}.json"
     key = f"gemma3-27b__{task}"
@@ -157,10 +165,7 @@ def plot_probe_overview(docs: Path, out_dir: Path, rows: list[dict[str, Any]]) -
         (
             "Best sparse concat",
             "sparse",
-            lambda split, task: best_auc(
-                docs / f"sparse_concat_probe_27b_l30_l45_all_sparse_broadc_{SPLIT_SUFFIX[split]}.json",
-                task,
-            ),
+            lambda split, task: best_sparse_concat_auc(docs, split, task),
         ),
         ("Raw L45", "raw", lambda split, task: raw_l45_auc(docs, split, task)),
     ]
@@ -262,6 +267,14 @@ def plot_sparse_progression(docs: Path, out_dir: Path, rows: list[dict[str, Any]
             "sparse",
             lambda split, task: best_auc(
                 docs / f"sparse_concat_probe_27b_l30_l45_all_sparse_broadc_{SPLIT_SUFFIX[split]}.json",
+                task,
+            ),
+        ),
+        (
+            "L30+L40+L45 all",
+            "sparse",
+            lambda split, task: best_auc(
+                docs / f"sparse_concat_probe_27b_l30_l40_l45_all_sparse_broadc_{SPLIT_SUFFIX[split]}.json",
                 task,
             ),
         ),

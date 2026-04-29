@@ -965,7 +965,7 @@ exact-16K, and L30 runs below. Those later sections supersede this queue.
   updates. The first run failed during collection because `BD_PATH` was not set
   and `src.inference` could not locate `beyond-deduction`.
 - Reran with `BD_PATH=/scratch/scholar/skiron/beyond-deduction`; all tests
-  passed. Latest run: `58 passed in 4.09s`.
+  passed. Latest run after L40 updates: `58 passed in 4.11s`.
 
 #### Metadata Residualization Diagnostic
 
@@ -1011,3 +1011,20 @@ exact-16K, and L30 runs below. Those later sections supersede this queue.
   16K/262K standalone, L40 residual concat, L40+L45 residual concat,
   L40+L45 all-sparse concat, L30+L40+L45 residual concat, and
   L30+L40+L45 all-sparse concat.
+- Both L40 jobs completed successfully. Standalone L40 residual SAE features
+  are weaker than L45 and similar to or weaker than L30 on property: L40 16K
+  AUCs are S1 `0.764/0.850` and S3 `0.756/0.860`; L40 262K AUCs are S1
+  `0.776/0.863` and S3 `0.763/0.871`.
+- L40 residual 16K+262K concat improves over either L40 width alone but remains
+  below the L30 residual concat and L45 residual family: S1 `0.785/0.864`, S3
+  `0.772/0.876`.
+- L40+L45 all-sparse concat reaches S1 `0.834/0.879` and S3 `0.832/0.894`.
+  Adding L40 to L30+L45 all-sparse gives S1 `0.839/0.883` and S3
+  `0.835/0.896`.
+- Interpretation: L40 adds a small amount of complementary heldout-symbol
+  signal, especially S3 subtype, but it does not improve the overall story.
+  The best sparse family remains a partial localization result; L40 does not
+  bridge the raw activation gap and hurts S1 subtype relative to L30+L45
+  all-sparse (`0.887 -> 0.883`).
+- Regenerated `docs/figures/stage2/` so the probe overview and sparse
+  progression figures include the L30+L40+L45 all-sparse result.
