@@ -114,6 +114,9 @@ SAEs can still miss the signal that matters for prediction.
 - L40 residual SAE follow-up: L40 is a stable Neuronpedia-visible raw layer, but
   its sparse residual features are weak standalone. Adding L40 to L30+L45 gives
   a tiny S3 gain, S3 `0.835/0.896`, but hurts S1 subtype, S1 `0.839/0.883`.
+- L53 residual SAE follow-up: raw L53 was strong for S1 property, but L53
+  sparse features remain weak. L30+L53+L45 all-sparse gives S1 `0.839/0.886`
+  and S3 `0.825/0.882`, below the existing best sparse stacks.
 - Cross-method comparison: after exact-hook correction and sparse-family
   concat, the best sparse-only result moves up but still does not improve over
   raw activations. Crosscoders remain useful as a bounded multi-layer null:

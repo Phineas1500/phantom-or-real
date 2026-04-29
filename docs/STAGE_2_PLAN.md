@@ -104,6 +104,10 @@ Current scientific story:
 - L40 adds only marginal complementary sparse signal. L30+L40+L45 all-sparse
   reaches S1 `0.839/0.883` and S3 `0.835/0.896`, which slightly improves S3
   but hurts S1 subtype relative to L30+L45 all-sparse.
+- L53 residual SAE 16K/262K also does not improve the sparse picture. Despite
+  strong raw L53 property, L53 residual concat reaches only S1 `0.786/0.853`
+  and S3 `0.756/0.848`; L30+L53+L45 all-sparse reaches S1 `0.839/0.886` and
+  S3 `0.825/0.882`.
 - Refreshed exact Neuronpedia audit still shows mostly generic/lexical/code
   feature explanations rather than clean ontology-reasoning mechanisms.
 - The multi-layer crosscoder pilot also does not rescue sparse-feature
@@ -142,8 +146,8 @@ Current objective:
   can improve AUC, but feature attribution and steering are less direct because
   the probe score depends on interactions rather than one coefficient per
   feature.
-- L53 residual SAE extraction/probing is currently running as extraction job
-  `451709` and dependent probe job `451710`.
+- L53 residual SAE extraction/probing completed as extraction job `451709` and
+  dependent probe job `451710`.
 
 ## Active Scope
 
@@ -379,9 +383,8 @@ Immediate:
 
 - Keep `docs/REPORT_NOTES.md`, `docs/stage2_results_pack.md`, and
   `docs/report_outline.md` aligned with any new result interpretation.
-- Run the final bounded AUC queue in order: L53 residual SAE 16K/262K plus
-  concat probes; clean higher-L0/denser exact transcoder inventory; optional
-  MLP probe on best sparse concat.
+- Continue the final bounded AUC queue: clean higher-L0/denser exact
+  transcoder inventory; optional MLP probe on best sparse concat.
 - Build a compact feature-candidate shortlist for Neuronpedia-visible sparse
   artifacts. Start with the corrected L45 262K transcoder and L40 residual
   SAE 16K/262K, using coefficient rank, stability, activation density, and
@@ -408,9 +411,8 @@ Most relevant to the raw-vs-sparse gap:
 - L40 did not materially change the sparse-vs-raw conclusion. Treat it as the
   last residual-layer sparse sweep unless the final report specifically needs a
   Neuronpedia-facing L40 feature audit.
-- L53 is the only remaining residual-layer sweep currently approved because raw
-  L53 is strong on S1 property and Neuronpedia-visible. After L53, do not start
-  another broad dictionary sweep unless the feature-candidate audit reveals a
+- L53 did not materially change the sparse-vs-raw conclusion. Do not start
+  another residual-layer sweep unless the feature-candidate audit reveals a
   specific reason.
 - Try a higher-L0 or denser 262K transcoder variant only if the artifact exists
   cleanly and exact hook/scale alignment can be verified.
@@ -478,9 +480,9 @@ Low priority unless the final report specifically needs them:
   SAE 16K/262K extraction script.
 - `scripts/stage2_probe_27b_L40_resid_concat.sbatch`: completed L40 and
   L30/L40/L45 sparse concat probe script.
-- `scripts/stage2_sae_extract_27b_L53_resid.sbatch`: queued L53 residual SAE
-  16K/262K extraction script.
-- `scripts/stage2_probe_27b_L53_resid_concat.sbatch`: dependent L53 and
+- `scripts/stage2_sae_extract_27b_L53_resid.sbatch`: completed L53 residual
+  SAE 16K/262K extraction script.
+- `scripts/stage2_probe_27b_L53_resid_concat.sbatch`: completed L53 and
   L30/L53/L45 sparse concat probe script.
 - `scripts/stage2_neuronpedia_feature_audit.py`: Neuronpedia API audit for top
   sparse probe features.
@@ -523,6 +525,6 @@ Low priority unless the final report specifically needs them:
 - [x] Corrected exact dense-active sparse scaling check.
 - [x] 262K transcoder invariants pinned.
 - [x] L40 residual SAE 16K/262K extraction and L40-inclusive concat probes.
-- [ ] L53 residual SAE 16K/262K extraction and L53-inclusive concat probes.
+- [x] L53 residual SAE 16K/262K extraction and L53-inclusive concat probes.
 - [ ] Teammate 4B comparison tables.
 - [ ] Final report figures/tables assembled.

@@ -965,7 +965,7 @@ exact-16K, and L30 runs below. Those later sections supersede this queue.
   updates. The first run failed during collection because `BD_PATH` was not set
   and `src.inference` could not locate `beyond-deduction`.
 - Reran with `BD_PATH=/scratch/scholar/skiron/beyond-deduction`; all tests
-  passed. Latest run after L40 updates: `58 passed in 4.11s`.
+  passed. Latest run after L53 updates: `58 passed in 4.08s`.
 
 #### Metadata Residualization Diagnostic
 
@@ -1105,3 +1105,14 @@ exact-16K, and L30 runs below. Those later sections supersede this queue.
   probe job covers L53 16K/262K standalone, L53 residual concat, L53+L45
   residual concat, L53+L45 all-sparse concat, L30+L53+L45 residual concat, and
   L30+L53+L45 all-sparse concat.
+- Both L53 jobs completed successfully. Standalone L53 residual SAE features
+  are weak despite strong raw L53 property: L53 16K AUCs are S1
+  `0.774/0.842` and S3 `0.751/0.834`; L53 262K AUCs are S1 `0.780/0.850`
+  and S3 `0.743/0.851`.
+- L53 residual 16K+262K concat is also weak: S1 `0.786/0.853`, S3
+  `0.756/0.848`. L53+L45 all-sparse reaches S1 `0.835/0.882` and S3
+  `0.822/0.878`.
+- Adding L53 to L30+L45 all-sparse gives S1 `0.839/0.886` and S3
+  `0.825/0.882`, below the existing L30+L45/L40-inclusive bests. Conclusion:
+  L53 is another useful falsification of the idea that a strong raw layer
+  automatically yields a strong same-layer residual SAE probe.

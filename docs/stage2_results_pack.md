@@ -240,6 +240,14 @@ for property: L40 16K is S1/S3 `0.764/0.850` and `0.756/0.860`, L40 262K is
 S1 `0.834/0.879` and S3 `0.832/0.894`; adding L40 to the current L30+L45
 stack gives S1 `0.839/0.883` and S3 `0.835/0.896`.
 
+The L53 follow-up is negative. Although raw L53 was strong for S1 property,
+L53 residual SAE features do not expose that signal: L53 16K is S1/S3
+`0.774/0.842` and `0.751/0.834`, L53 262K is `0.780/0.850` and
+`0.743/0.851`, and L53 residual 16K+262K concat is `0.786/0.853` and
+`0.756/0.848`. L53+L45 all-sparse gives S1 `0.835/0.882` and S3
+`0.822/0.878`; L30+L53+L45 all-sparse gives S1 `0.839/0.886` and S3
+`0.825/0.882`.
+
 A leave-one-block-out validation of the L30+L45 all-sparse concat shows that
 the gain is distributed. Removing any one sparse block changes AUC by at most
 about `0.007`. The most important property contributors are L45 residual 262K
@@ -258,8 +266,8 @@ Interpretation: sparse feature families are complementary, especially for
 property. Adding L30 residual features to the corrected L45 sparse family gives
 the strongest overall sparse-only result. Adding L40 produces a tiny S3 gain,
 especially subtype, but hurts S1 subtype. No L40-inclusive sparse stack closes
-the raw activation gap, so the result is best treated as a small robustness
-check rather than a new mechanistic direction.
+the raw activation gap. L53 is weaker still. These residual-layer follow-ups are
+best treated as robustness checks rather than new mechanistic directions.
 
 ## Crosscoder Pilot
 
@@ -305,12 +313,17 @@ every feature source tried so far.
 | L40 residual SAE 16K | 0.764 | 0.850 | 0.756 | 0.860 |
 | L40 residual SAE 262K | 0.776 | 0.863 | 0.763 | 0.871 |
 | L40 residual concat | 0.785 | 0.864 | 0.772 | 0.876 |
+| L53 residual SAE 16K | 0.774 | 0.842 | 0.751 | 0.834 |
+| L53 residual SAE 262K | 0.780 | 0.850 | 0.743 | 0.851 |
+| L53 residual concat | 0.786 | 0.853 | 0.756 | 0.848 |
 | All L45 sparse concat low-C | 0.830 | 0.888 | 0.828 | 0.888 |
 | All L45 sparse concat + exact TC16K | 0.832 | 0.883 | 0.829 | 0.889 |
 | L30+L45 residual concat | 0.827 | 0.889 | 0.816 | 0.874 |
 | L30+L45 all sparse concat | 0.839 | 0.887 | 0.834 | 0.892 |
 | L40+L45 all sparse concat | 0.834 | 0.879 | 0.832 | 0.894 |
 | L30+L40+L45 all sparse concat | 0.839 | 0.883 | 0.835 | 0.896 |
+| L53+L45 all sparse concat | 0.835 | 0.882 | 0.822 | 0.878 |
+| L30+L53+L45 all sparse concat | 0.839 | 0.886 | 0.825 | 0.882 |
 | Crosscoder 65K | 0.787 | 0.868 | 0.724 | 0.853 |
 
 Interpretation: the L30+L45 all-sparse concat remains the strongest overall
