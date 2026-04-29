@@ -798,3 +798,30 @@ final report is easier to assemble.
   tuning, not a Gemma Scope 2 artifact limitation. The improvement is modest
   but consistent. Raw exact activations still remain stronger, so the main
   partial-localization conclusion is unchanged.
+
+#### Corrected Exact Dense-Active Scaling Check
+
+- Added a `--dense-active` mode to `scripts/stage2_probe_sparse_concat.py`.
+  This mode keeps the existing sidecar-aligned sparse hstack, then selects
+  train-active concat columns, materializes them as dense features, and uses the
+  centered-scaling logistic probe path.
+- Reran dense-active centered probes on corrected exact-hook individual
+  artifacts:
+  `docs/dense_active_exact_sparse_probe_27b_l45_corrected_s1.json` and
+  `docs/dense_active_exact_sparse_probe_27b_l45_corrected_s3_target_symbol.json`.
+  Exact MLP-output SAE dense-active AUCs are S1 `0.814/0.880` and S3
+  `0.805/0.879`; exact 262K affine-transcoder dense-active AUCs are S1
+  `0.800/0.878` and S3 `0.805/0.883`.
+- Reran dense-active centered four-block concat:
+  `docs/dense_active_sparse_concat_probe_27b_l45_resid16k_resid262k_exact_tc262k_mlpout16k_lowc_s1.json`
+  and
+  `docs/dense_active_sparse_concat_probe_27b_l45_resid16k_resid262k_exact_tc262k_mlpout16k_lowc_s3_target_symbol.json`.
+  Active concat columns are about `578/471` on S1 property/subtype and
+  `580/472` on S3.
+- Dense-active four-block concat AUCs are S1 property/subtype `0.831/0.888`
+  and S3 property/subtype `0.828/0.887`. Compared with the sparse low-C concat
+  (`0.830/0.888` S1, `0.828/0.888` S3), this is effectively unchanged.
+- Interpretation: centered scaling over train-active corrected features is not
+  the hidden reason sparse probes trail raw activations. It gives at most tiny
+  gains on S1 and slightly mixed S3 behavior, so the remaining raw-vs-sparse
+  gap is not mainly a sparse-matrix standardization artifact.

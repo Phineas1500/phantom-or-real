@@ -102,8 +102,9 @@ SAEs can still miss the signal that matters for prediction.
   they trail the fair raw-concat baseline substantially and do not robustly beat
   metadata baselines on S3.
 - Dense active-feature probe check: centered dense probes over train-active
-  sparse columns do not close the raw-vs-sparse gap, so sparse CSR scaling is
-  not the main explanation.
+  sparse columns, including corrected exact-hook artifacts and the four-block
+  concat, do not close the raw-vs-sparse gap, so sparse CSR scaling is not the
+  main explanation.
 - bf16-vs-fp32 sparse encoding sanity check: re-encoding sampled rows in fp32
   leaves active sets nearly unchanged, so dtype instability is not the main
   explanation.

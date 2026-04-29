@@ -13,7 +13,12 @@ from safetensors.torch import load_file
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from src.stage2_dense_active import sparse_feature_source_file, sparse_feature_width  # noqa: E402
+from src.stage2_dense_active import (  # noqa: E402
+    dense_active_matrix,
+    sparse_feature_source_file,
+    sparse_feature_width,
+    train_active_feature_ids,
+)
 from src.stage2_probes import (  # noqa: E402
     DEFAULT_C_VALUES,
     read_json,
@@ -137,6 +142,7 @@ def run_sparse_concat_probe_grid(
     max_iter: int,
     solver: str,
     bootstrap_samples: int,
+    dense_active: bool,
 ) -> dict[str, Any]:
     split_assignments = read_split_assignments(splits_path)
     report: dict[str, Any] = {
@@ -153,7 +159,9 @@ def run_sparse_concat_probe_grid(
         "max_iter": max_iter,
         "solver": solver,
         "bootstrap_samples": bootstrap_samples,
-        "probe_variant": "sparse_hstack_uncentered",
+        "probe_variant": "dense_train_active_sparse_hstack_centered"
+        if dense_active
+        else "sparse_hstack_uncentered",
         "results": {},
         "best_by_task": {},
     }
@@ -169,8 +177,13 @@ def run_sparse_concat_probe_grid(
             source_file=reference["source_file"],
             split_field=f"{split_family}_split",
         )
+        active_feature_ids = None
+        x_probe = x
+        if dense_active:
+            active_feature_ids = train_active_feature_ids(x, splits["train"])
+            x_probe = dense_active_matrix(x, active_feature_ids)
         result = train_logistic_probe_with_splits(
-            x,
+            x_probe,
             reference["labels"],
             reference["sidecar"],
             splits=splits,
@@ -205,6 +218,14 @@ def run_sparse_concat_probe_grid(
                 "feature_blocks": feature_blocks,
             }
         )
+        if active_feature_ids is not None:
+            result.update(
+                {
+                    "active_feature_n": int(active_feature_ids.size),
+                    "active_feature_source": "train_nonzero_concat_columns",
+                    "active_feature_ids_sample": [int(feature) for feature in active_feature_ids[:25]],
+                }
+            )
         report["results"][task] = result
         report["best_by_task"][task] = {
             "combo_name": combo_name,
@@ -234,6 +255,11 @@ def main() -> None:
     parser.add_argument("--max-iter", type=int, default=2000)
     parser.add_argument("--solver", default="liblinear")
     parser.add_argument("--bootstrap-samples", type=int, default=1000)
+    parser.add_argument(
+        "--dense-active",
+        action="store_true",
+        help="Materialize train-active concat columns as dense centered features before probing.",
+    )
     args = parser.parse_args()
 
     report = run_sparse_concat_probe_grid(
@@ -248,6 +274,7 @@ def main() -> None:
         max_iter=args.max_iter,
         solver=args.solver,
         bootstrap_samples=args.bootstrap_samples,
+        dense_active=args.dense_active,
     )
     write_json(args.output, report)
     print(args.output)

@@ -312,7 +312,6 @@ Report-critical:
 
 Optional only if time remains:
 
-- Dense-active centered probes on corrected exact-hook sparse artifacts.
 - Exact-hook 16K skip-transcoder rerun for a fairer width comparison.
 - Crosscoder `l0_big` variant over layers 16/31/40/53.
 - L30 residual SAE 16K/262K probe, and optionally L30+L45 sparse concat.
@@ -393,6 +392,7 @@ Optional only if time remains:
 - [x] L45 262K exact-hook component diagnostic.
 - [x] L45 262K exact-hook Neuronpedia audit.
 - [x] L45 sparse feature-family concat probe.
+- [x] Corrected exact dense-active sparse scaling check.
 - [x] 262K transcoder invariants pinned.
 - [ ] Teammate 4B comparison tables.
 - [ ] Final report figures/tables assembled.

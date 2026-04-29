@@ -247,6 +247,9 @@ materializing them as dense matrices, and using ordinary centered scaling.
 | Skip-transcoder 16K dense-active | 0.722 | 0.821 | 0.724 | 0.841 |
 | Transcoder 262K old bare-norm dense-active | 0.654 | 0.811 | 0.653 | 0.831 |
 | Crosscoder 65K dense-active | 0.786 | 0.868 | 0.725 | 0.854 |
+| Exact MLP-out SAE 16K dense-active | 0.814 | 0.880 | 0.805 | 0.879 |
+| Exact transcoder 262K dense-active | 0.800 | 0.878 | 0.805 | 0.883 |
+| Four-block concat low-C dense-active | 0.831 | 0.888 | 0.828 | 0.887 |
 
 Interpretation: dense centering/scaling does not remedy the disparity. Residual
 SAE, old bare-normalized transcoder, and crosscoder AUCs are essentially
@@ -254,7 +257,10 @@ unchanged from the standard sparse probes. MLP-out SAE improves from extremely
 weak to still weak, but remains far below raw `mlp_out`. This rules out
 sparse-matrix scaling as the main explanation for the raw-vs-sparse gap. For
 the 262K transcoder specifically, the later exact-hook rerun shows the dominant
-issue was hook/scale alignment, not sparse matrix scaling.
+issue was hook/scale alignment, not sparse matrix scaling. Repeating the
+dense-active check after exact-hook correction gives only tiny individual
+artifact gains and leaves the four-block concat essentially tied with the
+low-C sparse concat (`0.830/0.888` S1, `0.828/0.888` S3).
 
 ## Dtype And Feature-Audit Sanity Checks
 
