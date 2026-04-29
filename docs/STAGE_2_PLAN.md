@@ -245,16 +245,17 @@ partial-localization result, not a complete sparse-mechanism result.
 Adding the exact-hook MLP-output SAE 16K block gives the current strongest
 sparse-only L45 property result:
 
-| Split | Task | Previous all-L45 concat | + exact MLP-output SAE 16K | Raw exact `mlp_out` |
-| --- | --- | ---: | ---: | ---: |
-| S1 | `infer_property` | 0.822 | 0.828 | 0.896 |
-| S1 | `infer_subtype` | 0.884 | 0.883 | 0.916 |
-| S3 | `infer_property` | 0.814 | 0.823 | 0.892 |
-| S3 | `infer_subtype` | 0.885 | 0.885 | 0.915 |
+| Split | Task | Previous all-L45 concat | + exact MLP-output SAE 16K | Low-C tuned | Raw exact `mlp_out` |
+| --- | --- | ---: | ---: | ---: | ---: |
+| S1 | `infer_property` | 0.822 | 0.828 | 0.830 | 0.896 |
+| S1 | `infer_subtype` | 0.884 | 0.883 | 0.888 | 0.916 |
+| S3 | `infer_property` | 0.814 | 0.823 | 0.828 | 0.892 |
+| S3 | `infer_subtype` | 0.885 | 0.885 | 0.888 | 0.915 |
 
 Interpretation: the exact MLP-output SAE contributes complementary property
-signal, especially under S3, but does not move subtype and still leaves a
-large gap to raw exact activations.
+signal, especially under S3. Expanding the regularization grid below `C=0.01`
+improves all four sparse-concat AUCs modestly, but still leaves a large gap to
+raw exact activations.
 
 ### Crosscoder Pilot
 
@@ -311,8 +312,10 @@ Report-critical:
 
 Optional only if time remains:
 
+- Dense-active centered probes on corrected exact-hook sparse artifacts.
 - Exact-hook 16K skip-transcoder rerun for a fairer width comparison.
-- Sparse concat including the exact MLP-output SAE feature block.
+- Crosscoder `l0_big` variant over layers 16/31/40/53.
+- L30 residual SAE 16K/262K probe, and optionally L30+L45 sparse concat.
 - Higher-L0 or denser 262K transcoder variant, if available.
 - Multi-layer exact transcoder concat near L40/L45/L53.
 - Stronger prompt-length/name-frequency residualization.

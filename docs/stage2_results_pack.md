@@ -165,23 +165,25 @@ We tested whether residual sparse features and corrected exact transcoder
 features are complementary by concatenating sparse top-k matrices and training
 the same split-aware logistic probes.
 
-| Split | Task | Residual 262K + exact TC 262K | All L45 sparse concat | + exact MLP-out SAE 16K | Raw exact `mlp_out` |
-| --- | --- | ---: | ---: | ---: | ---: |
-| S1 random | `infer_property` | 0.815 | 0.822 | 0.828 | 0.896 |
-| S1 random | `infer_subtype` | 0.870 | 0.884 | 0.883 | 0.916 |
-| S3 target-symbol heldout | `infer_property` | 0.800 | 0.814 | 0.823 | 0.892 |
-| S3 target-symbol heldout | `infer_subtype` | 0.881 | 0.885 | 0.885 | 0.915 |
+| Split | Task | Residual 262K + exact TC 262K | All L45 sparse concat | + exact MLP-out SAE 16K | Low-C tuned | Raw exact `mlp_out` |
+| --- | --- | ---: | ---: | ---: | ---: | ---: |
+| S1 random | `infer_property` | 0.815 | 0.822 | 0.828 | 0.830 | 0.896 |
+| S1 random | `infer_subtype` | 0.870 | 0.884 | 0.883 | 0.888 | 0.916 |
+| S3 target-symbol heldout | `infer_property` | 0.800 | 0.814 | 0.823 | 0.828 | 0.892 |
+| S3 target-symbol heldout | `infer_subtype` | 0.881 | 0.885 | 0.885 | 0.888 | 0.915 |
 
 `All L45 sparse concat` means residual SAE 16K + residual SAE 262K + exact
 262K transcoder. The fourth column adds the exact-hook MLP-output SAE 16K
-block. The four-block concat has 95% bootstrap CIs of
-`0.809-0.849`/`0.859-0.905` on S1 property/subtype and
-`0.801-0.843`/`0.859-0.907` on S3 property/subtype.
+block. The low-C tuned column uses the same four feature blocks with
+validation-selected `C` from `0.0001,0.0003,0.001,0.003,0.01,0.03,0.1`.
+Its 95% bootstrap CIs are `0.810-0.851`/`0.863-0.908` on S1 property/subtype
+and `0.807-0.848`/`0.863-0.909` on S3 property/subtype.
 
 Interpretation: sparse feature families are complementary, especially for
-property. Adding exact MLP-output SAE features improves property but not
-subtype, and the combined sparse representation still trails raw exact
-activations. This narrows the gap a little; it does not erase it.
+property. Adding exact MLP-output SAE features improves property, and lowering
+the regularization grid improves all four task/split AUCs modestly. The
+combined sparse representation still trails raw exact activations, so this
+narrows the gap a little; it does not erase it.
 
 ## Crosscoder Pilot
 
@@ -222,14 +224,14 @@ every feature source tried so far.
 | Exact transcoder 262K | 0.795 | 0.873 | 0.802 | 0.885 |
 | All L45 sparse concat | 0.822 | 0.884 | 0.814 | 0.885 |
 | All L45 sparse concat + exact MLP-out SAE | 0.828 | 0.883 | 0.823 | 0.885 |
+| All L45 sparse concat + exact MLP-out SAE, low-C tuned | 0.830 | 0.888 | 0.828 | 0.888 |
 | Crosscoder 65K | 0.787 | 0.868 | 0.724 | 0.853 |
 
-Interpretation: the all-L45 sparse concat plus exact MLP-output SAE is the
-strongest sparse-only property result so far, while subtype is unchanged from
-the previous all-L45 concat. It still trails raw activations. The main ordering
-is therefore raw activations/reconstruction-error probes first, all-L45 sparse
-concat and the best individual sparse dictionaries next, crosscoders lower on
-S3, and the old bare-normalized MLP-output SAE last.
+Interpretation: the low-C all-L45 sparse concat plus exact MLP-output SAE is
+the strongest sparse-only result so far, but it still trails raw activations.
+The main ordering is therefore raw activations/reconstruction-error probes
+first, all-L45 sparse concat and the best individual sparse dictionaries next,
+crosscoders lower on S3, and the old bare-normalized MLP-output SAE last.
 
 ## Dense Active-Feature Probe Check
 

@@ -761,3 +761,40 @@ final report is easier to assemble.
   `0.892/0.915` S3 exact `hook_mlp_out`). The current best sparse-only result
   remains a partial-localization result rather than a complete sparse
   substitute for raw activations.
+
+#### Remaining Targeted Gemma Scope 2 Checks
+
+- Best next low-cost check: rerun the current four-block sparse concat with a
+  lower-regularization grid. The current best reports choose `C=0.01`, the
+  smallest value in the default grid, so the optimum may sit below the tested
+  range. Use a grid like `0.0001,0.0003,0.001,0.003,0.01,0.03,0.1`.
+- Next implementation-mismatch checks: rerun dense-active centered probes on
+  corrected exact-hook artifacts, especially exact MLP-output SAE 16K and exact
+  262K affine-transcoder latents. Earlier dense-active checks mostly predated
+  the exact-hook fixes.
+- Next Gemma Scope 2 artifact checks, if time remains: exact-hook 16K
+  skip-transcoder rerun with learned-weighted `ln2` input; crosscoder
+  `layer_16_31_40_53_width_65k_l0_big`; and L30 residual SAE 16K/262K,
+  possibly concatenated with L45, since raw L30 remains strong.
+- Lower priority: broad 512K/1M width sweeps. Local cache currently only shows
+  16K/262K for the relevant L45 residual/transcoder/MLP-output artifacts, and
+  width alone has not been the main source of improvement so far.
+
+#### Low-C Four-Block Sparse Concat Rerun
+
+- Reran the current four-block sparse concat with lower regularization values:
+  `0.0001,0.0003,0.001,0.003,0.01,0.03,0.1`. New reports:
+  `docs/sparse_concat_probe_27b_l45_resid16k_resid262k_exact_tc262k_mlpout16k_lowc_s1.json`
+  and
+  `docs/sparse_concat_probe_27b_l45_resid16k_resid262k_exact_tc262k_mlpout16k_lowc_s3_target_symbol.json`.
+- The default-grid run had selected `C=0.01`, the smallest tested value. The
+  low-C rerun selects `C=0.003` for S1 property/subtype, `C=0.001` for S3
+  property, and `C=0.003` for S3 subtype.
+- AUCs improve on every task/split: S1 property/subtype from `0.828/0.883` to
+  `0.830/0.888`; S3 property/subtype from `0.823/0.885` to `0.828/0.888`.
+  Bootstrap 95% CIs are S1 property/subtype `0.810-0.851`/`0.863-0.908` and
+  S3 property/subtype `0.807-0.848`/`0.863-0.909`.
+- Interpretation: part of the sparse-vs-raw gap was ordinary regularization
+  tuning, not a Gemma Scope 2 artifact limitation. The improvement is modest
+  but consistent. Raw exact activations still remain stronger, so the main
+  partial-localization conclusion is unchanged.
