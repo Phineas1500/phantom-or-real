@@ -9,10 +9,10 @@
     {
       "details": {
         "expected_rows": 11000,
-        "expected_sha256": "7637e0a8a2e80351ce8573199f7a1477acf4e6b94775c709f4391086ac7f7224",
-        "jsonl_path": "results/full/with_errortype/gemma3_4b_infer_property.jsonl",
+        "expected_sha256": "7de7ea604a5f4f6f2318056ff56c5a457eb0c8a82741f0325378d8925c6fa205",
+        "jsonl_path": "results/full/with_errortype/gemma3_4b_infer_subtype.jsonl",
         "observed_rows": 11000,
-        "observed_sha256": "7637e0a8a2e80351ce8573199f7a1477acf4e6b94775c709f4391086ac7f7224"
+        "observed_sha256": "7de7ea604a5f4f6f2318056ff56c5a457eb0c8a82741f0325378d8925c6fa205"
       },
       "name": "stage1_jsonl_invariants",
       "status": "ok"
@@ -49,8 +49,8 @@
     {
       "details": {
         "drop_parse_failed": false,
-        "first_example_id": "property_h1_00000",
-        "first_token_ids_sha256": "12421d7436d623e9e7f3cf0ba79603f2672e4aa4abd11b69e78389aae56f86d7",
+        "first_example_id": "ontology_h1_00000",
+        "first_token_ids_sha256": "71578c36000544ebd4be7dcbf2200436eee1ffe65ab36235d2611ef0c5a1ebcc",
         "height": null,
         "limit": null,
         "n_ctx": 4096,
@@ -58,9 +58,9 @@
         "row_index_first": 0,
         "row_index_last": 10999,
         "skip": 0,
-        "token_count_max": 223,
-        "token_count_mean": 186.67227272727274,
-        "token_count_min": 134,
+        "token_count_max": 230,
+        "token_count_mean": 192.14154545454545,
+        "token_count_min": 140,
         "too_long_count": 0,
         "too_long_row_indices_sample": []
       },
@@ -75,16 +75,16 @@
           2560
         ],
         "expected_hook_name": "blocks.11.hook_resid_post",
-        "expected_jsonl_sha256": "7637e0a8a2e80351ce8573199f7a1477acf4e6b94775c709f4391086ac7f7224",
+        "expected_jsonl_sha256": "7de7ea604a5f4f6f2318056ff56c5a457eb0c8a82741f0325378d8925c6fa205",
         "meta_dtype": "torch.bfloat16",
         "meta_hook_name": "blocks.11.hook_resid_post",
-        "meta_jsonl_sha256": "7637e0a8a2e80351ce8573199f7a1477acf4e6b94775c709f4391086ac7f7224",
+        "meta_jsonl_sha256": "7de7ea604a5f4f6f2318056ff56c5a457eb0c8a82741f0325378d8925c6fa205",
         "meta_row_count": 11000,
         "meta_shape": [
           11000,
           2560
         ],
-        "prefix": "results/stage2/activations/gemma3_4b_infer_property_L11",
+        "prefix": "results/stage2/activations/gemma3_4b_infer_subtype_L11",
         "sidecar": {
           "expected_rows": 11000,
           "mismatch_count_sampled": 0,
@@ -103,16 +103,16 @@
           2560
         ],
         "expected_hook_name": "blocks.20.hook_resid_post",
-        "expected_jsonl_sha256": "7637e0a8a2e80351ce8573199f7a1477acf4e6b94775c709f4391086ac7f7224",
+        "expected_jsonl_sha256": "7de7ea604a5f4f6f2318056ff56c5a457eb0c8a82741f0325378d8925c6fa205",
         "meta_dtype": "torch.bfloat16",
         "meta_hook_name": "blocks.20.hook_resid_post",
-        "meta_jsonl_sha256": "7637e0a8a2e80351ce8573199f7a1477acf4e6b94775c709f4391086ac7f7224",
+        "meta_jsonl_sha256": "7de7ea604a5f4f6f2318056ff56c5a457eb0c8a82741f0325378d8925c6fa205",
         "meta_row_count": 11000,
         "meta_shape": [
           11000,
           2560
         ],
-        "prefix": "results/stage2/activations/gemma3_4b_infer_property_L20",
+        "prefix": "results/stage2/activations/gemma3_4b_infer_subtype_L20",
         "sidecar": {
           "expected_rows": 11000,
           "mismatch_count_sampled": 0,
@@ -131,16 +131,16 @@
           2560
         ],
         "expected_hook_name": "blocks.22.hook_resid_post",
-        "expected_jsonl_sha256": "7637e0a8a2e80351ce8573199f7a1477acf4e6b94775c709f4391086ac7f7224",
+        "expected_jsonl_sha256": "7de7ea604a5f4f6f2318056ff56c5a457eb0c8a82741f0325378d8925c6fa205",
         "meta_dtype": "torch.bfloat16",
         "meta_hook_name": "blocks.22.hook_resid_post",
-        "meta_jsonl_sha256": "7637e0a8a2e80351ce8573199f7a1477acf4e6b94775c709f4391086ac7f7224",
+        "meta_jsonl_sha256": "7de7ea604a5f4f6f2318056ff56c5a457eb0c8a82741f0325378d8925c6fa205",
         "meta_row_count": 11000,
         "meta_shape": [
           11000,
           2560
         ],
-        "prefix": "results/stage2/activations/gemma3_4b_infer_property_L22",
+        "prefix": "results/stage2/activations/gemma3_4b_infer_subtype_L22",
         "sidecar": {
           "expected_rows": 11000,
           "mismatch_count_sampled": 0,
@@ -166,7 +166,7 @@
       "status": "skipped"
     }
   ],
-  "created_at_utc": "2026-04-29T05:15:46.386259+00:00",
+  "created_at_utc": "2026-04-29T05:22:26.641029+00:00",
   "errors": [],
   "inputs": {
     "activation_dir": "results/stage2/activations",
@@ -174,7 +174,7 @@
     "height": null,
     "hf_cache": "/scratch/scholar/semani/hf-cache",
     "invariants_path": "docs/stage2_invariants.json",
-    "jsonl_path": "results/full/with_errortype/gemma3_4b_infer_property.jsonl",
+    "jsonl_path": "results/full/with_errortype/gemma3_4b_infer_subtype.jsonl",
     "layers": [
       11,
       20,
@@ -189,10 +189,10 @@
     "task": null
   },
   "prompt_token_count": {
-    "max": 223,
-    "mean": 186.67227272727274,
-    "min": 134,
-    "std": 24.18445696043379
+    "max": 230,
+    "mean": 192.14154545454545,
+    "min": 140,
+    "std": 24.214895141265412
   },
   "schema_version": 1,
   "status": "ok",

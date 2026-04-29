@@ -1,0 +1,179 @@
+{
+  "best_pre_output_baseline": {
+    "gemma3-4b__infer_property": {
+      "s1": {
+        "feature_set": "b0_prompt",
+        "test_auc": 0.6941461498166579,
+        "val_auc": 0.6939322948359092
+      },
+      "s2": null,
+      "s3": {
+        "feature_set": "b0_namefreq",
+        "test_auc": 0.6767151889312827,
+        "val_auc": 0.6701293530721355
+      }
+    },
+    "gemma3-4b__infer_subtype": {
+      "s1": {
+        "feature_set": "b0_prompt",
+        "test_auc": 0.924364355911014,
+        "val_auc": 0.9252196982258332
+      },
+      "s2": null,
+      "s3": {
+        "feature_set": "b0_prompt",
+        "test_auc": 0.9452654232424677,
+        "val_auc": 0.9200760029364771
+      }
+    }
+  },
+  "created_at_utc": "2026-04-29T14:35:47.379048+00:00",
+  "filters": {
+    "models": [
+      "gemma3-4b"
+    ],
+    "split_families": [
+      "s1",
+      "s2",
+      "s3"
+    ],
+    "tasks": [
+      "infer_property",
+      "infer_subtype"
+    ]
+  },
+  "prompt_length_mode": "hf_tokenizer",
+  "results": {
+    "gemma3-4b__infer_property": {
+      "s1": {
+        "b0_height": {
+          "n_test": 1611,
+          "n_train": 7507,
+          "test_auc": 0.6776101059757424,
+          "val_auc": 0.6758782605168148
+        },
+        "b0_namefreq": {
+          "n_test": 1611,
+          "n_train": 7507,
+          "test_auc": 0.6889309747350606,
+          "val_auc": 0.7023305342582452
+        },
+        "b0_prompt": {
+          "n_test": 1611,
+          "n_train": 7507,
+          "test_auc": 0.6941461498166579,
+          "val_auc": 0.6939322948359092
+        }
+      },
+      "s2": {
+        "b0_height": {
+          "n_test": 0,
+          "n_train": 10721,
+          "test_auc": null,
+          "val_auc": null
+        },
+        "b0_namefreq": {
+          "n_test": 0,
+          "n_train": 10721,
+          "test_auc": null,
+          "val_auc": null
+        },
+        "b0_prompt": {
+          "n_test": 0,
+          "n_train": 10721,
+          "test_auc": null,
+          "val_auc": null
+        }
+      },
+      "s3": {
+        "b0_height": {
+          "n_test": 1607,
+          "n_train": 7509,
+          "test_auc": 0.6541260899881698,
+          "val_auc": 0.6783886117295286
+        },
+        "b0_namefreq": {
+          "n_test": 1607,
+          "n_train": 7509,
+          "test_auc": 0.6767151889312827,
+          "val_auc": 0.6701293530721355
+        },
+        "b0_prompt": {
+          "n_test": 1607,
+          "n_train": 7509,
+          "test_auc": 0.6710174789836962,
+          "val_auc": 0.6944632903781465
+        }
+      }
+    },
+    "gemma3-4b__infer_subtype": {
+      "s1": {
+        "b0_height": {
+          "n_test": 1645,
+          "n_train": 7668,
+          "test_auc": 0.9232776963645546,
+          "val_auc": 0.9242476372077599
+        },
+        "b0_namefreq": {
+          "n_test": 1645,
+          "n_train": 7668,
+          "test_auc": 0.9104551137163343,
+          "val_auc": 0.9224589620295142
+        },
+        "b0_prompt": {
+          "n_test": 1645,
+          "n_train": 7668,
+          "test_auc": 0.924364355911014,
+          "val_auc": 0.9252196982258332
+        }
+      },
+      "s2": {
+        "b0_height": {
+          "n_test": 0,
+          "n_train": 10956,
+          "test_auc": null,
+          "val_auc": null
+        },
+        "b0_namefreq": {
+          "n_test": 0,
+          "n_train": 10956,
+          "test_auc": null,
+          "val_auc": null
+        },
+        "b0_prompt": {
+          "n_test": 0,
+          "n_train": 10956,
+          "test_auc": null,
+          "val_auc": null
+        }
+      },
+      "s3": {
+        "b0_height": {
+          "n_test": 1687,
+          "n_train": 7620,
+          "test_auc": 0.9425181278839816,
+          "val_auc": 0.9164118840955219
+        },
+        "b0_namefreq": {
+          "n_test": 1687,
+          "n_train": 7620,
+          "test_auc": 0.94067237969677,
+          "val_auc": 0.9136330267305781
+        },
+        "b0_prompt": {
+          "n_test": 1687,
+          "n_train": 7620,
+          "test_auc": 0.9452654232424677,
+          "val_auc": 0.9200760029364771
+        }
+      }
+    }
+  },
+  "schema_version": 1,
+  "source": "results/stage2/baselines/b0_metadata_4b.json",
+  "split_families": [
+    "s1",
+    "s2",
+    "s3"
+  ]
+}

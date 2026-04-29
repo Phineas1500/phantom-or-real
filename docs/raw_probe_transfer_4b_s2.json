@@ -1,0 +1,291 @@
+{
+  "activation_dir": "results/stage2/activations",
+  "activation_site": "resid_post",
+  "best_by_transfer": {
+    "infer_property_to_infer_subtype": null,
+    "infer_subtype_to_infer_property": null
+  },
+  "bootstrap_samples": 1000,
+  "c_values": [
+    0.01,
+    0.1,
+    1.0,
+    10.0
+  ],
+  "created_at_utc": "2026-04-29T17:20:57.459897+00:00",
+  "drop_parse_failed": true,
+  "layers": [
+    11,
+    20,
+    22
+  ],
+  "max_iter": 2000,
+  "model_key": "gemma3_4b",
+  "results": {
+    "infer_property_to_infer_subtype": {
+      "L11": {
+        "layer": 11,
+        "source_file": "results/full/with_errortype/gemma3_4b_infer_property.jsonl",
+        "source_split_counts": {
+          "test": {
+            "n": 0,
+            "negative_n": 0,
+            "positive_n": 0
+          },
+          "train": {
+            "n": 10721,
+            "negative_n": 7954,
+            "positive_n": 2767
+          },
+          "val": {
+            "n": 0,
+            "negative_n": 0,
+            "positive_n": 0
+          }
+        },
+        "source_task": "infer_property",
+        "status": "skipped_no_evaluable_source_holdout",
+        "target_file": "results/full/with_errortype/gemma3_4b_infer_subtype.jsonl",
+        "target_split_counts": {
+          "test": {
+            "n": 0,
+            "negative_n": 0,
+            "positive_n": 0
+          },
+          "train": {
+            "n": 10956,
+            "negative_n": 9870,
+            "positive_n": 1086
+          },
+          "val": {
+            "n": 0,
+            "negative_n": 0,
+            "positive_n": 0
+          }
+        },
+        "target_task": "infer_subtype"
+      },
+      "L20": {
+        "layer": 20,
+        "source_file": "results/full/with_errortype/gemma3_4b_infer_property.jsonl",
+        "source_split_counts": {
+          "test": {
+            "n": 0,
+            "negative_n": 0,
+            "positive_n": 0
+          },
+          "train": {
+            "n": 10721,
+            "negative_n": 7954,
+            "positive_n": 2767
+          },
+          "val": {
+            "n": 0,
+            "negative_n": 0,
+            "positive_n": 0
+          }
+        },
+        "source_task": "infer_property",
+        "status": "skipped_no_evaluable_source_holdout",
+        "target_file": "results/full/with_errortype/gemma3_4b_infer_subtype.jsonl",
+        "target_split_counts": {
+          "test": {
+            "n": 0,
+            "negative_n": 0,
+            "positive_n": 0
+          },
+          "train": {
+            "n": 10956,
+            "negative_n": 9870,
+            "positive_n": 1086
+          },
+          "val": {
+            "n": 0,
+            "negative_n": 0,
+            "positive_n": 0
+          }
+        },
+        "target_task": "infer_subtype"
+      },
+      "L22": {
+        "layer": 22,
+        "source_file": "results/full/with_errortype/gemma3_4b_infer_property.jsonl",
+        "source_split_counts": {
+          "test": {
+            "n": 0,
+            "negative_n": 0,
+            "positive_n": 0
+          },
+          "train": {
+            "n": 10721,
+            "negative_n": 7954,
+            "positive_n": 2767
+          },
+          "val": {
+            "n": 0,
+            "negative_n": 0,
+            "positive_n": 0
+          }
+        },
+        "source_task": "infer_property",
+        "status": "skipped_no_evaluable_source_holdout",
+        "target_file": "results/full/with_errortype/gemma3_4b_infer_subtype.jsonl",
+        "target_split_counts": {
+          "test": {
+            "n": 0,
+            "negative_n": 0,
+            "positive_n": 0
+          },
+          "train": {
+            "n": 10956,
+            "negative_n": 9870,
+            "positive_n": 1086
+          },
+          "val": {
+            "n": 0,
+            "negative_n": 0,
+            "positive_n": 0
+          }
+        },
+        "target_task": "infer_subtype"
+      }
+    },
+    "infer_subtype_to_infer_property": {
+      "L11": {
+        "layer": 11,
+        "source_file": "results/full/with_errortype/gemma3_4b_infer_subtype.jsonl",
+        "source_split_counts": {
+          "test": {
+            "n": 0,
+            "negative_n": 0,
+            "positive_n": 0
+          },
+          "train": {
+            "n": 10956,
+            "negative_n": 9870,
+            "positive_n": 1086
+          },
+          "val": {
+            "n": 0,
+            "negative_n": 0,
+            "positive_n": 0
+          }
+        },
+        "source_task": "infer_subtype",
+        "status": "skipped_no_evaluable_source_holdout",
+        "target_file": "results/full/with_errortype/gemma3_4b_infer_property.jsonl",
+        "target_split_counts": {
+          "test": {
+            "n": 0,
+            "negative_n": 0,
+            "positive_n": 0
+          },
+          "train": {
+            "n": 10721,
+            "negative_n": 7954,
+            "positive_n": 2767
+          },
+          "val": {
+            "n": 0,
+            "negative_n": 0,
+            "positive_n": 0
+          }
+        },
+        "target_task": "infer_property"
+      },
+      "L20": {
+        "layer": 20,
+        "source_file": "results/full/with_errortype/gemma3_4b_infer_subtype.jsonl",
+        "source_split_counts": {
+          "test": {
+            "n": 0,
+            "negative_n": 0,
+            "positive_n": 0
+          },
+          "train": {
+            "n": 10956,
+            "negative_n": 9870,
+            "positive_n": 1086
+          },
+          "val": {
+            "n": 0,
+            "negative_n": 0,
+            "positive_n": 0
+          }
+        },
+        "source_task": "infer_subtype",
+        "status": "skipped_no_evaluable_source_holdout",
+        "target_file": "results/full/with_errortype/gemma3_4b_infer_property.jsonl",
+        "target_split_counts": {
+          "test": {
+            "n": 0,
+            "negative_n": 0,
+            "positive_n": 0
+          },
+          "train": {
+            "n": 10721,
+            "negative_n": 7954,
+            "positive_n": 2767
+          },
+          "val": {
+            "n": 0,
+            "negative_n": 0,
+            "positive_n": 0
+          }
+        },
+        "target_task": "infer_property"
+      },
+      "L22": {
+        "layer": 22,
+        "source_file": "results/full/with_errortype/gemma3_4b_infer_subtype.jsonl",
+        "source_split_counts": {
+          "test": {
+            "n": 0,
+            "negative_n": 0,
+            "positive_n": 0
+          },
+          "train": {
+            "n": 10956,
+            "negative_n": 9870,
+            "positive_n": 1086
+          },
+          "val": {
+            "n": 0,
+            "negative_n": 0,
+            "positive_n": 0
+          }
+        },
+        "source_task": "infer_subtype",
+        "status": "skipped_no_evaluable_source_holdout",
+        "target_file": "results/full/with_errortype/gemma3_4b_infer_property.jsonl",
+        "target_split_counts": {
+          "test": {
+            "n": 0,
+            "negative_n": 0,
+            "positive_n": 0
+          },
+          "train": {
+            "n": 10721,
+            "negative_n": 7954,
+            "positive_n": 2767
+          },
+          "val": {
+            "n": 0,
+            "negative_n": 0,
+            "positive_n": 0
+          }
+        },
+        "target_task": "infer_property"
+      }
+    }
+  },
+  "schema_version": 1,
+  "seed": 20260427,
+  "solver": "lbfgs",
+  "split_family": "s2",
+  "splits_path": "results/stage2/splits.jsonl",
+  "tasks": [
+    "infer_property",
+    "infer_subtype"
+  ]
+}
