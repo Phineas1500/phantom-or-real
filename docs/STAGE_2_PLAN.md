@@ -33,9 +33,10 @@ Completed:
 - Top-512 diagnostic completed; top-128 already captured all active residual
   SAE features in the tested files.
 - Feature-stability and reconstruction/error diagnostics completed.
-- L45 MLP-output SAE and L45 16K affine skip-transcoder pilots completed, but
-  both used bare normalized hooks and are now treated as exploratory after the
-  exact-hook audit.
+- L45 MLP-output SAE and L45 16K affine skip-transcoder pilots completed; both
+  old bare-normalized runs are now treated as exploratory after the exact-hook
+  audit. Corrected exact-hook reruns have been completed for MLP-output SAE,
+  16K skip-transcoder, and 262K transcoder.
 - First steering pilot completed; result is null/inconclusive, not causal
   evidence.
 - A bounded 27B crosscoder pilot completed as Scholar job `451181`.
@@ -68,6 +69,10 @@ Current scientific story:
   exact S1 property/subtype AUCs are `0.795/0.873`, and exact S3 AUCs are
   `0.802/0.885`. This is residual-SAE-like but still below raw same-site
   activations.
+- The exact-hook 16K skip-transcoder rerun also fixes the old weak pilot:
+  exact 16K AUCs are S1 `0.787/0.868` and S3 `0.785/0.880`, versus old
+  bare-normalized 16K AUCs S1 `0.722/0.821` and S3 `0.722/0.841`. Exact 262K
+  remains slightly stronger on most sparse-latent comparisons.
 - Corrected 262K component diagnostics are now interpretable: full output
   explains `0.672/0.661` energy for property/subtype, with global cosine
   `0.821/0.814`. Dense full/error components still trail raw exact
@@ -101,9 +106,9 @@ Keep the remaining Stage 2 work narrow:
 - Label: `is_correct_strong`, with `parse_failed=True` filtered for main
   probe training.
 - Main feature sources: raw residual L45, residual SAE L45 16K/262K,
-  residual-SAE reconstruction/error components, corrected exact-hook L45 262K
-  transcoder, exact-hook MLP-output SAE, sparse feature-family concat,
-  exploratory 16K-transcoder pilot, and the bounded crosscoder pilot.
+  residual-SAE reconstruction/error components, corrected exact-hook L45
+  16K/262K transcoders, exact-hook MLP-output SAE, sparse feature-family
+  concat, and the bounded crosscoder pilot.
 - Main splits: S1 random and S3 target-symbol heldout.
 - Main report claim: raw activations contain a robust correctness signal, but
   the tested sparse dictionaries do not cleanly localize it.
@@ -195,18 +200,18 @@ Label-shuffle S1 controls stayed near chance: property 0.493, subtype 0.481.
 
 ### Site And Sparse-Artifact Pilots
 
-| Split | Task | Raw exact `mlp_out` | Exact MLP-out SAE 16K | Old MLP-out SAE pilot | Raw exact `mlp_in` | Transcoder 16K pilot | Exact transcoder 262K |
-| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| S1 | `infer_property` | 0.896 | 0.811 | 0.577 | 0.897 | 0.722 | 0.795 |
-| S1 | `infer_subtype` | 0.916 | 0.878 | 0.674 | 0.916 | 0.821 | 0.873 |
-| S3 | `infer_property` | 0.892 | 0.807 | 0.550 | 0.885 | 0.722 | 0.802 |
-| S3 | `infer_subtype` | 0.915 | 0.879 | 0.702 | 0.914 | 0.841 | 0.885 |
+| Split | Task | Raw exact `mlp_out` | Exact MLP-out SAE 16K | Old MLP-out SAE pilot | Raw exact `mlp_in` | Old 16K TC pilot | Exact 16K TC | Exact 262K TC |
+| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| S1 | `infer_property` | 0.896 | 0.811 | 0.577 | 0.897 | 0.722 | 0.787 | 0.795 |
+| S1 | `infer_subtype` | 0.916 | 0.878 | 0.674 | 0.916 | 0.821 | 0.868 | 0.873 |
+| S3 | `infer_property` | 0.892 | 0.807 | 0.550 | 0.885 | 0.722 | 0.785 | 0.802 |
+| S3 | `infer_subtype` | 0.915 | 0.879 | 0.702 | 0.914 | 0.841 | 0.880 | 0.885 |
 
 Interpretation: raw same-site activations carry the signal, while tested sparse
-features only partially expose it. Exact-hook MLP-output SAE features are much
-stronger than the old bare-normalized pilot, confirming the hook/scale issue,
-but they still trail raw exact `hook_mlp_out`. The 16K transcoder row remains
-an exploratory pilot because it has not been rerun with exact weighted input.
+features only partially expose it. Exact-hook MLP-output SAE and exact-hook
+16K/262K transcoder features are much stronger than the old bare-normalized
+pilots, confirming the hook/scale issue, but they still trail raw exact
+activations.
 
 ### 262K Transcoder Component Diagnostic
 
@@ -312,7 +317,6 @@ Report-critical:
 
 Optional only if time remains:
 
-- Exact-hook 16K skip-transcoder rerun for a fairer width comparison.
 - Crosscoder `l0_big` variant over layers 16/31/40/53.
 - L30 residual SAE 16K/262K probe, and optionally L30+L45 sparse concat.
 - Higher-L0 or denser 262K transcoder variant, if available.
@@ -358,6 +362,8 @@ Optional only if time remains:
   transcoder input and exact `hook_mlp_out` target activations.
 - `scripts/stage2_transcoder_exact_27b_L45_262k_affine.sbatch`: corrected
   exact-hook 262K transcoder rerun script.
+- `scripts/stage2_transcoder_exact_27b_L45_16k_affine.sbatch`: corrected
+  exact-hook 16K skip-transcoder rerun script.
 - `scripts/stage2_neuronpedia_feature_audit.py`: Neuronpedia API audit for top
   sparse probe features.
 - `scripts/stage2_crosscoder_27b_layers_16_31_40_53_65k.sbatch`: completed
@@ -391,6 +397,7 @@ Optional only if time remains:
 - [x] L45 262K exact-hook transcoder probe.
 - [x] L45 262K exact-hook component diagnostic.
 - [x] L45 262K exact-hook Neuronpedia audit.
+- [x] L45 16K exact-hook skip-transcoder rerun and component diagnostic.
 - [x] L45 sparse feature-family concat probe.
 - [x] Corrected exact dense-active sparse scaling check.
 - [x] 262K transcoder invariants pinned.

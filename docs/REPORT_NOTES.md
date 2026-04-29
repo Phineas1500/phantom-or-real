@@ -825,3 +825,31 @@ final report is easier to assemble.
   the hidden reason sparse probes trail raw activations. It gives at most tiny
   gains on S1 and slightly mixed S3 behavior, so the remaining raw-vs-sparse
   gap is not mainly a sparse-matrix standardization artifact.
+
+#### L45 16K Exact-Hook Skip-Transcoder Rerun
+
+- Ran the fair exact-hook 16K affine skip-transcoder comparison as Scholar job
+  `451496`; job completed on `scholar-j003` at 2026-04-29 14:24 EDT. The run
+  used the same corrected input/target convention as the 262K transcoder:
+  `ln2.hook_normalized * ln2.w` for encoding and exact
+  `blocks.45.hook_mlp_out` for component diagnostics.
+- Corrected exact 16K sparse probes improve substantially over the old
+  bare-normalized 16K pilot, especially for property. Exact 16K AUCs are S1
+  property/subtype `0.787/0.868` and S3 property/subtype `0.785/0.880`; the
+  old bare-normalized 16K pilot was S1 `0.722/0.821` and S3 `0.722/0.841`.
+- Exact 262K still has a small edge over exact 16K on most sparse-latent
+  comparisons: exact 262K reached S1 `0.795/0.873` and S3 `0.802/0.885`.
+  Width therefore helps, but the difference is much smaller than the old
+  bare-normalized comparison suggested.
+- Exact 16K component diagnostics are interpretable but reconstruct less
+  target energy than 262K. Full energy explained is `0.639` for property and
+  `0.638` for subtype, versus `0.672/0.661` for exact 262K. Exact 16K
+  latent/skip/full/error AUCs are S1 property
+  `0.782/0.854/0.854/0.857`, S1 subtype `0.868/0.888/0.890/0.889`, S3
+  property `0.781/0.841/0.848/0.855`, and S3 subtype
+  `0.883/0.884/0.889/0.891`.
+- Interpretation: hook/scale alignment was a real issue for 16K too. The fair
+  rerun makes 16K skip-transcoder features roughly residual-SAE-like rather
+  than weak, but it still does not bridge the raw activation gap. The best
+  current story remains partial sparse localization, with 262K and sparse
+  feature-family concat slightly stronger than the exact 16K standalone run.

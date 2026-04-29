@@ -99,16 +99,13 @@ residual-SAE-like, but still trail raw exact `hook_mlp_out`.
 
 ## Skip-Transcoder Pilot
 
-The L45 pre-MLP normalized site was extracted at
-`blocks.45.ln2.hook_normalized` and encoded with the Gemma Scope 2 affine
-skip-transcoder `transcoder_all/layer_45_width_16k_l0_small_affine`. The raw
-`mlp_in` activations again carry raw-residual-level signal, while
-skip-transcoder features are intermediate: stronger than the MLP-output SAE,
-but still below raw activations and not a clean rescue of the sparse-feature
-story.
-This 16K pilot also used the bare normalized input and is therefore
-preliminary; the corrected 262K rerun below is the reportable transcoder
-comparison.
+The first L45 16K skip-transcoder pilot encoded the bare normalized site
+`blocks.45.ln2.hook_normalized` with
+`transcoder_all/layer_45_width_16k_l0_small_affine`. Exact-hook audits later
+showed that the fair input is learned-weighted
+`ln2.hook_normalized * ln2.w`, with component diagnostics compared against
+exact `blocks.45.hook_mlp_out`. We therefore reran the 16K affine
+skip-transcoder with the corrected hook convention.
 
 We also ran the Neuronpedia-visible L45 262K affine transcoder
 `transcoder_all/layer_45_width_262k_l0_small_affine`. The first run reused the
@@ -118,21 +115,21 @@ Gemma Scope 2 target is better matched by learned-weighted
 skip applied as `x @ W_skip`. The corrected exact-hook rerun is Scholar job
 `451226`.
 
-The corrected 262K transcoder is no longer weak. It beats the earlier 16K
-skip-transcoder pilot and is roughly residual-SAE-like, but it still trails raw
-same-site activations. Exact input feature density is safely below `top_k=128`
-with mean L0 `19.5` for property and `17.9` for subtype.
+The corrected transcoders are no longer weak. Exact 16K improves substantially
+over the old bare-normalized 16K pilot, and exact 262K is slightly stronger
+than exact 16K on most sparse-latent comparisons. Both still trail raw same-site
+activations.
 
-| Split | Task | Raw exact `mlp_in` AUC | Skip-transcoder 16K AUC | Exact transcoder 262K AUC | Raw residual L45 AUC |
-| --- | --- | ---: | ---: | ---: | ---: |
-| S1 random | `infer_property` | 0.897 | 0.722 | 0.795 | 0.897 |
-| S1 random | `infer_subtype` | 0.916 | 0.821 | 0.873 | 0.914 |
-| S3 target-symbol heldout | `infer_property` | 0.885 | 0.722 | 0.802 | 0.884 |
-| S3 target-symbol heldout | `infer_subtype` | 0.914 | 0.841 | 0.885 | 0.917 |
+| Split | Task | Raw exact `mlp_in` AUC | Old 16K bare-norm AUC | Exact 16K AUC | Exact 262K AUC | Raw residual L45 AUC |
+| --- | --- | ---: | ---: | ---: | ---: | ---: |
+| S1 random | `infer_property` | 0.897 | 0.722 | 0.787 | 0.795 | 0.897 |
+| S1 random | `infer_subtype` | 0.916 | 0.821 | 0.868 | 0.873 | 0.914 |
+| S3 target-symbol heldout | `infer_property` | 0.885 | 0.722 | 0.785 | 0.802 | 0.884 |
+| S3 target-symbol heldout | `infer_subtype` | 0.914 | 0.841 | 0.880 | 0.885 | 0.917 |
 
 Interpretation: computation-oriented sparse features expose some correctness
-signal, and the exact 262K artifact is materially better than the first
-bare-normalized run. The main conclusion is still unchanged: even corrected
+signal, and exact hook/scale alignment materially improves both tested
+transcoder widths. The main conclusion is still unchanged: even corrected
 transcoder features do not close the gap to raw activations.
 
 ## 262K Transcoder Component Diagnostic
@@ -158,6 +155,14 @@ transcoder reconstructs a substantial part of the MLP output and exposes
 moderate-to-strong correctness signal. It still does not reach the raw exact
 input/output probes, so it is supporting evidence for partial sparse
 localization rather than a complete sparse mechanism.
+
+For the exact-hook 16K skip-transcoder, the same component split is
+interpretable but reconstructs less target energy than 262K: full energy
+explained is `0.639/0.638` for property/subtype. Exact 16K latent/skip/full/error
+AUCs are S1 property `0.782/0.854/0.854/0.857`, S1 subtype
+`0.868/0.888/0.890/0.889`, S3 property `0.781/0.841/0.848/0.855`, and S3
+subtype `0.883/0.884/0.889/0.891`. This supports a small width benefit but not
+a qualitative bridge to raw activations.
 
 ## Sparse Feature-Family Concat
 
@@ -221,6 +226,7 @@ every feature source tried so far.
 | MLP-out SAE 16K old bare-norm | 0.577 | 0.674 | 0.550 | 0.702 |
 | Exact MLP-out SAE 16K | 0.811 | 0.878 | 0.807 | 0.879 |
 | Skip-transcoder 16K | 0.722 | 0.821 | 0.722 | 0.841 |
+| Exact skip-transcoder 16K | 0.787 | 0.868 | 0.785 | 0.880 |
 | Exact transcoder 262K | 0.795 | 0.873 | 0.802 | 0.885 |
 | All L45 sparse concat | 0.822 | 0.884 | 0.814 | 0.885 |
 | All L45 sparse concat + exact MLP-out SAE | 0.828 | 0.883 | 0.823 | 0.885 |

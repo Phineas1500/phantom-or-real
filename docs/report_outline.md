@@ -77,6 +77,9 @@ SAEs can still miss the signal that matters for prediction.
   Neuronpedia-visible all-layer transcoder is substantially stronger than the
   old bare-normalized run. It reaches S1 property/subtype AUCs `0.795/0.873`
   and S3 AUCs `0.802/0.885`, roughly residual-SAE-like but still below raw.
+- Exact-hook L45 16K skip-transcoder rerun: the fair weighted-input rerun
+  improves over the old bare-normalized 16K pilot to S1 `0.787/0.868` and S3
+  `0.785/0.880`; exact 262K remains slightly better on most comparisons.
 - Exact 262K component diagnostic: full latent+skip output has interpretable
   energy explained around `0.67/0.66` for property/subtype. Dense full/error
   components carry more signal than sparse latents alone but still trail raw
