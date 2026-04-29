@@ -87,6 +87,10 @@ SAEs can still miss the signal that matters for prediction.
   far, S1 `0.822/0.884` and S3 `0.814/0.885`, but still remains below raw exact
   activations. This is positive evidence for complementary sparse views, not a
   full bridge to raw.
+- Adding exact-hook MLP-output SAE 16K features to the sparse-family concat
+  gives a small property gain, reaching S1/S3 property AUCs `0.828/0.823`, but
+  subtype remains flat at about `0.883/0.885`. This is the current best
+  sparse-only property result and still does not bridge the raw gap.
 - Crosscoder pilot: raw concat over layers `{16,31,40,53}` nearly matches raw
   L45, but the 65K crosscoder over those same layers trails raw concat on every
   task/split. Treat this as an appendix-style multi-layer check supporting the

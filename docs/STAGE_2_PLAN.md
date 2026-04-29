@@ -242,6 +242,20 @@ Interpretation: sparse feature families are complementary, but the combined
 features still do not bridge the raw activation gap. This is a useful positive
 partial-localization result, not a complete sparse-mechanism result.
 
+Adding the exact-hook MLP-output SAE 16K block gives the current strongest
+sparse-only L45 property result:
+
+| Split | Task | Previous all-L45 concat | + exact MLP-output SAE 16K | Raw exact `mlp_out` |
+| --- | --- | ---: | ---: | ---: |
+| S1 | `infer_property` | 0.822 | 0.828 | 0.896 |
+| S1 | `infer_subtype` | 0.884 | 0.883 | 0.916 |
+| S3 | `infer_property` | 0.814 | 0.823 | 0.892 |
+| S3 | `infer_subtype` | 0.885 | 0.885 | 0.915 |
+
+Interpretation: the exact MLP-output SAE contributes complementary property
+signal, especially under S3, but does not move subtype and still leaves a
+large gap to raw exact activations.
+
 ### Crosscoder Pilot
 
 Job `451181` tested the smallest available 27B IT crosscoder:

@@ -739,3 +739,25 @@ final report is easier to assemble.
   MLP-output SAE features are meaningful and roughly residual-SAE-like, but
   still partial. This reinforces the hook/scale caution and weakens the old
   "MLP-output SAE is useless" read.
+
+#### All-L45 Sparse Concat With Exact MLP-Output SAE
+
+- Added the exact-hook MLP-output SAE 16K feature block to the previous
+  all-L45 sparse concat. New reports:
+  `docs/sparse_concat_probe_27b_l45_resid16k_resid262k_exact_tc262k_mlpout16k_s1.json`
+  and
+  `docs/sparse_concat_probe_27b_l45_resid16k_resid262k_exact_tc262k_mlpout16k_s3_target_symbol.json`.
+- The four-block concat is residual SAE 16K + residual SAE 262K + exact 262K
+  affine-transcoder latents + exact MLP-output SAE 16K. It raises mean active
+  L0 to about `71.9` for property and `69.0` for subtype, with total sparse
+  width `557056`.
+- AUCs: S1 property/subtype `0.828/0.883`; S3 property/subtype `0.823/0.885`.
+  Relative to the previous three-block concat (`0.822/0.884` S1,
+  `0.814/0.885` S3), the exact MLP-output block gives a small property gain
+  and no meaningful subtype gain.
+- Interpretation: the fixed MLP-output SAE has complementary information for
+  property, especially under S3, but this still does not bridge to raw exact
+  activations (`0.896/0.916` S1 exact `hook_mlp_out`,
+  `0.892/0.915` S3 exact `hook_mlp_out`). The current best sparse-only result
+  remains a partial-localization result rather than a complete sparse
+  substitute for raw activations.
