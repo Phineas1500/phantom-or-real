@@ -93,8 +93,13 @@ SAEs can still miss the signal that matters for prediction.
 - Adding exact-hook MLP-output SAE 16K features to the sparse-family concat
   gives a small property gain; lowering the regularization grid improves the
   same four-block concat further to S1 `0.830/0.888` and S3 `0.828/0.888`.
-  This is the current best sparse-only result and still does not bridge the raw
-  gap.
+  Adding exact-16K TC moves L45 only marginally to S1 `0.832/0.883` and S3
+  `0.829/0.889`.
+- L30 residual SAE/multi-layer sparse concat: L30 standalone features are weak
+  for property, but adding L30 residual SAE 16K/262K features to the corrected
+  L45 sparse family gives the current best sparse-only result, S1
+  `0.839/0.887` and S3 `0.834/0.892`. This narrows but still does not bridge
+  the raw gap.
 - Crosscoder pilot: raw concat over layers `{16,31,40,53}` nearly matches raw
   L45, but the 65K crosscoder over those same layers trails raw concat on every
   task/split. Treat this as an appendix-style multi-layer check supporting the

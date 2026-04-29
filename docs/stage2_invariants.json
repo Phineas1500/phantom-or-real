@@ -74,6 +74,30 @@
   },
   "sae_releases": {
     "entries": {
+      "gemma-scope-2-27b-it-res-all/layer_30_width_16k_l0_small": {
+        "architecture": "jumprelu",
+        "d_in": 5376,
+        "d_sae": 16384,
+        "hf_repo_id": "google/gemma-scope-2-27b-it",
+        "hf_snapshot_revision": "5c58dd4cddd52cef653059d85e12a86bf6222a28",
+        "hf_subfolder": "resid_post_all",
+        "sae_config_sha256": "bfc8bcf0312590c72e125c290eeab3493ac36c9a11a4af74ff6b3bd3136aa1fb",
+        "sae_id": "layer_30_width_16k_l0_small",
+        "sae_params_sha256": "216a2968f0e19a7c877f9db31050e88861972e794015e6bf7faa195536c8fb1e",
+        "sae_release": "gemma-scope-2-27b-it-res-all"
+      },
+      "gemma-scope-2-27b-it-res-all/layer_30_width_262k_l0_small": {
+        "architecture": "jumprelu",
+        "d_in": 5376,
+        "d_sae": 262144,
+        "hf_repo_id": "google/gemma-scope-2-27b-it",
+        "hf_snapshot_revision": "5c58dd4cddd52cef653059d85e12a86bf6222a28",
+        "hf_subfolder": "resid_post_all",
+        "sae_config_sha256": "ba3af61c8344830529cd28bd4b8d92f83988aeba1e89f557692df9f37ae3b58f",
+        "sae_id": "layer_30_width_262k_l0_small",
+        "sae_params_sha256": "18e71e921bd5c163ed9737c8df9cf92b9efc78814e991efaa5c6f6c519ab5c0c",
+        "sae_release": "gemma-scope-2-27b-it-res-all"
+      },
       "gemma-scope-2-27b-it-res-all/layer_45_width_16k_l0_small": {
         "architecture": "jumprelu",
         "d_in": 5376,
@@ -171,7 +195,7 @@
         "type": "crosscoder"
       }
     },
-    "status": "pinned_l45_residual_mlp_skip_transcoder_262k_transcoder_and_crosscoder_artifacts"
+    "status": "pinned_l30_l45_residual_mlp_skip_transcoder_262k_transcoder_and_crosscoder_artifacts"
   },
   "schema_version": 1,
   "stage1_jsonls": {

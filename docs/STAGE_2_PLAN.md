@@ -55,6 +55,9 @@ Completed:
   `451226`, including exact weighted-input extraction, exact raw input/output
   probes, exact sparse probes, exact component diagnostics, and refreshed
   Neuronpedia audit.
+- L30 residual SAE 16K/262K extraction and probes completed as Scholar jobs
+  `451569` and `451571`, including L30-only, L45 five-block, L30+L45
+  residual-only, and L30+L45 all-sparse concat probes.
 
 Current scientific story:
 
@@ -83,9 +86,9 @@ Current scientific story:
   features reach S1 `0.811/0.878` and S3 `0.807/0.879` for property/subtype.
   They are meaningful, but still below raw exact `hook_mlp_out`.
 - Sparse feature-family concatenation helps but does not close the gap. The
-  best all-L45 sparse concat so far, residual SAE 16K + residual SAE 262K +
-  exact 262K transcoder, reaches S1 `0.822/0.884` and S3 `0.814/0.885` for
-  property/subtype, still below raw exact activations.
+  best sparse-only result so far is the L30+L45 all-sparse concat, which
+  reaches S1 `0.839/0.887` and S3 `0.834/0.892` for property/subtype, still
+  below raw exact activations.
 - Refreshed exact Neuronpedia audit still shows mostly generic/lexical/code
   feature explanations rather than clean ontology-reasoning mechanisms.
 - The multi-layer crosscoder pilot also does not rescue sparse-feature
@@ -105,7 +108,7 @@ Keep the remaining Stage 2 work narrow:
 - Tasks: `infer_property` and `infer_subtype`.
 - Label: `is_correct_strong`, with `parse_failed=True` filtered for main
   probe training.
-- Main feature sources: raw residual L45, residual SAE L45 16K/262K,
+- Main feature sources: raw residual L45, residual SAE L30/L45 16K/262K,
   residual-SAE reconstruction/error components, corrected exact-hook L45
   16K/262K transcoders, exact-hook MLP-output SAE, sparse feature-family
   concat, and the bounded crosscoder pilot.
@@ -262,6 +265,21 @@ signal, especially under S3. Expanding the regularization grid below `C=0.01`
 improves all four sparse-concat AUCs modestly, but still leaves a large gap to
 raw exact activations.
 
+L30 residual sparse features are weak standalone property probes but add
+complementary signal when combined with the corrected L45 sparse family:
+
+| Split | Task | L30 16K | L30 262K | L30 concat | L45 five-block | L30+L45 all sparse | Raw L45 |
+| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| S1 | `infer_property` | 0.752 | 0.770 | 0.786 | 0.832 | 0.839 | 0.897 |
+| S1 | `infer_subtype` | 0.860 | 0.867 | 0.872 | 0.883 | 0.887 | 0.914 |
+| S3 | `infer_property` | 0.748 | 0.771 | 0.788 | 0.829 | 0.834 | 0.884 |
+| S3 | `infer_subtype` | 0.860 | 0.866 | 0.864 | 0.889 | 0.892 | 0.917 |
+
+Interpretation: L30 is not stronger than L45 by itself. Its value is
+complementarity in the all-sparse concat, where it gives the current strongest
+sparse-only property result and the strongest S3 subtype sparse result. The
+raw-vs-sparse gap remains.
+
 ### Crosscoder Pilot
 
 Job `451181` tested the smallest available 27B IT crosscoder:
@@ -318,7 +336,6 @@ Report-critical:
 Optional only if time remains:
 
 - Crosscoder `l0_big` variant over layers 16/31/40/53.
-- L30 residual SAE 16K/262K probe, and optionally L30+L45 sparse concat.
 - Higher-L0 or denser 262K transcoder variant, if available.
 - Multi-layer exact transcoder concat near L40/L45/L53.
 - Stronger prompt-length/name-frequency residualization.
@@ -364,6 +381,10 @@ Optional only if time remains:
   exact-hook 262K transcoder rerun script.
 - `scripts/stage2_transcoder_exact_27b_L45_16k_affine.sbatch`: corrected
   exact-hook 16K skip-transcoder rerun script.
+- `scripts/stage2_sae_extract_27b_L30_resid.sbatch`: completed L30 residual
+  SAE 16K/262K extraction script.
+- `scripts/stage2_probe_27b_L30_resid_concat.sbatch`: completed L30 residual
+  SAE and L30+L45 sparse concat probe script.
 - `scripts/stage2_neuronpedia_feature_audit.py`: Neuronpedia API audit for top
   sparse probe features.
 - `scripts/stage2_crosscoder_27b_layers_16_31_40_53_65k.sbatch`: completed
@@ -399,6 +420,7 @@ Optional only if time remains:
 - [x] L45 262K exact-hook Neuronpedia audit.
 - [x] L45 16K exact-hook skip-transcoder rerun and component diagnostic.
 - [x] L45 sparse feature-family concat probe.
+- [x] L30 residual SAE 16K/262K extraction and L30+L45 sparse concat probe.
 - [x] Corrected exact dense-active sparse scaling check.
 - [x] 262K transcoder invariants pinned.
 - [ ] Teammate 4B comparison tables.

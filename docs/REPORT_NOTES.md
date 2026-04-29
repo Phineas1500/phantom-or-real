@@ -762,7 +762,10 @@ final report is easier to assemble.
   remains a partial-localization result rather than a complete sparse
   substitute for raw activations.
 
-#### Remaining Targeted Gemma Scope 2 Checks
+#### Remaining Targeted Gemma Scope 2 Checks (Historical Queue)
+
+These were the next checks identified before the low-C, dense-active,
+exact-16K, and L30 runs below. Those later sections supersede this queue.
 
 - Best next low-cost check: rerun the current four-block sparse concat with a
   lower-regularization grid. The current best reports choose `C=0.01`, the
@@ -853,3 +856,41 @@ final report is easier to assemble.
   than weak, but it still does not bridge the raw activation gap. The best
   current story remains partial sparse localization, with 262K and sparse
   feature-family concat slightly stronger than the exact 16K standalone run.
+
+#### L30 Residual SAE And Multi-Layer Sparse Concat
+
+- Added separate L30 residual-SAE extraction and probe scripts after Scholar
+  rejected a 6-hour combined job walltime:
+  `scripts/stage2_sae_extract_27b_L30_resid.sbatch` and
+  `scripts/stage2_probe_27b_L30_resid_concat.sbatch`. Extraction job `451569`
+  completed successfully and wrote L30 residual SAE 16K/262K top-128 features
+  for both 27B tasks. Probe job `451571` completed the individual, L30-only,
+  L45 five-block, L30+L45 residual-only, and L30+L45 all-sparse concat probes.
+- Standalone L30 residual SAE features are weaker than L45, especially for
+  property. L30 16K AUCs are S1 `0.752/0.860` and S3 `0.748/0.860` for
+  property/subtype. L30 262K improves modestly to S1 `0.770/0.867` and S3
+  `0.771/0.866`.
+- L30 residual 16K+262K concat improves over either L30 width alone: S1
+  property/subtype `0.786/0.872`, S3 `0.788/0.864`. This confirms some
+  within-layer width complementarity, but L30 alone is not competitive with
+  the best L45 sparse blocks.
+- Adding the corrected exact-16K transcoder to the L45 sparse concat gives only
+  marginal gains. L45 five-block AUCs are S1 `0.832/0.883` and S3
+  `0.829/0.889`, compared with the previous low-C four-block L45 concat at S1
+  `0.830/0.888` and S3 `0.828/0.888`.
+- L30+L45 residual-only concat is mixed: S1 `0.827/0.889`, S3 `0.816/0.874`.
+  The extra L30 residual features help S1 subtype but do not robustly improve
+  S3.
+- The full L30+L45 all-sparse concat is the new strongest sparse-only result:
+  S1 property/subtype `0.839/0.887`, S3 `0.834/0.892`. Bootstrap 95% CIs are
+  S1 property/subtype `0.819-0.858`/`0.862-0.909` and S3
+  `0.813-0.856`/`0.869-0.913`. Relative to the previous low-C four-block L45
+  concat, this is `+0.009/-0.001` on S1 property/subtype and `+0.006/+0.004`
+  on S3.
+- Interpretation: L30 residual sparse features are not strong standalone
+  property probes, but they do add complementary signal when combined with the
+  corrected L45 sparse family. This is the best positive sparse-localization
+  result so far, but it still trails raw L45 residual probes (`0.897/0.914` S1,
+  `0.884/0.917` S3) and exact raw same-site probes. The main narrative remains
+  narrowed partial localization, not a full sparse replacement for raw
+  activations.
