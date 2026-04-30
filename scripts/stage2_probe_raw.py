@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Train quick logistic probes on Stage 2 raw residual activations."""
+"""Train Stage 2 raw-activation probes (logistic or diffmeans)."""
 
 from __future__ import annotations
 
@@ -30,6 +30,8 @@ def main() -> None:
     parser.add_argument("--splits", type=Path, default=None)
     parser.add_argument("--split-family", choices=("s1", "s2", "s3"), default="s1")
     parser.add_argument("--shuffle-labels", action="store_true")
+    parser.add_argument("--probe-type", choices=("logistic", "diffmeans"), default="logistic")
+    parser.add_argument("--save-probes-dir", type=Path, default=None)
     parser.add_argument("--c-values", type=parse_float_list, default=(0.01, 0.1, 1.0, 10.0))
     parser.add_argument("--max-iter", type=int, default=2000)
     parser.add_argument("--bootstrap-samples", type=int, default=0)
@@ -49,6 +51,8 @@ def main() -> None:
         c_values=args.c_values,
         max_iter=args.max_iter,
         bootstrap_samples=args.bootstrap_samples,
+        probe_type=args.probe_type,
+        save_probes_dir=args.save_probes_dir,
     )
     write_json(args.output, report)
     print(args.output)

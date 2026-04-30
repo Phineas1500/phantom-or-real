@@ -4,7 +4,9 @@ from __future__ import annotations
 
 import json
 import math
+import pickle
 import random
+import subprocess
 from collections import defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
@@ -47,6 +49,14 @@ def _safe_auc(labels: list[int], scores: list[float]) -> float | None:
     from sklearn.metrics import roc_auc_score
 
     return float(roc_auc_score(labels, scores))
+
+
+def _safe_balanced_accuracy(labels: list[int], predictions: list[int]) -> float | None:
+    if len(set(labels)) < 2:
+        return None
+    from sklearn.metrics import balanced_accuracy_score
+
+    return float(balanced_accuracy_score(labels, predictions))
 
 
 def bootstrap_auc_ci(
@@ -167,6 +177,52 @@ def _predict_scores(model, x: np.ndarray, indices: list[int]) -> list[float]:
     return [float(score) for score in model.predict_proba(x[indices])[:, 1]]
 
 
+def _cosine_scores(x: np.ndarray, direction: np.ndarray, indices: list[int]) -> list[float]:
+    if not indices:
+        return []
+    eps = 1e-12
+    x_subset = x[indices]
+    x_norms = np.linalg.norm(x_subset, axis=1)
+    direction_norm = np.linalg.norm(direction)
+    denom = np.maximum(x_norms * max(direction_norm, eps), eps)
+    return [float(score) for score in (x_subset @ direction) / denom]
+
+
+def _best_threshold_balanced_accuracy(labels: list[int], scores: list[float]) -> tuple[float, float]:
+    if len(labels) != len(scores):
+        raise ValueError("labels and scores length mismatch")
+    if len(labels) == 0:
+        raise ValueError("cannot tune threshold on empty set")
+    if len(set(labels)) < 2:
+        raise ValueError("threshold tuning requires both classes")
+
+    sorted_unique = sorted(set(float(score) for score in scores))
+    if len(sorted_unique) == 1:
+        candidates = [sorted_unique[0]]
+    else:
+        candidates = [sorted_unique[0] - 1e-9]
+        candidates.extend(
+            (sorted_unique[idx] + sorted_unique[idx + 1]) / 2.0
+            for idx in range(len(sorted_unique) - 1)
+        )
+        candidates.append(sorted_unique[-1] + 1e-9)
+
+    best_threshold = candidates[0]
+    best_ba = -math.inf
+    for threshold in candidates:
+        predictions = [1 if score >= threshold else 0 for score in scores]
+        ba = _safe_balanced_accuracy(labels, predictions)
+        if ba is None:
+            continue
+        if ba > best_ba:
+            best_ba = ba
+            best_threshold = threshold
+
+    if best_ba == -math.inf:
+        raise ValueError("unable to tune threshold")
+    return float(best_threshold), float(best_ba)
+
+
 def _is_sparse_matrix(x: Any) -> bool:
     try:
         from scipy import sparse
@@ -240,6 +296,8 @@ def train_logistic_probe_with_splits(
 
     return {
         "status": "ok",
+        "probe_type": "logistic",
+        "split_indices": splits,
         "best_c": best["c"],
         "c_values": list(c_values),
         "max_iter": max_iter,
@@ -254,6 +312,78 @@ def train_logistic_probe_with_splits(
         ),
         "split_counts": split_counts,
         "per_height": per_height,
+        "_artifact_model": model,
+    }
+
+
+def train_diffmeans_probe_with_splits(
+    x: np.ndarray,
+    labels: list[int],
+    sidecar_rows: list[dict[str, Any]],
+    *,
+    splits: dict[str, list[int]],
+    bootstrap_samples: int = 0,
+    bootstrap_seed: int = 0,
+) -> dict[str, Any]:
+    train_indices = splits["train"]
+    val_indices = splits["val"]
+    test_indices = splits["test"]
+    split_counts = {split: _class_counts(labels, indices) for split, indices in splits.items()}
+
+    if not _has_two_classes(labels, train_indices):
+        return {"status": "skipped_one_class_train", "split_counts": split_counts}
+    if not _has_two_classes(labels, val_indices) or not _has_two_classes(labels, test_indices):
+        return {"status": "skipped_no_evaluable_holdout", "split_counts": split_counts}
+
+    train_correct = [idx for idx in train_indices if labels[idx] == 1]
+    train_incorrect = [idx for idx in train_indices if labels[idx] == 0]
+    if not train_correct or not train_incorrect:
+        return {"status": "skipped_one_class_train", "split_counts": split_counts}
+
+    mean_correct = np.mean(x[train_correct], axis=0)
+    mean_incorrect = np.mean(x[train_incorrect], axis=0)
+    direction_raw = mean_correct - mean_incorrect
+    direction_raw_norm = float(np.linalg.norm(direction_raw))
+    if direction_raw_norm <= 0.0:
+        return {"status": "skipped_zero_direction", "split_counts": split_counts}
+    direction = direction_raw / direction_raw_norm
+
+    val_scores = _cosine_scores(x, direction, val_indices)
+    val_labels = [labels[idx] for idx in val_indices]
+    threshold, val_balanced_accuracy = _best_threshold_balanced_accuracy(val_labels, val_scores)
+
+    test_scores = _cosine_scores(x, direction, test_indices)
+    test_labels = [labels[idx] for idx in test_indices]
+    test_predictions = [1 if score >= threshold else 0 for score in test_scores]
+    per_height = {}
+    for height in sorted({sidecar_rows[idx].get("height") for idx in test_indices}):
+        height_indices = [idx for idx in test_indices if sidecar_rows[idx].get("height") == height]
+        height_scores = _cosine_scores(x, direction, height_indices)
+        per_height[f"h{height}"] = {
+            **_class_counts(labels, height_indices),
+            "auc": _safe_auc([labels[idx] for idx in height_indices], height_scores),
+        }
+
+    return {
+        "status": "ok",
+        "probe_type": "diffmeans",
+        "split_indices": splits,
+        "score_mode": "cosine",
+        "direction_raw_norm": direction_raw_norm,
+        "threshold": threshold,
+        "val_balanced_accuracy": val_balanced_accuracy,
+        "val_auc": _safe_auc(val_labels, val_scores),
+        "test_auc": _safe_auc(test_labels, test_scores),
+        "test_auc_ci": bootstrap_auc_ci(
+            test_labels,
+            test_scores,
+            seed=bootstrap_seed,
+            samples=bootstrap_samples,
+        ),
+        "test_balanced_accuracy": _safe_balanced_accuracy(test_labels, test_predictions),
+        "split_counts": split_counts,
+        "per_height": per_height,
+        "_artifact_direction": direction.astype(np.float32),
     }
 
 
@@ -332,6 +462,7 @@ def run_raw_activation_probe(
     max_iter: int = 2000,
     solver: str = "lbfgs",
     bootstrap_samples: int = 0,
+    probe_type: str = "logistic",
 ) -> dict[str, Any]:
     dataset = load_probe_dataset(
         activation_path=activation_path,
@@ -343,17 +474,32 @@ def run_raw_activation_probe(
     labels = dataset["labels"]
     if shuffle_labels:
         labels = shuffled_labels(labels, seed=seed)
+    train_fn_kwargs = {
+        "x": x,
+        "labels": labels,
+        "sidecar_rows": sidecar,
+        "bootstrap_samples": bootstrap_samples,
+    }
     if split_assignments is None:
-        result = train_logistic_probe(
-            x,
-            labels,
-            sidecar,
-            seed=seed,
-            c_values=c_values,
-            max_iter=max_iter,
-            solver=solver,
-            bootstrap_samples=bootstrap_samples,
-        )
+        if probe_type == "logistic":
+            result = train_logistic_probe(
+                x,
+                labels,
+                sidecar,
+                seed=seed,
+                c_values=c_values,
+                max_iter=max_iter,
+                solver=solver,
+                bootstrap_samples=bootstrap_samples,
+            )
+        elif probe_type == "diffmeans":
+            result = train_diffmeans_probe_with_splits(
+                **train_fn_kwargs,
+                splits=stratified_split_indices(labels, seed=seed),
+                bootstrap_seed=seed,
+            )
+        else:
+            raise ValueError(f"unknown probe_type: {probe_type}")
         split_mode = "stratified_random"
     else:
         if source_file is None:
@@ -364,20 +510,30 @@ def run_raw_activation_probe(
             source_file=source_file,
             split_field=f"{split_family}_split",
         )
-        result = train_logistic_probe_with_splits(
-            x,
-            labels,
-            sidecar,
-            splits=splits,
-            c_values=c_values,
-            max_iter=max_iter,
-            solver=solver,
-            bootstrap_samples=bootstrap_samples,
-            bootstrap_seed=seed,
-        )
+        if probe_type == "logistic":
+            result = train_logistic_probe_with_splits(
+                x,
+                labels,
+                sidecar,
+                splits=splits,
+                c_values=c_values,
+                max_iter=max_iter,
+                solver=solver,
+                bootstrap_samples=bootstrap_samples,
+                bootstrap_seed=seed,
+            )
+        elif probe_type == "diffmeans":
+            result = train_diffmeans_probe_with_splits(
+                **train_fn_kwargs,
+                splits=splits,
+                bootstrap_seed=seed,
+            )
+        else:
+            raise ValueError(f"unknown probe_type: {probe_type}")
         split_mode = split_family
     result.update(
         {
+            "probe_type": probe_type,
             "activation_path": str(activation_path),
             "sidecar_path": str(sidecar_path),
             "drop_parse_failed": drop_parse_failed,
@@ -390,6 +546,25 @@ def run_raw_activation_probe(
         }
     )
     return result
+
+
+def _git_commit_sha() -> str | None:
+    try:
+        proc = subprocess.run(
+            ["git", "rev-parse", "HEAD"],
+            check=True,
+            capture_output=True,
+            text=True,
+        )
+    except Exception:  # noqa: BLE001
+        return None
+    return proc.stdout.strip() or None
+
+
+def save_probe_artifact(path: Path, payload: dict[str, Any]) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open("wb") as f:
+        pickle.dump(payload, f)
 
 
 def run_probe_grid(
@@ -408,6 +583,8 @@ def run_probe_grid(
     solver: str = "lbfgs",
     bootstrap_samples: int = 0,
     activation_site: str = DEFAULT_ACTIVATION_SITE,
+    probe_type: str = "logistic",
+    save_probes_dir: Path | None = None,
 ) -> dict[str, Any]:
     split_assignments = read_split_assignments(splits_path) if splits_path is not None else None
     report: dict[str, Any] = {
@@ -427,9 +604,12 @@ def run_probe_grid(
         "max_iter": max_iter,
         "solver": solver,
         "bootstrap_samples": bootstrap_samples,
+        "probe_type": probe_type,
+        "save_probes_dir": str(save_probes_dir) if save_probes_dir is not None else None,
         "results": {},
         "best_by_task": {},
     }
+    commit_sha = _git_commit_sha()
     for task in tasks:
         report["results"][task] = {}
         for layer in layers:
@@ -453,7 +633,60 @@ def run_probe_grid(
                 max_iter=max_iter,
                 solver=solver,
                 bootstrap_samples=bootstrap_samples,
+                probe_type=probe_type,
             )
+            layer_result = report["results"][task][f"L{layer}"]
+            artifact_model = layer_result.pop("_artifact_model", None)
+            artifact_direction = layer_result.pop("_artifact_direction", None)
+            if save_probes_dir is not None and layer_result.get("status") == "ok":
+                split_indices = layer_result.get("split_indices", {})
+                filtered_sidecar = [
+                    row
+                    for row in read_jsonl(prefix.with_suffix(".example_ids.jsonl"))
+                    if (not drop_parse_failed or not row.get("parse_failed"))
+                ]
+                sidecar_row_indices = {
+                    split: [int(filtered_sidecar[idx]["row_index"]) for idx in indices]
+                    for split, indices in split_indices.items()
+                }
+                sidecar_example_ids = {
+                    split: [filtered_sidecar[idx].get("example_id") for idx in indices]
+                    for split, indices in split_indices.items()
+                }
+                probe_payload: dict[str, Any] = {
+                    "schema_version": 1,
+                    "created_at_utc": datetime.now(timezone.utc).isoformat(),
+                    "commit_sha": commit_sha,
+                    "model_key": model_key,
+                    "task": task,
+                    "layer": layer,
+                    "probe_type": probe_type,
+                    "split_family": split_family,
+                    "seed": seed + layer,
+                    "split_mode": layer_result.get("split_mode"),
+                    "activation_path": layer_result.get("activation_path"),
+                    "sidecar_path": layer_result.get("sidecar_path"),
+                    "source_file": layer_result.get("source_file"),
+                    "drop_parse_failed": layer_result.get("drop_parse_failed"),
+                    "shuffle_labels": layer_result.get("shuffle_labels"),
+                    "split_counts": layer_result.get("split_counts"),
+                    "split_indices": split_indices,
+                    "threshold": layer_result.get("threshold"),
+                    "sidecar_row_indices": sidecar_row_indices,
+                    "sidecar_example_ids": sidecar_example_ids,
+                }
+                if probe_type == "logistic":
+                    probe_payload["best_c"] = layer_result.get("best_c")
+                    probe_payload["model"] = artifact_model
+                if probe_type == "diffmeans":
+                    probe_payload["direction"] = artifact_direction
+                    probe_payload["score_mode"] = layer_result.get("score_mode")
+                    probe_payload["direction_raw_norm"] = layer_result.get("direction_raw_norm")
+
+                artifact_path = save_probes_dir / (
+                    f"{model_key}_{task}_L{layer}_{split_family}.{probe_type}.pkl"
+                )
+                save_probe_artifact(artifact_path, probe_payload)
         ok_layers = {
             layer_key: data
             for layer_key, data in report["results"][task].items()

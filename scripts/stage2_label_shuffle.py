@@ -2,10 +2,10 @@
 
 Run after Phase A.3 activations exist. Trains a logistic probe on raw
 residual activations at a chosen layer with randomly shuffled labels on
-both S1 and S2. Expect AUC ≈ 0.50 ± 0.03. Any clear deviation from 0.50
-indicates a leak in the splits or an activation-alignment bug.
+S1/S2/S3. Expect AUC ≈ 0.50 ± 0.03. Any clear deviation from 0.50 indicates
+a leak in the splits or an activation-alignment bug.
 
-Writes results/stage2/baselines/label_shuffle_{model_slug}_L{layer}.json.
+Writes results/stage2/baselines/label_shuffle_{model_slug}_{task}_L{layer}.json.
 """
 from __future__ import annotations
 
@@ -33,43 +33,59 @@ def load_sidecar(sidecar_path: Path) -> list[dict]:
     return rows
 
 
-def load_splits(splits_path: Path, task: str) -> dict[str, dict[str, str]]:
-    """Return {split_name: {example_id: partition}} for the given task."""
-    s1: dict[str, str] = {}
-    s2: dict[str, str] = {}
+def load_splits(
+    splits_path: Path,
+    *,
+    model: str,
+    task: str,
+    source_file: str,
+) -> dict[str, dict[int, str]]:
+    """Return {split_name: {row_index: partition}} for one model/task/source_file."""
+    out: dict[str, dict[int, str]] = {"s1": {}, "s2": {}, "s3": {}}
     with splits_path.open() as f:
         for line in f:
             line = line.strip()
             if not line:
                 continue
             row = json.loads(line)
-            if row.get("task") != task:
+            if row.get("model") != model or row.get("task") != task:
                 continue
-            eid = row["example_id"]
-            s1[eid] = row["s1"]
-            s2[eid] = row["s2"]
-    return {"s1": s1, "s2": s2}
+            if row.get("source_file") != source_file:
+                continue
+            row_index = int(row["row_index"])
+            out["s1"][row_index] = row["s1_split"]
+            out["s2"][row_index] = row["s2_split"]
+            out["s3"][row_index] = row["s3_split"]
+    return out
 
 
 def run_label_shuffle(
     X: np.ndarray,
     y_true: np.ndarray,
-    split_assignment: dict[str, str],
-    example_ids: list[str],
+    split_assignment: dict[int, str],
+    row_indices: list[int],
     *,
     seed: int,
 ) -> dict:
-    """Shuffle labels, train on train partition, evaluate AUC on test."""
     rng = np.random.default_rng(seed)
-
-    id_to_idx = {eid: i for i, eid in enumerate(example_ids)}
-    train_idx = np.array([id_to_idx[eid] for eid in example_ids
-                          if split_assignment.get(eid) == "train"], dtype=np.intp)
-    test_idx  = np.array([id_to_idx[eid] for eid in example_ids
-                          if split_assignment.get(eid) == "test"],  dtype=np.intp)
+    row_to_idx = {row_idx: i for i, row_idx in enumerate(row_indices)}
+    train_idx = np.array(
+        [row_to_idx[row_idx] for row_idx in row_indices if split_assignment.get(row_idx) == "train"],
+        dtype=np.intp,
+    )
+    test_idx = np.array(
+        [row_to_idx[row_idx] for row_idx in row_indices if split_assignment.get(row_idx) == "test"],
+        dtype=np.intp,
+    )
 
     if len(train_idx) == 0 or len(test_idx) == 0:
-        raise ValueError("empty train or test partition")
+        return {
+            "auc": None,
+            "n_train": int(len(train_idx)),
+            "n_test": int(len(test_idx)),
+            "shuffle_seed": seed,
+            "note": "skipped_no_train_or_test_partition",
+        }
 
     y_shuffled = y_true.copy()
     rng.shuffle(y_shuffled)
@@ -120,6 +136,16 @@ def main() -> None:
         type=Path,
         default=ROOT / "results" / "stage2" / "baselines",
     )
+    parser.add_argument(
+    "--source-file",
+    required=True,
+    help="Exact source_file string used in splits.jsonl (e.g. results/full/with_errortype/gemma3_4b_infer_property.jsonl)",
+    )
+    parser.add_argument(
+        "--model",
+        default="gemma3-4b",
+        help="Model name as stored in splits.jsonl (e.g. gemma3-4b)",
+    )
     parser.add_argument("--seed", type=int, default=42)
     args = parser.parse_args()
 
@@ -135,25 +161,32 @@ def main() -> None:
     sidecar_path = args.sidecar or args.activations.with_suffix(".example_ids.jsonl")
     print(f"Loading sidecar from {sidecar_path} ...")
     sidecar_rows = load_sidecar(sidecar_path)
-    example_ids = [r["example_id"] for r in sidecar_rows]
-    y_true = np.array(
-        [int(bool(r.get("is_correct_strong", False))) for r in sidecar_rows],
-        dtype=np.int32,
-    )
-    print(f"  {len(example_ids)} rows; {y_true.sum()} positive")
+    row_indices = [int(r["row_index"]) for r in sidecar_rows]
+    y_true = np.array([int(bool(r.get("is_correct_strong", False))) for r in sidecar_rows], dtype=np.int32)
+    print(f"  {len(row_indices)} rows; {y_true.sum()} positive")
 
-    if X.shape[0] != len(example_ids):
-        sys.exit(f"Row count mismatch: activations={X.shape[0]}, sidecar={len(example_ids)}")
+    if X.shape[0] != len(row_indices):
+        sys.exit(f"Row count mismatch: activations={X.shape[0]}, sidecar={len(row_indices)}")
 
     # ── Load splits ───────────────────────────────────────────────────────────
-    print(f"Loading splits from {args.splits} (task={args.task}) ...")
-    splits = load_splits(args.splits, args.task)
+    print(
+        f"Loading splits from {args.splits} "
+        f"(model={args.model}, task={args.task}, source_file={args.source_file}) ..."
+    )
+    splits = load_splits(
+        args.splits,
+        model=args.model,
+        task=args.task,
+        source_file=args.source_file,
+    )
+    for split_name, assignments in splits.items():
+        print(f"  {split_name}: {len(assignments)} assignment rows")
 
-    # ── Run label shuffle for S1 and S2 ──────────────────────────────────────
+    # ── Run label shuffle for S1/S2/S3 ───────────────────────────────────────
     results = {}
     for split_name, split_assignment in splits.items():
         print(f"  Running label-shuffle probe on {split_name} ...", end=" ", flush=True)
-        res = run_label_shuffle(X, y_true, split_assignment, example_ids, seed=args.seed)
+        res = run_label_shuffle(X, y_true, split_assignment, row_indices, seed=args.seed)
         results[split_name] = res
         auc_str = f"{res['auc']:.4f}" if res["auc"] is not None else "N/A"
         print(f"AUC={auc_str} (expected ≈0.50±0.03)")
@@ -162,16 +195,19 @@ def main() -> None:
     args.out_dir.mkdir(parents=True, exist_ok=True)
     output = {
         "model_slug": args.model_slug,
+        "model": args.model,
         "task": args.task,
+        "source_file": args.source_file,
         "layer": args.layer,
         "activations_file": str(args.activations),
+        "sidecar_file": str(sidecar_path),
+        "splits_file": str(args.splits),
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "expected_auc_range": [0.47, 0.53],
-        "s1": results.get("s1"),
-        "s2": results.get("s2"),
+        "results": results,
     }
 
-    out_path = args.out_dir / f"label_shuffle_{args.model_slug}_L{args.layer}.json"
+    out_path = args.out_dir / f"label_shuffle_{args.model_slug}_{args.task}_L{args.layer}.json"
     out_path.write_text(json.dumps(output, indent=2) + "\n")
     print(f"\nWrote {out_path}")
 
