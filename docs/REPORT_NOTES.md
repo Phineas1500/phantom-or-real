@@ -1301,3 +1301,28 @@ exact-16K, and L30 runs below. Those later sections supersede this queue.
   SD. This is the preferred next causal test because it targets a learned
   sparse feature subspace rather than one feature or a dense raw correctness
   direction.
+
+#### Sparse-Probe Bundle Steering Result
+
+- Scholar job `451958` completed the 27B L45 property sparse-probe bundle
+  pilot. It wrote the compact summary
+  `docs/sparse_probe_bundle_steering_27b_l45_property.json`, plus row-level
+  JSONL and direction weights under `results/stage2/steering/`.
+- The refit selected `C=0.001`, validation AUC `0.836`, and test AUC `0.853`.
+  It used 1,139 train-active sparse columns, retained 294 density-filtered
+  candidate features, and selected the top 25 positive and top 25 negative
+  coefficients for the steering bundle.
+- Baseline on the 8 balanced S1 property rows was unchanged from the other
+  pilots: 3/8 strong and 5/8 weak, with no parse failures. The bundle
+  interventions at `+/-0.25` and `+/-0.5` projection SD produced zero
+  false-to-true flips and zero true-to-false flips; strong accuracy stayed
+  3/8 for all bundle conditions.
+- Parse failures were mild but still present: `bundle_neg0p25sd` had 0/8
+  parse failures, while the other three bundle conditions had 1/8. The only
+  accuracy degradations in this run came from matched controls:
+  `random_neg0p5sd` and `orthogonal_neg0p5sd` each produced one true-to-false
+  change.
+- Interpretation: the multi-feature learned-dictionary direction is also a
+  null causal result under this bounded decode-step protocol. The current
+  steering evidence remains negative/inconclusive across single features,
+  dense raw correctness directions, and this sparse-probe bundle.

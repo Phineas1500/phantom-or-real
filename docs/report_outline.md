@@ -56,8 +56,9 @@ SAEs can still miss the signal that matters for prediction.
 - Probe Gemma Scope 2 residual SAE features at L45, widths 16K and 262K.
 - Decode SAE reconstructions and probe both reconstruction and
   raw-minus-reconstruction error.
-- Steering pilot: raw L45 direction vs orthogonal control on a small balanced
-  property subset.
+- Steering pilots: raw L45 direction, selected big-L0 decoder rows, and a
+  sparse-probe feature bundle against matched controls on small balanced
+  property subsets.
 
 ## 5. Results
 
@@ -152,8 +153,10 @@ SAEs can still miss the signal that matters for prediction.
   clean causal reasoning mechanisms yet.
 - Steering checks are negative/inconclusive rather than causal success claims.
   Decode-step steering of selected big-L0 decoder rows produced no beneficial
-  flips, and a Cox-style dense raw correctness direction stayed highly
-  predictive offline but also produced no false-to-true flips.
+  flips. A Cox-style dense raw correctness direction stayed highly predictive
+  offline but also produced no false-to-true flips. The multi-feature
+  sparse-probe bundle likewise reproduced its offline AUC but produced no
+  beneficial flips.
 
 ## 6. Discussion
 
@@ -168,8 +171,8 @@ SAEs can still miss the signal that matters for prediction.
   falsification for shortlisted big-L0 candidates.
 - Near-term finishing step: treat the completed steering checks as null causal
   evidence and move to report assembly, unless we explicitly choose one more
-  targeted causal test such as answer/property directions, a multi-feature
-  sparse bundle, or a reconstruction-error direction.
+  targeted causal test such as answer/property directions or a
+  reconstruction-error direction.
 
 ## Core Tables/Figures
 

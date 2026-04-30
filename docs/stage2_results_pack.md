@@ -480,6 +480,7 @@ estimates.
 | Prompt-only raw L45 | +/-2 projection SD at final pre-generation residual | 0.375 | 0.375 | 0.125 | 0 | 0 | Plumbing check only; one output change also appeared under orthogonal control. |
 | Decode-step big-L0 single features | `35036`, `75345`, `72374` at +/-0.25 mean-nonzero scale | 0.375 | 0.250-0.375 | 0.000-0.250 | 0 | 2 | No beneficial flips; `75345` negative and `72374` positive each caused one true-to-false change. |
 | Decode-step raw L45 | +/-0.5 and +/-1 projection SD at `blocks.45.hook_resid_post` | 0.375 | 0.375 | 0.125 | 0 | 0 | Raw direction is highly predictive offline but did not act as a useful correctness control knob. |
+| Decode-step sparse-probe bundle | Top 25 positive + top 25 negative big-L0 coefficients at +/-0.25 and +/-0.5 projection SD | 0.375 | 0.375 | 0.000-0.125 | 0 | 0 | Distributed learned-feature direction also produced no beneficial flips. |
 | Decode-step orthogonal control | Norm-matched orthogonal directions at +/-0.5 and +/-1 SD | 0.375 | 0.250-0.375 | 0.125-0.250 | 0 | 1 | One true-to-false change at +1 SD, consistent with generic perturbation risk. |
 
 The decode-step raw comparator refit the L45 S1 logistic direction and recovered
@@ -490,10 +491,11 @@ from Cox-style answer steering, where the direction targets a binary answer
 choice. Our direction targets success/failure, which does not specify what
 property answer should be produced.
 
-Interpretation: current steering evidence is negative for both individual
-learned features and the dense raw correctness direction. The strongest result
-remains diagnostic: success/failure is linearly readable from raw activations,
-but neither tested steering family has established a causal repair mechanism.
+Interpretation: current steering evidence is negative for individual learned
+features, the dense raw correctness direction, and the multi-feature sparse
+probe bundle. The strongest result remains diagnostic: success/failure is
+linearly readable from raw activations, but none of the tested steering families
+has established a causal repair mechanism.
 
 ## Current Report Claim
 
@@ -507,9 +509,9 @@ fail to reconstruct. Corrected exact-hook transcoders and multi-layer sparse
 concats improve the sparse-feature picture but still trail raw activations.
 Neuronpedia-facing top features remain generic rather than clean
 ontology-reasoning mechanisms. Steering is currently a negative/inconclusive
-causal result: neither shortlisted single big-L0 features nor the dense raw
-correctness direction produced beneficial flips in the bounded decode-step
-checks.
+causal result: neither shortlisted single big-L0 features, the multi-feature
+sparse-probe bundle, nor the dense raw correctness direction produced
+beneficial flips in the bounded decode-step checks.
 
 ## 4B Comparison Table
 
