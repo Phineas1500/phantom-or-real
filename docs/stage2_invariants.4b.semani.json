@@ -120,6 +120,19 @@
         "sae_params_sha256": "21202913cc1cc2ff6e3100f67e2bd1a4aeb316cb6140043a571537bcc60c6047",
         "sae_release": "gemma-scope-2-4b-it-transcoders-all"
       },
+      "gemma-scope-2-4b-it-transcoders-all/layer_22_width_262k_l0_big_affine": {
+        "architecture": "jumprelu_skip_transcoder",
+        "d_in": 2560,
+        "d_out": 2560,
+        "d_sae": 262144,
+        "hf_repo_id": "google/gemma-scope-2-4b-it",
+        "hf_snapshot_revision": "3e94b68be95290aada5b7525cf431d3040f81bb1",
+        "hf_subfolder": "transcoder_all",
+        "sae_config_sha256": "d0019bb00d331c4e5476c5a1551e47436aada14cb603900c93e02261ad44bc2f",
+        "sae_id": "layer_22_width_262k_l0_big_affine",
+        "sae_params_sha256": "bc5d57d388f65a050d9ea430c9e03af2be25b83cc2720f0cd5d820f8763c96b8",
+        "sae_release": "gemma-scope-2-4b-it-transcoders-all"
+      },
       "gemma-scope-2-4b-it-transcoders-all/layer_22_width_262k_l0_small_affine": {
         "architecture": "jumprelu_skip_transcoder",
         "d_in": 2560,
@@ -134,7 +147,7 @@
         "sae_release": "gemma-scope-2-4b-it-transcoders-all"
       }
     },
-    "status": "pinned_4b_l20_l22_residual_l22_mlp_skip_transcoder_artifacts"
+    "status": "pinned_4b_l20_l22_residual_l22_mlp_skip_transcoder_and_big_affine_artifacts"
   },
   "schema_version": 1,
   "stage1_jsonls": {

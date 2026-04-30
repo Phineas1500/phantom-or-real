@@ -1,0 +1,299 @@
+{
+  "combo_name": "l20_l22_all_sparse",
+  "schema_version": 1,
+  "source_dir": "docs/ablation_4b_l20_l22_all_sparse",
+  "splits": {
+    "s1": {
+      "drop_l20_resid16k": {
+        "feature_count": 6,
+        "path": "docs/ablation_4b_l20_l22_all_sparse/drop_l20_resid16k_s1.json",
+        "tasks": {
+          "infer_property": {
+            "best_c": 0.001,
+            "status": "ok",
+            "test_auc": 0.8419410081798767,
+            "val_auc": 0.8638128270658391
+          },
+          "infer_subtype": {
+            "best_c": 0.0003,
+            "status": "ok",
+            "test_auc": 0.9691885447455355,
+            "val_auc": 0.974270436080252
+          }
+        }
+      },
+      "drop_l20_resid262k": {
+        "feature_count": 6,
+        "path": "docs/ablation_4b_l20_l22_all_sparse/drop_l20_resid262k_s1.json",
+        "tasks": {
+          "infer_property": {
+            "best_c": 0.001,
+            "status": "ok",
+            "test_auc": 0.8415360438409154,
+            "val_auc": 0.8645044825767718
+          },
+          "infer_subtype": {
+            "best_c": 0.001,
+            "status": "ok",
+            "test_auc": 0.9670524825513523,
+            "val_auc": 0.9743284695738684
+          }
+        }
+      },
+      "drop_l22_mlpout16k": {
+        "feature_count": 6,
+        "path": "docs/ablation_4b_l20_l22_all_sparse/drop_l22_mlpout16k_s1.json",
+        "tasks": {
+          "infer_property": {
+            "best_c": 0.003,
+            "status": "ok",
+            "test_auc": 0.8362392714671394,
+            "val_auc": 0.864741795464687
+          },
+          "infer_subtype": {
+            "best_c": 0.0003,
+            "status": "ok",
+            "test_auc": 0.9682902395204623,
+            "val_auc": 0.9741170618471232
+          }
+        }
+      },
+      "drop_l22_resid16k": {
+        "feature_count": 6,
+        "path": "docs/ablation_4b_l20_l22_all_sparse/drop_l22_resid16k_s1.json",
+        "tasks": {
+          "infer_property": {
+            "best_c": 0.001,
+            "status": "ok",
+            "test_auc": 0.839348027561752,
+            "val_auc": 0.8594438359498601
+          },
+          "infer_subtype": {
+            "best_c": 0.0003,
+            "status": "ok",
+            "test_auc": 0.9692423602659315,
+            "val_auc": 0.9740009948598904
+          }
+        }
+      },
+      "drop_l22_resid262k": {
+        "feature_count": 6,
+        "path": "docs/ablation_4b_l20_l22_all_sparse/drop_l22_resid262k_s1.json",
+        "tasks": {
+          "infer_property": {
+            "best_c": 0.001,
+            "status": "ok",
+            "test_auc": 0.8390941693194183,
+            "val_auc": 0.861234838343272
+          },
+          "infer_subtype": {
+            "best_c": 0.001,
+            "status": "ok",
+            "test_auc": 0.9686296912644992,
+            "val_auc": 0.9741253523462112
+          }
+        }
+      },
+      "drop_l22_tc16k": {
+        "feature_count": 6,
+        "path": "docs/ablation_4b_l20_l22_all_sparse/drop_l22_tc16k_s1.json",
+        "tasks": {
+          "infer_property": {
+            "best_c": 0.001,
+            "status": "ok",
+            "test_auc": 0.8411028730305838,
+            "val_auc": 0.8619630035292686
+          },
+          "infer_subtype": {
+            "best_c": 0.001,
+            "status": "ok",
+            "test_auc": 0.9689401654206304,
+            "val_auc": 0.9749336760072956
+          }
+        }
+      },
+      "drop_l22_tc262k": {
+        "feature_count": 6,
+        "path": "docs/ablation_4b_l20_l22_all_sparse/drop_l22_tc262k_s1.json",
+        "tasks": {
+          "infer_property": {
+            "best_c": 0.001,
+            "status": "ok",
+            "test_auc": 0.8403090623363018,
+            "val_auc": 0.8588637377794003
+          },
+          "infer_subtype": {
+            "best_c": 0.001,
+            "status": "ok",
+            "test_auc": 0.9679093912222746,
+            "val_auc": 0.9756425136793234
+          }
+        }
+      },
+      "full": {
+        "feature_count": 7,
+        "path": "docs/ablation_4b_l20_l22_all_sparse/full_s1.json",
+        "tasks": {
+          "infer_property": {
+            "best_c": 0.001,
+            "status": "ok",
+            "test_auc": 0.8421444977233349,
+            "val_auc": 0.864561275404649
+          },
+          "infer_subtype": {
+            "best_c": 0.0003,
+            "status": "ok",
+            "test_auc": 0.9693375723404783,
+            "val_auc": 0.9749253855082076
+          }
+        }
+      }
+    },
+    "s3": {
+      "drop_l20_resid16k": {
+        "feature_count": 6,
+        "path": "docs/ablation_4b_l20_l22_all_sparse/drop_l20_resid16k_s3.json",
+        "tasks": {
+          "infer_property": {
+            "best_c": 0.0003,
+            "status": "ok",
+            "test_auc": 0.8490586732895118,
+            "val_auc": 0.8477704470481173
+          },
+          "infer_subtype": {
+            "best_c": 0.0003,
+            "status": "ok",
+            "test_auc": 0.9757493504982744,
+            "val_auc": 0.9675735198859956
+          }
+        }
+      },
+      "drop_l20_resid262k": {
+        "feature_count": 6,
+        "path": "docs/ablation_4b_l20_l22_all_sparse/drop_l20_resid262k_s3.json",
+        "tasks": {
+          "infer_property": {
+            "best_c": 0.0003,
+            "status": "ok",
+            "test_auc": 0.8497383244932976,
+            "val_auc": 0.845428360173554
+          },
+          "infer_subtype": {
+            "best_c": 0.0003,
+            "status": "ok",
+            "test_auc": 0.9758113924541472,
+            "val_auc": 0.9668307639158785
+          }
+        }
+      },
+      "drop_l22_mlpout16k": {
+        "feature_count": 6,
+        "path": "docs/ablation_4b_l20_l22_all_sparse/drop_l22_mlpout16k_s3.json",
+        "tasks": {
+          "infer_property": {
+            "best_c": 0.0003,
+            "status": "ok",
+            "test_auc": 0.845901331097862,
+            "val_auc": 0.8447986577181208
+          },
+          "infer_subtype": {
+            "best_c": 0.001,
+            "status": "ok",
+            "test_auc": 0.9755438365194462,
+            "val_auc": 0.9677894373191692
+          }
+        }
+      },
+      "drop_l22_resid16k": {
+        "feature_count": 6,
+        "path": "docs/ablation_4b_l20_l22_all_sparse/drop_l22_resid16k_s3.json",
+        "tasks": {
+          "infer_property": {
+            "best_c": 0.001,
+            "status": "ok",
+            "test_auc": 0.8514580183172854,
+            "val_auc": 0.8507016104132474
+          },
+          "infer_subtype": {
+            "best_c": 0.0003,
+            "status": "ok",
+            "test_auc": 0.9756252665865291,
+            "val_auc": 0.9674310143801012
+          }
+        }
+      },
+      "drop_l22_resid262k": {
+        "feature_count": 6,
+        "path": "docs/ablation_4b_l20_l22_all_sparse/drop_l22_resid262k_s3.json",
+        "tasks": {
+          "infer_property": {
+            "best_c": 0.001,
+            "status": "ok",
+            "test_auc": 0.8525293993215239,
+            "val_auc": 0.8492207939938573
+          },
+          "infer_subtype": {
+            "best_c": 0.0003,
+            "status": "ok",
+            "test_auc": 0.9761177246112683,
+            "val_auc": 0.9672064602496006
+          }
+        }
+      },
+      "drop_l22_tc16k": {
+        "feature_count": 6,
+        "path": "docs/ablation_4b_l20_l22_all_sparse/drop_l22_tc16k_s3.json",
+        "tasks": {
+          "infer_property": {
+            "best_c": 0.001,
+            "status": "ok",
+            "test_auc": 0.854754424588096,
+            "val_auc": 0.8476729447324373
+          },
+          "infer_subtype": {
+            "best_c": 0.0003,
+            "status": "ok",
+            "test_auc": 0.9753499554073441,
+            "val_auc": 0.9672755538282161
+          }
+        }
+      },
+      "drop_l22_tc262k": {
+        "feature_count": 6,
+        "path": "docs/ablation_4b_l20_l22_all_sparse/drop_l22_tc262k_s3.json",
+        "tasks": {
+          "infer_property": {
+            "best_c": 0.001,
+            "status": "ok",
+            "test_auc": 0.8535498554517037,
+            "val_auc": 0.8484021808017941
+          },
+          "infer_subtype": {
+            "best_c": 0.001,
+            "status": "ok",
+            "test_auc": 0.9744076932025282,
+            "val_auc": 0.9676901152999093
+          }
+        }
+      },
+      "full": {
+        "feature_count": 7,
+        "path": "docs/ablation_4b_l20_l22_all_sparse/full_s3.json",
+        "tasks": {
+          "infer_property": {
+            "best_c": 0.0003,
+            "status": "ok",
+            "test_auc": 0.849979238320576,
+            "val_auc": 0.8489201618538441
+          },
+          "infer_subtype": {
+            "best_c": 0.0003,
+            "status": "ok",
+            "test_auc": 0.9760207840552174,
+            "val_auc": 0.9678498942004577
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,670 @@
+{
+  "bootstrap_samples": 0,
+  "c_values": [
+    1.0
+  ],
+  "chunk_size": 128,
+  "created_at_utc": "2026-04-30T03:14:27.748743+00:00",
+  "device": "cuda:0",
+  "dtype": "torch.bfloat16",
+  "feature_dir": "results/stage2/sae_features",
+  "input_activation_dir": "results/stage2/activations",
+  "input_activation_site": "mlp_in_weighted",
+  "layer": 22,
+  "max_iter": 2000,
+  "model_key": "gemma3_4b",
+  "out_dir": "results/stage2/transcoder_components_exact",
+  "output_dtype": "torch.bfloat16",
+  "results": {
+    "infer_property": {
+      "component_prefixes": {
+        "error": "results/stage2/transcoder_components_exact/gemma3_4b_infer_property_L22_layer_22_width_262k_l0_small_affine_top128_error",
+        "full": "results/stage2/transcoder_components_exact/gemma3_4b_infer_property_L22_layer_22_width_262k_l0_small_affine_top128_full",
+        "latent": "results/stage2/transcoder_components_exact/gemma3_4b_infer_property_L22_layer_22_width_262k_l0_small_affine_top128_latent",
+        "skip": "results/stage2/transcoder_components_exact/gemma3_4b_infer_property_L22_layer_22_width_262k_l0_small_affine_top128_skip"
+      },
+      "component_stats_vs_target": {
+        "full": {
+          "elements": 28160000,
+          "energy_explained": 0.8873911873473737,
+          "global_cosine": 0.9422162592248121,
+          "mean_error_l2": 1767.984203125,
+          "mean_raw_l2": 5264.125903409091,
+          "mean_reconstruction_l2": 4856.619386363636,
+          "mean_row_cosine": 0.9418770432905718,
+          "mse": 1224.5005488636364,
+          "relative_error_l2": 0.3355723657463862,
+          "rmse": 34.992864256354274,
+          "rows": 11000
+        },
+        "latent": {
+          "elements": 28160000,
+          "energy_explained": 0.2242456002562352,
+          "global_cosine": 0.5287456800777928,
+          "mean_error_l2": 4632.579142045454,
+          "mean_raw_l2": 5264.125903409091,
+          "mean_reconstruction_l2": 1537.2844048295456,
+          "mean_row_cosine": 0.5202470779418945,
+          "mse": 8435.500436363636,
+          "relative_error_l2": 0.880769209125617,
+          "rmse": 91.84498046362488,
+          "rows": 11000
+        },
+        "skip": {
+          "elements": 28160000,
+          "energy_explained": 0.8063961809103861,
+          "global_cosine": 0.905571415472587,
+          "mean_error_l2": 2317.1693607954544,
+          "mean_raw_l2": 5264.125903409091,
+          "mean_reconstruction_l2": 4150.819752840909,
+          "mean_row_cosine": 0.9048060913085938,
+          "mse": 2105.234725,
+          "relative_error_l2": 0.4400043398531587,
+          "rmse": 45.88283693277912,
+          "rows": 11000
+        }
+      },
+      "elapsed_seconds": 2.4436609745025635,
+      "feature_prefix": "results/stage2/sae_features/gemma3_4b_infer_property_L22_mlp_in_weighted_layer_22_width_262k_l0_small_affine_top128",
+      "input_prefix": "results/stage2/activations/gemma3_4b_infer_property_L22_mlp_in_weighted",
+      "probes": {
+        "error": {
+          "activation_path": "results/stage2/transcoder_components_exact/gemma3_4b_infer_property_L22_layer_22_width_262k_l0_small_affine_top128_error.safetensors",
+          "best_c": 1.0,
+          "c_values": [
+            1.0
+          ],
+          "d_model": 2560,
+          "drop_parse_failed": true,
+          "input_rows": 11000,
+          "kept_rows": 10721,
+          "max_iter": 2000,
+          "per_height": {
+            "h1": {
+              "auc": 0.7999378689033861,
+              "n": 140,
+              "negative_n": 29,
+              "positive_n": 111
+            },
+            "h2": {
+              "auc": 0.7788232689433775,
+              "n": 292,
+              "negative_n": 203,
+              "positive_n": 89
+            },
+            "h3": {
+              "auc": 0.8538198757763975,
+              "n": 442,
+              "negative_n": 350,
+              "positive_n": 92
+            },
+            "h4": {
+              "auc": 0.863549694128863,
+              "n": 737,
+              "negative_n": 614,
+              "positive_n": 123
+            }
+          },
+          "shuffle_labels": false,
+          "sidecar_path": "results/stage2/transcoder_components_exact/gemma3_4b_infer_property_L22_layer_22_width_262k_l0_small_affine_top128_error.example_ids.jsonl",
+          "solver": "liblinear",
+          "source_file": "results/full/with_errortype/gemma3_4b_infer_property.jsonl",
+          "split_counts": {
+            "test": {
+              "n": 1611,
+              "negative_n": 1196,
+              "positive_n": 415
+            },
+            "train": {
+              "n": 7507,
+              "negative_n": 5570,
+              "positive_n": 1937
+            },
+            "val": {
+              "n": 1603,
+              "negative_n": 1188,
+              "positive_n": 415
+            }
+          },
+          "split_mode": "s1",
+          "status": "ok",
+          "test_auc": 0.8604243059193294,
+          "test_auc_ci": null,
+          "val_auc": 0.8677051640907063
+        },
+        "full": {
+          "activation_path": "results/stage2/transcoder_components_exact/gemma3_4b_infer_property_L22_layer_22_width_262k_l0_small_affine_top128_full.safetensors",
+          "best_c": 1.0,
+          "c_values": [
+            1.0
+          ],
+          "d_model": 2560,
+          "drop_parse_failed": true,
+          "input_rows": 11000,
+          "kept_rows": 10721,
+          "max_iter": 2000,
+          "per_height": {
+            "h1": {
+              "auc": 0.7974526250388321,
+              "n": 140,
+              "negative_n": 29,
+              "positive_n": 111
+            },
+            "h2": {
+              "auc": 0.8070515304145679,
+              "n": 292,
+              "negative_n": 203,
+              "positive_n": 89
+            },
+            "h3": {
+              "auc": 0.8622981366459627,
+              "n": 442,
+              "negative_n": 350,
+              "positive_n": 92
+            },
+            "h4": {
+              "auc": 0.8680252111967373,
+              "n": 737,
+              "negative_n": 614,
+              "positive_n": 123
+            }
+          },
+          "shuffle_labels": false,
+          "sidecar_path": "results/stage2/transcoder_components_exact/gemma3_4b_infer_property_L22_layer_22_width_262k_l0_small_affine_top128_full.example_ids.jsonl",
+          "solver": "liblinear",
+          "source_file": "results/full/with_errortype/gemma3_4b_infer_property.jsonl",
+          "split_counts": {
+            "test": {
+              "n": 1611,
+              "negative_n": 1196,
+              "positive_n": 415
+            },
+            "train": {
+              "n": 7507,
+              "negative_n": 5570,
+              "positive_n": 1937
+            },
+            "val": {
+              "n": 1603,
+              "negative_n": 1188,
+              "positive_n": 415
+            }
+          },
+          "split_mode": "s1",
+          "status": "ok",
+          "test_auc": 0.8702905266551155,
+          "test_auc_ci": null,
+          "val_auc": 0.8990629183400267
+        },
+        "latent": {
+          "activation_path": "results/stage2/transcoder_components_exact/gemma3_4b_infer_property_L22_layer_22_width_262k_l0_small_affine_top128_latent.safetensors",
+          "best_c": 1.0,
+          "c_values": [
+            1.0
+          ],
+          "d_model": 2560,
+          "drop_parse_failed": true,
+          "input_rows": 11000,
+          "kept_rows": 10721,
+          "max_iter": 2000,
+          "per_height": {
+            "h1": {
+              "auc": 0.762659210935073,
+              "n": 140,
+              "negative_n": 29,
+              "positive_n": 111
+            },
+            "h2": {
+              "auc": 0.6557259091160679,
+              "n": 292,
+              "negative_n": 203,
+              "positive_n": 89
+            },
+            "h3": {
+              "auc": 0.7413975155279502,
+              "n": 442,
+              "negative_n": 350,
+              "positive_n": 92
+            },
+            "h4": {
+              "auc": 0.7611821720823072,
+              "n": 737,
+              "negative_n": 614,
+              "positive_n": 123
+            }
+          },
+          "shuffle_labels": false,
+          "sidecar_path": "results/stage2/transcoder_components_exact/gemma3_4b_infer_property_L22_layer_22_width_262k_l0_small_affine_top128_latent.example_ids.jsonl",
+          "solver": "liblinear",
+          "source_file": "results/full/with_errortype/gemma3_4b_infer_property.jsonl",
+          "split_counts": {
+            "test": {
+              "n": 1611,
+              "negative_n": 1196,
+              "positive_n": 415
+            },
+            "train": {
+              "n": 7507,
+              "negative_n": 5570,
+              "positive_n": 1937
+            },
+            "val": {
+              "n": 1603,
+              "negative_n": 1188,
+              "positive_n": 415
+            }
+          },
+          "split_mode": "s1",
+          "status": "ok",
+          "test_auc": 0.7904158439779183,
+          "test_auc_ci": null,
+          "val_auc": 0.82990548050789
+        },
+        "skip": {
+          "activation_path": "results/stage2/transcoder_components_exact/gemma3_4b_infer_property_L22_layer_22_width_262k_l0_small_affine_top128_skip.safetensors",
+          "best_c": 1.0,
+          "c_values": [
+            1.0
+          ],
+          "d_model": 2560,
+          "drop_parse_failed": true,
+          "input_rows": 11000,
+          "kept_rows": 10721,
+          "max_iter": 2000,
+          "per_height": {
+            "h1": {
+              "auc": 0.8018018018018018,
+              "n": 140,
+              "negative_n": 29,
+              "positive_n": 111
+            },
+            "h2": {
+              "auc": 0.8141362705485139,
+              "n": 292,
+              "negative_n": 203,
+              "positive_n": 89
+            },
+            "h3": {
+              "auc": 0.8599068322981366,
+              "n": 442,
+              "negative_n": 350,
+              "positive_n": 92
+            },
+            "h4": {
+              "auc": 0.863483488255078,
+              "n": 737,
+              "negative_n": 614,
+              "positive_n": 123
+            }
+          },
+          "shuffle_labels": false,
+          "sidecar_path": "results/stage2/transcoder_components_exact/gemma3_4b_infer_property_L22_layer_22_width_262k_l0_small_affine_top128_skip.example_ids.jsonl",
+          "solver": "liblinear",
+          "source_file": "results/full/with_errortype/gemma3_4b_infer_property.jsonl",
+          "split_counts": {
+            "test": {
+              "n": 1611,
+              "negative_n": 1196,
+              "positive_n": 415
+            },
+            "train": {
+              "n": 7507,
+              "negative_n": 5570,
+              "positive_n": 1937
+            },
+            "val": {
+              "n": 1603,
+              "negative_n": 1188,
+              "positive_n": 415
+            }
+          },
+          "split_mode": "s1",
+          "status": "ok",
+          "test_auc": 0.8688197606479429,
+          "test_auc_ci": null,
+          "val_auc": 0.889280353738185
+        }
+      },
+      "sparse_decode_check": {
+        "max_abs_diff": 8.0,
+        "mean_abs_diff": 0.03647083416581154,
+        "rows": 4
+      },
+      "target_prefix": "results/stage2/activations/gemma3_4b_infer_property_L22_mlp_out_hook"
+    },
+    "infer_subtype": {
+      "component_prefixes": {
+        "error": "results/stage2/transcoder_components_exact/gemma3_4b_infer_subtype_L22_layer_22_width_262k_l0_small_affine_top128_error",
+        "full": "results/stage2/transcoder_components_exact/gemma3_4b_infer_subtype_L22_layer_22_width_262k_l0_small_affine_top128_full",
+        "latent": "results/stage2/transcoder_components_exact/gemma3_4b_infer_subtype_L22_layer_22_width_262k_l0_small_affine_top128_latent",
+        "skip": "results/stage2/transcoder_components_exact/gemma3_4b_infer_subtype_L22_layer_22_width_262k_l0_small_affine_top128_skip"
+      },
+      "component_stats_vs_target": {
+        "full": {
+          "elements": 28160000,
+          "energy_explained": 0.893064441442791,
+          "global_cosine": 0.945092819579362,
+          "mean_error_l2": 1729.178159090909,
+          "mean_raw_l2": 5286.285170454546,
+          "mean_reconstruction_l2": 4933.0159886363635,
+          "mean_row_cosine": 0.9450300084894354,
+          "mse": 1171.7056511363637,
+          "relative_error_l2": 0.3270100282211679,
+          "rmse": 34.230186256232436,
+          "rows": 11000
+        },
+        "latent": {
+          "elements": 28160000,
+          "energy_explained": 0.23867280621567433,
+          "global_cosine": 0.550734363840367,
+          "mean_error_l2": 4612.144443181818,
+          "mean_raw_l2": 5286.285170454546,
+          "mean_reconstruction_l2": 1558.8236931818183,
+          "mean_row_cosine": 0.5392951812744141,
+          "mse": 8341.952736363637,
+          "relative_error_l2": 0.8725406545166395,
+          "rmse": 91.33429113078853,
+          "rows": 11000
+        },
+        "skip": {
+          "elements": 28160000,
+          "energy_explained": 0.813407635672144,
+          "global_cosine": 0.9097892611126133,
+          "mean_error_l2": 2282.572434659091,
+          "mean_raw_l2": 5286.285170454546,
+          "mean_reconstruction_l2": 4178.619673295455,
+          "mean_row_cosine": 0.9100568930886008,
+          "mse": 2044.5147590909091,
+          "relative_error_l2": 0.43196338308687227,
+          "rmse": 45.21631076382624,
+          "rows": 11000
+        }
+      },
+      "elapsed_seconds": 2.265876531600952,
+      "feature_prefix": "results/stage2/sae_features/gemma3_4b_infer_subtype_L22_mlp_in_weighted_layer_22_width_262k_l0_small_affine_top128",
+      "input_prefix": "results/stage2/activations/gemma3_4b_infer_subtype_L22_mlp_in_weighted",
+      "probes": {
+        "error": {
+          "activation_path": "results/stage2/transcoder_components_exact/gemma3_4b_infer_subtype_L22_layer_22_width_262k_l0_small_affine_top128_error.safetensors",
+          "best_c": 1.0,
+          "c_values": [
+            1.0
+          ],
+          "d_model": 2560,
+          "drop_parse_failed": true,
+          "input_rows": 11000,
+          "kept_rows": 10956,
+          "max_iter": 2000,
+          "per_height": {
+            "h1": {
+              "auc": 0.8276679841897233,
+              "n": 148,
+              "negative_n": 33,
+              "positive_n": 115
+            },
+            "h2": {
+              "auc": 0.8536664856056491,
+              "n": 298,
+              "negative_n": 263,
+              "positive_n": 35
+            },
+            "h3": {
+              "auc": 0.9653875094055681,
+              "n": 449,
+              "negative_n": 443,
+              "positive_n": 6
+            },
+            "h4": {
+              "auc": 0.7379350124975966,
+              "n": 750,
+              "negative_n": 743,
+              "positive_n": 7
+            }
+          },
+          "shuffle_labels": false,
+          "sidecar_path": "results/stage2/transcoder_components_exact/gemma3_4b_infer_subtype_L22_layer_22_width_262k_l0_small_affine_top128_error.example_ids.jsonl",
+          "solver": "liblinear",
+          "source_file": "results/full/with_errortype/gemma3_4b_infer_subtype.jsonl",
+          "split_counts": {
+            "test": {
+              "n": 1645,
+              "negative_n": 1482,
+              "positive_n": 163
+            },
+            "train": {
+              "n": 7668,
+              "negative_n": 6908,
+              "positive_n": 760
+            },
+            "val": {
+              "n": 1643,
+              "negative_n": 1480,
+              "positive_n": 163
+            }
+          },
+          "split_mode": "s1",
+          "status": "ok",
+          "test_auc": 0.9546873318264988,
+          "test_auc_ci": null,
+          "val_auc": 0.9354087216050406
+        },
+        "full": {
+          "activation_path": "results/stage2/transcoder_components_exact/gemma3_4b_infer_subtype_L22_layer_22_width_262k_l0_small_affine_top128_full.safetensors",
+          "best_c": 1.0,
+          "c_values": [
+            1.0
+          ],
+          "d_model": 2560,
+          "drop_parse_failed": true,
+          "input_rows": 11000,
+          "kept_rows": 10956,
+          "max_iter": 2000,
+          "per_height": {
+            "h1": {
+              "auc": 0.8065876152832675,
+              "n": 148,
+              "negative_n": 33,
+              "positive_n": 115
+            },
+            "h2": {
+              "auc": 0.8712656165127648,
+              "n": 298,
+              "negative_n": 263,
+              "positive_n": 35
+            },
+            "h3": {
+              "auc": 0.9571106094808126,
+              "n": 449,
+              "negative_n": 443,
+              "positive_n": 6
+            },
+            "h4": {
+              "auc": 0.6883291674677946,
+              "n": 750,
+              "negative_n": 743,
+              "positive_n": 7
+            }
+          },
+          "shuffle_labels": false,
+          "sidecar_path": "results/stage2/transcoder_components_exact/gemma3_4b_infer_subtype_L22_layer_22_width_262k_l0_small_affine_top128_full.example_ids.jsonl",
+          "solver": "liblinear",
+          "source_file": "results/full/with_errortype/gemma3_4b_infer_subtype.jsonl",
+          "split_counts": {
+            "test": {
+              "n": 1645,
+              "negative_n": 1482,
+              "positive_n": 163
+            },
+            "train": {
+              "n": 7668,
+              "negative_n": 6908,
+              "positive_n": 760
+            },
+            "val": {
+              "n": 1643,
+              "negative_n": 1480,
+              "positive_n": 163
+            }
+          },
+          "split_mode": "s1",
+          "status": "ok",
+          "test_auc": 0.9554821456661948,
+          "test_auc_ci": null,
+          "val_auc": 0.9268114740507378
+        },
+        "latent": {
+          "activation_path": "results/stage2/transcoder_components_exact/gemma3_4b_infer_subtype_L22_layer_22_width_262k_l0_small_affine_top128_latent.safetensors",
+          "best_c": 1.0,
+          "c_values": [
+            1.0
+          ],
+          "d_model": 2560,
+          "drop_parse_failed": true,
+          "input_rows": 11000,
+          "kept_rows": 10956,
+          "max_iter": 2000,
+          "per_height": {
+            "h1": {
+              "auc": 0.7860342555994729,
+              "n": 148,
+              "negative_n": 33,
+              "positive_n": 115
+            },
+            "h2": {
+              "auc": 0.7983704508419338,
+              "n": 298,
+              "negative_n": 263,
+              "positive_n": 35
+            },
+            "h3": {
+              "auc": 0.7144469525959368,
+              "n": 449,
+              "negative_n": 443,
+              "positive_n": 6
+            },
+            "h4": {
+              "auc": 0.8706018073447415,
+              "n": 750,
+              "negative_n": 743,
+              "positive_n": 7
+            }
+          },
+          "shuffle_labels": false,
+          "sidecar_path": "results/stage2/transcoder_components_exact/gemma3_4b_infer_subtype_L22_layer_22_width_262k_l0_small_affine_top128_latent.example_ids.jsonl",
+          "solver": "liblinear",
+          "source_file": "results/full/with_errortype/gemma3_4b_infer_subtype.jsonl",
+          "split_counts": {
+            "test": {
+              "n": 1645,
+              "negative_n": 1482,
+              "positive_n": 163
+            },
+            "train": {
+              "n": 7668,
+              "negative_n": 6908,
+              "positive_n": 760
+            },
+            "val": {
+              "n": 1643,
+              "negative_n": 1480,
+              "positive_n": 163
+            }
+          },
+          "split_mode": "s1",
+          "status": "ok",
+          "test_auc": 0.9536399990064828,
+          "test_auc_ci": null,
+          "val_auc": 0.9365942629746311
+        },
+        "skip": {
+          "activation_path": "results/stage2/transcoder_components_exact/gemma3_4b_infer_subtype_L22_layer_22_width_262k_l0_small_affine_top128_skip.safetensors",
+          "best_c": 1.0,
+          "c_values": [
+            1.0
+          ],
+          "d_model": 2560,
+          "drop_parse_failed": true,
+          "input_rows": 11000,
+          "kept_rows": 10956,
+          "max_iter": 2000,
+          "per_height": {
+            "h1": {
+              "auc": 0.8487483530961791,
+              "n": 148,
+              "negative_n": 33,
+              "positive_n": 115
+            },
+            "h2": {
+              "auc": 0.8723519826181423,
+              "n": 298,
+              "negative_n": 263,
+              "positive_n": 35
+            },
+            "h3": {
+              "auc": 0.9661399548532732,
+              "n": 449,
+              "negative_n": 443,
+              "positive_n": 6
+            },
+            "h4": {
+              "auc": 0.7164006921745818,
+              "n": 750,
+              "negative_n": 743,
+              "positive_n": 7
+            }
+          },
+          "shuffle_labels": false,
+          "sidecar_path": "results/stage2/transcoder_components_exact/gemma3_4b_infer_subtype_L22_layer_22_width_262k_l0_small_affine_top128_skip.example_ids.jsonl",
+          "solver": "liblinear",
+          "source_file": "results/full/with_errortype/gemma3_4b_infer_subtype.jsonl",
+          "split_counts": {
+            "test": {
+              "n": 1645,
+              "negative_n": 1482,
+              "positive_n": 163
+            },
+            "train": {
+              "n": 7668,
+              "negative_n": 6908,
+              "positive_n": 760
+            },
+            "val": {
+              "n": 1643,
+              "negative_n": 1480,
+              "positive_n": 163
+            }
+          },
+          "split_mode": "s1",
+          "status": "ok",
+          "test_auc": 0.9594479355538446,
+          "test_auc_ci": null,
+          "val_auc": 0.9345589454485159
+        }
+      },
+      "sparse_decode_check": {
+        "max_abs_diff": 0.5,
+        "mean_abs_diff": 0.03640156611800194,
+        "rows": 4
+      },
+      "target_prefix": "results/stage2/activations/gemma3_4b_infer_subtype_L22_mlp_out_hook"
+    }
+  },
+  "reuse_existing": false,
+  "schema_version": 1,
+  "seed": 20260427,
+  "skip_orientation": "untransposed",
+  "skip_target_probe": true,
+  "solver": "liblinear",
+  "split_family": "s1",
+  "splits_path": "results/stage2/splits.jsonl",
+  "target_activation_dir": "results/stage2/activations",
+  "target_activation_site": "mlp_out_hook",
+  "tasks": [
+    "infer_property",
+    "infer_subtype"
+  ],
+  "top_k": 128,
+  "transcoder_id": "layer_22_width_262k_l0_small_affine",
+  "transcoder_release": "gemma-scope-2-4b-it-transcoders-all",
+  "verify_dense_rows": 4
+}

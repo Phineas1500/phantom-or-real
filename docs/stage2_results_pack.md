@@ -496,3 +496,21 @@ fail to reconstruct. Corrected exact-hook transcoders and multi-layer sparse
 concats improve the sparse-feature picture but still trail raw activations.
 Neuronpedia-facing top features remain generic rather than clean
 ontology-reasoning mechanisms, and causal steering is currently inconclusive.
+
+## 4B Comparison Table
+
+Gemma 3 4B mirrors the 27B pattern on property: raw L22 remains clearly stronger than individual sparse dictionaries and sparse concat. On subtype, the sparse concat reaches or slightly exceeds raw L22, but subtype h3/h4 have very small positive counts, so the aggregate should be interpreted with that caveat.
+
+| Method | S1 property | S1 subtype | S3 property | S3 subtype |
+| --- | ---: | ---: | ---: | ---: |
+| Raw L22 | 0.903 | 0.974 | 0.906 | 0.972 |
+| Resid SAE L22 16K | 0.808 | 0.956 | 0.820 | 0.965 |
+| Resid SAE L22 262K | 0.808 | 0.964 | 0.819 | 0.971 |
+| MLP-out SAE L22 16K exact | 0.812 | 0.961 | 0.824 | 0.969 |
+| Transcoder L22 16K affine exact | 0.805 | 0.957 | 0.816 | 0.970 |
+| Transcoder L22 262K affine exact | 0.804 | 0.963 | 0.823 | 0.969 |
+| Transcoder L22 262K big-affine top512 exact | 0.855 | 0.969 | 0.874 | 0.977 |
+| L20+L22 all-sparse concat | 0.842 | 0.969 | 0.850 | 0.976 |
+| Dense-active L20+L22 all-sparse | 0.842 | 0.967 | 0.852 | 0.976 |
+
+D.8 big-affine exists for Gemma Scope 2 4B and improves property AUC over the small-L0 affine transcoders, while subtype remains comparable to the strongest sparse concat result.

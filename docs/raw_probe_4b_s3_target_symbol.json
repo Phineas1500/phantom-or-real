@@ -1,0 +1,341 @@
+{
+  "best_by_task": {
+    "infer_property": {
+      "layer": "L22",
+      "test_auc": 0.906025979520366,
+      "val_auc": 0.898361961096576
+    },
+    "infer_subtype": {
+      "layer": "L22",
+      "test_auc": 0.9720268331459151,
+      "val_auc": 0.9680183097983331
+    }
+  },
+  "created_at_utc": "2026-04-30T02:40:38.471708+00:00",
+  "layers": [
+    11,
+    20,
+    22
+  ],
+  "model_key": "gemma3_4b",
+  "model_name": "gemma3-4b",
+  "results": {
+    "infer_property": {
+      "L11": {
+        "b0_reference": {
+          "feature_set": "b0_namefreq",
+          "test_auc": 0.6767151889312827
+        },
+        "best_c": 0.01,
+        "delta_over_best_b0": 0.11273396062332053,
+        "n_test": 1607,
+        "n_train": 7509,
+        "n_val": 1605,
+        "per_height": {
+          "h1": {
+            "auc": 0.5949074074074074,
+            "n": 144,
+            "negative_n": 36,
+            "positive_n": 108
+          },
+          "h2": {
+            "auc": 0.6567241978454766,
+            "n": 283,
+            "negative_n": 194,
+            "positive_n": 89
+          },
+          "h3": {
+            "auc": 0.7644898179657538,
+            "n": 465,
+            "negative_n": 363,
+            "positive_n": 102
+          },
+          "h4": {
+            "auc": 0.7670547824110323,
+            "n": 715,
+            "negative_n": 578,
+            "positive_n": 137
+          }
+        },
+        "positive_n_test": 436,
+        "positive_n_train": 1918,
+        "positive_n_val": 413,
+        "status": "ok",
+        "test_auc": 0.7894491495546032,
+        "test_auc_ci": {
+          "alpha": 0.05,
+          "high": 0.8131993974783785,
+          "low": 0.765298732298311,
+          "mean": 0.7891087158916548,
+          "samples_requested": 1000,
+          "samples_used": 1000
+        },
+        "val_auc": 0.7859072590474023
+      },
+      "L20": {
+        "b0_reference": {
+          "feature_set": "b0_namefreq",
+          "test_auc": 0.6767151889312827
+        },
+        "best_c": 0.01,
+        "delta_over_best_b0": 0.20069492866600347,
+        "n_test": 1607,
+        "n_train": 7509,
+        "n_val": 1605,
+        "per_height": {
+          "h1": {
+            "auc": 0.7049897119341565,
+            "n": 144,
+            "negative_n": 36,
+            "positive_n": 108
+          },
+          "h2": {
+            "auc": 0.821440982277308,
+            "n": 283,
+            "negative_n": 194,
+            "positive_n": 89
+          },
+          "h3": {
+            "auc": 0.871387673526711,
+            "n": 465,
+            "negative_n": 363,
+            "positive_n": 102
+          },
+          "h4": {
+            "auc": 0.8706589548657591,
+            "n": 715,
+            "negative_n": 578,
+            "positive_n": 137
+          }
+        },
+        "positive_n_test": 436,
+        "positive_n_train": 1918,
+        "positive_n_val": 413,
+        "status": "ok",
+        "test_auc": 0.8774101175972862,
+        "test_auc_ci": {
+          "alpha": 0.05,
+          "high": 0.8950907219360282,
+          "low": 0.8594123970394411,
+          "mean": 0.8775725338571884,
+          "samples_requested": 1000,
+          "samples_used": 1000
+        },
+        "val_auc": 0.8720789931260867
+      },
+      "L22": {
+        "b0_reference": {
+          "feature_set": "b0_namefreq",
+          "test_auc": 0.6767151889312827
+        },
+        "best_c": 0.01,
+        "delta_over_best_b0": 0.22931079058908332,
+        "n_test": 1607,
+        "n_train": 7509,
+        "n_val": 1605,
+        "per_height": {
+          "h1": {
+            "auc": 0.7029320987654322,
+            "n": 144,
+            "negative_n": 36,
+            "positive_n": 108
+          },
+          "h2": {
+            "auc": 0.8815012162631761,
+            "n": 283,
+            "negative_n": 194,
+            "positive_n": 89
+          },
+          "h3": {
+            "auc": 0.9031761464916545,
+            "n": 465,
+            "negative_n": 363,
+            "positive_n": 102
+          },
+          "h4": {
+            "auc": 0.9035561841739701,
+            "n": 715,
+            "negative_n": 578,
+            "positive_n": 137
+          }
+        },
+        "positive_n_test": 436,
+        "positive_n_train": 1918,
+        "positive_n_val": 413,
+        "status": "ok",
+        "test_auc": 0.906025979520366,
+        "test_auc_ci": {
+          "alpha": 0.05,
+          "high": 0.9202559614794226,
+          "low": 0.8907938402607525,
+          "mean": 0.9058899908571303,
+          "samples_requested": 1000,
+          "samples_used": 1000
+        },
+        "val_auc": 0.898361961096576
+      }
+    },
+    "infer_subtype": {
+      "L11": {
+        "b0_reference": {
+          "feature_set": "b0_prompt",
+          "test_auc": 0.9452654232424677
+        },
+        "best_c": 0.01,
+        "delta_over_best_b0": -0.002983830315250513,
+        "n_test": 1687,
+        "n_train": 7620,
+        "n_val": 1649,
+        "per_height": {
+          "h1": {
+            "auc": 0.39441660701503223,
+            "n": 160,
+            "negative_n": 33,
+            "positive_n": 127
+          },
+          "h2": {
+            "auc": 0.6454566262302587,
+            "n": 291,
+            "negative_n": 257,
+            "positive_n": 34
+          },
+          "h3": {
+            "auc": 0.7681159420289856,
+            "n": 488,
+            "negative_n": 483,
+            "positive_n": 5
+          },
+          "h4": {
+            "auc": 0.6559139784946237,
+            "n": 748,
+            "negative_n": 744,
+            "positive_n": 4
+          }
+        },
+        "positive_n_test": 170,
+        "positive_n_train": 761,
+        "positive_n_val": 155,
+        "status": "ok",
+        "test_auc": 0.9422815929272171,
+        "test_auc_ci": {
+          "alpha": 0.05,
+          "high": 0.9606861279255497,
+          "low": 0.9213914424588471,
+          "mean": 0.942449710240139,
+          "samples_requested": 1000,
+          "samples_used": 1000
+        },
+        "val_auc": 0.9285054195275726
+      },
+      "L20": {
+        "b0_reference": {
+          "feature_set": "b0_prompt",
+          "test_auc": 0.9452654232424677
+        },
+        "best_c": 0.01,
+        "delta_over_best_b0": 0.02366318973205639,
+        "n_test": 1687,
+        "n_train": 7620,
+        "n_val": 1649,
+        "per_height": {
+          "h1": {
+            "auc": 0.6590312574564542,
+            "n": 160,
+            "negative_n": 33,
+            "positive_n": 127
+          },
+          "h2": {
+            "auc": 0.850766765850309,
+            "n": 291,
+            "negative_n": 257,
+            "positive_n": 34
+          },
+          "h3": {
+            "auc": 0.8786749482401657,
+            "n": 488,
+            "negative_n": 483,
+            "positive_n": 5
+          },
+          "h4": {
+            "auc": 0.9022177419354839,
+            "n": 748,
+            "negative_n": 744,
+            "positive_n": 4
+          }
+        },
+        "positive_n_test": 170,
+        "positive_n_train": 761,
+        "positive_n_val": 155,
+        "status": "ok",
+        "test_auc": 0.968928612974524,
+        "test_auc_ci": {
+          "alpha": 0.05,
+          "high": 0.9778642770966204,
+          "low": 0.9587860652654416,
+          "mean": 0.9690247306535423,
+          "samples_requested": 1000,
+          "samples_used": 1000
+        },
+        "val_auc": 0.9680614932849678
+      },
+      "L22": {
+        "b0_reference": {
+          "feature_set": "b0_prompt",
+          "test_auc": 0.9452654232424677
+        },
+        "best_c": 0.01,
+        "delta_over_best_b0": 0.026761409903447442,
+        "n_test": 1687,
+        "n_train": 7620,
+        "n_val": 1649,
+        "per_height": {
+          "h1": {
+            "auc": 0.5895967549510857,
+            "n": 160,
+            "negative_n": 33,
+            "positive_n": 127
+          },
+          "h2": {
+            "auc": 0.8791485465781643,
+            "n": 291,
+            "negative_n": 257,
+            "positive_n": 34
+          },
+          "h3": {
+            "auc": 0.9333333333333333,
+            "n": 488,
+            "negative_n": 483,
+            "positive_n": 5
+          },
+          "h4": {
+            "auc": 0.9206989247311828,
+            "n": 748,
+            "negative_n": 744,
+            "positive_n": 4
+          }
+        },
+        "positive_n_test": 170,
+        "positive_n_train": 761,
+        "positive_n_val": 155,
+        "status": "ok",
+        "test_auc": 0.9720268331459151,
+        "test_auc_ci": {
+          "alpha": 0.05,
+          "high": 0.9794588137855997,
+          "low": 0.9635210800411826,
+          "mean": 0.972003243095957,
+          "samples_requested": 1000,
+          "samples_used": 1000
+        },
+        "val_auc": 0.9680183097983331
+      }
+    }
+  },
+  "schema_version": 1,
+  "source": "results/stage2/probe_auc.json",
+  "split_family": "s3",
+  "tasks": [
+    "infer_property",
+    "infer_subtype"
+  ]
+}
