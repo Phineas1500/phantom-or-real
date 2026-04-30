@@ -150,7 +150,10 @@ SAEs can still miss the signal that matters for prediction.
   labeling aid. The best candidates look like common-superclass/direct-
   generalization/fan-in features with visible height/template confounds, not
   clean causal reasoning mechanisms yet.
-- Steering pilot is null/inconclusive, not a causal success claim.
+- First steering pilot is null/inconclusive, not a causal success claim. The
+  refreshed steering protocol compares a Cox-style dense raw probe direction
+  against selected big-L0 decoder-row interventions, using decode-step steering
+  and controls.
 
 ## 6. Discussion
 
@@ -161,10 +164,11 @@ SAEs can still miss the signal that matters for prediction.
   mechanistic claims: high reconstruction energy does not imply retention of a
   behaviorally relevant direction.
 - S3 heldout target symbols reduce but do not eliminate lexical-confound risk.
-- Future work: name-scrambled regeneration, a stronger steering protocol, and
-  feature-level falsification for shortlisted big-L0 candidates.
-- Near-term finishing step: run a small learned-feature steering pilot only for
-  the audited candidates, with `72374` treated as a surface-confound control.
+- Future work: name-scrambled regeneration and broader feature-level
+  falsification for shortlisted big-L0 candidates.
+- Near-term finishing step: run the small learned-feature steering pilots, plus
+  the raw-direction comparator, with `72374` treated as a surface-confound
+  control.
 
 ## Core Tables/Figures
 

@@ -168,6 +168,11 @@ Current objective:
   remain visibly height/template-confounded. Use `35036`, `75345`, and `187589`
   as the most defensible first steering candidates, and `72374` as a
   surface-confound control.
+- Next steering decision: include a raw L45 probe-direction steering rerun as a
+  Cox-style comparator, but keep the main project question focused on learned
+  dictionary features. The raw object is a dense correctness direction, not a
+  feature ID. It is useful as a positive/control reference for whether our task
+  is steerable at all.
 
 ## Active Scope
 
@@ -393,9 +398,23 @@ L45 raw-direction interventions at +/-2 SD, and orthogonal controls. It caused
 zero strong-correctness flips; the one output change also appeared under
 orthogonal control. Treat this as a plumbing/null result.
 
-Do not spend more project time on steering unless the report specifically needs
-a stronger null. If needed, the next design should fix the generation length
-protocol and test all-token or decode-step steering with a small strength sweep.
+The next steering design should fix the first pilot's two biggest limitations:
+prompt-only intervention and short generations. Use decode-step steering
+(`last_token_each_forward`) with `max_new_tokens=96`, small strength sweeps, and
+matched controls.
+
+Prepared jobs:
+
+- `scripts/stage2_steer_raw_27b_L45_property_decode_sweep.sbatch`: raw L45
+  correctness-direction comparator, S1 property, heights 3/4, 8 balanced test
+  rows, strengths `+/-0.5` and `+/-1` projection SD, orthogonal controls.
+- `scripts/stage2_steer_big_l0_features_27b_L45_property_pilot.sbatch`:
+  learned-feature pilot for property features `35036`, `75345`, and `72374`,
+  using big-L0 decoder rows at `blocks.45.hook_mlp_out`, mean nonzero activation
+  scaling, strengths `+/-0.25`, and random-feature controls.
+- `scripts/stage2_steer_big_l0_features_27b_L45_subtype_pilot.sbatch`:
+  learned-feature pilot for subtype features `35036`, `187589`, and `72374`,
+  with the same protocol.
 
 ## Remaining Work
 

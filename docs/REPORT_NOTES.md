@@ -1216,3 +1216,21 @@ exact-16K, and L30 runs below. Those later sections supersede this queue.
   fan-in, and wrong-direction/exhaustive hypothesis risk. They are not clean
   causal reasoning features yet because height and prompt-template confounds
   remain visible.
+
+#### Steering Protocol Refresh
+
+- Decided to include raw L45 probe-direction steering as a Cox-style comparator,
+  not as the main project endpoint. Cox et al. steer a dense linear probe
+  direction; our proposal's central question is stricter: whether learned sparse
+  dictionary features offer an interpretable and causal handle.
+- Added `scripts/stage2_steer_transcoder_features.py`, which steers affine
+  transcoder features by adding selected decoder rows to the exact target site
+  `blocks.45.hook_mlp_out` during generation.
+- Added three queue scripts: raw property decode-step sweep
+  (`scripts/stage2_steer_raw_27b_L45_property_decode_sweep.sbatch`), property
+  big-L0 feature pilot (`scripts/stage2_steer_big_l0_features_27b_L45_property_pilot.sbatch`),
+  and subtype big-L0 feature pilot (`scripts/stage2_steer_big_l0_features_27b_L45_subtype_pilot.sbatch`).
+- The learned-feature pilots use decode-step steering, `max_new_tokens=96`, mean
+  nonzero feature activation scaling, strengths `+/-0.25`, and random decoder
+  feature controls. Property features are `35036`, `75345`, and `72374`;
+  subtype features are `35036`, `187589`, and `72374`.

@@ -96,3 +96,17 @@ the pilot small and interpretable:
 For each feature, use both amplify and suppress conditions, compare against
 random same-density or coefficient-matched controls, and report this as
 candidate causal validation rather than proof of a discovered reasoning feature.
+
+Prepared steering scripts:
+
+- `scripts/stage2_steer_transcoder_features.py`: generic learned-feature
+  steering driver for affine transcoders. It adds selected decoder rows to
+  `blocks.45.hook_mlp_out`, scaled by cached feature activations.
+- `scripts/stage2_steer_big_l0_features_27b_L45_property_pilot.sbatch`: property
+  pilot for `35036`, `75345`, and `72374`.
+- `scripts/stage2_steer_big_l0_features_27b_L45_subtype_pilot.sbatch`: subtype
+  pilot for `35036`, `187589`, and `72374`.
+- `scripts/stage2_steer_raw_27b_L45_property_decode_sweep.sbatch`: Cox-style
+  raw correctness-direction comparator. This is not a learned feature; it tests
+  whether the dense raw probe direction is causally useful under a stronger
+  decode-step protocol.
