@@ -744,6 +744,37 @@ def summarize_answer_rows(rows: list[dict[str, Any]]) -> dict[str, Any]:
     }
 
 
+def output_row_key(row: dict[str, Any]) -> tuple[int, str]:
+    return int(row["source_row_index"]), str(row["condition"])
+
+
+def load_resume_rows(
+    path: Path,
+    expected_keys: set[tuple[int, str]],
+) -> tuple[dict[tuple[int, str], dict[str, Any]], int, int]:
+    rows_by_key: dict[tuple[int, str], dict[str, Any]] = {}
+    malformed_rows = 0
+    ignored_rows = 0
+    if not path.exists():
+        return rows_by_key, malformed_rows, ignored_rows
+
+    with path.open() as f:
+        for line in f:
+            if not line.strip():
+                continue
+            try:
+                row = json.loads(line)
+                key = output_row_key(row)
+            except (json.JSONDecodeError, KeyError, TypeError, ValueError):
+                malformed_rows += 1
+                continue
+            if key not in expected_keys:
+                ignored_rows += 1
+                continue
+            rows_by_key[key] = row
+    return rows_by_key, malformed_rows, ignored_rows
+
+
 def build_arg_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser()
     parser.add_argument("--jsonl", type=Path, default=Path("results/full/with_errortype/gemma3_4b_infer_property.jsonl"))
@@ -799,6 +830,11 @@ def build_arg_parser() -> argparse.ArgumentParser:
         "--output",
         type=Path,
         default=Path("docs/answer_property_steering_4b_l22_polarity_decode_sweep.json"),
+    )
+    parser.add_argument(
+        "--resume",
+        action="store_true",
+        help="Skip completed (source_row_index, condition) rows already present in --out-jsonl.",
     )
     return parser
 
@@ -916,11 +952,52 @@ def main() -> int:
     print(f"using_hook={hook_name}", flush=True)
 
     args.out_jsonl.parent.mkdir(parents=True, exist_ok=True)
+    expected_keys = {
+        (int(row["row_index"]), condition.label)
+        for row in selected_rows
+        for condition in condition_plan
+    }
+    existing_rows_by_key: dict[tuple[int, str], dict[str, Any]] = {}
+    resume_malformed_rows = 0
+    resume_ignored_rows = 0
+    if args.resume:
+        existing_rows_by_key, resume_malformed_rows, resume_ignored_rows = load_resume_rows(
+            args.out_jsonl,
+            expected_keys,
+        )
+        print(
+            "resume: "
+            f"loaded={len(existing_rows_by_key)} malformed={resume_malformed_rows} "
+            f"ignored={resume_ignored_rows} expected={len(expected_keys)}",
+            flush=True,
+        )
+
     rows: list[dict[str, Any]] = []
     baseline_content_by_source: dict[int, AnswerContent] = {}
+    if existing_rows_by_key:
+        for stage1_row in selected_rows:
+            source_row_index = int(stage1_row["row_index"])
+            for condition in condition_plan:
+                existing_row = existing_rows_by_key.get((source_row_index, condition.label))
+                if existing_row is None:
+                    continue
+                rows.append(existing_row)
+                if condition.direction_kind is None:
+                    baseline_content_by_source[source_row_index] = AnswerContent(
+                        predicate=existing_row.get("parsed_predicate"),
+                        negated=existing_row.get("parsed_negated"),
+                    )
+
+        # Rewrite a valid, deduplicated prefix before appending new generations.
+        with args.out_jsonl.open("w") as fout:
+            for row in rows:
+                fout.write(json.dumps(row, ensure_ascii=False) + "\n")
+
     projection_std = float(direction["train_projection_std"])
-    with args.out_jsonl.open("w") as fout:
+    output_mode = "a" if args.resume else "w"
+    with args.out_jsonl.open(output_mode) as fout:
         for row_idx, stage1_row in enumerate(selected_rows, start=1):
+            source_row_index = int(stage1_row["row_index"])
             prompt_text = render_chat_text(
                 tokenizer,
                 system=stage1_row["system_prompt"],
@@ -938,6 +1015,19 @@ def main() -> int:
                 flush=True,
             )
             for condition in condition_plan:
+                row_key = (source_row_index, condition.label)
+                if row_key in existing_rows_by_key:
+                    existing_row = existing_rows_by_key[row_key]
+                    print(
+                        f"  {condition.label}: resume_skip "
+                        f"strong={existing_row['is_correct_strong']} "
+                        f"polarity={existing_row['parsed_negated']} "
+                        f"pred={existing_row['parsed_predicate']} "
+                        f"parse_failed={existing_row['parse_failed']}",
+                        flush=True,
+                    )
+                    continue
+
                 hook_state = {"calls": 0, "applications": 0}
                 if condition.direction_kind is None:
                     new_ids, reply = generate_one(
@@ -980,7 +1070,6 @@ def main() -> int:
                         )
 
                 score = score_reply(stage1_row, reply)
-                source_row_index = int(stage1_row["row_index"])
                 baseline_content = baseline_content_by_source.get(source_row_index)
                 answer_metrics = add_answer_metrics(
                     stage1_row=stage1_row,
@@ -1069,6 +1158,10 @@ def main() -> int:
             "n_ctx": args.n_ctx,
             "dtype": str(dtype),
             "load_mode": args.load_mode,
+            "resume": args.resume,
+            "resume_existing_rows": len(existing_rows_by_key),
+            "resume_malformed_rows": resume_malformed_rows,
+            "resume_ignored_rows": resume_ignored_rows,
         },
         "summary": steering_summary,
     }
