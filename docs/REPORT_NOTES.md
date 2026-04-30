@@ -1281,3 +1281,23 @@ exact-16K, and L30 runs below. Those later sections supersede this queue.
   top-activating correct/incorrect examples, name/height controls, and
   paraphrase or prompt-template variants. This fits the Ma-style caution
   better than launching another broad dictionary sweep.
+
+#### Sparse-Probe Bundle Steering Setup
+
+- Added `scripts/stage2_steer_sparse_probe_bundle.py` and the 27B property
+  wrapper `scripts/stage2_steer_sparse_bundle_27b_L45_property.sbatch`.
+  The script refits the split-aware sparse logistic probe on cached top-k
+  feature activations, selects top positive and negative train-active
+  coefficients after density filtering, combines their transcoder decoder rows
+  into one unit-norm direction, and scales steering by the train projection
+  standard deviation at the exact target site.
+- Initial real-data preflight on the L45 262K big-L0 property features selected
+  25 positive and 25 negative features with density in `[0.02, 0.50]`. The
+  refit chose `C=0.001` and reproduced the expected sparse-probe test AUC
+  (`0.853`). Decoder/projection preflight found bundle raw norm `0.355` and
+  target-site projection SD `122.37` over 6,988 train rows.
+- The prepared job compares bundle steering against shuffled-coefficient,
+  random-feature, and orthogonal controls at `+/-0.25` and `+/-0.5` projection
+  SD. This is the preferred next causal test because it targets a learned
+  sparse feature subspace rather than one feature or a dense raw correctness
+  direction.

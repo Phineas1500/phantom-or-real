@@ -98,6 +98,199 @@ def _positive_scores(model: Any, x: np.ndarray, indices: list[int]) -> list[floa
     return [float(score) for score in model.predict_proba(x[indices])[:, positive_index]]
 
 
+def _train_feature_densities(x: Any, train_indices: list[int], feature_ids: np.ndarray) -> np.ndarray:
+    from scipy import sparse
+
+    if feature_ids.size == 0:
+        return np.asarray([], dtype=np.float64)
+    if not train_indices:
+        raise ValueError("train_indices is empty")
+    train_x = x[train_indices]
+    if sparse.issparse(train_x):
+        columns = train_x[:, feature_ids].tocsc(copy=False)
+        nonzero = np.diff(columns.indptr)
+    else:
+        columns = np.asarray(train_x)[:, feature_ids]
+        nonzero = np.count_nonzero(columns, axis=0)
+    return nonzero.astype(np.float64) / float(len(train_indices))
+
+
+def train_sparse_probe_bundle_direction(
+    *,
+    x: Any,
+    labels: list[int],
+    splits: dict[str, list[int]],
+    c_values: tuple[float, ...] = DEFAULT_C_VALUES,
+    max_iter: int = 2000,
+    solver: str = "liblinear",
+    top_positive: int = 25,
+    top_negative: int = 25,
+    min_density: float = 0.02,
+    max_density: float = 0.50,
+) -> dict[str, Any]:
+    """Fit a sparse logistic probe and select top coefficients for steering.
+
+    The returned feature weights live in standardized probe space. This is the
+    most direct representation of what the sparse probe used to make its
+    prediction; callers may optionally use ``input_weight`` if they want weights
+    in raw feature-activation units instead.
+    """
+
+    from scipy import sparse
+
+    if top_positive < 0 or top_negative < 0:
+        raise ValueError("top_positive/top_negative must be non-negative")
+    if top_positive + top_negative <= 0:
+        raise ValueError("at least one selected feature is required")
+    if not 0.0 <= min_density <= max_density <= 1.0:
+        raise ValueError("expected 0 <= min_density <= max_density <= 1")
+
+    train_indices = splits["train"]
+    val_indices = splits["val"]
+    test_indices = splits["test"]
+    split_counts = {split: _class_counts(labels, indices) for split, indices in splits.items()}
+    if not _has_two_classes(labels, train_indices):
+        raise ValueError(f"training split has one class: {split_counts['train']}")
+    if not _has_two_classes(labels, val_indices):
+        raise ValueError(f"validation split has one class: {split_counts['val']}")
+    if not _has_two_classes(labels, test_indices):
+        raise ValueError(f"test split has one class: {split_counts['test']}")
+
+    if sparse.issparse(x):
+        active_feature_ids = np.unique(x[train_indices].nonzero()[1]).astype(np.int64, copy=False)
+    else:
+        active_feature_ids = np.arange(x.shape[1], dtype=np.int64)
+    if active_feature_ids.size == 0:
+        raise ValueError("train split has no active features")
+    x_fit = x[:, active_feature_ids]
+
+    best: dict[str, Any] | None = None
+    for c_value in c_values:
+        model = _make_logistic_pipeline(x_fit, c_value=c_value, max_iter=max_iter, solver=solver)
+        model.fit(x_fit[train_indices], [labels[idx] for idx in train_indices])
+        val_scores = _positive_scores(model, x_fit, val_indices)
+        val_auc = _safe_auc([labels[idx] for idx in val_indices], val_scores)
+        rank_auc = val_auc if val_auc is not None else -math.inf
+        if best is None or rank_auc > best["rank_auc"]:
+            best = {
+                "model": model,
+                "best_c": float(c_value),
+                "val_auc": val_auc,
+                "rank_auc": rank_auc,
+            }
+    if best is None:
+        raise ValueError("no C values provided")
+
+    model = best["model"]
+    scaler = model[0]
+    logreg = model[-1]
+    coef = np.asarray(logreg.coef_[0], dtype=np.float64)
+    scaler_scale = np.asarray(getattr(scaler, "scale_", np.ones_like(coef)), dtype=np.float64)
+    densities = _train_feature_densities(x, train_indices, active_feature_ids)
+    candidates: list[dict[str, Any]] = []
+    for fit_index, feature in enumerate(active_feature_ids):
+        weight = float(coef[fit_index])
+        if weight == 0.0:
+            continue
+        density = float(densities[fit_index])
+        if density < min_density or density > max_density:
+            continue
+        scale = float(scaler_scale[fit_index])
+        candidates.append(
+            {
+                "fit_feature_index": int(fit_index),
+                "feature": int(feature),
+                "standardized_coef": weight,
+                "abs_standardized_coef": abs(weight),
+                "input_weight": float(weight / scale) if scale != 0.0 else None,
+                "scaler_scale": scale,
+                "train_density": density,
+                "association": "correct" if weight > 0 else "incorrect",
+            }
+        )
+    positive = sorted(
+        (row for row in candidates if row["standardized_coef"] > 0),
+        key=lambda row: (-row["standardized_coef"], row["feature"]),
+    )[:top_positive]
+    negative = sorted(
+        (row for row in candidates if row["standardized_coef"] < 0),
+        key=lambda row: (row["standardized_coef"], row["feature"]),
+    )[:top_negative]
+    selected = []
+    for rank, row in enumerate(positive, start=1):
+        selected.append({**row, "rank_within_sign": rank})
+    for rank, row in enumerate(negative, start=1):
+        selected.append({**row, "rank_within_sign": rank})
+    if not selected:
+        raise ValueError("density filters removed all nonzero probe coefficients")
+
+    test_scores = _positive_scores(model, x_fit, test_indices)
+    test_auc = _safe_auc([labels[idx] for idx in test_indices], test_scores)
+    return {
+        "selected_features": selected,
+        "selected_feature_ids": [int(row["feature"]) for row in selected],
+        "selected_positive_n": len(positive),
+        "selected_negative_n": len(negative),
+        "candidate_feature_n": len(candidates),
+        "fit_active_feature_n": int(active_feature_ids.size),
+        "fit_active_feature_source": "train_nonzero",
+        "best_c": best["best_c"],
+        "c_values": list(c_values),
+        "max_iter": max_iter,
+        "solver": solver,
+        "val_auc": best["val_auc"],
+        "test_auc": test_auc,
+        "split_counts": split_counts,
+        "density_filter": {
+            "min_density": min_density,
+            "max_density": max_density,
+        },
+    }
+
+
+def build_weighted_decoder_bundle(
+    decoder_rows: dict[int, np.ndarray],
+    selected_features: list[dict[str, Any]],
+    *,
+    weight_key: str = "standardized_coef",
+) -> dict[str, Any]:
+    """Combine selected decoder rows into one unit-norm steering direction."""
+
+    if not selected_features:
+        raise ValueError("selected_features is empty")
+    raw: np.ndarray | None = None
+    components = []
+    for row in selected_features:
+        feature = int(row["feature"])
+        if feature not in decoder_rows:
+            raise KeyError(f"missing decoder row for feature {feature}")
+        weight_value = row.get(weight_key)
+        if weight_value is None:
+            raise ValueError(f"feature {feature} has no usable {weight_key}")
+        weight = float(weight_value)
+        vector = np.asarray(decoder_rows[feature], dtype=np.float64)
+        raw = weight * vector if raw is None else raw + weight * vector
+        components.append(
+            {
+                "feature": feature,
+                "weight": weight,
+                "decoder_row_norm": float(np.linalg.norm(vector)),
+            }
+        )
+    assert raw is not None
+    norm = float(np.linalg.norm(raw))
+    if norm == 0.0:
+        raise ValueError("weighted decoder bundle has zero norm")
+    unit = (raw / norm).astype(np.float32)
+    return {
+        "unit_direction": unit,
+        "raw_direction": raw.astype(np.float32),
+        "raw_norm": norm,
+        "weight_key": weight_key,
+        "components": components,
+    }
+
+
 def train_raw_probe_direction(
     *,
     activation_path: Path,

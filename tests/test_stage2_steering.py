@@ -12,10 +12,12 @@ ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
 from src.stage2_steering import (  # noqa: E402
+    build_weighted_decoder_bundle,
     make_condition_plan,
     make_orthogonal_unit_direction,
     select_balanced_stage1_rows,
     summarize_steering_rows,
+    train_sparse_probe_bundle_direction,
     train_raw_probe_direction,
 )
 
@@ -152,6 +154,66 @@ def test_train_raw_probe_direction_recovers_input_space_direction(tmp_path: Path
     assert direction["unit_direction"][0] > 0
     assert direction["unit_direction"][2] < 0
     assert float(torch.tensor(direction["unit_direction"]).norm()) == pytest.approx(1.0)
+
+
+def test_train_sparse_probe_bundle_direction_selects_signed_features() -> None:
+    from scipy import sparse
+
+    labels = [0, 1] * 60
+    rows = []
+    for idx, label in enumerate(labels):
+        rows.append(
+            [
+                float(label),
+                float(1 - label),
+                1.0 if idx % 10 == 0 else 0.0,
+                float(idx % 3 == 0),
+            ]
+        )
+    x = sparse.csr_matrix(rows, dtype=float)
+    splits = {
+        "train": list(range(80)),
+        "val": list(range(80, 100)),
+        "test": list(range(100, 120)),
+    }
+
+    bundle = train_sparse_probe_bundle_direction(
+        x=x,
+        labels=labels,
+        splits=splits,
+        c_values=(1.0,),
+        max_iter=500,
+        solver="liblinear",
+        top_positive=1,
+        top_negative=1,
+        min_density=0.01,
+        max_density=1.0,
+    )
+
+    assert bundle["test_auc"] == 1.0
+    selected = {row["feature"]: row for row in bundle["selected_features"]}
+    assert set(selected) == {0, 1}
+    assert selected[0]["association"] == "correct"
+    assert selected[1]["association"] == "incorrect"
+
+
+def test_build_weighted_decoder_bundle_normalizes_weighted_rows() -> None:
+    decoder_rows = {
+        10: torch.tensor([1.0, 0.0]).numpy(),
+        20: torch.tensor([0.0, 2.0]).numpy(),
+    }
+    selected = [
+        {"feature": 10, "standardized_coef": 3.0},
+        {"feature": 20, "standardized_coef": -4.0},
+    ]
+
+    bundle = build_weighted_decoder_bundle(decoder_rows, selected)
+
+    assert bundle["raw_direction"].tolist() == pytest.approx([3.0, -8.0])
+    assert float(torch.tensor(bundle["unit_direction"]).norm()) == pytest.approx(1.0)
+    assert bundle["unit_direction"].tolist() == pytest.approx(
+        [3.0 / (73.0**0.5), -8.0 / (73.0**0.5)]
+    )
 
 
 def test_summarize_steering_rows_counts_flips_vs_baseline() -> None:

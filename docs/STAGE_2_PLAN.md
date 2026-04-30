@@ -423,6 +423,12 @@ Prepared jobs:
 - `scripts/stage2_steer_big_l0_features_27b_L45_subtype_pilot.sbatch`:
   learned-feature pilot for subtype features `35036`, `187589`, and `72374`,
   with the same protocol.
+- `scripts/stage2_steer_sparse_bundle_27b_L45_property.sbatch`: sparse-probe
+  bundle pilot for the strongest L45 262K big-L0 property feature file. It
+  refits the split-aware sparse logistic probe, selects the top 25 positive and
+  top 25 negative train-active coefficients after density filtering, combines
+  their decoder rows into a unit direction, and compares against shuffled,
+  random-feature, and orthogonal controls.
 
 ## Remaining Work
 

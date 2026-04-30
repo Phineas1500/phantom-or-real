@@ -192,8 +192,8 @@ bundle direction derived from the sparse probe.
 
 Implementation target:
 
-Create a new script, e.g. `scripts/stage2_steer_sparse_probe_bundle.py`, by
-combining patterns from:
+Use `scripts/stage2_steer_sparse_probe_bundle.py`, which was added after the
+27B steering-null checkpoint. It combines patterns from:
 
 - `scripts/stage2_probe_sae.py`
 - `scripts/stage2_analyze_sae_features.py`
