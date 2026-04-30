@@ -1234,3 +1234,50 @@ exact-16K, and L30 runs below. Those later sections supersede this queue.
   nonzero feature activation scaling, strengths `+/-0.25`, and random decoder
   feature controls. Property features are `35036`, `75345`, and `72374`;
   subtype features are `35036`, `187589`, and `72374`.
+
+### 2026-04-30
+
+#### Steering Results And Interpretation
+
+- Property big-L0 feature steering job `451897` completed on 8 balanced S1
+  `infer_property` test rows. Baseline strong accuracy was `3/8`. Single-feature
+  steering at `+/-0.25` mean-nonzero scale produced no false-to-true flips.
+  Feature `72374` at positive strength and feature `75345` at negative strength
+  each produced one true-to-false change. Random-feature controls produced no
+  correctness flips. Interpretation: the shortlisted individual big-L0 features
+  are not established causal repair handles; if they matter causally, it is
+  likely as part of a bundle or through a more targeted intervention design.
+- Raw L45 decode-step comparator job `451898` completed on the same 8 balanced
+  S1 property rows, with `last_token_each_forward` steering at `+/-0.5` and
+  `+/-1` projection SD plus norm-matched orthogonal controls. The refit raw
+  direction was strongly predictive offline (`val_auc=0.8815`,
+  `test_auc=0.8965`), matching the main raw-probe story.
+- Despite high offline AUC, raw decode-step steering produced zero
+  strong-correctness flips at all tested strengths. Baseline strong accuracy
+  was `3/8`; all raw conditions stayed `3/8` with `1/8` parse failures.
+  Orthogonal controls produced one true-to-false change at `+1` SD and had
+  `1/8` to `2/8` parse failures. Interpretation: predictive correctness
+  directions and causal steering directions are separating. The raw direction
+  reads out success/failure but does not specify the property answer the model
+  should emit.
+- Report framing update: steering is now a negative/inconclusive causal result,
+  not merely pending. The strongest claim remains diagnostic/localization:
+  raw activations carry robust success/failure information, tested learned
+  dictionaries expose only part of it, and bounded steering has not found a
+  clean causal mechanism.
+
+#### Next Options After Steering Nulls
+
+- Best next default: stop broad AUC maximization and assemble the report around
+  the raw-vs-sparse gap, reconstruction-error result, exact-hook transcoder
+  improvements, big-L0 shortlist, and steering nulls.
+- If one more causal experiment is worth the GPU time, make it more targeted
+  than generic correctness steering. The strongest options are: train
+  answer/property-specific raw directions, steer a sparse-probe coefficient
+  bundle rather than individual features, or steer a reconstruction-error
+  direction that matches the subspace where the missing predictive signal lives.
+- If the priority is interpretability rather than causal effect size, run
+  lightweight falsification on the shortlisted big-L0 features: compare
+  top-activating correct/incorrect examples, name/height controls, and
+  paraphrase or prompt-template variants. This fits the Ma-style caution
+  better than launching another broad dictionary sweep.

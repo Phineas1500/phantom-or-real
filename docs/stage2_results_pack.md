@@ -468,21 +468,32 @@ the raw-minus-reconstruction error recovers almost the entire raw-probe signal.
 The strongest correctness direction is therefore mostly outside the tested
 decoded residual-SAE subspace.
 
-## Steering Pilot
+## Steering Checks
 
-The bounded 27B `infer_property` steering pilot used 8 balanced S1 test rows,
-prompt-only L45 raw-direction interventions at +/-2 SD, and matched orthogonal
-controls.
+All steering checks below are deliberately small causal probes on 8 balanced S1
+`infer_property` test rows: h3/h4 x baseline-correct/baseline-incorrect. They
+should be read as null/inconclusive causal checks, not as final behavioral
+estimates.
 
-| Condition | Strong accuracy | Weak accuracy | Parse fail rate | Flips vs baseline |
-| --- | ---: | ---: | ---: | ---: |
-| baseline | 0.375 | 0.625 | 0.000 | NA |
-| raw +/-2 SD | 0.375 | 0.625 | 0.125 | 0 |
-| orthogonal +/-2 SD | 0.375 | 0.625 | 0.125 | 0 |
+| Check | Intervention | Baseline strong | Intervention strong | Parse fail range | False-to-true | True-to-false | Takeaway |
+| --- | --- | ---: | ---: | ---: | ---: | ---: | --- |
+| Prompt-only raw L45 | +/-2 projection SD at final pre-generation residual | 0.375 | 0.375 | 0.125 | 0 | 0 | Plumbing check only; one output change also appeared under orthogonal control. |
+| Decode-step big-L0 single features | `35036`, `75345`, `72374` at +/-0.25 mean-nonzero scale | 0.375 | 0.250-0.375 | 0.000-0.250 | 0 | 2 | No beneficial flips; `75345` negative and `72374` positive each caused one true-to-false change. |
+| Decode-step raw L45 | +/-0.5 and +/-1 projection SD at `blocks.45.hook_resid_post` | 0.375 | 0.375 | 0.125 | 0 | 0 | Raw direction is highly predictive offline but did not act as a useful correctness control knob. |
+| Decode-step orthogonal control | Norm-matched orthogonal directions at +/-0.5 and +/-1 SD | 0.375 | 0.250-0.375 | 0.125-0.250 | 0 | 1 | One true-to-false change at +1 SD, consistent with generic perturbation risk. |
 
-Interpretation: this is a useful causal/plumbing check, but it is not positive
-causal evidence. All generations hit the token cap, and the one output change
-appeared under both raw and orthogonal steering.
+The decode-step raw comparator refit the L45 S1 logistic direction and recovered
+`test_auc=0.8965`, matching the main raw-probe result. Its failure to produce
+false-to-true flips is therefore informative: high offline AUC does not by
+itself imply causal steering efficacy for generic correctness. This differs
+from Cox-style answer steering, where the direction targets a binary answer
+choice. Our direction targets success/failure, which does not specify what
+property answer should be produced.
+
+Interpretation: current steering evidence is negative for both individual
+learned features and the dense raw correctness direction. The strongest result
+remains diagnostic: success/failure is linearly readable from raw activations,
+but neither tested steering family has established a causal repair mechanism.
 
 ## Current Report Claim
 
@@ -495,7 +506,10 @@ component is concentrated in the small residual subspace that residual SAEs
 fail to reconstruct. Corrected exact-hook transcoders and multi-layer sparse
 concats improve the sparse-feature picture but still trail raw activations.
 Neuronpedia-facing top features remain generic rather than clean
-ontology-reasoning mechanisms, and causal steering is currently inconclusive.
+ontology-reasoning mechanisms. Steering is currently a negative/inconclusive
+causal result: neither shortlisted single big-L0 features nor the dense raw
+correctness direction produced beneficial flips in the bounded decode-step
+checks.
 
 ## 4B Comparison Table
 

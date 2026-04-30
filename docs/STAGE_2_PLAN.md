@@ -41,8 +41,9 @@ Completed:
   old bare-normalized runs are now treated as exploratory after the exact-hook
   audit. Corrected exact-hook reruns have been completed for MLP-output SAE,
   16K skip-transcoder, and 262K transcoder.
-- First steering pilot completed; result is null/inconclusive, not causal
-  evidence.
+- Steering checks completed for 27B property: prompt-only raw L45, decode-step
+  raw L45 correctness direction, and decode-step single big-L0 feature pilots.
+  Results are negative/inconclusive rather than positive causal evidence.
 - A bounded 27B crosscoder pilot completed as Scholar job `451181`.
 - Dense active-feature scaling and bf16-vs-fp32 sparse encoding sanity checks
   completed.
@@ -117,7 +118,11 @@ Current scientific story:
   cause of the raw-vs-sparse gap.
 - Float32 re-encoding shows nearly identical sparse active sets, so bf16
   encoding instability is also not the explanation.
-- Steering has not established a causal feature or direction.
+- Steering has not established a causal feature or direction. The raw L45
+  direction remains highly predictive offline (`test_auc=0.8965` in the
+  decode-step comparator), but it produced zero false-to-true flips in the
+  bounded steering sample. Shortlisted single big-L0 feature steering also
+  produced no false-to-true flips and two true-to-false changes.
 
 Current objective:
 
@@ -168,11 +173,14 @@ Current objective:
   remain visibly height/template-confounded. Use `35036`, `75345`, and `187589`
   as the most defensible first steering candidates, and `72374` as a
   surface-confound control.
-- Next steering decision: include a raw L45 probe-direction steering rerun as a
-  Cox-style comparator, but keep the main project question focused on learned
-  dictionary features. The raw object is a dense correctness direction, not a
-  feature ID. It is useful as a positive/control reference for whether our task
-  is steerable at all.
+- Steering decision after the completed raw comparator: do not treat generic
+  correctness steering as a main success criterion. The raw object is a dense
+  correctness direction, not an answer direction, and the null decode-step
+  result suggests it is not a clean causal control knob for repairing ontology
+  answers. If steering continues, make it more targeted: answer/property
+  directions, multi-feature sparse bundles, reconstruction-error directions, or
+  larger samples at gentler strengths. Otherwise move to report assembly and
+  falsification/interpretation of the shortlisted feature families.
 
 ## Active Scope
 
@@ -469,7 +477,9 @@ Low priority unless the final report specifically needs them:
 - Crosscoder `l0_big` variant over layers 16/31/40/53.
 - Name-scramble regeneration.
 - Paraphrase-preserving B.3 test.
-- A better steering null with all-token/decode-step intervention.
+- Larger steering follow-up only if needed: use targeted answer/property
+  directions or multi-feature bundles rather than repeating generic
+  correctness-direction steering.
 
 ## Key Files
 
