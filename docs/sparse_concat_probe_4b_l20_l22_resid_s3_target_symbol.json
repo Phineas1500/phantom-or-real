@@ -1,0 +1,300 @@
+{
+  "best_by_task": {
+    "infer_property": {
+      "best_c": 0.001,
+      "combo_name": "l20_l22_resid_only",
+      "test_auc": 0.8399764178660127,
+      "val_auc": 0.8289403123324178
+    },
+    "infer_subtype": {
+      "best_c": 0.003,
+      "combo_name": "l20_l22_resid_only",
+      "test_auc": 0.97099150800729,
+      "val_auc": 0.9674871529127262
+    }
+  },
+  "bootstrap_samples": 1000,
+  "c_values": [
+    0.0001,
+    0.0003,
+    0.001,
+    0.003,
+    0.01,
+    0.03,
+    0.1,
+    0.3,
+    1.0,
+    3.0,
+    10.0
+  ],
+  "combo_name": "l20_l22_resid_only",
+  "created_at_utc": "2026-04-30T03:04:56.713948+00:00",
+  "drop_parse_failed": true,
+  "feature_patterns": [
+    "results/stage2/sae_features/gemma3_4b_{task}_L20_layer_20_width_16k_l0_small_top128",
+    "results/stage2/sae_features/gemma3_4b_{task}_L20_layer_20_width_262k_l0_small_top128",
+    "results/stage2/sae_features/gemma3_4b_{task}_L22_layer_22_width_16k_l0_small_top128",
+    "results/stage2/sae_features/gemma3_4b_{task}_L22_layer_22_width_262k_l0_small_top128"
+  ],
+  "max_iter": 2000,
+  "probe_variant": "sparse_hstack_uncentered",
+  "results": {
+    "infer_property": {
+      "best_c": 0.001,
+      "c_values": [
+        0.0001,
+        0.0003,
+        0.001,
+        0.003,
+        0.01,
+        0.03,
+        0.1,
+        0.3,
+        1.0,
+        3.0,
+        10.0
+      ],
+      "d_sparse_concat": 557056,
+      "feature_blocks": [
+        {
+          "d_sparse": 16384,
+          "feature_path": "results/stage2/sae_features/gemma3_4b_infer_property_L20_layer_20_width_16k_l0_small_top128.safetensors",
+          "feature_prefix": "results/stage2/sae_features/gemma3_4b_infer_property_L20_layer_20_width_16k_l0_small_top128",
+          "hf_snapshot_revision": "3e94b68be95290aada5b7525cf431d3040f81bb1",
+          "kept_mean_l0": 14.299505643130304,
+          "kept_nnz": 153305,
+          "sae_id": "layer_20_width_16k_l0_small",
+          "sae_release": "gemma-scope-2-4b-it-res-all",
+          "sidecar_path": "results/stage2/sae_features/gemma3_4b_infer_property_L20_layer_20_width_16k_l0_small_top128.example_ids.jsonl"
+        },
+        {
+          "d_sparse": 262144,
+          "feature_path": "results/stage2/sae_features/gemma3_4b_infer_property_L20_layer_20_width_262k_l0_small_top128.safetensors",
+          "feature_prefix": "results/stage2/sae_features/gemma3_4b_infer_property_L20_layer_20_width_262k_l0_small_top128",
+          "hf_snapshot_revision": "3e94b68be95290aada5b7525cf431d3040f81bb1",
+          "kept_mean_l0": 15.217143923141498,
+          "kept_nnz": 163143,
+          "sae_id": "layer_20_width_262k_l0_small",
+          "sae_release": "gemma-scope-2-4b-it-res-all",
+          "sidecar_path": "results/stage2/sae_features/gemma3_4b_infer_property_L20_layer_20_width_262k_l0_small_top128.example_ids.jsonl"
+        },
+        {
+          "d_sparse": 16384,
+          "feature_path": "results/stage2/sae_features/gemma3_4b_infer_property_L22_layer_22_width_16k_l0_small_top128.safetensors",
+          "feature_prefix": "results/stage2/sae_features/gemma3_4b_infer_property_L22_layer_22_width_16k_l0_small_top128",
+          "hf_snapshot_revision": "3e94b68be95290aada5b7525cf431d3040f81bb1",
+          "kept_mean_l0": 20.827814569536425,
+          "kept_nnz": 223295,
+          "sae_id": "layer_22_width_16k_l0_small",
+          "sae_release": "gemma-scope-2-4b-it-res-all",
+          "sidecar_path": "results/stage2/sae_features/gemma3_4b_infer_property_L22_layer_22_width_16k_l0_small_top128.example_ids.jsonl"
+        },
+        {
+          "d_sparse": 262144,
+          "feature_path": "results/stage2/sae_features/gemma3_4b_infer_property_L22_layer_22_width_262k_l0_small_top128.safetensors",
+          "feature_prefix": "results/stage2/sae_features/gemma3_4b_infer_property_L22_layer_22_width_262k_l0_small_top128",
+          "hf_snapshot_revision": "3e94b68be95290aada5b7525cf431d3040f81bb1",
+          "kept_mean_l0": 15.724932375711221,
+          "kept_nnz": 168587,
+          "sae_id": "layer_22_width_262k_l0_small",
+          "sae_release": "gemma-scope-2-4b-it-res-all",
+          "sidecar_path": "results/stage2/sae_features/gemma3_4b_infer_property_L22_layer_22_width_262k_l0_small_top128.example_ids.jsonl"
+        }
+      ],
+      "input_rows": 11000,
+      "kept_mean_l0_concat": 66.06939651151944,
+      "kept_nnz_concat": 708330,
+      "kept_rows": 10721,
+      "max_iter": 2000,
+      "per_height": {
+        "h1": {
+          "auc": 0.6954732510288064,
+          "n": 144,
+          "negative_n": 36,
+          "positive_n": 108
+        },
+        "h2": {
+          "auc": 0.7792192748754779,
+          "n": 283,
+          "negative_n": 194,
+          "positive_n": 89
+        },
+        "h3": {
+          "auc": 0.841678820288446,
+          "n": 465,
+          "negative_n": 363,
+          "positive_n": 102
+        },
+        "h4": {
+          "auc": 0.8032859343823403,
+          "n": 715,
+          "negative_n": 578,
+          "positive_n": 137
+        }
+      },
+      "solver": "liblinear",
+      "source_file": "results/full/with_errortype/gemma3_4b_infer_property.jsonl",
+      "split_counts": {
+        "test": {
+          "n": 1607,
+          "negative_n": 1171,
+          "positive_n": 436
+        },
+        "train": {
+          "n": 7509,
+          "negative_n": 5591,
+          "positive_n": 1918
+        },
+        "val": {
+          "n": 1605,
+          "negative_n": 1192,
+          "positive_n": 413
+        }
+      },
+      "status": "ok",
+      "test_auc": 0.8399764178660127,
+      "test_auc_ci": {
+        "alpha": 0.05,
+        "high": 0.8592075537812339,
+        "low": 0.8186754033075664,
+        "mean": 0.8398194608434129,
+        "samples_requested": 1000,
+        "samples_used": 1000
+      },
+      "val_auc": 0.8289403123324178
+    },
+    "infer_subtype": {
+      "best_c": 0.003,
+      "c_values": [
+        0.0001,
+        0.0003,
+        0.001,
+        0.003,
+        0.01,
+        0.03,
+        0.1,
+        0.3,
+        1.0,
+        3.0,
+        10.0
+      ],
+      "d_sparse_concat": 557056,
+      "feature_blocks": [
+        {
+          "d_sparse": 16384,
+          "feature_path": "results/stage2/sae_features/gemma3_4b_infer_subtype_L20_layer_20_width_16k_l0_small_top128.safetensors",
+          "feature_prefix": "results/stage2/sae_features/gemma3_4b_infer_subtype_L20_layer_20_width_16k_l0_small_top128",
+          "hf_snapshot_revision": "3e94b68be95290aada5b7525cf431d3040f81bb1",
+          "kept_mean_l0": 13.643939393939394,
+          "kept_nnz": 149483,
+          "sae_id": "layer_20_width_16k_l0_small",
+          "sae_release": "gemma-scope-2-4b-it-res-all",
+          "sidecar_path": "results/stage2/sae_features/gemma3_4b_infer_subtype_L20_layer_20_width_16k_l0_small_top128.example_ids.jsonl"
+        },
+        {
+          "d_sparse": 262144,
+          "feature_path": "results/stage2/sae_features/gemma3_4b_infer_subtype_L20_layer_20_width_262k_l0_small_top128.safetensors",
+          "feature_prefix": "results/stage2/sae_features/gemma3_4b_infer_subtype_L20_layer_20_width_262k_l0_small_top128",
+          "hf_snapshot_revision": "3e94b68be95290aada5b7525cf431d3040f81bb1",
+          "kept_mean_l0": 14.576579043446513,
+          "kept_nnz": 159701,
+          "sae_id": "layer_20_width_262k_l0_small",
+          "sae_release": "gemma-scope-2-4b-it-res-all",
+          "sidecar_path": "results/stage2/sae_features/gemma3_4b_infer_subtype_L20_layer_20_width_262k_l0_small_top128.example_ids.jsonl"
+        },
+        {
+          "d_sparse": 16384,
+          "feature_path": "results/stage2/sae_features/gemma3_4b_infer_subtype_L22_layer_22_width_16k_l0_small_top128.safetensors",
+          "feature_prefix": "results/stage2/sae_features/gemma3_4b_infer_subtype_L22_layer_22_width_16k_l0_small_top128",
+          "hf_snapshot_revision": "3e94b68be95290aada5b7525cf431d3040f81bb1",
+          "kept_mean_l0": 20.958013873676524,
+          "kept_nnz": 229616,
+          "sae_id": "layer_22_width_16k_l0_small",
+          "sae_release": "gemma-scope-2-4b-it-res-all",
+          "sidecar_path": "results/stage2/sae_features/gemma3_4b_infer_subtype_L22_layer_22_width_16k_l0_small_top128.example_ids.jsonl"
+        },
+        {
+          "d_sparse": 262144,
+          "feature_path": "results/stage2/sae_features/gemma3_4b_infer_subtype_L22_layer_22_width_262k_l0_small_top128.safetensors",
+          "feature_prefix": "results/stage2/sae_features/gemma3_4b_infer_subtype_L22_layer_22_width_262k_l0_small_top128",
+          "hf_snapshot_revision": "3e94b68be95290aada5b7525cf431d3040f81bb1",
+          "kept_mean_l0": 17.985122307411466,
+          "kept_nnz": 197045,
+          "sae_id": "layer_22_width_262k_l0_small",
+          "sae_release": "gemma-scope-2-4b-it-res-all",
+          "sidecar_path": "results/stage2/sae_features/gemma3_4b_infer_subtype_L22_layer_22_width_262k_l0_small_top128.example_ids.jsonl"
+        }
+      ],
+      "input_rows": 11000,
+      "kept_mean_l0_concat": 67.1636546184739,
+      "kept_nnz_concat": 735845,
+      "kept_rows": 10956,
+      "max_iter": 2000,
+      "per_height": {
+        "h1": {
+          "auc": 0.6117871629682653,
+          "n": 160,
+          "negative_n": 33,
+          "positive_n": 127
+        },
+        "h2": {
+          "auc": 0.8219272144655527,
+          "n": 291,
+          "negative_n": 257,
+          "positive_n": 34
+        },
+        "h3": {
+          "auc": 0.9527950310559007,
+          "n": 488,
+          "negative_n": 483,
+          "positive_n": 5
+        },
+        "h4": {
+          "auc": 0.897513440860215,
+          "n": 748,
+          "negative_n": 744,
+          "positive_n": 4
+        }
+      },
+      "solver": "liblinear",
+      "source_file": "results/full/with_errortype/gemma3_4b_infer_subtype.jsonl",
+      "split_counts": {
+        "test": {
+          "n": 1687,
+          "negative_n": 1517,
+          "positive_n": 170
+        },
+        "train": {
+          "n": 7620,
+          "negative_n": 6859,
+          "positive_n": 761
+        },
+        "val": {
+          "n": 1649,
+          "negative_n": 1494,
+          "positive_n": 155
+        }
+      },
+      "status": "ok",
+      "test_auc": 0.97099150800729,
+      "test_auc_ci": {
+        "alpha": 0.05,
+        "high": 0.9797301864250438,
+        "low": 0.9611622111733114,
+        "mean": 0.9709976975911057,
+        "samples_requested": 1000,
+        "samples_used": 1000
+      },
+      "val_auc": 0.9674871529127262
+    }
+  },
+  "schema_version": 1,
+  "seed": 20260429,
+  "solver": "liblinear",
+  "split_family": "s3",
+  "splits_path": "results/stage2/splits.jsonl",
+  "tasks": [
+    "infer_property",
+    "infer_subtype"
+  ]
+}
