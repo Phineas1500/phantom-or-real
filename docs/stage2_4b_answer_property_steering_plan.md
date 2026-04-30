@@ -61,7 +61,7 @@ These should already be present after pulling `main` and copying or regenerating
 the local 4B tensors:
 
 - `results/full/with_errortype/gemma3_4b_infer_property.jsonl`
-- `results/stage2/splits.jsonl`
+- `results/stage2/splits_4b_property.jsonl`
 - `results/stage2/activations/gemma3_4b_infer_property_L22.safetensors`
 - `results/stage2/activations/gemma3_4b_infer_property_L22.example_ids.jsonl`
 
@@ -248,7 +248,7 @@ python -u scripts/stage2_steer_answer_property_direction.py \
   --task infer_property \
   --layer 22 \
   --activation-dir results/stage2/activations \
-  --splits results/stage2/splits.jsonl \
+  --splits results/stage2/splits_4b_property.jsonl \
   --split-family s1 \
   --answer-label-source gold \
   --answer-target polarity \
@@ -295,7 +295,7 @@ python -u scripts/stage2_steer_answer_property_direction.py \
   --task infer_property \
   --layer 22 \
   --activation-dir results/stage2/activations \
-  --splits results/stage2/splits.jsonl \
+  --splits results/stage2/splits_4b_property.jsonl \
   --split-family s1 \
   --answer-label-source gold \
   --answer-target polarity \
@@ -347,7 +347,7 @@ python -u scripts/stage2_steer_answer_property_direction.py \
   --task infer_property \
   --layer 22 \
   --activation-dir results/stage2/activations \
-  --splits results/stage2/splits.jsonl \
+  --splits results/stage2/splits_4b_property.jsonl \
   --split-family s1 \
   --answer-label-source gold \
   --answer-target predicate_pair \
