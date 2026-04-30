@@ -126,7 +126,11 @@ Current scientific story:
   bounded steering sample. Shortlisted single big-L0 feature steering also
   produced no false-to-true flips and two true-to-false changes. The
   multi-feature sparse-probe bundle reproduced the expected sparse-probe AUC
-  offline (`test_auc=0.853`) but also produced zero false-to-true flips.
+  offline (`test_auc=0.853`) but also produced zero false-to-true flips. The
+  4B answer-property follow-up is also negative: gold answer polarity is
+  perfectly linearly decodable from raw L22 (`val_auc=test_auc=1.000`), but
+  decode-step steering produced no polarity flips, no predicate flips toward
+  gold, and no strong false-to-true repairs over controls.
 
 Current objective:
 
@@ -182,10 +186,12 @@ Current objective:
   raw object is a dense correctness direction, not an answer direction, and the
   null decode-step result suggests it is not a clean causal control knob for
   repairing ontology answers. The learned sparse bundle did not repair answers
-  either. If steering continues, make it more targeted: answer/property
-  directions, reconstruction-error directions, or larger samples at gentler
-  strengths. Otherwise move to report assembly and falsification/interpretation
-  of the shortlisted feature families.
+  either. The 4B answer-property direction was a more targeted Cox-style
+  comparator and still did not move emitted polarity or predicates. If steering
+  continues, prioritize reconstruction-error directions or larger/gentler
+  answer-content samples only with matched controls. Otherwise move to report
+  assembly and falsification/interpretation of the shortlisted feature
+  families.
 
 ## Active Scope
 
@@ -205,11 +211,12 @@ Keep the remaining Stage 2 work narrow:
 
 Out of scope unless project ownership changes:
 
-- Running 4B in this workspace.
+- Running 4B in this Scholar workspace; use the local 4090 machine for smaller
+  Gemma 3 4B jobs, then merge compact result docs through git.
 - `infer_membership_relation` or multi-hypothesis examples.
 - Training new SAEs.
 - Cross-model-family comparisons.
-- Steering on 4B or `infer_subtype`.
+- Steering `infer_subtype`.
 - Broad Gemma Scope sweeps.
 - Probing generated CoT/intermediate tokens.
 
@@ -435,6 +442,14 @@ Prepared jobs:
   their decoder rows into a unit direction, and compares against shuffled,
   random-feature, and orthogonal controls.
 
+4B comparison steering is documented separately. The key result is
+`docs/stage2_4b_answer_property_steering_results.md`: raw L22 gold-polarity
+answer content is perfectly decodable, but decode-step steering on 32 h3/h4
+rows produced zero polarity flips, zero predicate flips toward gold, and zero
+strong false-to-true repairs. Sparse answer-property steering should not be run
+from this plan unless a raw answer-content direction first moves answers above
+controls.
+
 ## Remaining Work
 
 Immediate:
@@ -458,7 +473,8 @@ Report-critical:
 - State that raw probes are the predictive reference; sparse probes are judged
   by how much interpretable/candidate-causal signal they recover, not by
   whether they beat raw activations.
-- Add teammate 4B results only as a comparison once available.
+- Keep the 4B comparison table and 4B steering summaries as comparison-only
+  evidence; do not let them displace the 27B-centered report narrative.
 - Include S3 as a heldout-target diagnostic, not a full name-scramble result.
 - State explicitly that S2 topology-heldout was not evaluable on the shipped
   dataset.
@@ -594,5 +610,5 @@ Low priority unless the final report specifically needs them:
 - [x] L45 262K big-L0 exact transcoder component diagnostic.
 - [x] Big-L0 feature stability report and feature-candidate shortlist.
 - [x] Big-L0 local feature mini-dashboard with GPT-5.5 qualitative audit.
-- [ ] Teammate 4B comparison tables.
+- [x] Core teammate 4B comparison tables and steering summaries.
 - [ ] Final report figures/tables assembled.

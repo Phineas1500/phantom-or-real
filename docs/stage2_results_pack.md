@@ -497,6 +497,15 @@ probe bundle. The strongest result remains diagnostic: success/failure is
 linearly readable from raw activations, but none of the tested steering families
 has established a causal repair mechanism.
 
+A 4B answer-property comparator reached the same conclusion with a more
+specific target. On Gemma 3 4B L22, a raw gold-polarity answer probe achieved
+`val_auc=test_auc=1.000` over S1, but decode-step steering on 32 balanced h3/h4
+test rows produced zero polarity flips, zero predicate flips toward gold, and
+zero strong false-to-true repairs at `0.5`, `1`, or `2` projection SD. The full
+summary is in `docs/stage2_4b_answer_property_steering_results.md`. This
+supports a predictive-versus-causal gap even when the probe target is concrete
+answer content rather than generic correctness.
+
 ## Current Report Claim
 
 Gemma 3 27B pre-generation residuals contain a robust signal for
@@ -510,8 +519,9 @@ concats improve the sparse-feature picture but still trail raw activations.
 Neuronpedia-facing top features remain generic rather than clean
 ontology-reasoning mechanisms. Steering is currently a negative/inconclusive
 causal result: neither shortlisted single big-L0 features, the multi-feature
-sparse-probe bundle, nor the dense raw correctness direction produced
-beneficial flips in the bounded decode-step checks.
+sparse-probe bundle, the dense raw correctness direction, nor the 4B raw
+answer-polarity direction produced beneficial answer repairs in bounded
+decode-step checks.
 
 ## 4B Comparison Table
 
@@ -530,3 +540,9 @@ Gemma 3 4B mirrors the 27B pattern on property: raw L22 remains clearly stronger
 | Dense-active L20+L22 all-sparse | 0.842 | 0.967 | 0.852 | 0.976 |
 
 D.8 big-affine exists for Gemma Scope 2 4B and improves property AUC over the small-L0 affine transcoders, while subtype remains comparable to the strongest sparse concat result.
+
+For 4B steering, the useful comparison is not a positive causal result but a
+null: raw L22 correctness, reconstruction-error, sparse-probe bundle, and
+answer-polarity directions are all predictive offline, yet the completed local
+decode-time sweeps did not produce reliable strong-correctness or
+answer-content repairs above controls.

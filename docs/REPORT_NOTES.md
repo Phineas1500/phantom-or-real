@@ -1326,3 +1326,26 @@ exact-16K, and L30 runs below. Those later sections supersede this queue.
   null causal result under this bounded decode-step protocol. The current
   steering evidence remains negative/inconclusive across single features,
   dense raw correctness directions, and this sparse-probe bundle.
+
+#### 4B Answer-Property Steering Result
+
+- The local 4090 Gemma 3 4B follow-up completed the answer-property steering
+  plan for `infer_property` at L22. The script now supports `--resume` for
+  interrupted JSONL runs, keyed by `(source_row_index, condition)`.
+- The raw L22 gold-polarity answer probe was perfectly predictive on S1:
+  validation AUC `1.000`, test AUC `1.000`, with 10,721 parseable rows kept
+  and train projection SD `101.79`.
+- Decode-time steering was still negative. The main sweep used 32 balanced
+  h3/h4 test rows, strengths `0.5`, `1`, and `2` projection SD, plus
+  orthogonal controls. It produced zero polarity flips toward gold, zero
+  predicate flips toward gold, and zero strong false-to-true flips. Parse
+  failures were limited to 2/320 rows.
+- The few non-flat cases were not useful causal moves: one `toward_gold` run
+  changed `slow` to invalid `frompor`, several `away_gold` or orthogonal
+  controls changed invalid predicates to other invalid predicates, and one
+  true-to-false scoring change also appeared under controls.
+- Interpretation: this is a stronger predictive-versus-causal null than the
+  generic correctness steering result, because the probe target was concrete
+  answer content rather than success/failure. Per plan, sparse answer-property
+  steering should remain gated off unless a raw answer-content direction first
+  moves emitted answers above controls.

@@ -156,7 +156,10 @@ SAEs can still miss the signal that matters for prediction.
   flips. A Cox-style dense raw correctness direction stayed highly predictive
   offline but also produced no false-to-true flips. The multi-feature
   sparse-probe bundle likewise reproduced its offline AUC but produced no
-  beneficial flips.
+  beneficial flips. A 4B answer-property follow-up made the comparator more
+  concrete: raw L22 gold-polarity was perfectly decodable
+  (`val_auc=test_auc=1.000`), but decode-step steering still produced no
+  polarity flips, no predicate flips toward gold, and no strong repairs.
 
 ## 6. Discussion
 

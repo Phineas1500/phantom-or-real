@@ -2,6 +2,13 @@
 
 Date: 2026-04-30
 
+Status: raw answer-property steering completed; see
+`docs/stage2_4b_answer_property_steering_results.md`. The raw L22 gold-polarity
+probe reached `val_auc=test_auc=1.000`, but decode-step steering produced no
+polarity flips, no predicate flips toward gold, and no strong false-to-true
+repairs. The sparse follow-up remains intentionally gated off because the raw
+answer-content direction did not move emitted answers above controls.
+
 Purpose: run a Cox-style steering follow-up on Gemma 3 4B using answer-content
 directions instead of generic correctness directions. This is the next causal
 test after the completed 4B raw, reconstruction-error, and big-affine bundle

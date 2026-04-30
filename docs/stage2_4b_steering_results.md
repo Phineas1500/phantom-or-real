@@ -13,16 +13,23 @@ Gemma 3 4B layer 22:
 2. Residual-SAE reconstruction-error direction.
 3. Big-affine sparse-probe decoder bundle.
 
-The steering protocol was stable: every generation was parseable, every hook
-application count matched the intended decode-time intervention, and all runs
-completed under the expanded WSL memory limit. However, none of the directions
-produced a strong-correctness flip relative to the run-local baseline.
+For those three runs, the steering protocol was stable: every generation was
+parseable, every hook application count matched the intended decode-time
+intervention, and all runs completed under the expanded WSL memory limit.
+However, none of the directions produced a strong-correctness flip relative to
+the run-local baseline.
 
 Main result: the probed directions are predictive, but under this small
 decode-time sweep they did not show causal leverage over strong
 `infer_property` correctness.
 
-## Local Execution Notes
+A later answer-property follow-up used a more Cox-style target: raw L22
+gold-polarity answer content rather than generic correctness. That probe was
+perfectly predictive (`val_auc=test_auc=1.000`), but steering still produced no
+polarity flips, no predicate flips toward gold, and no strong false-to-true
+repairs.
+
+## Local Execution Notes For First Three Runs
 
 - Machine: single RTX 4090-class local WSL environment.
 - WSL memory after restart: about 23 GiB RAM plus 32 GiB swap.
@@ -44,7 +51,13 @@ decode-time sweep they did not show causal leverage over strong
 | Reconstruction error | L22 residual-SAE raw minus reconstruction | 0.9120 | 0.9005 | 26.3208 | 144 | 0 | 0 | 2 | 12 |
 | Big-affine bundle | 50-feature sparse-probe bundle | 0.8762 | 0.8602 | 123.4487 | 272 | 0 | 0 | 5 | 31 |
 
-Baseline behavior was identical across runs:
+Separate answer-property result:
+
+| Direction | Probe source | Probe val AUC | Probe test AUC | Scale std | Rows | Parse failures | Polarity flips toward gold | Predicate flips toward gold | Strong false-to-true |
+|---|---|---:|---:|---:|---:|---:|---:|---:|---:|
+| Raw L22 answer polarity | `hook_resid_post` gold polarity labels | 1.0000 | 1.0000 | 101.7908 | 320 | 2 | 0 | 0 | 0 |
+
+Baseline behavior was identical across the first three runs:
 
 | Metric | Value |
 |---|---:|
@@ -132,15 +145,43 @@ Outcome: negative causal result for strong correctness. The learned dictionary
 contains a distributed predictive signal, but this bundle did not provide
 specific causal leverage under the tested intervention protocol.
 
+### Experiment 4: Raw L22 Answer-Property Direction
+
+Artifacts:
+
+- Report: `docs/answer_property_steering_4b_l22_polarity_decode_sweep.json`
+- Smoke report: `docs/answer_property_steering_4b_l22_polarity_smoke.json`
+- Rows:
+  `results/stage2/steering/answer_property_4b_l22_polarity_decode_sweep.jsonl`
+- Direction:
+  `results/stage2/steering/answer_property_4b_l22_polarity_direction.npz`
+
+This follow-up trained a raw L22 probe on gold answer polarity instead of
+correctness. The probe was perfectly predictive on the S1 split
+(`val_auc=1.0000`, `test_auc=1.0000`) over 10,721 parseable rows. The main
+sweep used 32 h3/h4 test rows balanced by height and cached strong correctness,
+`max_new_tokens=160`, and strengths `0.5`, `1`, and `2` projection SD for
+`toward_gold`, `away_gold`, and orthogonal conditions.
+
+The full sweep produced no polarity flips in either direction, no predicate
+flips toward gold, and no strong false-to-true flips. The few answer-content
+changes were invalid predicate changes or also appeared under orthogonal
+controls. Per the plan, sparse answer-property steering was not run because the
+raw answer-property direction did not move answer content above controls.
+
+Outcome: negative causal result for answer-content steering, despite perfect
+linear decodability.
+
 ## Interpretation
 
 The three-way comparison supports a conservative conclusion:
 
 - Raw activations, reconstruction error, and big-affine sparse features all
   encode predictive information about `infer_property` correctness.
+- Raw answer polarity is also perfectly decodable from raw L22 activations.
 - Decode-time additive steering at the tested layer/sites, strengths, and row
-  sample did not convert that predictive information into reliable causal
-  changes in strong correctness.
+  samples did not convert that predictive information into reliable causal
+  changes in strong correctness or emitted answer content.
 - The absence of parse failures is useful: the negative result is not explained
   by obvious off-manifold degeneration.
 - Weak/text changes occurred, but they were also present in controls and did
@@ -152,8 +193,11 @@ a successful learned-feature steering direction.
 ## Caveats
 
 - The steering subset is small: 16 examples, selected from h3/h4 test rows.
-- All generations hit `max_new_tokens=96`, so some answers may be truncated or
-  budget-limited.
+- The answer-property follow-up is larger but still bounded: 32 h3/h4 examples
+  with 320 generated rows across baseline, directed, and orthogonal conditions.
+- In the first three runs, all generations hit `max_new_tokens=96`, so some
+  answers may be truncated or budget-limited. The answer-property follow-up
+  separately used `max_new_tokens=160`.
 - Strong flips are computed relative to the run-local baseline generation, not
   the cached original Stage 1 label. Some run-local baselines differ from the
   cached correctness label.
