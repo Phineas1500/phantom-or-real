@@ -400,6 +400,11 @@ Immediate:
   artifacts. Start with the corrected L45 262K transcoder and L40 residual
   SAE 16K/262K, using coefficient rank, stability, activation density, and
   Neuronpedia explanations.
+- Current shortlist caveat: the strongest candidate source is the L45 262K
+  big-L0 exact transcoder, but it has no confirmed matching public Neuronpedia
+  dashboard. Public L40 residual dashboards appear to use `l0_medium`, while
+  our cached L40 probes use `l0_small`, so do not mix their feature
+  explanations.
 - Run the full test suite after doc/code updates.
 
 Report-critical:
@@ -541,5 +546,6 @@ Low priority unless the final report specifically needs them:
 - [x] Gemma Scope 2 27B artifact inventory for higher-L0/denser transcoders.
 - [x] L45 262K big-L0 exact transcoder top-512 sparse probes.
 - [x] L45 262K big-L0 exact transcoder component diagnostic.
+- [x] Big-L0 feature stability report and feature-candidate shortlist.
 - [ ] Teammate 4B comparison tables.
 - [ ] Final report figures/tables assembled.

@@ -1166,3 +1166,27 @@ exact-16K, and L30 runs below. Those later sections supersede this queue.
   `0.869/0.880/0.877/0.883`. Interpretation: the denser transcoder gives a
   substantially better computational decomposition, but the raw exact MLP sites
   still carry more signal than any single dense component.
+
+#### Feature Candidate Shortlist
+
+- Committed the big-L0 checkpoint as `f691c85` and pushed `main`.
+- Generated
+  `docs/transcoder_feature_stability_27b_l45_262k_big_affine_exact_top512_s1.json`
+  from the cached top-512 big-L0 features. The refit reproduces the saved
+  sparse probe metrics: property test AUC `0.853` and subtype test AUC `0.893`.
+  Effective train-active support is much larger than the small-L0 transcoders:
+  1,139 property features and 907 subtype features.
+- Added `docs/feature_candidate_shortlist_27b.md`. The best local steering
+  candidates are big-L0 features `72374` (correct, cross-task, densities
+  `0.258/0.153`), `35036` (incorrect, cross-task, `0.189/0.392`), `4892`
+  (correct, cross-task, `0.273/0.156`), and `75345` (property-specific correct,
+  density `0.227`). Subtype follow-ups are `187589` (correct) and `45599`
+  (very sparse incorrect).
+- Several top-weight big-L0 features are predictive but probably poor first
+  steering targets because they are nearly always active: `18130`, `8016`,
+  `18564`, and `11145`.
+- Important Neuronpedia caveat: the public L45 `gemmascope-2-transcoder-262k`
+  dashboard appears to correspond to the small-L0 affine artifact, not the
+  big-L0 artifact. Public L40 residual dashboards appear to use `l0_medium`,
+  while our cached L40 residual probes are `l0_small`. Do not attach
+  Neuronpedia explanations to mismatched dictionaries.
