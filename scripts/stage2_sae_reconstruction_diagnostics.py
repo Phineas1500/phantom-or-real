@@ -217,6 +217,7 @@ def run_diagnostics(
     model_key: str,
     tasks: list[str],
     layer: int,
+    sae_release: str,
     sae_ids: list[str],
     top_k: int,
     splits_path: Path,
@@ -265,7 +266,7 @@ def run_diagnostics(
     for sae_id in sae_ids:
         print(f"Loading SAE {sae_id}", flush=True)
         sae, _cfg, _sparsity = SAE.from_pretrained_with_cfg_and_sparsity(
-            release="gemma-scope-2-27b-it-res-all",
+            release=sae_release,
             sae_id=sae_id,
             device=device,
             dtype=str(dtype).removeprefix("torch."),
@@ -427,6 +428,7 @@ def main() -> None:
     parser.add_argument("--model-key", required=True)
     parser.add_argument("--tasks", nargs="+", required=True)
     parser.add_argument("--layer", type=int, required=True)
+    parser.add_argument("--sae-release", default="gemma-scope-2-27b-it-res-all")
     parser.add_argument("--sae-ids", nargs="+", required=True)
     parser.add_argument("--top-k", type=int, default=128)
     parser.add_argument("--splits", type=Path, required=True)
@@ -475,6 +477,7 @@ def main() -> None:
             model_key=args.model_key,
             tasks=args.tasks,
             layer=args.layer,
+            sae_release=args.sae_release,
             sae_ids=args.sae_ids,
             top_k=args.top_k,
             splits_path=args.splits,

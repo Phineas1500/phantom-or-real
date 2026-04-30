@@ -46,8 +46,95 @@
     "transformers": "5.5.4"
   },
   "sae_releases": {
-    "entries": {},
-    "status": "pin_after_layer_selection"
+    "entries": {
+      "gemma-scope-2-4b-it-mlp-all/layer_22_width_16k_l0_small": {
+        "architecture": "jumprelu",
+        "d_in": 2560,
+        "d_sae": 16384,
+        "hf_repo_id": "google/gemma-scope-2-4b-it",
+        "hf_snapshot_revision": "3e94b68be95290aada5b7525cf431d3040f81bb1",
+        "hf_subfolder": "mlp_out_all",
+        "sae_config_sha256": "573ea5d52d6c0fe54092512438cf7e690fff03fe24832e148403b47ad33cf7a3",
+        "sae_id": "layer_22_width_16k_l0_small",
+        "sae_params_sha256": "78a85794aa0b6a338713ce9c1578123c463ee711e25abb6966c430cab25f31c1",
+        "sae_release": "gemma-scope-2-4b-it-mlp-all"
+      },
+      "gemma-scope-2-4b-it-res-all/layer_20_width_16k_l0_small": {
+        "architecture": "jumprelu",
+        "d_in": 2560,
+        "d_sae": 16384,
+        "hf_repo_id": "google/gemma-scope-2-4b-it",
+        "hf_snapshot_revision": "3e94b68be95290aada5b7525cf431d3040f81bb1",
+        "hf_subfolder": "resid_post_all",
+        "sae_config_sha256": "a0b6c8b73a43979f0d989aa25ca83f714a324a784903fc48c2230c519e082f4c",
+        "sae_id": "layer_20_width_16k_l0_small",
+        "sae_params_sha256": "57ed43a8f827c974c40d2bcb686db64dc6bf642f76469138beaf6e513bfdabda",
+        "sae_release": "gemma-scope-2-4b-it-res-all"
+      },
+      "gemma-scope-2-4b-it-res-all/layer_20_width_262k_l0_small": {
+        "architecture": "jumprelu",
+        "d_in": 2560,
+        "d_sae": 262144,
+        "hf_repo_id": "google/gemma-scope-2-4b-it",
+        "hf_snapshot_revision": "3e94b68be95290aada5b7525cf431d3040f81bb1",
+        "hf_subfolder": "resid_post_all",
+        "sae_config_sha256": "59f8bab76157a736be2f8082463fd18d05eb21e3326613fa6261c7b160c1ccac",
+        "sae_id": "layer_20_width_262k_l0_small",
+        "sae_params_sha256": "0dd175ee017e5e7a4db8d2768aca5e6da67331010d0111f3ae86fbf035fda2ce",
+        "sae_release": "gemma-scope-2-4b-it-res-all"
+      },
+      "gemma-scope-2-4b-it-res-all/layer_22_width_16k_l0_small": {
+        "architecture": "jumprelu",
+        "d_in": 2560,
+        "d_sae": 16384,
+        "hf_repo_id": "google/gemma-scope-2-4b-it",
+        "hf_snapshot_revision": "3e94b68be95290aada5b7525cf431d3040f81bb1",
+        "hf_subfolder": "resid_post_all",
+        "sae_config_sha256": "b59617a26fde73bb9c36a04001b6414415172d99e6423477b16fe1fbe8f6beec",
+        "sae_id": "layer_22_width_16k_l0_small",
+        "sae_params_sha256": "28465fbe6a821cb36726c3ad7c0653553b7b1be87795422aeb889d3e5eb281af",
+        "sae_release": "gemma-scope-2-4b-it-res-all"
+      },
+      "gemma-scope-2-4b-it-res-all/layer_22_width_262k_l0_small": {
+        "architecture": "jumprelu",
+        "d_in": 2560,
+        "d_sae": 262144,
+        "hf_repo_id": "google/gemma-scope-2-4b-it",
+        "hf_snapshot_revision": "3e94b68be95290aada5b7525cf431d3040f81bb1",
+        "hf_subfolder": "resid_post_all",
+        "sae_config_sha256": "83967ef8a9aed60f39f3783d06248837d0dcba11a1d3121a2faa85e06eaf479a",
+        "sae_id": "layer_22_width_262k_l0_small",
+        "sae_params_sha256": "36d268bc1cabb7e2cc2e6009e9a0e1217450c8c0a8388f62985642edd7e51b9e",
+        "sae_release": "gemma-scope-2-4b-it-res-all"
+      },
+      "gemma-scope-2-4b-it-transcoders-all/layer_22_width_16k_l0_small_affine": {
+        "architecture": "jumprelu_skip_transcoder",
+        "d_in": 2560,
+        "d_out": 2560,
+        "d_sae": 16384,
+        "hf_repo_id": "google/gemma-scope-2-4b-it",
+        "hf_snapshot_revision": "3e94b68be95290aada5b7525cf431d3040f81bb1",
+        "hf_subfolder": "transcoder_all",
+        "sae_config_sha256": "07136de0d5f96240b3517096b3c2e4eec4139ff257318c27ce1557744a7ddc0e",
+        "sae_id": "layer_22_width_16k_l0_small_affine",
+        "sae_params_sha256": "21202913cc1cc2ff6e3100f67e2bd1a4aeb316cb6140043a571537bcc60c6047",
+        "sae_release": "gemma-scope-2-4b-it-transcoders-all"
+      },
+      "gemma-scope-2-4b-it-transcoders-all/layer_22_width_262k_l0_small_affine": {
+        "architecture": "jumprelu_skip_transcoder",
+        "d_in": 2560,
+        "d_out": 2560,
+        "d_sae": 262144,
+        "hf_repo_id": "google/gemma-scope-2-4b-it",
+        "hf_snapshot_revision": "3e94b68be95290aada5b7525cf431d3040f81bb1",
+        "hf_subfolder": "transcoder_all",
+        "sae_config_sha256": "0f345da7807a2f6a52e3047187c66d2170721549572423c7a864618523154244",
+        "sae_id": "layer_22_width_262k_l0_small_affine",
+        "sae_params_sha256": "18961f678a40bbd2eda43596e6de0b381fed071b564acad22db2db30be0cb861",
+        "sae_release": "gemma-scope-2-4b-it-transcoders-all"
+      }
+    },
+    "status": "pinned_4b_l20_l22_residual_l22_mlp_skip_transcoder_artifacts"
   },
   "schema_version": 1,
   "stage1_jsonls": {
