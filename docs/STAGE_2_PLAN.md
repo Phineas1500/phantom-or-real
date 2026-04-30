@@ -138,9 +138,9 @@ Current objective:
   Move to steering only if the shortlist contains non-generic task-aligned
   candidates.
 - One final bounded AUC queue is allowed before that transition: L53 residual
-  SAE 16K/262K plus concat probes; then an inventory of clean higher-L0/denser
-  exact transcoders; then, if useful for proposal coverage, an MLP probe on the
-  best sparse concat. Stop AUC chasing after these unless a specific
+  SAE 16K/262K plus concat probes; then clean higher-L0/denser exact
+  transcoders; then, if useful for proposal coverage, an MLP probe on the best
+  sparse concat. Stop AUC chasing after these unless a specific
   feature-candidate result motivates another run.
 - Treat nonlinear sparse probes as predictive/comparison evidence only. They
   can improve AUC, but feature attribution and steering are less direct because
@@ -148,6 +148,19 @@ Current objective:
   feature.
 - L53 residual SAE extraction/probing completed as extraction job `451709` and
   dependent probe job `451710`.
+- Gemma Scope 2 inventory found clean unrun L45 higher-L0 exact transcoders:
+  `layer_45_width_16k_l0_big_affine` and
+  `layer_45_width_262k_l0_big_affine`. The first follow-up is the 262K big-L0
+  affine transcoder with `top_k=512`, using cached exact L45 hooks.
+- L45 262K big-L0 exact top-512 sparse probes are now the strongest
+  single-dictionary learned-feature result: S1 `0.853/0.893` and S3
+  `0.854/0.894` for property/subtype. This narrows but does not close the raw
+  L45 gap.
+- The big-L0 component diagnostic completed with interpretable reconstruction:
+  full latent+skip output explains `0.802/0.797` of exact `hook_mlp_out` energy
+  for property/subtype. Dense component AUCs remain below raw exact activations:
+  full component S1 `0.863/0.888`, S3 `0.850/0.877`; error component S1
+  `0.848/0.878`, S3 `0.849/0.883`.
 
 ## Active Scope
 
@@ -383,8 +396,6 @@ Immediate:
 
 - Keep `docs/REPORT_NOTES.md`, `docs/stage2_results_pack.md`, and
   `docs/report_outline.md` aligned with any new result interpretation.
-- Continue the final bounded AUC queue: clean higher-L0/denser exact
-  transcoder inventory; optional MLP probe on best sparse concat.
 - Build a compact feature-candidate shortlist for Neuronpedia-visible sparse
   artifacts. Start with the corrected L45 262K transcoder and L40 residual
   SAE 16K/262K, using coefficient rank, stability, activation density, and
@@ -414,8 +425,9 @@ Most relevant to the raw-vs-sparse gap:
 - L53 did not materially change the sparse-vs-raw conclusion. Do not start
   another residual-layer sweep unless the feature-candidate audit reveals a
   specific reason.
-- Try a higher-L0 or denser 262K transcoder variant only if the artifact exists
-  cleanly and exact hook/scale alignment can be verified.
+- Try no more than the clean higher-L0 exact transcoder variants surfaced by
+  `docs/gemmascope2_artifact_inventory_27b.md` unless their results clearly
+  justify one additional targeted run.
 
 Useful for report defensibility, but less likely to explain the sparse gap:
 
@@ -526,5 +538,8 @@ Low priority unless the final report specifically needs them:
 - [x] 262K transcoder invariants pinned.
 - [x] L40 residual SAE 16K/262K extraction and L40-inclusive concat probes.
 - [x] L53 residual SAE 16K/262K extraction and L53-inclusive concat probes.
+- [x] Gemma Scope 2 27B artifact inventory for higher-L0/denser transcoders.
+- [x] L45 262K big-L0 exact transcoder top-512 sparse probes.
+- [x] L45 262K big-L0 exact transcoder component diagnostic.
 - [ ] Teammate 4B comparison tables.
 - [ ] Final report figures/tables assembled.

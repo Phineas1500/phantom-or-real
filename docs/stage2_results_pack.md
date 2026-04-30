@@ -204,6 +204,23 @@ AUCs are S1 property `0.782/0.854/0.854/0.857`, S1 subtype
 subtype `0.883/0.884/0.889/0.891`. This supports a small width benefit but not
 a qualitative bridge to raw activations.
 
+The L45 262K big-L0 affine transcoder improves both sparse-latent probing and
+component reconstruction. Full latent+skip output explains `0.802/0.797` of
+exact `hook_mlp_out` energy for property/subtype, much higher than the small-L0
+262K exact split.
+
+| Split | Task | Big-L0 latent AUC | Big-L0 affine skip AUC | Big-L0 full AUC | Big-L0 error AUC |
+| --- | --- | ---: | ---: | ---: | ---: |
+| S1 random | `infer_property` | 0.837 | 0.858 | 0.863 | 0.848 |
+| S1 random | `infer_subtype` | 0.854 | 0.890 | 0.888 | 0.878 |
+| S3 target-symbol heldout | `infer_property` | 0.832 | 0.841 | 0.850 | 0.849 |
+| S3 target-symbol heldout | `infer_subtype` | 0.869 | 0.880 | 0.877 | 0.883 |
+
+Interpretation: the big-L0 dictionary is not just a sparse-probe improvement;
+it is a materially better MLP-output decomposition. However, the component
+probes still trail raw exact activations, so this remains partial localization
+rather than a sparse replacement for raw probes.
+
 ## Sparse Feature-Family Concat
 
 We tested whether residual sparse features and corrected exact transcoder
@@ -263,11 +280,12 @@ As with the earlier L45-only dense-active check, centering/scaling sparse
 active columns does not reveal a hidden bridge to the raw activation result.
 
 Interpretation: sparse feature families are complementary, especially for
-property. Adding L30 residual features to the corrected L45 sparse family gives
-the strongest overall sparse-only result. Adding L40 produces a tiny S3 gain,
-especially subtype, but hurts S1 subtype. No L40-inclusive sparse stack closes
-the raw activation gap. L53 is weaker still. These residual-layer follow-ups are
-best treated as robustness checks rather than new mechanistic directions.
+property. Adding L30 residual features to the corrected L45 sparse family gave
+the strongest sparse-only result before the big-L0 transcoder follow-up. Adding
+L40 produces a tiny S3 gain, especially subtype, but hurts S1 subtype. No
+L40-inclusive sparse stack closes the raw activation gap. L53 is weaker still.
+These residual-layer follow-ups are best treated as robustness checks rather
+than new mechanistic directions.
 
 ## Crosscoder Pilot
 
@@ -307,6 +325,7 @@ every feature source tried so far.
 | Skip-transcoder 16K | 0.722 | 0.821 | 0.722 | 0.841 |
 | Exact skip-transcoder 16K | 0.787 | 0.868 | 0.785 | 0.880 |
 | Exact transcoder 262K | 0.795 | 0.873 | 0.802 | 0.885 |
+| Exact transcoder 262K big-L0 top512 | 0.853 | 0.893 | 0.854 | 0.894 |
 | L30 residual SAE 16K | 0.752 | 0.860 | 0.748 | 0.860 |
 | L30 residual SAE 262K | 0.770 | 0.867 | 0.771 | 0.866 |
 | L30 residual concat | 0.786 | 0.872 | 0.788 | 0.864 |
@@ -326,12 +345,15 @@ every feature source tried so far.
 | L30+L53+L45 all sparse concat | 0.839 | 0.886 | 0.825 | 0.882 |
 | Crosscoder 65K | 0.787 | 0.868 | 0.724 | 0.853 |
 
-Interpretation: the L30+L45 all-sparse concat remains the strongest overall
-sparse-only result, while L30+L40+L45 gives the best S3 subtype. Both still
-trail raw activations. The main ordering is therefore raw
-activations/reconstruction-error probes first, multi-block sparse concat next,
-the best individual sparse dictionaries after that, crosscoders lower on S3,
-and the old bare-normalized MLP-output SAE last.
+Interpretation: the L45 262K big-L0 exact transcoder is now the strongest
+single public learned dictionary and the best sparse property result. It reaches
+S1 `0.853/0.893` and S3 `0.854/0.894`, which also beats the sparse concats on
+property. The multi-layer sparse concats remain competitive, with
+L30+L40+L45 still giving the best S3 subtype. Raw activations still lead. The
+main ordering is therefore raw activations/reconstruction-error probes first,
+the big-L0 exact transcoder and multi-block sparse concats next, the earlier
+single sparse dictionaries after that, crosscoders lower on S3, and the old
+bare-normalized MLP-output SAE last.
 
 ## Dense Active-Feature Probe Check
 

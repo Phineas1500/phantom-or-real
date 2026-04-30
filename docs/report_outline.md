@@ -84,6 +84,15 @@ SAEs can still miss the signal that matters for prediction.
   Neuronpedia-visible all-layer transcoder is substantially stronger than the
   old bare-normalized run. It reaches S1 property/subtype AUCs `0.795/0.873`
   and S3 AUCs `0.802/0.885`, roughly residual-SAE-like but still below raw.
+- L45 262K big-L0 exact transcoder follow-up: the denser all-layer affine
+  transcoder reaches S1 `0.853/0.893` and S3 `0.854/0.894`, making it the
+  strongest single learned dictionary result and the best sparse property
+  result. Its mean active feature counts are about `120/113` for
+  property/subtype, so the earlier top-128 convention would truncate many rows;
+  top-512 captures all active features in this run. Component diagnostics show
+  full latent+skip reconstruction energy `0.802/0.797`, with full component
+  AUCs S1 `0.863/0.888` and S3 `0.850/0.877`, still below raw exact
+  activations.
 - Exact-hook L45 16K skip-transcoder rerun: the fair weighted-input rerun
   improves over the old bare-normalized 16K pilot to S1 `0.787/0.868` and S3
   `0.785/0.880`; exact 262K remains slightly better on most comparisons.
@@ -104,9 +113,9 @@ SAEs can still miss the signal that matters for prediction.
   `0.829/0.889`.
 - L30 residual SAE/multi-layer sparse concat: L30 standalone features are weak
   for property, but adding L30 residual SAE 16K/262K features to the corrected
-  L45 sparse family gives the current best sparse-only result, S1
-  `0.839/0.887` and S3 `0.834/0.892`. This narrows but still does not bridge
-  the raw gap.
+  L45 sparse family gave the best sparse-only result before the big-L0
+  transcoder follow-up, S1 `0.839/0.887` and S3 `0.834/0.892`. This narrows
+  but still does not bridge the raw gap.
 - Crosscoder pilot: raw concat over layers `{16,31,40,53}` nearly matches raw
   L45, but the 65K crosscoder over those same layers trails raw concat on every
   task/split. Treat this as an appendix-style multi-layer check supporting the
@@ -117,11 +126,11 @@ SAEs can still miss the signal that matters for prediction.
 - L53 residual SAE follow-up: raw L53 was strong for S1 property, but L53
   sparse features remain weak. L30+L53+L45 all-sparse gives S1 `0.839/0.886`
   and S3 `0.825/0.882`, below the existing best sparse stacks.
-- Cross-method comparison: after exact-hook correction and sparse-family
-  concat, the best sparse-only result moves up but still does not improve over
-  raw activations. Crosscoders remain useful as a bounded multi-layer null:
-  they trail the fair raw-concat baseline substantially and do not robustly beat
-  metadata baselines on S3.
+- Cross-method comparison: after exact-hook correction, sparse-family concat,
+  and the big-L0 exact transcoder, the best learned-dictionary result moves up
+  but still does not improve over raw activations. Crosscoders remain useful as
+  a bounded multi-layer null: they trail the fair raw-concat baseline
+  substantially and do not robustly beat metadata baselines on S3.
 - Dense active-feature probe check: centered dense probes over train-active
   sparse columns, including corrected exact-hook artifacts and the four-block
   concat, do not close the raw-vs-sparse gap, so sparse CSR scaling is not the

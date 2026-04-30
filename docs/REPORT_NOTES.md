@@ -1116,3 +1116,53 @@ exact-16K, and L30 runs below. Those later sections supersede this queue.
   `0.825/0.882`, below the existing L30+L45/L40-inclusive bests. Conclusion:
   L53 is another useful falsification of the idea that a strong raw layer
   automatically yields a strong same-layer residual SAE probe.
+
+#### Gemma Scope 2 Artifact Inventory And Big-L0 Transcoder
+
+- Added `scripts/stage2_inventory_gemmascope2_artifacts.py` and generated
+  `docs/gemmascope2_artifact_inventory_27b.{json,md}` from the Hugging Face
+  listing for `google/gemma-scope-2-27b-it`. The repository exposes 248
+  `resid_post_all` artifacts, 248 `mlp_out_all` artifacts, 506
+  `transcoder_all` artifacts, 72 selected-layer `transcoder` artifacts, and
+  six crosscoders.
+- The clean L45 exact-transcoder path has two unrun higher-L0 candidates:
+  `layer_45_width_16k_l0_big_affine` and
+  `layer_45_width_262k_l0_big_affine`, both under `transcoder_all`. This means
+  the final AUC queue is not a dead end: we can directly test whether the
+  previous 16K/262K small-L0 exact transcoders were missing predictive signal
+  because their learned feature activations were too sparse.
+- Added
+  `scripts/stage2_transcoder_exact_27b_L45_262k_big_affine_top512.sbatch` as
+  the first big-L0 run. It reuses the cached exact L45 `mlp_in_weighted` and
+  `mlp_out_hook` activations, extracts `top_k=512` features from the 262K
+  big-L0 affine transcoder, trains S1/S3 sparse probes, and computes
+  full/skip/latent/error component probes. The larger top-k is intentional
+  because a big-L0 dictionary may have more than 128 active features per row.
+- Sparse probe results from job `451719` are the strongest single learned
+  dictionary results so far. L45 262K big-L0 affine exact top-512 reaches S1
+  `0.853/0.893` and S3 `0.854/0.894` for property/subtype. This beats the
+  previous corrected 262K small-L0 exact transcoder sparse probe
+  (`0.795/0.873` on S1 and `0.802/0.885` on S3), and it is competitive with or
+  better than the best sparse concatenations while staying in one public
+  dictionary.
+- The top-512 setting mattered for faithfulness: mean L0 was about `120` for
+  property and `113` for subtype, but 3,427 property rows and 2,494 subtype
+  rows had more than 128 active features. No rows had more than 512 active
+  features. Interpretation: the small-L0 transcoders were genuinely too sparse
+  for this predictive signal, and top-128 would have truncated a nontrivial
+  fraction of the big-L0 activations.
+- Raw L45 still remains the predictive reference (`0.897/0.914` S1 and
+  `0.884/0.917` S3), but the gap is now much smaller: about `0.044/0.021` on
+  S1 and `0.030/0.023` on S3 for property/subtype. This strengthens the final
+  story from "SAEs miss most of the raw signal" to "sufficiently active
+  skip-transcoder features recover a substantial fraction, but still not all,
+  of the raw pre-generation correctness signal."
+- The completed big-L0 component diagnostic is interpretable and stronger than
+  the earlier small-L0 exact component split. Full latent+skip reconstruction
+  explains about `0.802/0.797` of exact `hook_mlp_out` energy for
+  property/subtype. S1 component AUCs are property latent/skip/full/error
+  `0.837/0.858/0.863/0.848` and subtype `0.854/0.890/0.888/0.878`; S3 AUCs
+  are property `0.832/0.841/0.850/0.849` and subtype
+  `0.869/0.880/0.877/0.883`. Interpretation: the denser transcoder gives a
+  substantially better computational decomposition, but the raw exact MLP sites
+  still carry more signal than any single dense component.
