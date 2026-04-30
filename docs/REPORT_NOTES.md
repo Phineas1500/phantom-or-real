@@ -1190,3 +1190,29 @@ exact-16K, and L30 runs below. Those later sections supersede this queue.
   big-L0 artifact. Public L40 residual dashboards appear to use `l0_medium`,
   while our cached L40 residual probes are `l0_small`. Do not attach
   Neuronpedia explanations to mismatched dictionaries.
+
+#### Big-L0 Feature Mini-Dashboard
+
+- Added `scripts/stage2_feature_mini_dashboard.py` as a local Neuronpedia-style
+  audit for project-specific features. It joins top activating rows back to
+  prompts, outputs, correctness, height, and error types, then optionally asks
+  GPT-5.5 for cautious qualitative feature hypotheses.
+- Generated
+  `docs/feature_mini_dashboard_27b_l45_262k_big_affine_top512.{json,md}` for
+  big-L0 features `72374`, `35036`, `4892`, `75345`, `187589`, and `45599`.
+  The GPT-5.5 pass used six calls and 48,197 total tokens.
+- Key caution: feature shortlist rank is based on trained sparse-probe
+  coefficients, while the dashboard AUC is each feature's univariate activation
+  AUC. Some high-rank features are weak alone, which means they may matter only
+  in combination with other sparse features or through height/template
+  structure.
+- Best single-feature signals: `72374` is positive with AUC `0.641/0.759` but
+  appears dominated by height-1 direct-generalization examples; `35036` is the
+  clearest negative/error feature with AUC `0.400/0.343`; `187589` is a
+  subtype-positive candidate with subtype AUC `0.754`, again with low-height
+  confounding.
+- Interpretation for report: the strongest local features look aligned with
+  ontology structure such as direct universal generalization, common-superclass
+  fan-in, and wrong-direction/exhaustive hypothesis risk. They are not clean
+  causal reasoning features yet because height and prompt-template confounds
+  remain visible.

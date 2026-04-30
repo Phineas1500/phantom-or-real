@@ -161,6 +161,13 @@ Current objective:
   for property/subtype. Dense component AUCs remain below raw exact activations:
   full component S1 `0.863/0.888`, S3 `0.850/0.877`; error component S1
   `0.848/0.878`, S3 `0.849/0.883`.
+- Big-L0 local feature mini-dashboard completed for six shortlisted features:
+  `72374`, `35036`, `4892`, `75345`, `187589`, and `45599`. The main result is
+  cautionary: top features look related to direct universal generalization,
+  common-superclass fan-in, and wrong-direction/exhaustive outputs, but they
+  remain visibly height/template-confounded. Use `35036`, `75345`, and `187589`
+  as the most defensible first steering candidates, and `72374` as a
+  surface-confound control.
 
 ## Active Scope
 
@@ -396,10 +403,9 @@ Immediate:
 
 - Keep `docs/REPORT_NOTES.md`, `docs/stage2_results_pack.md`, and
   `docs/report_outline.md` aligned with any new result interpretation.
-- Build a compact feature-candidate shortlist for Neuronpedia-visible sparse
-  artifacts. Start with the corrected L45 262K transcoder and L40 residual
-  SAE 16K/262K, using coefficient rank, stability, activation density, and
-  Neuronpedia explanations.
+- Feature-candidate shortlist and local mini-dashboard are complete for the
+  strongest source, the L45 262K big-L0 exact transcoder. If steering is run,
+  keep it small and use the shortlist in `docs/feature_candidate_shortlist_27b.md`.
 - Current shortlist caveat: the strongest candidate source is the L45 262K
   big-L0 exact transcoder, but it has no confirmed matching public Neuronpedia
   dashboard. Public L40 residual dashboards appear to use `l0_medium`, while
@@ -547,5 +553,6 @@ Low priority unless the final report specifically needs them:
 - [x] L45 262K big-L0 exact transcoder top-512 sparse probes.
 - [x] L45 262K big-L0 exact transcoder component diagnostic.
 - [x] Big-L0 feature stability report and feature-candidate shortlist.
+- [x] Big-L0 local feature mini-dashboard with GPT-5.5 qualitative audit.
 - [ ] Teammate 4B comparison tables.
 - [ ] Final report figures/tables assembled.

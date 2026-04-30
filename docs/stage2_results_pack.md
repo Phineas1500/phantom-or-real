@@ -355,6 +355,30 @@ the big-L0 exact transcoder and multi-block sparse concats next, the earlier
 single sparse dictionaries after that, crosscoders lower on S3, and the old
 bare-normalized MLP-output SAE last.
 
+### Big-L0 Feature Mini-Dashboard
+
+We built a local Neuronpedia-style audit for the strongest learned dictionary,
+because the public Neuronpedia dashboard does not appear to match the big-L0
+artifact. The audit is stored in
+`docs/feature_mini_dashboard_27b_l45_262k_big_affine_top512.{json,md}` and
+joins each candidate feature back to top activating prompts, outputs,
+correctness labels, heights, and error types. GPT-5.5 explanations were used as
+a qualitative labeling aid only.
+
+| Feature | Probe assoc. | Property AUC | Subtype AUC | Short interpretation |
+| ---: | --- | ---: | ---: | --- |
+| 72374 | correct | 0.641 | 0.759 | Direct/simple universal generalization; heavily height-1 confounded. |
+| 35036 | incorrect | 0.400 | 0.343 | Error-associated common-supertype/fan-in cases with wrong-direction or over-enumerated generations. |
+| 4892 | correct | 0.524 | 0.488 | Common-superclass hypothesis candidate, but weak alone. |
+| 75345 | correct | 0.548 | 0.516 | Moderate-depth common-superclass pattern; mixed correctness evidence. |
+| 187589 | correct | 0.574 | 0.754 | Subtype-positive simple universal generalization; low-height confounded. |
+| 45599 | incorrect | 0.488 | 0.497 | Sparse fan-in/exhaustive-hypothesis-risk feature; too weak alone. |
+
+Interpretation: the first feature-level audit does not reveal a clean causal
+reasoning feature. It does, however, produce a reportable shortlist and a more
+honest steering plan: test `35036` as an error-associated feature, `75345` and
+`187589` as positive candidates, and `72374` as a surface-confound control.
+
 ## Dense Active-Feature Probe Check
 
 To test whether sparse CSR scaling was causing the raw-vs-sparse gap, we

@@ -42,6 +42,33 @@ Predictive but less attractive as first steering targets:
 | 18564 | incorrect | Top-5 on both tasks, but effectively always active. |
 | 11145 | correct | Top-10 on both tasks, but effectively always active. |
 
+## Local Mini-Dashboard Audit
+
+The local Neuronpedia substitute is:
+
+- `scripts/stage2_feature_mini_dashboard.py`
+- `docs/feature_mini_dashboard_27b_l45_262k_big_affine_top512.json`
+- `docs/feature_mini_dashboard_27b_l45_262k_big_affine_top512.md`
+
+It joins top activating rows back to prompts, model outputs, correctness, height,
+and error types. It also records one GPT-5.5 qualitative explanation per
+shortlisted feature. The GPT pass used six calls and 48,197 total tokens.
+
+Important interpretation detail: coefficient rank comes from the trained sparse
+probe, while the AUC below is the univariate score from the feature activation
+alone. A feature can therefore have a high probe rank but a weak single-feature
+AUC if it is useful through interactions or after the probe combines it with
+other features.
+
+| Feature | Probe assoc. | Property AUC | Subtype AUC | Audit interpretation | Steering priority |
+| ---: | --- | ---: | ---: | --- | --- |
+| 72374 | correct | 0.641 | 0.759 | Direct/simple universal generalization; strongest top examples are height-1, so this is heavily height/template-confounded. | Low as a reasoning target; useful as a surface-confound control. |
+| 35036 | incorrect | 0.400 | 0.343 | Error-associated complex common-supertype/fan-in prompts; often wrong-direction or over-enumerated generations. | Medium; best negative/error candidate. |
+| 4892 | correct | 0.524 | 0.488 | Common-superclass hypothesis candidate, but weak univariate correctness signal and height confounding. | Medium-low. |
+| 75345 | correct | 0.548 | 0.516 | Moderate-depth common-superclass pattern; property coefficient rank is strong but correctness evidence is mixed. | Medium for property-specific steering. |
+| 187589 | correct | 0.574 | 0.754 | Simple universal generalization, especially subtype; substantial low-height confounding. | Medium for subtype, but report confound clearly. |
+| 45599 | incorrect | 0.488 | 0.497 | Sparse fan-in/exhaustive-hypothesis-risk feature; too rare and weak alone. | Low; useful mainly as falsification. |
+
 ## Neuronpedia-Facing Candidates
 
 The existing exact small-L0 L45 262K audit is:
@@ -57,9 +84,15 @@ enough to be the main steering target.
 
 ## Steering Implication
 
-If we run learned-feature steering next, start with the big-L0 local candidates:
-`72374`, `35036`, `4892`, and `75345`. Treat `187589` and `45599` as subtype
-follow-ups. For each feature, use both amplify and suppress conditions, compare
-against random same-density or coefficient-matched controls, and report this as
-candidate causal validation rather than proof of a discovered reasoning feature.
+If we run learned-feature steering next, use the mini-dashboard result to keep
+the pilot small and interpretable:
 
+- Primary negative/error feature: `35036`.
+- Primary property-specific positive feature: `75345`.
+- Primary subtype-positive feature: `187589`.
+- Surface-confound control: `72374`, because it has high subtype AUC but appears
+  dominated by height-1 direct-generalization examples.
+
+For each feature, use both amplify and suppress conditions, compare against
+random same-density or coefficient-matched controls, and report this as
+candidate causal validation rather than proof of a discovered reasoning feature.

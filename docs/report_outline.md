@@ -144,6 +144,12 @@ SAEs can still miss the signal that matters for prediction.
   `gemmascope-2-transcoder-262k` dashboards do include L45, and the corrected
   exact same-source probe/audit did not reveal clean ontology-reasoning
   features.
+- Local big-L0 feature mini-dashboard: because the strongest L45 262K big-L0
+  artifact is not clearly Neuronpedia-visible, we audited top local features by
+  joining activations back to prompts/outputs and using GPT-5.5 as a qualitative
+  labeling aid. The best candidates look like common-superclass/direct-
+  generalization/fan-in features with visible height/template confounds, not
+  clean causal reasoning mechanisms yet.
 - Steering pilot is null/inconclusive, not a causal success claim.
 
 ## 6. Discussion
@@ -155,12 +161,10 @@ SAEs can still miss the signal that matters for prediction.
   mechanistic claims: high reconstruction energy does not imply retention of a
   behaviorally relevant direction.
 - S3 heldout target symbols reduce but do not eliminate lexical-confound risk.
-- Future work: alternative sparse dictionaries, name-scrambled regeneration,
-  optional Neuronpedia-facing layer-40/53 residual audit, and a stronger
-  steering protocol.
-- Near-term finishing step: build a feature-candidate shortlist from
-  Neuronpedia-visible dictionaries, then run steering only for candidates that
-  look non-generic and task-aligned.
+- Future work: name-scrambled regeneration, a stronger steering protocol, and
+  feature-level falsification for shortlisted big-L0 candidates.
+- Near-term finishing step: run a small learned-feature steering pilot only for
+  the audited candidates, with `72374` treated as a surface-confound control.
 
 ## Core Tables/Figures
 
