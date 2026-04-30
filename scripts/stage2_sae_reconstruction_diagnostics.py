@@ -209,6 +209,14 @@ def decode_one_dataset(
     }
 
 
+def serializable_probe_result(result: dict[str, Any]) -> dict[str, Any]:
+    return {
+        key: value
+        for key, value in result.items()
+        if not key.startswith("_artifact_")
+    }
+
+
 def run_diagnostics(
     *,
     activation_dir: Path,
@@ -309,7 +317,7 @@ def run_diagnostics(
             raw_meta = read_json(activation_prefix.with_suffix(".meta.json"))
             probe_results = {}
             for kind, prefix in (("reconstruction", recon_prefix), ("error", error_prefix)):
-                probe_results[kind] = run_raw_activation_probe(
+                probe_results[kind] = serializable_probe_result(run_raw_activation_probe(
                     activation_path=prefix.with_suffix(".safetensors"),
                     sidecar_path=prefix.with_suffix(".example_ids.jsonl"),
                     seed=seed + layer,
@@ -321,7 +329,7 @@ def run_diagnostics(
                     max_iter=max_iter,
                     solver=solver,
                     bootstrap_samples=bootstrap_samples,
-                )
+                ))
             report["results"][sae_id][task] = {
                 **decode_result,
                 "probes": probe_results,
@@ -397,7 +405,7 @@ def run_existing_component_probes(
             recon_meta = read_json(recon_prefix.with_suffix(".meta.json"))
             probe_results = {}
             for kind, prefix in (("reconstruction", recon_prefix), ("error", error_prefix)):
-                probe_results[kind] = run_raw_activation_probe(
+                probe_results[kind] = serializable_probe_result(run_raw_activation_probe(
                     activation_path=prefix.with_suffix(".safetensors"),
                     sidecar_path=prefix.with_suffix(".example_ids.jsonl"),
                     seed=seed + layer,
@@ -409,7 +417,7 @@ def run_existing_component_probes(
                     max_iter=max_iter,
                     solver=solver,
                     bootstrap_samples=bootstrap_samples,
-                )
+                ))
             report["results"][sae_id][task] = {
                 "reconstruction_prefix": str(recon_prefix),
                 "error_prefix": str(error_prefix),

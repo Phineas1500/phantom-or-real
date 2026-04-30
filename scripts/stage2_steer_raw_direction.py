@@ -162,6 +162,16 @@ def build_arg_parser() -> argparse.ArgumentParser:
     parser.add_argument("--task", default="infer_property")
     parser.add_argument("--layer", type=int, default=45)
     parser.add_argument("--activation-dir", type=Path, default=Path("results/stage2/activations"))
+    parser.add_argument(
+        "--activation-prefix",
+        type=Path,
+        default=None,
+        help=(
+            "Optional activation artifact prefix. When supplied, use "
+            "<prefix>.safetensors and <prefix>.example_ids.jsonl instead of "
+            "constructing the prefix from --activation-dir/--model-key/--task/--layer."
+        ),
+    )
     parser.add_argument("--splits", type=Path, default=Path("results/stage2/splits.jsonl"))
     parser.add_argument("--split-family", default="s1")
     parser.add_argument("--heights", default="3,4")
@@ -209,7 +219,11 @@ def main() -> int:
     condition_plan = make_condition_plan(condition_kinds=condition_kinds, strengths=strengths)
     dtype = torch_dtype(args.dtype)
     source_file = str(args.jsonl)
-    activation_prefix = args.activation_dir / f"{args.model_key}_{args.task}_L{args.layer}"
+    activation_prefix = (
+        args.activation_prefix
+        if args.activation_prefix is not None
+        else args.activation_dir / f"{args.model_key}_{args.task}_L{args.layer}"
+    )
     activation_path = activation_prefix.with_suffix(".safetensors")
     sidecar_path = activation_prefix.with_suffix(".example_ids.jsonl")
 

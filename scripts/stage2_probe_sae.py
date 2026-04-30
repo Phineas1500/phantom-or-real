@@ -130,6 +130,11 @@ def run_sae_probe_grid(
             bootstrap_samples=bootstrap_samples,
             bootstrap_seed=seed + layer,
         )
+        result = {
+            key: value
+            for key, value in result.items()
+            if not key.startswith("_artifact_")
+        }
         result.update(
             {
                 "feature_path": str(prefix.with_suffix(".safetensors")),

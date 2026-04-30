@@ -205,6 +205,13 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--property-jsonl", type=Path, required=True)
     parser.add_argument("--subtype-jsonl", type=Path, required=True)
+    parser.add_argument(
+        "--tasks",
+        nargs="+",
+        choices=("infer_property", "infer_subtype"),
+        default=("infer_property", "infer_subtype"),
+        help="Tasks to extract. Defaults to both tasks for backward compatibility.",
+    )
     parser.add_argument("--model", default="google/gemma-3-27b-it")
     parser.add_argument("--model-key", default="gemma3_27b")
     parser.add_argument("--layer", type=int, default=45)
@@ -224,28 +231,22 @@ def main() -> None:
         load_mode="no-processing",
     )
     model.eval()
-    extract_one_task(
-        model=model,
-        jsonl_path=args.property_jsonl,
-        model_name=args.model,
-        model_key=args.model_key,
-        task="infer_property",
-        layer=args.layer,
-        batch_size=args.batch_size,
-        out_dir=args.out_dir,
-        output_dtype=torch_dtype(args.output_dtype),
-    )
-    extract_one_task(
-        model=model,
-        jsonl_path=args.subtype_jsonl,
-        model_name=args.model,
-        model_key=args.model_key,
-        task="infer_subtype",
-        layer=args.layer,
-        batch_size=args.batch_size,
-        out_dir=args.out_dir,
-        output_dtype=torch_dtype(args.output_dtype),
-    )
+    task_paths = {
+        "infer_property": args.property_jsonl,
+        "infer_subtype": args.subtype_jsonl,
+    }
+    for task in args.tasks:
+        extract_one_task(
+            model=model,
+            jsonl_path=task_paths[task],
+            model_name=args.model,
+            model_key=args.model_key,
+            task=task,
+            layer=args.layer,
+            batch_size=args.batch_size,
+            out_dir=args.out_dir,
+            output_dtype=torch_dtype(args.output_dtype),
+        )
 
 
 if __name__ == "__main__":
