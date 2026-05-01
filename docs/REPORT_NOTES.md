@@ -1379,3 +1379,117 @@ exact-16K, and L30 runs below. Those later sections supersede this queue.
   intervention does not reliably steer emitted predicates or polarities. Close
   the free-form answer-property branch unless a future forced-choice setup first
   validates clean answer-direction control.
+
+#### Margin And Forced-Choice Steering Diagnostic Setup
+
+- Added `docs/stage2_forced_choice_margin_plan.md` to record the next
+  discriminating steering test and the follow-up backlog. The key diagnostic is
+  whether the raw answer-polarity direction moves graded answer margins even
+  when greedy free-form generation does not repair the answer.
+- Added `scripts/stage2_steer_answer_property_margins.py` and the 27B L45
+  wrapper `scripts/stage2_steer_answer_property_margins_27b_L45_property_smoke.sbatch`.
+  The runner reuses the raw L45 gold-polarity direction, then measures two
+  margins for each selected row and steering condition: full-sequence logprob
+  of the gold hypothesis minus opposite-polarity foil under the original prompt,
+  and MCQ gold-option logprob minus foil-option logprob under a forced-choice
+  prompt. It also records the generated MCQ choice.
+- The documented follow-up order is: scale margin/MCQ if it moves, otherwise
+  run activation patching/interchange scans, then CAA-style content vectors at a
+  localized site, then reconstruction-error steering.
+
+#### 27B Margin And Forced-Choice Steering Result
+
+- Scholar job `452338` completed the 27B L45 margin plus forced-choice smoke in
+  14 minutes 17 seconds. It wrote
+  `docs/answer_property_margins_27b_l45_polarity_smoke.json`, with row-level
+  outputs in
+  `results/stage2/steering/answer_property_margins_27b_l45_polarity_smoke.jsonl`.
+- The raw L45 gold-polarity probe was again perfect offline:
+  `val_auc=test_auc=1.000`.
+- Baseline margins were already very large: mean original-prompt
+  gold-vs-opposite-polarity margin `16.648`, mean MCQ gold-vs-foil margin
+  `15.703`, and MCQ decoded choice accuracy `8/8`.
+- `toward_gold_pos1sd` increased the mean MCQ margin by `+0.203` and improved
+  MCQ margin on 6/8 rows, while `orthogonal_pos1sd` changed mean MCQ margin by
+  `-0.016`. This is weak evidence that the direction can move a constrained
+  margin.
+- The result is not a clean steering win: no MCQ choices changed, the effect is
+  tiny relative to the saturated baseline margin, `away_gold` also increased MCQ
+  margins slightly, and original-prompt margins were noisy (`orthogonal_pos1sd`
+  moved the original margin by `+0.197`, larger than either `toward_gold`
+  condition).
+- Interpretation: do not scale this exact opposite-polarity-foil setup. If we
+  continue with margins/forced-choice, use gold vs the model's actual wrong
+  hypothesis or a matched wrong concept from the ontology. Otherwise pivot to
+  activation patching/interchange or reconstruction-error steering.
+
+#### Hard-Foil Forced-Choice Refinement Setup
+
+- Extended `scripts/stage2_steer_answer_property_margins.py` with
+  `--foil-source stage1_model_output` and `--baseline-incorrect-only`.
+  The refined selector uses parsed, originally incorrect S1 rows and replaces
+  the easy opposite-polarity foil with the model's own emitted wrong
+  hypothesis.
+- Added
+  `scripts/stage2_steer_answer_property_margins_27b_L45_property_hardfoil.sbatch`.
+  The prepared run uses 16 balanced h3/h4 property rows, strengths
+  `0.5,1,1.5,2`, and the same L45 gold-polarity raw direction. This is a
+  closure test for whether the probe-derived answer direction can move even a
+  binary, high-headroom choice setup.
+- Decision logic: if this run is null versus orthogonal controls, close the
+  probe-direction steering branch and pivot to activation patching/interchange.
+  Patching asks whether any compact hidden state is causal, rather than whether
+  the specific readout direction is causal.
+
+#### Hard-Foil Forced-Choice Refinement Result
+
+- Scholar job `452362` completed the hard-foil refinement in 33 minutes
+  (`elapsed_seconds=1980.3`) and wrote all 208 expected rows. Artifacts:
+  `docs/answer_property_margins_27b_l45_polarity_hardfoil.json`,
+  `results/stage2/steering/answer_property_margins_27b_l45_polarity_hardfoil.jsonl`,
+  and
+  `results/stage2/steering/answer_property_margins_27b_l45_polarity_hardfoil_direction.npz`.
+- Selection worked as intended: 16 S1 h3/h4 property rows, all parsed but
+  originally strongly incorrect, balanced by height and gold polarity. The
+  selector found enough hard foils (`skipped_no_foil=0`) using the model's own
+  emitted wrong Stage 1 hypothesis.
+- The raw L45 gold-polarity probe remained perfect offline
+  (`val_auc=test_auc=1.000`, train projection SD `299.21`), but steering still
+  did not change choices. Baseline MCQ choice accuracy was 14/16; no condition
+  produced any MCQ choice change or false-to-true MCQ flip through `2.0`
+  projection SD.
+- Mean MCQ-margin deltas versus baseline were tiny. `toward_gold` deltas were
+  `+0.008`, `-0.016`, `+0.062`, and `+0.109` at `0.5`, `1`, `1.5`, and `2`
+  SD. Matched orthogonal deltas were `-0.039`, `-0.055`, `+0.008`, and
+  `+0.031`. This is not enough to claim causal answer control.
+- On the two genuine MCQ-headroom rows, `toward_gold` still produced zero flips
+  and did not beat controls. At `2.0` SD, mean MCQ-margin delta was `-0.125`
+  for `toward_gold`, `-0.125` for orthogonal, and `+1.875` for `away_gold`.
+- Original-prompt margins moved more than MCQ margins but were not
+  direction-specific: at `2.0` SD, `toward_gold` improved the mean original
+  margin by `+0.403`, while `away_gold` improved it by `+1.667` and orthogonal
+  moved it by `-0.078`.
+- Interpretation: the Cox-style forced-choice branch is closed for this
+  probe-derived polarity direction. Even in the easiest binary output regime
+  with hard model-emitted foils, the direction is predictive but not a reliable
+  causal answer knob. The next best causal experiment is activation
+  patching/interchange.
+
+#### Clean-To-Corrupt Patching Setup
+
+- Added `docs/stage2_clean_to_corrupt_patching_plan.md`,
+  `scripts/stage2_patch_clean_to_corrupt.py`, and
+  `scripts/stage2_patch_clean_to_corrupt_27b_property_margin_pilot.sbatch`.
+- The patching pilot uses strict natural pairs from S1 test rows: h1
+  parsed/strong-correct clean rows matched to h4 parsed/strong-incorrect
+  corrupt rows with the exact same full gold hypothesis. Exact same-ontology
+  cross-height groups do not exist in the shipped data, but there are 11 strict
+  same-hypothesis h1-to-h4 pairs; the pilot selects 8 with seed `20260501`.
+- Dry run found no missing semantic landmarks across the selected pairs.
+  Landmarks are `last_prompt`, `subject`, `predicate`, and `question_stem`;
+  layers are `30,35,40,45,50`.
+- The first pilot is margin-first rather than generation-first. It patches the
+  corrupt prompt residual at each layer/landmark with the clean h1 residual and
+  compares against a norm-matched noise control. It scores the gold hypothesis
+  against the corrupt model's wrong Stage 1 foil and reports normalized margin
+  recovery.

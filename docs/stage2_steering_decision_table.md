@@ -16,23 +16,26 @@ success/failure, free-form answer content, or a Cox-style forced-choice answer.
 | Raw correctness / error / sparse bundle | 4B L22 | `is_correct_strong` | Free-form hypothesis | Raw/error/sparse probes all predictive | 0 strong flips in local 4B sweeps | Same predictive-versus-causal gap appears at 4B scale. |
 | Raw answer-property direction | 4B L22 residual | Gold answer polarity | Free-form hypothesis | `val_auc=test_auc=1.000` | 0 polarity flips, 0 predicate flips toward gold, 0 strong repairs | Even concrete free-form answer content did not steer. |
 | Raw answer-property direction | 27B L45 residual | Gold answer polarity | Free-form hypothesis | `val_auc=test_auc=1.000` | 0 useful `toward_gold` flips; one wrong-direction repair under `away_gold` | Free-form answer-property steering also fails at 27B scale. |
+| Raw answer-property margin | 27B L45 residual | Gold answer polarity | Original prompt + MCQ margins | `val_auc=test_auc=1.000` | Small MCQ margin shift; 0 MCQ choice flips; original margins noisy | Weak constrained-margin sensitivity, not answer repair. |
+| Raw answer-property hard-foil margin | 27B L45 residual | Gold answer polarity | Original prompt + MCQ vs model-emitted wrong foil | `val_auc=test_auc=1.000` | 0 choice flips, 0 false-to-true MCQ flips through 2 SD; tiny MCQ deltas | Cox-style forced-choice branch is also negative for this probe direction. |
 
 ## Active Gates
 
 | Gate | Status | Stop/continue rule |
 |---|---|---|
 | 27B raw answer-property smoke | Completed as Slurm job `452301`; null for controlled `toward_gold` steering | Stop free-form answer-property steering. |
-| Forced-choice smoke | Script ready; run on Scholar if pursued | If forced-choice steering moves `(A)/(B)` above orthogonal controls, run the matching 27B forced-choice sweep. If null, steering protocol itself is weak for this task. |
+| Margin + forced-choice smoke | Completed as Slurm job `452338` | Do not scale the easy opposite-polarity foil. If continuing, use gold vs model-emitted wrong hypothesis or pivot to patching/reconstruction-error steering. |
+| Hard-foil forced-choice refinement | Completed as Slurm job `452362` | Close probe-direction steering and pivot to activation patching/interchange. |
 
 ## Recommended Next Branches
 
-1. Treat the free-form answer-property branch as closed unless a later
-   forced-choice run first validates answer-direction control.
-2. Pivot to Cox-style forced-choice prompts rather than increasing free-form
-   steering strength.
-3. If forced-choice steering is positive, use it as protocol validation before
-   any learned-dictionary answer-direction comparison.
-4. If both free-form and forced-choice steering are null, treat steering as a
+1. Treat the free-form and forced-choice answer-property branches as closed for
+   this probe-derived direction.
+2. Pivot to activation patching/interchange to test whether any compact hidden
+   state can causally repair hard rows.
+3. If patching finds a site, try CAA-style content vectors there rather than
+   correctness or polarity directions.
+4. If patching is null, treat steering as a
    negative/inconclusive causal check and shift effort to report assembly plus
    feature falsification.
 
