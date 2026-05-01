@@ -1,0 +1,27 @@
+condition,experiment,figure,layer,mcq_choice_changed,mean_mcq_margin_delta,mean_original_margin_delta,paired_n,probe_auc,series,successful_repairs,value
+,27B raw correctness,steering_predictive_vs_causal,,,,,8,0.896544,,0,
+,27B sparse bundle,steering_predictive_vs_causal,,,,,8,0.852948,,0,
+,4B raw correctness,steering_predictive_vs_causal,,,,,16,0.903552,,0,
+,4B SAE-error correctness,steering_predictive_vs_causal,,,,,16,0.900473,,0,
+,4B sparse bundle,steering_predictive_vs_causal,,,,,16,0.860166,,0,
+,4B answer polarity,steering_predictive_vs_causal,,,,,32,1.000000,,0,
+,27B answer polarity,steering_predictive_vs_causal,,,,,8,1.000000,,0,
+Toward gold,,forced_choice_hardfoil,,0,0.109375,0.402538,16,,,,
+Orthogonal,,forced_choice_hardfoil,,0,0.031250,-0.077832,16,,,,
+Away gold,,forced_choice_hardfoil,,0,0.093750,1.667289,16,,,,
+,,patching_asymmetry,35,,,,,,h1->h4 clean repair,,0.107821
+,,patching_asymmetry,35,,,,,,h1->h4 noise repair,,0.035853
+,,patching_asymmetry,35,,,,,,h4->h1 corrupt breakage,,0.099504
+,,patching_asymmetry,35,,,,,,h4->h1 noise breakage,,-0.015099
+,,patching_asymmetry,40,,,,,,h1->h4 clean repair,,0.079064
+,,patching_asymmetry,40,,,,,,h1->h4 noise repair,,-0.001461
+,,patching_asymmetry,40,,,,,,h4->h1 corrupt breakage,,0.135539
+,,patching_asymmetry,40,,,,,,h4->h1 noise breakage,,0.018107
+,,patching_asymmetry,45,,,,,,h1->h4 clean repair,,0.046057
+,,patching_asymmetry,45,,,,,,h1->h4 noise repair,,0.085405
+,,patching_asymmetry,45,,,,,,h4->h1 corrupt breakage,,0.120185
+,,patching_asymmetry,45,,,,,,h4->h1 noise breakage,,-0.065212
+,,patching_asymmetry,50,,,,,,h1->h4 clean repair,,0.071210
+,,patching_asymmetry,50,,,,,,h1->h4 noise repair,,0.114506
+,,patching_asymmetry,50,,,,,,h4->h1 corrupt breakage,,0.176929
+,,patching_asymmetry,50,,,,,,h4->h1 noise breakage,,0.022664

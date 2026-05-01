@@ -1,7 +1,10 @@
 # Final Report Outline
 
-This outline assumes the 27B result remains the main mechanistic story. Add
-Gemma 3 4B as a comparison once teammate results are available.
+For the drafting source of truth, start with
+`docs/research_summary_for_outline.md`. This outline is the report skeleton;
+the summary doc contains the consolidated experiment inventory, findings, and
+recommended include/omit decisions. The 27B result remains the main mechanistic
+story, with Gemma 3 4B as a comparison and steering sanity check.
 
 ## Title
 
@@ -192,6 +195,14 @@ SAEs can still miss the signal that matters for prediction.
   `docs/figures/stage2/stage2_sparse_progression_auc.png`.
 - Figure 5: exact-hook MLP/transcoder sparse artifacts vs same-site raw
   activations: `docs/figures/stage2/stage2_site_transcoder_auc.png`.
+- Causal figure: predictive probe AUC versus directed repair counts:
+  `docs/figures/stage2/stage2_steering_predictive_vs_causal.png`.
+- Causal figure: hard-foil forced-choice recognition and margin shifts:
+  `docs/figures/stage2/stage2_forced_choice_hardfoil.png`.
+- Causal figure: forward/reverse patching asymmetry:
+  `docs/figures/stage2/stage2_patching_asymmetry.png`.
+- Appendix comparison figure: 27B/4B property AUC comparison:
+  `docs/figures/stage2/stage2_cross_model_property_auc.png`.
 - Small table: exact MLP-output raw vs exact MLP-output SAE, with old pilot
   shown as superseded.
 - Small table: raw exact `mlp_in` vs exact 262K transcoder.

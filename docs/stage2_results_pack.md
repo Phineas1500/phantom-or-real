@@ -1,7 +1,8 @@
 # Stage 2 Results Pack
 
-This is the compact 27B results pack for the final report. Gemma 3 4B is
-deferred until teammate results are available.
+This is the compact Stage 2 results pack for the final report. Gemma 3 27B is
+the main mechanistic story; Gemma 3 4B is included as a comparison and steering
+sanity check.
 
 ## Behavioral Context
 

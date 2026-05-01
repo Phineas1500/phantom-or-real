@@ -91,3 +91,19 @@ site_transcoder,s3,infer_subtype,TC 262K,0.885381
 site_transcoder,s3,infer_subtype,TC full 262K,0.889440
 site_transcoder,s3,infer_subtype,MLP-out SAE,0.879030
 site_transcoder,s3,infer_subtype,Raw mlp_out,0.914861
+cross_model_property,s1,infer_property,27B Raw,0.896544
+cross_model_property,s3,infer_property,27B Raw,0.884219
+cross_model_property,s1,infer_property,27B Residual SAE 262K,0.806408
+cross_model_property,s3,infer_property,27B Residual SAE 262K,0.779114
+cross_model_property,s1,infer_property,27B Big-L0 TC,0.852948
+cross_model_property,s3,infer_property,27B Big-L0 TC,0.853696
+cross_model_property,s1,infer_property,27B Best sparse stack,0.839333
+cross_model_property,s3,infer_property,27B Best sparse stack,0.835408
+cross_model_property,s1,infer_property,4B Raw,0.903465
+cross_model_property,s3,infer_property,4B Raw,0.906026
+cross_model_property,s1,infer_property,4B Residual SAE 262K,0.807575
+cross_model_property,s3,infer_property,4B Residual SAE 262K,0.819413
+cross_model_property,s1,infer_property,4B Big-L0 TC,0.855190
+cross_model_property,s3,infer_property,4B Big-L0 TC,0.874455
+cross_model_property,s1,infer_property,4B Best sparse stack,0.842144
+cross_model_property,s3,infer_property,4B Best sparse stack,0.849979

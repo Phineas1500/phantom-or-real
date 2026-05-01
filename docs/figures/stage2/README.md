@@ -10,4 +10,12 @@ outputs in `docs/` and `results/full/summary_accuracy.json`.
 - `stage2_sparse_progression_auc.png`: sparse-family improvements vs raw.
 - `stage2_site_transcoder_auc.png`: exact-hook MLP/transcoder sparse artifacts
   compared with same-site raw activations.
+- `stage2_cross_model_property_auc.png`: 27B/4B property AUC comparison.
+- `stage2_steering_predictive_vs_causal.png`: probe AUCs versus directed
+  repair counts.
+- `stage2_forced_choice_hardfoil.png`: MCQ recognition despite free-form
+  failures and hard-foil margin deltas.
+- `stage2_patching_asymmetry.png`: forward repair and reverse breakage
+  patching effects against matched noise controls.
 - `stage2_figure_data.csv`: plotted AUC values.
+- `stage2_causal_figure_data.csv`: plotted causal-test values.
