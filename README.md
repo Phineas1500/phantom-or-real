@@ -28,3 +28,5 @@ python -m src.generate_examples --counts pilot
 
 Credentials required for running inference / error classification are listed
 in `CLAUDE.md`.
+
+Thank you.
