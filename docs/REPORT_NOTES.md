@@ -52,6 +52,22 @@ final report is easier to assemble.
 - Patching caveat for the report: the natural h1/h4 pairs share the full gold
   hypothesis, but not the exact same ontology. Exact same-ontology cross-height
   pairs were unavailable in the shipped data.
+- Reverse patching job `452492` tested the asymmetry directly by patching h4
+  incorrect `last_prompt` residual states into h1 correct prompts for the same
+  8 pairs at layers L35/L40/L45/L50. It wrote 64 rows and completed in 455
+  seconds.
+- Reverse patching showed aggregate corrupt-state breakage above noise:
+  L35 mean breakage 0.100 vs noise -0.015, L40 0.136 vs 0.018, L45 0.120 vs
+  -0.065, and L50 0.177 vs 0.023. Breakage means reduction in the h1
+  `gold - foil` margin, normalized by the h1/h4 margin gap.
+- The reverse effect is headroom-dependent. High-headroom pairs
+  (`recovery_denominator >= 45`) do not show robust corrupt > noise breakage,
+  while lower/mid-headroom pairs do: L35 0.187 vs 0.004, L40 0.283 vs 0.018,
+  L45 0.277 vs -0.120, and L50 0.337 vs 0.071.
+- Combined interpretation: h1 correct states do not repair h4 beyond noise,
+  but h4 incorrect states can partially disrupt weaker h1 correct commitments.
+  This is useful asymmetry evidence for a committed-misgeneration account, with
+  the caveat that strong h1 commitments are robust to the reverse patch.
 
 ### 2026-04-25
 

@@ -147,3 +147,62 @@ Caveat: these are strict natural h1/h4 pairs sharing the full gold hypothesis,
 not exact same-ontology pairs. The h1 and h4 prompts therefore differ in more
 than depth. Exact same-ontology cross-height pairs were not available in the
 shipped data.
+
+## Reverse-Patching Follow-Up
+
+We ran the minimal reverse intervention as Slurm job `452492`: patch h4
+incorrect `last_prompt` residual states into the matching h1 correct prompt,
+using the same 8 pairs, layers L35/L40/L45/L50, and norm-matched noise
+controls. The signed metric remains `gold - foil`; for this reverse run,
+negative margin deltas indicate collapse of the h1 correct margin. The report
+also records a positive `breakage_fraction` equal to `-delta / denominator`.
+
+Outputs:
+
+- `docs/corrupt_to_clean_patching_27b_property_margin_pilot.json`
+- `results/stage2/patching/corrupt_to_clean_27b_property_margin_pilot.jsonl`
+
+Aggregate breakage:
+
+| Site | Mode | Mean breakage | Mean margin delta | Decreased pairs |
+|---|---|---:|---:|---:|
+| L35 `last_prompt` | corrupt | 0.100 | -2.508 | 6/8 |
+| L40 `last_prompt` | corrupt | 0.136 | -2.842 | 6/8 |
+| L45 `last_prompt` | corrupt | 0.120 | -2.214 | 5/8 |
+| L50 `last_prompt` | corrupt | 0.177 | -4.704 | 6/8 |
+| L35 `last_prompt` | noise | -0.015 | +1.200 | 3/8 |
+| L40 `last_prompt` | noise | 0.018 | -0.711 | 4/8 |
+| L45 `last_prompt` | noise | -0.065 | +2.097 | 3/8 |
+| L50 `last_prompt` | noise | 0.023 | +0.227 | 4/8 |
+
+This is an asymmetric result: h4 states patched into h1 prompts reduce the h1
+gold-vs-foil margin more than matched noise, while the forward h1-to-h4
+patches did not repair h4 beyond noise. The asymmetry is strongest at L50 and
+is visible at all four tested layers by the aggregate mean.
+
+The effect is not uniform across headroom. For the four high-headroom pairs
+(`recovery_denominator >= 45`), corrupt patches do not robustly beat noise:
+
+| Site | Corrupt mean breakage | Noise mean breakage |
+|---|---:|---:|
+| L35 `last_prompt` | 0.012 | -0.034 |
+| L40 `last_prompt` | -0.012 | 0.019 |
+| L45 `last_prompt` | -0.036 | -0.011 |
+| L50 `last_prompt` | 0.017 | -0.026 |
+
+For the four lower/mid-headroom pairs, corrupt patches break h1 much more than
+noise:
+
+| Site | Corrupt mean breakage | Noise mean breakage |
+|---|---:|---:|
+| L35 `last_prompt` | 0.187 | 0.004 |
+| L40 `last_prompt` | 0.283 | 0.018 |
+| L45 `last_prompt` | 0.277 | -0.120 |
+| L50 `last_prompt` | 0.337 | 0.071 |
+
+Interpretation: wrong h4 late `last_prompt` states can partially degrade weaker
+h1 correct-answer margins, but they do not reliably collapse strong h1
+commitments. Together with the forward null, this supports an asymmetric
+commitment story rather than a missing-state repair story: incorrect
+free-form commitments can be disruptive when transplanted into easier prompts,
+but correct h1 states do not repair the hard h4 prompt.

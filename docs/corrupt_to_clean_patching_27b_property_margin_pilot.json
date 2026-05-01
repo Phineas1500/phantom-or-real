@@ -1,0 +1,401 @@
+{
+  "created_at_utc": "2026-05-01T06:17:27.510121+00:00",
+  "elapsed_seconds": 454.9668400287628,
+  "generation": {
+    "do_sample": false,
+    "dtype": "torch.bfloat16",
+    "enabled": false,
+    "load_mode": "no-processing",
+    "max_new_tokens": 96,
+    "n_ctx": 4096,
+    "n_devices": 2,
+    "stop_at_eos": true,
+    "temperature": 0.0
+  },
+  "jsonl": "results/full/with_errortype/gemma3_27b_infer_property.jsonl",
+  "landmarks": [
+    "last_prompt"
+  ],
+  "layers": [
+    35,
+    40,
+    45,
+    50
+  ],
+  "missing_landmarks": {},
+  "model": "google/gemma-3-27b-it",
+  "model_key": "gemma3_27b",
+  "out_jsonl": "results/stage2/patching/corrupt_to_clean_27b_property_margin_pilot.jsonl",
+  "pair_baselines": [
+    {
+      "clean_landmarks": {
+        "last_prompt": 133,
+        "predicate": 118,
+        "question_stem": 120,
+        "subject": 101
+      },
+      "clean_reference_margin_gold_minus_foil": 67.05425071716309,
+      "clean_row_index": 113,
+      "clean_token_count": 134,
+      "corrupt_baseline_margin_gold_minus_foil": -7.623182773590088,
+      "corrupt_landmarks": {
+        "last_prompt": 203,
+        "predicate": 188,
+        "question_stem": 190,
+        "subject": 165
+      },
+      "corrupt_row_index": 6604,
+      "corrupt_token_count": 204,
+      "foil_hypothesis": "Being salty is a property of scrompists.",
+      "gold_hypothesis": "Every gorpee is salty.",
+      "key": [
+        "gorpee",
+        "salty",
+        false
+      ],
+      "pair_id": 0,
+      "recovery_denominator": 74.67743349075317
+    },
+    {
+      "clean_landmarks": {
+        "last_prompt": 139,
+        "predicate": 124,
+        "question_stem": 126,
+        "subject": 103
+      },
+      "clean_reference_margin_gold_minus_foil": 30.28970718383789,
+      "clean_row_index": 116,
+      "clean_token_count": 140,
+      "corrupt_baseline_margin_gold_minus_foil": -32.244723783805966,
+      "corrupt_landmarks": {
+        "last_prompt": 207,
+        "predicate": 192,
+        "question_stem": 194,
+        "subject": 140
+      },
+      "corrupt_row_index": 6649,
+      "corrupt_token_count": 208,
+      "foil_hypothesis": "Lerpants are not loud.",
+      "gold_hypothesis": "Every shergit is not loud.",
+      "key": [
+        "shergit",
+        "loud",
+        true
+      ],
+      "pair_id": 1,
+      "recovery_denominator": 62.53443096764386
+    },
+    {
+      "clean_landmarks": {
+        "last_prompt": 133,
+        "predicate": 118,
+        "question_stem": 120,
+        "subject": 101
+      },
+      "clean_reference_margin_gold_minus_foil": 26.482908248901367,
+      "clean_row_index": 979,
+      "clean_token_count": 134,
+      "corrupt_baseline_margin_gold_minus_foil": -18.647101283073425,
+      "corrupt_landmarks": {
+        "last_prompt": 206,
+        "predicate": 191,
+        "question_stem": 193,
+        "subject": 166
+      },
+      "corrupt_row_index": 8198,
+      "corrupt_token_count": 207,
+      "foil_hypothesis": "Being small is a property of orgits.",
+      "gold_hypothesis": "Every pergit is small.",
+      "key": [
+        "pergit",
+        "small",
+        false
+      ],
+      "pair_id": 2,
+      "recovery_denominator": 45.13000953197479
+    },
+    {
+      "clean_landmarks": {
+        "last_prompt": 136,
+        "predicate": 121,
+        "question_stem": 123,
+        "subject": 103
+      },
+      "clean_reference_margin_gold_minus_foil": 40.267377853393555,
+      "clean_row_index": 364,
+      "clean_token_count": 137,
+      "corrupt_baseline_margin_gold_minus_foil": -15.350119590759277,
+      "corrupt_landmarks": {
+        "last_prompt": 208,
+        "predicate": 193,
+        "question_stem": 195,
+        "subject": 167
+      },
+      "corrupt_row_index": 9950,
+      "corrupt_token_count": 209,
+      "foil_hypothesis": "Being salty is a property of yumpuses.",
+      "gold_hypothesis": "Every zumpus is salty.",
+      "key": [
+        "zumpus",
+        "salty",
+        false
+      ],
+      "pair_id": 3,
+      "recovery_denominator": 55.61749744415283
+    },
+    {
+      "clean_landmarks": {
+        "last_prompt": 133,
+        "predicate": 118,
+        "question_stem": 120,
+        "subject": 101
+      },
+      "clean_reference_margin_gold_minus_foil": 11.341156005859375,
+      "clean_row_index": 980,
+      "clean_token_count": 134,
+      "corrupt_baseline_margin_gold_minus_foil": -8.988832607865334,
+      "corrupt_landmarks": {
+        "last_prompt": 201,
+        "predicate": 186,
+        "question_stem": 188,
+        "subject": 155
+      },
+      "corrupt_row_index": 7312,
+      "corrupt_token_count": 202,
+      "foil_hypothesis": "Being orange is a property of yerpists.",
+      "gold_hypothesis": "Every yerpist is orange.",
+      "key": [
+        "yerpist",
+        "orange",
+        false
+      ],
+      "pair_id": 4,
+      "recovery_denominator": 20.32998861372471
+    },
+    {
+      "clean_landmarks": {
+        "last_prompt": 133,
+        "predicate": 118,
+        "question_stem": 120,
+        "subject": 101
+      },
+      "clean_reference_margin_gold_minus_foil": 9.806581497192383,
+      "clean_row_index": 521,
+      "clean_token_count": 134,
+      "corrupt_baseline_margin_gold_minus_foil": -15.182158946990967,
+      "corrupt_landmarks": {
+        "last_prompt": 211,
+        "predicate": 196,
+        "question_stem": 198,
+        "subject": 171
+      },
+      "corrupt_row_index": 6298,
+      "corrupt_token_count": 212,
+      "foil_hypothesis": "Fast things are stirpors.",
+      "gold_hypothesis": "Every stirpor is fast.",
+      "key": [
+        "stirpor",
+        "fast",
+        false
+      ],
+      "pair_id": 5,
+      "recovery_denominator": 24.98874044418335
+    },
+    {
+      "clean_landmarks": {
+        "last_prompt": 133,
+        "predicate": 118,
+        "question_stem": 120,
+        "subject": 101
+      },
+      "clean_reference_margin_gold_minus_foil": 14.770668029785156,
+      "clean_row_index": 693,
+      "clean_token_count": 134,
+      "corrupt_baseline_margin_gold_minus_foil": -25.59041655063629,
+      "corrupt_landmarks": {
+        "last_prompt": 198,
+        "predicate": 183,
+        "question_stem": 185,
+        "subject": 166
+      },
+      "corrupt_row_index": 9560,
+      "corrupt_token_count": 199,
+      "foil_hypothesis": "Fruity is arper.",
+      "gold_hypothesis": "Every arper is fruity.",
+      "key": [
+        "arper",
+        "fruity",
+        false
+      ],
+      "pair_id": 6,
+      "recovery_denominator": 40.36108458042145
+    },
+    {
+      "clean_landmarks": {
+        "last_prompt": 133,
+        "predicate": 118,
+        "question_stem": 120,
+        "subject": 101
+      },
+      "clean_reference_margin_gold_minus_foil": 10.419332504272461,
+      "clean_row_index": 692,
+      "clean_token_count": 134,
+      "corrupt_baseline_margin_gold_minus_foil": -11.705670475959778,
+      "corrupt_landmarks": {
+        "last_prompt": 200,
+        "predicate": 185,
+        "question_stem": 187,
+        "subject": 141
+      },
+      "corrupt_row_index": 6211,
+      "corrupt_token_count": 201,
+      "foil_hypothesis": "Being pale is a property of prilpants.",
+      "gold_hypothesis": "Every prilpant is pale.",
+      "key": [
+        "prilpant",
+        "pale",
+        false
+      ],
+      "pair_id": 7,
+      "recovery_denominator": 22.12500298023224
+    }
+  ],
+  "patch_direction": "corrupt_to_clean",
+  "patch_modes": [
+    "corrupt",
+    "noise"
+  ],
+  "schema_version": 1,
+  "script": "scripts/stage2_patch_clean_to_corrupt.py",
+  "selection": {
+    "available_pair_capacity": 11,
+    "h1_clean_rows": 144,
+    "h4_corrupt_rows": 486,
+    "limit": 8,
+    "pair_match": "full_gold_hypothesis_h1_correct_to_h4_incorrect",
+    "seed": 20260501,
+    "selected_pairs": 8,
+    "shared_full_hypothesis_keys": 11,
+    "skipped_corrupt_no_foil": 0,
+    "source_file": "results/full/with_errortype/gemma3_27b_infer_property.jsonl",
+    "split": "test",
+    "split_family": "s1"
+  },
+  "slurm_job_id": "452492",
+  "splits": "results/stage2/splits.jsonl",
+  "summary": {
+    "corrupt_L35_last_prompt": {
+      "above_0p25_breakage_count": 1,
+      "above_0p25_recovery_count": 0,
+      "generated_strong_accuracy": null,
+      "margin_decreased_count": 6,
+      "margin_improved_count": 2,
+      "mean_breakage_fraction": 0.09950426751338518,
+      "mean_margin": 23.796364784240723,
+      "mean_margin_delta": -2.5076329708099365,
+      "mean_recovery_fraction": -0.09950426751338518,
+      "n": 8,
+      "positive_breakage_count": 6,
+      "positive_recovery_count": 2
+    },
+    "corrupt_L40_last_prompt": {
+      "above_0p25_breakage_count": 2,
+      "above_0p25_recovery_count": 0,
+      "generated_strong_accuracy": null,
+      "margin_decreased_count": 6,
+      "margin_improved_count": 2,
+      "mean_breakage_fraction": 0.135539421986273,
+      "mean_margin": 23.46249532699585,
+      "mean_margin_delta": -2.8415024280548096,
+      "mean_recovery_fraction": -0.135539421986273,
+      "n": 8,
+      "positive_breakage_count": 6,
+      "positive_recovery_count": 2
+    },
+    "corrupt_L45_last_prompt": {
+      "above_0p25_breakage_count": 2,
+      "above_0p25_recovery_count": 0,
+      "generated_strong_accuracy": null,
+      "margin_decreased_count": 5,
+      "margin_improved_count": 3,
+      "mean_breakage_fraction": 0.1201849214388319,
+      "mean_margin": 24.090039253234863,
+      "mean_margin_delta": -2.213958501815796,
+      "mean_recovery_fraction": -0.1201849214388319,
+      "n": 8,
+      "positive_breakage_count": 5,
+      "positive_recovery_count": 3
+    },
+    "corrupt_L50_last_prompt": {
+      "above_0p25_breakage_count": 3,
+      "above_0p25_recovery_count": 0,
+      "generated_strong_accuracy": null,
+      "margin_decreased_count": 6,
+      "margin_improved_count": 2,
+      "mean_breakage_fraction": 0.1769291626012884,
+      "mean_margin": 21.599966764450073,
+      "mean_margin_delta": -4.704030990600586,
+      "mean_recovery_fraction": -0.1769291626012884,
+      "n": 8,
+      "positive_breakage_count": 6,
+      "positive_recovery_count": 2
+    },
+    "noise_L35_last_prompt": {
+      "above_0p25_breakage_count": 0,
+      "above_0p25_recovery_count": 0,
+      "generated_strong_accuracy": null,
+      "margin_decreased_count": 3,
+      "margin_improved_count": 5,
+      "mean_breakage_fraction": -0.015099381652551697,
+      "mean_margin": 27.504278898239136,
+      "mean_margin_delta": 1.2002811431884766,
+      "mean_recovery_fraction": 0.015099381652551697,
+      "n": 8,
+      "positive_breakage_count": 3,
+      "positive_recovery_count": 5
+    },
+    "noise_L40_last_prompt": {
+      "above_0p25_breakage_count": 0,
+      "above_0p25_recovery_count": 0,
+      "generated_strong_accuracy": null,
+      "margin_decreased_count": 4,
+      "margin_improved_count": 4,
+      "mean_breakage_fraction": 0.0181069156655588,
+      "mean_margin": 25.593448400497437,
+      "mean_margin_delta": -0.7105493545532227,
+      "mean_recovery_fraction": -0.0181069156655588,
+      "n": 8,
+      "positive_breakage_count": 4,
+      "positive_recovery_count": 4
+    },
+    "noise_L45_last_prompt": {
+      "above_0p25_breakage_count": 0,
+      "above_0p25_recovery_count": 1,
+      "generated_strong_accuracy": null,
+      "margin_decreased_count": 3,
+      "margin_improved_count": 5,
+      "mean_breakage_fraction": -0.0652116608500754,
+      "mean_margin": 28.400879859924316,
+      "mean_margin_delta": 2.0968821048736572,
+      "mean_recovery_fraction": 0.0652116608500754,
+      "n": 8,
+      "positive_breakage_count": 3,
+      "positive_recovery_count": 5
+    },
+    "noise_L50_last_prompt": {
+      "above_0p25_breakage_count": 1,
+      "above_0p25_recovery_count": 0,
+      "generated_strong_accuracy": null,
+      "margin_decreased_count": 4,
+      "margin_improved_count": 4,
+      "mean_breakage_fraction": 0.022664182139520817,
+      "mean_margin": 26.53055715560913,
+      "mean_margin_delta": 0.22655940055847168,
+      "mean_recovery_fraction": -0.022664182139520817,
+      "n": 8,
+      "positive_breakage_count": 4,
+      "positive_recovery_count": 4
+    }
+  },
+  "task": "infer_property"
+}

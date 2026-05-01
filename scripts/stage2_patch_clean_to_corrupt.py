@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Patch clean h1 residual states into corrupt h4 prompts at semantic landmarks."""
+"""Patch residual states between clean h1 and corrupt h4 prompts."""
 
 from __future__ import annotations
 
@@ -367,14 +367,27 @@ def summarize_patch_rows(rows: list[dict[str, Any]]) -> dict[str, Any]:
     out: dict[str, Any] = {}
     for (mode, layer, landmark), group in sorted(groups.items()):
         key = f"{mode}_L{layer}_{landmark}"
+        breakage_values = [
+            float(row["breakage_fraction"])
+            for row in group
+            if row.get("breakage_fraction") is not None
+        ]
         out[key] = {
             "n": len(group),
             "mean_margin": sum(float(row["patched_margin_gold_minus_foil"]) for row in group) / len(group),
-            "mean_margin_delta": sum(float(row["margin_delta_vs_corrupt"]) for row in group) / len(group),
+            "mean_margin_delta": sum(float(row["margin_delta_vs_baseline"]) for row in group) / len(group),
             "mean_recovery_fraction": sum(float(row["recovery_fraction"]) for row in group) / len(group),
-            "margin_improved_count": sum(float(row["margin_delta_vs_corrupt"]) > 0 for row in group),
+            "mean_breakage_fraction": (
+                sum(breakage_values) / len(breakage_values)
+                if breakage_values
+                else None
+            ),
+            "margin_improved_count": sum(float(row["margin_delta_vs_baseline"]) > 0 for row in group),
+            "margin_decreased_count": sum(float(row["margin_delta_vs_baseline"]) < 0 for row in group),
             "positive_recovery_count": sum(float(row["recovery_fraction"]) > 0 for row in group),
+            "positive_breakage_count": sum(float(row.get("breakage_fraction") or 0.0) > 0 for row in group),
             "above_0p25_recovery_count": sum(float(row["recovery_fraction"]) >= 0.25 for row in group),
+            "above_0p25_breakage_count": sum(float(row.get("breakage_fraction") or 0.0) >= 0.25 for row in group),
             "generated_strong_accuracy": (
                 sum(bool(row.get("generated_is_correct_strong")) for row in group) / len(group)
                 if "generated_is_correct_strong" in group[0]
@@ -398,6 +411,16 @@ def build_arg_parser() -> argparse.ArgumentParser:
     parser.add_argument("--layers", default="30,35,40,45,50")
     parser.add_argument("--landmarks", default="last_prompt,subject,predicate,question_stem")
     parser.add_argument("--patch-modes", default="clean,noise")
+    parser.add_argument(
+        "--patch-direction",
+        choices=("clean_to_corrupt", "corrupt_to_clean"),
+        default="clean_to_corrupt",
+        help=(
+            "clean_to_corrupt patches h1 states into h4 prompts and treats positive "
+            "gold-minus-foil margin deltas as repair. corrupt_to_clean patches h4 "
+            "states into h1 prompts and reports negative deltas as breakage."
+        ),
+    )
     parser.add_argument("--noise-seed", type=int, default=20260502)
     parser.add_argument("--n-devices", type=int, default=2)
     parser.add_argument("--n-ctx", type=int, default=4096)
@@ -430,9 +453,17 @@ def main() -> int:
     layers = parse_int_list(args.layers)
     landmarks = [part.strip() for part in args.landmarks.split(",") if part.strip()]
     patch_modes = [part.strip() for part in args.patch_modes.split(",") if part.strip()]
-    unknown_modes = sorted(set(patch_modes) - {"clean", "noise"})
+    unknown_modes = sorted(set(patch_modes) - {"clean", "corrupt", "source", "noise"})
     if unknown_modes:
         raise ValueError(f"unknown patch mode(s): {unknown_modes}")
+    if args.patch_direction == "clean_to_corrupt":
+        unsupported_modes = sorted(set(patch_modes) - {"clean", "source", "noise"})
+    else:
+        unsupported_modes = sorted(set(patch_modes) - {"corrupt", "source", "noise"})
+    if unsupported_modes:
+        raise ValueError(
+            f"patch mode(s) {unsupported_modes} do not match direction {args.patch_direction!r}"
+        )
 
     pairs, pair_summary = select_pairs(
         rows=rows,
@@ -496,7 +527,7 @@ def main() -> int:
         return 0
 
     dtype = torch_dtype(args.dtype)
-    print("Stage 2 clean-to-corrupt residual patching", flush=True)
+    print(f"Stage 2 residual patching direction={args.patch_direction}", flush=True)
     print(f"model={args.model} task={args.task} layers={layers} landmarks={landmarks}", flush=True)
     print(f"pairs={len(pairs)} selection={pair_summary}", flush=True)
     print(f"transformer-lens={package_version('transformer-lens')} torch={torch.__version__}", flush=True)
@@ -628,39 +659,71 @@ def main() -> int:
                     if clean_vector is None or corrupt_vector is None:
                         missing_landmarks[f"capture_L{layer}_{landmark}"] += 1
                         continue
-                    delta = clean_vector - corrupt_vector
+                    if args.patch_direction == "clean_to_corrupt":
+                        source_vector = clean_vector
+                        target_vector = corrupt_vector
+                        patch_position = corrupt_pos
+                        prompt_tokens = corrupt_tokens
+                        target_row = pair.corrupt_row
+                        baseline_margin = corrupt_margin
+                        reference_margin = clean_margin
+                        baseline_label = "corrupt"
+                        reference_label = "clean"
+                    else:
+                        source_vector = corrupt_vector
+                        target_vector = clean_vector
+                        patch_position = clean_pos
+                        prompt_tokens = clean_tokens
+                        target_row = pair.clean_row
+                        baseline_margin = clean_margin
+                        reference_margin = corrupt_margin
+                        baseline_label = "clean"
+                        reference_label = "corrupt"
+
+                    delta = source_vector - target_vector
                     delta_norm = float(torch.linalg.vector_norm(delta).item())
                     vectors: dict[str, torch.Tensor] = {}
-                    if "clean" in patch_modes:
-                        vectors["clean"] = clean_vector
+                    if "clean" in patch_modes or "corrupt" in patch_modes or "source" in patch_modes:
+                        source_mode = "source"
+                        if "clean" in patch_modes:
+                            source_mode = "clean"
+                        elif "corrupt" in patch_modes:
+                            source_mode = "corrupt"
+                        vectors[source_mode] = source_vector
                     if "noise" in patch_modes:
                         rng = np.random.default_rng(args.noise_seed + pair.pair_id * 100003 + layer * 1009 + len(landmark))
-                        noise = torch.as_tensor(rng.standard_normal(clean_vector.shape[0]), dtype=torch.float32)
+                        noise = torch.as_tensor(rng.standard_normal(target_vector.shape[0]), dtype=torch.float32)
                         noise = noise / torch.linalg.vector_norm(noise).clamp_min(1e-12) * delta_norm
-                        vectors["noise"] = corrupt_vector + noise
+                        vectors["noise"] = target_vector + noise
 
                     for patch_mode, patch_vector in vectors.items():
                         patched_gold, gold_hook = score_sequence_logprob(
                             model=model,
                             hook_name=hook_names_by_layer[layer],
                             patch_vector=patch_vector,
-                            patch_position=corrupt_pos,
-                            prompt_token_ids=corrupt_tokens,
+                            patch_position=patch_position,
+                            prompt_token_ids=prompt_tokens,
                             candidate_text=pair.gold_hypothesis,
                         )
                         patched_foil, foil_hook = score_sequence_logprob(
                             model=model,
                             hook_name=hook_names_by_layer[layer],
                             patch_vector=patch_vector,
-                            patch_position=corrupt_pos,
-                            prompt_token_ids=corrupt_tokens,
+                            patch_position=patch_position,
+                            prompt_token_ids=prompt_tokens,
                             candidate_text=pair.foil_hypothesis,
                         )
                         patched_margin = patched_gold.logprob - patched_foil.logprob
-                        margin_delta = patched_margin - corrupt_margin
-                        recovery = margin_delta / denominator if abs(denominator) > 1e-9 else 0.0
+                        margin_delta = patched_margin - baseline_margin
+                        if args.patch_direction == "clean_to_corrupt":
+                            recovery = margin_delta / denominator if abs(denominator) > 1e-9 else 0.0
+                            breakage = None
+                        else:
+                            recovery = margin_delta / denominator if abs(denominator) > 1e-9 else 0.0
+                            breakage = -margin_delta / denominator if abs(denominator) > 1e-9 else 0.0
                         row: dict[str, Any] = {
                             "schema_version": 1,
+                            "patch_direction": args.patch_direction,
                             "pair_id": pair.pair_id,
                             "clean_row_index": pair.clean_row_index,
                             "corrupt_row_index": pair.corrupt_row_index,
@@ -671,38 +734,49 @@ def main() -> int:
                             "patch_mode": patch_mode,
                             "clean_position": clean_pos,
                             "corrupt_position": corrupt_pos,
+                            "patch_position": patch_position,
                             "clean_token_count": len(clean_tokens),
                             "corrupt_token_count": len(corrupt_tokens),
                             "gold_hypothesis": pair.gold_hypothesis,
                             "foil_hypothesis": pair.foil_hypothesis,
                             "corrupt_baseline_margin_gold_minus_foil": corrupt_margin,
                             "clean_reference_margin_gold_minus_foil": clean_margin,
+                            "baseline_label": baseline_label,
+                            "reference_label": reference_label,
+                            "baseline_margin_gold_minus_foil": baseline_margin,
+                            "reference_margin_gold_minus_foil": reference_margin,
                             "patched_gold_logprob": patched_gold.logprob,
                             "patched_foil_logprob": patched_foil.logprob,
                             "patched_margin_gold_minus_foil": patched_margin,
-                            "margin_delta_vs_corrupt": margin_delta,
+                            "margin_delta_vs_baseline": margin_delta,
+                            "margin_delta_vs_corrupt": patched_margin - corrupt_margin,
                             "recovery_denominator": denominator,
                             "recovery_fraction": recovery,
-                            "patch_delta_l2": delta_norm if patch_mode == "clean" else float(torch.linalg.vector_norm(patch_vector - corrupt_vector).item()),
+                            "breakage_fraction": breakage,
+                            "patch_delta_l2": (
+                                delta_norm
+                                if patch_mode in {"clean", "corrupt", "source"}
+                                else float(torch.linalg.vector_norm(patch_vector - target_vector).item())
+                            ),
                             "gold_hook_applications": gold_hook["applications"],
                             "foil_hook_applications": foil_hook["applications"],
                         }
                         if args.generate:
                             hook_fn, gen_state = make_generation_patch_hook(
                                 patch_vector=patch_vector,
-                                patch_position=corrupt_pos,
+                                patch_position=patch_position,
                             )
                             with model.hooks(fwd_hooks=[(hook_names_by_layer[layer], hook_fn)]):
                                 new_ids, reply = generate_one(
                                     model=model,
-                                    token_ids=corrupt_tokens,
+                                    token_ids=prompt_tokens,
                                     max_new_tokens=args.max_new_tokens,
                                     do_sample=args.do_sample,
                                     temperature=args.temperature,
                                     stop_at_eos=args.stop_at_eos,
                                     cache_dtype=dtype,
                                 )
-                            score = score_reply(pair.corrupt_row, reply)
+                            score = score_reply(target_row, reply)
                             row.update(
                                 {
                                     "generated_token_count": len(new_ids),
@@ -721,7 +795,8 @@ def main() -> int:
                         fout.flush()
                         print(
                             f"  L{layer} {landmark} {patch_mode}: "
-                            f"delta={margin_delta:.3f} recovery={recovery:.3f}",
+                            f"delta={margin_delta:.3f} recovery={recovery:.3f}"
+                            + (f" breakage={breakage:.3f}" if breakage is not None else ""),
                             flush=True,
                         )
             if torch.cuda.is_available():
@@ -739,6 +814,7 @@ def main() -> int:
         "jsonl": str(args.jsonl),
         "splits": str(args.splits),
         "selection": pair_summary,
+        "patch_direction": args.patch_direction,
         "layers": layers,
         "landmarks": landmarks,
         "patch_modes": patch_modes,
