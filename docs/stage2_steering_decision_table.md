@@ -18,6 +18,7 @@ success/failure, free-form answer content, or a Cox-style forced-choice answer.
 | Raw answer-property direction | 27B L45 residual | Gold answer polarity | Free-form hypothesis | `val_auc=test_auc=1.000` | 0 useful `toward_gold` flips; one wrong-direction repair under `away_gold` | Free-form answer-property steering also fails at 27B scale. |
 | Raw answer-property margin | 27B L45 residual | Gold answer polarity | Original prompt + MCQ margins | `val_auc=test_auc=1.000` | Small MCQ margin shift; 0 MCQ choice flips; original margins noisy | Weak constrained-margin sensitivity, not answer repair. |
 | Raw answer-property hard-foil margin | 27B L45 residual | Gold answer polarity | Original prompt + MCQ vs model-emitted wrong foil | `val_auc=test_auc=1.000` | 0 choice flips, 0 false-to-true MCQ flips through 2 SD; tiny MCQ deltas | Cox-style forced-choice branch is also negative for this probe direction. |
+| Clean-to-corrupt full-state patching | 27B L30/35/40/45/50 residual landmarks | h1-correct state transplanted into h4-incorrect prompt | Gold-vs-model-foil logprob margin | N/A | Late `last_prompt` clean patches weakly improve margins, but matched noise is comparable or stronger | Not a missing-state failure; looks like late wrong-answer commitment that generic perturbation can slightly loosen. |
 
 ## Active Gates
 
@@ -26,18 +27,18 @@ success/failure, free-form answer content, or a Cox-style forced-choice answer.
 | 27B raw answer-property smoke | Completed as Slurm job `452301`; null for controlled `toward_gold` steering | Stop free-form answer-property steering. |
 | Margin + forced-choice smoke | Completed as Slurm job `452338` | Do not scale the easy opposite-polarity foil. If continuing, use gold vs model-emitted wrong hypothesis or pivot to patching/reconstruction-error steering. |
 | Hard-foil forced-choice refinement | Completed as Slurm job `452362` | Close probe-direction steering and pivot to activation patching/interchange. |
+| Clean-to-corrupt patching pilot | Completed as Slurm job `452478` | Do not claim a repair/localization result. Optional final check is reverse h4-to-h1 patching at late `last_prompt` sites; otherwise move to report assembly. |
 
 ## Recommended Next Branches
 
 1. Treat the free-form and forced-choice answer-property branches as closed for
    this probe-derived direction.
-2. Pivot to activation patching/interchange to test whether any compact hidden
-   state can causally repair hard rows.
-3. If patching finds a site, try CAA-style content vectors there rather than
-   correctness or polarity directions.
-4. If patching is null, treat steering as a
-   negative/inconclusive causal check and shift effort to report assembly plus
-   feature falsification.
+2. Treat the clean-to-corrupt patching pilot as evidence against a simple
+   missing-state repair story at the tested residual sites.
+3. Optional, if one more run is worthwhile: reverse patch h4 `last_prompt`
+   states into h1 prompts at L35-L45 to test whether wrong-answer commitment is
+   easier to break than correct-answer computation is to transplant.
+4. Otherwise, shift effort to report assembly plus feature falsification.
 
 ## Current Interpretation
 
@@ -45,5 +46,7 @@ The project should not claim a successful causal steering mechanism yet. The
 consistent result is that raw and learned-dictionary probes can read predictive
 information from pre-generation activations, but additive decode-time steering
 has not reliably converted that information into correct emitted ontology
-answers. The forced-choice branch tests whether that null is partly due to the
-free-form output channel.
+answers. The forced-choice and patching branches sharpen that conclusion:
+recognition can be intact under constrained MCQ formatting, but free-form
+generation appears to enter a committed wrong-answer state that is not repaired
+by either probe-direction steering or clean h1 residual transplantation.

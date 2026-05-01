@@ -88,3 +88,62 @@ If clean patches do not beat noise anywhere, the causal story becomes stronger:
 not only are probe-derived directions non-causal, but transplanting strict
 matched h1 residual states at the tested landmarks does not repair h4 output
 margins.
+
+## Pilot Result
+
+Slurm job `452478` completed on 2026-05-01. It evaluated 8 strict
+h1-correct to h4-incorrect pairs, 5 layers, 4 landmarks, and 2 patch modes,
+for 320 total rows. Runtime was 879 seconds. No landmarks were missing.
+
+The only sites with meaningful aggregate movement were late `last_prompt`
+patches:
+
+| Site | Mode | Mean recovery | Mean margin delta | Improved pairs |
+|---|---|---:|---:|---:|
+| L35 `last_prompt` | clean | 0.108 | +2.836 | 6/8 |
+| L40 `last_prompt` | clean | 0.079 | +1.526 | 5/8 |
+| L45 `last_prompt` | clean | 0.046 | +0.161 | 3/8 |
+| L50 `last_prompt` | clean | 0.071 | +1.088 | 5/8 |
+| L45 `last_prompt` | noise | 0.085 | +3.497 | 7/8 |
+| L50 `last_prompt` | noise | 0.115 | +4.345 | 5/8 |
+
+Thus the apparent last-prompt effect is not cleanly state-specific:
+norm-matched random perturbations are comparable to, and sometimes stronger
+than, transplanting the h1 residual state.
+
+The per-pair headroom check supports this interpretation rather than rescuing
+a hidden localization claim. For the four high-headroom pairs
+(`recovery_denominator >= 45`), clean last-prompt patches did not beat noise:
+
+| Site | Clean mean recovery | Noise mean recovery |
+|---|---:|---:|
+| L35 `last_prompt` | -0.006 | +0.013 |
+| L40 `last_prompt` | -0.048 | -0.011 |
+| L45 `last_prompt` | -0.090 | +0.080 |
+| L50 `last_prompt` | -0.068 | +0.120 |
+
+For the four lower/mid-headroom pairs, clean patches did beat noise at
+L35-L45, but this split is not enough to claim repair because the aggregate
+effect is small, pair-dependent, and not stable under the matched noise
+control.
+
+## Interpretation
+
+This pilot rules out a specific missing-state story at the tested sites. If
+the h4 failure were simply caused by the absence of a compact residual state
+present in the easier h1 prompt, clean h1-to-h4 patches should outperform
+norm-matched noise. They do not.
+
+The more specific reading is that the h4 `last_prompt` state is already
+committed to the wrong free-form answer. Small perturbations at late
+`last_prompt` positions can partially loosen that commitment, slightly
+improving the gold-vs-foil margin, but they do not transplant the correct
+answer computation. This connects to the forced-choice hard-foil result:
+the model often recognizes the correct answer when shown the correct and
+wrong hypotheses, but its free-form generation pathway remains committed to
+the wrong hypothesis.
+
+Caveat: these are strict natural h1/h4 pairs sharing the full gold hypothesis,
+not exact same-ontology pairs. The h1 and h4 prompts therefore differ in more
+than depth. Exact same-ontology cross-height pairs were not available in the
+shipped data.

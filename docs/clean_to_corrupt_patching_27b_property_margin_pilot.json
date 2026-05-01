@@ -1,0 +1,692 @@
+{
+  "created_at_utc": "2026-05-01T05:38:17.372476+00:00",
+  "elapsed_seconds": 879.015538930893,
+  "generation": {
+    "do_sample": false,
+    "dtype": "torch.bfloat16",
+    "enabled": false,
+    "load_mode": "no-processing",
+    "max_new_tokens": 96,
+    "n_ctx": 4096,
+    "n_devices": 2,
+    "stop_at_eos": true,
+    "temperature": 0.0
+  },
+  "jsonl": "results/full/with_errortype/gemma3_27b_infer_property.jsonl",
+  "landmarks": [
+    "last_prompt",
+    "subject",
+    "predicate",
+    "question_stem"
+  ],
+  "layers": [
+    30,
+    35,
+    40,
+    45,
+    50
+  ],
+  "missing_landmarks": {},
+  "model": "google/gemma-3-27b-it",
+  "model_key": "gemma3_27b",
+  "out_jsonl": "results/stage2/patching/clean_to_corrupt_27b_property_margin_pilot.jsonl",
+  "pair_baselines": [
+    {
+      "clean_landmarks": {
+        "last_prompt": 133,
+        "predicate": 118,
+        "question_stem": 120,
+        "subject": 101
+      },
+      "clean_reference_margin_gold_minus_foil": 67.05425071716309,
+      "clean_row_index": 113,
+      "clean_token_count": 134,
+      "corrupt_baseline_margin_gold_minus_foil": -7.623182773590088,
+      "corrupt_landmarks": {
+        "last_prompt": 203,
+        "predicate": 188,
+        "question_stem": 190,
+        "subject": 165
+      },
+      "corrupt_row_index": 6604,
+      "corrupt_token_count": 204,
+      "foil_hypothesis": "Being salty is a property of scrompists.",
+      "gold_hypothesis": "Every gorpee is salty.",
+      "key": [
+        "gorpee",
+        "salty",
+        false
+      ],
+      "pair_id": 0,
+      "recovery_denominator": 74.67743349075317
+    },
+    {
+      "clean_landmarks": {
+        "last_prompt": 139,
+        "predicate": 124,
+        "question_stem": 126,
+        "subject": 103
+      },
+      "clean_reference_margin_gold_minus_foil": 30.28970718383789,
+      "clean_row_index": 116,
+      "clean_token_count": 140,
+      "corrupt_baseline_margin_gold_minus_foil": -32.244723783805966,
+      "corrupt_landmarks": {
+        "last_prompt": 207,
+        "predicate": 192,
+        "question_stem": 194,
+        "subject": 140
+      },
+      "corrupt_row_index": 6649,
+      "corrupt_token_count": 208,
+      "foil_hypothesis": "Lerpants are not loud.",
+      "gold_hypothesis": "Every shergit is not loud.",
+      "key": [
+        "shergit",
+        "loud",
+        true
+      ],
+      "pair_id": 1,
+      "recovery_denominator": 62.53443096764386
+    },
+    {
+      "clean_landmarks": {
+        "last_prompt": 133,
+        "predicate": 118,
+        "question_stem": 120,
+        "subject": 101
+      },
+      "clean_reference_margin_gold_minus_foil": 26.482908248901367,
+      "clean_row_index": 979,
+      "clean_token_count": 134,
+      "corrupt_baseline_margin_gold_minus_foil": -18.647101283073425,
+      "corrupt_landmarks": {
+        "last_prompt": 206,
+        "predicate": 191,
+        "question_stem": 193,
+        "subject": 166
+      },
+      "corrupt_row_index": 8198,
+      "corrupt_token_count": 207,
+      "foil_hypothesis": "Being small is a property of orgits.",
+      "gold_hypothesis": "Every pergit is small.",
+      "key": [
+        "pergit",
+        "small",
+        false
+      ],
+      "pair_id": 2,
+      "recovery_denominator": 45.13000953197479
+    },
+    {
+      "clean_landmarks": {
+        "last_prompt": 136,
+        "predicate": 121,
+        "question_stem": 123,
+        "subject": 103
+      },
+      "clean_reference_margin_gold_minus_foil": 40.267377853393555,
+      "clean_row_index": 364,
+      "clean_token_count": 137,
+      "corrupt_baseline_margin_gold_minus_foil": -15.350119590759277,
+      "corrupt_landmarks": {
+        "last_prompt": 208,
+        "predicate": 193,
+        "question_stem": 195,
+        "subject": 167
+      },
+      "corrupt_row_index": 9950,
+      "corrupt_token_count": 209,
+      "foil_hypothesis": "Being salty is a property of yumpuses.",
+      "gold_hypothesis": "Every zumpus is salty.",
+      "key": [
+        "zumpus",
+        "salty",
+        false
+      ],
+      "pair_id": 3,
+      "recovery_denominator": 55.61749744415283
+    },
+    {
+      "clean_landmarks": {
+        "last_prompt": 133,
+        "predicate": 118,
+        "question_stem": 120,
+        "subject": 101
+      },
+      "clean_reference_margin_gold_minus_foil": 11.341156005859375,
+      "clean_row_index": 980,
+      "clean_token_count": 134,
+      "corrupt_baseline_margin_gold_minus_foil": -8.988832607865334,
+      "corrupt_landmarks": {
+        "last_prompt": 201,
+        "predicate": 186,
+        "question_stem": 188,
+        "subject": 155
+      },
+      "corrupt_row_index": 7312,
+      "corrupt_token_count": 202,
+      "foil_hypothesis": "Being orange is a property of yerpists.",
+      "gold_hypothesis": "Every yerpist is orange.",
+      "key": [
+        "yerpist",
+        "orange",
+        false
+      ],
+      "pair_id": 4,
+      "recovery_denominator": 20.32998861372471
+    },
+    {
+      "clean_landmarks": {
+        "last_prompt": 133,
+        "predicate": 118,
+        "question_stem": 120,
+        "subject": 101
+      },
+      "clean_reference_margin_gold_minus_foil": 9.806581497192383,
+      "clean_row_index": 521,
+      "clean_token_count": 134,
+      "corrupt_baseline_margin_gold_minus_foil": -15.182158946990967,
+      "corrupt_landmarks": {
+        "last_prompt": 211,
+        "predicate": 196,
+        "question_stem": 198,
+        "subject": 171
+      },
+      "corrupt_row_index": 6298,
+      "corrupt_token_count": 212,
+      "foil_hypothesis": "Fast things are stirpors.",
+      "gold_hypothesis": "Every stirpor is fast.",
+      "key": [
+        "stirpor",
+        "fast",
+        false
+      ],
+      "pair_id": 5,
+      "recovery_denominator": 24.98874044418335
+    },
+    {
+      "clean_landmarks": {
+        "last_prompt": 133,
+        "predicate": 118,
+        "question_stem": 120,
+        "subject": 101
+      },
+      "clean_reference_margin_gold_minus_foil": 14.770668029785156,
+      "clean_row_index": 693,
+      "clean_token_count": 134,
+      "corrupt_baseline_margin_gold_minus_foil": -25.59041655063629,
+      "corrupt_landmarks": {
+        "last_prompt": 198,
+        "predicate": 183,
+        "question_stem": 185,
+        "subject": 166
+      },
+      "corrupt_row_index": 9560,
+      "corrupt_token_count": 199,
+      "foil_hypothesis": "Fruity is arper.",
+      "gold_hypothesis": "Every arper is fruity.",
+      "key": [
+        "arper",
+        "fruity",
+        false
+      ],
+      "pair_id": 6,
+      "recovery_denominator": 40.36108458042145
+    },
+    {
+      "clean_landmarks": {
+        "last_prompt": 133,
+        "predicate": 118,
+        "question_stem": 120,
+        "subject": 101
+      },
+      "clean_reference_margin_gold_minus_foil": 10.419332504272461,
+      "clean_row_index": 692,
+      "clean_token_count": 134,
+      "corrupt_baseline_margin_gold_minus_foil": -11.705670475959778,
+      "corrupt_landmarks": {
+        "last_prompt": 200,
+        "predicate": 185,
+        "question_stem": 187,
+        "subject": 141
+      },
+      "corrupt_row_index": 6211,
+      "corrupt_token_count": 201,
+      "foil_hypothesis": "Being pale is a property of prilpants.",
+      "gold_hypothesis": "Every prilpant is pale.",
+      "key": [
+        "prilpant",
+        "pale",
+        false
+      ],
+      "pair_id": 7,
+      "recovery_denominator": 22.12500298023224
+    }
+  ],
+  "patch_modes": [
+    "clean",
+    "noise"
+  ],
+  "schema_version": 1,
+  "script": "scripts/stage2_patch_clean_to_corrupt.py",
+  "selection": {
+    "available_pair_capacity": 11,
+    "h1_clean_rows": 144,
+    "h4_corrupt_rows": 486,
+    "limit": 8,
+    "pair_match": "full_gold_hypothesis_h1_correct_to_h4_incorrect",
+    "seed": 20260501,
+    "selected_pairs": 8,
+    "shared_full_hypothesis_keys": 11,
+    "skipped_corrupt_no_foil": 0,
+    "source_file": "results/full/with_errortype/gemma3_27b_infer_property.jsonl",
+    "split": "test",
+    "split_family": "s1"
+  },
+  "slurm_job_id": "452478",
+  "splits": "results/stage2/splits.jsonl",
+  "summary": {
+    "clean_L30_last_prompt": {
+      "above_0p25_recovery_count": 0,
+      "generated_strong_accuracy": null,
+      "margin_improved_count": 4,
+      "mean_margin": -17.15004613203928,
+      "mean_margin_delta": -0.23352038045413792,
+      "mean_recovery_fraction": 0.002515297553026864,
+      "n": 8,
+      "positive_recovery_count": 4
+    },
+    "clean_L30_predicate": {
+      "above_0p25_recovery_count": 0,
+      "generated_strong_accuracy": null,
+      "margin_improved_count": 5,
+      "mean_margin": -16.512218872085214,
+      "mean_margin_delta": 0.40430687949992716,
+      "mean_recovery_fraction": -0.000834132772382004,
+      "n": 8,
+      "positive_recovery_count": 5
+    },
+    "clean_L30_question_stem": {
+      "above_0p25_recovery_count": 0,
+      "generated_strong_accuracy": null,
+      "margin_improved_count": 4,
+      "mean_margin": -16.77833746909164,
+      "mean_margin_delta": 0.1381882824935019,
+      "mean_recovery_fraction": -0.0009658867151769921,
+      "n": 8,
+      "positive_recovery_count": 4
+    },
+    "clean_L30_subject": {
+      "above_0p25_recovery_count": 0,
+      "generated_strong_accuracy": null,
+      "margin_improved_count": 3,
+      "mean_margin": -17.130586256389506,
+      "mean_margin_delta": -0.21406050480436534,
+      "mean_recovery_fraction": -0.01017102058162008,
+      "n": 8,
+      "positive_recovery_count": 3
+    },
+    "clean_L35_last_prompt": {
+      "above_0p25_recovery_count": 1,
+      "generated_strong_accuracy": null,
+      "margin_improved_count": 6,
+      "mean_margin": -14.080582690156007,
+      "mean_margin_delta": 2.835943061429134,
+      "mean_recovery_fraction": 0.1078210457336998,
+      "n": 8,
+      "positive_recovery_count": 6
+    },
+    "clean_L35_predicate": {
+      "above_0p25_recovery_count": 0,
+      "generated_strong_accuracy": null,
+      "margin_improved_count": 3,
+      "mean_margin": -17.24434859212488,
+      "mean_margin_delta": -0.32782284053973854,
+      "mean_recovery_fraction": -0.017410596241443053,
+      "n": 8,
+      "positive_recovery_count": 3
+    },
+    "clean_L35_question_stem": {
+      "above_0p25_recovery_count": 0,
+      "generated_strong_accuracy": null,
+      "margin_improved_count": 1,
+      "mean_margin": -17.104033531737514,
+      "mean_margin_delta": -0.18750778015237302,
+      "mean_recovery_fraction": -0.008121011462501795,
+      "n": 8,
+      "positive_recovery_count": 1
+    },
+    "clean_L35_subject": {
+      "above_0p25_recovery_count": 0,
+      "generated_strong_accuracy": null,
+      "margin_improved_count": 2,
+      "mean_margin": -17.616636163787916,
+      "mean_margin_delta": -0.7001104122027755,
+      "mean_recovery_fraction": -0.02027620950648203,
+      "n": 8,
+      "positive_recovery_count": 2
+    },
+    "clean_L40_last_prompt": {
+      "above_0p25_recovery_count": 2,
+      "generated_strong_accuracy": null,
+      "margin_improved_count": 5,
+      "mean_margin": -15.390158782713115,
+      "mean_margin_delta": 1.5263669688720256,
+      "mean_recovery_fraction": 0.07906416416038177,
+      "n": 8,
+      "positive_recovery_count": 5
+    },
+    "clean_L40_predicate": {
+      "above_0p25_recovery_count": 0,
+      "generated_strong_accuracy": null,
+      "margin_improved_count": 2,
+      "mean_margin": -17.028494063415565,
+      "mean_margin_delta": -0.11196831183042377,
+      "mean_recovery_fraction": -0.0036324979080175814,
+      "n": 8,
+      "positive_recovery_count": 2
+    },
+    "clean_L40_question_stem": {
+      "above_0p25_recovery_count": 0,
+      "generated_strong_accuracy": null,
+      "margin_improved_count": 3,
+      "mean_margin": -17.12384221656248,
+      "mean_margin_delta": -0.2073164649773389,
+      "mean_recovery_fraction": -0.006862105600001387,
+      "n": 8,
+      "positive_recovery_count": 3
+    },
+    "clean_L40_subject": {
+      "above_0p25_recovery_count": 0,
+      "generated_strong_accuracy": null,
+      "margin_improved_count": 1,
+      "mean_margin": -17.52547309815418,
+      "mean_margin_delta": -0.6089473465690389,
+      "mean_recovery_fraction": -0.016591150266858118,
+      "n": 8,
+      "positive_recovery_count": 1
+    },
+    "clean_L45_last_prompt": {
+      "above_0p25_recovery_count": 2,
+      "generated_strong_accuracy": null,
+      "margin_improved_count": 3,
+      "mean_margin": -16.75544797151815,
+      "mean_margin_delta": 0.16107778006698936,
+      "mean_recovery_fraction": 0.046057304970432034,
+      "n": 8,
+      "positive_recovery_count": 3
+    },
+    "clean_L45_predicate": {
+      "above_0p25_recovery_count": 0,
+      "generated_strong_accuracy": null,
+      "margin_improved_count": 1,
+      "mean_margin": -17.249627376208082,
+      "mean_margin_delta": -0.333101624622941,
+      "mean_recovery_fraction": -0.009565882373138157,
+      "n": 8,
+      "positive_recovery_count": 1
+    },
+    "clean_L45_question_stem": {
+      "above_0p25_recovery_count": 0,
+      "generated_strong_accuracy": null,
+      "margin_improved_count": 3,
+      "mean_margin": -17.058769834926352,
+      "mean_margin_delta": -0.14224408334121108,
+      "mean_recovery_fraction": -0.00680187691099094,
+      "n": 8,
+      "positive_recovery_count": 3
+    },
+    "clean_L45_subject": {
+      "above_0p25_recovery_count": 0,
+      "generated_strong_accuracy": null,
+      "margin_improved_count": 4,
+      "mean_margin": -17.293727469281293,
+      "mean_margin_delta": -0.3772017176961526,
+      "mean_recovery_fraction": -0.013042216461022361,
+      "n": 8,
+      "positive_recovery_count": 4
+    },
+    "clean_L50_last_prompt": {
+      "above_0p25_recovery_count": 2,
+      "generated_strong_accuracy": null,
+      "margin_improved_count": 5,
+      "mean_margin": -15.82875421945937,
+      "mean_margin_delta": 1.087771532125771,
+      "mean_recovery_fraction": 0.0712102886491609,
+      "n": 8,
+      "positive_recovery_count": 5
+    },
+    "clean_L50_predicate": {
+      "above_0p25_recovery_count": 0,
+      "generated_strong_accuracy": null,
+      "margin_improved_count": 5,
+      "mean_margin": -16.835918180644512,
+      "mean_margin_delta": 0.08060757094062865,
+      "mean_recovery_fraction": 0.0010648049336316155,
+      "n": 8,
+      "positive_recovery_count": 5
+    },
+    "clean_L50_question_stem": {
+      "above_0p25_recovery_count": 0,
+      "generated_strong_accuracy": null,
+      "margin_improved_count": 2,
+      "mean_margin": -17.026092633255757,
+      "mean_margin_delta": -0.10956688167061657,
+      "mean_recovery_fraction": -0.0056244140117683175,
+      "n": 8,
+      "positive_recovery_count": 2
+    },
+    "clean_L50_subject": {
+      "above_0p25_recovery_count": 0,
+      "generated_strong_accuracy": null,
+      "margin_improved_count": 4,
+      "mean_margin": -17.36910644720774,
+      "mean_margin_delta": -0.4525806956226006,
+      "mean_recovery_fraction": -0.013109467216532483,
+      "n": 8,
+      "positive_recovery_count": 4
+    },
+    "noise_L30_last_prompt": {
+      "above_0p25_recovery_count": 0,
+      "generated_strong_accuracy": null,
+      "margin_improved_count": 6,
+      "mean_margin": -15.93992833327502,
+      "mean_margin_delta": 0.9765974183101207,
+      "mean_recovery_fraction": 0.024822209046714755,
+      "n": 8,
+      "positive_recovery_count": 6
+    },
+    "noise_L30_predicate": {
+      "above_0p25_recovery_count": 0,
+      "generated_strong_accuracy": null,
+      "margin_improved_count": 4,
+      "mean_margin": -17.31334355007857,
+      "mean_margin_delta": -0.39681779849343,
+      "mean_recovery_fraction": -0.014120614545220539,
+      "n": 8,
+      "positive_recovery_count": 4
+    },
+    "noise_L30_question_stem": {
+      "above_0p25_recovery_count": 0,
+      "generated_strong_accuracy": null,
+      "margin_improved_count": 6,
+      "mean_margin": -16.34723260474857,
+      "mean_margin_delta": 0.5692931468365714,
+      "mean_recovery_fraction": 0.00812069318069955,
+      "n": 8,
+      "positive_recovery_count": 6
+    },
+    "noise_L30_subject": {
+      "above_0p25_recovery_count": 0,
+      "generated_strong_accuracy": null,
+      "margin_improved_count": 1,
+      "mean_margin": -17.76550665218383,
+      "mean_margin_delta": -0.8489809005986899,
+      "mean_recovery_fraction": -0.02109971562763034,
+      "n": 8,
+      "positive_recovery_count": 1
+    },
+    "noise_L35_last_prompt": {
+      "above_0p25_recovery_count": 0,
+      "generated_strong_accuracy": null,
+      "margin_improved_count": 6,
+      "mean_margin": -15.968804944306612,
+      "mean_margin_delta": 0.9477208072785288,
+      "mean_recovery_fraction": 0.035853421412731824,
+      "n": 8,
+      "positive_recovery_count": 6
+    },
+    "noise_L35_predicate": {
+      "above_0p25_recovery_count": 0,
+      "generated_strong_accuracy": null,
+      "margin_improved_count": 5,
+      "mean_margin": -16.51195538858883,
+      "mean_margin_delta": 0.40457036299631,
+      "mean_recovery_fraction": 0.011269670204722748,
+      "n": 8,
+      "positive_recovery_count": 5
+    },
+    "noise_L35_question_stem": {
+      "above_0p25_recovery_count": 0,
+      "generated_strong_accuracy": null,
+      "margin_improved_count": 4,
+      "mean_margin": -16.95487083273474,
+      "mean_margin_delta": -0.038345081149600446,
+      "mean_recovery_fraction": -0.006516135527357483,
+      "n": 8,
+      "positive_recovery_count": 4
+    },
+    "noise_L35_subject": {
+      "above_0p25_recovery_count": 0,
+      "generated_strong_accuracy": null,
+      "margin_improved_count": 2,
+      "mean_margin": -17.46764477295801,
+      "mean_margin_delta": -0.5511190213728696,
+      "mean_recovery_fraction": -0.014532757887349203,
+      "n": 8,
+      "positive_recovery_count": 2
+    },
+    "noise_L40_last_prompt": {
+      "above_0p25_recovery_count": 0,
+      "generated_strong_accuracy": null,
+      "margin_improved_count": 4,
+      "mean_margin": -17.139516030205414,
+      "mean_margin_delta": -0.22299027862027287,
+      "mean_recovery_fraction": -0.001460689310449646,
+      "n": 8,
+      "positive_recovery_count": 4
+    },
+    "noise_L40_predicate": {
+      "above_0p25_recovery_count": 0,
+      "generated_strong_accuracy": null,
+      "margin_improved_count": 2,
+      "mean_margin": -16.933608878869563,
+      "mean_margin_delta": -0.017083127284422517,
+      "mean_recovery_fraction": -0.002749079398870416,
+      "n": 8,
+      "positive_recovery_count": 2
+    },
+    "noise_L40_question_stem": {
+      "above_0p25_recovery_count": 0,
+      "generated_strong_accuracy": null,
+      "margin_improved_count": 1,
+      "mean_margin": -17.14032889972441,
+      "mean_margin_delta": -0.22380314813926816,
+      "mean_recovery_fraction": -0.006403957338662666,
+      "n": 8,
+      "positive_recovery_count": 1
+    },
+    "noise_L40_subject": {
+      "above_0p25_recovery_count": 0,
+      "generated_strong_accuracy": null,
+      "margin_improved_count": 1,
+      "mean_margin": -17.795044249040075,
+      "mean_margin_delta": -0.8785184974549338,
+      "mean_recovery_fraction": -0.02438817038124685,
+      "n": 8,
+      "positive_recovery_count": 1
+    },
+    "noise_L45_last_prompt": {
+      "above_0p25_recovery_count": 0,
+      "generated_strong_accuracy": null,
+      "margin_improved_count": 7,
+      "mean_margin": -13.41963517991826,
+      "mean_margin_delta": 3.4968905716668814,
+      "mean_recovery_fraction": 0.08540479681133237,
+      "n": 8,
+      "positive_recovery_count": 7
+    },
+    "noise_L45_predicate": {
+      "above_0p25_recovery_count": 0,
+      "generated_strong_accuracy": null,
+      "margin_improved_count": 3,
+      "mean_margin": -17.18913666321896,
+      "mean_margin_delta": -0.27261091163381934,
+      "mean_recovery_fraction": -0.00899783668061246,
+      "n": 8,
+      "positive_recovery_count": 3
+    },
+    "noise_L45_question_stem": {
+      "above_0p25_recovery_count": 0,
+      "generated_strong_accuracy": null,
+      "margin_improved_count": 5,
+      "mean_margin": -16.916051235748455,
+      "mean_margin_delta": 0.0004745158366858959,
+      "mean_recovery_fraction": -0.002417506560420042,
+      "n": 8,
+      "positive_recovery_count": 5
+    },
+    "noise_L45_subject": {
+      "above_0p25_recovery_count": 0,
+      "generated_strong_accuracy": null,
+      "margin_improved_count": 2,
+      "mean_margin": -17.761021542944945,
+      "mean_margin_delta": -0.8444957913598046,
+      "mean_recovery_fraction": -0.02156787225838914,
+      "n": 8,
+      "positive_recovery_count": 2
+    },
+    "noise_L50_last_prompt": {
+      "above_0p25_recovery_count": 1,
+      "generated_strong_accuracy": null,
+      "margin_improved_count": 5,
+      "mean_margin": -12.571516181807965,
+      "mean_margin_delta": 4.345009569777176,
+      "mean_recovery_fraction": 0.11450589517984729,
+      "n": 8,
+      "positive_recovery_count": 5
+    },
+    "noise_L50_predicate": {
+      "above_0p25_recovery_count": 0,
+      "generated_strong_accuracy": null,
+      "margin_improved_count": 4,
+      "mean_margin": -16.867801526677795,
+      "mean_margin_delta": 0.04872422490734607,
+      "mean_recovery_fraction": 0.0012942513374399906,
+      "n": 8,
+      "positive_recovery_count": 4
+    },
+    "noise_L50_question_stem": {
+      "above_0p25_recovery_count": 0,
+      "generated_strong_accuracy": null,
+      "margin_improved_count": 5,
+      "mean_margin": -16.831508435192518,
+      "mean_margin_delta": 0.08501731639262289,
+      "mean_recovery_fraction": -0.0020584852967134495,
+      "n": 8,
+      "positive_recovery_count": 5
+    },
+    "noise_L50_subject": {
+      "above_0p25_recovery_count": 0,
+      "generated_strong_accuracy": null,
+      "margin_improved_count": 2,
+      "mean_margin": -17.67802176938858,
+      "mean_margin_delta": -0.761496017803438,
+      "mean_recovery_fraction": -0.01931194162191398,
+      "n": 8,
+      "positive_recovery_count": 2
+    }
+  },
+  "task": "infer_property"
+}

@@ -15,6 +15,44 @@ final report is easier to assemble.
 
 ## Running Notes
 
+### 2026-05-01
+
+#### Stage 2 Forced-Choice And Patching Closeout
+
+- The Cox-style hard-foil forced-choice refinement closed the
+  probe-direction steering branch. On 16 free-form-wrong property rows, the
+  27B L45 answer-polarity probe had `val_auc=test_auc=1.000`, but steering
+  through 2 SD produced 0 MCQ choice flips and 0 false-to-true repairs. MCQ
+  baseline accuracy was 14/16 even though the original free-form output was
+  wrong, showing that recognition is often intact when the correct answer is
+  presented as an option.
+- The hard-foil margin result was not direction-symmetric. At 2 SD,
+  `away_gold` increased the original gold-vs-foil margin more than
+  `toward_gold`, which argues against interpreting the probe direction as a
+  causal answer-polarity axis.
+- Clean-to-corrupt full-state patching job `452478` evaluated 8 strict
+  h1-correct to h4-incorrect pairs, 5 residual layers, 4 semantic landmarks,
+  and clean/noise patch modes. It wrote 320 rows and completed in 879 seconds.
+- Patching found weak late `last_prompt` margin improvements, but clean h1
+  residual transplants did not beat matched norm-controlled noise. Aggregate
+  mean recovery was 0.108 for clean L35 `last_prompt`, 0.079 for clean L40,
+  0.046 for clean L45, and 0.071 for clean L50; noise reached 0.085 at L45 and
+  0.115 at L50.
+- Per-pair headroom does not rescue a clean localization claim. For the four
+  high-headroom pairs (`recovery_denominator >= 45`), clean last-prompt patches
+  did not beat noise at L35-L50. Lower/mid-headroom pairs showed clean > noise
+  around L35-L45, but the effect is pair-dependent and not stable enough to
+  claim repair.
+- Current causal interpretation: the failure is committed misgeneration rather
+  than missing computation. The model can often recognize the correct answer
+  under MCQ formatting, but free-form decoding propagates a wrong-answer
+  commitment. Probe directions read this state, and perturbing late
+  `last_prompt` residuals can loosen it slightly, but neither steering nor
+  clean h1 state transplantation repairs it.
+- Patching caveat for the report: the natural h1/h4 pairs share the full gold
+  hypothesis, but not the exact same ontology. Exact same-ontology cross-height
+  pairs were unavailable in the shipped data.
+
 ### 2026-04-25
 
 #### Stage 1 Retrospective
