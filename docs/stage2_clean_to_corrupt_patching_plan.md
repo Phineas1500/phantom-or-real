@@ -180,8 +180,23 @@ gold-vs-foil margin more than matched noise, while the forward h1-to-h4
 patches did not repair h4 beyond noise. The asymmetry is strongest at L50 and
 is visible at all four tested layers by the aggregate mean.
 
-The effect is not uniform across headroom. For the four high-headroom pairs
-(`recovery_denominator >= 45`), corrupt patches do not robustly beat noise:
+The forward and reverse results are clearest side by side:
+
+| Layer | h1->h4 clean recovery | h1->h4 noise recovery | h4->h1 corrupt breakage | h4->h1 noise breakage |
+|---|---:|---:|---:|---:|
+| L35 `last_prompt` | 0.108 | 0.036 | 0.100 | -0.015 |
+| L40 `last_prompt` | 0.079 | -0.001 | 0.136 | 0.018 |
+| L45 `last_prompt` | 0.046 | 0.085 | 0.120 | -0.065 |
+| L50 `last_prompt` | 0.071 | 0.115 | 0.177 | 0.023 |
+
+The safest claim is the asymmetry itself: forward h1-to-h4 patching does not
+show a clean repair signal above matched noise across late layers, while
+reverse h4-to-h1 patching produces consistently larger margin drops than
+matched noise across the same late layers.
+
+The reverse effect is not uniform across pairs. For the four high-headroom
+pairs (`recovery_denominator >= 45`), corrupt patches do not robustly beat
+noise:
 
 | Site | Corrupt mean breakage | Noise mean breakage |
 |---|---:|---:|
@@ -190,8 +205,18 @@ The effect is not uniform across headroom. For the four high-headroom pairs
 | L45 `last_prompt` | -0.036 | -0.011 |
 | L50 `last_prompt` | 0.017 | -0.026 |
 
+This is not only an artifact of fractional normalization. In absolute
+`gold - foil` margin deltas, the high-headroom corrupt patches are also mixed:
+
+| Site | Corrupt mean delta | Noise mean delta | Corrupt drop count | Noise drop count |
+|---|---:|---:|---:|---:|
+| L35 `last_prompt` | -0.487 | +2.232 | 2/4 | 1/4 |
+| L40 `last_prompt` | +1.326 | -0.721 | 2/4 | 2/4 |
+| L45 `last_prompt` | +2.648 | +0.558 | 1/4 | 2/4 |
+| L50 `last_prompt` | -0.976 | +1.979 | 2/4 | 2/4 |
+
 For the four lower/mid-headroom pairs, corrupt patches break h1 much more than
-noise:
+noise, both fractionally and in absolute margin deltas:
 
 | Site | Corrupt mean breakage | Noise mean breakage |
 |---|---:|---:|
@@ -200,9 +225,15 @@ noise:
 | L45 `last_prompt` | 0.277 | -0.120 |
 | L50 `last_prompt` | 0.337 | 0.071 |
 
-Interpretation: wrong h4 late `last_prompt` states can partially degrade weaker
-h1 correct-answer margins, but they do not reliably collapse strong h1
-commitments. Together with the forward null, this supports an asymmetric
-commitment story rather than a missing-state repair story: incorrect
-free-form commitments can be disruptive when transplanted into easier prompts,
-but correct h1 states do not repair the hard h4 prompt.
+| Site | Corrupt mean delta | Noise mean delta | Corrupt drop count | Noise drop count |
+|---|---:|---:|---:|---:|
+| L35 `last_prompt` | -4.528 | +0.169 | 4/4 | 2/4 |
+| L40 `last_prompt` | -7.009 | -0.700 | 4/4 | 2/4 |
+| L45 `last_prompt` | -7.076 | +3.636 | 4/4 | 1/4 |
+| L50 `last_prompt` | -8.432 | -1.526 | 4/4 | 2/4 |
+
+Interpretation: wrong h4 late `last_prompt` states are partially transplantable
+as a disruption on the lower/mid-headroom h1 prompts, while correct h1 states
+are not transplantable as a repair for h4 prompts. This is consistent with an
+asymmetric commitment story, but the report should present the asymmetry as the
+primary finding and treat the commitment account as interpretation.

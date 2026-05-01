@@ -64,10 +64,16 @@ final report is easier to assemble.
   (`recovery_denominator >= 45`) do not show robust corrupt > noise breakage,
   while lower/mid-headroom pairs do: L35 0.187 vs 0.004, L40 0.283 vs 0.018,
   L45 0.277 vs -0.120, and L50 0.337 vs 0.071.
-- Combined interpretation: h1 correct states do not repair h4 beyond noise,
-  but h4 incorrect states can partially disrupt weaker h1 correct commitments.
-  This is useful asymmetry evidence for a committed-misgeneration account, with
-  the caveat that strong h1 commitments are robust to the reverse patch.
+- The headroom caveat is not just a fractional-normalization artifact. In
+  absolute margin deltas, the high-headroom corrupt patches are mixed
+  (L35/L40/L45/L50 mean deltas -0.487, +1.326, +2.648, -0.976), while the
+  lower/mid-headroom corrupt patches consistently drop the margin
+  (-4.528, -7.009, -7.076, -8.432).
+- Combined result for the report: forward h1-to-h4 patching does not show a
+  clean repair signal above matched noise across late layers, while reverse
+  h4-to-h1 patching produces consistently larger aggregate margin drops than
+  matched noise. The committed-misgeneration account is a plausible
+  interpretation, but the asymmetry itself should be the headline claim.
 
 ### 2026-04-25
 

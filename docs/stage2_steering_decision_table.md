@@ -19,7 +19,7 @@ success/failure, free-form answer content, or a Cox-style forced-choice answer.
 | Raw answer-property margin | 27B L45 residual | Gold answer polarity | Original prompt + MCQ margins | `val_auc=test_auc=1.000` | Small MCQ margin shift; 0 MCQ choice flips; original margins noisy | Weak constrained-margin sensitivity, not answer repair. |
 | Raw answer-property hard-foil margin | 27B L45 residual | Gold answer polarity | Original prompt + MCQ vs model-emitted wrong foil | `val_auc=test_auc=1.000` | 0 choice flips, 0 false-to-true MCQ flips through 2 SD; tiny MCQ deltas | Cox-style forced-choice branch is also negative for this probe direction. |
 | Clean-to-corrupt full-state patching | 27B L30/35/40/45/50 residual landmarks | h1-correct state transplanted into h4-incorrect prompt | Gold-vs-model-foil logprob margin | N/A | Late `last_prompt` clean patches weakly improve margins, but matched noise is comparable or stronger | Not a missing-state failure; looks like late wrong-answer commitment that generic perturbation can slightly loosen. |
-| Corrupt-to-clean full-state patching | 27B L35/40/45/50 `last_prompt` | h4-incorrect state transplanted into h1-correct prompt | Gold-vs-model-foil logprob margin | N/A | Corrupt patches reduce h1 margins more than noise overall, strongest at L50, but only on lower/mid-headroom pairs | Asymmetric commitment evidence: wrong h4 states can disrupt weaker h1 commitments, while h1 states do not repair h4. |
+| Corrupt-to-clean full-state patching | 27B L35/40/45/50 `last_prompt` | h4-incorrect state transplanted into h1-correct prompt | Gold-vs-model-foil logprob margin | N/A | Corrupt patches reduce h1 margins more than noise overall, strongest at L50; high-headroom pairs are mixed even in absolute deltas | Asymmetric patching result: h4->h1 disrupts more than noise, while h1->h4 does not repair above noise. |
 
 ## Active Gates
 
@@ -37,8 +37,8 @@ success/failure, free-form answer content, or a Cox-style forced-choice answer.
    this probe-derived direction.
 2. Treat the clean-to-corrupt patching pilot as evidence against a simple
    missing-state repair story at the tested residual sites.
-3. Treat reverse patching as the final optional asymmetry check: it supports
-   partial wrong-state disruption but only for lower/mid-headroom h1 pairs.
+3. Treat reverse patching as the final asymmetry check: it shows aggregate
+   corrupt-state disruption above noise, driven by lower/mid-headroom pairs.
 4. Shift effort to report assembly plus feature falsification.
 
 ## Current Interpretation
@@ -52,5 +52,6 @@ recognition can be intact under constrained MCQ formatting, but free-form
 generation appears to enter a committed wrong-answer state that is not repaired
 by either probe-direction steering or clean h1 residual transplantation.
 Reverse patching adds an asymmetry: h4 incorrect states can partially disrupt
-weaker h1 correct states, but this does not hold robustly for high-headroom h1
-examples.
+h1 correct margins more than noise, but this does not hold robustly for
+high-headroom examples and should be presented as an asymmetry result before a
+mechanistic commitment claim.
