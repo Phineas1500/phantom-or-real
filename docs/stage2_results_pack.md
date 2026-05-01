@@ -481,6 +481,7 @@ estimates.
 | Decode-step big-L0 single features | `35036`, `75345`, `72374` at +/-0.25 mean-nonzero scale | 0.375 | 0.250-0.375 | 0.000-0.250 | 0 | 2 | No beneficial flips; `75345` negative and `72374` positive each caused one true-to-false change. |
 | Decode-step raw L45 | +/-0.5 and +/-1 projection SD at `blocks.45.hook_resid_post` | 0.375 | 0.375 | 0.125 | 0 | 0 | Raw direction is highly predictive offline but did not act as a useful correctness control knob. |
 | Decode-step sparse-probe bundle | Top 25 positive + top 25 negative big-L0 coefficients at +/-0.25 and +/-0.5 projection SD | 0.375 | 0.375 | 0.000-0.125 | 0 | 0 | Distributed learned-feature direction also produced no beneficial flips. |
+| Decode-step raw L45 answer-property | Gold-polarity direction at +/-0.5 and +/-1 projection SD | 0.375 | 0.250-0.500 | 0.000-0.250 | 1 | 2 | Offline polarity AUC was perfect, but the only repair happened under `away_gold`; `toward_gold` produced no useful answer movement. |
 | Decode-step orthogonal control | Norm-matched orthogonal directions at +/-0.5 and +/-1 SD | 0.375 | 0.250-0.375 | 0.125-0.250 | 0 | 1 | One true-to-false change at +1 SD, consistent with generic perturbation risk. |
 
 The decode-step raw comparator refit the L45 S1 logistic direction and recovered
@@ -506,6 +507,14 @@ summary is in `docs/stage2_4b_answer_property_steering_results.md`. This
 supports a predictive-versus-causal gap even when the probe target is concrete
 answer content rather than generic correctness.
 
+The matching 27B answer-property smoke also supports this gap. On Gemma 3 27B
+L45, the raw gold-polarity answer probe achieved `val_auc=test_auc=1.000` over
+S1, but `toward_gold` decode-step steering on 8 balanced h3/h4 rows produced
+zero polarity flips, zero predicate flips toward gold, and zero strong
+false-to-true repairs. One invalid-predicate repair occurred under
+`away_gold_pos1sd`, so it is not evidence for target-directed control. The full
+summary is in `docs/stage2_27b_answer_property_steering_results.md`.
+
 ## Current Report Claim
 
 Gemma 3 27B pre-generation residuals contain a robust signal for
@@ -519,9 +528,9 @@ concats improve the sparse-feature picture but still trail raw activations.
 Neuronpedia-facing top features remain generic rather than clean
 ontology-reasoning mechanisms. Steering is currently a negative/inconclusive
 causal result: neither shortlisted single big-L0 features, the multi-feature
-sparse-probe bundle, the dense raw correctness direction, nor the 4B raw
-answer-polarity direction produced beneficial answer repairs in bounded
-decode-step checks.
+sparse-probe bundle, the dense raw correctness direction, nor the 4B/27B raw
+answer-polarity directions produced controlled beneficial answer repairs in
+bounded decode-step checks.
 
 ## 4B Comparison Table
 

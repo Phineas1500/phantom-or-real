@@ -159,7 +159,10 @@ SAEs can still miss the signal that matters for prediction.
   beneficial flips. A 4B answer-property follow-up made the comparator more
   concrete: raw L22 gold-polarity was perfectly decodable
   (`val_auc=test_auc=1.000`), but decode-step steering still produced no
-  polarity flips, no predicate flips toward gold, and no strong repairs.
+  polarity flips, no predicate flips toward gold, and no strong repairs. The
+  matching 27B L45 answer-property smoke also reached
+  `val_auc=test_auc=1.000`, but `toward_gold` produced no useful answer-content
+  movement; the only repair occurred in the wrong steering direction.
 
 ## 6. Discussion
 
@@ -174,7 +177,7 @@ SAEs can still miss the signal that matters for prediction.
   falsification for shortlisted big-L0 candidates.
 - Near-term finishing step: treat the completed steering checks as null causal
   evidence and move to report assembly, unless we explicitly choose one more
-  targeted causal test such as answer/property directions or a
+  targeted causal test such as forced-choice answer steering or a
   reconstruction-error direction.
 
 ## Core Tables/Figures

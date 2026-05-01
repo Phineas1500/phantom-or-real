@@ -42,10 +42,10 @@ Completed:
   audit. Corrected exact-hook reruns have been completed for MLP-output SAE,
   16K skip-transcoder, and 262K transcoder.
 - Steering checks completed for 27B property: prompt-only raw L45, decode-step
-  raw L45 correctness direction, decode-step single big-L0 feature pilots, and
-  a decode-step sparse-probe bundle over the top 25 positive plus top 25
-  negative big-L0 coefficients. Results are negative/inconclusive rather than
-  positive causal evidence.
+  raw L45 correctness direction, decode-step single big-L0 feature pilots, a
+  decode-step sparse-probe bundle over the top 25 positive plus top 25 negative
+  big-L0 coefficients, and a raw L45 answer-property direction. Results are
+  negative/inconclusive rather than positive causal evidence.
 - A bounded 27B crosscoder pilot completed as Scholar job `451181`.
 - Dense active-feature scaling and bf16-vs-fp32 sparse encoding sanity checks
   completed.
@@ -127,10 +127,11 @@ Current scientific story:
   produced no false-to-true flips and two true-to-false changes. The
   multi-feature sparse-probe bundle reproduced the expected sparse-probe AUC
   offline (`test_auc=0.853`) but also produced zero false-to-true flips. The
-  4B answer-property follow-up is also negative: gold answer polarity is
-  perfectly linearly decodable from raw L22 (`val_auc=test_auc=1.000`), but
-  decode-step steering produced no polarity flips, no predicate flips toward
-  gold, and no strong false-to-true repairs over controls.
+  27B answer-property smoke is likewise negative: gold answer polarity is
+  perfectly linearly decodable from raw L45 (`val_auc=test_auc=1.000`), but
+  `toward_gold` decode-step steering produced no polarity flips, no predicate
+  flips toward gold, and no strong false-to-true repairs. The 4B
+  answer-property follow-up gives the same pattern at L22.
 
 Current objective:
 
@@ -186,12 +187,12 @@ Current objective:
   raw object is a dense correctness direction, not an answer direction, and the
   null decode-step result suggests it is not a clean causal control knob for
   repairing ontology answers. The learned sparse bundle did not repair answers
-  either. The 4B answer-property direction was a more targeted Cox-style
-  comparator and still did not move emitted polarity or predicates. If steering
-  continues, prioritize reconstruction-error directions or larger/gentler
-  answer-content samples only with matched controls. Otherwise move to report
-  assembly and falsification/interpretation of the shortlisted feature
-  families.
+  either. The 4B and 27B answer-property directions were more targeted
+  Cox-style comparators and still did not move emitted polarity or predicates
+  under free-form generation. If steering continues, prioritize forced-choice
+  answer prompts or reconstruction-error directions with matched controls, not
+  another free-form answer-property strength sweep. Otherwise move to report
+  assembly and falsification/interpretation of the shortlisted feature families.
 
 ## Active Scope
 
@@ -450,6 +451,15 @@ strong false-to-true repairs. Sparse answer-property steering should not be run
 from this plan unless a raw answer-content direction first moves answers above
 controls.
 
+The matching 27B answer-property smoke is documented in
+`docs/stage2_27b_answer_property_steering_results.md`. It used raw L45
+gold-polarity steering on 8 balanced S1 h3/h4 rows. The offline probe again
+reached `val_auc=test_auc=1.000`, but `toward_gold` steering produced zero
+polarity flips, zero predicate flips toward gold, and zero strong repairs. The
+only false-to-true repair happened in the `away_gold` condition, so it is not
+evidence for target-directed control. Treat free-form answer-property steering
+as closed.
+
 ## Remaining Work
 
 Immediate:
@@ -504,9 +514,9 @@ Low priority unless the final report specifically needs them:
 - Crosscoder `l0_big` variant over layers 16/31/40/53.
 - Name-scramble regeneration.
 - Paraphrase-preserving B.3 test.
-- Larger steering follow-up only if needed: use targeted answer/property
-  directions or reconstruction-error directions rather than repeating generic
-  correctness-direction or sparse-probe-bundle steering.
+- Larger steering follow-up only if needed: use forced-choice answer prompts or
+  reconstruction-error directions rather than repeating generic correctness,
+  sparse-probe-bundle, or free-form answer-property steering.
 
 ## Key Files
 

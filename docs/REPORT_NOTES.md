@@ -1349,3 +1349,33 @@ exact-16K, and L30 runs below. Those later sections supersede this queue.
   answer content rather than success/failure. Per plan, sparse answer-property
   steering should remain gated off unless a raw answer-content direction first
   moves emitted answers above controls.
+
+#### 27B Answer-Property Steering Result
+
+- Scholar job `452301` completed the matching 27B answer-property smoke for
+  Gemma 3 27B `infer_property` at L45. It wrote
+  `docs/answer_property_steering_27b_l45_polarity_smoke.json`, with row-level
+  generations in
+  `results/stage2/steering/answer_property_27b_l45_polarity_smoke.jsonl` and
+  the trained direction in
+  `results/stage2/steering/answer_property_27b_l45_polarity_direction.npz`.
+- The raw L45 gold-polarity answer probe was perfectly predictive on S1:
+  validation AUC `1.000`, test AUC `1.000`, with 10,025 parseable rows kept and
+  train projection SD `299.21`.
+- Decode-time steering was negative for controlled answer movement. The smoke
+  used 8 balanced h3/h4 S1 test rows, strengths `0.5` and `1.0` projection SD,
+  and orthogonal controls. `toward_gold` produced zero polarity flips toward
+  gold, zero predicate flips toward gold, and zero strong false-to-true repairs.
+- The one apparent repair was in the wrong direction: `away_gold_pos1sd`
+  changed source row `6604` from invalid predicate `a` to gold predicate
+  `salty`, with the same polarity. Because this happened under `away_gold`, it
+  should not be counted as target-directed steering evidence.
+- A matched-control degradation also appeared: source row `4926` became a parse
+  failure under both `toward_gold` strengths and under `orthogonal_pos0p5sd`.
+  This supports the interpretation that the visible effects are mostly
+  perturbation/format fragility rather than controlled answer steering.
+- Interpretation: 27B now matches the 4B answer-property null. Concrete answer
+  content is perfectly decodable offline, but the current free-form decode-step
+  intervention does not reliably steer emitted predicates or polarities. Close
+  the free-form answer-property branch unless a future forced-choice setup first
+  validates clean answer-direction control.
