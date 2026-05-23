@@ -112,6 +112,25 @@ def feature_prefixes(root: Path, dtype_root: Path) -> list[FeaturePair]:
     return [FeaturePair(*spec) for spec in specs]
 
 
+def qwen_feature_prefixes(root: Path, dtype_root: Path) -> list[FeaturePair]:
+    specs = []
+    for sae_id, top_k in (
+        ("qwenscope_qwen35_27b_w80k_l0_50", 50),
+        ("qwenscope_qwen35_27b_w80k_l0_100", 100),
+    ):
+        for task in ("infer_property", "infer_subtype"):
+            specs.append(
+                (
+                    sae_id,
+                    "qwen_scope_residual_sae",
+                    task,
+                    root / f"sae_features/qwen35_27b_{task}_L45_{sae_id}_top{top_k}",
+                    dtype_root / f"qwen35_27b_{task}_L45_{sae_id}_top{top_k}_n512",
+                )
+            )
+    return [FeaturePair(*spec) for spec in specs]
+
+
 def summarize_pair(pair: FeaturePair) -> dict:
     bf16 = load_file(pair.bf16_prefix.with_suffix(".safetensors"))
     fp32 = load_file(pair.fp32_prefix.with_suffix(".safetensors"))
@@ -177,15 +196,22 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--stage2-root", type=Path, default=Path("results/stage2"))
     parser.add_argument("--dtype-root", type=Path, default=Path("results/stage2/dtype_sanity_features"))
     parser.add_argument("--output", type=Path, default=Path("docs/sparse_dtype_sanity_27b.json"))
+    parser.add_argument("--preset", choices=("gemma27b", "qwen35_27b"), default="gemma27b")
     return parser.parse_args()
 
 
 def main() -> None:
     args = parse_args()
-    summaries = [summarize_pair(pair) for pair in feature_prefixes(args.stage2_root, args.dtype_root)]
+    pairs = (
+        qwen_feature_prefixes(args.stage2_root, args.dtype_root)
+        if args.preset == "qwen35_27b"
+        else feature_prefixes(args.stage2_root, args.dtype_root)
+    )
+    summaries = [summarize_pair(pair) for pair in pairs]
     payload = {
         "schema_version": 1,
         "created_at_utc": datetime.now(timezone.utc).isoformat(),
+        "preset": args.preset,
         "description": "Compares existing bfloat16 sparse encodings with float32 re-encodings of the first 512 rows.",
         "results": summaries,
     }

@@ -1,0 +1,341 @@
+{
+  "created_at_utc": "2026-05-23T15:09:17.170069+00:00",
+  "elapsed_seconds": 226.67789578437805,
+  "generation": {
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    },
+    "device_map": "auto",
+    "dtype": "torch.bfloat16",
+    "enabled": false,
+    "n_ctx": 4096
+  },
+  "jsonl": "results/full/with_errortype/qwen35_27b_infer_subtype.jsonl",
+  "landmarks": [
+    "last_prompt"
+  ],
+  "layers": [
+    35,
+    40,
+    45
+  ],
+  "missing_landmarks": {},
+  "model": "Qwen/Qwen3.5-27B",
+  "model_key": "qwen35_27b",
+  "out_jsonl": "results/stage2/patching/qwen35_27b_infer_subtype_clean_to_corrupt_margin_pilot.jsonl",
+  "pair_baselines": [
+    {
+      "clean_landmarks": {
+        "last_prompt": 144,
+        "predicate": 124,
+        "question_stem": 127,
+        "subject": 102
+      },
+      "clean_reference_margin_gold_minus_foil": 0.2136526107788086,
+      "clean_row_index": 934,
+      "clean_token_count": 145,
+      "corrupt_baseline_margin_gold_minus_foil": -14.52937400341034,
+      "corrupt_landmarks": {
+        "last_prompt": 221,
+        "predicate": 201,
+        "question_stem": 204,
+        "subject": 178
+      },
+      "corrupt_row_index": 8245,
+      "corrupt_token_count": 222,
+      "foil_hypothesis": "Parpers are kurpors.",
+      "gold_hypothesis": "Every kurpor is parper.",
+      "key": [
+        "kurpor",
+        "parper",
+        false
+      ],
+      "pair_id": 0,
+      "recovery_denominator": 14.743026614189148
+    },
+    {
+      "clean_landmarks": {
+        "last_prompt": 147,
+        "predicate": 127,
+        "question_stem": 130,
+        "subject": 104
+      },
+      "clean_reference_margin_gold_minus_foil": 30.098502159118652,
+      "clean_row_index": 599,
+      "clean_token_count": 148,
+      "corrupt_baseline_margin_gold_minus_foil": -12.06764042377472,
+      "corrupt_landmarks": {
+        "last_prompt": 227,
+        "predicate": 207,
+        "question_stem": 210,
+        "subject": 176
+      },
+      "corrupt_row_index": 6184,
+      "corrupt_token_count": 228,
+      "foil_hypothesis": "Every drompee is an impus.",
+      "gold_hypothesis": "Every ilpist is impus.",
+      "key": [
+        "ilpist",
+        "impus",
+        false
+      ],
+      "pair_id": 1,
+      "recovery_denominator": 42.16614258289337
+    },
+    {
+      "clean_landmarks": {
+        "last_prompt": 147,
+        "predicate": 127,
+        "question_stem": 130,
+        "subject": 104
+      },
+      "clean_reference_margin_gold_minus_foil": 1.7622909545898438,
+      "clean_row_index": 947,
+      "clean_token_count": 148,
+      "corrupt_baseline_margin_gold_minus_foil": -11.063165187835693,
+      "corrupt_landmarks": {
+        "last_prompt": 218,
+        "predicate": 198,
+        "question_stem": 201,
+        "subject": 175
+      },
+      "corrupt_row_index": 9747,
+      "corrupt_token_count": 219,
+      "foil_hypothesis": "Thomas is a stergit.",
+      "gold_hypothesis": "Every stergit is umpist.",
+      "key": [
+        "stergit",
+        "umpist",
+        false
+      ],
+      "pair_id": 2,
+      "recovery_denominator": 12.825456142425537
+    },
+    {
+      "clean_landmarks": {
+        "last_prompt": 144,
+        "predicate": 124,
+        "question_stem": 127,
+        "subject": 102
+      },
+      "clean_reference_margin_gold_minus_foil": 23.98236083984375,
+      "clean_row_index": 806,
+      "clean_token_count": 145,
+      "corrupt_baseline_margin_gold_minus_foil": -10.888652801513672,
+      "corrupt_landmarks": {
+        "last_prompt": 219,
+        "predicate": 199,
+        "question_stem": 202,
+        "subject": 151
+      },
+      "corrupt_row_index": 8807,
+      "corrupt_token_count": 220,
+      "foil_hypothesis": "Every zhimpor is a lemper.",
+      "gold_hypothesis": "Every harpin is lemper.",
+      "key": [
+        "harpin",
+        "lemper",
+        false
+      ],
+      "pair_id": 3,
+      "recovery_denominator": 34.87101364135742
+    },
+    {
+      "clean_landmarks": {
+        "last_prompt": 144,
+        "predicate": 124,
+        "question_stem": 127,
+        "subject": 102
+      },
+      "clean_reference_margin_gold_minus_foil": 20.505916595458984,
+      "clean_row_index": 426,
+      "clean_token_count": 145,
+      "corrupt_baseline_margin_gold_minus_foil": -9.75770616531372,
+      "corrupt_landmarks": {
+        "last_prompt": 216,
+        "predicate": 196,
+        "question_stem": 199,
+        "subject": 158
+      },
+      "corrupt_row_index": 6140,
+      "corrupt_token_count": 217,
+      "foil_hypothesis": "Every jempor is a yimple.",
+      "gold_hypothesis": "Every impus is yimple.",
+      "key": [
+        "impus",
+        "yimple",
+        false
+      ],
+      "pair_id": 4,
+      "recovery_denominator": 30.263622760772705
+    },
+    {
+      "clean_landmarks": {
+        "last_prompt": 150,
+        "predicate": 129,
+        "question_stem": 133,
+        "subject": 104
+      },
+      "clean_reference_margin_gold_minus_foil": -3.846284866333008,
+      "clean_row_index": 959,
+      "clean_token_count": 151,
+      "corrupt_baseline_margin_gold_minus_foil": -12.020631551742554,
+      "corrupt_landmarks": {
+        "last_prompt": 225,
+        "predicate": 204,
+        "question_stem": 208,
+        "subject": 164
+      },
+      "corrupt_row_index": 6526,
+      "corrupt_token_count": 226,
+      "foil_hypothesis": "Every twimpee is an ilpist.",
+      "gold_hypothesis": "Every ilpist is twimpee.",
+      "key": [
+        "ilpist",
+        "twimpee",
+        false
+      ],
+      "pair_id": 5,
+      "recovery_denominator": 8.174346685409546
+    },
+    {
+      "clean_landmarks": {
+        "last_prompt": 147,
+        "predicate": 126,
+        "question_stem": 130,
+        "subject": 102
+      },
+      "clean_reference_margin_gold_minus_foil": 20.70633029937744,
+      "clean_row_index": 662,
+      "clean_token_count": 148,
+      "corrupt_baseline_margin_gold_minus_foil": -14.852934539318085,
+      "corrupt_landmarks": {
+        "last_prompt": 218,
+        "predicate": 197,
+        "question_stem": 201,
+        "subject": 172
+      },
+      "corrupt_row_index": 7904,
+      "corrupt_token_count": 219,
+      "foil_hypothesis": "Lompees are phorpists.",
+      "gold_hypothesis": "Every jelgit is phorpist.",
+      "key": [
+        "jelgit",
+        "phorpist",
+        false
+      ],
+      "pair_id": 6,
+      "recovery_denominator": 35.559264838695526
+    }
+  ],
+  "patch_direction": "clean_to_corrupt",
+  "patch_modes": [
+    "clean",
+    "noise"
+  ],
+  "schema_version": 1,
+  "script": "scripts/stage2_qwen_patch_hf.py",
+  "selection": {
+    "available_pair_capacity": 7,
+    "h1_clean_rows": 150,
+    "h4_corrupt_rows": 513,
+    "limit": 7,
+    "pair_match": "full_gold_hypothesis_h1_correct_to_h4_incorrect",
+    "seed": 20260523,
+    "selected_pairs": 7,
+    "shared_full_hypothesis_keys": 7,
+    "skipped_corrupt_no_foil": 0,
+    "source_file": "results/full/with_errortype/qwen35_27b_infer_subtype.jsonl",
+    "split": "test",
+    "split_family": "s1"
+  },
+  "slurm_job_id": "456256",
+  "splits": "results/stage2/splits.jsonl",
+  "summary": {
+    "clean_L35_last_prompt": {
+      "above_0p25_breakage_count": 0,
+      "above_0p25_recovery_count": 0,
+      "generated_strong_accuracy": null,
+      "margin_decreased_count": 6,
+      "margin_improved_count": 1,
+      "mean_breakage_fraction": null,
+      "mean_margin": -12.27068157706942,
+      "mean_margin_delta": -0.10209519522530693,
+      "mean_recovery_fraction": -0.008003834426460245,
+      "n": 7,
+      "positive_breakage_count": 0,
+      "positive_recovery_count": 1
+    },
+    "clean_L40_last_prompt": {
+      "above_0p25_breakage_count": 0,
+      "above_0p25_recovery_count": 0,
+      "generated_strong_accuracy": null,
+      "margin_decreased_count": 7,
+      "margin_improved_count": 0,
+      "mean_breakage_fraction": null,
+      "mean_margin": -12.38779889685767,
+      "mean_margin_delta": -0.2192125150135585,
+      "mean_recovery_fraction": -0.013627186404241706,
+      "n": 7,
+      "positive_breakage_count": 0,
+      "positive_recovery_count": 0
+    },
+    "clean_L45_last_prompt": {
+      "above_0p25_breakage_count": 0,
+      "above_0p25_recovery_count": 0,
+      "generated_strong_accuracy": null,
+      "margin_decreased_count": 5,
+      "margin_improved_count": 2,
+      "mean_breakage_fraction": null,
+      "mean_margin": -12.285683265754155,
+      "mean_margin_delta": -0.1170968839100429,
+      "mean_recovery_fraction": -0.007995549165131002,
+      "n": 7,
+      "positive_breakage_count": 0,
+      "positive_recovery_count": 2
+    },
+    "noise_L35_last_prompt": {
+      "above_0p25_breakage_count": 0,
+      "above_0p25_recovery_count": 0,
+      "generated_strong_accuracy": null,
+      "margin_decreased_count": 4,
+      "margin_improved_count": 3,
+      "mean_breakage_fraction": null,
+      "mean_margin": -12.198751615626472,
+      "mean_margin_delta": -0.03016523378235953,
+      "mean_recovery_fraction": 0.0018830726545024327,
+      "n": 7,
+      "positive_breakage_count": 0,
+      "positive_recovery_count": 3
+    },
+    "noise_L40_last_prompt": {
+      "above_0p25_breakage_count": 0,
+      "above_0p25_recovery_count": 0,
+      "generated_strong_accuracy": null,
+      "margin_decreased_count": 2,
+      "margin_improved_count": 5,
+      "mean_breakage_fraction": null,
+      "mean_margin": -12.014361432620458,
+      "mean_margin_delta": 0.15422494922365462,
+      "mean_recovery_fraction": 0.0076918019969095105,
+      "n": 7,
+      "positive_breakage_count": 0,
+      "positive_recovery_count": 5
+    },
+    "noise_L45_last_prompt": {
+      "above_0p25_breakage_count": 0,
+      "above_0p25_recovery_count": 0,
+      "generated_strong_accuracy": null,
+      "margin_decreased_count": 3,
+      "margin_improved_count": 4,
+      "mean_breakage_fraction": null,
+      "mean_margin": -12.151143329484123,
+      "mean_margin_delta": 0.017443052359989712,
+      "mean_recovery_fraction": 0.001464122828966731,
+      "n": 7,
+      "positive_breakage_count": 0,
+      "positive_recovery_count": 4
+    }
+  },
+  "task": "infer_subtype"
+}

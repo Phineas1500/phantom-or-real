@@ -1,0 +1,135 @@
+{
+  "best_pre_output_baseline": {
+    "Qwen/Qwen3.5-27B__infer_property": {
+      "s1": {
+        "feature_set": "b0_namefreq",
+        "test_auc": 0.6015053276441562,
+        "val_auc": 0.5759293683070414
+      },
+      "s3": {
+        "feature_set": "b0_prompt",
+        "test_auc": 0.6009405350891937,
+        "val_auc": 0.5964423571796191
+      }
+    },
+    "Qwen/Qwen3.5-27B__infer_subtype": {
+      "s1": {
+        "feature_set": "b0_prompt",
+        "test_auc": 0.6747869921164342,
+        "val_auc": 0.667914645239539
+      },
+      "s3": {
+        "feature_set": "b0_prompt",
+        "test_auc": 0.6766855148915726,
+        "val_auc": 0.6689299073020003
+      }
+    }
+  },
+  "created_at_utc": "2026-05-23T17:01:34.996036+00:00",
+  "filters": {
+    "models": [
+      "Qwen/Qwen3.5-27B"
+    ],
+    "split_families": [
+      "s1",
+      "s3"
+    ],
+    "tasks": [
+      "infer_property",
+      "infer_subtype"
+    ]
+  },
+  "prompt_length_mode": "hf_tokenizer",
+  "results": {
+    "Qwen/Qwen3.5-27B__infer_property": {
+      "s1": {
+        "b0_height": {
+          "n_test": 1650,
+          "n_train": 7698,
+          "test_auc": 0.5879374150794975,
+          "val_auc": 0.5876570579477065
+        },
+        "b0_namefreq": {
+          "n_test": 1650,
+          "n_train": 7698,
+          "test_auc": 0.6015053276441562,
+          "val_auc": 0.5759293683070414
+        },
+        "b0_prompt": {
+          "n_test": 1650,
+          "n_train": 7698,
+          "test_auc": 0.5954133989654598,
+          "val_auc": 0.5845196287002419
+        }
+      },
+      "s3": {
+        "b0_height": {
+          "n_test": 1674,
+          "n_train": 7725,
+          "test_auc": 0.5992779730628413,
+          "val_auc": 0.5897227225939269
+        },
+        "b0_namefreq": {
+          "n_test": 1674,
+          "n_train": 7725,
+          "test_auc": 0.5808765173162229,
+          "val_auc": 0.5734833376222337
+        },
+        "b0_prompt": {
+          "n_test": 1674,
+          "n_train": 7725,
+          "test_auc": 0.6009405350891937,
+          "val_auc": 0.5964423571796191
+        }
+      }
+    },
+    "Qwen/Qwen3.5-27B__infer_subtype": {
+      "s1": {
+        "b0_height": {
+          "n_test": 1650,
+          "n_train": 7699,
+          "test_auc": 0.651114311704063,
+          "val_auc": 0.651114311704063
+        },
+        "b0_namefreq": {
+          "n_test": 1650,
+          "n_train": 7699,
+          "test_auc": 0.6711825348696179,
+          "val_auc": 0.6710946027895693
+        },
+        "b0_prompt": {
+          "n_test": 1650,
+          "n_train": 7699,
+          "test_auc": 0.6747869921164342,
+          "val_auc": 0.667914645239539
+        }
+      },
+      "s3": {
+        "b0_height": {
+          "n_test": 1635,
+          "n_train": 7716,
+          "test_auc": 0.6563488702127458,
+          "val_auc": 0.6430276226787854
+        },
+        "b0_namefreq": {
+          "n_test": 1635,
+          "n_train": 7716,
+          "test_auc": 0.6563749458732502,
+          "val_auc": 0.663828204525879
+        },
+        "b0_prompt": {
+          "n_test": 1635,
+          "n_train": 7716,
+          "test_auc": 0.6766855148915726,
+          "val_auc": 0.6689299073020003
+        }
+      }
+    }
+  },
+  "schema_version": 1,
+  "source": "results/stage2/baselines/qwen35_27b_b0_metadata.json",
+  "split_families": [
+    "s1",
+    "s3"
+  ]
+}

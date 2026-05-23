@@ -1,0 +1,325 @@
+{
+  "activation_path": "results/stage2/activations/qwen35_27b_infer_property_L53.safetensors",
+  "created_at_utc": "2026-05-23T20:26:18.511633+00:00",
+  "direction_output": "results/stage2/steering/qwen35_raw_l53_property_steering_direction.npz",
+  "elapsed_seconds": 285.77997279167175,
+  "generation": {
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    },
+    "conditions": [
+      {
+        "direction_kind": null,
+        "label": "baseline",
+        "strength_sd": 0.0
+      },
+      {
+        "direction_kind": "raw",
+        "label": "raw_neg1sd",
+        "strength_sd": -1.0
+      },
+      {
+        "direction_kind": "raw",
+        "label": "raw_pos1sd",
+        "strength_sd": 1.0
+      },
+      {
+        "direction_kind": "orthogonal",
+        "label": "orthogonal_neg1sd",
+        "strength_sd": -1.0
+      },
+      {
+        "direction_kind": "orthogonal",
+        "label": "orthogonal_pos1sd",
+        "strength_sd": 1.0
+      }
+    ],
+    "device_map": "auto",
+    "do_sample": false,
+    "dtype": "torch.bfloat16",
+    "intervention_scope": "last_token_each_forward",
+    "max_new_tokens": 96,
+    "n_ctx": 4096,
+    "stop_at_eos": true,
+    "strengths_sd": [
+      -1.0,
+      1.0
+    ],
+    "temperature": 0.0
+  },
+  "hook_name": "model.model.layers.53.output",
+  "jsonl": "results/full/with_errortype/qwen35_27b_infer_property.jsonl",
+  "layer": 53,
+  "model": "Qwen/Qwen3.5-27B",
+  "model_key": "qwen35_27b",
+  "out_jsonl": "results/stage2/steering/qwen35_raw_l53_property_steering_pilot.jsonl",
+  "probe_direction": {
+    "best_c": 0.01,
+    "c_values": [
+      0.01,
+      0.1,
+      1.0,
+      10.0
+    ],
+    "d_model": 5120,
+    "input_rows": 10997,
+    "kept_rows": 10997,
+    "max_iter": 2000,
+    "raw_coef_norm": 7.101078885093701,
+    "solver": "lbfgs",
+    "split_counts": {
+      "test": {
+        "n": 1650,
+        "negative_n": 728,
+        "positive_n": 922
+      },
+      "train": {
+        "n": 7698,
+        "negative_n": 3394,
+        "positive_n": 4304
+      },
+      "val": {
+        "n": 1649,
+        "negative_n": 727,
+        "positive_n": 922
+      }
+    },
+    "test_auc": 0.9400252675740746,
+    "train_projection_max": 1.1023164791606725,
+    "train_projection_mean": -0.31544337156383495,
+    "train_projection_min": -2.0574858154415514,
+    "train_projection_std": 0.5554674938781501,
+    "val_auc": 0.9329622523847745
+  },
+  "schema_version": 1,
+  "script": "scripts/stage2_qwen_steer_raw_direction.py",
+  "selection": {
+    "available_counts": {
+      "h3_correct": 225,
+      "h3_incorrect": 225,
+      "h4_correct": 384,
+      "h4_incorrect": 366
+    },
+    "drop_parse_failed": true,
+    "heights": [
+      3,
+      4
+    ],
+    "per_height_label": 1,
+    "seed": 20260523,
+    "selected_counts": {
+      "h3_correct": 1,
+      "h3_incorrect": 1,
+      "h4_correct": 1,
+      "h4_incorrect": 1
+    },
+    "selected_rows": 4,
+    "source_file": "results/full/with_errortype/qwen35_27b_infer_property.jsonl",
+    "split": "test",
+    "split_family": "s1"
+  },
+  "sidecar_path": "results/stage2/activations/qwen35_27b_infer_property_L53.example_ids.jsonl",
+  "slurm_job_id": "456266",
+  "split_family": "s1",
+  "splits": "results/stage2/splits.jsonl",
+  "summary": {
+    "by_condition": {
+      "baseline": {
+        "by_height": {
+          "h3": {
+            "n": 2,
+            "parse_fail_rate": 0.0,
+            "strong_accuracy": 0.5
+          },
+          "h4": {
+            "n": 2,
+            "parse_fail_rate": 0.0,
+            "strong_accuracy": 0.5
+          }
+        },
+        "by_original_is_correct_strong": {
+          "false": {
+            "n": 2,
+            "parse_fail_rate": 0.0,
+            "strong_accuracy": 0.0
+          },
+          "true": {
+            "n": 2,
+            "parse_fail_rate": 0.0,
+            "strong_accuracy": 1.0
+          }
+        },
+        "mean_generated_tokens": 41.25,
+        "mean_output_chars": 118.5,
+        "mean_quality": 0.75,
+        "n": 4,
+        "parse_fail_rate": 0.0,
+        "strong_accuracy": 0.5,
+        "weak_accuracy": 1.0
+      },
+      "orthogonal_neg1sd": {
+        "by_height": {
+          "h3": {
+            "n": 2,
+            "parse_fail_rate": 0.0,
+            "strong_accuracy": 0.5
+          },
+          "h4": {
+            "n": 2,
+            "parse_fail_rate": 0.0,
+            "strong_accuracy": 0.5
+          }
+        },
+        "by_original_is_correct_strong": {
+          "false": {
+            "n": 2,
+            "parse_fail_rate": 0.0,
+            "strong_accuracy": 0.0
+          },
+          "true": {
+            "n": 2,
+            "parse_fail_rate": 0.0,
+            "strong_accuracy": 1.0
+          }
+        },
+        "mean_generated_tokens": 41.25,
+        "mean_output_chars": 118.5,
+        "mean_quality": 0.75,
+        "n": 4,
+        "parse_fail_rate": 0.0,
+        "strong_accuracy": 0.5,
+        "weak_accuracy": 1.0
+      },
+      "orthogonal_pos1sd": {
+        "by_height": {
+          "h3": {
+            "n": 2,
+            "parse_fail_rate": 0.0,
+            "strong_accuracy": 0.5
+          },
+          "h4": {
+            "n": 2,
+            "parse_fail_rate": 0.0,
+            "strong_accuracy": 0.5
+          }
+        },
+        "by_original_is_correct_strong": {
+          "false": {
+            "n": 2,
+            "parse_fail_rate": 0.0,
+            "strong_accuracy": 0.0
+          },
+          "true": {
+            "n": 2,
+            "parse_fail_rate": 0.0,
+            "strong_accuracy": 1.0
+          }
+        },
+        "mean_generated_tokens": 41.25,
+        "mean_output_chars": 118.5,
+        "mean_quality": 0.75,
+        "n": 4,
+        "parse_fail_rate": 0.0,
+        "strong_accuracy": 0.5,
+        "weak_accuracy": 1.0
+      },
+      "raw_neg1sd": {
+        "by_height": {
+          "h3": {
+            "n": 2,
+            "parse_fail_rate": 0.0,
+            "strong_accuracy": 0.5
+          },
+          "h4": {
+            "n": 2,
+            "parse_fail_rate": 0.0,
+            "strong_accuracy": 0.5
+          }
+        },
+        "by_original_is_correct_strong": {
+          "false": {
+            "n": 2,
+            "parse_fail_rate": 0.0,
+            "strong_accuracy": 0.0
+          },
+          "true": {
+            "n": 2,
+            "parse_fail_rate": 0.0,
+            "strong_accuracy": 1.0
+          }
+        },
+        "mean_generated_tokens": 41.25,
+        "mean_output_chars": 118.5,
+        "mean_quality": 0.75,
+        "n": 4,
+        "parse_fail_rate": 0.0,
+        "strong_accuracy": 0.5,
+        "weak_accuracy": 1.0
+      },
+      "raw_pos1sd": {
+        "by_height": {
+          "h3": {
+            "n": 2,
+            "parse_fail_rate": 0.0,
+            "strong_accuracy": 0.5
+          },
+          "h4": {
+            "n": 2,
+            "parse_fail_rate": 0.0,
+            "strong_accuracy": 0.5
+          }
+        },
+        "by_original_is_correct_strong": {
+          "false": {
+            "n": 2,
+            "parse_fail_rate": 0.0,
+            "strong_accuracy": 0.0
+          },
+          "true": {
+            "n": 2,
+            "parse_fail_rate": 0.0,
+            "strong_accuracy": 1.0
+          }
+        },
+        "mean_generated_tokens": 41.25,
+        "mean_output_chars": 118.5,
+        "mean_quality": 0.75,
+        "n": 4,
+        "parse_fail_rate": 0.0,
+        "strong_accuracy": 0.5,
+        "weak_accuracy": 1.0
+      }
+    },
+    "flips_vs_baseline": {
+      "orthogonal_neg1sd": {
+        "changed": 0,
+        "false_to_true": 0,
+        "net_accuracy_delta": 0.0,
+        "paired_n": 4,
+        "true_to_false": 0
+      },
+      "orthogonal_pos1sd": {
+        "changed": 0,
+        "false_to_true": 0,
+        "net_accuracy_delta": 0.0,
+        "paired_n": 4,
+        "true_to_false": 0
+      },
+      "raw_neg1sd": {
+        "changed": 0,
+        "false_to_true": 0,
+        "net_accuracy_delta": 0.0,
+        "paired_n": 4,
+        "true_to_false": 0
+      },
+      "raw_pos1sd": {
+        "changed": 0,
+        "false_to_true": 0,
+        "net_accuracy_delta": 0.0,
+        "paired_n": 4,
+        "true_to_false": 0
+      }
+    }
+  },
+  "task": "infer_property"
+}

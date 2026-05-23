@@ -100,6 +100,7 @@ def encode_stage1_rows(
     *,
     tokenizer,
     model_name: str,
+    chat_template_kwargs: dict[str, Any] | None = None,
 ) -> list[EncodedExample]:
     """Apply the Stage 1 chat prompt reconstruction and tokenize each row."""
     encoded: list[EncodedExample] = []
@@ -110,6 +111,7 @@ def encode_stage1_rows(
             user=row["prompt_text"],
             model_name=model_name,
             add_generation_prompt=True,
+            chat_template_kwargs=chat_template_kwargs,
         )
         token_ids = tokenizer(text, add_special_tokens=False)["input_ids"]
         if not token_ids:

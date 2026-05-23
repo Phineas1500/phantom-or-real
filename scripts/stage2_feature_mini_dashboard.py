@@ -228,6 +228,11 @@ def analyze_task(
         nonzero_indices = [idx for idx in kept_indices if float(values[idx]) != 0.0]
         active_labels = [bool_int(sidecar[idx].get("is_correct_strong")) for idx in nonzero_indices]
         active_heights = [int(sidecar[idx].get("height")) for idx in nonzero_indices]
+        error_type_counts: dict[str, int] = {}
+        for idx in nonzero_indices:
+            source = source_rows_by_index[int(sidecar[idx]["row_index"])]
+            error_type = str(source.get("error_type") or "none")
+            error_type_counts[error_type] = error_type_counts.get(error_type, 0) + 1
         task_report["features"][str(feature)] = {
             "feature": int(feature),
             "coefficient_report": feature_report_lookup(feature_report or {}, sae_id=sae_id, task=task, feature=feature),
@@ -245,18 +250,7 @@ def analyze_task(
             },
             "by_height": grouped_summary(sidecar, values, kept_indices, field="height"),
             "by_error_type_active_rows": {
-                str(key): int(count)
-                for key, count in sorted(
-                    {
-                        (source_rows_by_index[int(sidecar[idx]["row_index"])].get("error_type") or "none"): sum(
-                            1
-                            for j in nonzero_indices
-                            if (source_rows_by_index[int(sidecar[j]["row_index"])].get("error_type") or "none")
-                            == (source_rows_by_index[int(sidecar[idx]["row_index"])].get("error_type") or "none")
-                        )
-                        for idx in nonzero_indices
-                    }.items()
-                )
+                key: int(count) for key, count in sorted(error_type_counts.items())
             },
             "active_correct_rate": float(sum(active_labels) / len(active_labels)) if active_labels else None,
             "active_height_counts": {
@@ -278,10 +272,11 @@ def analyze_task(
 
 
 def candidate_payload_for_llm(report: dict[str, Any], feature: int, *, examples_per_task: int) -> dict[str, Any]:
+    model_name = model_display_name(report)
     payload = {
         "feature": int(feature),
         "context": (
-            "Activations are from the last pre-generation prompt token of Gemma 3 27B "
+            f"Activations are from the last pre-generation prompt token of {model_name} "
             "on synthetic ontology reasoning prompts. Correctness is whether the generated "
             "hypothesis exactly matches the ground truth under the project scorer."
         ),
@@ -330,6 +325,30 @@ def feature_summaries(report: dict[str, Any]) -> list[dict[str, Any]]:
     return summaries
 
 
+def model_display_name(report: dict[str, Any]) -> str:
+    model_key = str(report.get("model_key") or "")
+    if model_key == "qwen35_27b":
+        return "Qwen3.5 27B"
+    if model_key == "gemma3_27b":
+        return "Gemma 3 27B"
+    return model_key or "Model"
+
+
+def sae_display_name(report: dict[str, Any]) -> str:
+    sae_id = str(report.get("sae_id") or "")
+    if "qwenscope" in sae_id:
+        if "l0_100" in sae_id:
+            return "Qwen Scope W80K L0_100"
+        if "l0_50" in sae_id:
+            return "Qwen Scope W80K L0_50"
+        return "Qwen Scope"
+    if "big_affine" in sae_id:
+        return "Big-L0"
+    if "262k" in sae_id:
+        return "262K"
+    return sae_id or "Sparse"
+
+
 def _is_gpt5_plus(model: str) -> bool:
     low = model.lower()
     return low.startswith("gpt-5") or low.startswith("gpt-6") or low.startswith("o3") or low.startswith("o4")
@@ -348,7 +367,7 @@ def explain_feature_with_llm(
     client = OpenAI(base_url=base_url, api_key=api_key)
     prompt = {
         "instruction": (
-            "You are auditing a sparse feature from a Gemma 3 27B feature dictionary. "
+            "You are auditing a sparse feature from a transformer feature dictionary. "
             "Use only the provided statistics and top activating examples. Return JSON only. "
             "Do not claim causality. Distinguish ontology-reasoning evidence from lexical, "
             "style, parse-failure, prompt-length, or height confounds."
@@ -392,8 +411,10 @@ def explain_feature_with_llm(
 
 
 def markdown_report(report: dict[str, Any]) -> str:
+    model_name = model_display_name(report)
+    sae_name = sae_display_name(report)
     lines = [
-        "# 27B Big-L0 Feature Mini-Dashboard",
+        f"# {model_name} {sae_name} Feature Mini-Dashboard",
         "",
         f"Created: `{report['created_at_utc']}`",
         "",

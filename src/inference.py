@@ -113,12 +113,23 @@ async def _call_with_retry(
         reraise=True,
     ):
         with attempt:
-            completion = await client.chat.completions.create(
-                model=model,
-                messages=messages,
-                temperature=temperature,
-                max_tokens=max_tokens,
-            )
+            extra_body = None
+            if "qwen3.5" in model.lower() or "qwen35" in model.lower():
+                # Qwen3.5 enables thinking by default; keep Stage 1 outputs aligned
+                # with the final-hypothesis-only Gemma contract.
+                extra_body = {
+                    "enable_thinking": False,
+                    "chat_template_kwargs": {"enable_thinking": False},
+                }
+            kwargs: dict[str, Any] = {
+                "model": model,
+                "messages": messages,
+                "temperature": temperature,
+                "max_tokens": max_tokens,
+            }
+            if extra_body is not None:
+                kwargs["extra_body"] = extra_body
+            completion = await client.chat.completions.create(**kwargs)
             return completion.choices[0].message.content or ""
     return None  # pragma: no cover
 
@@ -199,6 +210,7 @@ async def run_inference(
     temperature: float,
     max_attempts: int,
     example_id_prefix: str,
+    example_id_start: int = 0,
 ) -> list[dict[str, Any]]:
     client = AsyncOpenAI(base_url=base_url, api_key=api_key)
     sem = asyncio.Semaphore(concurrency)
@@ -207,7 +219,7 @@ async def run_inference(
         _run_one(
             client,
             sem=sem,
-            example_id=f"{example_id_prefix}_{i:05d}",
+            example_id=f"{example_id_prefix}_{example_id_start + i:05d}",
             task_type=task_type,
             height=height,
             model_name=model_name,
@@ -260,11 +272,16 @@ def main() -> None:
     parser.add_argument("--max-tokens", type=int, default=512)
     parser.add_argument("--temperature", type=float, default=0.0)
     parser.add_argument("--max-attempts", type=int, default=4)
-    parser.add_argument("--limit", type=int, default=None, help="Only run the first N examples")
+    parser.add_argument("--skip", type=int, default=0, help="Skip the first N examples before inference")
+    parser.add_argument("--limit", type=int, default=None, help="Only run N examples after --skip")
     parser.add_argument("--id-prefix", type=str, default=None)
     args = parser.parse_args()
 
     examples, task_type, height = load_examples(args.examples_pkl)
+    if args.skip < 0:
+        raise ValueError("--skip must be non-negative")
+    if args.skip:
+        examples = examples[args.skip :]
     if args.limit is not None:
         examples = examples[: args.limit]
 
@@ -284,6 +301,7 @@ def main() -> None:
             temperature=args.temperature,
             max_attempts=args.max_attempts,
             example_id_prefix=prefix,
+            example_id_start=args.skip,
         )
     )
     elapsed = time.monotonic() - start

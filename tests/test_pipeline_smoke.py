@@ -38,7 +38,7 @@ class _FakeCompletion:
         self.choices = [_FakeChoice(text)]
 
 
-async def _fake_create(self, *, model, messages, temperature, max_tokens):  # noqa: ARG001
+async def _fake_create(self, *, model, messages, temperature, max_tokens, **kwargs):  # noqa: ARG001
     # The user message contains theories + observations; we cheat by pulling
     # the ground truth from a closure attribute set below.
     gt = _fake_create.current_gt  # type: ignore[attr-defined]
@@ -117,6 +117,30 @@ def test_pipeline() -> None:
 
     out.unlink()
     print(json.dumps(summary, indent=2))
+
+
+def test_run_inference_preserves_shard_offsets() -> None:
+    pkl = ROOT / "data" / "pilot" / "examples_property_h2.pkl"
+    examples, task_type, h = load_examples(pkl)
+    _fake_create.current_gt = examples[0].hypotheses  # type: ignore[attr-defined]
+    with patch("openai.resources.chat.completions.AsyncCompletions.create", new=_fake_create):
+        rows = asyncio.run(
+            run_inference(
+                [examples[0]],
+                task_type=task_type,
+                height=h,
+                model_name="fake-model",
+                base_url=None,
+                api_key="dummy",
+                concurrency=1,
+                max_tokens=256,
+                temperature=0,
+                max_attempts=1,
+                example_id_prefix=f"{task_type}_h{h}",
+                example_id_start=42,
+            )
+        )
+    assert rows[0]["example_id"] == "property_h2_00042"
 
 
 if __name__ == "__main__":

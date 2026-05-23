@@ -311,14 +311,33 @@ def residualize_scores(
     }
 
 
-def reported_raw_c(docs_dir: Path, split_family: str, task: str, layer: int) -> float:
-    report = read_json(docs_dir / f"raw_probe_27b_{SPLIT_SUFFIX[split_family]}.json")
+def raw_report_path(docs_dir: Path, raw_report_template: str, split_family: str) -> Path:
+    return docs_dir / raw_report_template.format(
+        split_family=split_family,
+        split_suffix=SPLIT_SUFFIX[split_family],
+    )
+
+
+def reported_raw_c(
+    docs_dir: Path,
+    raw_report_template: str,
+    split_family: str,
+    task: str,
+    layer: int,
+) -> float:
+    report = read_json(raw_report_path(docs_dir, raw_report_template, split_family))
     layer_report = report["results"][task][f"L{layer}"]
     return float(layer_report["best_c"])
 
 
-def reported_raw_auc(docs_dir: Path, split_family: str, task: str, layer: int) -> float:
-    report = read_json(docs_dir / f"raw_probe_27b_{SPLIT_SUFFIX[split_family]}.json")
+def reported_raw_auc(
+    docs_dir: Path,
+    raw_report_template: str,
+    split_family: str,
+    task: str,
+    layer: int,
+) -> float:
+    report = read_json(raw_report_path(docs_dir, raw_report_template, split_family))
     layer_report = report["results"][task][f"L{layer}"]
     return float(layer_report["test_auc"])
 
@@ -332,6 +351,7 @@ def run_diagnostic(
     tasks: list[str],
     layer: int,
     split_families: list[str],
+    raw_report_template: str,
     c_values: tuple[float, ...],
     max_iter: int,
 ) -> dict[str, Any]:
@@ -344,6 +364,7 @@ def run_diagnostic(
         "layer": layer,
         "activation_dir": str(activation_dir),
         "splits_path": str(splits_path),
+        "raw_report_template": raw_report_template,
         "tasks": tasks,
         "split_families": split_families,
         "metadata_sets": list(METADATA_SETS),
@@ -363,7 +384,7 @@ def run_diagnostic(
                 split_assignments=split_assignments,
                 split_family=split_family,
             )
-            raw_c = reported_raw_c(docs_dir, split_family, task, layer)
+            raw_c = reported_raw_c(docs_dir, raw_report_template, split_family, task, layer)
             raw = train_logistic_scores(
                 dataset["x"],
                 dataset["labels"],
@@ -379,7 +400,13 @@ def run_diagnostic(
                 "d_model": dataset["d_model"],
                 "raw": {
                     "best_c_from_report": raw_c,
-                    "reported_test_auc": reported_raw_auc(docs_dir, split_family, task, layer),
+                    "reported_test_auc": reported_raw_auc(
+                        docs_dir,
+                        raw_report_template,
+                        split_family,
+                        task,
+                        layer,
+                    ),
                     "refit_train_auc": raw["train_auc"],
                     "refit_val_auc": raw["val_auc"],
                     "refit_test_auc": raw["test_auc"],
@@ -463,6 +490,14 @@ def main() -> None:
     parser.add_argument("--tasks", nargs="+", default=["infer_property", "infer_subtype"])
     parser.add_argument("--layer", type=int, default=45)
     parser.add_argument("--split-families", nargs="+", default=["s1", "s3"])
+    parser.add_argument(
+        "--raw-report-template",
+        default="raw_probe_27b_{split_suffix}.json",
+        help=(
+            "Filename template under --docs-dir used to recover the raw probe C. "
+            "Available fields: {split_family} and {split_suffix}."
+        ),
+    )
     parser.add_argument("--c-values", type=parse_float_list, default=(0.01, 0.1, 1.0, 10.0))
     parser.add_argument("--max-iter", type=int, default=2000)
     parser.add_argument("--output", type=Path, default=Path("docs/raw_probe_metadata_residualization_27b_l45.json"))
@@ -476,6 +511,7 @@ def main() -> None:
         tasks=args.tasks,
         layer=args.layer,
         split_families=args.split_families,
+        raw_report_template=args.raw_report_template,
         c_values=args.c_values,
         max_iter=args.max_iter,
     )

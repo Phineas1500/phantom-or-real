@@ -62,7 +62,8 @@ def main() -> None:
     p.add_argument("--max-attempts", type=int, default=4)
     p.add_argument("--model-slug", required=True, help="Short slug for output filenames, e.g. gemma3_4b")
     p.add_argument("--output-dir", type=Path, required=True)
-    p.add_argument("--limit", type=int, default=None, help="Cap examples per (task, height)")
+    p.add_argument("--skip", type=int, default=0, help="Skip the first N examples per (task, height)")
+    p.add_argument("--limit", type=int, default=None, help="Cap examples per (task, height) after --skip")
     args = p.parse_args()
 
     args.output_dir.mkdir(parents=True, exist_ok=True)
@@ -84,6 +85,10 @@ def main() -> None:
                 raise FileNotFoundError(pkl)
             examples, task_type, height = load_examples(pkl)
             assert task_type == task and height == h
+            if args.skip < 0:
+                raise ValueError("--skip must be non-negative")
+            if args.skip:
+                examples = examples[args.skip :]
             if args.limit is not None:
                 examples = examples[: args.limit]
 
@@ -101,6 +106,7 @@ def main() -> None:
                     temperature=args.temperature,
                     max_attempts=args.max_attempts,
                     example_id_prefix=f"{task}_h{h}",
+                    example_id_start=args.skip,
                 )
             )
             elapsed = time.monotonic() - start
@@ -131,6 +137,8 @@ def main() -> None:
             "model_slug": args.model_slug,
             "task": task,
             "n_rows": len(all_rows),
+            "skip": args.skip,
+            "limit": args.limit,
             "per_height": per_height_summary,
         }
         with (args.output_dir / f"{args.model_slug}_{TASK_SLUG[task]}_runmeta.json").open("w") as f:

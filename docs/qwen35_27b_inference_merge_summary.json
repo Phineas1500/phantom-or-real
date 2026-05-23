@@ -1,0 +1,82 @@
+{
+  "reports": [
+    {
+      "jsonl": "results/full/with_errortype/qwen35_27b_infer_property.jsonl",
+      "runmeta": "results/full/with_errortype/qwen35_27b_infer_property_runmeta.json",
+      "model_slug": "qwen35_27b",
+      "task": "property",
+      "task_slug": "infer_property",
+      "n_rows": 11000,
+      "allow_incomplete": false,
+      "per_height": {
+        "h1": {
+          "n": 1000,
+          "expected": 1000,
+          "complete": true,
+          "strong_accuracy": 1.0,
+          "parse_fail_rate": 0.0
+        },
+        "h2": {
+          "n": 2000,
+          "expected": 2000,
+          "complete": true,
+          "strong_accuracy": 0.5425,
+          "parse_fail_rate": 0.0
+        },
+        "h3": {
+          "n": 3000,
+          "expected": 3000,
+          "complete": true,
+          "strong_accuracy": 0.5006666666666667,
+          "parse_fail_rate": 0.0
+        },
+        "h4": {
+          "n": 5000,
+          "expected": 5000,
+          "complete": true,
+          "strong_accuracy": 0.5122,
+          "parse_fail_rate": 0.0006
+        }
+      }
+    },
+    {
+      "jsonl": "results/full/with_errortype/qwen35_27b_infer_subtype.jsonl",
+      "runmeta": "results/full/with_errortype/qwen35_27b_infer_subtype_runmeta.json",
+      "model_slug": "qwen35_27b",
+      "task": "ontology",
+      "task_slug": "infer_subtype",
+      "n_rows": 11000,
+      "allow_incomplete": false,
+      "per_height": {
+        "h1": {
+          "n": 1000,
+          "expected": 1000,
+          "complete": true,
+          "strong_accuracy": 1.0,
+          "parse_fail_rate": 0.0
+        },
+        "h2": {
+          "n": 2000,
+          "expected": 2000,
+          "complete": true,
+          "strong_accuracy": 0.443,
+          "parse_fail_rate": 0.0
+        },
+        "h3": {
+          "n": 3000,
+          "expected": 3000,
+          "complete": true,
+          "strong_accuracy": 0.3566666666666667,
+          "parse_fail_rate": 0.0003333333333333333
+        },
+        "h4": {
+          "n": 5000,
+          "expected": 5000,
+          "complete": true,
+          "strong_accuracy": 0.3154,
+          "parse_fail_rate": 0.0
+        }
+      }
+    }
+  ]
+}

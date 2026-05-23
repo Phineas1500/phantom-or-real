@@ -1,7 +1,307 @@
 {
-  "created_at_utc": "2026-04-29T14:29:49.474512+00:00",
+  "created_at_utc": "2026-05-23T11:44:58.140557+00:00",
   "families": {
     "s1": {
+      "Qwen/Qwen3.5-27B__infer_property": {
+        "h1": {
+          "is_evaluable": false,
+          "split_counts": {
+            "test": {
+              "n": 150,
+              "negative_n": 0,
+              "non_parse_negative_n": 0,
+              "non_parse_positive_n": 150,
+              "parse_failed_n": 0,
+              "positive_n": 150,
+              "target_symbol_group_n": 74,
+              "topology_group_n": 1
+            },
+            "train": {
+              "n": 700,
+              "negative_n": 0,
+              "non_parse_negative_n": 0,
+              "non_parse_positive_n": 700,
+              "parse_failed_n": 0,
+              "positive_n": 700,
+              "target_symbol_group_n": 90,
+              "topology_group_n": 1
+            },
+            "val": {
+              "n": 150,
+              "negative_n": 0,
+              "non_parse_negative_n": 0,
+              "non_parse_positive_n": 150,
+              "parse_failed_n": 0,
+              "positive_n": 150,
+              "target_symbol_group_n": 70,
+              "topology_group_n": 1
+            }
+          },
+          "target_symbol_group_n": 90,
+          "topology_group_n": 1
+        },
+        "h2": {
+          "is_evaluable": true,
+          "split_counts": {
+            "test": {
+              "n": 300,
+              "negative_n": 137,
+              "non_parse_negative_n": 137,
+              "non_parse_positive_n": 163,
+              "parse_failed_n": 0,
+              "positive_n": 163,
+              "target_symbol_group_n": 89,
+              "topology_group_n": 2
+            },
+            "train": {
+              "n": 1400,
+              "negative_n": 641,
+              "non_parse_negative_n": 641,
+              "non_parse_positive_n": 759,
+              "parse_failed_n": 0,
+              "positive_n": 759,
+              "target_symbol_group_n": 90,
+              "topology_group_n": 2
+            },
+            "val": {
+              "n": 300,
+              "negative_n": 137,
+              "non_parse_negative_n": 137,
+              "non_parse_positive_n": 163,
+              "parse_failed_n": 0,
+              "positive_n": 163,
+              "target_symbol_group_n": 86,
+              "topology_group_n": 2
+            }
+          },
+          "target_symbol_group_n": 90,
+          "topology_group_n": 2
+        },
+        "h3": {
+          "is_evaluable": true,
+          "split_counts": {
+            "test": {
+              "n": 450,
+              "negative_n": 225,
+              "non_parse_negative_n": 225,
+              "non_parse_positive_n": 225,
+              "parse_failed_n": 0,
+              "positive_n": 225,
+              "target_symbol_group_n": 90,
+              "topology_group_n": 2
+            },
+            "train": {
+              "n": 2100,
+              "negative_n": 1048,
+              "non_parse_negative_n": 1048,
+              "non_parse_positive_n": 1052,
+              "parse_failed_n": 0,
+              "positive_n": 1052,
+              "target_symbol_group_n": 90,
+              "topology_group_n": 2
+            },
+            "val": {
+              "n": 450,
+              "negative_n": 225,
+              "non_parse_negative_n": 225,
+              "non_parse_positive_n": 225,
+              "parse_failed_n": 0,
+              "positive_n": 225,
+              "target_symbol_group_n": 89,
+              "topology_group_n": 2
+            }
+          },
+          "target_symbol_group_n": 90,
+          "topology_group_n": 2
+        },
+        "h4": {
+          "is_evaluable": true,
+          "split_counts": {
+            "test": {
+              "n": 750,
+              "negative_n": 366,
+              "non_parse_negative_n": 366,
+              "non_parse_positive_n": 384,
+              "parse_failed_n": 0,
+              "positive_n": 384,
+              "target_symbol_group_n": 90,
+              "topology_group_n": 2
+            },
+            "train": {
+              "n": 3500,
+              "negative_n": 1707,
+              "non_parse_negative_n": 1705,
+              "non_parse_positive_n": 1793,
+              "parse_failed_n": 2,
+              "positive_n": 1793,
+              "target_symbol_group_n": 90,
+              "topology_group_n": 2
+            },
+            "val": {
+              "n": 750,
+              "negative_n": 366,
+              "non_parse_negative_n": 365,
+              "non_parse_positive_n": 384,
+              "parse_failed_n": 1,
+              "positive_n": 384,
+              "target_symbol_group_n": 90,
+              "topology_group_n": 2
+            }
+          },
+          "target_symbol_group_n": 90,
+          "topology_group_n": 2
+        }
+      },
+      "Qwen/Qwen3.5-27B__infer_subtype": {
+        "h1": {
+          "is_evaluable": false,
+          "split_counts": {
+            "test": {
+              "n": 150,
+              "negative_n": 0,
+              "non_parse_negative_n": 0,
+              "non_parse_positive_n": 150,
+              "parse_failed_n": 0,
+              "positive_n": 150,
+              "target_symbol_group_n": 72,
+              "topology_group_n": 1
+            },
+            "train": {
+              "n": 700,
+              "negative_n": 0,
+              "non_parse_negative_n": 0,
+              "non_parse_positive_n": 700,
+              "parse_failed_n": 0,
+              "positive_n": 700,
+              "target_symbol_group_n": 90,
+              "topology_group_n": 1
+            },
+            "val": {
+              "n": 150,
+              "negative_n": 0,
+              "non_parse_negative_n": 0,
+              "non_parse_positive_n": 150,
+              "parse_failed_n": 0,
+              "positive_n": 150,
+              "target_symbol_group_n": 74,
+              "topology_group_n": 1
+            }
+          },
+          "target_symbol_group_n": 90,
+          "topology_group_n": 1
+        },
+        "h2": {
+          "is_evaluable": true,
+          "split_counts": {
+            "test": {
+              "n": 300,
+              "negative_n": 167,
+              "non_parse_negative_n": 167,
+              "non_parse_positive_n": 133,
+              "parse_failed_n": 0,
+              "positive_n": 133,
+              "target_symbol_group_n": 86,
+              "topology_group_n": 2
+            },
+            "train": {
+              "n": 1400,
+              "negative_n": 780,
+              "non_parse_negative_n": 780,
+              "non_parse_positive_n": 620,
+              "parse_failed_n": 0,
+              "positive_n": 620,
+              "target_symbol_group_n": 90,
+              "topology_group_n": 2
+            },
+            "val": {
+              "n": 300,
+              "negative_n": 167,
+              "non_parse_negative_n": 167,
+              "non_parse_positive_n": 133,
+              "parse_failed_n": 0,
+              "positive_n": 133,
+              "target_symbol_group_n": 87,
+              "topology_group_n": 2
+            }
+          },
+          "target_symbol_group_n": 90,
+          "topology_group_n": 2
+        },
+        "h3": {
+          "is_evaluable": true,
+          "split_counts": {
+            "test": {
+              "n": 450,
+              "negative_n": 290,
+              "non_parse_negative_n": 290,
+              "non_parse_positive_n": 160,
+              "parse_failed_n": 0,
+              "positive_n": 160,
+              "target_symbol_group_n": 89,
+              "topology_group_n": 2
+            },
+            "train": {
+              "n": 2100,
+              "negative_n": 1350,
+              "non_parse_negative_n": 1349,
+              "non_parse_positive_n": 750,
+              "parse_failed_n": 1,
+              "positive_n": 750,
+              "target_symbol_group_n": 90,
+              "topology_group_n": 2
+            },
+            "val": {
+              "n": 450,
+              "negative_n": 290,
+              "non_parse_negative_n": 290,
+              "non_parse_positive_n": 160,
+              "parse_failed_n": 0,
+              "positive_n": 160,
+              "target_symbol_group_n": 90,
+              "topology_group_n": 2
+            }
+          },
+          "target_symbol_group_n": 90,
+          "topology_group_n": 2
+        },
+        "h4": {
+          "is_evaluable": true,
+          "split_counts": {
+            "test": {
+              "n": 750,
+              "negative_n": 513,
+              "non_parse_negative_n": 513,
+              "non_parse_positive_n": 237,
+              "parse_failed_n": 0,
+              "positive_n": 237,
+              "target_symbol_group_n": 90,
+              "topology_group_n": 2
+            },
+            "train": {
+              "n": 3500,
+              "negative_n": 2397,
+              "non_parse_negative_n": 2397,
+              "non_parse_positive_n": 1103,
+              "parse_failed_n": 0,
+              "positive_n": 1103,
+              "target_symbol_group_n": 90,
+              "topology_group_n": 2
+            },
+            "val": {
+              "n": 750,
+              "negative_n": 513,
+              "non_parse_negative_n": 513,
+              "non_parse_positive_n": 237,
+              "parse_failed_n": 0,
+              "positive_n": 237,
+              "target_symbol_group_n": 90,
+              "topology_group_n": 2
+            }
+          },
+          "target_symbol_group_n": 90,
+          "topology_group_n": 2
+        }
+      },
       "gemma3-27b__infer_property": {
         "h1": {
           "is_evaluable": true,
@@ -604,6 +904,306 @@
       }
     },
     "s2": {
+      "Qwen/Qwen3.5-27B__infer_property": {
+        "h1": {
+          "is_evaluable": false,
+          "split_counts": {
+            "test": {
+              "n": 0,
+              "negative_n": 0,
+              "non_parse_negative_n": 0,
+              "non_parse_positive_n": 0,
+              "parse_failed_n": 0,
+              "positive_n": 0,
+              "target_symbol_group_n": 0,
+              "topology_group_n": 0
+            },
+            "train": {
+              "n": 1000,
+              "negative_n": 0,
+              "non_parse_negative_n": 0,
+              "non_parse_positive_n": 1000,
+              "parse_failed_n": 0,
+              "positive_n": 1000,
+              "target_symbol_group_n": 90,
+              "topology_group_n": 1
+            },
+            "val": {
+              "n": 0,
+              "negative_n": 0,
+              "non_parse_negative_n": 0,
+              "non_parse_positive_n": 0,
+              "parse_failed_n": 0,
+              "positive_n": 0,
+              "target_symbol_group_n": 0,
+              "topology_group_n": 0
+            }
+          },
+          "target_symbol_group_n": 90,
+          "topology_group_n": 1
+        },
+        "h2": {
+          "is_evaluable": false,
+          "split_counts": {
+            "test": {
+              "n": 0,
+              "negative_n": 0,
+              "non_parse_negative_n": 0,
+              "non_parse_positive_n": 0,
+              "parse_failed_n": 0,
+              "positive_n": 0,
+              "target_symbol_group_n": 0,
+              "topology_group_n": 0
+            },
+            "train": {
+              "n": 2000,
+              "negative_n": 915,
+              "non_parse_negative_n": 915,
+              "non_parse_positive_n": 1085,
+              "parse_failed_n": 0,
+              "positive_n": 1085,
+              "target_symbol_group_n": 90,
+              "topology_group_n": 2
+            },
+            "val": {
+              "n": 0,
+              "negative_n": 0,
+              "non_parse_negative_n": 0,
+              "non_parse_positive_n": 0,
+              "parse_failed_n": 0,
+              "positive_n": 0,
+              "target_symbol_group_n": 0,
+              "topology_group_n": 0
+            }
+          },
+          "target_symbol_group_n": 90,
+          "topology_group_n": 2
+        },
+        "h3": {
+          "is_evaluable": false,
+          "split_counts": {
+            "test": {
+              "n": 0,
+              "negative_n": 0,
+              "non_parse_negative_n": 0,
+              "non_parse_positive_n": 0,
+              "parse_failed_n": 0,
+              "positive_n": 0,
+              "target_symbol_group_n": 0,
+              "topology_group_n": 0
+            },
+            "train": {
+              "n": 3000,
+              "negative_n": 1498,
+              "non_parse_negative_n": 1498,
+              "non_parse_positive_n": 1502,
+              "parse_failed_n": 0,
+              "positive_n": 1502,
+              "target_symbol_group_n": 90,
+              "topology_group_n": 2
+            },
+            "val": {
+              "n": 0,
+              "negative_n": 0,
+              "non_parse_negative_n": 0,
+              "non_parse_positive_n": 0,
+              "parse_failed_n": 0,
+              "positive_n": 0,
+              "target_symbol_group_n": 0,
+              "topology_group_n": 0
+            }
+          },
+          "target_symbol_group_n": 90,
+          "topology_group_n": 2
+        },
+        "h4": {
+          "is_evaluable": false,
+          "split_counts": {
+            "test": {
+              "n": 0,
+              "negative_n": 0,
+              "non_parse_negative_n": 0,
+              "non_parse_positive_n": 0,
+              "parse_failed_n": 0,
+              "positive_n": 0,
+              "target_symbol_group_n": 0,
+              "topology_group_n": 0
+            },
+            "train": {
+              "n": 5000,
+              "negative_n": 2439,
+              "non_parse_negative_n": 2436,
+              "non_parse_positive_n": 2561,
+              "parse_failed_n": 3,
+              "positive_n": 2561,
+              "target_symbol_group_n": 90,
+              "topology_group_n": 2
+            },
+            "val": {
+              "n": 0,
+              "negative_n": 0,
+              "non_parse_negative_n": 0,
+              "non_parse_positive_n": 0,
+              "parse_failed_n": 0,
+              "positive_n": 0,
+              "target_symbol_group_n": 0,
+              "topology_group_n": 0
+            }
+          },
+          "target_symbol_group_n": 90,
+          "topology_group_n": 2
+        }
+      },
+      "Qwen/Qwen3.5-27B__infer_subtype": {
+        "h1": {
+          "is_evaluable": false,
+          "split_counts": {
+            "test": {
+              "n": 0,
+              "negative_n": 0,
+              "non_parse_negative_n": 0,
+              "non_parse_positive_n": 0,
+              "parse_failed_n": 0,
+              "positive_n": 0,
+              "target_symbol_group_n": 0,
+              "topology_group_n": 0
+            },
+            "train": {
+              "n": 1000,
+              "negative_n": 0,
+              "non_parse_negative_n": 0,
+              "non_parse_positive_n": 1000,
+              "parse_failed_n": 0,
+              "positive_n": 1000,
+              "target_symbol_group_n": 90,
+              "topology_group_n": 1
+            },
+            "val": {
+              "n": 0,
+              "negative_n": 0,
+              "non_parse_negative_n": 0,
+              "non_parse_positive_n": 0,
+              "parse_failed_n": 0,
+              "positive_n": 0,
+              "target_symbol_group_n": 0,
+              "topology_group_n": 0
+            }
+          },
+          "target_symbol_group_n": 90,
+          "topology_group_n": 1
+        },
+        "h2": {
+          "is_evaluable": false,
+          "split_counts": {
+            "test": {
+              "n": 0,
+              "negative_n": 0,
+              "non_parse_negative_n": 0,
+              "non_parse_positive_n": 0,
+              "parse_failed_n": 0,
+              "positive_n": 0,
+              "target_symbol_group_n": 0,
+              "topology_group_n": 0
+            },
+            "train": {
+              "n": 2000,
+              "negative_n": 1114,
+              "non_parse_negative_n": 1114,
+              "non_parse_positive_n": 886,
+              "parse_failed_n": 0,
+              "positive_n": 886,
+              "target_symbol_group_n": 90,
+              "topology_group_n": 2
+            },
+            "val": {
+              "n": 0,
+              "negative_n": 0,
+              "non_parse_negative_n": 0,
+              "non_parse_positive_n": 0,
+              "parse_failed_n": 0,
+              "positive_n": 0,
+              "target_symbol_group_n": 0,
+              "topology_group_n": 0
+            }
+          },
+          "target_symbol_group_n": 90,
+          "topology_group_n": 2
+        },
+        "h3": {
+          "is_evaluable": false,
+          "split_counts": {
+            "test": {
+              "n": 0,
+              "negative_n": 0,
+              "non_parse_negative_n": 0,
+              "non_parse_positive_n": 0,
+              "parse_failed_n": 0,
+              "positive_n": 0,
+              "target_symbol_group_n": 0,
+              "topology_group_n": 0
+            },
+            "train": {
+              "n": 3000,
+              "negative_n": 1930,
+              "non_parse_negative_n": 1929,
+              "non_parse_positive_n": 1070,
+              "parse_failed_n": 1,
+              "positive_n": 1070,
+              "target_symbol_group_n": 90,
+              "topology_group_n": 2
+            },
+            "val": {
+              "n": 0,
+              "negative_n": 0,
+              "non_parse_negative_n": 0,
+              "non_parse_positive_n": 0,
+              "parse_failed_n": 0,
+              "positive_n": 0,
+              "target_symbol_group_n": 0,
+              "topology_group_n": 0
+            }
+          },
+          "target_symbol_group_n": 90,
+          "topology_group_n": 2
+        },
+        "h4": {
+          "is_evaluable": false,
+          "split_counts": {
+            "test": {
+              "n": 0,
+              "negative_n": 0,
+              "non_parse_negative_n": 0,
+              "non_parse_positive_n": 0,
+              "parse_failed_n": 0,
+              "positive_n": 0,
+              "target_symbol_group_n": 0,
+              "topology_group_n": 0
+            },
+            "train": {
+              "n": 5000,
+              "negative_n": 3423,
+              "non_parse_negative_n": 3423,
+              "non_parse_positive_n": 1577,
+              "parse_failed_n": 0,
+              "positive_n": 1577,
+              "target_symbol_group_n": 90,
+              "topology_group_n": 2
+            },
+            "val": {
+              "n": 0,
+              "negative_n": 0,
+              "non_parse_negative_n": 0,
+              "non_parse_positive_n": 0,
+              "parse_failed_n": 0,
+              "positive_n": 0,
+              "target_symbol_group_n": 0,
+              "topology_group_n": 0
+            }
+          },
+          "target_symbol_group_n": 90,
+          "topology_group_n": 2
+        }
+      },
       "gemma3-27b__infer_property": {
         "h1": {
           "is_evaluable": false,
@@ -1206,6 +1806,306 @@
       }
     },
     "s3": {
+      "Qwen/Qwen3.5-27B__infer_property": {
+        "h1": {
+          "is_evaluable": false,
+          "split_counts": {
+            "test": {
+              "n": 154,
+              "negative_n": 0,
+              "non_parse_negative_n": 0,
+              "non_parse_positive_n": 154,
+              "parse_failed_n": 0,
+              "positive_n": 154,
+              "target_symbol_group_n": 14,
+              "topology_group_n": 1
+            },
+            "train": {
+              "n": 714,
+              "negative_n": 0,
+              "non_parse_negative_n": 0,
+              "non_parse_positive_n": 714,
+              "parse_failed_n": 0,
+              "positive_n": 714,
+              "target_symbol_group_n": 63,
+              "topology_group_n": 1
+            },
+            "val": {
+              "n": 132,
+              "negative_n": 0,
+              "non_parse_negative_n": 0,
+              "non_parse_positive_n": 132,
+              "parse_failed_n": 0,
+              "positive_n": 132,
+              "target_symbol_group_n": 13,
+              "topology_group_n": 1
+            }
+          },
+          "target_symbol_group_n": 90,
+          "topology_group_n": 1
+        },
+        "h2": {
+          "is_evaluable": true,
+          "split_counts": {
+            "test": {
+              "n": 290,
+              "negative_n": 122,
+              "non_parse_negative_n": 122,
+              "non_parse_positive_n": 168,
+              "parse_failed_n": 0,
+              "positive_n": 168,
+              "target_symbol_group_n": 14,
+              "topology_group_n": 2
+            },
+            "train": {
+              "n": 1424,
+              "negative_n": 675,
+              "non_parse_negative_n": 675,
+              "non_parse_positive_n": 749,
+              "parse_failed_n": 0,
+              "positive_n": 749,
+              "target_symbol_group_n": 63,
+              "topology_group_n": 2
+            },
+            "val": {
+              "n": 286,
+              "negative_n": 118,
+              "non_parse_negative_n": 118,
+              "non_parse_positive_n": 168,
+              "parse_failed_n": 0,
+              "positive_n": 168,
+              "target_symbol_group_n": 13,
+              "topology_group_n": 2
+            }
+          },
+          "target_symbol_group_n": 90,
+          "topology_group_n": 2
+        },
+        "h3": {
+          "is_evaluable": true,
+          "split_counts": {
+            "test": {
+              "n": 449,
+              "negative_n": 209,
+              "non_parse_negative_n": 209,
+              "non_parse_positive_n": 240,
+              "parse_failed_n": 0,
+              "positive_n": 240,
+              "target_symbol_group_n": 14,
+              "topology_group_n": 2
+            },
+            "train": {
+              "n": 2126,
+              "negative_n": 1094,
+              "non_parse_negative_n": 1094,
+              "non_parse_positive_n": 1032,
+              "parse_failed_n": 0,
+              "positive_n": 1032,
+              "target_symbol_group_n": 63,
+              "topology_group_n": 2
+            },
+            "val": {
+              "n": 425,
+              "negative_n": 195,
+              "non_parse_negative_n": 195,
+              "non_parse_positive_n": 230,
+              "parse_failed_n": 0,
+              "positive_n": 230,
+              "target_symbol_group_n": 13,
+              "topology_group_n": 2
+            }
+          },
+          "target_symbol_group_n": 90,
+          "topology_group_n": 2
+        },
+        "h4": {
+          "is_evaluable": true,
+          "split_counts": {
+            "test": {
+              "n": 781,
+              "negative_n": 378,
+              "non_parse_negative_n": 378,
+              "non_parse_positive_n": 403,
+              "parse_failed_n": 0,
+              "positive_n": 403,
+              "target_symbol_group_n": 14,
+              "topology_group_n": 2
+            },
+            "train": {
+              "n": 3463,
+              "negative_n": 1703,
+              "non_parse_negative_n": 1701,
+              "non_parse_positive_n": 1760,
+              "parse_failed_n": 2,
+              "positive_n": 1760,
+              "target_symbol_group_n": 63,
+              "topology_group_n": 2
+            },
+            "val": {
+              "n": 756,
+              "negative_n": 358,
+              "non_parse_negative_n": 357,
+              "non_parse_positive_n": 398,
+              "parse_failed_n": 1,
+              "positive_n": 398,
+              "target_symbol_group_n": 13,
+              "topology_group_n": 2
+            }
+          },
+          "target_symbol_group_n": 90,
+          "topology_group_n": 2
+        }
+      },
+      "Qwen/Qwen3.5-27B__infer_subtype": {
+        "h1": {
+          "is_evaluable": false,
+          "split_counts": {
+            "test": {
+              "n": 153,
+              "negative_n": 0,
+              "non_parse_negative_n": 0,
+              "non_parse_positive_n": 153,
+              "parse_failed_n": 0,
+              "positive_n": 153,
+              "target_symbol_group_n": 13,
+              "topology_group_n": 1
+            },
+            "train": {
+              "n": 699,
+              "negative_n": 0,
+              "non_parse_negative_n": 0,
+              "non_parse_positive_n": 699,
+              "parse_failed_n": 0,
+              "positive_n": 699,
+              "target_symbol_group_n": 63,
+              "topology_group_n": 1
+            },
+            "val": {
+              "n": 148,
+              "negative_n": 0,
+              "non_parse_negative_n": 0,
+              "non_parse_positive_n": 148,
+              "parse_failed_n": 0,
+              "positive_n": 148,
+              "target_symbol_group_n": 14,
+              "topology_group_n": 1
+            }
+          },
+          "target_symbol_group_n": 90,
+          "topology_group_n": 1
+        },
+        "h2": {
+          "is_evaluable": true,
+          "split_counts": {
+            "test": {
+              "n": 289,
+              "negative_n": 171,
+              "non_parse_negative_n": 171,
+              "non_parse_positive_n": 118,
+              "parse_failed_n": 0,
+              "positive_n": 118,
+              "target_symbol_group_n": 13,
+              "topology_group_n": 2
+            },
+            "train": {
+              "n": 1400,
+              "negative_n": 771,
+              "non_parse_negative_n": 771,
+              "non_parse_positive_n": 629,
+              "parse_failed_n": 0,
+              "positive_n": 629,
+              "target_symbol_group_n": 63,
+              "topology_group_n": 2
+            },
+            "val": {
+              "n": 311,
+              "negative_n": 172,
+              "non_parse_negative_n": 172,
+              "non_parse_positive_n": 139,
+              "parse_failed_n": 0,
+              "positive_n": 139,
+              "target_symbol_group_n": 14,
+              "topology_group_n": 2
+            }
+          },
+          "target_symbol_group_n": 90,
+          "topology_group_n": 2
+        },
+        "h3": {
+          "is_evaluable": true,
+          "split_counts": {
+            "test": {
+              "n": 438,
+              "negative_n": 301,
+              "non_parse_negative_n": 301,
+              "non_parse_positive_n": 137,
+              "parse_failed_n": 0,
+              "positive_n": 137,
+              "target_symbol_group_n": 13,
+              "topology_group_n": 2
+            },
+            "train": {
+              "n": 2131,
+              "negative_n": 1360,
+              "non_parse_negative_n": 1359,
+              "non_parse_positive_n": 771,
+              "parse_failed_n": 1,
+              "positive_n": 771,
+              "target_symbol_group_n": 63,
+              "topology_group_n": 2
+            },
+            "val": {
+              "n": 431,
+              "negative_n": 269,
+              "non_parse_negative_n": 269,
+              "non_parse_positive_n": 162,
+              "parse_failed_n": 0,
+              "positive_n": 162,
+              "target_symbol_group_n": 14,
+              "topology_group_n": 2
+            }
+          },
+          "target_symbol_group_n": 90,
+          "topology_group_n": 2
+        },
+        "h4": {
+          "is_evaluable": true,
+          "split_counts": {
+            "test": {
+              "n": 755,
+              "negative_n": 534,
+              "non_parse_negative_n": 534,
+              "non_parse_positive_n": 221,
+              "parse_failed_n": 0,
+              "positive_n": 221,
+              "target_symbol_group_n": 13,
+              "topology_group_n": 2
+            },
+            "train": {
+              "n": 3487,
+              "negative_n": 2384,
+              "non_parse_negative_n": 2384,
+              "non_parse_positive_n": 1103,
+              "parse_failed_n": 0,
+              "positive_n": 1103,
+              "target_symbol_group_n": 63,
+              "topology_group_n": 2
+            },
+            "val": {
+              "n": 758,
+              "negative_n": 505,
+              "non_parse_negative_n": 505,
+              "non_parse_positive_n": 253,
+              "parse_failed_n": 0,
+              "positive_n": 253,
+              "target_symbol_group_n": 14,
+              "topology_group_n": 2
+            }
+          },
+          "target_symbol_group_n": 90,
+          "topology_group_n": 2
+        }
+      },
       "gemma3-27b__infer_property": {
         "h1": {
           "is_evaluable": true,
@@ -1815,9 +2715,89 @@
   "output": "results/stage2/splits.jsonl",
   "schema_version": 1,
   "seed": 20260427,
-  "total_rows": 44000,
+  "total_rows": 66000,
   "warnings": [
     {
+      "family": "s1",
+      "height": 1,
+      "model": "Qwen/Qwen3.5-27B",
+      "reason": "each train/val/test split needs at least one non-parse positive and negative row",
+      "task": "infer_property",
+      "type": "split_not_evaluable"
+    },
+    {
+      "family": "s1",
+      "height": 1,
+      "model": "Qwen/Qwen3.5-27B",
+      "reason": "each train/val/test split needs at least one non-parse positive and negative row",
+      "task": "infer_subtype",
+      "type": "split_not_evaluable"
+    },
+    {
+      "family": "s2",
+      "height": 1,
+      "model": "Qwen/Qwen3.5-27B",
+      "reason": "each train/val/test split needs at least one non-parse positive and negative row",
+      "task": "infer_property",
+      "type": "split_not_evaluable"
+    },
+    {
+      "family": "s2",
+      "height": 2,
+      "model": "Qwen/Qwen3.5-27B",
+      "reason": "each train/val/test split needs at least one non-parse positive and negative row",
+      "task": "infer_property",
+      "type": "split_not_evaluable"
+    },
+    {
+      "family": "s2",
+      "height": 3,
+      "model": "Qwen/Qwen3.5-27B",
+      "reason": "each train/val/test split needs at least one non-parse positive and negative row",
+      "task": "infer_property",
+      "type": "split_not_evaluable"
+    },
+    {
+      "family": "s2",
+      "height": 4,
+      "model": "Qwen/Qwen3.5-27B",
+      "reason": "each train/val/test split needs at least one non-parse positive and negative row",
+      "task": "infer_property",
+      "type": "split_not_evaluable"
+    },
+    {
+      "family": "s2",
+      "height": 1,
+      "model": "Qwen/Qwen3.5-27B",
+      "reason": "each train/val/test split needs at least one non-parse positive and negative row",
+      "task": "infer_subtype",
+      "type": "split_not_evaluable"
+    },
+    {
+      "family": "s2",
+      "height": 2,
+      "model": "Qwen/Qwen3.5-27B",
+      "reason": "each train/val/test split needs at least one non-parse positive and negative row",
+      "task": "infer_subtype",
+      "type": "split_not_evaluable"
+    },
+    {
+      "family": "s2",
+      "height": 3,
+      "model": "Qwen/Qwen3.5-27B",
+      "reason": "each train/val/test split needs at least one non-parse positive and negative row",
+      "task": "infer_subtype",
+      "type": "split_not_evaluable"
+    },
+    {
+      "family": "s2",
+      "height": 4,
+      "model": "Qwen/Qwen3.5-27B",
+      "reason": "each train/val/test split needs at least one non-parse positive and negative row",
+      "task": "infer_subtype",
+      "type": "split_not_evaluable"
+    },
+    {
       "family": "s2",
       "height": 1,
       "model": "gemma3-27b",
@@ -1941,6 +2921,22 @@
       "family": "s2",
       "height": 4,
       "model": "gemma3-4b",
+      "reason": "each train/val/test split needs at least one non-parse positive and negative row",
+      "task": "infer_subtype",
+      "type": "split_not_evaluable"
+    },
+    {
+      "family": "s3",
+      "height": 1,
+      "model": "Qwen/Qwen3.5-27B",
+      "reason": "each train/val/test split needs at least one non-parse positive and negative row",
+      "task": "infer_property",
+      "type": "split_not_evaluable"
+    },
+    {
+      "family": "s3",
+      "height": 1,
+      "model": "Qwen/Qwen3.5-27B",
       "reason": "each train/val/test split needs at least one non-parse positive and negative row",
       "task": "infer_subtype",
       "type": "split_not_evaluable"

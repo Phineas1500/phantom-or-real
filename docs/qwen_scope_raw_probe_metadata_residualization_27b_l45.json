@@ -1,0 +1,752 @@
+{
+  "activation_dir": "results/stage2/activations",
+  "created_at_utc": "2026-05-23T17:07:36.602365+00:00",
+  "diagnostic": "raw_score_metadata_residualization",
+  "layer": 45,
+  "max_iter": 2000,
+  "metadata_c_values": [
+    0.01,
+    0.1,
+    1.0,
+    10.0
+  ],
+  "metadata_sets": [
+    "prompt_token_count",
+    "b0_prompt",
+    "b0_namefreq"
+  ],
+  "model_key": "qwen35_27b",
+  "raw_report_template": "qwen_scope_raw_probe_27b_l45_{split_family}.json",
+  "results": {
+    "s1": {
+      "infer_property": {
+        "activation_prefix": "results/stage2/activations/qwen35_27b_infer_property_L45",
+        "d_model": 5120,
+        "input_rows": 10997,
+        "kept_rows": 10997,
+        "metadata_only": {
+          "b0_namefreq": {
+            "best_c": 10.0,
+            "feature_count": 14,
+            "feature_names": [
+              "height",
+              "prompt_token_count",
+              "prompt_char_count",
+              "num_theories_axioms",
+              "num_observations",
+              "num_direct_paths",
+              "parent_salience",
+              "namefreq_pos_sum",
+              "namefreq_neg_sum",
+              "namefreq_pos_mean",
+              "namefreq_neg_mean",
+              "namefreq_pos_max",
+              "namefreq_neg_max",
+              "namefreq_distinct_names"
+            ],
+            "test_auc": 0.6015053276441562,
+            "val_auc": 0.5759293683070414
+          },
+          "b0_prompt": {
+            "best_c": 0.01,
+            "feature_count": 7,
+            "feature_names": [
+              "height",
+              "prompt_token_count",
+              "prompt_char_count",
+              "num_theories_axioms",
+              "num_observations",
+              "num_direct_paths",
+              "parent_salience"
+            ],
+            "test_auc": 0.5954133989654598,
+            "val_auc": 0.5845196287002419
+          },
+          "prompt_token_count": {
+            "best_c": 0.01,
+            "feature_count": 1,
+            "feature_names": [
+              "prompt_token_count"
+            ],
+            "test_auc": 0.5846039128983814,
+            "val_auc": 0.592347537050906
+          }
+        },
+        "metadata_plus_raw_score": {
+          "b0_namefreq": {
+            "best_c": 0.1,
+            "feature_count": 15,
+            "feature_names": [
+              "height",
+              "prompt_token_count",
+              "prompt_char_count",
+              "num_theories_axioms",
+              "num_observations",
+              "num_direct_paths",
+              "parent_salience",
+              "namefreq_pos_sum",
+              "namefreq_neg_sum",
+              "namefreq_pos_mean",
+              "namefreq_neg_mean",
+              "namefreq_pos_max",
+              "namefreq_neg_max",
+              "namefreq_distinct_names",
+              "raw_probe_score"
+            ],
+            "test_auc": 0.9180949202641175,
+            "test_auc_delta_vs_metadata": 0.31658959261996134,
+            "test_auc_delta_vs_raw": 0.00014749350432630148,
+            "val_auc": 0.905690637242762
+          },
+          "b0_prompt": {
+            "best_c": 0.01,
+            "feature_count": 8,
+            "feature_names": [
+              "height",
+              "prompt_token_count",
+              "prompt_char_count",
+              "num_theories_axioms",
+              "num_observations",
+              "num_direct_paths",
+              "parent_salience",
+              "raw_probe_score"
+            ],
+            "test_auc": 0.9179489165931682,
+            "test_auc_delta_vs_metadata": 0.3225355176277085,
+            "test_auc_delta_vs_raw": 1.4898333769997052e-06,
+            "val_auc": 0.9061068725066911
+          },
+          "prompt_token_count": {
+            "best_c": 0.01,
+            "feature_count": 2,
+            "feature_names": [
+              "prompt_token_count",
+              "raw_probe_score"
+            ],
+            "test_auc": 0.9179593454268077,
+            "test_auc_delta_vs_metadata": 0.33335543252842625,
+            "test_auc_delta_vs_raw": 1.191866701644173e-05,
+            "val_auc": 0.906099413093359
+          }
+        },
+        "raw": {
+          "best_c_from_report": 0.01,
+          "refit_test_auc": 0.9179474267597912,
+          "refit_train_auc": 0.9736052907711619,
+          "refit_val_auc": 0.9060501809653674,
+          "reported_test_auc": 0.9179474267597912
+        },
+        "raw_residualized": {
+          "b0_namefreq": {
+            "feature_count": 14,
+            "feature_names": [
+              "height",
+              "prompt_token_count",
+              "prompt_char_count",
+              "num_theories_axioms",
+              "num_observations",
+              "num_direct_paths",
+              "parent_salience",
+              "namefreq_pos_sum",
+              "namefreq_neg_sum",
+              "namefreq_pos_mean",
+              "namefreq_neg_mean",
+              "namefreq_pos_max",
+              "namefreq_neg_max",
+              "namefreq_distinct_names"
+            ],
+            "metadata_set": "b0_namefreq",
+            "test_auc": 0.871475054229935,
+            "test_auc_delta_vs_metadata": 0.2699697265857788,
+            "test_auc_drop_vs_raw": 0.046472372529856254,
+            "test_pearson": 0.6211432741878147,
+            "train_r2_raw_score": 0.413034904629758,
+            "val_auc": 0.866030428438864
+          },
+          "b0_prompt": {
+            "feature_count": 7,
+            "feature_names": [
+              "height",
+              "prompt_token_count",
+              "prompt_char_count",
+              "num_theories_axioms",
+              "num_observations",
+              "num_direct_paths",
+              "parent_salience"
+            ],
+            "metadata_set": "b0_prompt",
+            "test_auc": 0.8778619699172843,
+            "test_auc_delta_vs_metadata": 0.2824485709518245,
+            "test_auc_drop_vs_raw": 0.04008545684250697,
+            "test_pearson": 0.631617522195703,
+            "train_r2_raw_score": 0.3965055320133696,
+            "val_auc": 0.8662810647268213
+          },
+          "prompt_token_count": {
+            "feature_count": 1,
+            "feature_names": [
+              "prompt_token_count"
+            ],
+            "metadata_set": "prompt_token_count",
+            "test_auc": 0.8871540606898525,
+            "test_auc_delta_vs_metadata": 0.30255014779147105,
+            "test_auc_drop_vs_raw": 0.030793366069938766,
+            "test_pearson": 0.6505661095522337,
+            "train_r2_raw_score": 0.17139258134449775,
+            "val_auc": 0.8729602234243481
+          }
+        },
+        "source_file": "results/full/with_errortype/qwen35_27b_infer_property.jsonl"
+      },
+      "infer_subtype": {
+        "activation_prefix": "results/stage2/activations/qwen35_27b_infer_subtype_L45",
+        "d_model": 5120,
+        "input_rows": 10999,
+        "kept_rows": 10999,
+        "metadata_only": {
+          "b0_namefreq": {
+            "best_c": 10.0,
+            "feature_count": 14,
+            "feature_names": [
+              "height",
+              "prompt_token_count",
+              "prompt_char_count",
+              "num_theories_axioms",
+              "num_observations",
+              "num_direct_paths",
+              "parent_salience",
+              "namefreq_pos_sum",
+              "namefreq_neg_sum",
+              "namefreq_pos_mean",
+              "namefreq_neg_mean",
+              "namefreq_pos_max",
+              "namefreq_neg_max",
+              "namefreq_distinct_names"
+            ],
+            "test_auc": 0.6711825348696179,
+            "val_auc": 0.6710946027895693
+          },
+          "b0_prompt": {
+            "best_c": 0.1,
+            "feature_count": 7,
+            "feature_names": [
+              "height",
+              "prompt_token_count",
+              "prompt_char_count",
+              "num_theories_axioms",
+              "num_observations",
+              "num_direct_paths",
+              "parent_salience"
+            ],
+            "test_auc": 0.6747869921164342,
+            "val_auc": 0.667914645239539
+          },
+          "prompt_token_count": {
+            "best_c": 0.01,
+            "feature_count": 1,
+            "feature_names": [
+              "prompt_token_count"
+            ],
+            "test_auc": 0.6372490903577926,
+            "val_auc": 0.6343677986658581
+          }
+        },
+        "metadata_plus_raw_score": {
+          "b0_namefreq": {
+            "best_c": 1.0,
+            "feature_count": 15,
+            "feature_names": [
+              "height",
+              "prompt_token_count",
+              "prompt_char_count",
+              "num_theories_axioms",
+              "num_observations",
+              "num_direct_paths",
+              "parent_salience",
+              "namefreq_pos_sum",
+              "namefreq_neg_sum",
+              "namefreq_pos_mean",
+              "namefreq_neg_mean",
+              "namefreq_pos_max",
+              "namefreq_neg_max",
+              "namefreq_distinct_names",
+              "raw_probe_score"
+            ],
+            "test_auc": 0.9007292298362644,
+            "test_auc_delta_vs_metadata": 0.22954669496664648,
+            "test_auc_delta_vs_raw": -0.0005018192844148395,
+            "val_auc": 0.8958292904790782
+          },
+          "b0_prompt": {
+            "best_c": 10.0,
+            "feature_count": 8,
+            "feature_names": [
+              "height",
+              "prompt_token_count",
+              "prompt_char_count",
+              "num_theories_axioms",
+              "num_observations",
+              "num_direct_paths",
+              "parent_salience",
+              "raw_probe_score"
+            ],
+            "test_auc": 0.9010657974530019,
+            "test_auc_delta_vs_metadata": 0.22627880533656763,
+            "test_auc_delta_vs_raw": -0.00016525166767733523,
+            "val_auc": 0.8959066100667072
+          },
+          "prompt_token_count": {
+            "best_c": 0.01,
+            "feature_count": 2,
+            "feature_names": [
+              "prompt_token_count",
+              "raw_probe_score"
+            ],
+            "test_auc": 0.9013508186779867,
+            "test_auc_delta_vs_metadata": 0.2641017283201941,
+            "test_auc_delta_vs_raw": 0.00011976955730752525,
+            "val_auc": 0.8959460278956944
+          }
+        },
+        "raw": {
+          "best_c_from_report": 0.01,
+          "refit_test_auc": 0.9012310491206792,
+          "refit_train_auc": 0.9730109982607058,
+          "refit_val_auc": 0.8959536082474227,
+          "reported_test_auc": 0.9012310491206792
+        },
+        "raw_residualized": {
+          "b0_namefreq": {
+            "feature_count": 14,
+            "feature_names": [
+              "height",
+              "prompt_token_count",
+              "prompt_char_count",
+              "num_theories_axioms",
+              "num_observations",
+              "num_direct_paths",
+              "parent_salience",
+              "namefreq_pos_sum",
+              "namefreq_neg_sum",
+              "namefreq_pos_mean",
+              "namefreq_neg_mean",
+              "namefreq_pos_max",
+              "namefreq_neg_max",
+              "namefreq_distinct_names"
+            ],
+            "metadata_set": "b0_namefreq",
+            "test_auc": 0.815415403274712,
+            "test_auc_delta_vs_metadata": 0.14423286840509408,
+            "test_auc_drop_vs_raw": 0.08581564584596724,
+            "test_pearson": 0.5207664387383667,
+            "train_r2_raw_score": 0.5256933665488202,
+            "val_auc": 0.7999848392965434
+          },
+          "b0_prompt": {
+            "feature_count": 7,
+            "feature_names": [
+              "height",
+              "prompt_token_count",
+              "prompt_char_count",
+              "num_theories_axioms",
+              "num_observations",
+              "num_direct_paths",
+              "parent_salience"
+            ],
+            "metadata_set": "b0_prompt",
+            "test_auc": 0.8172604608853851,
+            "test_auc_delta_vs_metadata": 0.14247346876895084,
+            "test_auc_drop_vs_raw": 0.08397058823529413,
+            "test_pearson": 0.5239232899583426,
+            "train_r2_raw_score": 0.5144421627238209,
+            "val_auc": 0.8026394784718011
+          },
+          "prompt_token_count": {
+            "feature_count": 1,
+            "feature_names": [
+              "prompt_token_count"
+            ],
+            "metadata_set": "prompt_token_count",
+            "test_auc": 0.842648574893875,
+            "test_auc_delta_vs_metadata": 0.20539948453608237,
+            "test_auc_drop_vs_raw": 0.05858247422680418,
+            "test_pearson": 0.5747759775169399,
+            "train_r2_raw_score": 0.25410963313982105,
+            "val_auc": 0.8427107337780473
+          }
+        },
+        "source_file": "results/full/with_errortype/qwen35_27b_infer_subtype.jsonl"
+      }
+    },
+    "s3": {
+      "infer_property": {
+        "activation_prefix": "results/stage2/activations/qwen35_27b_infer_property_L45",
+        "d_model": 5120,
+        "input_rows": 10997,
+        "kept_rows": 10997,
+        "metadata_only": {
+          "b0_namefreq": {
+            "best_c": 10.0,
+            "feature_count": 14,
+            "feature_names": [
+              "height",
+              "prompt_token_count",
+              "prompt_char_count",
+              "num_theories_axioms",
+              "num_observations",
+              "num_direct_paths",
+              "parent_salience",
+              "namefreq_pos_sum",
+              "namefreq_neg_sum",
+              "namefreq_pos_mean",
+              "namefreq_neg_mean",
+              "namefreq_pos_max",
+              "namefreq_neg_max",
+              "namefreq_distinct_names"
+            ],
+            "test_auc": 0.5808765173162229,
+            "val_auc": 0.5734833376222337
+          },
+          "b0_prompt": {
+            "best_c": 0.01,
+            "feature_count": 7,
+            "feature_names": [
+              "height",
+              "prompt_token_count",
+              "prompt_char_count",
+              "num_theories_axioms",
+              "num_observations",
+              "num_direct_paths",
+              "parent_salience"
+            ],
+            "test_auc": 0.6009405350891937,
+            "val_auc": 0.5964423571796191
+          },
+          "prompt_token_count": {
+            "best_c": 0.01,
+            "feature_count": 1,
+            "feature_names": [
+              "prompt_token_count"
+            ],
+            "test_auc": 0.5982687431031082,
+            "val_auc": 0.584628313175502
+          }
+        },
+        "metadata_plus_raw_score": {
+          "b0_namefreq": {
+            "best_c": 0.1,
+            "feature_count": 15,
+            "feature_names": [
+              "height",
+              "prompt_token_count",
+              "prompt_char_count",
+              "num_theories_axioms",
+              "num_observations",
+              "num_direct_paths",
+              "parent_salience",
+              "namefreq_pos_sum",
+              "namefreq_neg_sum",
+              "namefreq_pos_mean",
+              "namefreq_neg_mean",
+              "namefreq_pos_max",
+              "namefreq_neg_max",
+              "namefreq_distinct_names",
+              "raw_probe_score"
+            ],
+            "test_auc": 0.9063893537566594,
+            "test_auc_delta_vs_metadata": 0.3255128364404365,
+            "test_auc_delta_vs_raw": -0.0009617281875515804,
+            "val_auc": 0.9134859109624291
+          },
+          "b0_prompt": {
+            "best_c": 0.01,
+            "feature_count": 8,
+            "feature_names": [
+              "height",
+              "prompt_token_count",
+              "prompt_char_count",
+              "num_theories_axioms",
+              "num_observations",
+              "num_direct_paths",
+              "parent_salience",
+              "raw_probe_score"
+            ],
+            "test_auc": 0.9073890833619562,
+            "test_auc_delta_vs_metadata": 0.3064485482727626,
+            "test_auc_delta_vs_raw": 3.800141774523702e-05,
+            "val_auc": 0.9138381369016985
+          },
+          "prompt_token_count": {
+            "best_c": 0.01,
+            "feature_count": 2,
+            "feature_names": [
+              "prompt_token_count",
+              "raw_probe_score"
+            ],
+            "test_auc": 0.9073686210600934,
+            "test_auc_delta_vs_metadata": 0.30909987795698524,
+            "test_auc_delta_vs_raw": 1.7539115882425627e-05,
+            "val_auc": 0.9138011451363871
+          }
+        },
+        "raw": {
+          "best_c_from_report": 0.01,
+          "refit_test_auc": 0.907351081944211,
+          "refit_train_auc": 0.973637253341551,
+          "refit_val_auc": 0.9137834534225425,
+          "reported_test_auc": 0.907351081944211
+        },
+        "raw_residualized": {
+          "b0_namefreq": {
+            "feature_count": 14,
+            "feature_names": [
+              "height",
+              "prompt_token_count",
+              "prompt_char_count",
+              "num_theories_axioms",
+              "num_observations",
+              "num_direct_paths",
+              "parent_salience",
+              "namefreq_pos_sum",
+              "namefreq_neg_sum",
+              "namefreq_pos_mean",
+              "namefreq_neg_mean",
+              "namefreq_pos_max",
+              "namefreq_neg_max",
+              "namefreq_distinct_names"
+            ],
+            "metadata_set": "b0_namefreq",
+            "test_auc": 0.8608578089259484,
+            "test_auc_delta_vs_metadata": 0.2799812916097255,
+            "test_auc_drop_vs_raw": 0.04649327301826256,
+            "test_pearson": 0.6032194070547247,
+            "train_r2_raw_score": 0.4429663092921001,
+            "val_auc": 0.8732372619660318
+          },
+          "b0_prompt": {
+            "feature_count": 7,
+            "feature_names": [
+              "height",
+              "prompt_token_count",
+              "prompt_char_count",
+              "num_theories_axioms",
+              "num_observations",
+              "num_direct_paths",
+              "parent_salience"
+            ],
+            "metadata_set": "b0_prompt",
+            "test_auc": 0.8613357498337438,
+            "test_auc_delta_vs_metadata": 0.2603952147445502,
+            "test_auc_drop_vs_raw": 0.046015332110467155,
+            "test_pearson": 0.6058838426199465,
+            "train_r2_raw_score": 0.4262763514834179,
+            "val_auc": 0.8758154271744725
+          },
+          "prompt_token_count": {
+            "feature_count": 1,
+            "feature_names": [
+              "prompt_token_count"
+            ],
+            "metadata_set": "prompt_token_count",
+            "test_auc": 0.8695879038564132,
+            "test_auc_delta_vs_metadata": 0.271319160753305,
+            "test_auc_drop_vs_raw": 0.03776317808779783,
+            "test_pearson": 0.6192593110826323,
+            "train_r2_raw_score": 0.18246957042477396,
+            "val_auc": 0.8754551595470921
+          }
+        },
+        "source_file": "results/full/with_errortype/qwen35_27b_infer_property.jsonl"
+      },
+      "infer_subtype": {
+        "activation_prefix": "results/stage2/activations/qwen35_27b_infer_subtype_L45",
+        "d_model": 5120,
+        "input_rows": 10999,
+        "kept_rows": 10999,
+        "metadata_only": {
+          "b0_namefreq": {
+            "best_c": 10.0,
+            "feature_count": 14,
+            "feature_names": [
+              "height",
+              "prompt_token_count",
+              "prompt_char_count",
+              "num_theories_axioms",
+              "num_observations",
+              "num_direct_paths",
+              "parent_salience",
+              "namefreq_pos_sum",
+              "namefreq_neg_sum",
+              "namefreq_pos_mean",
+              "namefreq_neg_mean",
+              "namefreq_pos_max",
+              "namefreq_neg_max",
+              "namefreq_distinct_names"
+            ],
+            "test_auc": 0.6563749458732502,
+            "val_auc": 0.663828204525879
+          },
+          "b0_prompt": {
+            "best_c": 1.0,
+            "feature_count": 7,
+            "feature_names": [
+              "height",
+              "prompt_token_count",
+              "prompt_char_count",
+              "num_theories_axioms",
+              "num_observations",
+              "num_direct_paths",
+              "parent_salience"
+            ],
+            "test_auc": 0.6766855148915726,
+            "val_auc": 0.6689299073020003
+          },
+          "prompt_token_count": {
+            "best_c": 0.01,
+            "feature_count": 1,
+            "feature_names": [
+              "prompt_token_count"
+            ],
+            "test_auc": 0.6416587912904134,
+            "val_auc": 0.6280078663799594
+          }
+        },
+        "metadata_plus_raw_score": {
+          "b0_namefreq": {
+            "best_c": 0.1,
+            "feature_count": 15,
+            "feature_names": [
+              "height",
+              "prompt_token_count",
+              "prompt_char_count",
+              "num_theories_axioms",
+              "num_observations",
+              "num_direct_paths",
+              "parent_salience",
+              "namefreq_pos_sum",
+              "namefreq_neg_sum",
+              "namefreq_pos_mean",
+              "namefreq_neg_mean",
+              "namefreq_pos_max",
+              "namefreq_neg_max",
+              "namefreq_distinct_names",
+              "raw_probe_score"
+            ],
+            "test_auc": 0.903490029615629,
+            "test_auc_delta_vs_metadata": 0.24711508374237878,
+            "test_auc_delta_vs_raw": -0.0008028142749229028,
+            "val_auc": 0.9024141233443559
+          },
+          "b0_prompt": {
+            "best_c": 0.01,
+            "feature_count": 8,
+            "feature_names": [
+              "height",
+              "prompt_token_count",
+              "prompt_char_count",
+              "num_theories_axioms",
+              "num_observations",
+              "num_direct_paths",
+              "parent_salience",
+              "raw_probe_score"
+            ],
+            "test_auc": 0.9044761636856129,
+            "test_auc_delta_vs_metadata": 0.22779064879404032,
+            "test_auc_delta_vs_raw": 0.00018331979506103213,
+            "val_auc": 0.9031911241213566
+          },
+          "prompt_token_count": {
+            "best_c": 0.01,
+            "feature_count": 2,
+            "feature_names": [
+              "prompt_token_count",
+              "raw_probe_score"
+            ],
+            "test_auc": 0.9044508781966389,
+            "test_auc_delta_vs_metadata": 0.2627920869062256,
+            "test_auc_delta_vs_raw": 0.0001580343060870737,
+            "val_auc": 0.9031956415677347
+          }
+        },
+        "raw": {
+          "best_c_from_report": 0.01,
+          "refit_test_auc": 0.9042928438905519,
+          "refit_train_auc": 0.9714756533701661,
+          "refit_val_auc": 0.9031504671039555,
+          "reported_test_auc": 0.9042928438905519
+        },
+        "raw_residualized": {
+          "b0_namefreq": {
+            "feature_count": 14,
+            "feature_names": [
+              "height",
+              "prompt_token_count",
+              "prompt_char_count",
+              "num_theories_axioms",
+              "num_observations",
+              "num_direct_paths",
+              "parent_salience",
+              "namefreq_pos_sum",
+              "namefreq_neg_sum",
+              "namefreq_pos_mean",
+              "namefreq_neg_mean",
+              "namefreq_pos_max",
+              "namefreq_neg_max",
+              "namefreq_distinct_names"
+            ],
+            "metadata_set": "b0_namefreq",
+            "test_auc": 0.795295002639173,
+            "test_auc_delta_vs_metadata": 0.13892005676592278,
+            "test_auc_drop_vs_raw": 0.1089978412513789,
+            "test_pearson": 0.4892329990442324,
+            "train_r2_raw_score": 0.5212810319382617,
+            "val_auc": 0.8159366473319962
+          },
+          "b0_prompt": {
+            "feature_count": 7,
+            "feature_names": [
+              "height",
+              "prompt_token_count",
+              "prompt_char_count",
+              "num_theories_axioms",
+              "num_observations",
+              "num_direct_paths",
+              "parent_salience"
+            ],
+            "metadata_set": "b0_prompt",
+            "test_auc": 0.8004611441051623,
+            "test_auc_delta_vs_metadata": 0.12377562921358976,
+            "test_auc_drop_vs_raw": 0.10383169978538953,
+            "test_pearson": 0.4957940155097457,
+            "train_r2_raw_score": 0.5083075237294001,
+            "val_auc": 0.8237789342440506
+          },
+          "prompt_token_count": {
+            "feature_count": 1,
+            "feature_names": [
+              "prompt_token_count"
+            ],
+            "metadata_set": "prompt_token_count",
+            "test_auc": 0.8463985561985796,
+            "test_auc_delta_vs_metadata": 0.20473976490816626,
+            "test_auc_drop_vs_raw": 0.057894287691972246,
+            "test_pearson": 0.5654832966206506,
+            "train_r2_raw_score": 0.252233321059141,
+            "val_auc": 0.8493597272667041
+          }
+        },
+        "source_file": "results/full/with_errortype/qwen35_27b_infer_subtype.jsonl"
+      }
+    }
+  },
+  "schema_version": 1,
+  "split_families": [
+    "s1",
+    "s3"
+  ],
+  "splits_path": "results/stage2/splits.jsonl",
+  "tasks": [
+    "infer_property",
+    "infer_subtype"
+  ]
+}

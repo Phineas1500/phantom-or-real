@@ -1,0 +1,239 @@
+{
+  "activation_dir": "results/stage2/activations",
+  "activation_site": "resid_post",
+  "best_by_transfer": {
+    "infer_property_to_infer_subtype": {
+      "layer": "L45",
+      "source_test_auc": 0.907351081944211,
+      "source_val_auc": 0.9137834534225425,
+      "target_test_auc": 0.865367413958222
+    },
+    "infer_subtype_to_infer_property": {
+      "layer": "L45",
+      "source_test_auc": 0.9042928438905519,
+      "source_val_auc": 0.9031504671039555,
+      "target_test_auc": 0.8235784181179067
+    }
+  },
+  "bootstrap_samples": 1000,
+  "c_values": [
+    0.01,
+    0.1,
+    1.0,
+    10.0
+  ],
+  "created_at_utc": "2026-05-23T17:06:21.017578+00:00",
+  "drop_parse_failed": true,
+  "layers": [
+    45
+  ],
+  "max_iter": 2000,
+  "model_key": "qwen35_27b",
+  "results": {
+    "infer_property_to_infer_subtype": {
+      "L45": {
+        "best_c": 0.01,
+        "c_values": [
+          0.01,
+          0.1,
+          1.0,
+          10.0
+        ],
+        "layer": 45,
+        "max_iter": 2000,
+        "solver": "lbfgs",
+        "source_file": "results/full/with_errortype/qwen35_27b_infer_property.jsonl",
+        "source_split_counts": {
+          "test": {
+            "n": 1674,
+            "negative_n": 709,
+            "positive_n": 965
+          },
+          "train": {
+            "n": 7725,
+            "negative_n": 3470,
+            "positive_n": 4255
+          },
+          "val": {
+            "n": 1598,
+            "negative_n": 670,
+            "positive_n": 928
+          }
+        },
+        "source_task": "infer_property",
+        "source_test_auc": 0.907351081944211,
+        "source_test_auc_ci": {
+          "alpha": 0.05,
+          "high": 0.9202300276416187,
+          "low": 0.8939582273712835,
+          "mean": 0.9077286759861033,
+          "samples_requested": 1000,
+          "samples_used": 1000
+        },
+        "source_val_auc": 0.9137834534225425,
+        "status": "ok",
+        "target_file": "results/full/with_errortype/qwen35_27b_infer_subtype.jsonl",
+        "target_per_height": {
+          "h1": {
+            "auc": null,
+            "n": 153,
+            "negative_n": 0,
+            "positive_n": 153
+          },
+          "h2": {
+            "auc": 0.873228268411141,
+            "n": 289,
+            "negative_n": 171,
+            "positive_n": 118
+          },
+          "h3": {
+            "auc": 0.8066299682324125,
+            "n": 438,
+            "negative_n": 301,
+            "positive_n": 137
+          },
+          "h4": {
+            "auc": 0.8099378039893572,
+            "n": 755,
+            "negative_n": 534,
+            "positive_n": 221
+          }
+        },
+        "target_split_counts": {
+          "test": {
+            "n": 1635,
+            "negative_n": 1006,
+            "positive_n": 629
+          },
+          "train": {
+            "n": 7716,
+            "negative_n": 4514,
+            "positive_n": 3202
+          },
+          "val": {
+            "n": 1648,
+            "negative_n": 946,
+            "positive_n": 702
+          }
+        },
+        "target_task": "infer_subtype",
+        "target_test_auc": 0.865367413958222,
+        "target_test_auc_ci": {
+          "alpha": 0.05,
+          "high": 0.8830849792787935,
+          "low": 0.8473109833368174,
+          "mean": 0.8651025866688099,
+          "samples_requested": 1000,
+          "samples_used": 1000
+        }
+      }
+    },
+    "infer_subtype_to_infer_property": {
+      "L45": {
+        "best_c": 0.01,
+        "c_values": [
+          0.01,
+          0.1,
+          1.0,
+          10.0
+        ],
+        "layer": 45,
+        "max_iter": 2000,
+        "solver": "lbfgs",
+        "source_file": "results/full/with_errortype/qwen35_27b_infer_subtype.jsonl",
+        "source_split_counts": {
+          "test": {
+            "n": 1635,
+            "negative_n": 1006,
+            "positive_n": 629
+          },
+          "train": {
+            "n": 7716,
+            "negative_n": 4514,
+            "positive_n": 3202
+          },
+          "val": {
+            "n": 1648,
+            "negative_n": 946,
+            "positive_n": 702
+          }
+        },
+        "source_task": "infer_subtype",
+        "source_test_auc": 0.9042928438905519,
+        "source_test_auc_ci": {
+          "alpha": 0.05,
+          "high": 0.9188002327664558,
+          "low": 0.8886991915933558,
+          "mean": 0.9043400567724277,
+          "samples_requested": 1000,
+          "samples_used": 1000
+        },
+        "source_val_auc": 0.9031504671039555,
+        "status": "ok",
+        "target_file": "results/full/with_errortype/qwen35_27b_infer_property.jsonl",
+        "target_per_height": {
+          "h1": {
+            "auc": null,
+            "n": 154,
+            "negative_n": 0,
+            "positive_n": 154
+          },
+          "h2": {
+            "auc": 0.8178669008587042,
+            "n": 290,
+            "negative_n": 122,
+            "positive_n": 168
+          },
+          "h3": {
+            "auc": 0.8263955342902711,
+            "n": 449,
+            "negative_n": 209,
+            "positive_n": 240
+          },
+          "h4": {
+            "auc": 0.768541494347946,
+            "n": 781,
+            "negative_n": 378,
+            "positive_n": 403
+          }
+        },
+        "target_split_counts": {
+          "test": {
+            "n": 1674,
+            "negative_n": 709,
+            "positive_n": 965
+          },
+          "train": {
+            "n": 7725,
+            "negative_n": 3470,
+            "positive_n": 4255
+          },
+          "val": {
+            "n": 1598,
+            "negative_n": 670,
+            "positive_n": 928
+          }
+        },
+        "target_task": "infer_property",
+        "target_test_auc": 0.8235784181179067,
+        "target_test_auc_ci": {
+          "alpha": 0.05,
+          "high": 0.8417155897612927,
+          "low": 0.8031787809261747,
+          "mean": 0.823262050463919,
+          "samples_requested": 1000,
+          "samples_used": 1000
+        }
+      }
+    }
+  },
+  "schema_version": 1,
+  "seed": 20260427,
+  "solver": "lbfgs",
+  "split_family": "s3",
+  "splits_path": "results/stage2/splits.jsonl",
+  "tasks": [
+    "infer_property",
+    "infer_subtype"
+  ]
+}

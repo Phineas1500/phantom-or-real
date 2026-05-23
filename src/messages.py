@@ -27,6 +27,7 @@ def render_chat_text(
     user: str,
     model_name: str,
     add_generation_prompt: bool = True,
+    chat_template_kwargs: dict | None = None,
 ) -> str:
     """Render the exact chat-template text used for activation extraction."""
     messages = build_messages(system, user, model_name)
@@ -34,4 +35,5 @@ def render_chat_text(
         messages,
         tokenize=False,
         add_generation_prompt=add_generation_prompt,
+        **(chat_template_kwargs or {}),
     )

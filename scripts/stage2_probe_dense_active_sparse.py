@@ -117,6 +117,9 @@ def run_dense_active_probe_grid(
             bootstrap_samples=bootstrap_samples,
             bootstrap_seed=seed,
         )
+        for key in list(result):
+            if key.startswith("_artifact_"):
+                result.pop(key)
         result.update(
             {
                 "feature_path": str(prefix.with_suffix(".safetensors")),

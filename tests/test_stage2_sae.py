@@ -29,6 +29,15 @@ from src.stage2_sae import (
     topk_tensors_to_csr,
 )
 from src.stage2_paths import activation_stem, hook_name_for_layer, normalize_activation_site
+from src.qwen_scope import (
+    QwenScopeSAE,
+    decode_qwen_scope_topk,
+    encode_qwen_scope_topk,
+    infer_qwen_scope_top_k,
+    qwen_scope_filename,
+    qwen_scope_sae_id,
+    qwen_scope_sae_summary,
+)
 
 
 def test_slice_rows_honors_skip_and_limit() -> None:
@@ -48,6 +57,14 @@ def test_sae_file_name_joins_subfolder_and_id() -> None:
     assert (
         sae_file_name("resid_post_all/", "layer_45_width_16k_l0_small", "params.safetensors")
         == "resid_post_all/layer_45_width_16k_l0_small/params.safetensors"
+    )
+
+
+def test_qwen_scope_names_parse_layer_topk_and_repo_slug() -> None:
+    assert qwen_scope_filename(45) == "layer45.sae.pt"
+    assert infer_qwen_scope_top_k("Qwen/SAE-Res-Qwen3.5-27B-W80K-L0_100") == 100
+    assert qwen_scope_sae_id("Qwen/SAE-Res-Qwen3.5-27B-W80K-L0_50") == (
+        "qwenscope_qwen35_27b_w80k_l0_50"
     )
 
 
@@ -297,6 +314,47 @@ def test_decode_topk_linear_matches_dense_decode() -> None:
 
     assert sparse_decoded == pytest.approx(dense_decoded)
 
+
+
+
+def test_qwen_scope_encode_and_sparse_decode_match_dense_math(tmp_path: Path) -> None:
+    sae = QwenScopeSAE(
+        W_enc=torch.tensor(
+            [
+                [1.0, 0.0, 0.0],
+                [0.0, 2.0, 0.0],
+                [0.0, 0.0, -1.0],
+                [1.0, 1.0, 1.0],
+            ]
+        ),
+        W_dec=torch.tensor(
+            [
+                [1.0, 0.0, -1.0, 0.5],
+                [0.0, 2.0, 1.0, 0.5],
+                [0.5, 0.0, 0.0, 1.0],
+            ]
+        ),
+        b_enc=torch.tensor([0.0, 0.1, 0.0, -1.0]),
+        b_dec=torch.tensor([0.5, -0.5, 1.0]),
+        repo_id="Qwen/SAE-Res-Qwen3.5-27B-W80K-L0_2",
+        layer=7,
+        checkpoint_path=tmp_path / "layer7.sae.pt",
+        top_k=2,
+    )
+    residual = torch.tensor([[1.0, 2.0, -3.0], [0.0, 1.0, 1.0]])
+
+    values, indices = encode_qwen_scope_topk(sae, residual, top_k=2)
+    decoded = decode_qwen_scope_topk(sae, indices, values, dtype=torch.float32)
+
+    dense = torch.zeros((2, sae.d_sae))
+    dense.scatter_(1, indices, values)
+    expected = dense @ sae.W_dec.T + sae.b_dec
+
+    assert decoded == pytest.approx(expected)
+    summary = qwen_scope_sae_summary(sae)
+    assert summary["d_in"] == 3
+    assert summary["d_sae"] == 4
+    assert summary["hook_name"] == "model.model.layers.7.output"
 
 def test_reconstruction_stats_reports_energy_explained() -> None:
     stats = ReconstructionStats()
