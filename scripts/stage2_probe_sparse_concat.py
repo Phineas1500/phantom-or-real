@@ -193,6 +193,7 @@ def run_sparse_concat_probe_grid(
             bootstrap_samples=bootstrap_samples,
             bootstrap_seed=seed,
         )
+        result.pop("_artifact_model", None)
         feature_blocks = [
             {
                 "feature_prefix": str(dataset["prefix"]),

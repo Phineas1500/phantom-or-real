@@ -20,6 +20,7 @@ Scholar J-node A40 jobs.
 | Answer-property steering, L45 | `456262` | 8 balanced h3/h4 rows | Gold-polarity direction val/test AUC `1.0000`/`1.0000`; no answer-content changes and no strong-accuracy flips under toward-gold, away-gold, or orthogonal conditions | Even a concrete answer-content direction does not loosen the free-form output. |
 | Sparse-probe bundle steering, L45 | `456263` | 8 balanced h3/h4 rows | W80K L0_100 sparse probe test AUC `0.8019`; bundle +/-0.5sd plus shuffled, random, and orthogonal controls all had zero output-correctness changes | Distributed residual-SAE decoder bundles reproduce the Gemma steering null at Qwen L45. |
 | Sparse-probe bundle steering, L53 | `456267` | 8 balanced h3/h4 rows | W80K L0_100 sparse probe test AUC `0.8687`; bundle +/-0.5sd plus shuffled, random, and orthogonal controls all had zero output-correctness changes | The stronger L53 sparse readout still does not become a steering handle. |
+| Single-feature steering, L53 | `456293` | 8 balanced h3/h4 rows | W80K L0_100 features `7169`, `23296`, and `4212` at +/-0.25 mean-nonzero scale plus random feature controls `54098`, `54479`, and `75388`; baseline and all interventions stayed at strong accuracy `0.5`, weak accuracy `1.0`, parse fail `0.0`; zero paired changes | Individual L53 residual-SAE decoder columns are not repair or breakage handles at this scale. |
 
 Detailed artifacts:
 
@@ -39,10 +40,13 @@ Detailed artifacts:
 - `results/stage2/steering/qwen35_scope_l45_l0_100_sparse_bundle_property_smoke.jsonl`
 - `docs/qwen35_scope_sparse_bundle_steering_27b_l53_l0_100_property_smoke.json`
 - `results/stage2/steering/qwen35_scope_l53_l0_100_sparse_bundle_property_smoke.jsonl`
+- `docs/qwen35_scope_single_feature_steering_27b_l53_l0_100_7169_23296_4212_property_smoke.json`
+- `results/stage2/steering/qwen35_scope_l53_l0_100_single_features_7169_23296_4212_property_smoke.jsonl`
 
 Bottom line: Qwen shows a strong format effect, strong pre-generation
 correctness readouts, and no strong single-site full-residual patching or
-decode-step steering effect. The forced-choice result says that a large share
+decode-step steering effect, now including individual L53 Qwen Scope residual-SAE
+decoder columns. The forced-choice result says that a large share
 of the selected h4 subtype errors are not pure absence of the right answer. The
 patching and steering pilots say that the tested L35/L40/L45/L53 residual
 states and probe-derived directions are not enough, by themselves, to act as

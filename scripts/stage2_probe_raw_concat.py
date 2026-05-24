@@ -134,6 +134,7 @@ def run_raw_concat_probe_grid(
             bootstrap_samples=bootstrap_samples,
             bootstrap_seed=seed,
         )
+        result.pop("_artifact_model", None)
         result.update(
             {
                 "activation_paths": [str(path) for path in dataset["activation_paths"]],

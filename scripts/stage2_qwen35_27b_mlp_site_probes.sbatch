@@ -56,17 +56,19 @@ if [[ -n "${LIMIT:-}" ]]; then
     LIMIT_ARGS=(--limit "$LIMIT")
 fi
 
+if [[ "${SKIP_EXTRACTION:-0}" != "1" ]]; then
 for TASK in infer_property infer_subtype; do
     JSONL="results/full/with_errortype/qwen35_27b_${TASK}.jsonl"
     python scripts/stage2_extract_hf.py         --jsonl "$JSONL"         --model "$MODEL"         --model-key qwen35_27b         --layers "$LAYERS"         --activation-sites "$SITES"         --batch-size "$BATCH_SIZE"         --n-ctx 4096         --drop-parse-failed         --disable-thinking         --out-dir results/stage2/activations         "${LIMIT_ARGS[@]}"
-done
+    done
+fi
 
 IFS=',' read -ra SITE_ARRAY <<< "$SITES"
 for SITE in "${SITE_ARRAY[@]}"; do
     SITE="$(printf '%s' "$SITE" | tr '-' '_' | xargs)"
-    python scripts/stage2_probe_raw.py         --activation-dir results/stage2/activations         --activation-site "$SITE"         --model-key qwen35_27b         --tasks infer_property infer_subtype         --layers "$LAYERS"         --split-family s1         --output "docs/qwen_scope_raw_probe_27b_${LAYER_TAG}_${SITE}_s1.json"
+    python scripts/stage2_probe_raw.py         --activation-dir results/stage2/activations         --activation-site "$SITE"         --model-key qwen35_27b         --tasks infer_property infer_subtype         --layers "$LAYERS"         --splits results/stage2/splits.jsonl         --split-family s1         --output "docs/qwen_scope_raw_probe_27b_${LAYER_TAG}_${SITE}_s1.json"
 
-    python scripts/stage2_probe_raw.py         --activation-dir results/stage2/activations         --activation-site "$SITE"         --model-key qwen35_27b         --tasks infer_property infer_subtype         --layers "$LAYERS"         --split-family s3         --output "docs/qwen_scope_raw_probe_27b_${LAYER_TAG}_${SITE}_s3.json"
+    python scripts/stage2_probe_raw.py         --activation-dir results/stage2/activations         --activation-site "$SITE"         --model-key qwen35_27b         --tasks infer_property infer_subtype         --layers "$LAYERS"         --splits results/stage2/splits.jsonl         --split-family s3         --output "docs/qwen_scope_raw_probe_27b_${LAYER_TAG}_${SITE}_s3.json"
 done
 
 echo "Finished: $(date)"

@@ -125,6 +125,7 @@ def run_crosscoder_probe_grid(
             bootstrap_samples=bootstrap_samples,
             bootstrap_seed=seed,
         )
+        result.pop("_artifact_model", None)
         result.update(
             {
                 "feature_path": str(prefix.with_suffix(".safetensors")),

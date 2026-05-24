@@ -1,0 +1,139 @@
+{
+  "block_templates": {
+    "l53_local_mlpout": "results/stage2/sae_features/qwen35_27b_{task}_L53_mlp_out_local_topk_mlp_out_l53_w4096_k64_{split_family}_top64",
+    "l53_localtc": "results/stage2/sae_features/qwen35_27b_{task}_L53_mlp_in_weighted_local_topk_tc_mlp_in_weighted_to_mlp_out_l53_w4096_k64_{split_family}_top64",
+    "l53_resid_l0_100": "results/stage2/sae_features/qwen35_27b_{task}_L53_qwenscope_qwen35_27b_w80k_l0_100_top100",
+    "l53_resid_l0_50": "results/stage2/sae_features/qwen35_27b_{task}_L53_qwenscope_qwen35_27b_w80k_l0_50_top50"
+  },
+  "full_combo": "qwen_l53_residual_local_mlpout_localtc",
+  "schema_version": 1,
+  "splits": {
+    "s1": {
+      "blocks": {
+        "l53_local_mlpout": "results/stage2/sae_features/qwen35_27b_{task}_L53_mlp_out_local_topk_mlp_out_l53_w4096_k64_s1_top64",
+        "l53_localtc": "results/stage2/sae_features/qwen35_27b_{task}_L53_mlp_in_weighted_local_topk_tc_mlp_in_weighted_to_mlp_out_l53_w4096_k64_s1_top64",
+        "l53_resid_l0_100": "results/stage2/sae_features/qwen35_27b_{task}_L53_qwenscope_qwen35_27b_w80k_l0_100_top100",
+        "l53_resid_l0_50": "results/stage2/sae_features/qwen35_27b_{task}_L53_qwenscope_qwen35_27b_w80k_l0_50_top50"
+      },
+      "c_values": [
+        0.0003,
+        0.001
+      ],
+      "full_report": "docs/qwen_scope_sparse_concat_probe_27b_l53_residual_local_mlpout_localtc_s1.json",
+      "full_test_auc": {
+        "infer_property": 0.9147547138328049,
+        "infer_subtype": 0.8950257731958763
+      },
+      "leave_one_out": {
+        "l53_local_mlpout": {
+          "delta_vs_full": {
+            "infer_property": -0.00671616886367421,
+            "infer_subtype": -0.008743177683444459
+          },
+          "report": "docs/qwen_scope_sparse_concat_ablation_27b_l53_residual_local_mlpout_localtc_minus_l53_local_mlpout_s1.json",
+          "test_auc": {
+            "infer_property": 0.9080385449691307,
+            "infer_subtype": 0.8862825955124318
+          }
+        },
+        "l53_localtc": {
+          "delta_vs_full": {
+            "infer_property": -0.006158971180663109,
+            "infer_subtype": -0.0060567010309279246
+          },
+          "report": "docs/qwen_scope_sparse_concat_ablation_27b_l53_residual_local_mlpout_localtc_minus_l53_localtc_s1.json",
+          "test_auc": {
+            "infer_property": 0.9085957426521418,
+            "infer_subtype": 0.8889690721649484
+          }
+        },
+        "l53_resid_l0_100": {
+          "delta_vs_full": {
+            "infer_property": -0.0011427022001858633,
+            "infer_subtype": -0.0005442692540933436
+          },
+          "report": "docs/qwen_scope_sparse_concat_ablation_27b_l53_residual_local_mlpout_localtc_minus_l53_resid_l0_100_s1.json",
+          "test_auc": {
+            "infer_property": 0.9136120116326191,
+            "infer_subtype": 0.8944815039417829
+          }
+        },
+        "l53_resid_l0_50": {
+          "delta_vs_full": {
+            "infer_property": -0.0007866320230747181,
+            "infer_subtype": -0.0002365069739235226
+          },
+          "report": "docs/qwen_scope_sparse_concat_ablation_27b_l53_residual_local_mlpout_localtc_minus_l53_resid_l0_50_s1.json",
+          "test_auc": {
+            "infer_property": 0.9139680818097302,
+            "infer_subtype": 0.8947892662219528
+          }
+        }
+      }
+    },
+    "s3": {
+      "blocks": {
+        "l53_local_mlpout": "results/stage2/sae_features/qwen35_27b_{task}_L53_mlp_out_local_topk_mlp_out_l53_w4096_k64_s3_top64",
+        "l53_localtc": "results/stage2/sae_features/qwen35_27b_{task}_L53_mlp_in_weighted_local_topk_tc_mlp_in_weighted_to_mlp_out_l53_w4096_k64_s3_top64",
+        "l53_resid_l0_100": "results/stage2/sae_features/qwen35_27b_{task}_L53_qwenscope_qwen35_27b_w80k_l0_100_top100",
+        "l53_resid_l0_50": "results/stage2/sae_features/qwen35_27b_{task}_L53_qwenscope_qwen35_27b_w80k_l0_50_top50"
+      },
+      "c_values": [
+        0.0003,
+        0.001
+      ],
+      "full_report": "docs/qwen_scope_sparse_concat_probe_27b_l53_residual_local_mlpout_localtc_s3.json",
+      "full_test_auc": {
+        "infer_property": 0.9032849302454744,
+        "infer_subtype": 0.8851359253066656
+      },
+      "leave_one_out": {
+        "l53_local_mlpout": {
+          "delta_vs_full": {
+            "infer_property": -0.012034756681306824,
+            "infer_subtype": -0.0024605941457772618
+          },
+          "report": "docs/qwen_scope_sparse_concat_ablation_27b_l53_residual_local_mlpout_localtc_minus_l53_local_mlpout_s3.json",
+          "test_auc": {
+            "infer_property": 0.8912501735641676,
+            "infer_subtype": 0.8826753311608884
+          }
+        },
+        "l53_localtc": {
+          "delta_vs_full": {
+            "infer_property": -0.00968889993203581,
+            "infer_subtype": -0.0067291007531916636
+          },
+          "report": "docs/qwen_scope_sparse_concat_ablation_27b_l53_residual_local_mlpout_localtc_minus_l53_localtc_s3.json",
+          "test_auc": {
+            "infer_property": 0.8935960303134386,
+            "infer_subtype": 0.878406824553474
+          }
+        },
+        "l53_resid_l0_100": {
+          "delta_vs_full": {
+            "infer_property": 0.001159043241228841,
+            "infer_subtype": -0.002476397576386069
+          },
+          "report": "docs/qwen_scope_sparse_concat_ablation_27b_l53_residual_local_mlpout_localtc_minus_l53_resid_l0_100_s3.json",
+          "test_auc": {
+            "infer_property": 0.9044439734867032,
+            "infer_subtype": 0.8826595277302796
+          }
+        },
+        "l53_resid_l0_50": {
+          "delta_vs_full": {
+            "infer_property": 0.001425053165445167,
+            "infer_subtype": -0.0021176597015681864
+          },
+          "report": "docs/qwen_scope_sparse_concat_ablation_27b_l53_residual_local_mlpout_localtc_minus_l53_resid_l0_50_s3.json",
+          "test_auc": {
+            "infer_property": 0.9047099834109196,
+            "infer_subtype": 0.8830182656050974
+          }
+        }
+      }
+    }
+  },
+  "validation": "leave_one_sparse_block_out"
+}
