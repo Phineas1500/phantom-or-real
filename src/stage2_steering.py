@@ -46,7 +46,7 @@ def parse_int_list(value: str) -> list[int]:
 
 
 def parse_condition_kinds(value: str) -> list[str]:
-    allowed = {"baseline", "raw", "orthogonal"}
+    allowed = {"baseline", "raw", "orthogonal", "gaussian"}
     parsed = [part.strip().lower() for part in value.split(",") if part.strip()]
     if not parsed:
         raise ValueError("expected at least one condition kind")
@@ -72,7 +72,7 @@ def make_condition_plan(
     plan: list[SteeringCondition] = []
     if "baseline" in kinds:
         plan.append(SteeringCondition("baseline", None, 0.0))
-    for kind in ("raw", "orthogonal"):
+    for kind in ("raw", "orthogonal", "gaussian"):
         if kind not in kinds:
             continue
         for strength in strength_values:
@@ -413,6 +413,23 @@ def make_orthogonal_unit_direction(
         if norm > 1e-12:
             return (candidate / norm).astype(np.float32)
     raise ValueError("failed to sample nonzero orthogonal direction")
+
+
+def make_gaussian_unit_direction(
+    direction: np.ndarray,
+    *,
+    seed: int,
+) -> np.ndarray:
+    unit = np.asarray(direction, dtype=np.float64)
+    if unit.size == 0:
+        raise ValueError("direction is empty")
+    rng = np.random.default_rng(seed)
+    for _ in range(100):
+        candidate = rng.normal(size=unit.shape)
+        norm = np.linalg.norm(candidate)
+        if norm > 1e-12:
+            return (candidate / norm).astype(np.float32)
+    raise ValueError("failed to sample nonzero Gaussian direction")
 
 
 def select_balanced_stage1_rows(

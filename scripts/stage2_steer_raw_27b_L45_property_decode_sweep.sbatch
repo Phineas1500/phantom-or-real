@@ -52,7 +52,7 @@ python -u scripts/stage2_steer_raw_direction.py \
     --split-family s1 \
     --heights 3,4 \
     --per-height-label 2 \
-    --conditions baseline,raw,orthogonal \
+    --conditions baseline,raw,orthogonal,gaussian \
     --strengths=-0.5,-1,0.5,1 \
     --intervention-scope last_token_each_forward \
     --max-new-tokens 96 \

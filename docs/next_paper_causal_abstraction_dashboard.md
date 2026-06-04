@@ -28,6 +28,7 @@ Purpose: track the program testing whether InAbHyD correctness is linearly reada
 | Track | Status | Artifact | Note |
 | --- | --- | --- | --- |
 | Steering-effectiveness diagnostics | artifact_preflight | docs/steering_effectiveness_diagnostics.md | Artifact preflight over existing probe, metadata, and historical steering reports. |
+| Intervention preflight | started | docs/intervention_preflight.md | Part 1 gate for regenerated baselines, positive controls, matched noise, paired flips, and parse-failure reporting. |
 
 ## Planned Tracks
 

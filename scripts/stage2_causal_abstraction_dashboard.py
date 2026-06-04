@@ -142,12 +142,24 @@ def track_reports() -> list[dict[str, str]]:
     steering_status = "pending"
     if steering is not None:
         steering_status = nested(steering, ["scope", "status"], "available")
+
+    intervention = read_json(Path("docs/intervention_preflight.json"))
+    intervention_status = "pending"
+    if intervention is not None:
+        intervention_status = intervention.get("status", "available")
+
     return [
         {
             "track": "Steering-effectiveness diagnostics",
             "status": steering_status,
             "artifact": "docs/steering_effectiveness_diagnostics.md",
             "note": "Artifact preflight over existing probe, metadata, and historical steering reports.",
+        },
+        {
+            "track": "Intervention preflight",
+            "status": intervention_status,
+            "artifact": "docs/intervention_preflight.md",
+            "note": "Part 1 gate for regenerated baselines, positive controls, matched noise, paired flips, and parse-failure reporting.",
         },
     ]
 

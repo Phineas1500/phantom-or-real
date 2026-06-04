@@ -21,6 +21,11 @@ CAUSAL_VARIABLES = (
     "commitment_state",
 )
 
+AUXILIARY_TARGET_VARIABLES = (
+    "positive_control_behavior",
+)
+
+
 REPRESENTATION_TYPES = (
     "raw_direction",
     "sparse_feature",
@@ -51,6 +56,7 @@ def schema_payload() -> dict[str, Any]:
         "schema_version": 1,
         "created_at_utc": now_utc(),
         "causal_variables": list(CAUSAL_VARIABLES),
+        "auxiliary_target_variables": list(AUXILIARY_TARGET_VARIABLES),
         "representation_types": list(REPRESENTATION_TYPES),
         "result_types": list(RESULT_TYPES),
         "control_types": list(CONTROL_TYPES),
@@ -102,7 +108,7 @@ def make_experiment_report(
     causal_abstraction_claim: str,
     notes: list[str] | None = None,
 ) -> dict[str, Any]:
-    validate_choice("target_variable", target_variable, CAUSAL_VARIABLES)
+    validate_choice("target_variable", target_variable, CAUSAL_VARIABLES + AUXILIARY_TARGET_VARIABLES)
     validate_choice("representation_type", representation_type, REPRESENTATION_TYPES)
     validate_choice("result_type", result_type, RESULT_TYPES)
     for control in controls:

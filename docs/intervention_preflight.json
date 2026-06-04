@@ -1,0 +1,258 @@
+{
+  "created_at_utc": "2026-06-04T15:43:11.264970+00:00",
+  "gates": [
+    {
+      "evidence": [
+        "docs/next_paper_causal_abstraction_dashboard.md",
+        "docs/steering_effectiveness_diagnostics.md",
+        "docs/stage2_name_scramble_error_steering_plan.md"
+      ],
+      "gate": "current_evidence_freeze",
+      "next_action": "Merge or open a PR for codex/name-scramble-error-steering before treating the current evidence as frozen on main.",
+      "required_before_new_interpretation": true,
+      "status": "branch_pushed_pending_merge_or_pr"
+    },
+    {
+      "evidence": [
+        {
+          "baseline_n": 8,
+          "baseline_parse_fail_rate": 0.0,
+          "baseline_strong_accuracy": 0.375,
+          "conditions": [
+            "baseline",
+            "raw_neg0p5sd",
+            "raw_neg1sd",
+            "raw_pos0p5sd",
+            "raw_pos1sd",
+            "orthogonal_neg0p5sd",
+            "orthogonal_neg1sd",
+            "orthogonal_pos0p5sd",
+            "orthogonal_pos1sd"
+          ],
+          "exists": true,
+          "layer": 45,
+          "model": "google/gemma-3-27b-it",
+          "path": "docs/raw_steering_27b_l45_property_decode_sweep.json",
+          "selection": {
+            "available_counts": {
+              "h3_correct": 177,
+              "h3_incorrect": 240,
+              "h4_correct": 198,
+              "h4_incorrect": 486
+            },
+            "drop_parse_failed": true,
+            "heights": [
+              3,
+              4
+            ],
+            "per_height_label": 2,
+            "seed": 20260427,
+            "selected_counts": {
+              "h3_correct": 2,
+              "h3_incorrect": 2,
+              "h4_correct": 2,
+              "h4_incorrect": 2
+            },
+            "selected_rows": 8,
+            "source_file": "results/full/with_errortype/gemma3_27b_infer_property.jsonl",
+            "split": "test",
+            "split_family": "s1"
+          },
+          "task": "infer_property"
+        },
+        {
+          "baseline_n": 8,
+          "baseline_parse_fail_rate": 0.0,
+          "baseline_strong_accuracy": 0.375,
+          "conditions": [
+            "baseline",
+            "raw_neg0p25sd",
+            "raw_neg0p5sd",
+            "raw_neg1sd",
+            "raw_pos0p25sd",
+            "raw_pos0p5sd",
+            "raw_pos1sd",
+            "orthogonal_neg0p25sd",
+            "orthogonal_neg0p5sd",
+            "orthogonal_neg1sd",
+            "orthogonal_pos0p25sd",
+            "orthogonal_pos0p5sd",
+            "orthogonal_pos1sd"
+          ],
+          "exists": true,
+          "layer": 45,
+          "model": "google/gemma-3-27b-it",
+          "path": "docs/error_l45_layer_45_width_262k_l0_small_top128_property_decode_sweep.json",
+          "selection": {
+            "available_counts": {
+              "h3_correct": 177,
+              "h3_incorrect": 240,
+              "h4_correct": 198,
+              "h4_incorrect": 486
+            },
+            "drop_parse_failed": true,
+            "heights": [
+              3,
+              4
+            ],
+            "per_height_label": 2,
+            "seed": 20260427,
+            "selected_counts": {
+              "h3_correct": 2,
+              "h3_incorrect": 2,
+              "h4_correct": 2,
+              "h4_incorrect": 2
+            },
+            "selected_rows": 8,
+            "source_file": "results/full/with_errortype/gemma3_27b_infer_property.jsonl",
+            "split": "test",
+            "split_family": "s1"
+          },
+          "task": "infer_property"
+        }
+      ],
+      "gate": "regenerated_balanced_baseline",
+      "next_action": "Regenerate balanced h3/h4 Gemma 3 27B infer_property baselines in the same job as each new intervention family; use paired regenerated rows, not historical labels, for flips.",
+      "passes_for_future_jobs": false,
+      "required_before_new_interpretation": true,
+      "status": "historical_small_n_available_refresh_required"
+    },
+    {
+      "evidence": {
+        "artifact": {
+          "baseline_n": 8,
+          "baseline_parse_fail_rate": 0.0,
+          "baseline_strong_accuracy": 0.375,
+          "conditions": [
+            "baseline",
+            "toward_gold_pos0p5sd",
+            "toward_gold_pos1sd",
+            "away_gold_pos0p5sd",
+            "away_gold_pos1sd",
+            "orthogonal_pos0p5sd",
+            "orthogonal_pos1sd"
+          ],
+          "exists": true,
+          "layer": 45,
+          "model": "google/gemma-3-27b-it",
+          "path": "docs/answer_property_steering_27b_l45_polarity_smoke.json",
+          "selection": {
+            "answer_label_source": "gold",
+            "answer_target": "polarity",
+            "available_counts": {
+              "h3_correct": 177,
+              "h3_incorrect": 240,
+              "h4_correct": 198,
+              "h4_incorrect": 486
+            },
+            "drop_parse_failed": true,
+            "heights": [
+              3,
+              4
+            ],
+            "negative_predicate": null,
+            "per_height_label": 2,
+            "positive_predicate": null,
+            "seed": 20260427,
+            "selected_counts": {
+              "h3_correct": 2,
+              "h3_incorrect": 2,
+              "h4_correct": 2,
+              "h4_incorrect": 2
+            },
+            "selected_rows": 8,
+            "skipped_no_answer_label": 0,
+            "source_file": "results/full/with_errortype/gemma3_27b_infer_property.jsonl",
+            "split": "test",
+            "split_family": "s1"
+          },
+          "task": "infer_property"
+        },
+        "interpretation_doc": "docs/stage2_27b_answer_property_steering_results.md",
+        "replacement_spec": "docs/positive_control_steering_spec.md",
+        "summary": "Existing 27B answer-property steering had a perfect offline polarity probe but no target-directed free-form answer movement, so it is not an accepted positive-control gate."
+      },
+      "failed_candidate_job": "scripts/stage2_steer_answer_property_27b_L45_property_smoke.sbatch",
+      "failed_candidate_script": "scripts/stage2_steer_answer_property_direction.py",
+      "gate": "positive_control_steering",
+      "next_action": "Implement the verbosity/output-format positive-control gate in docs/positive_control_steering_spec.md, using Gemma 3 27B L45 with baseline, orthogonal, and matched-Gaussian controls.",
+      "passes_for_future_jobs": false,
+      "required_before_new_interpretation": true,
+      "status": "historical_answer_property_candidate_failed_new_control_required"
+    },
+    {
+      "evidence": [
+        "docs/raw_steering_27b_l45_property_decode_sweep.json",
+        "docs/error_l45_layer_45_width_262k_l0_small_top128_property_decode_sweep.json",
+        "docs/answer_property_steering_27b_l45_polarity_smoke.json"
+      ],
+      "gate": "orthogonal_direction_control",
+      "next_action": "Keep orthogonal controls in every optimized, DAS, decode-time, and patch-validation intervention report where the method permits a direction control.",
+      "passes_for_future_jobs": true,
+      "required_before_new_interpretation": true,
+      "status": "implemented_and_historical_available"
+    },
+    {
+      "evidence": [
+        "src/stage2_steering.py supports `gaussian` condition for raw-direction steering.",
+        "scripts/stage2_steer_raw_direction.py saves `gaussian_direction` and can run `gaussian_*` conditions.",
+        "scripts/stage2_steer_raw_27b_L45_property_decode_sweep.sbatch includes gaussian controls for future reruns.",
+        "scripts/stage2_steer_error_27b_L45_property_decode_sweep.sbatch includes gaussian controls for future reruns."
+      ],
+      "gate": "matched_gaussian_noise_control",
+      "next_action": "Rerun the relevant Gemma 27B steering job with `gaussian` conditions before claiming repair exceeds matched noise.",
+      "passes_for_future_jobs": false,
+      "required_before_new_interpretation": true,
+      "status": "raw_direction_scaffolded_pending_gpu_rerun"
+    },
+    {
+      "evidence": [
+        "docs/next_paper_causal_abstraction_schema.json",
+        "src/stage2_causal_abstraction.py"
+      ],
+      "gate": "paired_flip_and_parse_reporting",
+      "next_action": "Every new JSON report must include paired false-to-true/true-to-false flips, parse-fail rate, matched-noise summary, and a causal_abstraction_claim.",
+      "passes_for_future_jobs": false,
+      "required_before_new_interpretation": true,
+      "status": "schema_available_needs_enforcement_per_method"
+    },
+    {
+      "evidence": [],
+      "gate": "exact_patch_validation",
+      "next_action": "When AtP*/attribution rankings are added, validate top-ranked sites with exact patching before treating localization as causal evidence.",
+      "passes_for_future_jobs": false,
+      "required_before_new_interpretation": false,
+      "status": "pending_for_attribution_rankings"
+    }
+  ],
+  "interpretation_rule": "Do not interpret optimized vectors, DAS, decode-time correction, or AtP* nulls unless regenerated baselines, positive controls, orthogonal controls, and matched-noise controls are present for the relevant method.",
+  "next_jobs": [
+    {
+      "command": "srun -A gpu --constraint=J --gres=gpu:1 --time=00:03:00 --ntasks=1 --cpus-per-task=1 --mem=12G --immediate=60 bash -lc 'hostname; nvidia-smi -L'",
+      "priority": 1,
+      "purpose": "Verify A40 availability before long jobs."
+    },
+    {
+      "command": "see docs/positive_control_steering_spec.md",
+      "priority": 2,
+      "purpose": "Implement the true positive-control steering gate; the historical answer-property smoke did not pass."
+    },
+    {
+      "command": "sbatch scripts/stage2_steer_raw_27b_L45_property_decode_sweep.sbatch",
+      "priority": 3,
+      "purpose": "Refresh raw-direction correctness steering with regenerated baseline, orthogonal, and matched-Gaussian controls."
+    },
+    {
+      "command": "sbatch scripts/stage2_steer_error_27b_L45_property_decode_sweep.sbatch",
+      "priority": 4,
+      "purpose": "Refresh reconstruction-error steering with regenerated baseline, orthogonal, and matched-Gaussian controls if the raw preflight passes."
+    }
+  ],
+  "objective": "Freeze current Gemma/Qwen evidence and build the preflight gate for interpretable causal-intervention tests.",
+  "primary_model": "gemma3_27b",
+  "primary_split": "s1_test_h3_h4_balanced",
+  "primary_task": "infer_property",
+  "report_kind": "part1_intervention_preflight",
+  "schema_version": 1,
+  "status": "started"
+}

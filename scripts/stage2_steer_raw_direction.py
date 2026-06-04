@@ -28,6 +28,7 @@ from src.activations import (  # noqa: E402
 from src.bd_path import ensure_on_path  # noqa: E402
 from src.stage2_steering import (  # noqa: E402
     make_condition_plan,
+    make_gaussian_unit_direction,
     make_orthogonal_unit_direction,
     parse_condition_kinds,
     parse_float_list,
@@ -71,12 +72,14 @@ def save_direction_artifact(
     path: Path,
     direction: dict[str, Any],
     orthogonal_direction: np.ndarray,
+    gaussian_direction: np.ndarray,
 ) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     np.savez_compressed(
         path,
         unit_direction=direction["unit_direction"],
         orthogonal_direction=orthogonal_direction.astype(np.float32),
+        gaussian_direction=gaussian_direction.astype(np.float32),
         raw_coef=direction["raw_coef"],
         coef_std=direction["coef_std"],
         scaler_mean=direction["scaler_mean"],
@@ -179,10 +182,11 @@ def build_arg_parser() -> argparse.ArgumentParser:
     parser.add_argument("--selection-seed", type=int, default=20260427)
     parser.add_argument("--probe-seed", type=int, default=20260472)
     parser.add_argument("--orthogonal-seed", type=int, default=20260545)
+    parser.add_argument("--gaussian-seed", type=int, default=20260604)
     parser.add_argument("--c-values", default="0.01,0.1,1.0,10.0")
     parser.add_argument("--max-iter", type=int, default=2000)
     parser.add_argument("--solver", default="lbfgs")
-    parser.add_argument("--conditions", default="baseline,raw,orthogonal")
+    parser.add_argument("--conditions", default="baseline,raw,orthogonal,gaussian")
     parser.add_argument("--strengths", default="-2,2")
     parser.add_argument(
         "--intervention-scope",
@@ -255,10 +259,15 @@ def main() -> int:
         direction["unit_direction"],
         seed=args.orthogonal_seed,
     )
+    gaussian_direction = make_gaussian_unit_direction(
+        direction["unit_direction"],
+        seed=args.gaussian_seed,
+    )
     save_direction_artifact(
         path=args.direction_output,
         direction=direction,
         orthogonal_direction=orthogonal_direction,
+        gaussian_direction=gaussian_direction,
     )
     print(
         "direction: "
@@ -310,6 +319,7 @@ def main() -> int:
     vector_by_kind = {
         "raw": direction["unit_direction"],
         "orthogonal": orthogonal_direction,
+        "gaussian": gaussian_direction,
     }
     projection_std = float(direction["train_projection_std"])
     with args.out_jsonl.open("w") as fout:
