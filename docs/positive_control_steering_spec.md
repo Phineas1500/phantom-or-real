@@ -57,3 +57,23 @@ A positive control only needs to show that the same model, hook site, generation
 ## Implementation Notes
 
 The positive-control job should write the same causal-abstraction report fields as the correctness-steering jobs: `model`, `task`, `target_variable`, `representation_type`, `controls`, `baseline_metrics`, `intervention_metrics`, `paired_flips`, `parse_fail_rate`, `matched_noise_summary`, and `causal_abstraction_claim`. For this control, use `target_variable=positive_control_behavior`; keep the causal-abstraction claim explicit that this is an auxiliary machinery check, not an InAbHyD reasoning variable.
+
+## Runnable Implementation
+
+Script: `scripts/stage2_positive_control_verbosity.py`
+
+Slurm launcher: `scripts/stage2_positive_control_verbosity_27b_L45.sbatch`
+
+Submit:
+
+```bash
+sbatch scripts/stage2_positive_control_verbosity_27b_L45.sbatch
+```
+
+Expected artifacts:
+
+- `docs/positive_control_verbosity_gemma3_27b_l45.json`
+- `results/stage2/positive_control/verbosity_gemma3_27b_l45.jsonl`
+- `results/stage2/positive_control/verbosity_gemma3_27b_l45_direction.npz`
+
+The preflight report reads `docs/positive_control_verbosity_gemma3_27b_l45.json` and treats `summary.matched_noise_summary.passed_positive_control_gate=true` as the gate pass.

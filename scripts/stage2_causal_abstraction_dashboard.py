@@ -148,6 +148,17 @@ def track_reports() -> list[dict[str, str]]:
     if intervention is not None:
         intervention_status = intervention.get("status", "available")
 
+    positive_control = read_json(Path("docs/positive_control_verbosity_gemma3_27b_l45.json"))
+    positive_control_status = "runnable_pending_gpu_run"
+    if positive_control is not None:
+        passed = nested(positive_control, ["summary", "matched_noise_summary", "passed_positive_control_gate"])
+        if passed is True:
+            positive_control_status = "passed"
+        elif passed is False:
+            positive_control_status = "completed_failed_threshold_review_required"
+        else:
+            positive_control_status = "completed_missing_gate_decision"
+
     return [
         {
             "track": "Steering-effectiveness diagnostics",
@@ -160,6 +171,12 @@ def track_reports() -> list[dict[str, str]]:
             "status": intervention_status,
             "artifact": "docs/intervention_preflight.md",
             "note": "Part 1 gate for regenerated baselines, positive controls, matched noise, paired flips, and parse-failure reporting.",
+        },
+        {
+            "track": "Positive-control steering gate",
+            "status": positive_control_status,
+            "artifact": "docs/positive_control_verbosity_gemma3_27b_l45.json",
+            "note": "Gemma 3 27B L45 verbosity/output-format control; run `sbatch scripts/stage2_positive_control_verbosity_27b_L45.sbatch`.",
         },
     ]
 

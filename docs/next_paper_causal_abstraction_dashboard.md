@@ -29,6 +29,7 @@ Purpose: track the program testing whether InAbHyD correctness is linearly reada
 | --- | --- | --- | --- |
 | Steering-effectiveness diagnostics | artifact_preflight | docs/steering_effectiveness_diagnostics.md | Artifact preflight over existing probe, metadata, and historical steering reports. |
 | Intervention preflight | started | docs/intervention_preflight.md | Part 1 gate for regenerated baselines, positive controls, matched noise, paired flips, and parse-failure reporting. |
+| Positive-control steering gate | runnable_pending_gpu_run | docs/positive_control_verbosity_gemma3_27b_l45.json | Gemma 3 27B L45 verbosity/output-format control; run `sbatch scripts/stage2_positive_control_verbosity_27b_L45.sbatch`. |
 
 ## Planned Tracks
 

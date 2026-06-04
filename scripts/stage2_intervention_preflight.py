@@ -18,6 +18,9 @@ from src.stage2_probes import write_json  # noqa: E402
 RAW_STEERING_REPORT = Path("docs/raw_steering_27b_l45_property_decode_sweep.json")
 ERROR_STEERING_REPORT = Path("docs/error_l45_layer_45_width_262k_l0_small_top128_property_decode_sweep.json")
 ANSWER_PROPERTY_REPORT = Path("docs/answer_property_steering_27b_l45_polarity_smoke.json")
+POSITIVE_CONTROL_VERBOSITY_REPORT = Path("docs/positive_control_verbosity_gemma3_27b_l45.json")
+POSITIVE_CONTROL_VERBOSITY_SCRIPT = "scripts/stage2_positive_control_verbosity.py"
+POSITIVE_CONTROL_VERBOSITY_JOB = "scripts/stage2_positive_control_verbosity_27b_L45.sbatch"
 DASHBOARD = Path("docs/next_paper_causal_abstraction_dashboard.md")
 SCHEMA = Path("docs/next_paper_causal_abstraction_schema.json")
 
@@ -68,10 +71,39 @@ def report_brief(path: Path) -> dict[str, Any]:
     }
 
 
+def positive_control_status(report: dict[str, Any] | None) -> tuple[str, bool, str]:
+    if report is None:
+        return (
+            "runnable_pending_gpu_run",
+            False,
+            f"Run `sbatch {POSITIVE_CONTROL_VERBOSITY_JOB}` before interpreting new steering nulls.",
+        )
+    passed = nested(report, ["summary", "matched_noise_summary", "passed_positive_control_gate"])
+    if passed is True:
+        return (
+            "passed",
+            True,
+            "Use the verbosity positive-control artifact as the intervention-stack gate for later correctness-steering nulls.",
+        )
+    if passed is False:
+        return (
+            "completed_failed_threshold_review_required",
+            False,
+            "Review the verbosity artifact before interpreting nulls; either fix the implementation or approve an equivalent positive control.",
+        )
+    return (
+        "completed_missing_gate_decision",
+        False,
+        "Review the verbosity positive-control artifact; it exists but does not expose a gate pass/fail decision.",
+    )
+
+
 def build_payload() -> dict[str, Any]:
     raw_report = read_json(RAW_STEERING_REPORT)
     error_report = read_json(ERROR_STEERING_REPORT)
     answer_report = read_json(ANSWER_PROPERTY_REPORT)
+    positive_control_report = read_json(POSITIVE_CONTROL_VERBOSITY_REPORT)
+    positive_status, positive_passes, positive_next_action = positive_control_status(positive_control_report)
     historical_has_baseline = any(
         has_condition_prefix(report, "baseline") for report in (raw_report, error_report, answer_report)
     )
@@ -104,7 +136,7 @@ def build_payload() -> dict[str, Any]:
         },
         {
             "gate": "positive_control_steering",
-            "status": "historical_answer_property_candidate_failed_new_control_required",
+            "status": positive_status,
             "required_before_new_interpretation": True,
             "failed_candidate_script": "scripts/stage2_steer_answer_property_direction.py",
             "failed_candidate_job": "scripts/stage2_steer_answer_property_27b_L45_property_smoke.sbatch",
@@ -113,9 +145,12 @@ def build_payload() -> dict[str, Any]:
                 "interpretation_doc": "docs/stage2_27b_answer_property_steering_results.md",
                 "summary": "Existing 27B answer-property steering had a perfect offline polarity probe but no target-directed free-form answer movement, so it is not an accepted positive-control gate.",
                 "replacement_spec": "docs/positive_control_steering_spec.md",
+                "replacement_script": POSITIVE_CONTROL_VERBOSITY_SCRIPT,
+                "replacement_job": POSITIVE_CONTROL_VERBOSITY_JOB,
+                "replacement_artifact": report_brief(POSITIVE_CONTROL_VERBOSITY_REPORT),
             },
-            "passes_for_future_jobs": False,
-            "next_action": "Implement the verbosity/output-format positive-control gate in docs/positive_control_steering_spec.md, using Gemma 3 27B L45 with baseline, orthogonal, and matched-Gaussian controls.",
+            "passes_for_future_jobs": positive_passes,
+            "next_action": positive_next_action,
         },
         {
             "gate": "orthogonal_direction_control",
@@ -174,8 +209,8 @@ def build_payload() -> dict[str, Any]:
             },
             {
                 "priority": 2,
-                "purpose": "Implement the true positive-control steering gate; the historical answer-property smoke did not pass.",
-                "command": "see docs/positive_control_steering_spec.md",
+                "purpose": "Run the true positive-control steering gate; the historical answer-property smoke did not pass.",
+                "command": f"sbatch {POSITIVE_CONTROL_VERBOSITY_JOB}",
             },
             {
                 "priority": 3,
@@ -243,6 +278,7 @@ def render_markdown(payload: dict[str, Any]) -> str:
             "",
             "- Historical steering reports remain useful context but do not pass the full preflight because matched Gaussian/noise controls and a declared positive-control gate were not yet in place.",
             "- The answer-property steering artifact is a failed positive-control candidate, not a gate: it did not produce target-directed free-form answer movement.",
+            f"- The runnable positive-control gate is `{POSITIVE_CONTROL_VERBOSITY_JOB}` and writes `{POSITIVE_CONTROL_VERBOSITY_REPORT}`.",
             "- Future Qwen comparisons should still label local dictionaries as local stand-ins, not first-party Qwen Scope artifacts.",
             "",
         ]

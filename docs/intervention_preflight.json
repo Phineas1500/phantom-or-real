@@ -1,5 +1,5 @@
 {
-  "created_at_utc": "2026-06-04T15:43:11.264970+00:00",
+  "created_at_utc": "2026-06-04T16:43:49.695387+00:00",
   "gates": [
     {
       "evidence": [
@@ -169,16 +169,22 @@
           "task": "infer_property"
         },
         "interpretation_doc": "docs/stage2_27b_answer_property_steering_results.md",
+        "replacement_artifact": {
+          "exists": false,
+          "path": "docs/positive_control_verbosity_gemma3_27b_l45.json"
+        },
+        "replacement_job": "scripts/stage2_positive_control_verbosity_27b_L45.sbatch",
+        "replacement_script": "scripts/stage2_positive_control_verbosity.py",
         "replacement_spec": "docs/positive_control_steering_spec.md",
         "summary": "Existing 27B answer-property steering had a perfect offline polarity probe but no target-directed free-form answer movement, so it is not an accepted positive-control gate."
       },
       "failed_candidate_job": "scripts/stage2_steer_answer_property_27b_L45_property_smoke.sbatch",
       "failed_candidate_script": "scripts/stage2_steer_answer_property_direction.py",
       "gate": "positive_control_steering",
-      "next_action": "Implement the verbosity/output-format positive-control gate in docs/positive_control_steering_spec.md, using Gemma 3 27B L45 with baseline, orthogonal, and matched-Gaussian controls.",
+      "next_action": "Run `sbatch scripts/stage2_positive_control_verbosity_27b_L45.sbatch` before interpreting new steering nulls.",
       "passes_for_future_jobs": false,
       "required_before_new_interpretation": true,
-      "status": "historical_answer_property_candidate_failed_new_control_required"
+      "status": "runnable_pending_gpu_run"
     },
     {
       "evidence": [
@@ -233,9 +239,9 @@
       "purpose": "Verify A40 availability before long jobs."
     },
     {
-      "command": "see docs/positive_control_steering_spec.md",
+      "command": "sbatch scripts/stage2_positive_control_verbosity_27b_L45.sbatch",
       "priority": 2,
-      "purpose": "Implement the true positive-control steering gate; the historical answer-property smoke did not pass."
+      "purpose": "Run the true positive-control steering gate; the historical answer-property smoke did not pass."
     },
     {
       "command": "sbatch scripts/stage2_steer_raw_27b_L45_property_decode_sweep.sbatch",
