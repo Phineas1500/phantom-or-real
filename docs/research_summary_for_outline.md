@@ -11,11 +11,12 @@ is the synthesis layer to use when drafting the final outline.
 ## One-Sentence Story
 
 Gemma 3 pre-generation activations robustly predict success and failure on
-structured InAbHyD ontology reasoning, but the tested sparse dictionary
-features and probe-derived directions do not behave like localized causal
-reasoning mechanisms: sparse features expose only part of the signal,
-raw-minus-SAE reconstruction error preserves much of the predictive signal, and
-steering/patching tests show a predictive-versus-causal gap.
+structured InAbHyD ontology reasoning, including after full name-scrambled
+regeneration with a measurable AUC drop, but the tested sparse dictionary
+features, logit-lens/LAP margins, and probe-derived directions do not behave
+like localized causal reasoning mechanisms: sparse features expose only part of
+the signal, raw-minus-SAE reconstruction error preserves much of the predictive
+signal, and steering/patching tests show a predictive-versus-causal gap.
 
 ## Main Claims
 
@@ -23,26 +24,39 @@ steering/patching tests show a predictive-versus-causal gap.
    sharply with ontology height, especially for `infer_subtype`.
 2. Raw pre-generation residual activations predict correctness well above
    metadata baselines, label-shuffle controls, and heldout-target splits.
-3. Gemma Scope sparse dictionaries partially expose this correctness signal,
+3. Training-free logit-lens/LAP margins do not recover the trained-probe
+   readout: Gemma shows only modest gold-vs-emitted-token accessibility, and
+   Qwen is near chance or inverted despite much stronger raw probe AUCs.
+4. Full name-scrambled regeneration weakens but does not erase the raw L45
+   correctness readout: fixed original probes still reach about `0.83-0.84` AUC
+   on scrambled activations, with about `0.13-0.15` AUC loss versus matched
+   original rows.
+5. Gemma Scope sparse dictionaries partially expose this correctness signal,
    and exact hook alignment plus bigger/more active dictionaries help, but raw
    activations still lead.
-4. The reconstruction-error diagnostic is the central sparse-dictionary
+6. The reconstruction-error diagnostic is the central sparse-dictionary
    caution: residual SAEs reconstruct about 95% of residual energy, but the
    raw-minus-reconstruction error recovers almost the full raw-probe AUC.
-5. Feature-level audits did not find clean monosemantic ontology-reasoning
+7. Feature-level audits did not find clean monosemantic ontology-reasoning
    features. The best candidates look like mixtures of common-superclass,
    direct-generalization, fan-in, height, and template signals.
-6. Direction steering failed across raw correctness, reconstruction-error,
+8. Direction steering failed across raw correctness, reconstruction-error,
    sparse-bundle, single-feature, and answer-property directions, despite
    strong or perfect probe AUC.
-7. Forced-choice testing showed that recognition is often intact: on 27B rows
+9. Forced-choice testing showed that recognition is often intact: on 27B rows
    where free-form output was wrong, the model still chose the gold hypothesis
    over its own emitted wrong foil in 14/16 MCQ cases.
-8. Full-state patching produced an asymmetry: h1-correct states did not repair
-   h4-incorrect prompts above matched noise, while h4-incorrect states reduced
-   h1-correct margins more than matched noise in aggregate. This supports a
-   conservative "asymmetric deployment/commitment" interpretation rather than a
-   clean missing-state repair mechanism.
+10. Full-state patching produced an asymmetry: h1-correct states did not repair
+    h4-incorrect prompts above matched noise, while h4-incorrect states reduced
+    h1-correct margins more than matched noise in aggregate. This supports a
+    conservative "asymmetric deployment/commitment" interpretation rather than a
+    clean missing-state repair mechanism.
+11. Qwen3.5-27B is now a cross-model robustness check, not a replacement main
+    model: it shows stronger raw correctness readouts, weak logit-lens/LAP
+    accessibility, the same steering nulls, and a clear recognition-vs-generation
+    split, but Qwen Scope currently lacks first-party MLP/transcoder/crosscoder
+    artifacts and Qwen patching did not reproduce Gemma's reverse-disruption
+    asymmetry.
 
 ## Claim Strength Guardrails
 
@@ -54,10 +68,13 @@ current evidence does not support.
 | --- | --- | --- | --- |
 | Strong | InAbHyD depth creates a robust behavioral success/failure gradient. | 27B strong accuracy falls from h1 to h4 on both `infer_property` and `infer_subtype`; 4B shows the same broad degradation. | Safe main-text claim. |
 | Strong | Raw pre-generation activations predict correctness beyond simple metadata. | 27B L45 raw probes beat B0 on S1/S3; label shuffle near chance; metadata-plus-raw diagnostics add conditional signal. | Safe main-text claim. |
+| Strong | Trained correctness probes are not simple logit-lens/logit-accessibility effects. | LAP/logit-lens first-diff margin peaks at Gemma property `0.685`, Gemma subtype `0.649`, Qwen property `0.452`, and Qwen subtype `0.514`, while raw activation probes reach `0.897/0.914` for Gemma and `0.940/0.920` for Qwen. | Safe as a diagnostic/accessibility claim; do not present LAP as a causal intervention. |
+| Strong | The raw correctness readout is not merely a fixed-name detector, but it is name-sensitive. | Full 27B name-scrambled regeneration leaves fixed-probe AUC at `0.830-0.844`, while matched-original subsets are `0.976-0.985`; scrambled behavior also drops, especially nonce/deep rows. | Add to limitations/discussion as a sharpened semantic-shortcut result. |
 | Strong | Tested sparse dictionaries expose only part of the raw correctness signal. | Residual SAEs, corrected exact-hook transcoders, big-L0 transcoders, sparse concats, and crosscoders generally trail raw activations. | Safe main-text claim; note big-L0 and sparse concat improvements. |
 | Strong | Residual SAE reconstruction error preserves much of the predictive signal. | Residual SAEs reconstruct about 95% energy, while raw-minus-reconstruction error probes recover near-raw AUC. | Central report claim. |
-| Strong | Probe-derived steering directions did not reliably repair free-form answers. | Raw correctness, reconstruction-error, sparse-bundle, single-feature, 4B answer-property, and 27B answer-property steering all failed to produce controlled beneficial repairs. | Safe causal-null claim if scoped to tested settings. |
-| Strong | Forced-choice recognition can be intact when free-form generation is wrong. | In the 27B hard-foil setup, baseline MCQ selected gold in 14/16 rows that were free-form wrong. | Safe main-text claim; avoid claiming all errors are recognition-intact. |
+| Strong | Probe-derived steering directions did not reliably repair free-form answers. | Raw correctness, reconstruction-error, sparse-bundle, single-feature, 4B answer-property, and 27B answer-property steering all failed to produce controlled beneficial repairs. Qwen repeats the steering null across raw L45/L53, answer-property, sparse-bundle, and single-feature residual-SAE tests. | Safe causal-null claim if scoped to tested settings. |
+| Strong | Qwen3.5-27B supports the predictive-versus-causal theme as cross-model evidence. | Qwen raw L53 reaches S1 `0.940`/`0.921` and S3 `0.933`/`0.915`, sparse/local dictionaries trail raw, hard-foil forced choice recovers `43/64` h4 subtype failures, and tested steering/patching remains null or weak. | Use as appendix/robustness evidence; do not make it the main mechanistic story. |
+| Strong | Forced-choice recognition can be intact when free-form generation is wrong. | In the Gemma 27B hard-foil setup, baseline MCQ selected gold in 14/16 rows that were free-form wrong; Qwen selected gold in 43/64 h4 subtype failures. | Safe main-text claim; avoid claiming all errors are recognition-intact. |
 | Strong | Forward h1-to-h4 patching did not reveal a clean transplantable repair state. | Clean h1 patches did not consistently outperform matched noise at late `last_prompt` sites. | Safe claim scoped to tested layers, landmarks, and strict natural pairs. |
 | Moderate | Reverse h4-to-h1 patching shows an asymmetric disruption effect. | Aggregate corrupt-state breakage exceeded noise at L35-L50, but the effect is driven by lower/mid-headroom pairs and high-headroom pairs are mixed. | Good result, but present as asymmetry before mechanism. |
 | Moderate | The failure mode is more like free-form answer deployment/commitment than missing ontology comprehension. | MCQ recognition is high on free-form-wrong rows; h1 states do not repair h4; h4 states can disrupt h1. | Use as interpretation, not as a proved mechanism. |
@@ -172,6 +189,31 @@ Other raw findings:
 Interpretation: raw pre-generation activations contain a robust success/failure
 readout. The key question is whether sparse dictionaries expose it in an
 interpretable or causal way.
+
+
+## Logit-Lens / LAP Accessibility
+
+The next-paper diagnostics now include a training-free logit-lens/LAP-style
+profile over saved pre-generation activations. The diagnostic applies the
+model's final norm and LM head to each saved hidden state and evaluates a
+first-differing-token gold-vs-emitted-output logit margin. It is an
+accessibility proxy for the shared `gold_vs_foil_margin` causal variable, not a
+steering or patching result.
+
+| Model | Task | Raw activation AUC | LAP peak layer | LAP peak AUC | Main-site LAP AUC |
+| --- | --- | ---: | --- | ---: | ---: |
+| Gemma 3 27B | `infer_property` | 0.897 at L45 | L45 | 0.685 | 0.685 |
+| Gemma 3 27B | `infer_subtype` | 0.914 at L45 | L15 | 0.649 | 0.599 at L45 |
+| Qwen3.5 27B | `infer_property` | 0.940 at L53 | L53 | 0.452 | 0.452 |
+| Qwen3.5 27B | `infer_subtype` | 0.920 at L53 | L16 | 0.514 | 0.332 at L53 |
+
+Interpretation: trained linear probes can extract correctness information that
+the final LM head does not directly expose at the same pre-generation site.
+Qwen is the clearest evidence because it has the strongest raw activation
+readouts and the weakest LAP margins. This pushes the causal-abstraction
+framing away from "correctness is already a direct answer-margin variable" and
+toward "correctness is linearly readable but not straightforwardly
+logit-accessible or one-direction steerable."
 
 ## Sparse Dictionary Results
 
@@ -534,6 +576,7 @@ Narrative and summary docs:
 - `docs/report_outline.md`
 - `docs/behavioral_results_draft.md`
 - `docs/stage2_steering_decision_table.md`
+- `docs/next_paper_causal_abstraction_dashboard.md`
 
 Important causal docs:
 
@@ -552,6 +595,13 @@ Important result reports:
 - `docs/answer_property_margins_27b_l45_polarity_hardfoil.json`
 - `docs/clean_to_corrupt_patching_27b_property_margin_pilot.json`
 - `docs/corrupt_to_clean_patching_27b_property_margin_pilot.json`
+- `docs/namescramble_27b_l45_raw_probe_s1.json`
+- `docs/error_l45_layer_45_width_262k_l0_small_top128_property_decode_sweep.json`
+- `docs/stage2_name_scramble_error_steering_plan.md`
+- `docs/qwen_scope_replication_plan.md`
+- `docs/qwen_causal_followup_plan.md`
+- `docs/qwen_27b_completion_audit.md`
+- `docs/next_paper_causal_abstraction_schema.json`
 
 Figures already available:
 
@@ -576,5 +626,10 @@ defensible claim is that the project found a robust predictive signal and then
 systematically falsified several natural causal interpretations of that signal.
 The positive mechanistic structure is the reconstruction-error localization and
 the forward/reverse patching asymmetry; the negative result is that neither
-single sparse features, sparse bundles, nor raw probe directions behaved like
-reliable steering handles for free-form ontology reasoning.
+single sparse features, sparse bundles, raw probe directions, nor the targeted
+reconstruction-error direction behaved like reliable steering handles for
+free-form ontology reasoning. Name-scrambled regeneration should be presented as
+a robustness-and-limitation result: the signal survives, but with real
+surface-name sensitivity. Qwen should be framed as cross-model corroboration of
+the predictive-versus-causal gap, while keeping the Gemma reverse-patching
+asymmetry explicitly Gemma-scoped.

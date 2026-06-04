@@ -1,0 +1,61 @@
+{
+  "causal_variables": [
+    "target_concept",
+    "candidate_hypothesis",
+    "relation_or_property",
+    "proof_depth",
+    "selected_hypothesis",
+    "gold_vs_foil_margin",
+    "free_form_correctness",
+    "recognition_correctness",
+    "commitment_state"
+  ],
+  "control_types": [
+    "regenerated_baseline",
+    "orthogonal_direction",
+    "matched_gaussian_noise",
+    "positive_control",
+    "exact_patch_validation"
+  ],
+  "created_at_utc": "2026-06-04T14:17:11.458845+00:00",
+  "operational_thresholds": {
+    "dictionary_error_auc_reduction_signal": 0.05,
+    "dictionary_raw_auc_gap_practically_closed": 0.03,
+    "min_paired_repairs": 3,
+    "repair_over_noise_sigma": 2.0,
+    "status": "planning_heuristics_not_manuscript_claims"
+  },
+  "representation_types": [
+    "raw_direction",
+    "sparse_feature",
+    "reconstruction",
+    "error_subspace",
+    "das_subspace",
+    "patched_residual_state",
+    "decode_time_correction_state"
+  ],
+  "required_report_fields": [
+    "model",
+    "task",
+    "target_variable",
+    "split",
+    "site_or_layer",
+    "method",
+    "representation_type",
+    "result_type",
+    "controls",
+    "n",
+    "baseline_metrics",
+    "intervention_metrics",
+    "paired_flips",
+    "parse_fail_rate",
+    "matched_noise_summary",
+    "causal_abstraction_claim"
+  ],
+  "result_types": [
+    "predictive",
+    "causal",
+    "predictive_and_causal"
+  ],
+  "schema_version": 1
+}

@@ -1,0 +1,872 @@
+{
+  "created_at_utc": "2026-05-25T00:36:31.727402+00:00",
+  "inputs": {
+    "conditions": [
+      "nonce",
+      "natural"
+    ],
+    "heights": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "input_dir": "results/full/with_errortype",
+    "per_height": 250,
+    "seed": 20260427,
+    "tasks": [
+      "infer_property",
+      "infer_subtype"
+    ]
+  },
+  "model_name": "gemma3-27b",
+  "notes": [
+    "The completed generations were rescored in place after fixing plural name replacement in ground-truth/reference fields.",
+    "Nonce rows are documented from the completed generation mappings, because the earlier nonce pool construction used nondeterministic set iteration; the code now sorts symbols for future deterministic preparation."
+  ],
+  "resources": {
+    "activation_dir": "results/stage2/activations_namescramble_27b",
+    "dataset_manifest": {
+      "natural": {
+        "infer_property": {
+          "h1": {
+            "mapping_preview": [
+              {
+                "example_id": "property_h1_00497",
+                "mapping": {
+                  "gregory": "riley",
+                  "jonathan": "eli",
+                  "metallic": "julia",
+                  "robert": "mila",
+                  "wumpus": "quinn"
+                }
+              },
+              {
+                "example_id": "property_h1_00529",
+                "mapping": {
+                  "anna": "willow",
+                  "bempin": "madeline",
+                  "karen": "owen",
+                  "stephanie": "leah",
+                  "wooden": "zoey"
+                }
+              },
+              {
+                "example_id": "property_h1_00061",
+                "mapping": {
+                  "deborah": "lucy",
+                  "melodic": "aiden",
+                  "rebecca": "oliver",
+                  "stergit": "luca",
+                  "susan": "mason"
+                }
+              }
+            ],
+            "next_step": "combined outputs and fixed-probe evaluation are in docs/namescramble_27b_l45_raw_probe_s1.json",
+            "output_path": "data/stage2/namescramble_27b/natural/infer_property_h1.jsonl",
+            "rows": 250,
+            "status": "rescored_completed_generation"
+          },
+          "h2": {
+            "mapping_preview": [
+              {
+                "example_id": "property_h2_01637",
+                "mapping": {
+                  "chorper": "ruby",
+                  "gergit": "owen",
+                  "harpin": "iris",
+                  "jessica": "levi",
+                  "loud": "dylan",
+                  "ronald": "sophia",
+                  "samantha": "amelia",
+                  "shumple": "nora"
+                }
+              },
+              {
+                "example_id": "property_h2_01961",
+                "mapping": {
+                  "andrew": "nathan",
+                  "dalpist": "ava",
+                  "eric": "henry",
+                  "melissa": "mila",
+                  "overcast": "mason",
+                  "rorpant": "eva",
+                  "vumpus": "lucy",
+                  "yempor": "scarlett"
+                }
+              },
+              {
+                "example_id": "property_h2_00398",
+                "mapping": {
+                  "bempin": "theodore",
+                  "drompee": "wyatt",
+                  "dulpin": "mia",
+                  "george": "amelia",
+                  "grimpant": "zoey",
+                  "paul": "julia",
+                  "red": "quinn",
+                  "william": "lydia"
+                }
+              }
+            ],
+            "next_step": "combined outputs and fixed-probe evaluation are in docs/namescramble_27b_l45_raw_probe_s1.json",
+            "output_path": "data/stage2/namescramble_27b/natural/infer_property_h2.jsonl",
+            "rows": 250,
+            "status": "rescored_completed_generation"
+          },
+          "h3": {
+            "mapping_preview": [
+              {
+                "example_id": "property_h3_01989",
+                "mapping": {
+                  "boompist": "wyatt",
+                  "donald": "ethan",
+                  "fimple": "julia",
+                  "hilper": "naomi",
+                  "jennifer": "harper",
+                  "remple": "oliver",
+                  "scrompist": "leah",
+                  "shy": "nathan",
+                  "thomas": "maya",
+                  "wolpee": "chloe",
+                  "worple": "isabella"
+                }
+              },
+              {
+                "example_id": "property_h3_01206",
+                "mapping": {
+                  "charles": "henry",
+                  "george": "natalie",
+                  "gwompant": "mason",
+                  "hilper": "isaac",
+                  "numpus": "elijah",
+                  "ryan": "wyatt",
+                  "stirpor": "oliver",
+                  "transparent": "leah",
+                  "twimpee": "luna",
+                  "welgit": "leo",
+                  "zhorpant": "chloe"
+                }
+              },
+              {
+                "example_id": "property_h3_00796",
+                "mapping": {
+                  "brenda": "nathan",
+                  "justin": "hazel",
+                  "kergit": "adeline",
+                  "kurpor": "noah",
+                  "larry": "adrian",
+                  "lerpant": "hudson",
+                  "lompee": "sophia",
+                  "parper": "ellie",
+                  "salty": "evelyn",
+                  "tergit": "isaiah",
+                  "timple": "abigail"
+                }
+              }
+            ],
+            "next_step": "combined outputs and fixed-probe evaluation are in docs/namescramble_27b_l45_raw_probe_s1.json",
+            "output_path": "data/stage2/namescramble_27b/natural/infer_property_h3.jsonl",
+            "rows": 250,
+            "status": "rescored_completed_generation"
+          },
+          "h4": {
+            "mapping_preview": [
+              {
+                "example_id": "property_h4_04715",
+                "mapping": {
+                  "andrew": "leo",
+                  "gergit": "violet",
+                  "gorpee": "amelia",
+                  "oriental": "aurora",
+                  "parper": "wyatt",
+                  "rebecca": "logan",
+                  "shampor": "nova",
+                  "sharon": "leah",
+                  "shilpant": "evelyn",
+                  "sorple": "ezra",
+                  "timple": "dylan",
+                  "wumpus": "nathan",
+                  "yempor": "paisley",
+                  "zhomple": "lydia"
+                }
+              },
+              {
+                "example_id": "property_h4_01945",
+                "mapping": {
+                  "anthony": "paisley",
+                  "dalpist": "logan",
+                  "delpee": "samuel",
+                  "edward": "lydia",
+                  "george": "natalie",
+                  "gomper": "levi",
+                  "moderate": "ella",
+                  "porpor": "owen",
+                  "rimpee": "camila",
+                  "shampor": "julian",
+                  "shilpant": "elena",
+                  "thorpin": "violet",
+                  "wolpee": "adeline",
+                  "zhorpant": "lucas"
+                }
+              },
+              {
+                "example_id": "property_h4_04678",
+                "mapping": {
+                  "amanda": "theodore",
+                  "fimple": "sebastian",
+                  "margaret": "harper",
+                  "prilpant": "mia",
+                  "remple": "stella",
+                  "rompus": "willow",
+                  "sarper": "scarlett",
+                  "sharon": "sophia",
+                  "shergit": "camila",
+                  "shumple": "logan",
+                  "small": "adrian",
+                  "thorpin": "quinn",
+                  "twimpee": "benjamin",
+                  "worple": "ella"
+                }
+              }
+            ],
+            "next_step": "combined outputs and fixed-probe evaluation are in docs/namescramble_27b_l45_raw_probe_s1.json",
+            "output_path": "data/stage2/namescramble_27b/natural/infer_property_h4.jsonl",
+            "rows": 250,
+            "status": "rescored_completed_generation"
+          }
+        },
+        "infer_subtype": {
+          "h1": {
+            "mapping_preview": [
+              {
+                "example_id": "ontology_h1_00846",
+                "mapping": {
+                  "amy": "riley",
+                  "jennifer": "eli",
+                  "quimpant": "julia",
+                  "timothy": "mila",
+                  "zumpus": "quinn"
+                }
+              },
+              {
+                "example_id": "ontology_h1_00951",
+                "mapping": {
+                  "elizabeth": "willow",
+                  "jason": "madeline",
+                  "kathleen": "owen",
+                  "quimpant": "leah",
+                  "storpist": "zoey"
+                }
+              },
+              {
+                "example_id": "ontology_h1_00628",
+                "mapping": {
+                  "amanda": "lucy",
+                  "anthony": "aiden",
+                  "phorpist": "oliver",
+                  "richard": "luca",
+                  "timple": "mason"
+                }
+              }
+            ],
+            "next_step": "combined outputs and fixed-probe evaluation are in docs/namescramble_27b_l45_raw_probe_s1.json",
+            "output_path": "data/stage2/namescramble_27b/natural/infer_subtype_h1.jsonl",
+            "rows": 250,
+            "status": "rescored_completed_generation"
+          },
+          "h2": {
+            "mapping_preview": [
+              {
+                "example_id": "ontology_h2_01270",
+                "mapping": {
+                  "bempin": "ruby",
+                  "dumpus": "owen",
+                  "john": "iris",
+                  "mary": "levi",
+                  "robert": "dylan",
+                  "rofpin": "sophia",
+                  "werpor": "amelia",
+                  "zhomple": "nora"
+                }
+              },
+              {
+                "example_id": "ontology_h2_01208",
+                "mapping": {
+                  "bempin": "nathan",
+                  "grimpant": "ava",
+                  "kenneth": "henry",
+                  "lemper": "mila",
+                  "mark": "mason",
+                  "steven": "eva",
+                  "umpist": "lucy",
+                  "zhorpant": "scarlett"
+                }
+              },
+              {
+                "example_id": "ontology_h2_01119",
+                "mapping": {
+                  "anna": "theodore",
+                  "delpee": "wyatt",
+                  "folpee": "mia",
+                  "mary": "amelia",
+                  "nancy": "zoey",
+                  "prilpant": "julia",
+                  "werpor": "quinn",
+                  "yumpus": "lydia"
+                }
+              }
+            ],
+            "next_step": "combined outputs and fixed-probe evaluation are in docs/namescramble_27b_l45_raw_probe_s1.json",
+            "output_path": "data/stage2/namescramble_27b/natural/infer_subtype_h2.jsonl",
+            "rows": 250,
+            "status": "rescored_completed_generation"
+          },
+          "h3": {
+            "mapping_preview": [
+              {
+                "example_id": "ontology_h3_00388",
+                "mapping": {
+                  "bongit": "wyatt",
+                  "drompee": "ethan",
+                  "gwompant": "julia",
+                  "mary": "naomi",
+                  "raymond": "harper",
+                  "richard": "oliver",
+                  "rifpist": "leah",
+                  "sorple": "nathan",
+                  "storpist": "maya",
+                  "tumpus": "chloe",
+                  "wolpee": "isabella"
+                }
+              },
+              {
+                "example_id": "ontology_h3_01397",
+                "mapping": {
+                  "boompist": "henry",
+                  "drompee": "natalie",
+                  "jason": "mason",
+                  "jempor": "isaac",
+                  "parper": "elijah",
+                  "porpor": "wyatt",
+                  "tergit": "oliver",
+                  "thomas": "leah",
+                  "twimpee": "luna",
+                  "william": "leo",
+                  "zumpus": "chloe"
+                }
+              },
+              {
+                "example_id": "ontology_h3_01104",
+                "mapping": {
+                  "angela": "nathan",
+                  "kurpor": "hazel",
+                  "lirpin": "adeline",
+                  "michael": "noah",
+                  "michelle": "adrian",
+                  "scrompist": "hudson",
+                  "sorple": "sophia",
+                  "tergit": "ellie",
+                  "umpist": "evelyn",
+                  "yimple": "isaiah",
+                  "zhomple": "abigail"
+                }
+              }
+            ],
+            "next_step": "combined outputs and fixed-probe evaluation are in docs/namescramble_27b_l45_raw_probe_s1.json",
+            "output_path": "data/stage2/namescramble_27b/natural/infer_subtype_h3.jsonl",
+            "rows": 250,
+            "status": "rescored_completed_generation"
+          },
+          "h4": {
+            "mapping_preview": [
+              {
+                "example_id": "ontology_h4_00424",
+                "mapping": {
+                  "david": "leo",
+                  "gwompant": "violet",
+                  "hilper": "amelia",
+                  "impus": "aurora",
+                  "jessica": "wyatt",
+                  "lerpant": "logan",
+                  "linda": "nova",
+                  "phorpist": "leah",
+                  "rompus": "evelyn",
+                  "serpee": "ezra",
+                  "shalpist": "dylan",
+                  "stopin": "nathan",
+                  "thorpin": "paisley",
+                  "yerpist": "lydia"
+                }
+              },
+              {
+                "example_id": "ontology_h4_04611",
+                "mapping": {
+                  "bempin": "paisley",
+                  "brenda": "logan",
+                  "chorper": "samuel",
+                  "dalpist": "lydia",
+                  "drompee": "natalie",
+                  "fimple": "levi",
+                  "fomple": "ella",
+                  "kathleen": "owen",
+                  "matthew": "camila",
+                  "prilpant": "julian",
+                  "rofpin": "elena",
+                  "shumple": "violet",
+                  "wumpus": "adeline",
+                  "zumpus": "lucas"
+                }
+              },
+              {
+                "example_id": "ontology_h4_02775",
+                "mapping": {
+                  "deborah": "theodore",
+                  "dropant": "sebastian",
+                  "dulpin": "harper",
+                  "frompor": "mia",
+                  "gorpee": "stella",
+                  "linda": "willow",
+                  "nancy": "scarlett",
+                  "shimpee": "sophia",
+                  "thorpin": "camila",
+                  "twimpee": "logan",
+                  "welgit": "adrian",
+                  "wolpee": "quinn",
+                  "yumpus": "benjamin",
+                  "zilpor": "ella"
+                }
+              }
+            ],
+            "next_step": "combined outputs and fixed-probe evaluation are in docs/namescramble_27b_l45_raw_probe_s1.json",
+            "output_path": "data/stage2/namescramble_27b/natural/infer_subtype_h4.jsonl",
+            "rows": 250,
+            "status": "rescored_completed_generation"
+          }
+        }
+      },
+      "nonce": {
+        "infer_property": {
+          "h1": {
+            "mapping_preview": [
+              {
+                "example_id": "property_h1_00497",
+                "mapping": {
+                  "gregory": "rulede",
+                  "jonathan": "savivotu",
+                  "metallic": "mubiketo",
+                  "robert": "bomot",
+                  "wumpus": "kono"
+                }
+              },
+              {
+                "example_id": "property_h1_00529",
+                "mapping": {
+                  "anna": "bigep",
+                  "bempin": "katame",
+                  "karen": "rar",
+                  "stephanie": "culurir",
+                  "wooden": "bocuvo"
+                }
+              },
+              {
+                "example_id": "property_h1_00061",
+                "mapping": {
+                  "deborah": "gilaron",
+                  "melodic": "burovi",
+                  "rebecca": "putod",
+                  "stergit": "fonofof",
+                  "susan": "gog"
+                }
+              }
+            ],
+            "next_step": "combined outputs and fixed-probe evaluation are in docs/namescramble_27b_l45_raw_probe_s1.json",
+            "output_path": "data/stage2/namescramble_27b/nonce/infer_property_h1.jsonl",
+            "rows": 250,
+            "status": "rescored_completed_generation"
+          },
+          "h2": {
+            "mapping_preview": [
+              {
+                "example_id": "property_h2_01637",
+                "mapping": {
+                  "chorper": "lapesozu",
+                  "gergit": "kamume",
+                  "harpin": "gunesoto",
+                  "jessica": "zakiros",
+                  "loud": "vabi",
+                  "ronald": "zakozem",
+                  "samantha": "zitemefas",
+                  "shumple": "vubagub"
+                }
+              },
+              {
+                "example_id": "property_h2_01961",
+                "mapping": {
+                  "andrew": "lesu",
+                  "dalpist": "nezeduza",
+                  "eric": "zesu",
+                  "melissa": "nukodosa",
+                  "overcast": "savivotu",
+                  "rorpant": "fetarod",
+                  "vumpus": "necime",
+                  "yempor": "fuvepi"
+                }
+              },
+              {
+                "example_id": "property_h2_00398",
+                "mapping": {
+                  "bempin": "burovi",
+                  "drompee": "bitotod",
+                  "dulpin": "bipage",
+                  "george": "kocap",
+                  "grimpant": "gabebagomu",
+                  "paul": "cuce",
+                  "red": "bamec",
+                  "william": "rinem"
+                }
+              }
+            ],
+            "next_step": "combined outputs and fixed-probe evaluation are in docs/namescramble_27b_l45_raw_probe_s1.json",
+            "output_path": "data/stage2/namescramble_27b/nonce/infer_property_h2.jsonl",
+            "rows": 250,
+            "status": "rescored_completed_generation"
+          },
+          "h3": {
+            "mapping_preview": [
+              {
+                "example_id": "property_h3_01989",
+                "mapping": {
+                  "boompist": "cavalefem",
+                  "donald": "roravite",
+                  "fimple": "pocaki",
+                  "hilper": "bomot",
+                  "jennifer": "kizarose",
+                  "remple": "rugef",
+                  "scrompist": "libosubuzo",
+                  "shy": "numi",
+                  "thomas": "cano",
+                  "wolpee": "ledo",
+                  "worple": "kimag"
+                }
+              },
+              {
+                "example_id": "property_h3_01206",
+                "mapping": {
+                  "charles": "culurir",
+                  "george": "tovusav",
+                  "gwompant": "toledole",
+                  "hilper": "lazep",
+                  "numpus": "goti",
+                  "ryan": "tezu",
+                  "stirpor": "rafociti",
+                  "transparent": "pubonabuvage",
+                  "twimpee": "zezigil",
+                  "welgit": "mibimu",
+                  "zhorpant": "burovi"
+                }
+              },
+              {
+                "example_id": "property_h3_00796",
+                "mapping": {
+                  "brenda": "lesu",
+                  "justin": "rulede",
+                  "kergit": "bilap",
+                  "kurpor": "mekot",
+                  "larry": "bomot",
+                  "lerpant": "tovusav",
+                  "lompee": "tolu",
+                  "parper": "mifit",
+                  "salty": "nare",
+                  "tergit": "zakiros",
+                  "timple": "zugunufo"
+                }
+              }
+            ],
+            "next_step": "combined outputs and fixed-probe evaluation are in docs/namescramble_27b_l45_raw_probe_s1.json",
+            "output_path": "data/stage2/namescramble_27b/nonce/infer_property_h3.jsonl",
+            "rows": 250,
+            "status": "rescored_completed_generation"
+          },
+          "h4": {
+            "mapping_preview": [
+              {
+                "example_id": "property_h4_04715",
+                "mapping": {
+                  "andrew": "conevi",
+                  "gergit": "begode",
+                  "gorpee": "dizosav",
+                  "oriental": "futigek",
+                  "parper": "bipage",
+                  "rebecca": "lapesozu",
+                  "shampor": "fodenod",
+                  "sharon": "necime",
+                  "shilpant": "rezokeku",
+                  "sorple": "cano",
+                  "timple": "putod",
+                  "wumpus": "goruneb",
+                  "yempor": "racogo",
+                  "zhomple": "nezeduza"
+                }
+              },
+              {
+                "example_id": "property_h4_01945",
+                "mapping": {
+                  "anthony": "raseno",
+                  "dalpist": "culurir",
+                  "delpee": "cusocizo",
+                  "edward": "feguc",
+                  "george": "sukog",
+                  "gomper": "kizarose",
+                  "moderate": "lufamatasa",
+                  "porpor": "visuvofa",
+                  "rimpee": "goti",
+                  "shampor": "nekoza",
+                  "shilpant": "didegi",
+                  "thorpin": "racedab",
+                  "wolpee": "nare",
+                  "zhorpant": "kirigofe"
+                }
+              },
+              {
+                "example_id": "property_h4_04678",
+                "mapping": {
+                  "amanda": "rezokeku",
+                  "fimple": "zumas",
+                  "margaret": "zosidutivi",
+                  "prilpant": "vizecena",
+                  "remple": "rugef",
+                  "rompus": "kocap",
+                  "sarper": "zafuru",
+                  "sharon": "fetarod",
+                  "shergit": "bitotod",
+                  "shumple": "monipize",
+                  "small": "vela",
+                  "thorpin": "zavide",
+                  "twimpee": "futigek",
+                  "worple": "roreri"
+                }
+              }
+            ],
+            "next_step": "combined outputs and fixed-probe evaluation are in docs/namescramble_27b_l45_raw_probe_s1.json",
+            "output_path": "data/stage2/namescramble_27b/nonce/infer_property_h4.jsonl",
+            "rows": 250,
+            "status": "rescored_completed_generation"
+          }
+        },
+        "infer_subtype": {
+          "h1": {
+            "mapping_preview": [
+              {
+                "example_id": "ontology_h1_00846",
+                "mapping": {
+                  "amy": "safa",
+                  "jennifer": "savivotu",
+                  "quimpant": "mubiketo",
+                  "timothy": "beragal",
+                  "zumpus": "kocap"
+                }
+              },
+              {
+                "example_id": "ontology_h1_00951",
+                "mapping": {
+                  "elizabeth": "bupuzefufep",
+                  "jason": "kaben",
+                  "kathleen": "rezokeku",
+                  "quimpant": "burovi",
+                  "storpist": "cefidezuz"
+                }
+              },
+              {
+                "example_id": "ontology_h1_00628",
+                "mapping": {
+                  "amanda": "fese",
+                  "anthony": "burovi",
+                  "phorpist": "remugag",
+                  "richard": "fufacel",
+                  "timple": "goti"
+                }
+              }
+            ],
+            "next_step": "combined outputs and fixed-probe evaluation are in docs/namescramble_27b_l45_raw_probe_s1.json",
+            "output_path": "data/stage2/namescramble_27b/nonce/infer_subtype_h1.jsonl",
+            "rows": 250,
+            "status": "rescored_completed_generation"
+          },
+          "h2": {
+            "mapping_preview": [
+              {
+                "example_id": "ontology_h2_01270",
+                "mapping": {
+                  "bempin": "gunesoto",
+                  "dumpus": "kifaveca",
+                  "john": "goti",
+                  "mary": "zaka",
+                  "robert": "repame",
+                  "rofpin": "zakiros",
+                  "werpor": "vizecena",
+                  "zhomple": "rogocuk"
+                }
+              },
+              {
+                "example_id": "ontology_h2_01208",
+                "mapping": {
+                  "bempin": "lesu",
+                  "grimpant": "mukelenu",
+                  "kenneth": "vanipol",
+                  "lemper": "necime",
+                  "mark": "mofim",
+                  "steven": "fonofof",
+                  "umpist": "povifo",
+                  "zhorpant": "korupepogu"
+                }
+              },
+              {
+                "example_id": "ontology_h2_01119",
+                "mapping": {
+                  "anna": "cano",
+                  "delpee": "begode",
+                  "folpee": "bocuvo",
+                  "mary": "pur",
+                  "nancy": "figuno",
+                  "prilpant": "fafedim",
+                  "werpor": "bobomi",
+                  "yumpus": "bomot"
+                }
+              }
+            ],
+            "next_step": "combined outputs and fixed-probe evaluation are in docs/namescramble_27b_l45_raw_probe_s1.json",
+            "output_path": "data/stage2/namescramble_27b/nonce/infer_subtype_h2.jsonl",
+            "rows": 250,
+            "status": "rescored_completed_generation"
+          },
+          "h3": {
+            "mapping_preview": [
+              {
+                "example_id": "ontology_h3_00388",
+                "mapping": {
+                  "bongit": "bobomi",
+                  "drompee": "rogocuk",
+                  "gwompant": "podefegas",
+                  "mary": "cole",
+                  "raymond": "memoguc",
+                  "richard": "tovusav",
+                  "rifpist": "pozuveko",
+                  "sorple": "roravite",
+                  "storpist": "rezokeku",
+                  "tumpus": "bomot",
+                  "wolpee": "kono"
+                }
+              },
+              {
+                "example_id": "ontology_h3_01397",
+                "mapping": {
+                  "boompist": "cicobisi",
+                  "drompee": "simololu",
+                  "jason": "sisume",
+                  "jempor": "lazep",
+                  "parper": "goti",
+                  "porpor": "zakiros",
+                  "tergit": "tofope",
+                  "thomas": "mifap",
+                  "twimpee": "bitotod",
+                  "william": "nodipep",
+                  "zumpus": "cano"
+                }
+              },
+              {
+                "example_id": "ontology_h3_01104",
+                "mapping": {
+                  "angela": "lesu",
+                  "kurpor": "rulede",
+                  "lirpin": "bilap",
+                  "michael": "mifit",
+                  "michelle": "cebisega",
+                  "scrompist": "tolirogip",
+                  "sorple": "toba",
+                  "tergit": "nekoza",
+                  "umpist": "putod",
+                  "yimple": "zavide",
+                  "zhomple": "vanipol"
+                }
+              }
+            ],
+            "next_step": "combined outputs and fixed-probe evaluation are in docs/namescramble_27b_l45_raw_probe_s1.json",
+            "output_path": "data/stage2/namescramble_27b/nonce/infer_subtype_h3.jsonl",
+            "rows": 250,
+            "status": "rescored_completed_generation"
+          },
+          "h4": {
+            "mapping_preview": [
+              {
+                "example_id": "ontology_h4_00424",
+                "mapping": {
+                  "david": "carus",
+                  "gwompant": "zugunufo",
+                  "hilper": "dizosav",
+                  "impus": "dogoce",
+                  "jessica": "bitotod",
+                  "lerpant": "kirigofe",
+                  "linda": "ducoz",
+                  "phorpist": "mukelenu",
+                  "rompus": "mekot",
+                  "serpee": "buzi",
+                  "shalpist": "radalel",
+                  "stopin": "fikenica",
+                  "thorpin": "remugag",
+                  "yerpist": "lizusigim"
+                }
+              },
+              {
+                "example_id": "ontology_h4_04611",
+                "mapping": {
+                  "bempin": "repame",
+                  "brenda": "burovi",
+                  "chorper": "fitelica",
+                  "dalpist": "fonofof",
+                  "drompee": "vagoro",
+                  "fimple": "kizarose",
+                  "fomple": "kisafi",
+                  "kathleen": "zavadigav",
+                  "matthew": "likumaz",
+                  "prilpant": "povifo",
+                  "rofpin": "dogu",
+                  "shumple": "remugag",
+                  "wumpus": "nare",
+                  "zumpus": "kanap"
+                }
+              },
+              {
+                "example_id": "ontology_h4_02775",
+                "mapping": {
+                  "deborah": "radalel",
+                  "dropant": "zifunud",
+                  "dulpin": "zugunufo",
+                  "frompor": "zavide",
+                  "gorpee": "rugef",
+                  "linda": "mekub",
+                  "nancy": "vela",
+                  "shimpee": "gobuvibu",
+                  "thorpin": "bitotod",
+                  "twimpee": "movudot",
+                  "welgit": "tolu",
+                  "wolpee": "zafuru",
+                  "yumpus": "cusocizo",
+                  "zilpor": "roravite"
+                }
+              }
+            ],
+            "next_step": "combined outputs and fixed-probe evaluation are in docs/namescramble_27b_l45_raw_probe_s1.json",
+            "output_path": "data/stage2/namescramble_27b/nonce/infer_subtype_h4.jsonl",
+            "rows": 250,
+            "status": "rescored_completed_generation"
+          }
+        }
+      }
+    },
+    "eval_report": "docs/namescramble_27b_l45_raw_probe_s1.json",
+    "inference_dir": "results/stage2/namescramble_infer_27b"
+  },
+  "schema_version": 2,
+  "status": "completed_and_rescored"
+}

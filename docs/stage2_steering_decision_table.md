@@ -11,8 +11,10 @@ success/failure, free-form answer content, or a Cox-style forced-choice answer.
 | Experiment | Model/site | Target | Output format | Probe result | Steering result | Interpretation |
 |---|---|---|---|---|---|---|
 | Raw correctness direction | 27B L45 residual | `is_correct_strong` | Free-form hypothesis | Test AUC `0.8965` | 0 false-to-true flips on 8 balanced rows | Predictive correctness direction is not a clean repair knob. |
+| Logit-lens / LAP accessibility | Gemma L15/L30/L45; Qwen L16/L31/L40/L45/L53 | `gold_vs_foil_margin` proxy from final norm + LM head | Saved activation logit-lens margin | First-diff margin peaks: Gemma property `0.685`, Gemma subtype `0.649`, Qwen property `0.452`, Qwen subtype `0.514` | N/A; diagnostic only | Raw correctness is linearly readable, but not directly accessible as a simple final-head answer-margin variable. |
 | Single big-L0 features | 27B L45 262K big-affine transcoder | Shortlisted sparse features | Free-form hypothesis | Feature candidates from sparse probe/dashboard | 0 false-to-true flips; 2 true-to-false changes | Individual features not established as causal repair handles. |
 | Sparse-probe bundle | 27B L45 262K big-affine transcoder | Sparse correctness probe coefficients | Free-form hypothesis | Test AUC `0.853` | 0 false-to-true flips on 8 balanced rows | Distributed sparse direction still did not repair answers. |
+| Reconstruction-error direction | 27B L45 residual error subspace | `is_correct_strong` on raw-minus-SAE reconstruction error | Free-form hypothesis | Test AUC `0.8973` | 0 paired strong flips at +/-0.25, +/-0.5, +/-1 SD; orthogonal controls caused the only true-to-false changes | Error subspace is predictive but not a demonstrated repair/breakage control. |
 | Raw correctness / error / sparse bundle | 4B L22 | `is_correct_strong` | Free-form hypothesis | Raw/error/sparse probes all predictive | 0 strong flips in local 4B sweeps | Same predictive-versus-causal gap appears at 4B scale. |
 | Raw answer-property direction | 4B L22 residual | Gold answer polarity | Free-form hypothesis | `val_auc=test_auc=1.000` | 0 polarity flips, 0 predicate flips toward gold, 0 strong repairs | Even concrete free-form answer content did not steer. |
 | Raw answer-property direction | 27B L45 residual | Gold answer polarity | Free-form hypothesis | `val_auc=test_auc=1.000` | 0 useful `toward_gold` flips; one wrong-direction repair under `away_gold` | Free-form answer-property steering also fails at 27B scale. |
@@ -30,6 +32,8 @@ success/failure, free-form answer content, or a Cox-style forced-choice answer.
 | Hard-foil forced-choice refinement | Completed as Slurm job `452362` | Close probe-direction steering and pivot to activation patching/interchange. |
 | Clean-to-corrupt patching pilot | Completed as Slurm job `452478` | Do not claim a repair/localization result. Optional final check is reverse h4-to-h1 patching at late `last_prompt` sites; otherwise move to report assembly. |
 | Corrupt-to-clean patching pilot | Completed as Slurm job `452492` | Use as a calibrated asymmetry result; no broader patch grid unless the report specifically needs stronger localization. |
+| 27B reconstruction-error steering | Completed as Slurm job `456305` | Treat Section 5.4 reconstruction-error pivot as predictive, not a causal steering handle. |
+| LAP/logit-lens accessibility | Completed as Slurm jobs `456608` and `456609` | Treat as a steerability diagnostic: Qwen raw probes are strong but LAP margins are near chance/inverted, so do not expect simple logit-lens-accessible one-direction repair. |
 
 ## Recommended Next Branches
 
@@ -39,7 +43,7 @@ success/failure, free-form answer content, or a Cox-style forced-choice answer.
    missing-state repair story at the tested residual sites.
 3. Treat reverse patching as the final asymmetry check: it shows aggregate
    corrupt-state disruption above noise, driven by lower/mid-headroom pairs.
-4. Shift effort to report assembly plus feature falsification.
+4. Shift effort to report assembly, name-scramble limitation framing, and any low-cost weak/quality-score reanalysis.
 
 ## Current Interpretation
 
@@ -47,11 +51,17 @@ The project should not claim a successful causal steering mechanism yet. The
 consistent result is that raw and learned-dictionary probes can read predictive
 information from pre-generation activations, but additive decode-time steering
 has not reliably converted that information into correct emitted ontology
-answers. The forced-choice and patching branches sharpen that conclusion:
-recognition can be intact under constrained MCQ formatting, but free-form
-generation appears to enter a committed wrong-answer state that is not repaired
-by either probe-direction steering or clean h1 residual transplantation.
-Reverse patching adds an asymmetry: h4 incorrect states can partially disrupt
-h1 correct margins more than noise, but this does not hold robustly for
-high-headroom examples and should be presented as an asymmetry result before a
-mechanistic commitment claim.
+answers. The targeted reconstruction-error steering run sharpens this point:
+the raw-minus-SAE error direction is almost raw-like offline, yet it produced no
+paired strong repairs or breaks at calibrated strengths. The LAP/logit-lens
+diagnostic adds a pre-intervention accessibility check: especially on Qwen,
+near-perfect trained raw probes do not translate into a direct final-head
+gold-vs-output margin. The forced-choice and patching branches sharpen the
+broader conclusion: recognition can be intact
+under constrained MCQ formatting, but free-form generation appears to enter a
+committed wrong-answer state that is not repaired by either probe-direction
+steering or clean h1 residual transplantation. Reverse patching adds an
+asymmetry: h4 incorrect states can partially disrupt h1 correct margins more
+than noise, but this does not hold robustly for high-headroom examples and
+should be presented as an asymmetry result before a mechanistic commitment
+claim.

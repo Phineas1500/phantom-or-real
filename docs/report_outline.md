@@ -175,13 +175,15 @@ SAEs can still miss the signal that matters for prediction.
 - The reconstruction-error result is a cautionary finding for SAE-based
   mechanistic claims: high reconstruction energy does not imply retention of a
   behaviorally relevant direction.
-- S3 heldout target symbols reduce but do not eliminate lexical-confound risk.
-- Future work: name-scrambled regeneration and broader feature-level
-  falsification for shortlisted big-L0 candidates.
-- Near-term finishing step: treat the completed steering checks as null causal
-  evidence and move to report assembly, unless we explicitly choose one more
-  targeted causal test such as forced-choice answer steering or a
-  reconstruction-error direction.
+- S3 heldout target symbols and full name-scrambled regeneration reduce but do
+  not eliminate lexical-confound risk: the raw readout survives fresh names, but
+  with a measurable AUC drop.
+- Qwen3.5-27B should appear as a cross-model robustness appendix: it supports
+  the predictive-versus-causal gap, while artifact coverage and patching results
+  keep the main mechanistic story Gemma-scoped.
+- Near-term finishing step: report assembly plus optional low-cost weak/quality
+  score reanalysis; broad new steering variations are not needed unless the
+  report requires a specific additional control.
 
 ## Core Tables/Figures
 

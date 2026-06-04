@@ -43,6 +43,33 @@ Label-shuffle control stayed near chance on S1: property 0.493 and subtype
 0.481. The main raw-probe claim is therefore robust to metadata baselines,
 label shuffle, and heldout target symbols.
 
+
+## Logit-Lens / LAP Accessibility Diagnostic
+
+After the Qwen replication, we added a training-free logit-lens/LAP-style
+diagnostic for the pre-generation hidden states. For each saved activation, the
+script applies the model's final norm and LM head, then scores whether the
+resulting distribution gives a gold-vs-emitted-output token margin. The table
+reports the first-differing-token gold-vs-output logit-margin AUC on the S1
+test split. This is a steerability/accessibility proxy, not a causal
+intervention.
+
+| Model | Task | Raw activation AUC | LAP peak layer | LAP peak AUC | Main-site LAP AUC |
+| --- | --- | ---: | --- | ---: | ---: |
+| Gemma 3 27B | `infer_property` | 0.897 at L45 | L45 | 0.685 | 0.685 |
+| Gemma 3 27B | `infer_subtype` | 0.914 at L45 | L15 | 0.649 | 0.599 at L45 |
+| Qwen3.5 27B | `infer_property` | 0.940 at L53 | L53 | 0.452 | 0.452 |
+| Qwen3.5 27B | `infer_subtype` | 0.920 at L53 | L16 | 0.514 | 0.332 at L53 |
+
+Interpretation: the correctness signal is highly linearly readable after
+training a probe, but it is not directly exposed by a simple final-head
+logit-lens view. Gemma shows modest accessibility for property and weaker
+accessibility for subtype; Qwen is sharper evidence for the gap because its raw
+activation probes are strongest while the logit-lens margin proxy is near
+chance or inverted. This supports the next-paper framing that correctness is
+linearly readable but not straightforwardly logit-accessible or steerable by
+the tested one-dimensional handles.
+
 ## Raw Layer-40 Decision Check
 
 After the crosscoder pilot, we probed individual raw residual layers
@@ -82,6 +109,27 @@ subtype, because metadata captures much of the height-aligned score variance.
 For reporting, the clean takeaway is that raw activations add substantial
 conditional signal over prompt/name metadata; this defends the raw-probe claim
 but does not explain why sparse dictionaries trail raw activations.
+
+
+## Name-Scrambled Regeneration
+
+Full name-scrambled regeneration was run for Gemma 3 27B on `250` rows per
+height, task, and condition. The run tested two replacement regimes: nonce names
+and natural names. The outputs were rescored after fixing simple plural
+replacement in scrambled reference strings.
+
+| Task | Condition | Scrambled AUC | Matched-original AUC | AUC drop | Scrambled strong | Matched-original strong |
+| --- | --- | ---: | ---: | ---: | ---: | ---: |
+| `infer_property` | natural | 0.835 | 0.976 | 0.141 | 0.374 | 0.598 |
+| `infer_property` | nonce | 0.844 | 0.977 | 0.132 | 0.326 | 0.615 |
+| `infer_subtype` | natural | 0.842 | 0.985 | 0.143 | 0.368 | 0.407 |
+| `infer_subtype` | nonce | 0.830 | 0.982 | 0.152 | 0.277 | 0.393 |
+
+Interpretation: the raw L45 correctness readout survives full regeneration, so
+it is not merely a detector for fixed target names or original lexical
+semantics. The matched-subset AUC drop of about `0.13-0.15`, plus lower
+scrambled strong accuracy, shows the signal is also not name-invariant. This is
+a sharpened limitation rather than a refutation of the raw-probe result.
 
 ## Cross-Task Transfer
 
@@ -467,7 +515,11 @@ ontology-reasoning features.
 Main mechanistic result: the SAEs reconstruct about 95% of residual energy, but
 the raw-minus-reconstruction error recovers almost the entire raw-probe signal.
 The strongest correctness direction is therefore mostly outside the tested
-decoded residual-SAE subspace.
+decoded residual-SAE subspace. A targeted 27B decode-step steering test of the
+L45 262K reconstruction-error direction later recovered `test_auc=0.8973` but
+produced zero paired false-to-true or true-to-false strong flips at every tested
+error-direction strength, so the reconstruction-error result remains predictive
+rather than established causal control.
 
 ## Steering Checks
 
@@ -482,6 +534,7 @@ estimates.
 | Decode-step big-L0 single features | `35036`, `75345`, `72374` at +/-0.25 mean-nonzero scale | 0.375 | 0.250-0.375 | 0.000-0.250 | 0 | 2 | No beneficial flips; `75345` negative and `72374` positive each caused one true-to-false change. |
 | Decode-step raw L45 | +/-0.5 and +/-1 projection SD at `blocks.45.hook_resid_post` | 0.375 | 0.375 | 0.125 | 0 | 0 | Raw direction is highly predictive offline but did not act as a useful correctness control knob. |
 | Decode-step sparse-probe bundle | Top 25 positive + top 25 negative big-L0 coefficients at +/-0.25 and +/-0.5 projection SD | 0.375 | 0.375 | 0.000-0.125 | 0 | 0 | Distributed learned-feature direction also produced no beneficial flips. |
+| Decode-step reconstruction-error L45 | +/-0.25, +/-0.5, +/-1 projection SD at `blocks.45.hook_resid_post` | 0.375 | 0.375 | 0.000-0.125 | 0 | 0 | Error direction recovered raw-like AUC offline but produced no paired strong flips; orthogonal controls caused the only true-to-false changes. |
 | Decode-step raw L45 answer-property | Gold-polarity direction at +/-0.5 and +/-1 projection SD | 0.375 | 0.250-0.500 | 0.000-0.250 | 1 | 2 | Offline polarity AUC was perfect, but the only repair happened under `away_gold`; `toward_gold` produced no useful answer movement. |
 | Decode-step orthogonal control | Norm-matched orthogonal directions at +/-0.5 and +/-1 SD | 0.375 | 0.250-0.375 | 0.125-0.250 | 0 | 1 | One true-to-false change at +1 SD, consistent with generic perturbation risk. |
 
@@ -516,22 +569,52 @@ false-to-true repairs. One invalid-predicate repair occurred under
 `away_gold_pos1sd`, so it is not evidence for target-directed control. The full
 summary is in `docs/stage2_27b_answer_property_steering_results.md`.
 
+
+## Qwen 27B Cross-Model Check
+
+Qwen3.5-27B is best treated as a cross-model robustness appendix. It supports
+the predictive-versus-causal conclusion, but it is not a perfect Gemma Scope
+replication because first-party Qwen Scope artifacts currently cover residual
+SAEs only; MLP-output SAE, transcoder, and crosscoder comparisons use local
+stand-ins.
+
+| Axis | Gemma 3 27B | Qwen3.5 27B | Report implication |
+| --- | --- | --- | --- |
+| Behavior | h4 strong: property `0.264`, subtype `0.055`; parse failures nontrivial, especially property | h4 strong: property `0.512`, subtype `0.315`; parse failures effectively absent | Qwen is behaviorally easier/cleaner, so Qwen should not replace Gemma as the main mechanistic setting. |
+| Raw correctness readout | L45 S1 `0.897`/`0.914`, S3 `0.884`/`0.917` for property/subtype | Best L53 S1 `0.940`/`0.921`, S3 `0.933`/`0.915` | Cross-model support that pre-generation correctness is linearly readable. |
+| Metadata gap | Best B0 is relatively strong, especially subtype (`0.841` S1, `0.859` S3) | Best B0 is much weaker: property about `0.601`, subtype about `0.675` | Qwen makes the activation-over-metadata claim cleaner than Gemma. |
+| Sparse/local dictionary gap | Best learned sparse families improve but trail raw; reconstruction-error probes near raw for residual SAEs | Qwen Scope L53 residual SAEs trail raw; residual+local sparse concat reaches S1 `0.915`/`0.895` and S3 `0.903`/`0.885`, still below raw | Sparse-vs-raw gap generalizes, but Qwen local stand-ins must be labeled separately from first-party Qwen Scope. |
+| Reconstruction/error | Gemma residual SAEs explain about 95% energy while raw-minus-reconstruction error recovers near-raw AUC | Public Qwen residual SAEs explain less energy and also leave strong error-probe AUC; local MLP/transcoder dictionaries reconstruct near-perfectly and leave weaker error probes | Keep the reconstruction-error claim artifact-scoped: public residual SAEs leave predictive error, but not every learned local dictionary does. |
+| Causal checks | Steering nulls; forced-choice gold over own foil `14/16`; forward-null/reverse-disruption patching asymmetry | Steering nulls across raw L45/L53, answer-property, sparse bundle, and single-feature tests; hard-foil forced choice `43/64`; patching weak in both directions | Qwen corroborates steering and recognition-vs-generation claims, but does not reproduce Gemma's positive reverse-patching asymmetry. |
+
+Bottom line: Qwen should change the report by adding a cross-model robustness
+paragraph/table, not by changing the headline. The headline remains Gemma 3 27B:
+correctness is readable, sparse dictionaries are lossy, and tested intervention
+handles are not reliable causal repairs. Qwen strengthens that as a model-family
+pattern while narrowing the patching-asymmetry claim to Gemma.
+
 ## Current Report Claim
 
 Gemma 3 27B pre-generation residuals contain a robust signal for
-reasoning-task success/failure beyond metadata baselines. Raw activations are
-the predictive reference, not a bar that sparse dictionaries must beat. The
-tested Gemma Scope 2 sparse dictionaries partially expose this signal, but
-reconstruction/error diagnostics show the strongest correctness-predictive
-component is concentrated in the small residual subspace that residual SAEs
-fail to reconstruct. Corrected exact-hook transcoders and multi-layer sparse
-concats improve the sparse-feature picture but still trail raw activations.
-Neuronpedia-facing top features remain generic rather than clean
-ontology-reasoning mechanisms. Steering is currently a negative/inconclusive
-causal result: neither shortlisted single big-L0 features, the multi-feature
-sparse-probe bundle, the dense raw correctness direction, nor the 4B/27B raw
-answer-polarity directions produced controlled beneficial answer repairs in
-bounded decode-step checks.
+reasoning-task success/failure beyond metadata baselines. Full name-scrambled
+regeneration shows this signal is not merely fixed-symbol semantics, because
+fixed original raw probes still score about `0.83-0.84` AUC on scrambled
+activations; the `0.13-0.15` matched-subset AUC drop shows the readout is also
+not name-invariant. Raw activations are the predictive reference, not a bar that
+sparse dictionaries must beat. The tested Gemma Scope 2 sparse dictionaries
+partially expose this signal, but reconstruction/error diagnostics show the
+strongest correctness-predictive component is concentrated in the small residual
+subspace that residual SAEs fail to reconstruct. Corrected exact-hook
+transcoders and multi-layer sparse concats improve the sparse-feature picture
+but still trail raw activations. Neuronpedia-facing top features remain generic
+rather than clean ontology-reasoning mechanisms. Steering is currently a
+negative/inconclusive causal result: neither shortlisted single big-L0 features,
+the multi-feature sparse-probe bundle, the dense raw correctness direction, the
+targeted reconstruction-error direction, nor the 4B/27B raw answer-polarity
+directions produced controlled beneficial answer repairs in bounded decode-step
+checks. Qwen3.5-27B provides cross-model corroboration for the predictive-versus-causal gap, but Qwen should be presented as an appendix robustness check because
+its public Qwen Scope artifacts are residual-SAE-only and its patching pilots do
+not reproduce Gemma's reverse-disruption asymmetry.
 
 ## 4B Comparison Table
 

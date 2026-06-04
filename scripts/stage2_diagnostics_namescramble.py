@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Stage 2 Phase B.3.b: create 4B name-scramble evaluation sets and manifest."""
+"""Stage 2 Phase B.3.b: create name-scramble evaluation sets and manifest."""
 
 from __future__ import annotations
 
@@ -75,6 +75,10 @@ def sample_rows(
     return [pool[idx] for idx in indices[:n]]
 
 
+def stable_task_seed(task: str) -> int:
+    return sum((idx + 1) * ord(ch) for idx, ch in enumerate(task))
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--input-dir", type=Path, default=Path("results/full/with_errortype"))
@@ -128,7 +132,7 @@ def main() -> None:
             generated_manifest["datasets"][condition][task] = {}
             rows = all_rows_by_task[task]
             for height in args.heights:
-                sampled = sample_rows(rows, height=height, n=args.per_height, seed=args.seed + hash(task) % 10_000)
+                sampled = sample_rows(rows, height=height, n=args.per_height, seed=args.seed + stable_task_seed(task))
                 out_rows: list[dict[str, Any]] = []
                 mapping_preview: list[dict[str, Any]] = []
                 for idx, row in enumerate(sampled):

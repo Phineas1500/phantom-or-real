@@ -15,7 +15,7 @@ Commands run from `/scratch/scholar/skiron/phantom-or-real`:
   `qwen35_27b_infer_subtype.jsonl`.
 - Checked the newest single-feature steering JSONL: `104` rows, matching 8
   selected examples x 13 conditions.
-- Checked representative artifacts across 26 Qwen 27B experiment families:
+- Checked representative artifacts across 27 Qwen 27B experiment families:
   `0` missing.
 
 ## Requirement Audit
@@ -36,6 +36,7 @@ Commands run from `/scratch/scholar/skiron/phantom-or-real`:
 | Crosscoder analogue | Local multi-layer top-k crosscoder and raw-concat baseline over Qwen layers `16,31,40,53` | Complete as local stand-in; no first-party Qwen Scope crosscoder artifact found |
 | Dense-active sparse scaling controls | Qwen residual SAE dense-active controls plus local learned-sparse dense-active controls | Complete |
 | Dtype sanity and feature dashboards | `docs/qwen_scope_sparse_dtype_sanity_27b.json`, L45/L53 feature-stability and mini-dashboard reports | Complete |
+| Logit-lens / LAP accessibility | `docs/lap_qwen35_27b_infer_property_s1.json`, `docs/lap_qwen35_27b_infer_subtype_s1.json`; summarized in `docs/steering_effectiveness_diagnostics.md` | Complete; Qwen raw probes are strong while LAP margins are near chance or inverted |
 | Free-form raw steering | L45/L53 raw-direction smokes in `docs/qwen35_raw_steering_27b_l{45,53}_property_pilot.json` | Complete for the Qwen causal mirror |
 | Answer-property steering | `docs/qwen35_answer_property_steering_27b_l45_polarity_smoke.json` | Complete |
 | Sparse-probe bundle steering | `docs/qwen35_scope_sparse_bundle_steering_27b_l45_l0_100_property_smoke.json`, `docs/qwen35_scope_sparse_bundle_steering_27b_l53_l0_100_property_smoke.json` | Complete |
@@ -48,6 +49,9 @@ Commands run from `/scratch/scholar/skiron/phantom-or-real`:
 
 For the user-scoped 27B target, every Gemma 27B experiment family has a Qwen 27B
 artifact, local stand-in, or documented first-party-artifact limitation. The
+new LAP/logit-lens diagnostic strengthens the predictive-causal gap: Qwen has
+the strongest raw activation probes (`0.940` property and `0.920` subtype at
+L53) but weak first-diff LAP margins (`0.452` and `0.514` peak AUC). The
 remaining caveat is provenance, not unrun local coverage: Qwen Scope currently
 publishes residual SAE families for the 27B target, while Gemma's MLP-output
 SAE, transcoder, and crosscoder artifact families do not have direct Qwen Scope

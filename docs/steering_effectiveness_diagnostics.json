@@ -1,0 +1,2083 @@
+{
+  "created_at_utc": "2026-06-04T06:15:36.621269+00:00",
+  "diagnostics": [
+    {
+      "diagnostics": {
+        "best_metadata_baseline_auc": 0.743183420273509,
+        "best_metadata_feature_set": "b0_prompt",
+        "historical_raw_steering": {
+          "all_flips_vs_baseline": {
+            "orthogonal_neg0p5sd": {
+              "changed": 0,
+              "false_to_true": 0,
+              "net_accuracy_delta": 0.0,
+              "paired_n": 8,
+              "true_to_false": 0
+            },
+            "orthogonal_neg1sd": {
+              "changed": 0,
+              "false_to_true": 0,
+              "net_accuracy_delta": 0.0,
+              "paired_n": 8,
+              "true_to_false": 0
+            },
+            "orthogonal_pos0p5sd": {
+              "changed": 0,
+              "false_to_true": 0,
+              "net_accuracy_delta": 0.0,
+              "paired_n": 8,
+              "true_to_false": 0
+            },
+            "orthogonal_pos1sd": {
+              "changed": 1,
+              "false_to_true": 0,
+              "net_accuracy_delta": -0.125,
+              "paired_n": 8,
+              "true_to_false": 1
+            },
+            "raw_neg0p5sd": {
+              "changed": 0,
+              "false_to_true": 0,
+              "net_accuracy_delta": 0.0,
+              "paired_n": 8,
+              "true_to_false": 0
+            },
+            "raw_neg1sd": {
+              "changed": 0,
+              "false_to_true": 0,
+              "net_accuracy_delta": 0.0,
+              "paired_n": 8,
+              "true_to_false": 0
+            },
+            "raw_pos0p5sd": {
+              "changed": 0,
+              "false_to_true": 0,
+              "net_accuracy_delta": 0.0,
+              "paired_n": 8,
+              "true_to_false": 0
+            },
+            "raw_pos1sd": {
+              "changed": 0,
+              "false_to_true": 0,
+              "net_accuracy_delta": 0.0,
+              "paired_n": 8,
+              "true_to_false": 0
+            }
+          },
+          "baseline_n": 8,
+          "baseline_parse_fail_rate": 0.0,
+          "baseline_strong_accuracy": 0.375,
+          "baseline_weak_accuracy": 0.625,
+          "orthogonal_conditions": [
+            "orthogonal_neg0p5sd",
+            "orthogonal_neg1sd",
+            "orthogonal_pos0p5sd",
+            "orthogonal_pos1sd"
+          ],
+          "orthogonal_max_abs_accuracy_delta": 0.125,
+          "orthogonal_max_changed": 1,
+          "orthogonal_max_false_to_true": 0,
+          "orthogonal_max_true_to_false": 1,
+          "paired_n_max": 8,
+          "parse_fail_rate_max": 0.25,
+          "parse_fail_rate_min": 0.0,
+          "raw_conditions": [
+            "raw_neg0p5sd",
+            "raw_neg1sd",
+            "raw_pos0p5sd",
+            "raw_pos1sd"
+          ],
+          "raw_max_abs_accuracy_delta": 0.0,
+          "raw_max_changed": 0,
+          "raw_max_false_to_true": 0,
+          "raw_max_true_to_false": 0,
+          "report_path": "results/stage2/steering/raw_l45_property_decode_sweep.jsonl",
+          "status": "available"
+        },
+        "lap_profile": {
+          "kept_rows": 10025,
+          "method": "saved_activation_logit_lens",
+          "notes": [
+            "Training-free accessibility proxy; it is not a causal intervention.",
+            "Multi-token candidate scores reuse the same pre-generation lens distribution for each candidate token.",
+            "The foil is the first generated line, so correct rows can contain paraphrases rather than strict wrong foils."
+          ],
+          "peak_by_score": {
+            "gold_first_token_logprob": {
+              "auc": 0.44580308050190326,
+              "layer": "L15"
+            },
+            "gold_mean_logprob": {
+              "auc": 0.42826378119272523,
+              "layer": "L15"
+            },
+            "gold_minus_output_mean_logprob": {
+              "auc": 0.6083127731566333,
+              "layer": "L45"
+            },
+            "gold_vs_output_first_diff_logit_margin": {
+              "auc": 0.6846357226792009,
+              "layer": "L45"
+            },
+            "gold_vs_output_first_diff_logprob_margin": {
+              "auc": 0.6846357226792009,
+              "layer": "L45"
+            },
+            "output_mean_logprob": {
+              "auc": 0.45452999436063724,
+              "layer": "L15"
+            }
+          },
+          "report_path": "docs/lap_gemma3_27b_infer_property_s1.json",
+          "requested_layer_auc_by_score": {
+            "gold_first_token_logprob": 0.3300701395742281,
+            "gold_mean_logprob": 0.3072333638798816,
+            "gold_minus_output_mean_logprob": 0.6083127731566333,
+            "gold_vs_output_first_diff_logit_margin": 0.6846357226792009,
+            "gold_vs_output_first_diff_logprob_margin": 0.6846357226792009,
+            "output_mean_logprob": 0.26521570562526436
+          },
+          "requested_layer_selected_auc": 0.6846357226792009,
+          "requested_site_or_layer": "L45",
+          "score_names": [
+            "gold_mean_logprob",
+            "gold_first_token_logprob",
+            "output_mean_logprob",
+            "gold_minus_output_mean_logprob",
+            "gold_vs_output_first_diff_logit_margin",
+            "gold_vs_output_first_diff_logprob_margin"
+          ],
+          "selected_peak_auc": 0.6846357226792009,
+          "selected_peak_layer": "L45",
+          "selected_score": "gold_vs_output_first_diff_logit_margin",
+          "selected_score_label": "first-diff margin",
+          "status": "available",
+          "target_variable": "gold_vs_foil_margin"
+        },
+        "metadata_adjustment": {
+          "available_site_or_layer": "L45",
+          "exact_site_match": true,
+          "metadata_only_auc": 0.743183420273509,
+          "metadata_plus_raw_auc": 0.8973318764979556,
+          "metadata_plus_raw_delta_vs_metadata": 0.15414845622444662,
+          "raw_refit_auc": 0.8965441280135344,
+          "raw_residualized_auc": 0.8022116875793036,
+          "raw_residualized_delta_vs_metadata": 0.05902826730579458,
+          "raw_residualized_drop_vs_raw": 0.09433244043423084,
+          "raw_score_train_r2_from_metadata": 0.3420073884928214,
+          "reference_metadata_set": "b0_prompt",
+          "status": "available"
+        },
+        "raw_auc": 0.8965441280135344,
+        "raw_minus_best_metadata_auc": 0.15336070774002541
+      },
+      "experiment_report": {
+        "baseline_metrics": {
+          "best_metadata_baseline": {
+            "all_feature_sets": {
+              "b0_height": {
+                "n_test": 1512,
+                "n_train": 6988,
+                "test_auc": 0.7161858522486959,
+                "val_auc": 0.707785426309252
+              },
+              "b0_namefreq": {
+                "n_test": 1512,
+                "n_train": 6988,
+                "test_auc": 0.7421542365712674,
+                "val_auc": 0.7282421639175902
+              },
+              "b0_prompt": {
+                "n_test": 1512,
+                "n_train": 6988,
+                "test_auc": 0.743183420273509,
+                "val_auc": 0.7234072819879396
+              }
+            },
+            "best_feature_set": "b0_prompt",
+            "best_test_auc": 0.743183420273509,
+            "best_val_auc": 0.7234072819879396
+          },
+          "lap_profile": {
+            "artifact_proxy_best_scanned_layer": "L45",
+            "artifact_proxy_best_scanned_raw_auc": 0.8965441280135344,
+            "kept_rows": 10025,
+            "method": "saved_activation_logit_lens",
+            "notes": [
+              "Training-free accessibility proxy; it is not a causal intervention.",
+              "Multi-token candidate scores reuse the same pre-generation lens distribution for each candidate token.",
+              "The foil is the first generated line, so correct rows can contain paraphrases rather than strict wrong foils."
+            ],
+            "peak_by_score": {
+              "gold_first_token_logprob": {
+                "auc": 0.44580308050190326,
+                "layer": "L15"
+              },
+              "gold_mean_logprob": {
+                "auc": 0.42826378119272523,
+                "layer": "L15"
+              },
+              "gold_minus_output_mean_logprob": {
+                "auc": 0.6083127731566333,
+                "layer": "L45"
+              },
+              "gold_vs_output_first_diff_logit_margin": {
+                "auc": 0.6846357226792009,
+                "layer": "L45"
+              },
+              "gold_vs_output_first_diff_logprob_margin": {
+                "auc": 0.6846357226792009,
+                "layer": "L45"
+              },
+              "output_mean_logprob": {
+                "auc": 0.45452999436063724,
+                "layer": "L15"
+              }
+            },
+            "report_path": "docs/lap_gemma3_27b_infer_property_s1.json",
+            "requested_layer_auc_by_score": {
+              "gold_first_token_logprob": 0.3300701395742281,
+              "gold_mean_logprob": 0.3072333638798816,
+              "gold_minus_output_mean_logprob": 0.6083127731566333,
+              "gold_vs_output_first_diff_logit_margin": 0.6846357226792009,
+              "gold_vs_output_first_diff_logprob_margin": 0.6846357226792009,
+              "output_mean_logprob": 0.26521570562526436
+            },
+            "requested_layer_selected_auc": 0.6846357226792009,
+            "requested_site_or_layer": "L45",
+            "score_names": [
+              "gold_mean_logprob",
+              "gold_first_token_logprob",
+              "output_mean_logprob",
+              "gold_minus_output_mean_logprob",
+              "gold_vs_output_first_diff_logit_margin",
+              "gold_vs_output_first_diff_logprob_margin"
+            ],
+            "selected_peak_auc": 0.6846357226792009,
+            "selected_peak_layer": "L45",
+            "selected_score": "gold_vs_output_first_diff_logit_margin",
+            "selected_score_label": "first-diff margin",
+            "status": "available",
+            "target_variable": "gold_vs_foil_margin"
+          },
+          "metadata_adjustment": {
+            "available_site_or_layer": "L45",
+            "exact_site_match": true,
+            "metadata_only_auc": 0.743183420273509,
+            "metadata_plus_raw_auc": 0.8973318764979556,
+            "metadata_plus_raw_delta_vs_metadata": 0.15414845622444662,
+            "raw_refit_auc": 0.8965441280135344,
+            "raw_residualized_auc": 0.8022116875793036,
+            "raw_residualized_delta_vs_metadata": 0.05902826730579458,
+            "raw_residualized_drop_vs_raw": 0.09433244043423084,
+            "raw_score_train_r2_from_metadata": 0.3420073884928214,
+            "reference_metadata_set": "b0_prompt",
+            "status": "available"
+          },
+          "raw_minus_best_metadata_auc": 0.15336070774002541,
+          "raw_probe": {
+            "best_scanned_layer": "L45",
+            "best_scanned_raw_auc": 0.8965441280135344,
+            "n_test": 1512,
+            "raw_auc": 0.8965441280135344,
+            "raw_auc_ci": {
+              "alpha": 0.05,
+              "high": 0.9120669807231052,
+              "low": 0.88122396096294,
+              "mean": 0.8967760141749674,
+              "samples_requested": 1000,
+              "samples_used": 1000
+            },
+            "scanned_layers": [
+              {
+                "site_or_layer": "L15",
+                "test_auc": 0.7858046665726773
+              },
+              {
+                "site_or_layer": "L30",
+                "test_auc": 0.8558737487663894
+              },
+              {
+                "site_or_layer": "L45",
+                "test_auc": 0.8965441280135344
+              }
+            ],
+            "site_or_layer": "L45",
+            "test_negative_n": 820,
+            "test_positive_n": 692,
+            "val_auc": 0.8814838073957906
+          }
+        },
+        "causal_abstraction_claim": "Artifact-level diagnostic: raw correctness is linearly readable and historical raw-direction steering did not produce false-to-true repair; matched-noise and positive-control checks remain required.",
+        "controls": [
+          "orthogonal_direction"
+        ],
+        "created_at_utc": "2026-06-04T06:15:36.576124+00:00",
+        "intervention_metrics": {
+          "historical_raw_steering": {
+            "all_flips_vs_baseline": {
+              "orthogonal_neg0p5sd": {
+                "changed": 0,
+                "false_to_true": 0,
+                "net_accuracy_delta": 0.0,
+                "paired_n": 8,
+                "true_to_false": 0
+              },
+              "orthogonal_neg1sd": {
+                "changed": 0,
+                "false_to_true": 0,
+                "net_accuracy_delta": 0.0,
+                "paired_n": 8,
+                "true_to_false": 0
+              },
+              "orthogonal_pos0p5sd": {
+                "changed": 0,
+                "false_to_true": 0,
+                "net_accuracy_delta": 0.0,
+                "paired_n": 8,
+                "true_to_false": 0
+              },
+              "orthogonal_pos1sd": {
+                "changed": 1,
+                "false_to_true": 0,
+                "net_accuracy_delta": -0.125,
+                "paired_n": 8,
+                "true_to_false": 1
+              },
+              "raw_neg0p5sd": {
+                "changed": 0,
+                "false_to_true": 0,
+                "net_accuracy_delta": 0.0,
+                "paired_n": 8,
+                "true_to_false": 0
+              },
+              "raw_neg1sd": {
+                "changed": 0,
+                "false_to_true": 0,
+                "net_accuracy_delta": 0.0,
+                "paired_n": 8,
+                "true_to_false": 0
+              },
+              "raw_pos0p5sd": {
+                "changed": 0,
+                "false_to_true": 0,
+                "net_accuracy_delta": 0.0,
+                "paired_n": 8,
+                "true_to_false": 0
+              },
+              "raw_pos1sd": {
+                "changed": 0,
+                "false_to_true": 0,
+                "net_accuracy_delta": 0.0,
+                "paired_n": 8,
+                "true_to_false": 0
+              }
+            },
+            "baseline_n": 8,
+            "baseline_parse_fail_rate": 0.0,
+            "baseline_strong_accuracy": 0.375,
+            "baseline_weak_accuracy": 0.625,
+            "orthogonal_conditions": [
+              "orthogonal_neg0p5sd",
+              "orthogonal_neg1sd",
+              "orthogonal_pos0p5sd",
+              "orthogonal_pos1sd"
+            ],
+            "orthogonal_max_abs_accuracy_delta": 0.125,
+            "orthogonal_max_changed": 1,
+            "orthogonal_max_false_to_true": 0,
+            "orthogonal_max_true_to_false": 1,
+            "paired_n_max": 8,
+            "parse_fail_rate_max": 0.25,
+            "parse_fail_rate_min": 0.0,
+            "raw_conditions": [
+              "raw_neg0p5sd",
+              "raw_neg1sd",
+              "raw_pos0p5sd",
+              "raw_pos1sd"
+            ],
+            "raw_max_abs_accuracy_delta": 0.0,
+            "raw_max_changed": 0,
+            "raw_max_false_to_true": 0,
+            "raw_max_true_to_false": 0,
+            "report_path": "results/stage2/steering/raw_l45_property_decode_sweep.jsonl",
+            "status": "available"
+          }
+        },
+        "matched_noise_summary": {
+          "required_for_new_interventions": true,
+          "status": "missing"
+        },
+        "method": "steering_effectiveness_artifact_preflight",
+        "model": "gemma3_27b",
+        "n": 1512,
+        "notes": [
+          "Predicted regime is a planning label, not a manuscript claim.",
+          "LAP/logit-lens accessibility report is available for this row.",
+          "Historical steering lacks matched Gaussian/noise and known positive-control steering checks."
+        ],
+        "paired_flips": {
+          "orthogonal_neg0p5sd": {
+            "changed": 0,
+            "false_to_true": 0,
+            "net_accuracy_delta": 0.0,
+            "paired_n": 8,
+            "true_to_false": 0
+          },
+          "orthogonal_neg1sd": {
+            "changed": 0,
+            "false_to_true": 0,
+            "net_accuracy_delta": 0.0,
+            "paired_n": 8,
+            "true_to_false": 0
+          },
+          "orthogonal_pos0p5sd": {
+            "changed": 0,
+            "false_to_true": 0,
+            "net_accuracy_delta": 0.0,
+            "paired_n": 8,
+            "true_to_false": 0
+          },
+          "orthogonal_pos1sd": {
+            "changed": 1,
+            "false_to_true": 0,
+            "net_accuracy_delta": -0.125,
+            "paired_n": 8,
+            "true_to_false": 1
+          },
+          "raw_neg0p5sd": {
+            "changed": 0,
+            "false_to_true": 0,
+            "net_accuracy_delta": 0.0,
+            "paired_n": 8,
+            "true_to_false": 0
+          },
+          "raw_neg1sd": {
+            "changed": 0,
+            "false_to_true": 0,
+            "net_accuracy_delta": 0.0,
+            "paired_n": 8,
+            "true_to_false": 0
+          },
+          "raw_pos0p5sd": {
+            "changed": 0,
+            "false_to_true": 0,
+            "net_accuracy_delta": 0.0,
+            "paired_n": 8,
+            "true_to_false": 0
+          },
+          "raw_pos1sd": {
+            "changed": 0,
+            "false_to_true": 0,
+            "net_accuracy_delta": 0.0,
+            "paired_n": 8,
+            "true_to_false": 0
+          }
+        },
+        "parse_fail_rate": 0.0,
+        "representation_type": "raw_direction",
+        "result_type": "predictive_and_causal",
+        "schema_version": 1,
+        "site_or_layer": "L45",
+        "split": "s1",
+        "target_variable": "free_form_correctness",
+        "task": "infer_property"
+      },
+      "model_display": "Gemma 3 27B",
+      "predicted_steerability_regime": "linearly_readable_activation_over_metadata_historical_raw_steering_null",
+      "row_id": "gemma3_27b__infer_property__L45__s1"
+    },
+    {
+      "diagnostics": {
+        "best_metadata_baseline_auc": 0.8410757662584132,
+        "best_metadata_feature_set": "b0_height",
+        "historical_raw_steering": {
+          "status": "missing"
+        },
+        "lap_profile": {
+          "kept_rows": 10737,
+          "method": "saved_activation_logit_lens",
+          "notes": [
+            "Training-free accessibility proxy; it is not a causal intervention.",
+            "Multi-token candidate scores reuse the same pre-generation lens distribution for each candidate token.",
+            "The foil is the first generated line, so correct rows can contain paraphrases rather than strict wrong foils."
+          ],
+          "peak_by_score": {
+            "gold_first_token_logprob": {
+              "auc": 0.4547448744034541,
+              "layer": "L15"
+            },
+            "gold_mean_logprob": {
+              "auc": 0.38554091080986397,
+              "layer": "L15"
+            },
+            "gold_minus_output_mean_logprob": {
+              "auc": 0.5595478663551597,
+              "layer": "L30"
+            },
+            "gold_vs_output_first_diff_logit_margin": {
+              "auc": 0.6487124501394331,
+              "layer": "L15"
+            },
+            "gold_vs_output_first_diff_logprob_margin": {
+              "auc": 0.6487124501394331,
+              "layer": "L15"
+            },
+            "output_mean_logprob": {
+              "auc": 0.3364623233562942,
+              "layer": "L15"
+            }
+          },
+          "report_path": "docs/lap_gemma3_27b_infer_subtype_s1.json",
+          "requested_layer_auc_by_score": {
+            "gold_first_token_logprob": 0.20081758978059175,
+            "gold_mean_logprob": 0.16307598434422294,
+            "gold_minus_output_mean_logprob": 0.5504056628068572,
+            "gold_vs_output_first_diff_logit_margin": 0.599204878393166,
+            "gold_vs_output_first_diff_logprob_margin": 0.599204878393166,
+            "output_mean_logprob": 0.15632344445656032
+          },
+          "requested_layer_selected_auc": 0.599204878393166,
+          "requested_site_or_layer": "L45",
+          "score_names": [
+            "gold_mean_logprob",
+            "gold_first_token_logprob",
+            "output_mean_logprob",
+            "gold_minus_output_mean_logprob",
+            "gold_vs_output_first_diff_logit_margin",
+            "gold_vs_output_first_diff_logprob_margin"
+          ],
+          "selected_peak_auc": 0.6487124501394331,
+          "selected_peak_layer": "L15",
+          "selected_score": "gold_vs_output_first_diff_logit_margin",
+          "selected_score_label": "first-diff margin",
+          "status": "available",
+          "target_variable": "gold_vs_foil_margin"
+        },
+        "metadata_adjustment": {
+          "available_site_or_layer": "L45",
+          "exact_site_match": true,
+          "metadata_only_auc": 0.8381988896184194,
+          "metadata_plus_raw_auc": 0.9161390459441839,
+          "metadata_plus_raw_delta_vs_metadata": 0.07794015632576456,
+          "raw_refit_auc": 0.9144732415671554,
+          "raw_residualized_auc": 0.6842349480190153,
+          "raw_residualized_delta_vs_metadata": -0.15396394159940407,
+          "raw_residualized_drop_vs_raw": 0.23023829354814007,
+          "raw_score_train_r2_from_metadata": 0.5742591482492578,
+          "reference_metadata_set": "b0_prompt",
+          "status": "available"
+        },
+        "raw_auc": 0.9144732415671554,
+        "raw_minus_best_metadata_auc": 0.07339747530874219
+      },
+      "experiment_report": {
+        "baseline_metrics": {
+          "best_metadata_baseline": {
+            "all_feature_sets": {
+              "b0_height": {
+                "n_test": 1616,
+                "n_train": 7515,
+                "test_auc": 0.8410757662584132,
+                "val_auc": 0.8419688392224537
+              },
+              "b0_namefreq": {
+                "n_test": 1616,
+                "n_train": 7515,
+                "test_auc": 0.8374866306438402,
+                "val_auc": 0.8482274180234911
+              },
+              "b0_prompt": {
+                "n_test": 1616,
+                "n_train": 7515,
+                "test_auc": 0.8381988896184194,
+                "val_auc": 0.8482052037516397
+              }
+            },
+            "best_feature_set": "b0_height",
+            "best_test_auc": 0.8410757662584132,
+            "best_val_auc": 0.8419688392224537
+          },
+          "lap_profile": {
+            "artifact_proxy_best_scanned_layer": "L45",
+            "artifact_proxy_best_scanned_raw_auc": 0.9144732415671554,
+            "kept_rows": 10737,
+            "method": "saved_activation_logit_lens",
+            "notes": [
+              "Training-free accessibility proxy; it is not a causal intervention.",
+              "Multi-token candidate scores reuse the same pre-generation lens distribution for each candidate token.",
+              "The foil is the first generated line, so correct rows can contain paraphrases rather than strict wrong foils."
+            ],
+            "peak_by_score": {
+              "gold_first_token_logprob": {
+                "auc": 0.4547448744034541,
+                "layer": "L15"
+              },
+              "gold_mean_logprob": {
+                "auc": 0.38554091080986397,
+                "layer": "L15"
+              },
+              "gold_minus_output_mean_logprob": {
+                "auc": 0.5595478663551597,
+                "layer": "L30"
+              },
+              "gold_vs_output_first_diff_logit_margin": {
+                "auc": 0.6487124501394331,
+                "layer": "L15"
+              },
+              "gold_vs_output_first_diff_logprob_margin": {
+                "auc": 0.6487124501394331,
+                "layer": "L15"
+              },
+              "output_mean_logprob": {
+                "auc": 0.3364623233562942,
+                "layer": "L15"
+              }
+            },
+            "report_path": "docs/lap_gemma3_27b_infer_subtype_s1.json",
+            "requested_layer_auc_by_score": {
+              "gold_first_token_logprob": 0.20081758978059175,
+              "gold_mean_logprob": 0.16307598434422294,
+              "gold_minus_output_mean_logprob": 0.5504056628068572,
+              "gold_vs_output_first_diff_logit_margin": 0.599204878393166,
+              "gold_vs_output_first_diff_logprob_margin": 0.599204878393166,
+              "output_mean_logprob": 0.15632344445656032
+            },
+            "requested_layer_selected_auc": 0.599204878393166,
+            "requested_site_or_layer": "L45",
+            "score_names": [
+              "gold_mean_logprob",
+              "gold_first_token_logprob",
+              "output_mean_logprob",
+              "gold_minus_output_mean_logprob",
+              "gold_vs_output_first_diff_logit_margin",
+              "gold_vs_output_first_diff_logprob_margin"
+            ],
+            "selected_peak_auc": 0.6487124501394331,
+            "selected_peak_layer": "L15",
+            "selected_score": "gold_vs_output_first_diff_logit_margin",
+            "selected_score_label": "first-diff margin",
+            "status": "available",
+            "target_variable": "gold_vs_foil_margin"
+          },
+          "metadata_adjustment": {
+            "available_site_or_layer": "L45",
+            "exact_site_match": true,
+            "metadata_only_auc": 0.8381988896184194,
+            "metadata_plus_raw_auc": 0.9161390459441839,
+            "metadata_plus_raw_delta_vs_metadata": 0.07794015632576456,
+            "raw_refit_auc": 0.9144732415671554,
+            "raw_residualized_auc": 0.6842349480190153,
+            "raw_residualized_delta_vs_metadata": -0.15396394159940407,
+            "raw_residualized_drop_vs_raw": 0.23023829354814007,
+            "raw_score_train_r2_from_metadata": 0.5742591482492578,
+            "reference_metadata_set": "b0_prompt",
+            "status": "available"
+          },
+          "raw_minus_best_metadata_auc": 0.07339747530874219,
+          "raw_probe": {
+            "best_scanned_layer": "L45",
+            "best_scanned_raw_auc": 0.9144732415671554,
+            "n_test": 1616,
+            "raw_auc": 0.9144732415671554,
+            "raw_auc_ci": {
+              "alpha": 0.05,
+              "high": 0.932040701205918,
+              "low": 0.8959419689630427,
+              "mean": 0.9143095265453579,
+              "samples_requested": 1000,
+              "samples_used": 1000
+            },
+            "scanned_layers": [
+              {
+                "site_or_layer": "L15",
+                "test_auc": 0.8543743605329647
+              },
+              {
+                "site_or_layer": "L30",
+                "test_auc": 0.909280943244328
+              },
+              {
+                "site_or_layer": "L45",
+                "test_auc": 0.9144732415671554
+              }
+            ],
+            "site_or_layer": "L45",
+            "test_negative_n": 1279,
+            "test_positive_n": 337,
+            "val_auc": 0.9174728109004263
+          }
+        },
+        "causal_abstraction_claim": "Artifact-level diagnostic: raw correctness is linearly readable; steerability is not yet tested for this row.",
+        "controls": [],
+        "created_at_utc": "2026-06-04T06:15:36.577829+00:00",
+        "intervention_metrics": {
+          "historical_raw_steering": {
+            "status": "missing"
+          }
+        },
+        "matched_noise_summary": {
+          "required_for_new_interventions": true,
+          "status": "missing"
+        },
+        "method": "steering_effectiveness_artifact_preflight",
+        "model": "gemma3_27b",
+        "n": 1616,
+        "notes": [
+          "Predicted regime is a planning label, not a manuscript claim.",
+          "LAP/logit-lens accessibility report is available for this row."
+        ],
+        "paired_flips": {},
+        "parse_fail_rate": null,
+        "representation_type": "raw_direction",
+        "result_type": "predictive",
+        "schema_version": 1,
+        "site_or_layer": "L45",
+        "split": "s1",
+        "target_variable": "free_form_correctness",
+        "task": "infer_subtype"
+      },
+      "model_display": "Gemma 3 27B",
+      "predicted_steerability_regime": "linear_readout_steerability_untested",
+      "row_id": "gemma3_27b__infer_subtype__L45__s1"
+    },
+    {
+      "diagnostics": {
+        "best_metadata_baseline_auc": 0.6015053276441562,
+        "best_metadata_feature_set": "b0_namefreq",
+        "historical_raw_steering": {
+          "all_flips_vs_baseline": {
+            "orthogonal_neg1sd": {
+              "changed": 0,
+              "false_to_true": 0,
+              "net_accuracy_delta": 0.0,
+              "paired_n": 4,
+              "true_to_false": 0
+            },
+            "orthogonal_pos1sd": {
+              "changed": 0,
+              "false_to_true": 0,
+              "net_accuracy_delta": 0.0,
+              "paired_n": 4,
+              "true_to_false": 0
+            },
+            "raw_neg1sd": {
+              "changed": 0,
+              "false_to_true": 0,
+              "net_accuracy_delta": 0.0,
+              "paired_n": 4,
+              "true_to_false": 0
+            },
+            "raw_pos1sd": {
+              "changed": 0,
+              "false_to_true": 0,
+              "net_accuracy_delta": 0.0,
+              "paired_n": 4,
+              "true_to_false": 0
+            }
+          },
+          "baseline_n": 4,
+          "baseline_parse_fail_rate": 0.0,
+          "baseline_strong_accuracy": 0.5,
+          "baseline_weak_accuracy": 1.0,
+          "orthogonal_conditions": [
+            "orthogonal_neg1sd",
+            "orthogonal_pos1sd"
+          ],
+          "orthogonal_max_abs_accuracy_delta": 0.0,
+          "orthogonal_max_changed": 0,
+          "orthogonal_max_false_to_true": 0,
+          "orthogonal_max_true_to_false": 0,
+          "paired_n_max": 4,
+          "parse_fail_rate_max": 0.0,
+          "parse_fail_rate_min": 0.0,
+          "raw_conditions": [
+            "raw_neg1sd",
+            "raw_pos1sd"
+          ],
+          "raw_max_abs_accuracy_delta": 0.0,
+          "raw_max_changed": 0,
+          "raw_max_false_to_true": 0,
+          "raw_max_true_to_false": 0,
+          "report_path": "results/stage2/steering/qwen35_raw_l45_property_steering_pilot.jsonl",
+          "status": "available"
+        },
+        "lap_profile": {
+          "kept_rows": 10997,
+          "method": "saved_activation_logit_lens",
+          "notes": [
+            "Training-free accessibility proxy; it is not a causal intervention.",
+            "Multi-token candidate scores reuse the same pre-generation lens distribution for each candidate token.",
+            "The foil is the first generated line, so correct rows can contain paraphrases rather than strict wrong foils."
+          ],
+          "peak_by_score": {
+            "gold_first_token_logprob": {
+              "auc": 0.5331770994731949,
+              "layer": "L31"
+            },
+            "gold_mean_logprob": {
+              "auc": 0.5198877857500417,
+              "layer": "L16"
+            },
+            "gold_minus_output_mean_logprob": {
+              "auc": 0.5046147588853662,
+              "layer": "L53"
+            },
+            "gold_vs_output_first_diff_logit_margin": {
+              "auc": 0.452409031231932,
+              "layer": "L53"
+            },
+            "gold_vs_output_first_diff_logprob_margin": {
+              "auc": 0.45241111850934995,
+              "layer": "L53"
+            },
+            "output_mean_logprob": {
+              "auc": 0.5563291101523206,
+              "layer": "L45"
+            }
+          },
+          "report_path": "docs/lap_qwen35_27b_infer_property_s1.json",
+          "requested_layer_auc_by_score": {
+            "gold_first_token_logprob": 0.5175904626826535,
+            "gold_mean_logprob": 0.5108973862363233,
+            "gold_minus_output_mean_logprob": 0.45532734618960213,
+            "gold_vs_output_first_diff_logit_margin": 0.42072416002738505,
+            "gold_vs_output_first_diff_logprob_margin": 0.42072416002738505,
+            "output_mean_logprob": 0.5563291101523206
+          },
+          "requested_layer_selected_auc": 0.42072416002738505,
+          "requested_site_or_layer": "L45",
+          "score_names": [
+            "gold_mean_logprob",
+            "gold_first_token_logprob",
+            "output_mean_logprob",
+            "gold_minus_output_mean_logprob",
+            "gold_vs_output_first_diff_logit_margin",
+            "gold_vs_output_first_diff_logprob_margin"
+          ],
+          "selected_peak_auc": 0.452409031231932,
+          "selected_peak_layer": "L53",
+          "selected_score": "gold_vs_output_first_diff_logit_margin",
+          "selected_score_label": "first-diff margin",
+          "status": "available",
+          "target_variable": "gold_vs_foil_margin"
+        },
+        "metadata_adjustment": {
+          "available_site_or_layer": "L45",
+          "exact_site_match": true,
+          "metadata_only_auc": 0.6015053276441562,
+          "metadata_plus_raw_auc": 0.9180949202641175,
+          "metadata_plus_raw_delta_vs_metadata": 0.31658959261996134,
+          "raw_refit_auc": 0.9179474267597912,
+          "raw_residualized_auc": 0.871475054229935,
+          "raw_residualized_delta_vs_metadata": 0.2699697265857788,
+          "raw_residualized_drop_vs_raw": 0.046472372529856254,
+          "raw_score_train_r2_from_metadata": 0.413034904629758,
+          "reference_metadata_set": "b0_namefreq",
+          "status": "available"
+        },
+        "raw_auc": 0.9179474267597912,
+        "raw_minus_best_metadata_auc": 0.31644209911563503
+      },
+      "experiment_report": {
+        "baseline_metrics": {
+          "best_metadata_baseline": {
+            "all_feature_sets": {
+              "b0_height": {
+                "n_test": 1650,
+                "n_train": 7698,
+                "test_auc": 0.5879374150794975,
+                "val_auc": 0.5876570579477065
+              },
+              "b0_namefreq": {
+                "n_test": 1650,
+                "n_train": 7698,
+                "test_auc": 0.6015053276441562,
+                "val_auc": 0.5759293683070414
+              },
+              "b0_prompt": {
+                "n_test": 1650,
+                "n_train": 7698,
+                "test_auc": 0.5954133989654598,
+                "val_auc": 0.5845196287002419
+              }
+            },
+            "best_feature_set": "b0_namefreq",
+            "best_test_auc": 0.6015053276441562,
+            "best_val_auc": 0.5759293683070414
+          },
+          "lap_profile": {
+            "artifact_proxy_best_scanned_layer": "L45",
+            "artifact_proxy_best_scanned_raw_auc": 0.9179474267597912,
+            "kept_rows": 10997,
+            "method": "saved_activation_logit_lens",
+            "notes": [
+              "Training-free accessibility proxy; it is not a causal intervention.",
+              "Multi-token candidate scores reuse the same pre-generation lens distribution for each candidate token.",
+              "The foil is the first generated line, so correct rows can contain paraphrases rather than strict wrong foils."
+            ],
+            "peak_by_score": {
+              "gold_first_token_logprob": {
+                "auc": 0.5331770994731949,
+                "layer": "L31"
+              },
+              "gold_mean_logprob": {
+                "auc": 0.5198877857500417,
+                "layer": "L16"
+              },
+              "gold_minus_output_mean_logprob": {
+                "auc": 0.5046147588853662,
+                "layer": "L53"
+              },
+              "gold_vs_output_first_diff_logit_margin": {
+                "auc": 0.452409031231932,
+                "layer": "L53"
+              },
+              "gold_vs_output_first_diff_logprob_margin": {
+                "auc": 0.45241111850934995,
+                "layer": "L53"
+              },
+              "output_mean_logprob": {
+                "auc": 0.5563291101523206,
+                "layer": "L45"
+              }
+            },
+            "report_path": "docs/lap_qwen35_27b_infer_property_s1.json",
+            "requested_layer_auc_by_score": {
+              "gold_first_token_logprob": 0.5175904626826535,
+              "gold_mean_logprob": 0.5108973862363233,
+              "gold_minus_output_mean_logprob": 0.45532734618960213,
+              "gold_vs_output_first_diff_logit_margin": 0.42072416002738505,
+              "gold_vs_output_first_diff_logprob_margin": 0.42072416002738505,
+              "output_mean_logprob": 0.5563291101523206
+            },
+            "requested_layer_selected_auc": 0.42072416002738505,
+            "requested_site_or_layer": "L45",
+            "score_names": [
+              "gold_mean_logprob",
+              "gold_first_token_logprob",
+              "output_mean_logprob",
+              "gold_minus_output_mean_logprob",
+              "gold_vs_output_first_diff_logit_margin",
+              "gold_vs_output_first_diff_logprob_margin"
+            ],
+            "selected_peak_auc": 0.452409031231932,
+            "selected_peak_layer": "L53",
+            "selected_score": "gold_vs_output_first_diff_logit_margin",
+            "selected_score_label": "first-diff margin",
+            "status": "available",
+            "target_variable": "gold_vs_foil_margin"
+          },
+          "metadata_adjustment": {
+            "available_site_or_layer": "L45",
+            "exact_site_match": true,
+            "metadata_only_auc": 0.6015053276441562,
+            "metadata_plus_raw_auc": 0.9180949202641175,
+            "metadata_plus_raw_delta_vs_metadata": 0.31658959261996134,
+            "raw_refit_auc": 0.9179474267597912,
+            "raw_residualized_auc": 0.871475054229935,
+            "raw_residualized_delta_vs_metadata": 0.2699697265857788,
+            "raw_residualized_drop_vs_raw": 0.046472372529856254,
+            "raw_score_train_r2_from_metadata": 0.413034904629758,
+            "reference_metadata_set": "b0_namefreq",
+            "status": "available"
+          },
+          "raw_minus_best_metadata_auc": 0.31644209911563503,
+          "raw_probe": {
+            "best_scanned_layer": "L45",
+            "best_scanned_raw_auc": 0.9179474267597912,
+            "n_test": 1650,
+            "raw_auc": 0.9179474267597912,
+            "raw_auc_ci": {
+              "alpha": 0.05,
+              "high": 0.9293120840635657,
+              "low": 0.9039458274518412,
+              "mean": 0.9175324916756444,
+              "samples_requested": 1000,
+              "samples_used": 1000
+            },
+            "scanned_layers": [
+              {
+                "site_or_layer": "L45",
+                "test_auc": 0.9179474267597912
+              }
+            ],
+            "site_or_layer": "L45",
+            "test_negative_n": 728,
+            "test_positive_n": 922,
+            "val_auc": 0.9060501809653674
+          }
+        },
+        "causal_abstraction_claim": "Artifact-level diagnostic: raw correctness is linearly readable and historical raw-direction steering did not produce false-to-true repair; matched-noise and positive-control checks remain required.",
+        "controls": [
+          "orthogonal_direction"
+        ],
+        "created_at_utc": "2026-06-04T06:15:36.585012+00:00",
+        "intervention_metrics": {
+          "historical_raw_steering": {
+            "all_flips_vs_baseline": {
+              "orthogonal_neg1sd": {
+                "changed": 0,
+                "false_to_true": 0,
+                "net_accuracy_delta": 0.0,
+                "paired_n": 4,
+                "true_to_false": 0
+              },
+              "orthogonal_pos1sd": {
+                "changed": 0,
+                "false_to_true": 0,
+                "net_accuracy_delta": 0.0,
+                "paired_n": 4,
+                "true_to_false": 0
+              },
+              "raw_neg1sd": {
+                "changed": 0,
+                "false_to_true": 0,
+                "net_accuracy_delta": 0.0,
+                "paired_n": 4,
+                "true_to_false": 0
+              },
+              "raw_pos1sd": {
+                "changed": 0,
+                "false_to_true": 0,
+                "net_accuracy_delta": 0.0,
+                "paired_n": 4,
+                "true_to_false": 0
+              }
+            },
+            "baseline_n": 4,
+            "baseline_parse_fail_rate": 0.0,
+            "baseline_strong_accuracy": 0.5,
+            "baseline_weak_accuracy": 1.0,
+            "orthogonal_conditions": [
+              "orthogonal_neg1sd",
+              "orthogonal_pos1sd"
+            ],
+            "orthogonal_max_abs_accuracy_delta": 0.0,
+            "orthogonal_max_changed": 0,
+            "orthogonal_max_false_to_true": 0,
+            "orthogonal_max_true_to_false": 0,
+            "paired_n_max": 4,
+            "parse_fail_rate_max": 0.0,
+            "parse_fail_rate_min": 0.0,
+            "raw_conditions": [
+              "raw_neg1sd",
+              "raw_pos1sd"
+            ],
+            "raw_max_abs_accuracy_delta": 0.0,
+            "raw_max_changed": 0,
+            "raw_max_false_to_true": 0,
+            "raw_max_true_to_false": 0,
+            "report_path": "results/stage2/steering/qwen35_raw_l45_property_steering_pilot.jsonl",
+            "status": "available"
+          }
+        },
+        "matched_noise_summary": {
+          "required_for_new_interventions": true,
+          "status": "missing"
+        },
+        "method": "steering_effectiveness_artifact_preflight",
+        "model": "qwen35_27b",
+        "n": 1650,
+        "notes": [
+          "Predicted regime is a planning label, not a manuscript claim.",
+          "LAP/logit-lens accessibility report is available for this row.",
+          "Historical steering lacks matched Gaussian/noise and known positive-control steering checks."
+        ],
+        "paired_flips": {
+          "orthogonal_neg1sd": {
+            "changed": 0,
+            "false_to_true": 0,
+            "net_accuracy_delta": 0.0,
+            "paired_n": 4,
+            "true_to_false": 0
+          },
+          "orthogonal_pos1sd": {
+            "changed": 0,
+            "false_to_true": 0,
+            "net_accuracy_delta": 0.0,
+            "paired_n": 4,
+            "true_to_false": 0
+          },
+          "raw_neg1sd": {
+            "changed": 0,
+            "false_to_true": 0,
+            "net_accuracy_delta": 0.0,
+            "paired_n": 4,
+            "true_to_false": 0
+          },
+          "raw_pos1sd": {
+            "changed": 0,
+            "false_to_true": 0,
+            "net_accuracy_delta": 0.0,
+            "paired_n": 4,
+            "true_to_false": 0
+          }
+        },
+        "parse_fail_rate": 0.0,
+        "representation_type": "raw_direction",
+        "result_type": "predictive_and_causal",
+        "schema_version": 1,
+        "site_or_layer": "L45",
+        "split": "s1",
+        "target_variable": "free_form_correctness",
+        "task": "infer_property"
+      },
+      "model_display": "Qwen3.5 27B",
+      "predicted_steerability_regime": "linearly_readable_activation_over_metadata_historical_raw_steering_null",
+      "row_id": "qwen35_27b__infer_property__L45__s1"
+    },
+    {
+      "diagnostics": {
+        "best_metadata_baseline_auc": 0.6015053276441562,
+        "best_metadata_feature_set": "b0_namefreq",
+        "historical_raw_steering": {
+          "all_flips_vs_baseline": {
+            "orthogonal_neg1sd": {
+              "changed": 0,
+              "false_to_true": 0,
+              "net_accuracy_delta": 0.0,
+              "paired_n": 4,
+              "true_to_false": 0
+            },
+            "orthogonal_pos1sd": {
+              "changed": 0,
+              "false_to_true": 0,
+              "net_accuracy_delta": 0.0,
+              "paired_n": 4,
+              "true_to_false": 0
+            },
+            "raw_neg1sd": {
+              "changed": 0,
+              "false_to_true": 0,
+              "net_accuracy_delta": 0.0,
+              "paired_n": 4,
+              "true_to_false": 0
+            },
+            "raw_pos1sd": {
+              "changed": 0,
+              "false_to_true": 0,
+              "net_accuracy_delta": 0.0,
+              "paired_n": 4,
+              "true_to_false": 0
+            }
+          },
+          "baseline_n": 4,
+          "baseline_parse_fail_rate": 0.0,
+          "baseline_strong_accuracy": 0.5,
+          "baseline_weak_accuracy": 1.0,
+          "orthogonal_conditions": [
+            "orthogonal_neg1sd",
+            "orthogonal_pos1sd"
+          ],
+          "orthogonal_max_abs_accuracy_delta": 0.0,
+          "orthogonal_max_changed": 0,
+          "orthogonal_max_false_to_true": 0,
+          "orthogonal_max_true_to_false": 0,
+          "paired_n_max": 4,
+          "parse_fail_rate_max": 0.0,
+          "parse_fail_rate_min": 0.0,
+          "raw_conditions": [
+            "raw_neg1sd",
+            "raw_pos1sd"
+          ],
+          "raw_max_abs_accuracy_delta": 0.0,
+          "raw_max_changed": 0,
+          "raw_max_false_to_true": 0,
+          "raw_max_true_to_false": 0,
+          "report_path": "results/stage2/steering/qwen35_raw_l53_property_steering_pilot.jsonl",
+          "status": "available"
+        },
+        "lap_profile": {
+          "kept_rows": 10997,
+          "method": "saved_activation_logit_lens",
+          "notes": [
+            "Training-free accessibility proxy; it is not a causal intervention.",
+            "Multi-token candidate scores reuse the same pre-generation lens distribution for each candidate token.",
+            "The foil is the first generated line, so correct rows can contain paraphrases rather than strict wrong foils."
+          ],
+          "peak_by_score": {
+            "gold_first_token_logprob": {
+              "auc": 0.5331770994731949,
+              "layer": "L31"
+            },
+            "gold_mean_logprob": {
+              "auc": 0.5198877857500417,
+              "layer": "L16"
+            },
+            "gold_minus_output_mean_logprob": {
+              "auc": 0.5046147588853662,
+              "layer": "L53"
+            },
+            "gold_vs_output_first_diff_logit_margin": {
+              "auc": 0.452409031231932,
+              "layer": "L53"
+            },
+            "gold_vs_output_first_diff_logprob_margin": {
+              "auc": 0.45241111850934995,
+              "layer": "L53"
+            },
+            "output_mean_logprob": {
+              "auc": 0.5563291101523206,
+              "layer": "L45"
+            }
+          },
+          "report_path": "docs/lap_qwen35_27b_infer_property_s1.json",
+          "requested_layer_auc_by_score": {
+            "gold_first_token_logprob": 0.4753745441109866,
+            "gold_mean_logprob": 0.5025513396581727,
+            "gold_minus_output_mean_logprob": 0.5046147588853662,
+            "gold_vs_output_first_diff_logit_margin": 0.452409031231932,
+            "gold_vs_output_first_diff_logprob_margin": 0.45241111850934995,
+            "output_mean_logprob": 0.4918282639269624
+          },
+          "requested_layer_selected_auc": 0.452409031231932,
+          "requested_site_or_layer": "L53",
+          "score_names": [
+            "gold_mean_logprob",
+            "gold_first_token_logprob",
+            "output_mean_logprob",
+            "gold_minus_output_mean_logprob",
+            "gold_vs_output_first_diff_logit_margin",
+            "gold_vs_output_first_diff_logprob_margin"
+          ],
+          "selected_peak_auc": 0.452409031231932,
+          "selected_peak_layer": "L53",
+          "selected_score": "gold_vs_output_first_diff_logit_margin",
+          "selected_score_label": "first-diff margin",
+          "status": "available",
+          "target_variable": "gold_vs_foil_margin"
+        },
+        "metadata_adjustment": {
+          "available_site_or_layer": "L45",
+          "exact_site_match": false,
+          "metadata_only_auc": 0.6015053276441562,
+          "metadata_plus_raw_auc": 0.9180949202641175,
+          "metadata_plus_raw_delta_vs_metadata": 0.31658959261996134,
+          "raw_refit_auc": 0.9179474267597912,
+          "raw_residualized_auc": 0.871475054229935,
+          "raw_residualized_delta_vs_metadata": 0.2699697265857788,
+          "raw_residualized_drop_vs_raw": 0.046472372529856254,
+          "raw_score_train_r2_from_metadata": 0.413034904629758,
+          "reference_metadata_set": "b0_namefreq",
+          "status": "available"
+        },
+        "raw_auc": 0.9400252675740746,
+        "raw_minus_best_metadata_auc": 0.33851993992991836
+      },
+      "experiment_report": {
+        "baseline_metrics": {
+          "best_metadata_baseline": {
+            "all_feature_sets": {
+              "b0_height": {
+                "n_test": 1650,
+                "n_train": 7698,
+                "test_auc": 0.5879374150794975,
+                "val_auc": 0.5876570579477065
+              },
+              "b0_namefreq": {
+                "n_test": 1650,
+                "n_train": 7698,
+                "test_auc": 0.6015053276441562,
+                "val_auc": 0.5759293683070414
+              },
+              "b0_prompt": {
+                "n_test": 1650,
+                "n_train": 7698,
+                "test_auc": 0.5954133989654598,
+                "val_auc": 0.5845196287002419
+              }
+            },
+            "best_feature_set": "b0_namefreq",
+            "best_test_auc": 0.6015053276441562,
+            "best_val_auc": 0.5759293683070414
+          },
+          "lap_profile": {
+            "artifact_proxy_best_scanned_layer": "L53",
+            "artifact_proxy_best_scanned_raw_auc": 0.9400252675740746,
+            "kept_rows": 10997,
+            "method": "saved_activation_logit_lens",
+            "notes": [
+              "Training-free accessibility proxy; it is not a causal intervention.",
+              "Multi-token candidate scores reuse the same pre-generation lens distribution for each candidate token.",
+              "The foil is the first generated line, so correct rows can contain paraphrases rather than strict wrong foils."
+            ],
+            "peak_by_score": {
+              "gold_first_token_logprob": {
+                "auc": 0.5331770994731949,
+                "layer": "L31"
+              },
+              "gold_mean_logprob": {
+                "auc": 0.5198877857500417,
+                "layer": "L16"
+              },
+              "gold_minus_output_mean_logprob": {
+                "auc": 0.5046147588853662,
+                "layer": "L53"
+              },
+              "gold_vs_output_first_diff_logit_margin": {
+                "auc": 0.452409031231932,
+                "layer": "L53"
+              },
+              "gold_vs_output_first_diff_logprob_margin": {
+                "auc": 0.45241111850934995,
+                "layer": "L53"
+              },
+              "output_mean_logprob": {
+                "auc": 0.5563291101523206,
+                "layer": "L45"
+              }
+            },
+            "report_path": "docs/lap_qwen35_27b_infer_property_s1.json",
+            "requested_layer_auc_by_score": {
+              "gold_first_token_logprob": 0.4753745441109866,
+              "gold_mean_logprob": 0.5025513396581727,
+              "gold_minus_output_mean_logprob": 0.5046147588853662,
+              "gold_vs_output_first_diff_logit_margin": 0.452409031231932,
+              "gold_vs_output_first_diff_logprob_margin": 0.45241111850934995,
+              "output_mean_logprob": 0.4918282639269624
+            },
+            "requested_layer_selected_auc": 0.452409031231932,
+            "requested_site_or_layer": "L53",
+            "score_names": [
+              "gold_mean_logprob",
+              "gold_first_token_logprob",
+              "output_mean_logprob",
+              "gold_minus_output_mean_logprob",
+              "gold_vs_output_first_diff_logit_margin",
+              "gold_vs_output_first_diff_logprob_margin"
+            ],
+            "selected_peak_auc": 0.452409031231932,
+            "selected_peak_layer": "L53",
+            "selected_score": "gold_vs_output_first_diff_logit_margin",
+            "selected_score_label": "first-diff margin",
+            "status": "available",
+            "target_variable": "gold_vs_foil_margin"
+          },
+          "metadata_adjustment": {
+            "available_site_or_layer": "L45",
+            "exact_site_match": false,
+            "metadata_only_auc": 0.6015053276441562,
+            "metadata_plus_raw_auc": 0.9180949202641175,
+            "metadata_plus_raw_delta_vs_metadata": 0.31658959261996134,
+            "raw_refit_auc": 0.9179474267597912,
+            "raw_residualized_auc": 0.871475054229935,
+            "raw_residualized_delta_vs_metadata": 0.2699697265857788,
+            "raw_residualized_drop_vs_raw": 0.046472372529856254,
+            "raw_score_train_r2_from_metadata": 0.413034904629758,
+            "reference_metadata_set": "b0_namefreq",
+            "status": "available"
+          },
+          "raw_minus_best_metadata_auc": 0.33851993992991836,
+          "raw_probe": {
+            "best_scanned_layer": "L53",
+            "best_scanned_raw_auc": 0.9400252675740746,
+            "n_test": 1650,
+            "raw_auc": 0.9400252675740746,
+            "raw_auc_ci": {
+              "alpha": 0.05,
+              "high": 0.9497857411710673,
+              "low": 0.9287401597095476,
+              "mean": 0.9399439658404952,
+              "samples_requested": 1000,
+              "samples_used": 1000
+            },
+            "scanned_layers": [
+              {
+                "site_or_layer": "L16",
+                "test_auc": 0.7314307167886345
+              },
+              {
+                "site_or_layer": "L31",
+                "test_auc": 0.8633644013253559
+              },
+              {
+                "site_or_layer": "L40",
+                "test_auc": 0.9068958427689449
+              },
+              {
+                "site_or_layer": "L53",
+                "test_auc": 0.9400252675740746
+              }
+            ],
+            "site_or_layer": "L53",
+            "test_negative_n": 728,
+            "test_positive_n": 922,
+            "val_auc": 0.9329622523847745
+          }
+        },
+        "causal_abstraction_claim": "Artifact-level diagnostic: raw correctness is linearly readable and historical raw-direction steering did not produce false-to-true repair; matched-noise and positive-control checks remain required.",
+        "controls": [
+          "orthogonal_direction"
+        ],
+        "created_at_utc": "2026-06-04T06:15:36.603492+00:00",
+        "intervention_metrics": {
+          "historical_raw_steering": {
+            "all_flips_vs_baseline": {
+              "orthogonal_neg1sd": {
+                "changed": 0,
+                "false_to_true": 0,
+                "net_accuracy_delta": 0.0,
+                "paired_n": 4,
+                "true_to_false": 0
+              },
+              "orthogonal_pos1sd": {
+                "changed": 0,
+                "false_to_true": 0,
+                "net_accuracy_delta": 0.0,
+                "paired_n": 4,
+                "true_to_false": 0
+              },
+              "raw_neg1sd": {
+                "changed": 0,
+                "false_to_true": 0,
+                "net_accuracy_delta": 0.0,
+                "paired_n": 4,
+                "true_to_false": 0
+              },
+              "raw_pos1sd": {
+                "changed": 0,
+                "false_to_true": 0,
+                "net_accuracy_delta": 0.0,
+                "paired_n": 4,
+                "true_to_false": 0
+              }
+            },
+            "baseline_n": 4,
+            "baseline_parse_fail_rate": 0.0,
+            "baseline_strong_accuracy": 0.5,
+            "baseline_weak_accuracy": 1.0,
+            "orthogonal_conditions": [
+              "orthogonal_neg1sd",
+              "orthogonal_pos1sd"
+            ],
+            "orthogonal_max_abs_accuracy_delta": 0.0,
+            "orthogonal_max_changed": 0,
+            "orthogonal_max_false_to_true": 0,
+            "orthogonal_max_true_to_false": 0,
+            "paired_n_max": 4,
+            "parse_fail_rate_max": 0.0,
+            "parse_fail_rate_min": 0.0,
+            "raw_conditions": [
+              "raw_neg1sd",
+              "raw_pos1sd"
+            ],
+            "raw_max_abs_accuracy_delta": 0.0,
+            "raw_max_changed": 0,
+            "raw_max_false_to_true": 0,
+            "raw_max_true_to_false": 0,
+            "report_path": "results/stage2/steering/qwen35_raw_l53_property_steering_pilot.jsonl",
+            "status": "available"
+          }
+        },
+        "matched_noise_summary": {
+          "required_for_new_interventions": true,
+          "status": "missing"
+        },
+        "method": "steering_effectiveness_artifact_preflight",
+        "model": "qwen35_27b",
+        "n": 1650,
+        "notes": [
+          "Predicted regime is a planning label, not a manuscript claim.",
+          "LAP/logit-lens accessibility report is available for this row.",
+          "Metadata-residualization proxy is from L45, not requested site L53.",
+          "Historical steering lacks matched Gaussian/noise and known positive-control steering checks."
+        ],
+        "paired_flips": {
+          "orthogonal_neg1sd": {
+            "changed": 0,
+            "false_to_true": 0,
+            "net_accuracy_delta": 0.0,
+            "paired_n": 4,
+            "true_to_false": 0
+          },
+          "orthogonal_pos1sd": {
+            "changed": 0,
+            "false_to_true": 0,
+            "net_accuracy_delta": 0.0,
+            "paired_n": 4,
+            "true_to_false": 0
+          },
+          "raw_neg1sd": {
+            "changed": 0,
+            "false_to_true": 0,
+            "net_accuracy_delta": 0.0,
+            "paired_n": 4,
+            "true_to_false": 0
+          },
+          "raw_pos1sd": {
+            "changed": 0,
+            "false_to_true": 0,
+            "net_accuracy_delta": 0.0,
+            "paired_n": 4,
+            "true_to_false": 0
+          }
+        },
+        "parse_fail_rate": 0.0,
+        "representation_type": "raw_direction",
+        "result_type": "predictive_and_causal",
+        "schema_version": 1,
+        "site_or_layer": "L53",
+        "split": "s1",
+        "target_variable": "free_form_correctness",
+        "task": "infer_property"
+      },
+      "model_display": "Qwen3.5 27B",
+      "predicted_steerability_regime": "linearly_readable_activation_over_metadata_historical_raw_steering_null",
+      "row_id": "qwen35_27b__infer_property__L53__s1"
+    },
+    {
+      "diagnostics": {
+        "best_metadata_baseline_auc": 0.6747869921164342,
+        "best_metadata_feature_set": "b0_prompt",
+        "historical_raw_steering": {
+          "status": "missing"
+        },
+        "lap_profile": {
+          "kept_rows": 10999,
+          "method": "saved_activation_logit_lens",
+          "notes": [
+            "Training-free accessibility proxy; it is not a causal intervention.",
+            "Multi-token candidate scores reuse the same pre-generation lens distribution for each candidate token.",
+            "The foil is the first generated line, so correct rows can contain paraphrases rather than strict wrong foils."
+          ],
+          "peak_by_score": {
+            "gold_first_token_logprob": {
+              "auc": 0.5627804730139478,
+              "layer": "L45"
+            },
+            "gold_mean_logprob": {
+              "auc": 0.5165691328077623,
+              "layer": "L16"
+            },
+            "gold_minus_output_mean_logprob": {
+              "auc": 0.4411249241964827,
+              "layer": "L16"
+            },
+            "gold_vs_output_first_diff_logit_margin": {
+              "auc": 0.5135716599653182,
+              "layer": "L16"
+            },
+            "gold_vs_output_first_diff_logprob_margin": {
+              "auc": 0.5135640375783677,
+              "layer": "L16"
+            },
+            "output_mean_logprob": {
+              "auc": 0.6335142510612493,
+              "layer": "L45"
+            }
+          },
+          "report_path": "docs/lap_qwen35_27b_infer_subtype_s1.json",
+          "requested_layer_auc_by_score": {
+            "gold_first_token_logprob": 0.5627804730139478,
+            "gold_mean_logprob": 0.5108717404487568,
+            "gold_minus_output_mean_logprob": 0.38095512431776835,
+            "gold_vs_output_first_diff_logit_margin": 0.40984145435143016,
+            "gold_vs_output_first_diff_logprob_margin": 0.40984145435143016,
+            "output_mean_logprob": 0.6335142510612493
+          },
+          "requested_layer_selected_auc": 0.40984145435143016,
+          "requested_site_or_layer": "L45",
+          "score_names": [
+            "gold_mean_logprob",
+            "gold_first_token_logprob",
+            "output_mean_logprob",
+            "gold_minus_output_mean_logprob",
+            "gold_vs_output_first_diff_logit_margin",
+            "gold_vs_output_first_diff_logprob_margin"
+          ],
+          "selected_peak_auc": 0.5135716599653182,
+          "selected_peak_layer": "L16",
+          "selected_score": "gold_vs_output_first_diff_logit_margin",
+          "selected_score_label": "first-diff margin",
+          "status": "available",
+          "target_variable": "gold_vs_foil_margin"
+        },
+        "metadata_adjustment": {
+          "available_site_or_layer": "L45",
+          "exact_site_match": true,
+          "metadata_only_auc": 0.6747869921164342,
+          "metadata_plus_raw_auc": 0.9010657974530019,
+          "metadata_plus_raw_delta_vs_metadata": 0.22627880533656763,
+          "raw_refit_auc": 0.9012310491206792,
+          "raw_residualized_auc": 0.8172604608853851,
+          "raw_residualized_delta_vs_metadata": 0.14247346876895084,
+          "raw_residualized_drop_vs_raw": 0.08397058823529413,
+          "raw_score_train_r2_from_metadata": 0.5144421627238209,
+          "reference_metadata_set": "b0_prompt",
+          "status": "available"
+        },
+        "raw_auc": 0.9012310491206792,
+        "raw_minus_best_metadata_auc": 0.22644405700424497
+      },
+      "experiment_report": {
+        "baseline_metrics": {
+          "best_metadata_baseline": {
+            "all_feature_sets": {
+              "b0_height": {
+                "n_test": 1650,
+                "n_train": 7699,
+                "test_auc": 0.651114311704063,
+                "val_auc": 0.651114311704063
+              },
+              "b0_namefreq": {
+                "n_test": 1650,
+                "n_train": 7699,
+                "test_auc": 0.6711825348696179,
+                "val_auc": 0.6710946027895693
+              },
+              "b0_prompt": {
+                "n_test": 1650,
+                "n_train": 7699,
+                "test_auc": 0.6747869921164342,
+                "val_auc": 0.667914645239539
+              }
+            },
+            "best_feature_set": "b0_prompt",
+            "best_test_auc": 0.6747869921164342,
+            "best_val_auc": 0.667914645239539
+          },
+          "lap_profile": {
+            "artifact_proxy_best_scanned_layer": "L45",
+            "artifact_proxy_best_scanned_raw_auc": 0.9012310491206792,
+            "kept_rows": 10999,
+            "method": "saved_activation_logit_lens",
+            "notes": [
+              "Training-free accessibility proxy; it is not a causal intervention.",
+              "Multi-token candidate scores reuse the same pre-generation lens distribution for each candidate token.",
+              "The foil is the first generated line, so correct rows can contain paraphrases rather than strict wrong foils."
+            ],
+            "peak_by_score": {
+              "gold_first_token_logprob": {
+                "auc": 0.5627804730139478,
+                "layer": "L45"
+              },
+              "gold_mean_logprob": {
+                "auc": 0.5165691328077623,
+                "layer": "L16"
+              },
+              "gold_minus_output_mean_logprob": {
+                "auc": 0.4411249241964827,
+                "layer": "L16"
+              },
+              "gold_vs_output_first_diff_logit_margin": {
+                "auc": 0.5135716599653182,
+                "layer": "L16"
+              },
+              "gold_vs_output_first_diff_logprob_margin": {
+                "auc": 0.5135640375783677,
+                "layer": "L16"
+              },
+              "output_mean_logprob": {
+                "auc": 0.6335142510612493,
+                "layer": "L45"
+              }
+            },
+            "report_path": "docs/lap_qwen35_27b_infer_subtype_s1.json",
+            "requested_layer_auc_by_score": {
+              "gold_first_token_logprob": 0.5627804730139478,
+              "gold_mean_logprob": 0.5108717404487568,
+              "gold_minus_output_mean_logprob": 0.38095512431776835,
+              "gold_vs_output_first_diff_logit_margin": 0.40984145435143016,
+              "gold_vs_output_first_diff_logprob_margin": 0.40984145435143016,
+              "output_mean_logprob": 0.6335142510612493
+            },
+            "requested_layer_selected_auc": 0.40984145435143016,
+            "requested_site_or_layer": "L45",
+            "score_names": [
+              "gold_mean_logprob",
+              "gold_first_token_logprob",
+              "output_mean_logprob",
+              "gold_minus_output_mean_logprob",
+              "gold_vs_output_first_diff_logit_margin",
+              "gold_vs_output_first_diff_logprob_margin"
+            ],
+            "selected_peak_auc": 0.5135716599653182,
+            "selected_peak_layer": "L16",
+            "selected_score": "gold_vs_output_first_diff_logit_margin",
+            "selected_score_label": "first-diff margin",
+            "status": "available",
+            "target_variable": "gold_vs_foil_margin"
+          },
+          "metadata_adjustment": {
+            "available_site_or_layer": "L45",
+            "exact_site_match": true,
+            "metadata_only_auc": 0.6747869921164342,
+            "metadata_plus_raw_auc": 0.9010657974530019,
+            "metadata_plus_raw_delta_vs_metadata": 0.22627880533656763,
+            "raw_refit_auc": 0.9012310491206792,
+            "raw_residualized_auc": 0.8172604608853851,
+            "raw_residualized_delta_vs_metadata": 0.14247346876895084,
+            "raw_residualized_drop_vs_raw": 0.08397058823529413,
+            "raw_score_train_r2_from_metadata": 0.5144421627238209,
+            "reference_metadata_set": "b0_prompt",
+            "status": "available"
+          },
+          "raw_minus_best_metadata_auc": 0.22644405700424497,
+          "raw_probe": {
+            "best_scanned_layer": "L45",
+            "best_scanned_raw_auc": 0.9012310491206792,
+            "n_test": 1650,
+            "raw_auc": 0.9012310491206792,
+            "raw_auc_ci": {
+              "alpha": 0.05,
+              "high": 0.9151054479054216,
+              "low": 0.88661246211311,
+              "mean": 0.9014383271683893,
+              "samples_requested": 1000,
+              "samples_used": 1000
+            },
+            "scanned_layers": [
+              {
+                "site_or_layer": "L45",
+                "test_auc": 0.9012310491206792
+              }
+            ],
+            "site_or_layer": "L45",
+            "test_negative_n": 970,
+            "test_positive_n": 680,
+            "val_auc": 0.8959536082474227
+          }
+        },
+        "causal_abstraction_claim": "Artifact-level diagnostic: raw correctness is linearly readable; steerability is not yet tested for this row.",
+        "controls": [],
+        "created_at_utc": "2026-06-04T06:15:36.608073+00:00",
+        "intervention_metrics": {
+          "historical_raw_steering": {
+            "status": "missing"
+          }
+        },
+        "matched_noise_summary": {
+          "required_for_new_interventions": true,
+          "status": "missing"
+        },
+        "method": "steering_effectiveness_artifact_preflight",
+        "model": "qwen35_27b",
+        "n": 1650,
+        "notes": [
+          "Predicted regime is a planning label, not a manuscript claim.",
+          "LAP/logit-lens accessibility report is available for this row."
+        ],
+        "paired_flips": {},
+        "parse_fail_rate": null,
+        "representation_type": "raw_direction",
+        "result_type": "predictive",
+        "schema_version": 1,
+        "site_or_layer": "L45",
+        "split": "s1",
+        "target_variable": "free_form_correctness",
+        "task": "infer_subtype"
+      },
+      "model_display": "Qwen3.5 27B",
+      "predicted_steerability_regime": "strong_activation_over_metadata_steerability_untested",
+      "row_id": "qwen35_27b__infer_subtype__L45__s1"
+    },
+    {
+      "diagnostics": {
+        "best_metadata_baseline_auc": 0.6747869921164342,
+        "best_metadata_feature_set": "b0_prompt",
+        "historical_raw_steering": {
+          "status": "missing"
+        },
+        "lap_profile": {
+          "kept_rows": 10999,
+          "method": "saved_activation_logit_lens",
+          "notes": [
+            "Training-free accessibility proxy; it is not a causal intervention.",
+            "Multi-token candidate scores reuse the same pre-generation lens distribution for each candidate token.",
+            "The foil is the first generated line, so correct rows can contain paraphrases rather than strict wrong foils."
+          ],
+          "peak_by_score": {
+            "gold_first_token_logprob": {
+              "auc": 0.5627804730139478,
+              "layer": "L45"
+            },
+            "gold_mean_logprob": {
+              "auc": 0.5165691328077623,
+              "layer": "L16"
+            },
+            "gold_minus_output_mean_logprob": {
+              "auc": 0.4411249241964827,
+              "layer": "L16"
+            },
+            "gold_vs_output_first_diff_logit_margin": {
+              "auc": 0.5135716599653182,
+              "layer": "L16"
+            },
+            "gold_vs_output_first_diff_logprob_margin": {
+              "auc": 0.5135640375783677,
+              "layer": "L16"
+            },
+            "output_mean_logprob": {
+              "auc": 0.6335142510612493,
+              "layer": "L45"
+            }
+          },
+          "report_path": "docs/lap_qwen35_27b_infer_subtype_s1.json",
+          "requested_layer_auc_by_score": {
+            "gold_first_token_logprob": 0.4656913280776228,
+            "gold_mean_logprob": 0.4152054275318375,
+            "gold_minus_output_mean_logprob": 0.4008383869011522,
+            "gold_vs_output_first_diff_logit_margin": 0.3319139813632639,
+            "gold_vs_output_first_diff_logprob_margin": 0.3319092173714199,
+            "output_mean_logprob": 0.522738781079442
+          },
+          "requested_layer_selected_auc": 0.3319139813632639,
+          "requested_site_or_layer": "L53",
+          "score_names": [
+            "gold_mean_logprob",
+            "gold_first_token_logprob",
+            "output_mean_logprob",
+            "gold_minus_output_mean_logprob",
+            "gold_vs_output_first_diff_logit_margin",
+            "gold_vs_output_first_diff_logprob_margin"
+          ],
+          "selected_peak_auc": 0.5135716599653182,
+          "selected_peak_layer": "L16",
+          "selected_score": "gold_vs_output_first_diff_logit_margin",
+          "selected_score_label": "first-diff margin",
+          "status": "available",
+          "target_variable": "gold_vs_foil_margin"
+        },
+        "metadata_adjustment": {
+          "available_site_or_layer": "L45",
+          "exact_site_match": false,
+          "metadata_only_auc": 0.6747869921164342,
+          "metadata_plus_raw_auc": 0.9010657974530019,
+          "metadata_plus_raw_delta_vs_metadata": 0.22627880533656763,
+          "raw_refit_auc": 0.9012310491206792,
+          "raw_residualized_auc": 0.8172604608853851,
+          "raw_residualized_delta_vs_metadata": 0.14247346876895084,
+          "raw_residualized_drop_vs_raw": 0.08397058823529413,
+          "raw_score_train_r2_from_metadata": 0.5144421627238209,
+          "reference_metadata_set": "b0_prompt",
+          "status": "available"
+        },
+        "raw_auc": 0.9204821103699212,
+        "raw_minus_best_metadata_auc": 0.245695118253487
+      },
+      "experiment_report": {
+        "baseline_metrics": {
+          "best_metadata_baseline": {
+            "all_feature_sets": {
+              "b0_height": {
+                "n_test": 1650,
+                "n_train": 7699,
+                "test_auc": 0.651114311704063,
+                "val_auc": 0.651114311704063
+              },
+              "b0_namefreq": {
+                "n_test": 1650,
+                "n_train": 7699,
+                "test_auc": 0.6711825348696179,
+                "val_auc": 0.6710946027895693
+              },
+              "b0_prompt": {
+                "n_test": 1650,
+                "n_train": 7699,
+                "test_auc": 0.6747869921164342,
+                "val_auc": 0.667914645239539
+              }
+            },
+            "best_feature_set": "b0_prompt",
+            "best_test_auc": 0.6747869921164342,
+            "best_val_auc": 0.667914645239539
+          },
+          "lap_profile": {
+            "artifact_proxy_best_scanned_layer": "L53",
+            "artifact_proxy_best_scanned_raw_auc": 0.9204821103699212,
+            "kept_rows": 10999,
+            "method": "saved_activation_logit_lens",
+            "notes": [
+              "Training-free accessibility proxy; it is not a causal intervention.",
+              "Multi-token candidate scores reuse the same pre-generation lens distribution for each candidate token.",
+              "The foil is the first generated line, so correct rows can contain paraphrases rather than strict wrong foils."
+            ],
+            "peak_by_score": {
+              "gold_first_token_logprob": {
+                "auc": 0.5627804730139478,
+                "layer": "L45"
+              },
+              "gold_mean_logprob": {
+                "auc": 0.5165691328077623,
+                "layer": "L16"
+              },
+              "gold_minus_output_mean_logprob": {
+                "auc": 0.4411249241964827,
+                "layer": "L16"
+              },
+              "gold_vs_output_first_diff_logit_margin": {
+                "auc": 0.5135716599653182,
+                "layer": "L16"
+              },
+              "gold_vs_output_first_diff_logprob_margin": {
+                "auc": 0.5135640375783677,
+                "layer": "L16"
+              },
+              "output_mean_logprob": {
+                "auc": 0.6335142510612493,
+                "layer": "L45"
+              }
+            },
+            "report_path": "docs/lap_qwen35_27b_infer_subtype_s1.json",
+            "requested_layer_auc_by_score": {
+              "gold_first_token_logprob": 0.4656913280776228,
+              "gold_mean_logprob": 0.4152054275318375,
+              "gold_minus_output_mean_logprob": 0.4008383869011522,
+              "gold_vs_output_first_diff_logit_margin": 0.3319139813632639,
+              "gold_vs_output_first_diff_logprob_margin": 0.3319092173714199,
+              "output_mean_logprob": 0.522738781079442
+            },
+            "requested_layer_selected_auc": 0.3319139813632639,
+            "requested_site_or_layer": "L53",
+            "score_names": [
+              "gold_mean_logprob",
+              "gold_first_token_logprob",
+              "output_mean_logprob",
+              "gold_minus_output_mean_logprob",
+              "gold_vs_output_first_diff_logit_margin",
+              "gold_vs_output_first_diff_logprob_margin"
+            ],
+            "selected_peak_auc": 0.5135716599653182,
+            "selected_peak_layer": "L16",
+            "selected_score": "gold_vs_output_first_diff_logit_margin",
+            "selected_score_label": "first-diff margin",
+            "status": "available",
+            "target_variable": "gold_vs_foil_margin"
+          },
+          "metadata_adjustment": {
+            "available_site_or_layer": "L45",
+            "exact_site_match": false,
+            "metadata_only_auc": 0.6747869921164342,
+            "metadata_plus_raw_auc": 0.9010657974530019,
+            "metadata_plus_raw_delta_vs_metadata": 0.22627880533656763,
+            "raw_refit_auc": 0.9012310491206792,
+            "raw_residualized_auc": 0.8172604608853851,
+            "raw_residualized_delta_vs_metadata": 0.14247346876895084,
+            "raw_residualized_drop_vs_raw": 0.08397058823529413,
+            "raw_score_train_r2_from_metadata": 0.5144421627238209,
+            "reference_metadata_set": "b0_prompt",
+            "status": "available"
+          },
+          "raw_minus_best_metadata_auc": 0.245695118253487,
+          "raw_probe": {
+            "best_scanned_layer": "L53",
+            "best_scanned_raw_auc": 0.9204821103699212,
+            "n_test": 1650,
+            "raw_auc": 0.9204821103699212,
+            "raw_auc_ci": {
+              "alpha": 0.05,
+              "high": 0.9331788488480687,
+              "low": 0.9072658134127914,
+              "mean": 0.9205088705248573,
+              "samples_requested": 1000,
+              "samples_used": 1000
+            },
+            "scanned_layers": [
+              {
+                "site_or_layer": "L16",
+                "test_auc": 0.735595815645846
+              },
+              {
+                "site_or_layer": "L31",
+                "test_auc": 0.8462310491206793
+              },
+              {
+                "site_or_layer": "L40",
+                "test_auc": 0.8869617950272892
+              },
+              {
+                "site_or_layer": "L53",
+                "test_auc": 0.9204821103699212
+              }
+            ],
+            "site_or_layer": "L53",
+            "test_negative_n": 970,
+            "test_positive_n": 680,
+            "val_auc": 0.9253547604608854
+          }
+        },
+        "causal_abstraction_claim": "Artifact-level diagnostic: raw correctness is linearly readable; steerability is not yet tested for this row.",
+        "controls": [],
+        "created_at_utc": "2026-06-04T06:15:36.620224+00:00",
+        "intervention_metrics": {
+          "historical_raw_steering": {
+            "status": "missing"
+          }
+        },
+        "matched_noise_summary": {
+          "required_for_new_interventions": true,
+          "status": "missing"
+        },
+        "method": "steering_effectiveness_artifact_preflight",
+        "model": "qwen35_27b",
+        "n": 1650,
+        "notes": [
+          "Predicted regime is a planning label, not a manuscript claim.",
+          "LAP/logit-lens accessibility report is available for this row.",
+          "Metadata-residualization proxy is from L45, not requested site L53."
+        ],
+        "paired_flips": {},
+        "parse_fail_rate": null,
+        "representation_type": "raw_direction",
+        "result_type": "predictive",
+        "schema_version": 1,
+        "site_or_layer": "L53",
+        "split": "s1",
+        "target_variable": "free_form_correctness",
+        "task": "infer_subtype"
+      },
+      "model_display": "Qwen3.5 27B",
+      "predicted_steerability_regime": "strong_activation_over_metadata_steerability_untested",
+      "row_id": "qwen35_27b__infer_subtype__L53__s1"
+    }
+  ],
+  "next_actions": [
+    "Run or refresh GPU LAP/logit-lens profiles for Gemma scanned layers and Qwen L53/scanned layers.",
+    "Regenerate balanced baseline rows before interpreting new causal interventions.",
+    "Run a known positive-control steering task before treating any new steering null as evidence.",
+    "Add matched Gaussian/noise controls and orthogonal controls to optimized/DAS/decode-time intervention jobs."
+  ],
+  "qwen_metadata_comparison": {
+    "claim": "Qwen strengthens the activation-over-metadata result because Qwen B0 baselines are much weaker than raw readouts.",
+    "gemma_subtype_context": {
+      "best_b0_auc": 0.8410757662584132,
+      "note": "Gemma subtype remains predictive, but its best metadata baseline is much closer to raw than Qwen's.",
+      "raw_auc": 0.9144732415671554,
+      "raw_minus_b0_auc": 0.07339747530874219
+    },
+    "qwen_l53": [
+      {
+        "best_b0_auc": 0.6015053276441562,
+        "raw_auc": 0.9400252675740746,
+        "raw_minus_b0_auc": 0.33851993992991836,
+        "task": "infer_property"
+      },
+      {
+        "best_b0_auc": 0.6747869921164342,
+        "raw_auc": 0.9204821103699212,
+        "raw_minus_b0_auc": 0.245695118253487,
+        "task": "infer_subtype"
+      }
+    ]
+  },
+  "report_kind": "steering_effectiveness_artifact_preflight",
+  "schema_version": 1,
+  "scope": {
+    "included": [
+      "raw-probe AUCs",
+      "metadata baselines",
+      "metadata-adjusted proxy diagnostics where available",
+      "historical raw-direction steering summaries where available"
+    ],
+    "pending": [
+      "LAP/logit-lens accessibility profiles",
+      "entropy/branching/KL steerability predictors",
+      "probe-confidence vs steering-effect correlations on regenerated paired baselines",
+      "matched Gaussian/noise controls",
+      "known positive-control steering task"
+    ],
+    "status": "artifact_preflight"
+  },
+  "target_track": "Track 2: Steering-Effectiveness Diagnostics"
+}

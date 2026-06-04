@@ -82,7 +82,7 @@ def _random_nonce(rng: random.Random, min_len: int = 4, max_len: int = 9) -> str
 def build_nonce_pool(symbols: set[str], *, seed: int, multiplier: int = 6) -> dict[str, Any]:
     rng = random.Random(seed)
     by_len: dict[int, set[str]] = defaultdict(set)
-    for sym in symbols:
+    for sym in sorted(symbols):
         if len(sym) < 2:
             continue
         target_n = max(40, multiplier)
@@ -177,13 +177,30 @@ def build_name_mapping(
     return mapping
 
 
+def _apply_token_case(original: str, replacement: str) -> str:
+    if original.isupper():
+        return replacement.upper()
+    if original[:1].isupper():
+        return replacement[:1].upper() + replacement[1:]
+    return replacement
+
+
 def _replace_in_string(text: str, mapping: dict[str, str]) -> str:
-    out = text
-    # longest-first avoids partial replacement collisions.
-    for src in sorted(mapping, key=len, reverse=True):
-        dst = mapping[src]
-        out = re.sub(rf"\b{re.escape(src)}\b", dst, out, flags=re.IGNORECASE)
-    return out
+    # Token-level replacement lets us catch simple plural hypotheses such as
+    # "Bempins are ..." when the canonical symbol is "bempin".
+    replacements = {src.lower(): dst for src, dst in mapping.items()}
+    plural_replacements = {f"{src.lower()}s": f"{dst}s" for src, dst in mapping.items()}
+
+    def replace_token(match: re.Match[str]) -> str:
+        token = match.group(0)
+        lower = token.lower()
+        if lower in replacements:
+            return _apply_token_case(token, replacements[lower])
+        if lower in plural_replacements:
+            return _apply_token_case(token, plural_replacements[lower])
+        return token
+
+    return _TOKEN_RE.sub(replace_token, text)
 
 
 def _replace_recursive(value: Any, mapping: dict[str, str]) -> Any:
@@ -192,8 +209,30 @@ def _replace_recursive(value: Any, mapping: dict[str, str]) -> Any:
     if isinstance(value, list):
         return [_replace_recursive(v, mapping) for v in value]
     if isinstance(value, dict):
-        return {k: _replace_recursive(v, mapping) for k, v in value.items()}
+        return {
+            (_replace_in_string(k, mapping) if isinstance(k, str) else k): _replace_recursive(v, mapping)
+            for k, v in value.items()
+        }
     return value
+
+
+
+def repair_name_mapping_references(row: dict[str, Any]) -> dict[str, Any]:
+    mapping = row.get("namescramble", {}).get("mapping", {})
+    if not mapping:
+        return copy.deepcopy(row)
+    out = copy.deepcopy(row)
+    for key in (
+        "ground_truth",
+        "ontology_raw",
+        "ontology_fol_string",
+        "ontology_fol_structured",
+        "structural",
+        "prompt_text",
+    ):
+        if key in out:
+            out[key] = _replace_recursive(out[key], mapping)
+    return out
 
 
 def apply_name_mapping(row: dict[str, Any], mapping: dict[str, str], *, condition: str) -> dict[str, Any]:

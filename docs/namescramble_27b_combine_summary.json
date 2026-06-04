@@ -1,0 +1,129 @@
+{
+  "conditions": [
+    "nonce",
+    "natural"
+  ],
+  "created_at_utc": "2026-05-25T00:32:52.410625+00:00",
+  "heights": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "input_dir": "results/stage2/namescramble_infer_27b",
+  "outputs": {
+    "natural": {
+      "infer_property": {
+        "inputs": [
+          {
+            "height": 1,
+            "path": "results/stage2/namescramble_infer_27b/natural/infer_property_h1.jsonl",
+            "rows": 250
+          },
+          {
+            "height": 2,
+            "path": "results/stage2/namescramble_infer_27b/natural/infer_property_h2.jsonl",
+            "rows": 250
+          },
+          {
+            "height": 3,
+            "path": "results/stage2/namescramble_infer_27b/natural/infer_property_h3.jsonl",
+            "rows": 250
+          },
+          {
+            "height": 4,
+            "path": "results/stage2/namescramble_infer_27b/natural/infer_property_h4.jsonl",
+            "rows": 250
+          }
+        ],
+        "path": "results/stage2/namescramble_infer_27b/natural/infer_property.jsonl",
+        "rows": 1000
+      },
+      "infer_subtype": {
+        "inputs": [
+          {
+            "height": 1,
+            "path": "results/stage2/namescramble_infer_27b/natural/infer_subtype_h1.jsonl",
+            "rows": 250
+          },
+          {
+            "height": 2,
+            "path": "results/stage2/namescramble_infer_27b/natural/infer_subtype_h2.jsonl",
+            "rows": 250
+          },
+          {
+            "height": 3,
+            "path": "results/stage2/namescramble_infer_27b/natural/infer_subtype_h3.jsonl",
+            "rows": 250
+          },
+          {
+            "height": 4,
+            "path": "results/stage2/namescramble_infer_27b/natural/infer_subtype_h4.jsonl",
+            "rows": 250
+          }
+        ],
+        "path": "results/stage2/namescramble_infer_27b/natural/infer_subtype.jsonl",
+        "rows": 1000
+      }
+    },
+    "nonce": {
+      "infer_property": {
+        "inputs": [
+          {
+            "height": 1,
+            "path": "results/stage2/namescramble_infer_27b/nonce/infer_property_h1.jsonl",
+            "rows": 250
+          },
+          {
+            "height": 2,
+            "path": "results/stage2/namescramble_infer_27b/nonce/infer_property_h2.jsonl",
+            "rows": 250
+          },
+          {
+            "height": 3,
+            "path": "results/stage2/namescramble_infer_27b/nonce/infer_property_h3.jsonl",
+            "rows": 250
+          },
+          {
+            "height": 4,
+            "path": "results/stage2/namescramble_infer_27b/nonce/infer_property_h4.jsonl",
+            "rows": 250
+          }
+        ],
+        "path": "results/stage2/namescramble_infer_27b/nonce/infer_property.jsonl",
+        "rows": 1000
+      },
+      "infer_subtype": {
+        "inputs": [
+          {
+            "height": 1,
+            "path": "results/stage2/namescramble_infer_27b/nonce/infer_subtype_h1.jsonl",
+            "rows": 250
+          },
+          {
+            "height": 2,
+            "path": "results/stage2/namescramble_infer_27b/nonce/infer_subtype_h2.jsonl",
+            "rows": 250
+          },
+          {
+            "height": 3,
+            "path": "results/stage2/namescramble_infer_27b/nonce/infer_subtype_h3.jsonl",
+            "rows": 250
+          },
+          {
+            "height": 4,
+            "path": "results/stage2/namescramble_infer_27b/nonce/infer_subtype_h4.jsonl",
+            "rows": 250
+          }
+        ],
+        "path": "results/stage2/namescramble_infer_27b/nonce/infer_subtype.jsonl",
+        "rows": 1000
+      }
+    }
+  },
+  "schema_version": 1,
+  "tasks": [
+    "infer_property",
+    "infer_subtype"
+  ]
+}
