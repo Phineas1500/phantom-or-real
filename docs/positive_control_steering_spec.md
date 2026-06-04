@@ -77,3 +77,41 @@ Expected artifacts:
 - `results/stage2/positive_control/verbosity_gemma3_27b_l45_direction.npz`
 
 The preflight report reads `docs/positive_control_verbosity_gemma3_27b_l45.json` and treats `summary.matched_noise_summary.passed_positive_control_gate=true` as the gate pass.
+
+## Verbosity Gate Result
+
+Artifact: `docs/positive_control_verbosity_gemma3_27b_l45.json`
+
+Status: failed. The Gemma 3 27B L45 verbosity run completed cleanly, but all baseline, target, orthogonal, and Gaussian conditions saturated at the generation token cap. The matched-noise token-delta standard deviation was `0.0`, so the length metric cannot validate the steering stack.
+
+Interpretation: keep the artifact as a failed positive-control candidate. Do not use it as the gate for interpreting correctness-steering nulls.
+
+## Active Format Gate
+
+Use a casing/output-format control next: train an upper-vs-lowercase raw L45 direction and evaluate whether steering increases alphabetic uppercase fraction above orthogonal and matched-Gaussian controls.
+
+Script: `scripts/stage2_positive_control_format.py`
+
+Slurm launcher: `scripts/stage2_positive_control_format_27b_L45.sbatch`
+
+Submit:
+
+```bash
+sbatch scripts/stage2_positive_control_format_27b_L45.sbatch
+```
+
+Expected artifacts:
+
+- `docs/positive_control_format_gemma3_27b_l45.json`
+- `results/stage2/positive_control/format_gemma3_27b_l45.jsonl`
+- `results/stage2/positive_control/format_gemma3_27b_l45_direction.npz`
+
+The preflight report now prefers `docs/positive_control_format_gemma3_27b_l45.json`; the gate passes only if `summary.matched_noise_summary.passed_positive_control_gate=true`.
+
+## Format Gate Result
+
+Artifact: `docs/positive_control_format_gemma3_27b_l45.json`
+
+Status: passed. The Gemma 3 27B L45 casing/output-format run completed cleanly on Slurm job `456660` with 8 eval prompts and 136 generated rows. The best toward-upper condition moved mean uppercase fraction by `0.835` over baseline, converted all 8 paired rows into uppercase style, and exceeded matched orthogonal/Gaussian controls by about `47.9σ`.
+
+Interpretation: this is the accepted positive-control gate for the current intervention stack. Later correctness-steering nulls may be interpreted only if they keep their own regenerated baselines, orthogonal controls, matched-Gaussian controls, and paired reporting.

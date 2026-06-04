@@ -1,5 +1,5 @@
 {
-  "created_at_utc": "2026-06-04T16:43:49.695387+00:00",
+  "created_at_utc": "2026-06-04T20:10:52.380421+00:00",
   "gates": [
     {
       "evidence": [
@@ -168,23 +168,77 @@
           },
           "task": "infer_property"
         },
+        "failed_verbosity_artifact": {
+          "baseline_n": 8,
+          "baseline_parse_fail_rate": null,
+          "baseline_strong_accuracy": null,
+          "conditions": [
+            "baseline",
+            "toward_long_pos0p5sd",
+            "toward_long_pos1sd",
+            "toward_long_pos2sd",
+            "toward_short_pos0p5sd",
+            "toward_short_pos1sd",
+            "toward_short_pos2sd",
+            "orthogonal_pos0p5sd",
+            "orthogonal_pos1sd",
+            "orthogonal_pos2sd",
+            "gaussian_pos0p5sd",
+            "gaussian_pos1sd",
+            "gaussian_pos2sd"
+          ],
+          "exists": true,
+          "layer": 45,
+          "model": "google/gemma-3-27b-it",
+          "path": "docs/positive_control_verbosity_gemma3_27b_l45.json",
+          "selection": {},
+          "task": "verbosity_positive_control"
+        },
+        "failed_verbosity_job": "scripts/stage2_positive_control_verbosity_27b_L45.sbatch",
+        "failed_verbosity_script": "scripts/stage2_positive_control_verbosity.py",
         "interpretation_doc": "docs/stage2_27b_answer_property_steering_results.md",
         "replacement_artifact": {
-          "exists": false,
-          "path": "docs/positive_control_verbosity_gemma3_27b_l45.json"
+          "baseline_n": 8,
+          "baseline_parse_fail_rate": null,
+          "baseline_strong_accuracy": null,
+          "conditions": [
+            "baseline",
+            "toward_upper_pos0p5sd",
+            "toward_upper_pos1sd",
+            "toward_upper_pos2sd",
+            "toward_upper_pos4sd",
+            "toward_lower_pos0p5sd",
+            "toward_lower_pos1sd",
+            "toward_lower_pos2sd",
+            "toward_lower_pos4sd",
+            "orthogonal_pos0p5sd",
+            "orthogonal_pos1sd",
+            "orthogonal_pos2sd",
+            "orthogonal_pos4sd",
+            "gaussian_pos0p5sd",
+            "gaussian_pos1sd",
+            "gaussian_pos2sd",
+            "gaussian_pos4sd"
+          ],
+          "exists": true,
+          "layer": 45,
+          "model": "google/gemma-3-27b-it",
+          "path": "docs/positive_control_format_gemma3_27b_l45.json",
+          "selection": {},
+          "task": "format_positive_control"
         },
-        "replacement_job": "scripts/stage2_positive_control_verbosity_27b_L45.sbatch",
-        "replacement_script": "scripts/stage2_positive_control_verbosity.py",
+        "replacement_job": "scripts/stage2_positive_control_format_27b_L45.sbatch",
+        "replacement_script": "scripts/stage2_positive_control_format.py",
         "replacement_spec": "docs/positive_control_steering_spec.md",
         "summary": "Existing 27B answer-property steering had a perfect offline polarity probe but no target-directed free-form answer movement, so it is not an accepted positive-control gate."
       },
       "failed_candidate_job": "scripts/stage2_steer_answer_property_27b_L45_property_smoke.sbatch",
       "failed_candidate_script": "scripts/stage2_steer_answer_property_direction.py",
       "gate": "positive_control_steering",
-      "next_action": "Run `sbatch scripts/stage2_positive_control_verbosity_27b_L45.sbatch` before interpreting new steering nulls.",
-      "passes_for_future_jobs": false,
+      "next_action": "Use the format positive-control artifact as the intervention-stack gate for later correctness-steering nulls.",
+      "passes_for_future_jobs": true,
       "required_before_new_interpretation": true,
-      "status": "runnable_pending_gpu_run"
+      "status": "passed"
     },
     {
       "evidence": [
@@ -239,9 +293,9 @@
       "purpose": "Verify A40 availability before long jobs."
     },
     {
-      "command": "sbatch scripts/stage2_positive_control_verbosity_27b_L45.sbatch",
+      "command": "sbatch scripts/stage2_positive_control_format_27b_L45.sbatch",
       "priority": 2,
-      "purpose": "Run the true positive-control steering gate; the historical answer-property smoke did not pass."
+      "purpose": "Run the active format positive-control steering gate; answer-property and verbosity candidates did not pass."
     },
     {
       "command": "sbatch scripts/stage2_steer_raw_27b_L45_property_decode_sweep.sbatch",

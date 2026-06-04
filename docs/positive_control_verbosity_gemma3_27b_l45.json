@@ -1,0 +1,884 @@
+{
+  "created_at_utc": "2026-06-04T17:59:17.354475+00:00",
+  "direction": {
+    "d_model": 5376,
+    "raw_direction_norm": 19377.842441931076,
+    "train_long_projection_mean": -24448.435852832452,
+    "train_n_pairs": 24,
+    "train_pair_directional_accuracy": 1.0,
+    "train_pair_margin_max": 23092.002990440833,
+    "train_pair_margin_mean": 19377.84260776958,
+    "train_pair_margin_min": 11834.826108688183,
+    "train_projection_mean": -34137.35715671725,
+    "train_projection_std": 9860.903019164653,
+    "train_short_projection_mean": -43826.278460602036
+  },
+  "direction_output": "results/stage2/positive_control/verbosity_gemma3_27b_l45_direction.npz",
+  "elapsed_seconds": 3522.2927515506744,
+  "experiment_report": {
+    "baseline_metrics": {
+      "baseline_condition": {
+        "long_style_rate": 1.0,
+        "mean_generated_tokens": 48.0,
+        "mean_sentences": 3.0,
+        "mean_words": 36.375,
+        "n": 8,
+        "short_style_rate": 0.0
+      },
+      "direction_training": {
+        "d_model": 5376,
+        "raw_direction_norm": 19377.842441931076,
+        "train_long_projection_mean": -24448.435852832452,
+        "train_n_pairs": 24,
+        "train_pair_directional_accuracy": 1.0,
+        "train_pair_margin_max": 23092.002990440833,
+        "train_pair_margin_mean": 19377.84260776958,
+        "train_pair_margin_min": 11834.826108688183,
+        "train_projection_mean": -34137.35715671725,
+        "train_projection_std": 9860.903019164653,
+        "train_short_projection_mean": -43826.278460602036
+      },
+      "train_prompt_token_counts": [
+        {
+          "long_tokens": 33,
+          "question_index": 1,
+          "short_tokens": 31
+        },
+        {
+          "long_tokens": 34,
+          "question_index": 2,
+          "short_tokens": 32
+        },
+        {
+          "long_tokens": 32,
+          "question_index": 3,
+          "short_tokens": 30
+        },
+        {
+          "long_tokens": 34,
+          "question_index": 4,
+          "short_tokens": 32
+        },
+        {
+          "long_tokens": 33,
+          "question_index": 5,
+          "short_tokens": 31
+        },
+        {
+          "long_tokens": 32,
+          "question_index": 6,
+          "short_tokens": 30
+        },
+        {
+          "long_tokens": 35,
+          "question_index": 7,
+          "short_tokens": 33
+        },
+        {
+          "long_tokens": 33,
+          "question_index": 8,
+          "short_tokens": 31
+        },
+        {
+          "long_tokens": 32,
+          "question_index": 9,
+          "short_tokens": 30
+        },
+        {
+          "long_tokens": 33,
+          "question_index": 10,
+          "short_tokens": 31
+        },
+        {
+          "long_tokens": 35,
+          "question_index": 11,
+          "short_tokens": 33
+        },
+        {
+          "long_tokens": 33,
+          "question_index": 12,
+          "short_tokens": 31
+        },
+        {
+          "long_tokens": 33,
+          "question_index": 13,
+          "short_tokens": 31
+        },
+        {
+          "long_tokens": 34,
+          "question_index": 14,
+          "short_tokens": 32
+        },
+        {
+          "long_tokens": 32,
+          "question_index": 15,
+          "short_tokens": 30
+        },
+        {
+          "long_tokens": 33,
+          "question_index": 16,
+          "short_tokens": 31
+        },
+        {
+          "long_tokens": 34,
+          "question_index": 17,
+          "short_tokens": 32
+        },
+        {
+          "long_tokens": 33,
+          "question_index": 18,
+          "short_tokens": 31
+        },
+        {
+          "long_tokens": 33,
+          "question_index": 19,
+          "short_tokens": 31
+        },
+        {
+          "long_tokens": 33,
+          "question_index": 20,
+          "short_tokens": 31
+        },
+        {
+          "long_tokens": 33,
+          "question_index": 21,
+          "short_tokens": 31
+        },
+        {
+          "long_tokens": 37,
+          "question_index": 22,
+          "short_tokens": 35
+        },
+        {
+          "long_tokens": 33,
+          "question_index": 23,
+          "short_tokens": 31
+        },
+        {
+          "long_tokens": 32,
+          "question_index": 24,
+          "short_tokens": 30
+        }
+      ]
+    },
+    "causal_abstraction_claim": "Auxiliary positive-control machinery check: this tests whether the Gemma 3 27B L45 hook, generation path, regenerated baseline, orthogonal control, and matched-Gaussian control can move a simple output-style behavior. It is not an InAbHyD reasoning-variable claim.",
+    "controls": [
+      "regenerated_baseline",
+      "orthogonal_direction",
+      "matched_gaussian_noise",
+      "positive_control"
+    ],
+    "created_at_utc": "2026-06-04T17:59:17.354441+00:00",
+    "intervention_metrics": {
+      "by_condition": {
+        "baseline": {
+          "long_style_rate": 1.0,
+          "mean_generated_tokens": 48.0,
+          "mean_sentences": 3.0,
+          "mean_words": 36.375,
+          "n": 8,
+          "short_style_rate": 0.0
+        },
+        "gaussian_pos0p5sd": {
+          "long_style_rate": 1.0,
+          "mean_generated_tokens": 48.0,
+          "mean_sentences": 3.5,
+          "mean_words": 35.75,
+          "n": 8,
+          "short_style_rate": 0.0
+        },
+        "gaussian_pos1sd": {
+          "long_style_rate": 1.0,
+          "mean_generated_tokens": 48.0,
+          "mean_sentences": 2.75,
+          "mean_words": 30.25,
+          "n": 8,
+          "short_style_rate": 0.0
+        },
+        "gaussian_pos2sd": {
+          "long_style_rate": 1.0,
+          "mean_generated_tokens": 48.0,
+          "mean_sentences": 1.25,
+          "mean_words": 8.75,
+          "n": 8,
+          "short_style_rate": 0.0
+        },
+        "orthogonal_pos0p5sd": {
+          "long_style_rate": 1.0,
+          "mean_generated_tokens": 48.0,
+          "mean_sentences": 3.625,
+          "mean_words": 36.75,
+          "n": 8,
+          "short_style_rate": 0.0
+        },
+        "orthogonal_pos1sd": {
+          "long_style_rate": 1.0,
+          "mean_generated_tokens": 48.0,
+          "mean_sentences": 4.0,
+          "mean_words": 32.5,
+          "n": 8,
+          "short_style_rate": 0.0
+        },
+        "orthogonal_pos2sd": {
+          "long_style_rate": 1.0,
+          "mean_generated_tokens": 48.0,
+          "mean_sentences": 2.0,
+          "mean_words": 8.5,
+          "n": 8,
+          "short_style_rate": 0.0
+        },
+        "toward_long_pos0p5sd": {
+          "long_style_rate": 1.0,
+          "mean_generated_tokens": 48.0,
+          "mean_sentences": 3.0,
+          "mean_words": 37.875,
+          "n": 8,
+          "short_style_rate": 0.0
+        },
+        "toward_long_pos1sd": {
+          "long_style_rate": 1.0,
+          "mean_generated_tokens": 48.0,
+          "mean_sentences": 3.25,
+          "mean_words": 39.125,
+          "n": 8,
+          "short_style_rate": 0.0
+        },
+        "toward_long_pos2sd": {
+          "long_style_rate": 1.0,
+          "mean_generated_tokens": 48.0,
+          "mean_sentences": 3.5,
+          "mean_words": 38.75,
+          "n": 8,
+          "short_style_rate": 0.0
+        },
+        "toward_short_pos0p5sd": {
+          "long_style_rate": 1.0,
+          "mean_generated_tokens": 48.0,
+          "mean_sentences": 3.375,
+          "mean_words": 35.5,
+          "n": 8,
+          "short_style_rate": 0.0
+        },
+        "toward_short_pos1sd": {
+          "long_style_rate": 1.0,
+          "mean_generated_tokens": 48.0,
+          "mean_sentences": 3.375,
+          "mean_words": 35.0,
+          "n": 8,
+          "short_style_rate": 0.0
+        },
+        "toward_short_pos2sd": {
+          "long_style_rate": 1.0,
+          "mean_generated_tokens": 48.0,
+          "mean_sentences": 3.5,
+          "mean_words": 35.625,
+          "n": 8,
+          "short_style_rate": 0.0
+        }
+      }
+    },
+    "matched_noise_summary": {
+      "best_toward_long": {
+        "effect_over_control_sigma": null,
+        "long_style_false_to_true": 0,
+        "mean_sentence_delta": 0.0,
+        "mean_token_delta": 0.0,
+        "median_token_delta": 0.0,
+        "paired_n": 8,
+        "short_style_false_to_true": 0,
+        "token_delta_gt0_rate": 0.0,
+        "token_delta_lt0_rate": 0.0
+      },
+      "best_toward_short": {
+        "effect_over_control_sigma": null,
+        "long_style_false_to_true": 0,
+        "mean_sentence_delta": 0.375,
+        "mean_token_delta": 0.0,
+        "median_token_delta": 0.0,
+        "paired_n": 8,
+        "short_style_false_to_true": 0,
+        "token_delta_gt0_rate": 0.0,
+        "token_delta_lt0_rate": 0.0
+      },
+      "control_abs_token_delta_mean": 0.0,
+      "control_abs_token_delta_n": 48,
+      "control_abs_token_delta_std": 0.0,
+      "passed_positive_control_gate": false,
+      "passed_toward_long": false,
+      "passed_toward_short": false
+    },
+    "method": "mean_difference_verbosity_steering",
+    "model": "gemma3_27b",
+    "n": 8,
+    "notes": [
+      "Pass/fail thresholds are engineering gates, not manuscript claims.",
+      "A passing result permits interpretation of later correctness-steering nulls as intervention-stack-aware nulls."
+    ],
+    "paired_flips": {
+      "paired_deltas_vs_baseline": {
+        "gaussian_pos0p5sd": {
+          "effect_over_control_sigma": null,
+          "long_style_false_to_true": 0,
+          "mean_sentence_delta": 0.5,
+          "mean_token_delta": 0.0,
+          "median_token_delta": 0.0,
+          "paired_n": 8,
+          "short_style_false_to_true": 0,
+          "token_delta_gt0_rate": 0.0,
+          "token_delta_lt0_rate": 0.0
+        },
+        "gaussian_pos1sd": {
+          "effect_over_control_sigma": null,
+          "long_style_false_to_true": 0,
+          "mean_sentence_delta": -0.25,
+          "mean_token_delta": 0.0,
+          "median_token_delta": 0.0,
+          "paired_n": 8,
+          "short_style_false_to_true": 0,
+          "token_delta_gt0_rate": 0.0,
+          "token_delta_lt0_rate": 0.0
+        },
+        "gaussian_pos2sd": {
+          "effect_over_control_sigma": null,
+          "long_style_false_to_true": 0,
+          "mean_sentence_delta": -1.75,
+          "mean_token_delta": 0.0,
+          "median_token_delta": 0.0,
+          "paired_n": 8,
+          "short_style_false_to_true": 0,
+          "token_delta_gt0_rate": 0.0,
+          "token_delta_lt0_rate": 0.0
+        },
+        "orthogonal_pos0p5sd": {
+          "effect_over_control_sigma": null,
+          "long_style_false_to_true": 0,
+          "mean_sentence_delta": 0.625,
+          "mean_token_delta": 0.0,
+          "median_token_delta": 0.0,
+          "paired_n": 8,
+          "short_style_false_to_true": 0,
+          "token_delta_gt0_rate": 0.0,
+          "token_delta_lt0_rate": 0.0
+        },
+        "orthogonal_pos1sd": {
+          "effect_over_control_sigma": null,
+          "long_style_false_to_true": 0,
+          "mean_sentence_delta": 1.0,
+          "mean_token_delta": 0.0,
+          "median_token_delta": 0.0,
+          "paired_n": 8,
+          "short_style_false_to_true": 0,
+          "token_delta_gt0_rate": 0.0,
+          "token_delta_lt0_rate": 0.0
+        },
+        "orthogonal_pos2sd": {
+          "effect_over_control_sigma": null,
+          "long_style_false_to_true": 0,
+          "mean_sentence_delta": -1.0,
+          "mean_token_delta": 0.0,
+          "median_token_delta": 0.0,
+          "paired_n": 8,
+          "short_style_false_to_true": 0,
+          "token_delta_gt0_rate": 0.0,
+          "token_delta_lt0_rate": 0.0
+        },
+        "toward_long_pos0p5sd": {
+          "effect_over_control_sigma": null,
+          "long_style_false_to_true": 0,
+          "mean_sentence_delta": 0.0,
+          "mean_token_delta": 0.0,
+          "median_token_delta": 0.0,
+          "paired_n": 8,
+          "short_style_false_to_true": 0,
+          "token_delta_gt0_rate": 0.0,
+          "token_delta_lt0_rate": 0.0
+        },
+        "toward_long_pos1sd": {
+          "effect_over_control_sigma": null,
+          "long_style_false_to_true": 0,
+          "mean_sentence_delta": 0.25,
+          "mean_token_delta": 0.0,
+          "median_token_delta": 0.0,
+          "paired_n": 8,
+          "short_style_false_to_true": 0,
+          "token_delta_gt0_rate": 0.0,
+          "token_delta_lt0_rate": 0.0
+        },
+        "toward_long_pos2sd": {
+          "effect_over_control_sigma": null,
+          "long_style_false_to_true": 0,
+          "mean_sentence_delta": 0.5,
+          "mean_token_delta": 0.0,
+          "median_token_delta": 0.0,
+          "paired_n": 8,
+          "short_style_false_to_true": 0,
+          "token_delta_gt0_rate": 0.0,
+          "token_delta_lt0_rate": 0.0
+        },
+        "toward_short_pos0p5sd": {
+          "effect_over_control_sigma": null,
+          "long_style_false_to_true": 0,
+          "mean_sentence_delta": 0.375,
+          "mean_token_delta": 0.0,
+          "median_token_delta": 0.0,
+          "paired_n": 8,
+          "short_style_false_to_true": 0,
+          "token_delta_gt0_rate": 0.0,
+          "token_delta_lt0_rate": 0.0
+        },
+        "toward_short_pos1sd": {
+          "effect_over_control_sigma": null,
+          "long_style_false_to_true": 0,
+          "mean_sentence_delta": 0.375,
+          "mean_token_delta": 0.0,
+          "median_token_delta": 0.0,
+          "paired_n": 8,
+          "short_style_false_to_true": 0,
+          "token_delta_gt0_rate": 0.0,
+          "token_delta_lt0_rate": 0.0
+        },
+        "toward_short_pos2sd": {
+          "effect_over_control_sigma": null,
+          "long_style_false_to_true": 0,
+          "mean_sentence_delta": 0.5,
+          "mean_token_delta": 0.0,
+          "median_token_delta": 0.0,
+          "paired_n": 8,
+          "short_style_false_to_true": 0,
+          "token_delta_gt0_rate": 0.0,
+          "token_delta_lt0_rate": 0.0
+        }
+      }
+    },
+    "parse_fail_rate": 0.0,
+    "representation_type": "raw_direction",
+    "result_type": "causal",
+    "schema_version": 1,
+    "site_or_layer": "L45",
+    "split": "synthetic_neutral_prompts",
+    "target_variable": "positive_control_behavior",
+    "task": "verbosity_positive_control"
+  },
+  "generation": {
+    "conditions": [
+      {
+        "direction_kind": null,
+        "label": "baseline",
+        "signed_strength": 0.0,
+        "strength_sd": 0.0
+      },
+      {
+        "direction_kind": "toward_long",
+        "label": "toward_long_pos0p5sd",
+        "signed_strength": 0.5,
+        "strength_sd": 0.5
+      },
+      {
+        "direction_kind": "toward_long",
+        "label": "toward_long_pos1sd",
+        "signed_strength": 1.0,
+        "strength_sd": 1.0
+      },
+      {
+        "direction_kind": "toward_long",
+        "label": "toward_long_pos2sd",
+        "signed_strength": 2.0,
+        "strength_sd": 2.0
+      },
+      {
+        "direction_kind": "toward_short",
+        "label": "toward_short_pos0p5sd",
+        "signed_strength": -0.5,
+        "strength_sd": 0.5
+      },
+      {
+        "direction_kind": "toward_short",
+        "label": "toward_short_pos1sd",
+        "signed_strength": -1.0,
+        "strength_sd": 1.0
+      },
+      {
+        "direction_kind": "toward_short",
+        "label": "toward_short_pos2sd",
+        "signed_strength": -2.0,
+        "strength_sd": 2.0
+      },
+      {
+        "direction_kind": "orthogonal",
+        "label": "orthogonal_pos0p5sd",
+        "signed_strength": 0.5,
+        "strength_sd": 0.5
+      },
+      {
+        "direction_kind": "orthogonal",
+        "label": "orthogonal_pos1sd",
+        "signed_strength": 1.0,
+        "strength_sd": 1.0
+      },
+      {
+        "direction_kind": "orthogonal",
+        "label": "orthogonal_pos2sd",
+        "signed_strength": 2.0,
+        "strength_sd": 2.0
+      },
+      {
+        "direction_kind": "gaussian",
+        "label": "gaussian_pos0p5sd",
+        "signed_strength": 0.5,
+        "strength_sd": 0.5
+      },
+      {
+        "direction_kind": "gaussian",
+        "label": "gaussian_pos1sd",
+        "signed_strength": 1.0,
+        "strength_sd": 1.0
+      },
+      {
+        "direction_kind": "gaussian",
+        "label": "gaussian_pos2sd",
+        "signed_strength": 2.0,
+        "strength_sd": 2.0
+      }
+    ],
+    "do_sample": false,
+    "dtype": "torch.bfloat16",
+    "intervention_scope": "last_token_each_forward",
+    "load_mode": "no-processing",
+    "long_token_threshold": 48,
+    "max_new_tokens": 48,
+    "n_ctx": 2048,
+    "n_devices": 2,
+    "short_token_threshold": 12,
+    "stop_at_eos": true,
+    "strengths_sd": [
+      0.5,
+      1.0,
+      2.0
+    ],
+    "temperature": 0.0
+  },
+  "hook_name": "blocks.45.hook_resid_post",
+  "layer": 45,
+  "model": "google/gemma-3-27b-it",
+  "model_key": "gemma3_27b",
+  "out_jsonl": "results/stage2/positive_control/verbosity_gemma3_27b_l45.jsonl",
+  "prompts": {
+    "baseline_instruction": "Answer naturally.",
+    "eval_questions": [
+      "What is a rainbow?",
+      "Why do boats float?",
+      "What is an ecosystem?",
+      "What is gravity?",
+      "Why do cooks use salt?",
+      "What is a telescope?",
+      "Why does ice melt?",
+      "What is a river delta?"
+    ],
+    "long_instruction": "Answer in at least three sentences with a brief explanation.",
+    "short_instruction": "Answer in one word or one short phrase.",
+    "system": "You are a helpful assistant.",
+    "train_questions": [
+      "What is a comet?",
+      "Why do leaves change color?",
+      "What is photosynthesis?",
+      "What is a prime number?",
+      "Why does bread rise?",
+      "What causes tides?",
+      "What is a microscope used for?",
+      "Why is sleep important?",
+      "What is evaporation?",
+      "What is a glacier?",
+      "Why do magnets attract some metals?",
+      "What is a vaccine?",
+      "What is a peninsula?",
+      "Why do people use maps?",
+      "What is friction?",
+      "What is a fossil?",
+      "Why do shadows change length?",
+      "What is a circuit?",
+      "What is a metaphor?",
+      "Why does metal rust?",
+      "What is a habitat?",
+      "Why does the moon look different over time?",
+      "What is a budget?",
+      "What is condensation?"
+    ]
+  },
+  "schema_version": 1,
+  "script": "scripts/stage2_positive_control_verbosity.py",
+  "slurm_job_id": "456655",
+  "summary": {
+    "by_condition": {
+      "baseline": {
+        "long_style_rate": 1.0,
+        "mean_generated_tokens": 48.0,
+        "mean_sentences": 3.0,
+        "mean_words": 36.375,
+        "n": 8,
+        "short_style_rate": 0.0
+      },
+      "gaussian_pos0p5sd": {
+        "long_style_rate": 1.0,
+        "mean_generated_tokens": 48.0,
+        "mean_sentences": 3.5,
+        "mean_words": 35.75,
+        "n": 8,
+        "short_style_rate": 0.0
+      },
+      "gaussian_pos1sd": {
+        "long_style_rate": 1.0,
+        "mean_generated_tokens": 48.0,
+        "mean_sentences": 2.75,
+        "mean_words": 30.25,
+        "n": 8,
+        "short_style_rate": 0.0
+      },
+      "gaussian_pos2sd": {
+        "long_style_rate": 1.0,
+        "mean_generated_tokens": 48.0,
+        "mean_sentences": 1.25,
+        "mean_words": 8.75,
+        "n": 8,
+        "short_style_rate": 0.0
+      },
+      "orthogonal_pos0p5sd": {
+        "long_style_rate": 1.0,
+        "mean_generated_tokens": 48.0,
+        "mean_sentences": 3.625,
+        "mean_words": 36.75,
+        "n": 8,
+        "short_style_rate": 0.0
+      },
+      "orthogonal_pos1sd": {
+        "long_style_rate": 1.0,
+        "mean_generated_tokens": 48.0,
+        "mean_sentences": 4.0,
+        "mean_words": 32.5,
+        "n": 8,
+        "short_style_rate": 0.0
+      },
+      "orthogonal_pos2sd": {
+        "long_style_rate": 1.0,
+        "mean_generated_tokens": 48.0,
+        "mean_sentences": 2.0,
+        "mean_words": 8.5,
+        "n": 8,
+        "short_style_rate": 0.0
+      },
+      "toward_long_pos0p5sd": {
+        "long_style_rate": 1.0,
+        "mean_generated_tokens": 48.0,
+        "mean_sentences": 3.0,
+        "mean_words": 37.875,
+        "n": 8,
+        "short_style_rate": 0.0
+      },
+      "toward_long_pos1sd": {
+        "long_style_rate": 1.0,
+        "mean_generated_tokens": 48.0,
+        "mean_sentences": 3.25,
+        "mean_words": 39.125,
+        "n": 8,
+        "short_style_rate": 0.0
+      },
+      "toward_long_pos2sd": {
+        "long_style_rate": 1.0,
+        "mean_generated_tokens": 48.0,
+        "mean_sentences": 3.5,
+        "mean_words": 38.75,
+        "n": 8,
+        "short_style_rate": 0.0
+      },
+      "toward_short_pos0p5sd": {
+        "long_style_rate": 1.0,
+        "mean_generated_tokens": 48.0,
+        "mean_sentences": 3.375,
+        "mean_words": 35.5,
+        "n": 8,
+        "short_style_rate": 0.0
+      },
+      "toward_short_pos1sd": {
+        "long_style_rate": 1.0,
+        "mean_generated_tokens": 48.0,
+        "mean_sentences": 3.375,
+        "mean_words": 35.0,
+        "n": 8,
+        "short_style_rate": 0.0
+      },
+      "toward_short_pos2sd": {
+        "long_style_rate": 1.0,
+        "mean_generated_tokens": 48.0,
+        "mean_sentences": 3.5,
+        "mean_words": 35.625,
+        "n": 8,
+        "short_style_rate": 0.0
+      }
+    },
+    "matched_noise_summary": {
+      "best_toward_long": {
+        "effect_over_control_sigma": null,
+        "long_style_false_to_true": 0,
+        "mean_sentence_delta": 0.0,
+        "mean_token_delta": 0.0,
+        "median_token_delta": 0.0,
+        "paired_n": 8,
+        "short_style_false_to_true": 0,
+        "token_delta_gt0_rate": 0.0,
+        "token_delta_lt0_rate": 0.0
+      },
+      "best_toward_short": {
+        "effect_over_control_sigma": null,
+        "long_style_false_to_true": 0,
+        "mean_sentence_delta": 0.375,
+        "mean_token_delta": 0.0,
+        "median_token_delta": 0.0,
+        "paired_n": 8,
+        "short_style_false_to_true": 0,
+        "token_delta_gt0_rate": 0.0,
+        "token_delta_lt0_rate": 0.0
+      },
+      "control_abs_token_delta_mean": 0.0,
+      "control_abs_token_delta_n": 48,
+      "control_abs_token_delta_std": 0.0,
+      "passed_positive_control_gate": false,
+      "passed_toward_long": false,
+      "passed_toward_short": false
+    },
+    "paired_deltas_vs_baseline": {
+      "gaussian_pos0p5sd": {
+        "effect_over_control_sigma": null,
+        "long_style_false_to_true": 0,
+        "mean_sentence_delta": 0.5,
+        "mean_token_delta": 0.0,
+        "median_token_delta": 0.0,
+        "paired_n": 8,
+        "short_style_false_to_true": 0,
+        "token_delta_gt0_rate": 0.0,
+        "token_delta_lt0_rate": 0.0
+      },
+      "gaussian_pos1sd": {
+        "effect_over_control_sigma": null,
+        "long_style_false_to_true": 0,
+        "mean_sentence_delta": -0.25,
+        "mean_token_delta": 0.0,
+        "median_token_delta": 0.0,
+        "paired_n": 8,
+        "short_style_false_to_true": 0,
+        "token_delta_gt0_rate": 0.0,
+        "token_delta_lt0_rate": 0.0
+      },
+      "gaussian_pos2sd": {
+        "effect_over_control_sigma": null,
+        "long_style_false_to_true": 0,
+        "mean_sentence_delta": -1.75,
+        "mean_token_delta": 0.0,
+        "median_token_delta": 0.0,
+        "paired_n": 8,
+        "short_style_false_to_true": 0,
+        "token_delta_gt0_rate": 0.0,
+        "token_delta_lt0_rate": 0.0
+      },
+      "orthogonal_pos0p5sd": {
+        "effect_over_control_sigma": null,
+        "long_style_false_to_true": 0,
+        "mean_sentence_delta": 0.625,
+        "mean_token_delta": 0.0,
+        "median_token_delta": 0.0,
+        "paired_n": 8,
+        "short_style_false_to_true": 0,
+        "token_delta_gt0_rate": 0.0,
+        "token_delta_lt0_rate": 0.0
+      },
+      "orthogonal_pos1sd": {
+        "effect_over_control_sigma": null,
+        "long_style_false_to_true": 0,
+        "mean_sentence_delta": 1.0,
+        "mean_token_delta": 0.0,
+        "median_token_delta": 0.0,
+        "paired_n": 8,
+        "short_style_false_to_true": 0,
+        "token_delta_gt0_rate": 0.0,
+        "token_delta_lt0_rate": 0.0
+      },
+      "orthogonal_pos2sd": {
+        "effect_over_control_sigma": null,
+        "long_style_false_to_true": 0,
+        "mean_sentence_delta": -1.0,
+        "mean_token_delta": 0.0,
+        "median_token_delta": 0.0,
+        "paired_n": 8,
+        "short_style_false_to_true": 0,
+        "token_delta_gt0_rate": 0.0,
+        "token_delta_lt0_rate": 0.0
+      },
+      "toward_long_pos0p5sd": {
+        "effect_over_control_sigma": null,
+        "long_style_false_to_true": 0,
+        "mean_sentence_delta": 0.0,
+        "mean_token_delta": 0.0,
+        "median_token_delta": 0.0,
+        "paired_n": 8,
+        "short_style_false_to_true": 0,
+        "token_delta_gt0_rate": 0.0,
+        "token_delta_lt0_rate": 0.0
+      },
+      "toward_long_pos1sd": {
+        "effect_over_control_sigma": null,
+        "long_style_false_to_true": 0,
+        "mean_sentence_delta": 0.25,
+        "mean_token_delta": 0.0,
+        "median_token_delta": 0.0,
+        "paired_n": 8,
+        "short_style_false_to_true": 0,
+        "token_delta_gt0_rate": 0.0,
+        "token_delta_lt0_rate": 0.0
+      },
+      "toward_long_pos2sd": {
+        "effect_over_control_sigma": null,
+        "long_style_false_to_true": 0,
+        "mean_sentence_delta": 0.5,
+        "mean_token_delta": 0.0,
+        "median_token_delta": 0.0,
+        "paired_n": 8,
+        "short_style_false_to_true": 0,
+        "token_delta_gt0_rate": 0.0,
+        "token_delta_lt0_rate": 0.0
+      },
+      "toward_short_pos0p5sd": {
+        "effect_over_control_sigma": null,
+        "long_style_false_to_true": 0,
+        "mean_sentence_delta": 0.375,
+        "mean_token_delta": 0.0,
+        "median_token_delta": 0.0,
+        "paired_n": 8,
+        "short_style_false_to_true": 0,
+        "token_delta_gt0_rate": 0.0,
+        "token_delta_lt0_rate": 0.0
+      },
+      "toward_short_pos1sd": {
+        "effect_over_control_sigma": null,
+        "long_style_false_to_true": 0,
+        "mean_sentence_delta": 0.375,
+        "mean_token_delta": 0.0,
+        "median_token_delta": 0.0,
+        "paired_n": 8,
+        "short_style_false_to_true": 0,
+        "token_delta_gt0_rate": 0.0,
+        "token_delta_lt0_rate": 0.0
+      },
+      "toward_short_pos2sd": {
+        "effect_over_control_sigma": null,
+        "long_style_false_to_true": 0,
+        "mean_sentence_delta": 0.5,
+        "mean_token_delta": 0.0,
+        "median_token_delta": 0.0,
+        "paired_n": 8,
+        "short_style_false_to_true": 0,
+        "token_delta_gt0_rate": 0.0,
+        "token_delta_lt0_rate": 0.0
+      }
+    }
+  },
+  "target_variable": "positive_control_behavior",
+  "task": "verbosity_positive_control"
+}

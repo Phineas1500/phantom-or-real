@@ -148,8 +148,8 @@ def track_reports() -> list[dict[str, str]]:
     if intervention is not None:
         intervention_status = intervention.get("status", "available")
 
-    positive_control = read_json(Path("docs/positive_control_verbosity_gemma3_27b_l45.json"))
-    positive_control_status = "runnable_pending_gpu_run"
+    positive_control = read_json(Path("docs/positive_control_format_gemma3_27b_l45.json"))
+    positive_control_status = "format_gate_runnable_pending_gpu_run"
     if positive_control is not None:
         passed = nested(positive_control, ["summary", "matched_noise_summary", "passed_positive_control_gate"])
         if passed is True:
@@ -175,8 +175,8 @@ def track_reports() -> list[dict[str, str]]:
         {
             "track": "Positive-control steering gate",
             "status": positive_control_status,
-            "artifact": "docs/positive_control_verbosity_gemma3_27b_l45.json",
-            "note": "Gemma 3 27B L45 verbosity/output-format control; run `sbatch scripts/stage2_positive_control_verbosity_27b_L45.sbatch`.",
+            "artifact": "docs/positive_control_format_gemma3_27b_l45.json",
+            "note": "Gemma 3 27B L45 casing/output-format control; run `sbatch scripts/stage2_positive_control_format_27b_L45.sbatch`. Verbosity gate failed by length saturation.",
         },
     ]
 
