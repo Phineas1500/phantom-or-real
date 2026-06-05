@@ -46,6 +46,7 @@ def nested(payload: dict[str, Any] | None, path: list[str], default: Any = None)
 def build_existing_evidence() -> list[dict[str, Any]]:
     namescramble = read_json(Path("docs/namescramble_27b_l45_raw_probe_s1.json"))
     error_steer = read_json(Path("docs/error_l45_layer_45_width_262k_l0_small_top128_property_decode_sweep.json"))
+    optimized_steer = read_json(Path("docs/optimized_gold_steering_27b_l45_property_decode_sweep.json"))
     qwen_forced_choice = read_json(Path("docs/qwen35_27b_infer_subtype_h4_hardfoil_forced_choice.json"))
     qwen_raw_l53 = read_json(Path("docs/qwen_scope_raw_probe_27b_layers_16_31_40_53_s1.json"))
 
@@ -77,6 +78,19 @@ def build_existing_evidence() -> list[dict[str, Any]]:
             "evidence": (
                 f"error-direction test AUC={fmt(nested(error_steer, ['probe_direction', 'test_auc']))}; "
                 "paired strong flips=0 at all tested error-direction strengths"
+            ),
+        },
+        {
+            "claim": "Optimized gold-continuation vector is not a Gemma decode-step repair handle.",
+            "variable": "free_form_correctness",
+            "representation": "raw_direction",
+            "status": "completed",
+            "evidence": (
+                f"job={nested(optimized_steer, ['slurm_job_id'])}; "
+                f"positive control={nested(optimized_steer, ['positive_control_gate', 'status'])}; "
+                f"optimized F->T max={fmt(nested(optimized_steer, ['matched_noise_summary', 'optimized_max_false_to_true']), 0)}, "
+                f"optimized changed max={fmt(nested(optimized_steer, ['matched_noise_summary', 'optimized_max_changed']), 0)}, "
+                f"control changed max={fmt(nested(optimized_steer, ['matched_noise_summary', 'control_max_changed']), 0)}"
             ),
         },
         {
@@ -116,7 +130,7 @@ def planned_tracks() -> list[dict[str, str]]:
         },
         {
             "track": "Stronger interventions",
-            "next_step": "Add optimized vectors, DAS/distributed interchange, decode-time correction, and AtP* ranking with exact patch validation.",
+            "next_step": "Optimized-vector first pass is complete; move next to DAS/distributed interchange, decode-time correction, or AtP* ranking with exact patch validation.",
             "success": "Repairs exceed matched noise by 2 sigma and at least 3 paired false-to-true examples, or nulls have passing positive controls.",
         },
         {
@@ -176,7 +190,7 @@ def track_reports() -> list[dict[str, str]]:
             "track": "Positive-control steering gate",
             "status": positive_control_status,
             "artifact": "docs/positive_control_format_gemma3_27b_l45.json",
-            "note": "Gemma 3 27B L45 casing/output-format control; run `sbatch scripts/stage2_positive_control_format_27b_L45.sbatch`. Verbosity gate failed by length saturation.",
+            "note": "Gemma 3 27B L45 casing/output-format control passed and is reused for raw/error/optimized L45 intervention interpretation. Verbosity gate failed by length saturation.",
         },
     ]
 

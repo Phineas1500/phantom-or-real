@@ -4,7 +4,7 @@ This is the Track 2 artifact preflight. It summarizes existing probe, metadata, 
 
 LAP/logit-lens artifacts are complete for the target rows. Entropy/branching/KL predictors are still pending; confidence/effect correlations are available for the regenerated Gemma property row and require sidecar fields for historical or untested rows.
 
-Gemma L45 raw/error steering now has regenerated baselines and matched Gaussian controls; Qwen property steering remains a historical pilot without Gaussian controls.
+Gemma L45 raw/error steering and the first optimized-vector intervention now have regenerated baselines, positive-control coverage, and matched Gaussian controls; Qwen property steering remains a historical pilot without Gaussian controls.
 
 ## Diagnostic Table
 
@@ -16,6 +16,16 @@ Gemma L45 raw/error steering now has regenerated baselines and matched Gaussian 
 | Qwen3.5 27B | `infer_property` | `L53` | 0.940 | 0.602 (`b0_namefreq`) | 0.339 | proxy L45; +raw delta=0.317; resid AUC=0.871 | L53 peak 0.452; row 0.452 (first-diff margin) | n=4, raw F->T max=0, raw changed max=0 | `linearly_readable_low_lap_accessibility_historical_raw_steering_null` |
 | Qwen3.5 27B | `infer_subtype` | `L45` | 0.901 | 0.675 (`b0_prompt`) | 0.226 | exact; +raw delta=0.226; resid AUC=0.817 | L16 peak 0.514; row 0.410 (first-diff margin) | untested | `strong_activation_over_metadata_low_lap_accessibility_steerability_untested` |
 | Qwen3.5 27B | `infer_subtype` | `L53` | 0.920 | 0.675 (`b0_prompt`) | 0.246 | proxy L45; +raw delta=0.226; resid AUC=0.817 | L16 peak 0.514; row 0.332 (first-diff margin) | untested | `strong_activation_over_metadata_low_lap_accessibility_steerability_untested` |
+
+## Optimized-Vector Intervention
+
+Teacher-forced gold-continuation L45 vector on the same balanced Gemma property h3/h4 set is a controlled null.
+
+| Method | Job | Baseline n | Baseline strong acc | Positive control | Optimized F->T max | Optimized changed max | Control F->T max | Control changed max |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| `optimized_gold_continuation_vector` | `456693` | 8 | 0.375 | passed | 0 | 0 | 0 | 1 |
+
+Claim: Teacher-forced gold-continuation L45 vector produced no false-to-true repair and no optimized-condition accuracy changes on the balanced h3/h4 set; a matched Gaussian control degraded one row.
 
 ## Qwen Metadata Takeaway
 
@@ -41,15 +51,15 @@ Gemma subtype context: raw AUC=0.914, best B0=0.841, raw-B0=0.073. Gemma subtype
 
 ## Interpretation
 
-- Gemma property L45 now has a matched-control raw-direction null; rows with no steering report remain predictive-only.
+- Gemma property L45 now has matched-control raw-direction, error-subspace, and optimized-vector nulls; rows with no steering report remain predictive-only.
 - Qwen property steering pilots still need regenerated matched Gaussian/noise controls before causal interpretation.
 - Qwen L53 has the strongest activation-over-metadata margin, but its metadata-residualization proxy is currently L45.
 - Probe-confidence vs steering-effect correlation is now available for Gemma property L45; Qwen historical pilots and untested rows still need projection-enabled reruns if we want comparable causal diagnostics.
-- Do not claim `causally distributed` from this table; DAS/distributed interventions with passing controls are required.
+- The optimized-vector null supports `causally inaccessible under tested methods` more than `causally distributed`; DAS/distributed interventions with passing controls are required before using `causally distributed`.
 
 ## Next Jobs
 
-- Gemma property projection-enabled reruns are complete; add projection-enabled matched-control reruns only for rows that still need causal interpretation.
+- Gemma property projection-enabled raw/error and optimized-vector reruns are complete on the balanced h3/h4 set.
 - Add entropy/branching/KL-style steerability predictors where the required logits are available.
 - Refresh Qwen property steering with regenerated baseline, orthogonal, Gaussian, and Qwen positive-control gates if Qwen causal interpretation is needed.
-- Use this diagnostic table to choose the next intervention family: optimized vectors, DAS/distributed interchange, or decode-time correction.
+- Move to the next stronger intervention family: DAS/distributed interchange, decode-time correction, or AtP* localization with exact patch validation.

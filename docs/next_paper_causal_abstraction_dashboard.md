@@ -20,6 +20,7 @@ Purpose: track the program testing whether InAbHyD correctness is linearly reada
 | --- | --- | --- | --- | --- |
 | Gemma raw correctness readout survives full name-scrambling with measurable loss. | `free_form_correctness` | `raw_direction` | completed | fixed original L45 probes on scrambled activations: property natural=0.835, property nonce=0.844, subtype natural=0.842, subtype nonce=0.830 |
 | Gemma reconstruction-error direction is predictive but not a decode-step repair handle. | `free_form_correctness` | `error_subspace` | completed | error-direction test AUC=0.897; paired strong flips=0 at all tested error-direction strengths |
+| Optimized gold-continuation vector is not a Gemma decode-step repair handle. | `free_form_correctness` | `raw_direction` | completed | job=456693; positive control=passed; optimized F->T max=0, optimized changed max=0, control changed max=1 |
 | Qwen strengthens activation-over-metadata readout and exposes a raw-vs-LAP gap. | `free_form_correctness` | `raw_direction` | completed | Qwen L53 S1 raw AUC property=0.940, subtype=0.920; metadata baselines are much weaker than raw readouts, while LAP margins are near chance |
 | Recognition-vs-generation holds across models but is not a matched replication. | `recognition_correctness` | `patched_residual_state` | completed | Gemma: 14/16 property h3/h4 hard-foil rows; Qwen: 43/64 subtype h4 hard-foil rows |
 
@@ -29,7 +30,7 @@ Purpose: track the program testing whether InAbHyD correctness is linearly reada
 | --- | --- | --- | --- |
 | Steering-effectiveness diagnostics | artifact_preflight | docs/steering_effectiveness_diagnostics.md | Artifact preflight over existing probe, metadata, and historical steering reports. |
 | Intervention preflight | started | docs/intervention_preflight.md | Part 1 gate for regenerated baselines, positive controls, matched noise, paired flips, and parse-failure reporting. |
-| Positive-control steering gate | passed | docs/positive_control_format_gemma3_27b_l45.json | Gemma 3 27B L45 casing/output-format control; run `sbatch scripts/stage2_positive_control_format_27b_L45.sbatch`. Verbosity gate failed by length saturation. |
+| Positive-control steering gate | passed | docs/positive_control_format_gemma3_27b_l45.json | Gemma 3 27B L45 casing/output-format control passed and is reused for raw/error/optimized L45 intervention interpretation. Verbosity gate failed by length saturation. |
 
 ## Planned Tracks
 
@@ -37,7 +38,7 @@ Purpose: track the program testing whether InAbHyD correctness is linearly reada
 | --- | --- | --- |
 | Shared causal-abstraction model | Use the shared variables and report schema for every new experiment. | Every report names target variable, representation, and predictive/causal status. |
 | Steering-effectiveness diagnostics | Use completed LAP/logit-lens and metadata-adjusted summaries to choose the next intervention family. | Dashboard records which correctness directions are linearly readable but not directly logit-accessible. |
-| Stronger interventions | Add optimized vectors, DAS/distributed interchange, decode-time correction, and AtP* ranking with exact patch validation. | Repairs exceed matched noise by 2 sigma and at least 3 paired false-to-true examples, or nulls have passing positive controls. |
+| Stronger interventions | Optimized-vector first pass is complete; move next to DAS/distributed interchange, decode-time correction, or AtP* ranking with exact patch validation. | Repairs exceed matched noise by 2 sigma and at least 3 paired false-to-true examples, or nulls have passing positive controls. |
 | Dictionary/dark-matter tests | Audit Gemma e2e/KL/Matryoshka/BatchTopK availability, then train local Gemma dictionaries if needed. | Determine whether predictive signal moves from error into reconstruction in the right basis/objective. |
 | Commitment and recognition trajectory | Probe and patch selected hypothesis, margin, and commitment variables across decode positions. | Identify whether Gemma reverse disruption localizes to a commitment transition and whether Qwen lacks the same transition. |
 | Target and OOD extensions | Run weak/quality-score, name-scramble, and height-extrapolation probe variants. | Separate correctness, parsimony, depth/difficulty, and name-familiarity components. |

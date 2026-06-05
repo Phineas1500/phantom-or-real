@@ -1,5 +1,5 @@
 {
-  "created_at_utc": "2026-06-05T13:28:31.521815+00:00",
+  "created_at_utc": "2026-06-05T15:07:22.849319+00:00",
   "diagnostics": [
     {
       "diagnostics": {
@@ -745,7 +745,7 @@
           "matched_gaussian_noise",
           "positive_control"
         ],
-        "created_at_utc": "2026-06-05T13:28:31.500217+00:00",
+        "created_at_utc": "2026-06-05T15:07:22.827642+00:00",
         "intervention_metrics": {
           "raw_steering": {
             "all_flips_vs_baseline": {
@@ -1509,7 +1509,7 @@
         },
         "causal_abstraction_claim": "Artifact-level diagnostic: raw correctness is linearly readable; steerability is not yet tested for this row.",
         "controls": [],
-        "created_at_utc": "2026-06-05T13:28:31.501409+00:00",
+        "created_at_utc": "2026-06-05T15:07:22.828868+00:00",
         "intervention_metrics": {
           "raw_steering": {
             "status": "missing"
@@ -1895,7 +1895,7 @@
         "controls": [
           "orthogonal_direction"
         ],
-        "created_at_utc": "2026-06-05T13:28:31.504566+00:00",
+        "created_at_utc": "2026-06-05T15:07:22.832057+00:00",
         "intervention_metrics": {
           "raw_steering": {
             "all_flips_vs_baseline": {
@@ -2436,7 +2436,7 @@
         "controls": [
           "orthogonal_direction"
         ],
-        "created_at_utc": "2026-06-05T13:28:31.512517+00:00",
+        "created_at_utc": "2026-06-05T15:07:22.839997+00:00",
         "intervention_metrics": {
           "raw_steering": {
             "all_flips_vs_baseline": {
@@ -2845,7 +2845,7 @@
         },
         "causal_abstraction_claim": "Artifact-level diagnostic: raw correctness is linearly readable; steerability is not yet tested for this row.",
         "controls": [],
-        "created_at_utc": "2026-06-05T13:28:31.514891+00:00",
+        "created_at_utc": "2026-06-05T15:07:22.842413+00:00",
         "intervention_metrics": {
           "raw_steering": {
             "status": "missing"
@@ -3121,7 +3121,7 @@
         },
         "causal_abstraction_claim": "Artifact-level diagnostic: raw correctness is linearly readable; steerability is not yet tested for this row.",
         "controls": [],
-        "created_at_utc": "2026-06-05T13:28:31.521253+00:00",
+        "created_at_utc": "2026-06-05T15:07:22.848782+00:00",
         "intervention_metrics": {
           "raw_steering": {
             "status": "missing"
@@ -3158,11 +3158,92 @@
     }
   ],
   "next_actions": [
-    "Gemma property projection-enabled reruns are complete; add projection-enabled matched-control reruns only for rows that still need causal interpretation.",
+    "Gemma property projection-enabled raw/error and optimized-vector reruns are complete on the balanced h3/h4 set.",
     "Add entropy/branching/KL-style steerability predictors where the required logits are available.",
     "Refresh Qwen property steering with regenerated baseline, orthogonal, Gaussian, and Qwen positive-control gates if Qwen causal interpretation is needed.",
-    "Use this diagnostic table to choose the next intervention family: optimized vectors, DAS/distributed interchange, or decode-time correction."
+    "Move to the next stronger intervention family: DAS/distributed interchange, decode-time correction, or AtP* localization with exact patch validation."
   ],
+  "optimized_intervention": {
+    "baseline_accuracy": 0.375,
+    "baseline_n": 8,
+    "claim": "Teacher-forced gold-continuation L45 vector produced no false-to-true repair and no optimized-condition accuracy changes on the balanced h3/h4 set; a matched Gaussian control degraded one row.",
+    "control_flips": {
+      "gaussian_neg1sd": {
+        "changed": 1,
+        "false_to_true": 0,
+        "net_accuracy_delta": -0.125,
+        "paired_n": 8,
+        "true_to_false": 1
+      },
+      "gaussian_pos1sd": {
+        "changed": 0,
+        "false_to_true": 0,
+        "net_accuracy_delta": 0.0,
+        "paired_n": 8,
+        "true_to_false": 0
+      },
+      "orthogonal_neg1sd": {
+        "changed": 0,
+        "false_to_true": 0,
+        "net_accuracy_delta": 0.0,
+        "paired_n": 8,
+        "true_to_false": 0
+      },
+      "orthogonal_pos1sd": {
+        "changed": 0,
+        "false_to_true": 0,
+        "net_accuracy_delta": 0.0,
+        "paired_n": 8,
+        "true_to_false": 0
+      }
+    },
+    "jsonl_path": "results/stage2/steering/optimized_gold_l45_property_decode_sweep.jsonl",
+    "matched_noise_summary": {
+      "control_max_changed": 1,
+      "control_max_false_to_true": 0,
+      "gaussian_max_changed": 1,
+      "gaussian_max_false_to_true": 0,
+      "has_matched_gaussian_control": true,
+      "optimized_max_changed": 0,
+      "optimized_max_false_to_true": 0,
+      "optimized_max_true_to_false": 0,
+      "orthogonal_max_changed": 0,
+      "orthogonal_max_false_to_true": 0,
+      "repair_exceeds_controls_by_count": false,
+      "sigma_test_status": "not_estimated_from_single_matched_control_family",
+      "status": "available_no_sigma_estimate"
+    },
+    "method": "optimized_gold_continuation_vector",
+    "optimized_direction": {
+      "final_mean_loss": null,
+      "objective": "gold_continuation_teacher_forced_ce",
+      "raw_optimized_norm": 10.0,
+      "steps": 8,
+      "train_projection_std": 100.12827143205153
+    },
+    "optimized_flips": {
+      "optimized_neg1sd": {
+        "changed": 0,
+        "false_to_true": 0,
+        "net_accuracy_delta": 0.0,
+        "paired_n": 8,
+        "true_to_false": 0
+      },
+      "optimized_pos1sd": {
+        "changed": 0,
+        "false_to_true": 0,
+        "net_accuracy_delta": 0.0,
+        "paired_n": 8,
+        "true_to_false": 0
+      }
+    },
+    "positive_control_status": "passed",
+    "report_path": "docs/optimized_gold_steering_27b_l45_property_decode_sweep.json",
+    "site_or_layer": "L45",
+    "slurm_job_id": "456693",
+    "status": "completed",
+    "target_variable": "free_form_correctness"
+  },
   "qwen_metadata_comparison": {
     "claim": "Qwen strengthens the activation-over-metadata result because Qwen B0 baselines are much weaker than raw readouts.",
     "gemma_subtype_context": {

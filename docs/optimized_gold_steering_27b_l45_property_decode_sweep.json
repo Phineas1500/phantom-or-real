@@ -1,0 +1,558 @@
+{
+  "activation_path": "results/stage2/activations/gemma3_27b_infer_property_L45.safetensors",
+  "causal_abstraction_claim": "Optimized gold-continuation vector test: teacher-forced gold-answer objective trains a single L45 residual direction; free-form repair must exceed orthogonal/Gaussian controls before any causal-repair claim.",
+  "controls": [
+    "regenerated_baseline",
+    "orthogonal_direction",
+    "matched_gaussian_noise",
+    "positive_control"
+  ],
+  "created_at_utc": "2026-06-05T14:55:20.349117+00:00",
+  "direction_output": "results/stage2/steering/optimized_gold_l45_property_decode_sweep_direction.npz",
+  "elapsed_seconds": 3806.7350969314575,
+  "generation": {
+    "conditions": [
+      {
+        "direction_kind": null,
+        "label": "baseline",
+        "strength_sd": 0.0
+      },
+      {
+        "direction_kind": "optimized",
+        "label": "optimized_neg1sd",
+        "strength_sd": -1.0
+      },
+      {
+        "direction_kind": "optimized",
+        "label": "optimized_pos1sd",
+        "strength_sd": 1.0
+      },
+      {
+        "direction_kind": "orthogonal",
+        "label": "orthogonal_neg1sd",
+        "strength_sd": -1.0
+      },
+      {
+        "direction_kind": "orthogonal",
+        "label": "orthogonal_pos1sd",
+        "strength_sd": 1.0
+      },
+      {
+        "direction_kind": "gaussian",
+        "label": "gaussian_neg1sd",
+        "strength_sd": -1.0
+      },
+      {
+        "direction_kind": "gaussian",
+        "label": "gaussian_pos1sd",
+        "strength_sd": 1.0
+      }
+    ],
+    "do_sample": false,
+    "dtype": "torch.bfloat16",
+    "intervention_scope": "last_token_each_forward",
+    "load_mode": "no-processing",
+    "max_new_tokens": 96,
+    "n_ctx": 4096,
+    "n_devices": 2,
+    "stop_at_eos": true,
+    "strengths_sd": [
+      -1.0,
+      1.0
+    ],
+    "temperature": 0.0
+  },
+  "hook_name": "blocks.45.hook_resid_post",
+  "jsonl": "results/full/with_errortype/gemma3_27b_infer_property.jsonl",
+  "layer": 45,
+  "matched_noise_summary": {
+    "control_max_changed": 1,
+    "control_max_false_to_true": 0,
+    "gaussian_max_changed": 1,
+    "gaussian_max_false_to_true": 0,
+    "has_matched_gaussian_control": true,
+    "optimized_max_changed": 0,
+    "optimized_max_false_to_true": 0,
+    "optimized_max_true_to_false": 0,
+    "orthogonal_max_changed": 0,
+    "orthogonal_max_false_to_true": 0,
+    "repair_exceeds_controls_by_count": false,
+    "sigma_test_status": "not_estimated_from_single_matched_control_family",
+    "status": "available_no_sigma_estimate"
+  },
+  "method": "optimized_gold_continuation_vector",
+  "model": "google/gemma-3-27b-it",
+  "model_key": "gemma3_27b",
+  "optimized_direction": {
+    "d_model": 5376,
+    "input_rows": 11000,
+    "kept_rows": 10025,
+    "loss_history": [
+      {
+        "grad_norm": 0.003310462459921837,
+        "max_loss": 4.041762828826904,
+        "mean_loss": 2.6092700511217117,
+        "min_loss": 0.4737418293952942,
+        "step": 1,
+        "vector_norm": 10.0
+      },
+      {
+        "grad_norm": 0.003342668293043971,
+        "max_loss": 4.104251384735107,
+        "mean_loss": 2.6221826523542404,
+        "min_loss": 0.4746178984642029,
+        "step": 2,
+        "vector_norm": 10.0
+      },
+      {
+        "grad_norm": 0.003322766162455082,
+        "max_loss": 4.125076770782471,
+        "mean_loss": 2.637874960899353,
+        "min_loss": 0.4736475944519043,
+        "step": 3,
+        "vector_norm": 9.999999046325684
+      },
+      {
+        "grad_norm": 0.0033082112204283476,
+        "max_loss": 4.0626044273376465,
+        "mean_loss": 2.601123347878456,
+        "min_loss": 0.4298897385597229,
+        "step": 4,
+        "vector_norm": 10.0
+      },
+      {
+        "grad_norm": 0.003349144710227847,
+        "max_loss": 4.125075340270996,
+        "mean_loss": 2.615190476179123,
+        "min_loss": 0.519469141960144,
+        "step": 5,
+        "vector_norm": 10.0
+      },
+      {
+        "grad_norm": 0.003317702328786254,
+        "max_loss": 4.0417609214782715,
+        "mean_loss": 2.5975374206900597,
+        "min_loss": 0.4736658036708832,
+        "step": 6,
+        "vector_norm": 10.0
+      },
+      {
+        "grad_norm": 0.0033181605394929647,
+        "max_loss": 4.041769504547119,
+        "mean_loss": 2.623241163790226,
+        "min_loss": 0.47459784150123596,
+        "step": 7,
+        "vector_norm": 10.0
+      },
+      {
+        "grad_norm": 0.003322986885905266,
+        "max_loss": 4.041755676269531,
+        "mean_loss": 2.592156931757927,
+        "min_loss": 0.47371596097946167,
+        "step": 8,
+        "vector_norm": 10.0
+      }
+    ],
+    "lr": 0.25,
+    "max_target_tokens": 16,
+    "max_vector_norm": 10.0,
+    "objective": "gold_continuation_teacher_forced_ce",
+    "optimizer": "AdamW",
+    "projection_split": "train",
+    "raw_optimized_norm": 10.0,
+    "steps": 8,
+    "train_projection_max": 1013.328857421875,
+    "train_projection_mean": 665.6422938110492,
+    "train_projection_min": 326.94378662109375,
+    "train_projection_std": 100.12827143205153,
+    "training_examples": [
+      {
+        "height": 3,
+        "original_is_correct_strong": false,
+        "prompt_len": 182,
+        "source_row_index": 4279,
+        "target_len": 6,
+        "target_text": "Each grimpant is opaque"
+      },
+      {
+        "height": 3,
+        "original_is_correct_strong": true,
+        "prompt_len": 188,
+        "source_row_index": 4601,
+        "target_len": 6,
+        "target_text": "Each ilpist is not small"
+      },
+      {
+        "height": 4,
+        "original_is_correct_strong": false,
+        "prompt_len": 209,
+        "source_row_index": 7820,
+        "target_len": 5,
+        "target_text": "Chorpers are spicy"
+      },
+      {
+        "height": 4,
+        "original_is_correct_strong": true,
+        "prompt_len": 202,
+        "source_row_index": 7430,
+        "target_len": 6,
+        "target_text": "Every dumpus is not dull"
+      }
+    ],
+    "weight_decay": 0.0
+  },
+  "optimized_projection_sidecar": {
+    "direction_projection_higher_is": "more_along_optimized_gold_continuation_direction",
+    "input_rows": 11000,
+    "kept_rows": 10025,
+    "projection_row_count": 10025,
+    "row_key": "source_row_index",
+    "train_projection_mean": 665.6422938110492,
+    "train_projection_std": 100.12827143205153
+  },
+  "out_jsonl": "results/stage2/steering/optimized_gold_l45_property_decode_sweep.jsonl",
+  "positive_control_gate": {
+    "best_effect_over_control_sigma": 47.89867841853144,
+    "passed_positive_control_gate": true,
+    "report_path": "docs/positive_control_format_gemma3_27b_l45.json",
+    "status": "passed",
+    "target_variable": "positive_control_behavior"
+  },
+  "schema_version": 1,
+  "script": "scripts/stage2_steer_optimized_vector.py",
+  "selection": {
+    "available_counts": {
+      "h3_correct": 177,
+      "h3_incorrect": 240,
+      "h4_correct": 198,
+      "h4_incorrect": 486
+    },
+    "drop_parse_failed": true,
+    "heights": [
+      3,
+      4
+    ],
+    "per_height_label": 2,
+    "seed": 20260427,
+    "selected_counts": {
+      "h3_correct": 2,
+      "h3_incorrect": 2,
+      "h4_correct": 2,
+      "h4_incorrect": 2
+    },
+    "selected_rows": 8,
+    "source_file": "results/full/with_errortype/gemma3_27b_infer_property.jsonl",
+    "split": "test",
+    "split_family": "s1"
+  },
+  "sidecar_path": "results/stage2/activations/gemma3_27b_infer_property_L45.example_ids.jsonl",
+  "slurm_job_id": "456693",
+  "split_family": "s1",
+  "splits": "results/stage2/splits.jsonl",
+  "summary": {
+    "by_condition": {
+      "baseline": {
+        "by_height": {
+          "h3": {
+            "n": 4,
+            "parse_fail_rate": 0.0,
+            "strong_accuracy": 0.5
+          },
+          "h4": {
+            "n": 4,
+            "parse_fail_rate": 0.0,
+            "strong_accuracy": 0.25
+          }
+        },
+        "by_original_is_correct_strong": {
+          "false": {
+            "n": 4,
+            "parse_fail_rate": 0.0,
+            "strong_accuracy": 0.25
+          },
+          "true": {
+            "n": 4,
+            "parse_fail_rate": 0.0,
+            "strong_accuracy": 0.5
+          }
+        },
+        "mean_generated_tokens": 96.0,
+        "mean_output_chars": 177.0,
+        "mean_quality": 0.658068783068783,
+        "n": 8,
+        "parse_fail_rate": 0.0,
+        "strong_accuracy": 0.375,
+        "weak_accuracy": 0.625
+      },
+      "gaussian_neg1sd": {
+        "by_height": {
+          "h3": {
+            "n": 4,
+            "parse_fail_rate": 0.25,
+            "strong_accuracy": 0.25
+          },
+          "h4": {
+            "n": 4,
+            "parse_fail_rate": 0.25,
+            "strong_accuracy": 0.25
+          }
+        },
+        "by_original_is_correct_strong": {
+          "false": {
+            "n": 4,
+            "parse_fail_rate": 0.5,
+            "strong_accuracy": 0.0
+          },
+          "true": {
+            "n": 4,
+            "parse_fail_rate": 0.0,
+            "strong_accuracy": 0.5
+          }
+        },
+        "mean_generated_tokens": 96.0,
+        "mean_output_chars": 173.125,
+        "mean_quality": 0.4914021164021164,
+        "n": 8,
+        "parse_fail_rate": 0.25,
+        "strong_accuracy": 0.25,
+        "weak_accuracy": 0.5
+      },
+      "gaussian_pos1sd": {
+        "by_height": {
+          "h3": {
+            "n": 4,
+            "parse_fail_rate": 0.0,
+            "strong_accuracy": 0.5
+          },
+          "h4": {
+            "n": 4,
+            "parse_fail_rate": 0.25,
+            "strong_accuracy": 0.25
+          }
+        },
+        "by_original_is_correct_strong": {
+          "false": {
+            "n": 4,
+            "parse_fail_rate": 0.25,
+            "strong_accuracy": 0.25
+          },
+          "true": {
+            "n": 4,
+            "parse_fail_rate": 0.0,
+            "strong_accuracy": 0.5
+          }
+        },
+        "mean_generated_tokens": 96.0,
+        "mean_output_chars": 150.75,
+        "mean_quality": 0.6164021164021164,
+        "n": 8,
+        "parse_fail_rate": 0.125,
+        "strong_accuracy": 0.375,
+        "weak_accuracy": 0.625
+      },
+      "optimized_neg1sd": {
+        "by_height": {
+          "h3": {
+            "n": 4,
+            "parse_fail_rate": 0.0,
+            "strong_accuracy": 0.5
+          },
+          "h4": {
+            "n": 4,
+            "parse_fail_rate": 0.0,
+            "strong_accuracy": 0.25
+          }
+        },
+        "by_original_is_correct_strong": {
+          "false": {
+            "n": 4,
+            "parse_fail_rate": 0.0,
+            "strong_accuracy": 0.25
+          },
+          "true": {
+            "n": 4,
+            "parse_fail_rate": 0.0,
+            "strong_accuracy": 0.5
+          }
+        },
+        "mean_generated_tokens": 96.0,
+        "mean_output_chars": 177.0,
+        "mean_quality": 0.658068783068783,
+        "n": 8,
+        "parse_fail_rate": 0.0,
+        "strong_accuracy": 0.375,
+        "weak_accuracy": 0.625
+      },
+      "optimized_pos1sd": {
+        "by_height": {
+          "h3": {
+            "n": 4,
+            "parse_fail_rate": 0.0,
+            "strong_accuracy": 0.5
+          },
+          "h4": {
+            "n": 4,
+            "parse_fail_rate": 0.25,
+            "strong_accuracy": 0.25
+          }
+        },
+        "by_original_is_correct_strong": {
+          "false": {
+            "n": 4,
+            "parse_fail_rate": 0.25,
+            "strong_accuracy": 0.25
+          },
+          "true": {
+            "n": 4,
+            "parse_fail_rate": 0.0,
+            "strong_accuracy": 0.5
+          }
+        },
+        "mean_generated_tokens": 96.0,
+        "mean_output_chars": 150.75,
+        "mean_quality": 0.6164021164021164,
+        "n": 8,
+        "parse_fail_rate": 0.125,
+        "strong_accuracy": 0.375,
+        "weak_accuracy": 0.625
+      },
+      "orthogonal_neg1sd": {
+        "by_height": {
+          "h3": {
+            "n": 4,
+            "parse_fail_rate": 0.0,
+            "strong_accuracy": 0.5
+          },
+          "h4": {
+            "n": 4,
+            "parse_fail_rate": 0.25,
+            "strong_accuracy": 0.25
+          }
+        },
+        "by_original_is_correct_strong": {
+          "false": {
+            "n": 4,
+            "parse_fail_rate": 0.25,
+            "strong_accuracy": 0.25
+          },
+          "true": {
+            "n": 4,
+            "parse_fail_rate": 0.0,
+            "strong_accuracy": 0.5
+          }
+        },
+        "mean_generated_tokens": 96.0,
+        "mean_output_chars": 150.75,
+        "mean_quality": 0.6164021164021164,
+        "n": 8,
+        "parse_fail_rate": 0.125,
+        "strong_accuracy": 0.375,
+        "weak_accuracy": 0.625
+      },
+      "orthogonal_pos1sd": {
+        "by_height": {
+          "h3": {
+            "n": 4,
+            "parse_fail_rate": 0.0,
+            "strong_accuracy": 0.5
+          },
+          "h4": {
+            "n": 4,
+            "parse_fail_rate": 0.25,
+            "strong_accuracy": 0.25
+          }
+        },
+        "by_original_is_correct_strong": {
+          "false": {
+            "n": 4,
+            "parse_fail_rate": 0.25,
+            "strong_accuracy": 0.25
+          },
+          "true": {
+            "n": 4,
+            "parse_fail_rate": 0.0,
+            "strong_accuracy": 0.5
+          }
+        },
+        "mean_generated_tokens": 96.0,
+        "mean_output_chars": 150.75,
+        "mean_quality": 0.6164021164021164,
+        "n": 8,
+        "parse_fail_rate": 0.125,
+        "strong_accuracy": 0.375,
+        "weak_accuracy": 0.625
+      }
+    },
+    "flips_vs_baseline": {
+      "gaussian_neg1sd": {
+        "changed": 1,
+        "false_to_true": 0,
+        "net_accuracy_delta": -0.125,
+        "paired_n": 8,
+        "true_to_false": 1
+      },
+      "gaussian_pos1sd": {
+        "changed": 0,
+        "false_to_true": 0,
+        "net_accuracy_delta": 0.0,
+        "paired_n": 8,
+        "true_to_false": 0
+      },
+      "optimized_neg1sd": {
+        "changed": 0,
+        "false_to_true": 0,
+        "net_accuracy_delta": 0.0,
+        "paired_n": 8,
+        "true_to_false": 0
+      },
+      "optimized_pos1sd": {
+        "changed": 0,
+        "false_to_true": 0,
+        "net_accuracy_delta": 0.0,
+        "paired_n": 8,
+        "true_to_false": 0
+      },
+      "orthogonal_neg1sd": {
+        "changed": 0,
+        "false_to_true": 0,
+        "net_accuracy_delta": 0.0,
+        "paired_n": 8,
+        "true_to_false": 0
+      },
+      "orthogonal_pos1sd": {
+        "changed": 0,
+        "false_to_true": 0,
+        "net_accuracy_delta": 0.0,
+        "paired_n": 8,
+        "true_to_false": 0
+      }
+    }
+  },
+  "target_variable": "free_form_correctness",
+  "task": "infer_property",
+  "train_selection": {
+    "available_counts": {
+      "h3_correct": 823,
+      "h3_incorrect": 1085,
+      "h4_correct": 924,
+      "h4_incorrect": 2191
+    },
+    "drop_parse_failed": true,
+    "heights": [
+      3,
+      4
+    ],
+    "per_height_label": 1,
+    "seed": 20260605,
+    "selected_counts": {
+      "h3_correct": 1,
+      "h3_incorrect": 1,
+      "h4_correct": 1,
+      "h4_incorrect": 1
+    },
+    "selected_rows": 4,
+    "source_file": "results/full/with_errortype/gemma3_27b_infer_property.jsonl",
+    "split": "train",
+    "split_family": "s1"
+  }
+}

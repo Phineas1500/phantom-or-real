@@ -757,6 +757,54 @@ def build_row(config: dict[str, Any]) -> dict[str, Any]:
         "experiment_report": report,
     }
 
+
+
+def optimized_intervention_note() -> dict[str, Any]:
+    report = read_json_or_none("docs/optimized_gold_steering_27b_l45_property_decode_sweep.json")
+    if report is None:
+        return {
+            "status": "pending",
+            "report_path": "docs/optimized_gold_steering_27b_l45_property_decode_sweep.json",
+            "claim": "Optimized-vector intervention has not been run yet.",
+        }
+    flips = nested(report, ["summary", "flips_vs_baseline"], {})
+    optimized = {
+        label: value
+        for label, value in sorted(flips.items())
+        if label.startswith("optimized_") and isinstance(value, dict)
+    }
+    controls = {
+        label: value
+        for label, value in sorted(flips.items())
+        if (label.startswith("orthogonal_") or label.startswith("gaussian_")) and isinstance(value, dict)
+    }
+    return {
+        "status": "completed",
+        "report_path": "docs/optimized_gold_steering_27b_l45_property_decode_sweep.json",
+        "jsonl_path": report.get("out_jsonl"),
+        "slurm_job_id": report.get("slurm_job_id"),
+        "method": report.get("method"),
+        "target_variable": report.get("target_variable"),
+        "site_or_layer": f"L{report.get('layer')}",
+        "positive_control_status": nested(report, ["positive_control_gate", "status"]),
+        "matched_noise_summary": report.get("matched_noise_summary", {}),
+        "baseline_accuracy": nested(report, ["summary", "by_condition", "baseline", "strong_accuracy"]),
+        "baseline_n": nested(report, ["summary", "by_condition", "baseline", "n"]),
+        "optimized_flips": optimized,
+        "control_flips": controls,
+        "optimized_direction": {
+            "objective": nested(report, ["optimized_direction", "objective"]),
+            "steps": nested(report, ["optimized_direction", "steps"]),
+            "raw_optimized_norm": nested(report, ["optimized_direction", "raw_optimized_norm"]),
+            "train_projection_std": nested(report, ["optimized_direction", "train_projection_std"]),
+            "final_mean_loss": nested(report, ["optimized_direction", "loss_history", -1, "mean_loss"]),
+        },
+        "claim": (
+            "Teacher-forced gold-continuation L45 vector produced no false-to-true repair and no optimized-condition "
+            "accuracy changes on the balanced h3/h4 set; a matched Gaussian control degraded one row."
+        ),
+    }
+
 def qwen_metadata_note(rows: list[dict[str, Any]]) -> dict[str, Any]:
     qwen = [
         row
@@ -819,11 +867,12 @@ def build_payload() -> dict[str, Any]:
         },
         "diagnostics": rows,
         "qwen_metadata_comparison": qwen_metadata_note(rows),
+        "optimized_intervention": optimized_intervention_note(),
         "next_actions": [
-            "Gemma property projection-enabled reruns are complete; add projection-enabled matched-control reruns only for rows that still need causal interpretation.",
+            "Gemma property projection-enabled raw/error and optimized-vector reruns are complete on the balanced h3/h4 set.",
             "Add entropy/branching/KL-style steerability predictors where the required logits are available.",
             "Refresh Qwen property steering with regenerated baseline, orthogonal, Gaussian, and Qwen positive-control gates if Qwen causal interpretation is needed.",
-            "Use this diagnostic table to choose the next intervention family: optimized vectors, DAS/distributed interchange, or decode-time correction.",
+            "Move to the next stronger intervention family: DAS/distributed interchange, decode-time correction, or AtP* localization with exact patch validation.",
         ],
     }
 
@@ -836,7 +885,7 @@ def render_markdown(payload: dict[str, Any]) -> str:
         "",
         "LAP/logit-lens artifacts are complete for the target rows. Entropy/branching/KL predictors are still pending; confidence/effect correlations are available for the regenerated Gemma property row and require sidecar fields for historical or untested rows.",
         "",
-        "Gemma L45 raw/error steering now has regenerated baselines and matched Gaussian controls; Qwen property steering remains a historical pilot without Gaussian controls.",
+        "Gemma L45 raw/error steering and the first optimized-vector intervention now have regenerated baselines, positive-control coverage, and matched Gaussian controls; Qwen property steering remains a historical pilot without Gaussian controls.",
         "",
         "## Diagnostic Table",
         "",
@@ -888,6 +937,39 @@ def render_markdown(payload: dict[str, Any]) -> str:
             f"{steer_text} | "
             f"`{row['predicted_steerability_regime']}` |"
         )
+
+    opt_note = payload.get("optimized_intervention", {})
+    opt_noise = opt_note.get("matched_noise_summary", {}) if isinstance(opt_note, dict) else {}
+    lines.extend(
+        [
+            "",
+            "## Optimized-Vector Intervention",
+            "",
+        ]
+    )
+    if opt_note.get("status") == "completed":
+        lines.extend(
+            [
+                "Teacher-forced gold-continuation L45 vector on the same balanced Gemma property h3/h4 set is a controlled null.",
+                "",
+                "| Method | Job | Baseline n | Baseline strong acc | Positive control | Optimized F->T max | Optimized changed max | Control F->T max | Control changed max |",
+                "| --- | --- | --- | --- | --- | --- | --- | --- | --- |",
+                "| "
+                f"`{opt_note.get('method')}` | "
+                f"`{opt_note.get('slurm_job_id')}` | "
+                f"{fmt(opt_note.get('baseline_n'), 0)} | "
+                f"{fmt(opt_note.get('baseline_accuracy'))} | "
+                f"{opt_note.get('positive_control_status')} | "
+                f"{fmt(opt_noise.get('optimized_max_false_to_true'), 0)} | "
+                f"{fmt(opt_noise.get('optimized_max_changed'), 0)} | "
+                f"{fmt(opt_noise.get('control_max_false_to_true'), 0)} | "
+                f"{fmt(opt_noise.get('control_max_changed'), 0)} |",
+                "",
+                f"Claim: {opt_note.get('claim')}",
+            ]
+        )
+    else:
+        lines.append("Optimized-vector intervention is pending.")
 
     qwen_note = payload["qwen_metadata_comparison"]
     lines.extend(
@@ -942,11 +1024,11 @@ def render_markdown(payload: dict[str, Any]) -> str:
             "",
             "## Interpretation",
             "",
-            "- Gemma property L45 now has a matched-control raw-direction null; rows with no steering report remain predictive-only.",
+            "- Gemma property L45 now has matched-control raw-direction, error-subspace, and optimized-vector nulls; rows with no steering report remain predictive-only.",
             "- Qwen property steering pilots still need regenerated matched Gaussian/noise controls before causal interpretation.",
             "- Qwen L53 has the strongest activation-over-metadata margin, but its metadata-residualization proxy is currently L45.",
             "- Probe-confidence vs steering-effect correlation is now available for Gemma property L45; Qwen historical pilots and untested rows still need projection-enabled reruns if we want comparable causal diagnostics.",
-            "- Do not claim `causally distributed` from this table; DAS/distributed interventions with passing controls are required.",
+            "- The optimized-vector null supports `causally inaccessible under tested methods` more than `causally distributed`; DAS/distributed interventions with passing controls are required before using `causally distributed`.",
             "",
             "## Next Jobs",
             "",

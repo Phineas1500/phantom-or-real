@@ -46,7 +46,7 @@ def parse_int_list(value: str) -> list[int]:
 
 
 def parse_condition_kinds(value: str) -> list[str]:
-    allowed = {"baseline", "raw", "orthogonal", "gaussian"}
+    allowed = {"baseline", "raw", "optimized", "orthogonal", "gaussian"}
     parsed = [part.strip().lower() for part in value.split(",") if part.strip()]
     if not parsed:
         raise ValueError("expected at least one condition kind")
@@ -72,7 +72,7 @@ def make_condition_plan(
     plan: list[SteeringCondition] = []
     if "baseline" in kinds:
         plan.append(SteeringCondition("baseline", None, 0.0))
-    for kind in ("raw", "orthogonal", "gaussian"):
+    for kind in ("raw", "optimized", "orthogonal", "gaussian"):
         if kind not in kinds:
             continue
         for strength in strength_values:
@@ -400,8 +400,9 @@ def raw_probe_projection_sidecar(
     activation_path: Path,
     sidecar_path: Path,
     direction: dict[str, Any],
+    higher_is: str = "more_correct_by_probe",
 ) -> dict[str, Any]:
-    """Map source row indices to trained raw-probe direction projections."""
+    """Map source row indices to trained direction projections."""
     dataset = load_probe_dataset(
         activation_path=activation_path,
         sidecar_path=sidecar_path,
@@ -421,7 +422,7 @@ def raw_probe_projection_sidecar(
         by_row_index[int(sidecar_row["row_index"])] = {
             "direction_projection": projection_value,
             "direction_projection_z": float((projection_value - mean) / std),
-            "direction_projection_higher_is": "more_correct_by_probe",
+            "direction_projection_higher_is": higher_is,
         }
     return {
         "by_row_index": by_row_index,
@@ -431,7 +432,7 @@ def raw_probe_projection_sidecar(
             "projection_row_count": len(by_row_index),
             "train_projection_mean": mean,
             "train_projection_std": std,
-            "direction_projection_higher_is": "more_correct_by_probe",
+            "direction_projection_higher_is": higher_is,
             "row_key": "source_row_index",
         },
     }
@@ -484,10 +485,10 @@ def select_balanced_stage1_rows(
     per_height_label: int,
     seed: int,
     drop_parse_failed: bool = True,
+    target_split: str = "test",
 ) -> tuple[list[dict[str, Any]], dict[str, Any]]:
     """Select a balanced deterministic subset from the requested split."""
     assignments = read_split_assignments(splits_path)
-    target_split = "test"
     height_set = set(heights)
     groups: dict[tuple[int, bool], list[dict[str, Any]]] = defaultdict(list)
     with jsonl_path.open() as f:
