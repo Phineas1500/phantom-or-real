@@ -33,6 +33,7 @@ from src.stage2_steering import (  # noqa: E402
     parse_condition_kinds,
     parse_float_list,
     parse_int_list,
+    raw_probe_projection_sidecar,
     score_reply,
     select_balanced_stage1_rows,
     summarize_steering_rows,
@@ -291,6 +292,23 @@ def main() -> int:
         f"available_counts={selection_summary['available_counts']}",
         flush=True,
     )
+    projection_sidecar = raw_probe_projection_sidecar(
+        activation_path=activation_path,
+        sidecar_path=sidecar_path,
+        direction=direction,
+    )
+    projection_by_row_index = projection_sidecar["by_row_index"]
+    missing_projection_rows = [
+        int(row["row_index"])
+        for row in selected_rows
+        if int(row["row_index"]) not in projection_by_row_index
+    ]
+    print(
+        "probe_projection_sidecar: "
+        f"covered={len(selected_rows) - len(missing_projection_rows)}/{len(selected_rows)} "
+        f"missing={missing_projection_rows[:5]}",
+        flush=True,
+    )
     bd_path = ensure_on_path()
     print(f"beyond_deduction_path={bd_path}", flush=True)
     scorer_preflight = score_reply(selected_rows[0], selected_rows[0]["ground_truth"])
@@ -338,6 +356,7 @@ def main() -> int:
                 f"original_correct={stage1_row['is_correct_strong']} prompt_tokens={len(token_ids)}",
                 flush=True,
             )
+            projection_fields = projection_by_row_index.get(int(stage1_row["row_index"]), {})
             for condition in condition_plan:
                 hook_state = {"calls": 0, "applications": 0}
                 if condition.direction_kind is None:
@@ -385,6 +404,9 @@ def main() -> int:
                     "strength_sd": condition.strength_sd,
                     "intervention_delta_l2": abs(condition.strength_sd * projection_std),
                     "intervention_scope": args.intervention_scope,
+                    "direction_projection": projection_fields.get("direction_projection"),
+                    "direction_projection_z": projection_fields.get("direction_projection_z"),
+                    "direction_projection_higher_is": projection_fields.get("direction_projection_higher_is"),
                     "hook_calls": int(hook_state["calls"]),
                     "hook_applications": int(hook_state["applications"]),
                     "prompt_token_count": len(token_ids),
@@ -425,6 +447,7 @@ def main() -> int:
         "out_jsonl": str(args.out_jsonl),
         "probe_direction": serializable_direction_summary(direction),
         "selection": selection_summary,
+        "probe_projection_sidecar": projection_sidecar["summary"],
         "generation": {
             "conditions": [condition.__dict__ for condition in condition_plan],
             "strengths_sd": list(strengths),

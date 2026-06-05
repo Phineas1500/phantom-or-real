@@ -1,8 +1,8 @@
 {
   "activation_path": "results/stage2/sae_reconstructions/gemma3_27b_infer_property_L45_layer_45_width_262k_l0_small_top128_error.safetensors",
-  "created_at_utc": "2026-06-05T01:26:02.885256+00:00",
+  "created_at_utc": "2026-06-05T05:24:58.101179+00:00",
   "direction_output": "results/stage2/steering/error_l45_layer_45_width_262k_l0_small_top128_property_decode_sweep_direction.npz",
-  "elapsed_seconds": 9932.425938606262,
+  "elapsed_seconds": 9920.624561071396,
   "generation": {
     "conditions": [
       {
@@ -163,6 +163,15 @@
     "train_projection_std": 32.16134773376939,
     "val_auc": 0.8802347528606819
   },
+  "probe_projection_sidecar": {
+    "direction_projection_higher_is": "more_correct_by_probe",
+    "input_rows": 11000,
+    "kept_rows": 10025,
+    "projection_row_count": 10025,
+    "row_key": "source_row_index",
+    "train_projection_mean": 78.78471527639098,
+    "train_projection_std": 32.16134773376939
+  },
   "schema_version": 1,
   "script": "scripts/stage2_steer_raw_direction.py",
   "selection": {
@@ -191,7 +200,7 @@
     "split_family": "s1"
   },
   "sidecar_path": "results/stage2/sae_reconstructions/gemma3_27b_infer_property_L45_layer_45_width_262k_l0_small_top128_error.example_ids.jsonl",
-  "slurm_job_id": "456664",
+  "slurm_job_id": "456671",
   "split_family": "s1",
   "splits": "results/stage2/splits.jsonl",
   "summary": {

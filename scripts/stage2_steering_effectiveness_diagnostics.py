@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import math
 import sys
 from pathlib import Path
 from typing import Any
@@ -30,6 +31,8 @@ DEFAULT_ROWS = (
         "b0_key": "gemma3-27b__infer_property",
         "metadata_residualization": "docs/raw_probe_metadata_residualization_27b_l45.json",
         "steering_report": "docs/raw_steering_27b_l45_property_decode_sweep.json",
+        "related_error_steering_report": "docs/error_l45_layer_45_width_262k_l0_small_top128_property_decode_sweep.json",
+        "positive_control_report": "docs/positive_control_format_gemma3_27b_l45.json",
         "lap_report": "docs/lap_gemma3_27b_infer_property_s1.json",
     },
     {
@@ -43,6 +46,7 @@ DEFAULT_ROWS = (
         "b0_key": "gemma3-27b__infer_subtype",
         "metadata_residualization": "docs/raw_probe_metadata_residualization_27b_l45.json",
         "steering_report": None,
+        "positive_control_report": "docs/positive_control_format_gemma3_27b_l45.json",
         "lap_report": "docs/lap_gemma3_27b_infer_subtype_s1.json",
     },
     {
@@ -246,15 +250,67 @@ def max_abs_delta(flips: dict[str, Any], prefix: str) -> float | None:
     return float(max(values))
 
 
-def steering_metrics(steering_report: dict[str, Any] | None) -> dict[str, Any]:
+def condition_labels(flips: dict[str, Any], prefix: str) -> list[str]:
+    return sorted(label for label in flips if label.startswith(prefix))
+
+
+def direction_group_summary(flips: dict[str, Any], prefix: str) -> dict[str, Any]:
+    return {
+        "conditions": condition_labels(flips, prefix),
+        "max_false_to_true": max_flip_metric(flips, prefix, "false_to_true"),
+        "max_true_to_false": max_flip_metric(flips, prefix, "true_to_false"),
+        "max_changed": max_flip_metric(flips, prefix, "changed"),
+        "max_abs_accuracy_delta": max_abs_delta(flips, prefix),
+    }
+
+
+def _max_existing(values: list[int | float | None]) -> int | float | None:
+    present = [value for value in values if value is not None]
+    if not present:
+        return None
+    return max(present)
+
+
+def matched_noise_from_steering(flips: dict[str, Any]) -> dict[str, Any]:
+    raw = direction_group_summary(flips, "raw_")
+    orthogonal = direction_group_summary(flips, "orthogonal_")
+    gaussian = direction_group_summary(flips, "gaussian_")
+    control_false_to_true = _max_existing(
+        [orthogonal.get("max_false_to_true"), gaussian.get("max_false_to_true")]
+    )
+    control_changed = _max_existing([orthogonal.get("max_changed"), gaussian.get("max_changed")])
+    raw_repairs = raw.get("max_false_to_true")
+    has_gaussian = bool(gaussian["conditions"])
+    return {
+        "status": "available_no_sigma_estimate" if has_gaussian else "missing_gaussian_control",
+        "has_matched_gaussian_control": has_gaussian,
+        "raw_max_false_to_true": raw_repairs,
+        "raw_max_changed": raw.get("max_changed"),
+        "orthogonal_max_false_to_true": orthogonal.get("max_false_to_true"),
+        "orthogonal_max_changed": orthogonal.get("max_changed"),
+        "gaussian_max_false_to_true": gaussian.get("max_false_to_true"),
+        "gaussian_max_changed": gaussian.get("max_changed"),
+        "control_max_false_to_true": control_false_to_true,
+        "control_max_changed": control_changed,
+        "repair_exceeds_controls_by_count": (
+            raw_repairs is not None
+            and control_false_to_true is not None
+            and raw_repairs > control_false_to_true
+        ),
+        "sigma_test_status": "not_estimated_from_single_matched_control_family",
+    }
+
+
+def steering_metrics(steering_report: dict[str, Any] | None, *, report_path: str | None = None) -> dict[str, Any]:
     if steering_report is None:
         return {"status": "missing"}
     summary = steering_report.get("summary", {})
     flips = summary.get("flips_vs_baseline", {})
     baseline = nested(summary, ["by_condition", "baseline"], {})
     by_condition = summary.get("by_condition", {})
-    raw_labels = [label for label in flips if label.startswith("raw_")]
-    orthogonal_labels = [label for label in flips if label.startswith("orthogonal_")]
+    raw = direction_group_summary(flips, "raw_")
+    orthogonal = direction_group_summary(flips, "orthogonal_")
+    gaussian = direction_group_summary(flips, "gaussian_")
     parse_rates = [
         value.get("parse_fail_rate")
         for value in by_condition.values()
@@ -262,27 +318,233 @@ def steering_metrics(steering_report: dict[str, Any] | None) -> dict[str, Any]:
     ]
     return {
         "status": "available",
+        "json_report_path": report_path,
         "report_path": steering_report.get("out_jsonl"),
+        "slurm_job_id": steering_report.get("slurm_job_id"),
+        "elapsed_seconds": steering_report.get("elapsed_seconds"),
+        "selection": steering_report.get("selection"),
         "baseline_n": baseline.get("n"),
         "baseline_strong_accuracy": baseline.get("strong_accuracy"),
         "baseline_weak_accuracy": baseline.get("weak_accuracy"),
         "baseline_parse_fail_rate": baseline.get("parse_fail_rate"),
-        "raw_conditions": raw_labels,
-        "orthogonal_conditions": orthogonal_labels,
-        "raw_max_false_to_true": max_flip_metric(flips, "raw_", "false_to_true"),
-        "raw_max_true_to_false": max_flip_metric(flips, "raw_", "true_to_false"),
-        "raw_max_changed": max_flip_metric(flips, "raw_", "changed"),
-        "raw_max_abs_accuracy_delta": max_abs_delta(flips, "raw_"),
-        "orthogonal_max_false_to_true": max_flip_metric(flips, "orthogonal_", "false_to_true"),
-        "orthogonal_max_true_to_false": max_flip_metric(flips, "orthogonal_", "true_to_false"),
-        "orthogonal_max_changed": max_flip_metric(flips, "orthogonal_", "changed"),
-        "orthogonal_max_abs_accuracy_delta": max_abs_delta(flips, "orthogonal_"),
+        "raw_conditions": raw["conditions"],
+        "orthogonal_conditions": orthogonal["conditions"],
+        "gaussian_conditions": gaussian["conditions"],
+        "has_regenerated_baseline": baseline.get("n") is not None,
+        "has_matched_gaussian_control": bool(gaussian["conditions"]),
+        "raw_max_false_to_true": raw["max_false_to_true"],
+        "raw_max_true_to_false": raw["max_true_to_false"],
+        "raw_max_changed": raw["max_changed"],
+        "raw_max_abs_accuracy_delta": raw["max_abs_accuracy_delta"],
+        "orthogonal_max_false_to_true": orthogonal["max_false_to_true"],
+        "orthogonal_max_true_to_false": orthogonal["max_true_to_false"],
+        "orthogonal_max_changed": orthogonal["max_changed"],
+        "orthogonal_max_abs_accuracy_delta": orthogonal["max_abs_accuracy_delta"],
+        "gaussian_max_false_to_true": gaussian["max_false_to_true"],
+        "gaussian_max_true_to_false": gaussian["max_true_to_false"],
+        "gaussian_max_changed": gaussian["max_changed"],
+        "gaussian_max_abs_accuracy_delta": gaussian["max_abs_accuracy_delta"],
         "paired_n_max": max_flip_metric(flips, "", "paired_n"),
         "parse_fail_rate_min": min(parse_rates) if parse_rates else None,
         "parse_fail_rate_max": max(parse_rates) if parse_rates else None,
+        "matched_noise_summary": matched_noise_from_steering(flips),
         "all_flips_vs_baseline": flips,
     }
 
+
+def positive_control_metrics(path: str | None) -> dict[str, Any]:
+    if not path:
+        return {"status": "not_configured"}
+    candidate = Path(path)
+    if not candidate.exists():
+        return {"status": "missing", "report_path": str(candidate)}
+    report = read_json(candidate)
+    summary = nested(report, ["summary", "matched_noise_summary"], {})
+    passed = summary.get("passed_positive_control_gate")
+    return {
+        "status": "passed" if passed is True else "failed_or_unclear",
+        "report_path": str(candidate),
+        "target_variable": report.get("target_variable"),
+        "task": report.get("task"),
+        "passed_positive_control_gate": passed,
+        "best_effect_over_control_sigma": nested(summary, ["best_toward_upper", "effect_over_control_sigma"]),
+        "control_abs_delta_std": summary.get("control_abs_uppercase_delta_std"),
+    }
+
+
+
+def _finite_float(value: Any) -> float | None:
+    if value is None:
+        return None
+    try:
+        result = float(value)
+    except (TypeError, ValueError):
+        return None
+    if not math.isfinite(result):
+        return None
+    return result
+
+
+def _pearson(xs: list[float], ys: list[float]) -> float | None:
+    if len(xs) < 2 or len(xs) != len(ys):
+        return None
+    x_mean = sum(xs) / len(xs)
+    y_mean = sum(ys) / len(ys)
+    x_deltas = [x - x_mean for x in xs]
+    y_deltas = [y - y_mean for y in ys]
+    x_var = sum(delta * delta for delta in x_deltas)
+    y_var = sum(delta * delta for delta in y_deltas)
+    if x_var == 0.0 or y_var == 0.0:
+        return None
+    return float(sum(x * y for x, y in zip(x_deltas, y_deltas)) / math.sqrt(x_var * y_var))
+
+
+def _rank_values(values: list[float]) -> list[float]:
+    indexed = sorted(enumerate(values), key=lambda item: item[1])
+    ranks = [0.0] * len(values)
+    idx = 0
+    while idx < len(indexed):
+        j = idx + 1
+        while j < len(indexed) and indexed[j][1] == indexed[idx][1]:
+            j += 1
+        avg_rank = (idx + 1 + j) / 2.0
+        for original_idx, _ in indexed[idx:j]:
+            ranks[original_idx] = avg_rank
+        idx = j
+    return ranks
+
+
+def _spearman(xs: list[float], ys: list[float]) -> float | None:
+    if len(xs) < 2 or len(xs) != len(ys):
+        return None
+    return _pearson(_rank_values(xs), _rank_values(ys))
+
+
+def _correlate_projection_effects(pairs: list[dict[str, Any]]) -> dict[str, Any]:
+    projection_z = [pair["projection_z"] for pair in pairs]
+    abs_projection_z = [abs(pair["projection_z"]) for pair in pairs]
+    accuracy_delta = [pair["accuracy_delta"] for pair in pairs]
+    repaired = [pair["repaired"] for pair in pairs]
+    degraded = [pair["degraded"] for pair in pairs]
+    changed = [pair["changed"] for pair in pairs]
+    baseline_false_n = sum(1 for pair in pairs if pair["baseline_correct"] == 0)
+    baseline_true_n = sum(1 for pair in pairs if pair["baseline_correct"] == 1)
+    return {
+        "paired_n": len(pairs),
+        "baseline_false_n": baseline_false_n,
+        "baseline_true_n": baseline_true_n,
+        "repair_n": int(sum(repaired)),
+        "degradation_n": int(sum(degraded)),
+        "changed_n": int(sum(changed)),
+        "mean_accuracy_delta": float(sum(accuracy_delta) / len(accuracy_delta)) if accuracy_delta else None,
+        "pearson_projection_z_vs_accuracy_delta": _pearson(projection_z, accuracy_delta),
+        "spearman_projection_z_vs_accuracy_delta": _spearman(projection_z, accuracy_delta),
+        "pearson_projection_z_vs_repair": _pearson(projection_z, repaired),
+        "spearman_projection_z_vs_repair": _spearman(projection_z, repaired),
+        "pearson_abs_projection_z_vs_changed": _pearson(abs_projection_z, changed),
+        "spearman_abs_projection_z_vs_changed": _spearman(abs_projection_z, changed),
+    }
+
+
+def _condition_kind(row: dict[str, Any]) -> str:
+    kind = row.get("direction_kind")
+    if kind:
+        return str(kind)
+    label = str(row.get("condition") or "")
+    if "_" in label:
+        return label.split("_", 1)[0]
+    return label or "unknown"
+
+
+def probe_confidence_correlation_status(steering: dict[str, Any]) -> dict[str, Any]:
+    jsonl_path = steering.get("report_path")
+    if steering.get("status") != "available" or not jsonl_path:
+        return {"status": "missing_steering_rows"}
+    candidate = Path(jsonl_path)
+    if not candidate.exists():
+        return {"status": "missing_steering_rows", "report_path": jsonl_path}
+    rows = []
+    with candidate.open() as f:
+        for line in f:
+            if line.strip():
+                rows.append(json.loads(line))
+    score_keys = ("direction_projection_z", "probe_score", "probe_confidence", "probe_margin", "direction_projection")
+    score_key = next((key for key in score_keys if any(key in row for row in rows)), None)
+    if score_key is None:
+        return {
+            "status": "needs_probe_score_sidecar",
+            "report_path": jsonl_path,
+            "required_row_fields": ["example_id", "condition", "is_correct_strong", "direction_projection_z"],
+            "note": "Current steering JSONL stores paired outcomes but not per-row probe confidence/projection.",
+        }
+
+    baseline_by_row: dict[int, dict[str, Any]] = {}
+    for row in rows:
+        if row.get("condition") != "baseline":
+            continue
+        row_index = row.get("source_row_index")
+        if row_index is not None:
+            baseline_by_row[int(row_index)] = row
+
+    pairs_by_kind: dict[str, list[dict[str, Any]]] = {}
+    missing_baseline = 0
+    missing_score = 0
+    for row in rows:
+        if row.get("condition") == "baseline":
+            continue
+        row_index = row.get("source_row_index")
+        if row_index is None or int(row_index) not in baseline_by_row:
+            missing_baseline += 1
+            continue
+        projection_z = _finite_float(row.get("direction_projection_z"))
+        if projection_z is None:
+            projection_z = _finite_float(row.get(score_key))
+        if projection_z is None:
+            missing_score += 1
+            continue
+        baseline = baseline_by_row[int(row_index)]
+        baseline_correct = int(bool(baseline.get("is_correct_strong")))
+        intervention_correct = int(bool(row.get("is_correct_strong")))
+        model_output = row.get("model_output")
+        baseline_output = baseline.get("model_output")
+        pair = {
+            "projection_z": projection_z,
+            "baseline_correct": baseline_correct,
+            "intervention_correct": intervention_correct,
+            "accuracy_delta": intervention_correct - baseline_correct,
+            "repaired": int(baseline_correct == 0 and intervention_correct == 1),
+            "degraded": int(baseline_correct == 1 and intervention_correct == 0),
+            "changed": int(model_output != baseline_output),
+        }
+        pairs_by_kind.setdefault(_condition_kind(row), []).append(pair)
+
+    by_direction_kind = {
+        kind: _correlate_projection_effects(pairs)
+        for kind, pairs in sorted(pairs_by_kind.items())
+        if pairs
+    }
+    paired_n = sum(metrics["paired_n"] for metrics in by_direction_kind.values())
+    if not by_direction_kind:
+        return {
+            "status": "score_field_available_no_paired_rows",
+            "report_path": jsonl_path,
+            "score_key": score_key,
+            "missing_baseline_rows": missing_baseline,
+            "missing_score_rows": missing_score,
+        }
+    return {
+        "status": "available",
+        "report_path": jsonl_path,
+        "score_key": score_key,
+        "paired_n": paired_n,
+        "missing_baseline_rows": missing_baseline,
+        "missing_score_rows": missing_score,
+        "by_direction_kind": by_direction_kind,
+        "interpretation_note": (
+            "Correlations are descriptive diagnostics over regenerated paired rows; they are not causal evidence. "
+            "Null values indicate insufficient variance in the score or outcome."
+        ),
+    }
 
 def short_lap_score_name(score_name: str | None) -> str:
     labels = {
@@ -341,17 +603,25 @@ def predicted_regime(
     *,
     raw_auc: float | None,
     raw_minus_b0_auc: float | None,
+    lap_selected_peak_auc: float | None,
     steering: dict[str, Any],
 ) -> str:
     if raw_auc is None:
         return "missing_raw_probe"
     if raw_auc < 0.8:
         return "weak_or_moderate_linear_readout"
+    low_lap = lap_selected_peak_auc is not None and lap_selected_peak_auc < 0.55
     if steering.get("status") != "available":
+        if low_lap and raw_minus_b0_auc is not None and raw_minus_b0_auc >= 0.1:
+            return "strong_activation_over_metadata_low_lap_accessibility_steerability_untested"
         if raw_minus_b0_auc is not None and raw_minus_b0_auc >= 0.1:
             return "strong_activation_over_metadata_steerability_untested"
         return "linear_readout_steerability_untested"
     if steering.get("raw_max_false_to_true") == 0:
+        if steering.get("has_matched_gaussian_control"):
+            return "linearly_readable_matched_control_raw_steering_null"
+        if low_lap:
+            return "linearly_readable_low_lap_accessibility_historical_raw_steering_null"
         if raw_minus_b0_auc is not None and raw_minus_b0_auc >= 0.1:
             return "linearly_readable_activation_over_metadata_historical_raw_steering_null"
         return "linearly_readable_historical_raw_steering_null"
@@ -363,6 +633,7 @@ def build_row(config: dict[str, Any]) -> dict[str, Any]:
     b0_report = read_json_or_none(config.get("b0_report"))
     residualization_report = read_json_or_none(config.get("metadata_residualization"))
     steering_report = read_json_or_none(config.get("steering_report"))
+    related_error_steering_report = read_json_or_none(config.get("related_error_steering_report"))
 
     raw = raw_probe_metrics(raw_report, config["task"], config["site_or_layer"])
     b0 = best_b0_metrics(b0_report, config["b0_key"], config["split"])
@@ -372,24 +643,45 @@ def build_row(config: dict[str, Any]) -> dict[str, Any]:
         task=config["task"],
         requested_site=raw["site_or_layer"],
     )
-    steering = steering_metrics(steering_report)
+    steering = steering_metrics(steering_report, report_path=config.get("steering_report"))
+    related_error_steering = steering_metrics(
+        related_error_steering_report,
+        report_path=config.get("related_error_steering_report"),
+    )
     lap_profile = lap_profile_metrics(config.get("lap_report"), raw["site_or_layer"])
+    positive_control = positive_control_metrics(config.get("positive_control_report"))
+    confidence_correlation = probe_confidence_correlation_status(steering)
 
     raw_auc = raw.get("raw_auc")
     best_b0_auc = b0.get("best_test_auc")
     raw_minus_b0_auc = raw_auc - best_b0_auc if raw_auc is not None and best_b0_auc is not None else None
-    regime = predicted_regime(raw_auc=raw_auc, raw_minus_b0_auc=raw_minus_b0_auc, steering=steering)
+    regime = predicted_regime(
+        raw_auc=raw_auc,
+        raw_minus_b0_auc=raw_minus_b0_auc,
+        lap_selected_peak_auc=lap_profile.get("selected_peak_auc"),
+        steering=steering,
+    )
 
     controls = []
     if steering.get("orthogonal_conditions"):
         controls.append("orthogonal_direction")
+    if steering.get("has_matched_gaussian_control"):
+        controls.append("matched_gaussian_noise")
+    if steering.get("status") == "available" and positive_control.get("passed_positive_control_gate"):
+        controls.append("positive_control")
     result_type = "predictive_and_causal" if steering.get("status") == "available" else "predictive"
-    claim = (
-        "Artifact-level diagnostic: raw correctness is linearly readable and historical raw-direction steering did not "
-        "produce false-to-true repair; matched-noise and positive-control checks remain required."
-        if steering.get("status") == "available"
-        else "Artifact-level diagnostic: raw correctness is linearly readable; steerability is not yet tested for this row."
-    )
+    if steering.get("status") == "available" and steering.get("has_matched_gaussian_control"):
+        claim = (
+            "Artifact-level diagnostic: raw correctness is linearly readable, but the regenerated raw-direction "
+            "decode-step intervention did not produce false-to-true repair above orthogonal or Gaussian controls."
+        )
+    elif steering.get("status") == "available":
+        claim = (
+            "Artifact-level diagnostic: raw correctness is linearly readable and historical raw-direction steering did "
+            "not produce false-to-true repair; matched-noise controls remain required for this row."
+        )
+    else:
+        claim = "Artifact-level diagnostic: raw correctness is linearly readable; steerability is not yet tested for this row."
     notes = [
         "Predicted regime is a planning label, not a manuscript claim.",
     ]
@@ -402,8 +694,12 @@ def build_row(config: dict[str, Any]) -> dict[str, Any]:
             "Metadata-residualization proxy is from "
             f"{metadata_adjustment.get('available_site_or_layer')}, not requested site {raw['site_or_layer']}."
         )
-    if steering.get("status") == "available":
-        notes.append("Historical steering lacks matched Gaussian/noise and known positive-control steering checks.")
+    if steering.get("status") == "available" and not steering.get("has_matched_gaussian_control"):
+        notes.append("Historical steering lacks matched Gaussian/noise controls.")
+    if positive_control.get("status") == "passed":
+        notes.append("Gemma L45 format/casing positive-control gate passed for this hook family.")
+    if confidence_correlation.get("status") == "needs_probe_score_sidecar":
+        notes.append("Probe-confidence vs steering-effect correlation needs row-level probe scores or projections.")
 
     report = make_experiment_report(
         model=config["model"],
@@ -426,11 +722,19 @@ def build_row(config: dict[str, Any]) -> dict[str, Any]:
                 "artifact_proxy_best_scanned_layer": raw.get("best_scanned_layer"),
                 "artifact_proxy_best_scanned_raw_auc": raw.get("best_scanned_raw_auc"),
             },
+            "positive_control_gate": positive_control,
+            "probe_confidence_vs_steering_effect": confidence_correlation,
         },
-        intervention_metrics={"historical_raw_steering": steering},
+        intervention_metrics={
+            "raw_steering": steering,
+            "related_error_subspace_steering": related_error_steering,
+        },
         paired_flips=steering.get("all_flips_vs_baseline", {}),
         parse_fail_rate=steering.get("baseline_parse_fail_rate"),
-        matched_noise_summary={"status": "missing", "required_for_new_interventions": True},
+        matched_noise_summary=steering.get(
+            "matched_noise_summary",
+            {"status": "missing", "required_for_new_interventions": True},
+        ),
         causal_abstraction_claim=claim,
         notes=notes,
     )
@@ -445,11 +749,13 @@ def build_row(config: dict[str, Any]) -> dict[str, Any]:
             "raw_minus_best_metadata_auc": raw_minus_b0_auc,
             "metadata_adjustment": metadata_adjustment,
             "lap_profile": lap_profile,
-            "historical_raw_steering": steering,
+            "raw_steering": steering,
+            "related_error_subspace_steering": related_error_steering,
+            "positive_control_gate": positive_control,
+            "probe_confidence_vs_steering_effect": confidence_correlation,
         },
         "experiment_report": report,
     }
-
 
 def qwen_metadata_note(rows: list[dict[str, Any]]) -> dict[str, Any]:
     qwen = [
@@ -501,22 +807,23 @@ def build_payload() -> dict[str, Any]:
                 "metadata baselines",
                 "metadata-adjusted proxy diagnostics where available",
                 "historical raw-direction steering summaries where available",
+                "matched Gaussian controls for refreshed Gemma raw/error steering reruns",
+                "positive-control gate status for Gemma L45 hook family",
             ],
             "pending": [
-                "LAP/logit-lens accessibility profiles",
                 "entropy/branching/KL steerability predictors",
-                "probe-confidence vs steering-effect correlations on regenerated paired baselines",
-                "matched Gaussian/noise controls",
-                "known positive-control steering task",
+                "probe-confidence vs steering-effect correlations for Qwen/historical rows that still lack projection-enabled sidecars",
+                "matched Gaussian/noise controls for Qwen steering pilots and future intervention families",
+                "known positive-control steering task for Qwen/future non-Gemma hook families",
             ],
         },
         "diagnostics": rows,
         "qwen_metadata_comparison": qwen_metadata_note(rows),
         "next_actions": [
-            "Run or refresh GPU LAP/logit-lens profiles for Gemma scanned layers and Qwen L53/scanned layers.",
-            "Regenerate balanced baseline rows before interpreting new causal interventions.",
-            "Run a known positive-control steering task before treating any new steering null as evidence.",
-            "Add matched Gaussian/noise controls and orthogonal controls to optimized/DAS/decode-time intervention jobs.",
+            "Gemma property projection-enabled reruns are complete; add projection-enabled matched-control reruns only for rows that still need causal interpretation.",
+            "Add entropy/branching/KL-style steerability predictors where the required logits are available.",
+            "Refresh Qwen property steering with regenerated baseline, orthogonal, Gaussian, and Qwen positive-control gates if Qwen causal interpretation is needed.",
+            "Use this diagnostic table to choose the next intervention family: optimized vectors, DAS/distributed interchange, or decode-time correction.",
         ],
     }
 
@@ -527,7 +834,9 @@ def render_markdown(payload: dict[str, Any]) -> str:
         "",
         "This is the Track 2 artifact preflight. It summarizes existing probe, metadata, steering, and LAP/logit-lens artifacts where available.",
         "",
-        "Entropy/branching/KL predictors, regenerated baselines, matched-noise controls, and positive-control steering are still pending.",
+        "LAP/logit-lens artifacts are complete for the target rows. Entropy/branching/KL predictors are still pending; confidence/effect correlations are available for the regenerated Gemma property row and require sidecar fields for historical or untested rows.",
+        "",
+        "Gemma L45 raw/error steering now has regenerated baselines and matched Gaussian controls; Qwen property steering remains a historical pilot without Gaussian controls.",
         "",
         "## Diagnostic Table",
         "",
@@ -539,7 +848,7 @@ def render_markdown(payload: dict[str, Any]) -> str:
         diag = row["diagnostics"]
         meta = diag["metadata_adjustment"]
         lap = diag.get("lap_profile", {})
-        steering = diag["historical_raw_steering"]
+        steering = diag["raw_steering"]
         if meta.get("status") == "available":
             exact = "exact" if meta.get("exact_site_match") else f"proxy {meta.get('available_site_or_layer')}"
             meta_text = (
@@ -557,10 +866,12 @@ def render_markdown(payload: dict[str, Any]) -> str:
         else:
             lap_text = "pending"
         if steering.get("status") == "available":
+            control_text = "; Gaussian ctrl" if steering.get("has_matched_gaussian_control") else ""
             steer_text = (
                 f"n={fmt(steering.get('baseline_n'), 0)}, "
                 f"raw F->T max={fmt(steering.get('raw_max_false_to_true'), 0)}, "
                 f"raw changed max={fmt(steering.get('raw_max_changed'), 0)}"
+                f"{control_text}"
             )
         else:
             steer_text = "untested"
@@ -603,11 +914,38 @@ def render_markdown(payload: dict[str, Any]) -> str:
             f"raw-B0={fmt(context['raw_minus_b0_auc'])}. "
             f"{context['note']}",
             "",
+            "## Control Status",
+            "",
+            "| Row | Gaussian control | Positive control | Confidence/effect correlation |",
+            "| --- | --- | --- | --- |",
+        ]
+    )
+    for row in payload["diagnostics"]:
+        report = row["experiment_report"]
+        diag = row["diagnostics"]
+        steering = diag["raw_steering"]
+        positive = diag["positive_control_gate"]
+        corr = diag["probe_confidence_vs_steering_effect"]
+        if steering.get("has_matched_gaussian_control"):
+            gaussian = "yes"
+        elif steering.get("status") == "available":
+            gaussian = "no"
+        else:
+            gaussian = "untested"
+        positive_text = positive.get("status", "not_configured")
+        lines.append(
+            f"| {row['model_display']} `{report['task']}` `{report['site_or_layer']}` | "
+            f"{gaussian} | {positive_text} | {corr.get('status')} |"
+        )
+    lines.extend(
+        [
+            "",
             "## Interpretation",
             "",
-            "- Existing Gemma and Qwen property steering rows remain historical raw-direction nulls, not final controllability tests.",
-            "- Rows with no steering report are predictive-only until regenerated baseline and controls exist.",
+            "- Gemma property L45 now has a matched-control raw-direction null; rows with no steering report remain predictive-only.",
+            "- Qwen property steering pilots still need regenerated matched Gaussian/noise controls before causal interpretation.",
             "- Qwen L53 has the strongest activation-over-metadata margin, but its metadata-residualization proxy is currently L45.",
+            "- Probe-confidence vs steering-effect correlation is now available for Gemma property L45; Qwen historical pilots and untested rows still need projection-enabled reruns if we want comparable causal diagnostics.",
             "- Do not claim `causally distributed` from this table; DAS/distributed interventions with passing controls are required.",
             "",
             "## Next Jobs",
@@ -618,7 +956,6 @@ def render_markdown(payload: dict[str, Any]) -> str:
         lines.append(f"- {action}")
     lines.append("")
     return "\n".join(lines)
-
 
 def main() -> None:
     parser = argparse.ArgumentParser()

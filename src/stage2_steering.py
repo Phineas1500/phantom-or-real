@@ -395,6 +395,48 @@ def train_raw_probe_direction(
     }
 
 
+def raw_probe_projection_sidecar(
+    *,
+    activation_path: Path,
+    sidecar_path: Path,
+    direction: dict[str, Any],
+) -> dict[str, Any]:
+    """Map source row indices to trained raw-probe direction projections."""
+    dataset = load_probe_dataset(
+        activation_path=activation_path,
+        sidecar_path=sidecar_path,
+        drop_parse_failed=True,
+    )
+    x = dataset["x"]
+    unit = np.asarray(direction["unit_direction"], dtype=np.float32)
+    projections = np.asarray(x @ unit, dtype=np.float64)
+    mean = float(direction["train_projection_mean"])
+    std = float(direction["train_projection_std"])
+    if std == 0.0:
+        raise ValueError("train projection standard deviation is zero")
+
+    by_row_index: dict[int, dict[str, Any]] = {}
+    for sidecar_row, projection in zip(dataset["sidecar"], projections):
+        projection_value = float(projection)
+        by_row_index[int(sidecar_row["row_index"])] = {
+            "direction_projection": projection_value,
+            "direction_projection_z": float((projection_value - mean) / std),
+            "direction_projection_higher_is": "more_correct_by_probe",
+        }
+    return {
+        "by_row_index": by_row_index,
+        "summary": {
+            "input_rows": dataset["input_rows"],
+            "kept_rows": dataset["kept_rows"],
+            "projection_row_count": len(by_row_index),
+            "train_projection_mean": mean,
+            "train_projection_std": std,
+            "direction_projection_higher_is": "more_correct_by_probe",
+            "row_key": "source_row_index",
+        },
+    }
+
+
 def make_orthogonal_unit_direction(
     direction: np.ndarray,
     *,

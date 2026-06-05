@@ -1,99 +1,10 @@
 {
-  "created_at_utc": "2026-06-04T06:15:36.621269+00:00",
+  "created_at_utc": "2026-06-05T13:28:31.521815+00:00",
   "diagnostics": [
     {
       "diagnostics": {
         "best_metadata_baseline_auc": 0.743183420273509,
         "best_metadata_feature_set": "b0_prompt",
-        "historical_raw_steering": {
-          "all_flips_vs_baseline": {
-            "orthogonal_neg0p5sd": {
-              "changed": 0,
-              "false_to_true": 0,
-              "net_accuracy_delta": 0.0,
-              "paired_n": 8,
-              "true_to_false": 0
-            },
-            "orthogonal_neg1sd": {
-              "changed": 0,
-              "false_to_true": 0,
-              "net_accuracy_delta": 0.0,
-              "paired_n": 8,
-              "true_to_false": 0
-            },
-            "orthogonal_pos0p5sd": {
-              "changed": 0,
-              "false_to_true": 0,
-              "net_accuracy_delta": 0.0,
-              "paired_n": 8,
-              "true_to_false": 0
-            },
-            "orthogonal_pos1sd": {
-              "changed": 1,
-              "false_to_true": 0,
-              "net_accuracy_delta": -0.125,
-              "paired_n": 8,
-              "true_to_false": 1
-            },
-            "raw_neg0p5sd": {
-              "changed": 0,
-              "false_to_true": 0,
-              "net_accuracy_delta": 0.0,
-              "paired_n": 8,
-              "true_to_false": 0
-            },
-            "raw_neg1sd": {
-              "changed": 0,
-              "false_to_true": 0,
-              "net_accuracy_delta": 0.0,
-              "paired_n": 8,
-              "true_to_false": 0
-            },
-            "raw_pos0p5sd": {
-              "changed": 0,
-              "false_to_true": 0,
-              "net_accuracy_delta": 0.0,
-              "paired_n": 8,
-              "true_to_false": 0
-            },
-            "raw_pos1sd": {
-              "changed": 0,
-              "false_to_true": 0,
-              "net_accuracy_delta": 0.0,
-              "paired_n": 8,
-              "true_to_false": 0
-            }
-          },
-          "baseline_n": 8,
-          "baseline_parse_fail_rate": 0.0,
-          "baseline_strong_accuracy": 0.375,
-          "baseline_weak_accuracy": 0.625,
-          "orthogonal_conditions": [
-            "orthogonal_neg0p5sd",
-            "orthogonal_neg1sd",
-            "orthogonal_pos0p5sd",
-            "orthogonal_pos1sd"
-          ],
-          "orthogonal_max_abs_accuracy_delta": 0.125,
-          "orthogonal_max_changed": 1,
-          "orthogonal_max_false_to_true": 0,
-          "orthogonal_max_true_to_false": 1,
-          "paired_n_max": 8,
-          "parse_fail_rate_max": 0.25,
-          "parse_fail_rate_min": 0.0,
-          "raw_conditions": [
-            "raw_neg0p5sd",
-            "raw_neg1sd",
-            "raw_pos0p5sd",
-            "raw_pos1sd"
-          ],
-          "raw_max_abs_accuracy_delta": 0.0,
-          "raw_max_changed": 0,
-          "raw_max_false_to_true": 0,
-          "raw_max_true_to_false": 0,
-          "report_path": "results/stage2/steering/raw_l45_property_decode_sweep.jsonl",
-          "status": "available"
-        },
         "lap_profile": {
           "kept_rows": 10025,
           "method": "saved_activation_logit_lens",
@@ -168,8 +79,463 @@
           "reference_metadata_set": "b0_prompt",
           "status": "available"
         },
+        "positive_control_gate": {
+          "best_effect_over_control_sigma": 47.89867841853144,
+          "control_abs_delta_std": 0.017267804162840517,
+          "passed_positive_control_gate": true,
+          "report_path": "docs/positive_control_format_gemma3_27b_l45.json",
+          "status": "passed",
+          "target_variable": "positive_control_behavior",
+          "task": "format_positive_control"
+        },
+        "probe_confidence_vs_steering_effect": {
+          "by_direction_kind": {
+            "gaussian": {
+              "baseline_false_n": 20,
+              "baseline_true_n": 12,
+              "changed_n": 4,
+              "degradation_n": 0,
+              "mean_accuracy_delta": 0.0,
+              "paired_n": 32,
+              "pearson_abs_projection_z_vs_changed": 0.5597168021318426,
+              "pearson_projection_z_vs_accuracy_delta": null,
+              "pearson_projection_z_vs_repair": null,
+              "repair_n": 0,
+              "spearman_abs_projection_z_vs_changed": 0.5773502691896257,
+              "spearman_projection_z_vs_accuracy_delta": null,
+              "spearman_projection_z_vs_repair": null
+            },
+            "orthogonal": {
+              "baseline_false_n": 20,
+              "baseline_true_n": 12,
+              "changed_n": 5,
+              "degradation_n": 1,
+              "mean_accuracy_delta": -0.03125,
+              "paired_n": 32,
+              "pearson_abs_projection_z_vs_changed": 0.5181323601647886,
+              "pearson_projection_z_vs_accuracy_delta": 0.11868094826625782,
+              "pearson_projection_z_vs_repair": null,
+              "repair_n": 0,
+              "spearman_abs_projection_z_vs_changed": 0.5446549641583773,
+              "spearman_projection_z_vs_accuracy_delta": 0.11757927025044308,
+              "spearman_projection_z_vs_repair": null
+            },
+            "raw": {
+              "baseline_false_n": 20,
+              "baseline_true_n": 12,
+              "changed_n": 4,
+              "degradation_n": 0,
+              "mean_accuracy_delta": 0.0,
+              "paired_n": 32,
+              "pearson_abs_projection_z_vs_changed": 0.5597168021318426,
+              "pearson_projection_z_vs_accuracy_delta": null,
+              "pearson_projection_z_vs_repair": null,
+              "repair_n": 0,
+              "spearman_abs_projection_z_vs_changed": 0.5773502691896257,
+              "spearman_projection_z_vs_accuracy_delta": null,
+              "spearman_projection_z_vs_repair": null
+            }
+          },
+          "interpretation_note": "Correlations are descriptive diagnostics over regenerated paired rows; they are not causal evidence. Null values indicate insufficient variance in the score or outcome.",
+          "missing_baseline_rows": 0,
+          "missing_score_rows": 0,
+          "paired_n": 96,
+          "report_path": "results/stage2/steering/raw_l45_property_decode_sweep.jsonl",
+          "score_key": "direction_projection_z",
+          "status": "available"
+        },
         "raw_auc": 0.8965441280135344,
-        "raw_minus_best_metadata_auc": 0.15336070774002541
+        "raw_minus_best_metadata_auc": 0.15336070774002541,
+        "raw_steering": {
+          "all_flips_vs_baseline": {
+            "gaussian_neg0p5sd": {
+              "changed": 0,
+              "false_to_true": 0,
+              "net_accuracy_delta": 0.0,
+              "paired_n": 8,
+              "true_to_false": 0
+            },
+            "gaussian_neg1sd": {
+              "changed": 0,
+              "false_to_true": 0,
+              "net_accuracy_delta": 0.0,
+              "paired_n": 8,
+              "true_to_false": 0
+            },
+            "gaussian_pos0p5sd": {
+              "changed": 0,
+              "false_to_true": 0,
+              "net_accuracy_delta": 0.0,
+              "paired_n": 8,
+              "true_to_false": 0
+            },
+            "gaussian_pos1sd": {
+              "changed": 0,
+              "false_to_true": 0,
+              "net_accuracy_delta": 0.0,
+              "paired_n": 8,
+              "true_to_false": 0
+            },
+            "orthogonal_neg0p5sd": {
+              "changed": 0,
+              "false_to_true": 0,
+              "net_accuracy_delta": 0.0,
+              "paired_n": 8,
+              "true_to_false": 0
+            },
+            "orthogonal_neg1sd": {
+              "changed": 0,
+              "false_to_true": 0,
+              "net_accuracy_delta": 0.0,
+              "paired_n": 8,
+              "true_to_false": 0
+            },
+            "orthogonal_pos0p5sd": {
+              "changed": 0,
+              "false_to_true": 0,
+              "net_accuracy_delta": 0.0,
+              "paired_n": 8,
+              "true_to_false": 0
+            },
+            "orthogonal_pos1sd": {
+              "changed": 1,
+              "false_to_true": 0,
+              "net_accuracy_delta": -0.125,
+              "paired_n": 8,
+              "true_to_false": 1
+            },
+            "raw_neg0p5sd": {
+              "changed": 0,
+              "false_to_true": 0,
+              "net_accuracy_delta": 0.0,
+              "paired_n": 8,
+              "true_to_false": 0
+            },
+            "raw_neg1sd": {
+              "changed": 0,
+              "false_to_true": 0,
+              "net_accuracy_delta": 0.0,
+              "paired_n": 8,
+              "true_to_false": 0
+            },
+            "raw_pos0p5sd": {
+              "changed": 0,
+              "false_to_true": 0,
+              "net_accuracy_delta": 0.0,
+              "paired_n": 8,
+              "true_to_false": 0
+            },
+            "raw_pos1sd": {
+              "changed": 0,
+              "false_to_true": 0,
+              "net_accuracy_delta": 0.0,
+              "paired_n": 8,
+              "true_to_false": 0
+            }
+          },
+          "baseline_n": 8,
+          "baseline_parse_fail_rate": 0.0,
+          "baseline_strong_accuracy": 0.375,
+          "baseline_weak_accuracy": 0.625,
+          "elapsed_seconds": 6911.120215177536,
+          "gaussian_conditions": [
+            "gaussian_neg0p5sd",
+            "gaussian_neg1sd",
+            "gaussian_pos0p5sd",
+            "gaussian_pos1sd"
+          ],
+          "gaussian_max_abs_accuracy_delta": 0.0,
+          "gaussian_max_changed": 0,
+          "gaussian_max_false_to_true": 0,
+          "gaussian_max_true_to_false": 0,
+          "has_matched_gaussian_control": true,
+          "has_regenerated_baseline": true,
+          "json_report_path": "docs/raw_steering_27b_l45_property_decode_sweep.json",
+          "matched_noise_summary": {
+            "control_max_changed": 1,
+            "control_max_false_to_true": 0,
+            "gaussian_max_changed": 0,
+            "gaussian_max_false_to_true": 0,
+            "has_matched_gaussian_control": true,
+            "orthogonal_max_changed": 1,
+            "orthogonal_max_false_to_true": 0,
+            "raw_max_changed": 0,
+            "raw_max_false_to_true": 0,
+            "repair_exceeds_controls_by_count": false,
+            "sigma_test_status": "not_estimated_from_single_matched_control_family",
+            "status": "available_no_sigma_estimate"
+          },
+          "orthogonal_conditions": [
+            "orthogonal_neg0p5sd",
+            "orthogonal_neg1sd",
+            "orthogonal_pos0p5sd",
+            "orthogonal_pos1sd"
+          ],
+          "orthogonal_max_abs_accuracy_delta": 0.125,
+          "orthogonal_max_changed": 1,
+          "orthogonal_max_false_to_true": 0,
+          "orthogonal_max_true_to_false": 1,
+          "paired_n_max": 8,
+          "parse_fail_rate_max": 0.25,
+          "parse_fail_rate_min": 0.0,
+          "raw_conditions": [
+            "raw_neg0p5sd",
+            "raw_neg1sd",
+            "raw_pos0p5sd",
+            "raw_pos1sd"
+          ],
+          "raw_max_abs_accuracy_delta": 0.0,
+          "raw_max_changed": 0,
+          "raw_max_false_to_true": 0,
+          "raw_max_true_to_false": 0,
+          "report_path": "results/stage2/steering/raw_l45_property_decode_sweep.jsonl",
+          "selection": {
+            "available_counts": {
+              "h3_correct": 177,
+              "h3_incorrect": 240,
+              "h4_correct": 198,
+              "h4_incorrect": 486
+            },
+            "drop_parse_failed": true,
+            "heights": [
+              3,
+              4
+            ],
+            "per_height_label": 2,
+            "seed": 20260427,
+            "selected_counts": {
+              "h3_correct": 2,
+              "h3_incorrect": 2,
+              "h4_correct": 2,
+              "h4_incorrect": 2
+            },
+            "selected_rows": 8,
+            "source_file": "results/full/with_errortype/gemma3_27b_infer_property.jsonl",
+            "split": "test",
+            "split_family": "s1"
+          },
+          "slurm_job_id": "456672",
+          "status": "available"
+        },
+        "related_error_subspace_steering": {
+          "all_flips_vs_baseline": {
+            "gaussian_neg0p25sd": {
+              "changed": 0,
+              "false_to_true": 0,
+              "net_accuracy_delta": 0.0,
+              "paired_n": 8,
+              "true_to_false": 0
+            },
+            "gaussian_neg0p5sd": {
+              "changed": 0,
+              "false_to_true": 0,
+              "net_accuracy_delta": 0.0,
+              "paired_n": 8,
+              "true_to_false": 0
+            },
+            "gaussian_neg1sd": {
+              "changed": 0,
+              "false_to_true": 0,
+              "net_accuracy_delta": 0.0,
+              "paired_n": 8,
+              "true_to_false": 0
+            },
+            "gaussian_pos0p25sd": {
+              "changed": 1,
+              "false_to_true": 0,
+              "net_accuracy_delta": -0.125,
+              "paired_n": 8,
+              "true_to_false": 1
+            },
+            "gaussian_pos0p5sd": {
+              "changed": 0,
+              "false_to_true": 0,
+              "net_accuracy_delta": 0.0,
+              "paired_n": 8,
+              "true_to_false": 0
+            },
+            "gaussian_pos1sd": {
+              "changed": 0,
+              "false_to_true": 0,
+              "net_accuracy_delta": 0.0,
+              "paired_n": 8,
+              "true_to_false": 0
+            },
+            "orthogonal_neg0p25sd": {
+              "changed": 1,
+              "false_to_true": 0,
+              "net_accuracy_delta": -0.125,
+              "paired_n": 8,
+              "true_to_false": 1
+            },
+            "orthogonal_neg0p5sd": {
+              "changed": 1,
+              "false_to_true": 0,
+              "net_accuracy_delta": -0.125,
+              "paired_n": 8,
+              "true_to_false": 1
+            },
+            "orthogonal_neg1sd": {
+              "changed": 0,
+              "false_to_true": 0,
+              "net_accuracy_delta": 0.0,
+              "paired_n": 8,
+              "true_to_false": 0
+            },
+            "orthogonal_pos0p25sd": {
+              "changed": 0,
+              "false_to_true": 0,
+              "net_accuracy_delta": 0.0,
+              "paired_n": 8,
+              "true_to_false": 0
+            },
+            "orthogonal_pos0p5sd": {
+              "changed": 0,
+              "false_to_true": 0,
+              "net_accuracy_delta": 0.0,
+              "paired_n": 8,
+              "true_to_false": 0
+            },
+            "orthogonal_pos1sd": {
+              "changed": 0,
+              "false_to_true": 0,
+              "net_accuracy_delta": 0.0,
+              "paired_n": 8,
+              "true_to_false": 0
+            },
+            "raw_neg0p25sd": {
+              "changed": 0,
+              "false_to_true": 0,
+              "net_accuracy_delta": 0.0,
+              "paired_n": 8,
+              "true_to_false": 0
+            },
+            "raw_neg0p5sd": {
+              "changed": 0,
+              "false_to_true": 0,
+              "net_accuracy_delta": 0.0,
+              "paired_n": 8,
+              "true_to_false": 0
+            },
+            "raw_neg1sd": {
+              "changed": 0,
+              "false_to_true": 0,
+              "net_accuracy_delta": 0.0,
+              "paired_n": 8,
+              "true_to_false": 0
+            },
+            "raw_pos0p25sd": {
+              "changed": 0,
+              "false_to_true": 0,
+              "net_accuracy_delta": 0.0,
+              "paired_n": 8,
+              "true_to_false": 0
+            },
+            "raw_pos0p5sd": {
+              "changed": 0,
+              "false_to_true": 0,
+              "net_accuracy_delta": 0.0,
+              "paired_n": 8,
+              "true_to_false": 0
+            },
+            "raw_pos1sd": {
+              "changed": 0,
+              "false_to_true": 0,
+              "net_accuracy_delta": 0.0,
+              "paired_n": 8,
+              "true_to_false": 0
+            }
+          },
+          "baseline_n": 8,
+          "baseline_parse_fail_rate": 0.0,
+          "baseline_strong_accuracy": 0.375,
+          "baseline_weak_accuracy": 0.625,
+          "elapsed_seconds": 9920.624561071396,
+          "gaussian_conditions": [
+            "gaussian_neg0p25sd",
+            "gaussian_neg0p5sd",
+            "gaussian_neg1sd",
+            "gaussian_pos0p25sd",
+            "gaussian_pos0p5sd",
+            "gaussian_pos1sd"
+          ],
+          "gaussian_max_abs_accuracy_delta": 0.125,
+          "gaussian_max_changed": 1,
+          "gaussian_max_false_to_true": 0,
+          "gaussian_max_true_to_false": 1,
+          "has_matched_gaussian_control": true,
+          "has_regenerated_baseline": true,
+          "json_report_path": "docs/error_l45_layer_45_width_262k_l0_small_top128_property_decode_sweep.json",
+          "matched_noise_summary": {
+            "control_max_changed": 1,
+            "control_max_false_to_true": 0,
+            "gaussian_max_changed": 1,
+            "gaussian_max_false_to_true": 0,
+            "has_matched_gaussian_control": true,
+            "orthogonal_max_changed": 1,
+            "orthogonal_max_false_to_true": 0,
+            "raw_max_changed": 0,
+            "raw_max_false_to_true": 0,
+            "repair_exceeds_controls_by_count": false,
+            "sigma_test_status": "not_estimated_from_single_matched_control_family",
+            "status": "available_no_sigma_estimate"
+          },
+          "orthogonal_conditions": [
+            "orthogonal_neg0p25sd",
+            "orthogonal_neg0p5sd",
+            "orthogonal_neg1sd",
+            "orthogonal_pos0p25sd",
+            "orthogonal_pos0p5sd",
+            "orthogonal_pos1sd"
+          ],
+          "orthogonal_max_abs_accuracy_delta": 0.125,
+          "orthogonal_max_changed": 1,
+          "orthogonal_max_false_to_true": 0,
+          "orthogonal_max_true_to_false": 1,
+          "paired_n_max": 8,
+          "parse_fail_rate_max": 0.25,
+          "parse_fail_rate_min": 0.0,
+          "raw_conditions": [
+            "raw_neg0p25sd",
+            "raw_neg0p5sd",
+            "raw_neg1sd",
+            "raw_pos0p25sd",
+            "raw_pos0p5sd",
+            "raw_pos1sd"
+          ],
+          "raw_max_abs_accuracy_delta": 0.0,
+          "raw_max_changed": 0,
+          "raw_max_false_to_true": 0,
+          "raw_max_true_to_false": 0,
+          "report_path": "results/stage2/steering/error_l45_layer_45_width_262k_l0_small_top128_property_decode_sweep.jsonl",
+          "selection": {
+            "available_counts": {
+              "h3_correct": 177,
+              "h3_incorrect": 240,
+              "h4_correct": 198,
+              "h4_incorrect": 486
+            },
+            "drop_parse_failed": true,
+            "heights": [
+              3,
+              4
+            ],
+            "per_height_label": 2,
+            "seed": 20260427,
+            "selected_counts": {
+              "h3_correct": 2,
+              "h3_incorrect": 2,
+              "h4_correct": 2,
+              "h4_incorrect": 2
+            },
+            "selected_rows": 8,
+            "source_file": "results/full/with_errortype/gemma3_27b_infer_property.jsonl",
+            "split": "test",
+            "split_family": "s1"
+          },
+          "slurm_job_id": "456671",
+          "status": "available"
+        }
       },
       "experiment_report": {
         "baseline_metrics": {
@@ -274,6 +640,71 @@
             "reference_metadata_set": "b0_prompt",
             "status": "available"
           },
+          "positive_control_gate": {
+            "best_effect_over_control_sigma": 47.89867841853144,
+            "control_abs_delta_std": 0.017267804162840517,
+            "passed_positive_control_gate": true,
+            "report_path": "docs/positive_control_format_gemma3_27b_l45.json",
+            "status": "passed",
+            "target_variable": "positive_control_behavior",
+            "task": "format_positive_control"
+          },
+          "probe_confidence_vs_steering_effect": {
+            "by_direction_kind": {
+              "gaussian": {
+                "baseline_false_n": 20,
+                "baseline_true_n": 12,
+                "changed_n": 4,
+                "degradation_n": 0,
+                "mean_accuracy_delta": 0.0,
+                "paired_n": 32,
+                "pearson_abs_projection_z_vs_changed": 0.5597168021318426,
+                "pearson_projection_z_vs_accuracy_delta": null,
+                "pearson_projection_z_vs_repair": null,
+                "repair_n": 0,
+                "spearman_abs_projection_z_vs_changed": 0.5773502691896257,
+                "spearman_projection_z_vs_accuracy_delta": null,
+                "spearman_projection_z_vs_repair": null
+              },
+              "orthogonal": {
+                "baseline_false_n": 20,
+                "baseline_true_n": 12,
+                "changed_n": 5,
+                "degradation_n": 1,
+                "mean_accuracy_delta": -0.03125,
+                "paired_n": 32,
+                "pearson_abs_projection_z_vs_changed": 0.5181323601647886,
+                "pearson_projection_z_vs_accuracy_delta": 0.11868094826625782,
+                "pearson_projection_z_vs_repair": null,
+                "repair_n": 0,
+                "spearman_abs_projection_z_vs_changed": 0.5446549641583773,
+                "spearman_projection_z_vs_accuracy_delta": 0.11757927025044308,
+                "spearman_projection_z_vs_repair": null
+              },
+              "raw": {
+                "baseline_false_n": 20,
+                "baseline_true_n": 12,
+                "changed_n": 4,
+                "degradation_n": 0,
+                "mean_accuracy_delta": 0.0,
+                "paired_n": 32,
+                "pearson_abs_projection_z_vs_changed": 0.5597168021318426,
+                "pearson_projection_z_vs_accuracy_delta": null,
+                "pearson_projection_z_vs_repair": null,
+                "repair_n": 0,
+                "spearman_abs_projection_z_vs_changed": 0.5773502691896257,
+                "spearman_projection_z_vs_accuracy_delta": null,
+                "spearman_projection_z_vs_repair": null
+              }
+            },
+            "interpretation_note": "Correlations are descriptive diagnostics over regenerated paired rows; they are not causal evidence. Null values indicate insufficient variance in the score or outcome.",
+            "missing_baseline_rows": 0,
+            "missing_score_rows": 0,
+            "paired_n": 96,
+            "report_path": "results/stage2/steering/raw_l45_property_decode_sweep.jsonl",
+            "score_key": "direction_projection_z",
+            "status": "available"
+          },
           "raw_minus_best_metadata_auc": 0.15336070774002541,
           "raw_probe": {
             "best_scanned_layer": "L45",
@@ -308,14 +739,44 @@
             "val_auc": 0.8814838073957906
           }
         },
-        "causal_abstraction_claim": "Artifact-level diagnostic: raw correctness is linearly readable and historical raw-direction steering did not produce false-to-true repair; matched-noise and positive-control checks remain required.",
+        "causal_abstraction_claim": "Artifact-level diagnostic: raw correctness is linearly readable, but the regenerated raw-direction decode-step intervention did not produce false-to-true repair above orthogonal or Gaussian controls.",
         "controls": [
-          "orthogonal_direction"
+          "orthogonal_direction",
+          "matched_gaussian_noise",
+          "positive_control"
         ],
-        "created_at_utc": "2026-06-04T06:15:36.576124+00:00",
+        "created_at_utc": "2026-06-05T13:28:31.500217+00:00",
         "intervention_metrics": {
-          "historical_raw_steering": {
+          "raw_steering": {
             "all_flips_vs_baseline": {
+              "gaussian_neg0p5sd": {
+                "changed": 0,
+                "false_to_true": 0,
+                "net_accuracy_delta": 0.0,
+                "paired_n": 8,
+                "true_to_false": 0
+              },
+              "gaussian_neg1sd": {
+                "changed": 0,
+                "false_to_true": 0,
+                "net_accuracy_delta": 0.0,
+                "paired_n": 8,
+                "true_to_false": 0
+              },
+              "gaussian_pos0p5sd": {
+                "changed": 0,
+                "false_to_true": 0,
+                "net_accuracy_delta": 0.0,
+                "paired_n": 8,
+                "true_to_false": 0
+              },
+              "gaussian_pos1sd": {
+                "changed": 0,
+                "false_to_true": 0,
+                "net_accuracy_delta": 0.0,
+                "paired_n": 8,
+                "true_to_false": 0
+              },
               "orthogonal_neg0p5sd": {
                 "changed": 0,
                 "false_to_true": 0,
@@ -377,6 +838,34 @@
             "baseline_parse_fail_rate": 0.0,
             "baseline_strong_accuracy": 0.375,
             "baseline_weak_accuracy": 0.625,
+            "elapsed_seconds": 6911.120215177536,
+            "gaussian_conditions": [
+              "gaussian_neg0p5sd",
+              "gaussian_neg1sd",
+              "gaussian_pos0p5sd",
+              "gaussian_pos1sd"
+            ],
+            "gaussian_max_abs_accuracy_delta": 0.0,
+            "gaussian_max_changed": 0,
+            "gaussian_max_false_to_true": 0,
+            "gaussian_max_true_to_false": 0,
+            "has_matched_gaussian_control": true,
+            "has_regenerated_baseline": true,
+            "json_report_path": "docs/raw_steering_27b_l45_property_decode_sweep.json",
+            "matched_noise_summary": {
+              "control_max_changed": 1,
+              "control_max_false_to_true": 0,
+              "gaussian_max_changed": 0,
+              "gaussian_max_false_to_true": 0,
+              "has_matched_gaussian_control": true,
+              "orthogonal_max_changed": 1,
+              "orthogonal_max_false_to_true": 0,
+              "raw_max_changed": 0,
+              "raw_max_false_to_true": 0,
+              "repair_exceeds_controls_by_count": false,
+              "sigma_test_status": "not_estimated_from_single_matched_control_family",
+              "status": "available_no_sigma_estimate"
+            },
             "orthogonal_conditions": [
               "orthogonal_neg0p5sd",
               "orthogonal_neg1sd",
@@ -401,12 +890,267 @@
             "raw_max_false_to_true": 0,
             "raw_max_true_to_false": 0,
             "report_path": "results/stage2/steering/raw_l45_property_decode_sweep.jsonl",
+            "selection": {
+              "available_counts": {
+                "h3_correct": 177,
+                "h3_incorrect": 240,
+                "h4_correct": 198,
+                "h4_incorrect": 486
+              },
+              "drop_parse_failed": true,
+              "heights": [
+                3,
+                4
+              ],
+              "per_height_label": 2,
+              "seed": 20260427,
+              "selected_counts": {
+                "h3_correct": 2,
+                "h3_incorrect": 2,
+                "h4_correct": 2,
+                "h4_incorrect": 2
+              },
+              "selected_rows": 8,
+              "source_file": "results/full/with_errortype/gemma3_27b_infer_property.jsonl",
+              "split": "test",
+              "split_family": "s1"
+            },
+            "slurm_job_id": "456672",
+            "status": "available"
+          },
+          "related_error_subspace_steering": {
+            "all_flips_vs_baseline": {
+              "gaussian_neg0p25sd": {
+                "changed": 0,
+                "false_to_true": 0,
+                "net_accuracy_delta": 0.0,
+                "paired_n": 8,
+                "true_to_false": 0
+              },
+              "gaussian_neg0p5sd": {
+                "changed": 0,
+                "false_to_true": 0,
+                "net_accuracy_delta": 0.0,
+                "paired_n": 8,
+                "true_to_false": 0
+              },
+              "gaussian_neg1sd": {
+                "changed": 0,
+                "false_to_true": 0,
+                "net_accuracy_delta": 0.0,
+                "paired_n": 8,
+                "true_to_false": 0
+              },
+              "gaussian_pos0p25sd": {
+                "changed": 1,
+                "false_to_true": 0,
+                "net_accuracy_delta": -0.125,
+                "paired_n": 8,
+                "true_to_false": 1
+              },
+              "gaussian_pos0p5sd": {
+                "changed": 0,
+                "false_to_true": 0,
+                "net_accuracy_delta": 0.0,
+                "paired_n": 8,
+                "true_to_false": 0
+              },
+              "gaussian_pos1sd": {
+                "changed": 0,
+                "false_to_true": 0,
+                "net_accuracy_delta": 0.0,
+                "paired_n": 8,
+                "true_to_false": 0
+              },
+              "orthogonal_neg0p25sd": {
+                "changed": 1,
+                "false_to_true": 0,
+                "net_accuracy_delta": -0.125,
+                "paired_n": 8,
+                "true_to_false": 1
+              },
+              "orthogonal_neg0p5sd": {
+                "changed": 1,
+                "false_to_true": 0,
+                "net_accuracy_delta": -0.125,
+                "paired_n": 8,
+                "true_to_false": 1
+              },
+              "orthogonal_neg1sd": {
+                "changed": 0,
+                "false_to_true": 0,
+                "net_accuracy_delta": 0.0,
+                "paired_n": 8,
+                "true_to_false": 0
+              },
+              "orthogonal_pos0p25sd": {
+                "changed": 0,
+                "false_to_true": 0,
+                "net_accuracy_delta": 0.0,
+                "paired_n": 8,
+                "true_to_false": 0
+              },
+              "orthogonal_pos0p5sd": {
+                "changed": 0,
+                "false_to_true": 0,
+                "net_accuracy_delta": 0.0,
+                "paired_n": 8,
+                "true_to_false": 0
+              },
+              "orthogonal_pos1sd": {
+                "changed": 0,
+                "false_to_true": 0,
+                "net_accuracy_delta": 0.0,
+                "paired_n": 8,
+                "true_to_false": 0
+              },
+              "raw_neg0p25sd": {
+                "changed": 0,
+                "false_to_true": 0,
+                "net_accuracy_delta": 0.0,
+                "paired_n": 8,
+                "true_to_false": 0
+              },
+              "raw_neg0p5sd": {
+                "changed": 0,
+                "false_to_true": 0,
+                "net_accuracy_delta": 0.0,
+                "paired_n": 8,
+                "true_to_false": 0
+              },
+              "raw_neg1sd": {
+                "changed": 0,
+                "false_to_true": 0,
+                "net_accuracy_delta": 0.0,
+                "paired_n": 8,
+                "true_to_false": 0
+              },
+              "raw_pos0p25sd": {
+                "changed": 0,
+                "false_to_true": 0,
+                "net_accuracy_delta": 0.0,
+                "paired_n": 8,
+                "true_to_false": 0
+              },
+              "raw_pos0p5sd": {
+                "changed": 0,
+                "false_to_true": 0,
+                "net_accuracy_delta": 0.0,
+                "paired_n": 8,
+                "true_to_false": 0
+              },
+              "raw_pos1sd": {
+                "changed": 0,
+                "false_to_true": 0,
+                "net_accuracy_delta": 0.0,
+                "paired_n": 8,
+                "true_to_false": 0
+              }
+            },
+            "baseline_n": 8,
+            "baseline_parse_fail_rate": 0.0,
+            "baseline_strong_accuracy": 0.375,
+            "baseline_weak_accuracy": 0.625,
+            "elapsed_seconds": 9920.624561071396,
+            "gaussian_conditions": [
+              "gaussian_neg0p25sd",
+              "gaussian_neg0p5sd",
+              "gaussian_neg1sd",
+              "gaussian_pos0p25sd",
+              "gaussian_pos0p5sd",
+              "gaussian_pos1sd"
+            ],
+            "gaussian_max_abs_accuracy_delta": 0.125,
+            "gaussian_max_changed": 1,
+            "gaussian_max_false_to_true": 0,
+            "gaussian_max_true_to_false": 1,
+            "has_matched_gaussian_control": true,
+            "has_regenerated_baseline": true,
+            "json_report_path": "docs/error_l45_layer_45_width_262k_l0_small_top128_property_decode_sweep.json",
+            "matched_noise_summary": {
+              "control_max_changed": 1,
+              "control_max_false_to_true": 0,
+              "gaussian_max_changed": 1,
+              "gaussian_max_false_to_true": 0,
+              "has_matched_gaussian_control": true,
+              "orthogonal_max_changed": 1,
+              "orthogonal_max_false_to_true": 0,
+              "raw_max_changed": 0,
+              "raw_max_false_to_true": 0,
+              "repair_exceeds_controls_by_count": false,
+              "sigma_test_status": "not_estimated_from_single_matched_control_family",
+              "status": "available_no_sigma_estimate"
+            },
+            "orthogonal_conditions": [
+              "orthogonal_neg0p25sd",
+              "orthogonal_neg0p5sd",
+              "orthogonal_neg1sd",
+              "orthogonal_pos0p25sd",
+              "orthogonal_pos0p5sd",
+              "orthogonal_pos1sd"
+            ],
+            "orthogonal_max_abs_accuracy_delta": 0.125,
+            "orthogonal_max_changed": 1,
+            "orthogonal_max_false_to_true": 0,
+            "orthogonal_max_true_to_false": 1,
+            "paired_n_max": 8,
+            "parse_fail_rate_max": 0.25,
+            "parse_fail_rate_min": 0.0,
+            "raw_conditions": [
+              "raw_neg0p25sd",
+              "raw_neg0p5sd",
+              "raw_neg1sd",
+              "raw_pos0p25sd",
+              "raw_pos0p5sd",
+              "raw_pos1sd"
+            ],
+            "raw_max_abs_accuracy_delta": 0.0,
+            "raw_max_changed": 0,
+            "raw_max_false_to_true": 0,
+            "raw_max_true_to_false": 0,
+            "report_path": "results/stage2/steering/error_l45_layer_45_width_262k_l0_small_top128_property_decode_sweep.jsonl",
+            "selection": {
+              "available_counts": {
+                "h3_correct": 177,
+                "h3_incorrect": 240,
+                "h4_correct": 198,
+                "h4_incorrect": 486
+              },
+              "drop_parse_failed": true,
+              "heights": [
+                3,
+                4
+              ],
+              "per_height_label": 2,
+              "seed": 20260427,
+              "selected_counts": {
+                "h3_correct": 2,
+                "h3_incorrect": 2,
+                "h4_correct": 2,
+                "h4_incorrect": 2
+              },
+              "selected_rows": 8,
+              "source_file": "results/full/with_errortype/gemma3_27b_infer_property.jsonl",
+              "split": "test",
+              "split_family": "s1"
+            },
+            "slurm_job_id": "456671",
             "status": "available"
           }
         },
         "matched_noise_summary": {
-          "required_for_new_interventions": true,
-          "status": "missing"
+          "control_max_changed": 1,
+          "control_max_false_to_true": 0,
+          "gaussian_max_changed": 0,
+          "gaussian_max_false_to_true": 0,
+          "has_matched_gaussian_control": true,
+          "orthogonal_max_changed": 1,
+          "orthogonal_max_false_to_true": 0,
+          "raw_max_changed": 0,
+          "raw_max_false_to_true": 0,
+          "repair_exceeds_controls_by_count": false,
+          "sigma_test_status": "not_estimated_from_single_matched_control_family",
+          "status": "available_no_sigma_estimate"
         },
         "method": "steering_effectiveness_artifact_preflight",
         "model": "gemma3_27b",
@@ -414,9 +1158,37 @@
         "notes": [
           "Predicted regime is a planning label, not a manuscript claim.",
           "LAP/logit-lens accessibility report is available for this row.",
-          "Historical steering lacks matched Gaussian/noise and known positive-control steering checks."
+          "Gemma L45 format/casing positive-control gate passed for this hook family."
         ],
         "paired_flips": {
+          "gaussian_neg0p5sd": {
+            "changed": 0,
+            "false_to_true": 0,
+            "net_accuracy_delta": 0.0,
+            "paired_n": 8,
+            "true_to_false": 0
+          },
+          "gaussian_neg1sd": {
+            "changed": 0,
+            "false_to_true": 0,
+            "net_accuracy_delta": 0.0,
+            "paired_n": 8,
+            "true_to_false": 0
+          },
+          "gaussian_pos0p5sd": {
+            "changed": 0,
+            "false_to_true": 0,
+            "net_accuracy_delta": 0.0,
+            "paired_n": 8,
+            "true_to_false": 0
+          },
+          "gaussian_pos1sd": {
+            "changed": 0,
+            "false_to_true": 0,
+            "net_accuracy_delta": 0.0,
+            "paired_n": 8,
+            "true_to_false": 0
+          },
           "orthogonal_neg0p5sd": {
             "changed": 0,
             "false_to_true": 0,
@@ -484,16 +1256,13 @@
         "task": "infer_property"
       },
       "model_display": "Gemma 3 27B",
-      "predicted_steerability_regime": "linearly_readable_activation_over_metadata_historical_raw_steering_null",
+      "predicted_steerability_regime": "linearly_readable_matched_control_raw_steering_null",
       "row_id": "gemma3_27b__infer_property__L45__s1"
     },
     {
       "diagnostics": {
         "best_metadata_baseline_auc": 0.8410757662584132,
         "best_metadata_feature_set": "b0_height",
-        "historical_raw_steering": {
-          "status": "missing"
-        },
         "lap_profile": {
           "kept_rows": 10737,
           "method": "saved_activation_logit_lens",
@@ -568,8 +1337,26 @@
           "reference_metadata_set": "b0_prompt",
           "status": "available"
         },
+        "positive_control_gate": {
+          "best_effect_over_control_sigma": 47.89867841853144,
+          "control_abs_delta_std": 0.017267804162840517,
+          "passed_positive_control_gate": true,
+          "report_path": "docs/positive_control_format_gemma3_27b_l45.json",
+          "status": "passed",
+          "target_variable": "positive_control_behavior",
+          "task": "format_positive_control"
+        },
+        "probe_confidence_vs_steering_effect": {
+          "status": "missing_steering_rows"
+        },
         "raw_auc": 0.9144732415671554,
-        "raw_minus_best_metadata_auc": 0.07339747530874219
+        "raw_minus_best_metadata_auc": 0.07339747530874219,
+        "raw_steering": {
+          "status": "missing"
+        },
+        "related_error_subspace_steering": {
+          "status": "missing"
+        }
       },
       "experiment_report": {
         "baseline_metrics": {
@@ -674,6 +1461,18 @@
             "reference_metadata_set": "b0_prompt",
             "status": "available"
           },
+          "positive_control_gate": {
+            "best_effect_over_control_sigma": 47.89867841853144,
+            "control_abs_delta_std": 0.017267804162840517,
+            "passed_positive_control_gate": true,
+            "report_path": "docs/positive_control_format_gemma3_27b_l45.json",
+            "status": "passed",
+            "target_variable": "positive_control_behavior",
+            "task": "format_positive_control"
+          },
+          "probe_confidence_vs_steering_effect": {
+            "status": "missing_steering_rows"
+          },
           "raw_minus_best_metadata_auc": 0.07339747530874219,
           "raw_probe": {
             "best_scanned_layer": "L45",
@@ -710,9 +1509,12 @@
         },
         "causal_abstraction_claim": "Artifact-level diagnostic: raw correctness is linearly readable; steerability is not yet tested for this row.",
         "controls": [],
-        "created_at_utc": "2026-06-04T06:15:36.577829+00:00",
+        "created_at_utc": "2026-06-05T13:28:31.501409+00:00",
         "intervention_metrics": {
-          "historical_raw_steering": {
+          "raw_steering": {
+            "status": "missing"
+          },
+          "related_error_subspace_steering": {
             "status": "missing"
           }
         },
@@ -725,7 +1527,8 @@
         "n": 1616,
         "notes": [
           "Predicted regime is a planning label, not a manuscript claim.",
-          "LAP/logit-lens accessibility report is available for this row."
+          "LAP/logit-lens accessibility report is available for this row.",
+          "Gemma L45 format/casing positive-control gate passed for this hook family."
         ],
         "paired_flips": {},
         "parse_fail_rate": null,
@@ -745,63 +1548,6 @@
       "diagnostics": {
         "best_metadata_baseline_auc": 0.6015053276441562,
         "best_metadata_feature_set": "b0_namefreq",
-        "historical_raw_steering": {
-          "all_flips_vs_baseline": {
-            "orthogonal_neg1sd": {
-              "changed": 0,
-              "false_to_true": 0,
-              "net_accuracy_delta": 0.0,
-              "paired_n": 4,
-              "true_to_false": 0
-            },
-            "orthogonal_pos1sd": {
-              "changed": 0,
-              "false_to_true": 0,
-              "net_accuracy_delta": 0.0,
-              "paired_n": 4,
-              "true_to_false": 0
-            },
-            "raw_neg1sd": {
-              "changed": 0,
-              "false_to_true": 0,
-              "net_accuracy_delta": 0.0,
-              "paired_n": 4,
-              "true_to_false": 0
-            },
-            "raw_pos1sd": {
-              "changed": 0,
-              "false_to_true": 0,
-              "net_accuracy_delta": 0.0,
-              "paired_n": 4,
-              "true_to_false": 0
-            }
-          },
-          "baseline_n": 4,
-          "baseline_parse_fail_rate": 0.0,
-          "baseline_strong_accuracy": 0.5,
-          "baseline_weak_accuracy": 1.0,
-          "orthogonal_conditions": [
-            "orthogonal_neg1sd",
-            "orthogonal_pos1sd"
-          ],
-          "orthogonal_max_abs_accuracy_delta": 0.0,
-          "orthogonal_max_changed": 0,
-          "orthogonal_max_false_to_true": 0,
-          "orthogonal_max_true_to_false": 0,
-          "paired_n_max": 4,
-          "parse_fail_rate_max": 0.0,
-          "parse_fail_rate_min": 0.0,
-          "raw_conditions": [
-            "raw_neg1sd",
-            "raw_pos1sd"
-          ],
-          "raw_max_abs_accuracy_delta": 0.0,
-          "raw_max_changed": 0,
-          "raw_max_false_to_true": 0,
-          "raw_max_true_to_false": 0,
-          "report_path": "results/stage2/steering/qwen35_raw_l45_property_steering_pilot.jsonl",
-          "status": "available"
-        },
         "lap_profile": {
           "kept_rows": 10997,
           "method": "saved_activation_logit_lens",
@@ -876,8 +1622,131 @@
           "reference_metadata_set": "b0_namefreq",
           "status": "available"
         },
+        "positive_control_gate": {
+          "status": "not_configured"
+        },
+        "probe_confidence_vs_steering_effect": {
+          "note": "Current steering JSONL stores paired outcomes but not per-row probe confidence/projection.",
+          "report_path": "results/stage2/steering/qwen35_raw_l45_property_steering_pilot.jsonl",
+          "required_row_fields": [
+            "example_id",
+            "condition",
+            "is_correct_strong",
+            "direction_projection_z"
+          ],
+          "status": "needs_probe_score_sidecar"
+        },
         "raw_auc": 0.9179474267597912,
-        "raw_minus_best_metadata_auc": 0.31644209911563503
+        "raw_minus_best_metadata_auc": 0.31644209911563503,
+        "raw_steering": {
+          "all_flips_vs_baseline": {
+            "orthogonal_neg1sd": {
+              "changed": 0,
+              "false_to_true": 0,
+              "net_accuracy_delta": 0.0,
+              "paired_n": 4,
+              "true_to_false": 0
+            },
+            "orthogonal_pos1sd": {
+              "changed": 0,
+              "false_to_true": 0,
+              "net_accuracy_delta": 0.0,
+              "paired_n": 4,
+              "true_to_false": 0
+            },
+            "raw_neg1sd": {
+              "changed": 0,
+              "false_to_true": 0,
+              "net_accuracy_delta": 0.0,
+              "paired_n": 4,
+              "true_to_false": 0
+            },
+            "raw_pos1sd": {
+              "changed": 0,
+              "false_to_true": 0,
+              "net_accuracy_delta": 0.0,
+              "paired_n": 4,
+              "true_to_false": 0
+            }
+          },
+          "baseline_n": 4,
+          "baseline_parse_fail_rate": 0.0,
+          "baseline_strong_accuracy": 0.5,
+          "baseline_weak_accuracy": 1.0,
+          "elapsed_seconds": 317.34677052497864,
+          "gaussian_conditions": [],
+          "gaussian_max_abs_accuracy_delta": null,
+          "gaussian_max_changed": null,
+          "gaussian_max_false_to_true": null,
+          "gaussian_max_true_to_false": null,
+          "has_matched_gaussian_control": false,
+          "has_regenerated_baseline": true,
+          "json_report_path": "docs/qwen35_raw_steering_27b_l45_property_pilot.json",
+          "matched_noise_summary": {
+            "control_max_changed": 0,
+            "control_max_false_to_true": 0,
+            "gaussian_max_changed": null,
+            "gaussian_max_false_to_true": null,
+            "has_matched_gaussian_control": false,
+            "orthogonal_max_changed": 0,
+            "orthogonal_max_false_to_true": 0,
+            "raw_max_changed": 0,
+            "raw_max_false_to_true": 0,
+            "repair_exceeds_controls_by_count": false,
+            "sigma_test_status": "not_estimated_from_single_matched_control_family",
+            "status": "missing_gaussian_control"
+          },
+          "orthogonal_conditions": [
+            "orthogonal_neg1sd",
+            "orthogonal_pos1sd"
+          ],
+          "orthogonal_max_abs_accuracy_delta": 0.0,
+          "orthogonal_max_changed": 0,
+          "orthogonal_max_false_to_true": 0,
+          "orthogonal_max_true_to_false": 0,
+          "paired_n_max": 4,
+          "parse_fail_rate_max": 0.0,
+          "parse_fail_rate_min": 0.0,
+          "raw_conditions": [
+            "raw_neg1sd",
+            "raw_pos1sd"
+          ],
+          "raw_max_abs_accuracy_delta": 0.0,
+          "raw_max_changed": 0,
+          "raw_max_false_to_true": 0,
+          "raw_max_true_to_false": 0,
+          "report_path": "results/stage2/steering/qwen35_raw_l45_property_steering_pilot.jsonl",
+          "selection": {
+            "available_counts": {
+              "h3_correct": 225,
+              "h3_incorrect": 225,
+              "h4_correct": 384,
+              "h4_incorrect": 366
+            },
+            "drop_parse_failed": true,
+            "heights": [
+              3,
+              4
+            ],
+            "per_height_label": 1,
+            "seed": 20260523,
+            "selected_counts": {
+              "h3_correct": 1,
+              "h3_incorrect": 1,
+              "h4_correct": 1,
+              "h4_incorrect": 1
+            },
+            "selected_rows": 4,
+            "source_file": "results/full/with_errortype/qwen35_27b_infer_property.jsonl",
+            "split": "test",
+            "split_family": "s1"
+          },
+          "slurm_job_id": "456261",
+          "status": "available"
+        },
+        "related_error_subspace_steering": {
+          "status": "missing"
+        }
       },
       "experiment_report": {
         "baseline_metrics": {
@@ -982,6 +1851,20 @@
             "reference_metadata_set": "b0_namefreq",
             "status": "available"
           },
+          "positive_control_gate": {
+            "status": "not_configured"
+          },
+          "probe_confidence_vs_steering_effect": {
+            "note": "Current steering JSONL stores paired outcomes but not per-row probe confidence/projection.",
+            "report_path": "results/stage2/steering/qwen35_raw_l45_property_steering_pilot.jsonl",
+            "required_row_fields": [
+              "example_id",
+              "condition",
+              "is_correct_strong",
+              "direction_projection_z"
+            ],
+            "status": "needs_probe_score_sidecar"
+          },
           "raw_minus_best_metadata_auc": 0.31644209911563503,
           "raw_probe": {
             "best_scanned_layer": "L45",
@@ -1008,13 +1891,13 @@
             "val_auc": 0.9060501809653674
           }
         },
-        "causal_abstraction_claim": "Artifact-level diagnostic: raw correctness is linearly readable and historical raw-direction steering did not produce false-to-true repair; matched-noise and positive-control checks remain required.",
+        "causal_abstraction_claim": "Artifact-level diagnostic: raw correctness is linearly readable and historical raw-direction steering did not produce false-to-true repair; matched-noise controls remain required for this row.",
         "controls": [
           "orthogonal_direction"
         ],
-        "created_at_utc": "2026-06-04T06:15:36.585012+00:00",
+        "created_at_utc": "2026-06-05T13:28:31.504566+00:00",
         "intervention_metrics": {
-          "historical_raw_steering": {
+          "raw_steering": {
             "all_flips_vs_baseline": {
               "orthogonal_neg1sd": {
                 "changed": 0,
@@ -1049,6 +1932,29 @@
             "baseline_parse_fail_rate": 0.0,
             "baseline_strong_accuracy": 0.5,
             "baseline_weak_accuracy": 1.0,
+            "elapsed_seconds": 317.34677052497864,
+            "gaussian_conditions": [],
+            "gaussian_max_abs_accuracy_delta": null,
+            "gaussian_max_changed": null,
+            "gaussian_max_false_to_true": null,
+            "gaussian_max_true_to_false": null,
+            "has_matched_gaussian_control": false,
+            "has_regenerated_baseline": true,
+            "json_report_path": "docs/qwen35_raw_steering_27b_l45_property_pilot.json",
+            "matched_noise_summary": {
+              "control_max_changed": 0,
+              "control_max_false_to_true": 0,
+              "gaussian_max_changed": null,
+              "gaussian_max_false_to_true": null,
+              "has_matched_gaussian_control": false,
+              "orthogonal_max_changed": 0,
+              "orthogonal_max_false_to_true": 0,
+              "raw_max_changed": 0,
+              "raw_max_false_to_true": 0,
+              "repair_exceeds_controls_by_count": false,
+              "sigma_test_status": "not_estimated_from_single_matched_control_family",
+              "status": "missing_gaussian_control"
+            },
             "orthogonal_conditions": [
               "orthogonal_neg1sd",
               "orthogonal_pos1sd"
@@ -1069,12 +1975,51 @@
             "raw_max_false_to_true": 0,
             "raw_max_true_to_false": 0,
             "report_path": "results/stage2/steering/qwen35_raw_l45_property_steering_pilot.jsonl",
+            "selection": {
+              "available_counts": {
+                "h3_correct": 225,
+                "h3_incorrect": 225,
+                "h4_correct": 384,
+                "h4_incorrect": 366
+              },
+              "drop_parse_failed": true,
+              "heights": [
+                3,
+                4
+              ],
+              "per_height_label": 1,
+              "seed": 20260523,
+              "selected_counts": {
+                "h3_correct": 1,
+                "h3_incorrect": 1,
+                "h4_correct": 1,
+                "h4_incorrect": 1
+              },
+              "selected_rows": 4,
+              "source_file": "results/full/with_errortype/qwen35_27b_infer_property.jsonl",
+              "split": "test",
+              "split_family": "s1"
+            },
+            "slurm_job_id": "456261",
             "status": "available"
+          },
+          "related_error_subspace_steering": {
+            "status": "missing"
           }
         },
         "matched_noise_summary": {
-          "required_for_new_interventions": true,
-          "status": "missing"
+          "control_max_changed": 0,
+          "control_max_false_to_true": 0,
+          "gaussian_max_changed": null,
+          "gaussian_max_false_to_true": null,
+          "has_matched_gaussian_control": false,
+          "orthogonal_max_changed": 0,
+          "orthogonal_max_false_to_true": 0,
+          "raw_max_changed": 0,
+          "raw_max_false_to_true": 0,
+          "repair_exceeds_controls_by_count": false,
+          "sigma_test_status": "not_estimated_from_single_matched_control_family",
+          "status": "missing_gaussian_control"
         },
         "method": "steering_effectiveness_artifact_preflight",
         "model": "qwen35_27b",
@@ -1082,7 +2027,8 @@
         "notes": [
           "Predicted regime is a planning label, not a manuscript claim.",
           "LAP/logit-lens accessibility report is available for this row.",
-          "Historical steering lacks matched Gaussian/noise and known positive-control steering checks."
+          "Historical steering lacks matched Gaussian/noise controls.",
+          "Probe-confidence vs steering-effect correlation needs row-level probe scores or projections."
         ],
         "paired_flips": {
           "orthogonal_neg1sd": {
@@ -1124,70 +2070,13 @@
         "task": "infer_property"
       },
       "model_display": "Qwen3.5 27B",
-      "predicted_steerability_regime": "linearly_readable_activation_over_metadata_historical_raw_steering_null",
+      "predicted_steerability_regime": "linearly_readable_low_lap_accessibility_historical_raw_steering_null",
       "row_id": "qwen35_27b__infer_property__L45__s1"
     },
     {
       "diagnostics": {
         "best_metadata_baseline_auc": 0.6015053276441562,
         "best_metadata_feature_set": "b0_namefreq",
-        "historical_raw_steering": {
-          "all_flips_vs_baseline": {
-            "orthogonal_neg1sd": {
-              "changed": 0,
-              "false_to_true": 0,
-              "net_accuracy_delta": 0.0,
-              "paired_n": 4,
-              "true_to_false": 0
-            },
-            "orthogonal_pos1sd": {
-              "changed": 0,
-              "false_to_true": 0,
-              "net_accuracy_delta": 0.0,
-              "paired_n": 4,
-              "true_to_false": 0
-            },
-            "raw_neg1sd": {
-              "changed": 0,
-              "false_to_true": 0,
-              "net_accuracy_delta": 0.0,
-              "paired_n": 4,
-              "true_to_false": 0
-            },
-            "raw_pos1sd": {
-              "changed": 0,
-              "false_to_true": 0,
-              "net_accuracy_delta": 0.0,
-              "paired_n": 4,
-              "true_to_false": 0
-            }
-          },
-          "baseline_n": 4,
-          "baseline_parse_fail_rate": 0.0,
-          "baseline_strong_accuracy": 0.5,
-          "baseline_weak_accuracy": 1.0,
-          "orthogonal_conditions": [
-            "orthogonal_neg1sd",
-            "orthogonal_pos1sd"
-          ],
-          "orthogonal_max_abs_accuracy_delta": 0.0,
-          "orthogonal_max_changed": 0,
-          "orthogonal_max_false_to_true": 0,
-          "orthogonal_max_true_to_false": 0,
-          "paired_n_max": 4,
-          "parse_fail_rate_max": 0.0,
-          "parse_fail_rate_min": 0.0,
-          "raw_conditions": [
-            "raw_neg1sd",
-            "raw_pos1sd"
-          ],
-          "raw_max_abs_accuracy_delta": 0.0,
-          "raw_max_changed": 0,
-          "raw_max_false_to_true": 0,
-          "raw_max_true_to_false": 0,
-          "report_path": "results/stage2/steering/qwen35_raw_l53_property_steering_pilot.jsonl",
-          "status": "available"
-        },
         "lap_profile": {
           "kept_rows": 10997,
           "method": "saved_activation_logit_lens",
@@ -1262,8 +2151,131 @@
           "reference_metadata_set": "b0_namefreq",
           "status": "available"
         },
+        "positive_control_gate": {
+          "status": "not_configured"
+        },
+        "probe_confidence_vs_steering_effect": {
+          "note": "Current steering JSONL stores paired outcomes but not per-row probe confidence/projection.",
+          "report_path": "results/stage2/steering/qwen35_raw_l53_property_steering_pilot.jsonl",
+          "required_row_fields": [
+            "example_id",
+            "condition",
+            "is_correct_strong",
+            "direction_projection_z"
+          ],
+          "status": "needs_probe_score_sidecar"
+        },
         "raw_auc": 0.9400252675740746,
-        "raw_minus_best_metadata_auc": 0.33851993992991836
+        "raw_minus_best_metadata_auc": 0.33851993992991836,
+        "raw_steering": {
+          "all_flips_vs_baseline": {
+            "orthogonal_neg1sd": {
+              "changed": 0,
+              "false_to_true": 0,
+              "net_accuracy_delta": 0.0,
+              "paired_n": 4,
+              "true_to_false": 0
+            },
+            "orthogonal_pos1sd": {
+              "changed": 0,
+              "false_to_true": 0,
+              "net_accuracy_delta": 0.0,
+              "paired_n": 4,
+              "true_to_false": 0
+            },
+            "raw_neg1sd": {
+              "changed": 0,
+              "false_to_true": 0,
+              "net_accuracy_delta": 0.0,
+              "paired_n": 4,
+              "true_to_false": 0
+            },
+            "raw_pos1sd": {
+              "changed": 0,
+              "false_to_true": 0,
+              "net_accuracy_delta": 0.0,
+              "paired_n": 4,
+              "true_to_false": 0
+            }
+          },
+          "baseline_n": 4,
+          "baseline_parse_fail_rate": 0.0,
+          "baseline_strong_accuracy": 0.5,
+          "baseline_weak_accuracy": 1.0,
+          "elapsed_seconds": 285.77997279167175,
+          "gaussian_conditions": [],
+          "gaussian_max_abs_accuracy_delta": null,
+          "gaussian_max_changed": null,
+          "gaussian_max_false_to_true": null,
+          "gaussian_max_true_to_false": null,
+          "has_matched_gaussian_control": false,
+          "has_regenerated_baseline": true,
+          "json_report_path": "docs/qwen35_raw_steering_27b_l53_property_pilot.json",
+          "matched_noise_summary": {
+            "control_max_changed": 0,
+            "control_max_false_to_true": 0,
+            "gaussian_max_changed": null,
+            "gaussian_max_false_to_true": null,
+            "has_matched_gaussian_control": false,
+            "orthogonal_max_changed": 0,
+            "orthogonal_max_false_to_true": 0,
+            "raw_max_changed": 0,
+            "raw_max_false_to_true": 0,
+            "repair_exceeds_controls_by_count": false,
+            "sigma_test_status": "not_estimated_from_single_matched_control_family",
+            "status": "missing_gaussian_control"
+          },
+          "orthogonal_conditions": [
+            "orthogonal_neg1sd",
+            "orthogonal_pos1sd"
+          ],
+          "orthogonal_max_abs_accuracy_delta": 0.0,
+          "orthogonal_max_changed": 0,
+          "orthogonal_max_false_to_true": 0,
+          "orthogonal_max_true_to_false": 0,
+          "paired_n_max": 4,
+          "parse_fail_rate_max": 0.0,
+          "parse_fail_rate_min": 0.0,
+          "raw_conditions": [
+            "raw_neg1sd",
+            "raw_pos1sd"
+          ],
+          "raw_max_abs_accuracy_delta": 0.0,
+          "raw_max_changed": 0,
+          "raw_max_false_to_true": 0,
+          "raw_max_true_to_false": 0,
+          "report_path": "results/stage2/steering/qwen35_raw_l53_property_steering_pilot.jsonl",
+          "selection": {
+            "available_counts": {
+              "h3_correct": 225,
+              "h3_incorrect": 225,
+              "h4_correct": 384,
+              "h4_incorrect": 366
+            },
+            "drop_parse_failed": true,
+            "heights": [
+              3,
+              4
+            ],
+            "per_height_label": 1,
+            "seed": 20260523,
+            "selected_counts": {
+              "h3_correct": 1,
+              "h3_incorrect": 1,
+              "h4_correct": 1,
+              "h4_incorrect": 1
+            },
+            "selected_rows": 4,
+            "source_file": "results/full/with_errortype/qwen35_27b_infer_property.jsonl",
+            "split": "test",
+            "split_family": "s1"
+          },
+          "slurm_job_id": "456266",
+          "status": "available"
+        },
+        "related_error_subspace_steering": {
+          "status": "missing"
+        }
       },
       "experiment_report": {
         "baseline_metrics": {
@@ -1368,6 +2380,20 @@
             "reference_metadata_set": "b0_namefreq",
             "status": "available"
           },
+          "positive_control_gate": {
+            "status": "not_configured"
+          },
+          "probe_confidence_vs_steering_effect": {
+            "note": "Current steering JSONL stores paired outcomes but not per-row probe confidence/projection.",
+            "report_path": "results/stage2/steering/qwen35_raw_l53_property_steering_pilot.jsonl",
+            "required_row_fields": [
+              "example_id",
+              "condition",
+              "is_correct_strong",
+              "direction_projection_z"
+            ],
+            "status": "needs_probe_score_sidecar"
+          },
           "raw_minus_best_metadata_auc": 0.33851993992991836,
           "raw_probe": {
             "best_scanned_layer": "L53",
@@ -1406,13 +2432,13 @@
             "val_auc": 0.9329622523847745
           }
         },
-        "causal_abstraction_claim": "Artifact-level diagnostic: raw correctness is linearly readable and historical raw-direction steering did not produce false-to-true repair; matched-noise and positive-control checks remain required.",
+        "causal_abstraction_claim": "Artifact-level diagnostic: raw correctness is linearly readable and historical raw-direction steering did not produce false-to-true repair; matched-noise controls remain required for this row.",
         "controls": [
           "orthogonal_direction"
         ],
-        "created_at_utc": "2026-06-04T06:15:36.603492+00:00",
+        "created_at_utc": "2026-06-05T13:28:31.512517+00:00",
         "intervention_metrics": {
-          "historical_raw_steering": {
+          "raw_steering": {
             "all_flips_vs_baseline": {
               "orthogonal_neg1sd": {
                 "changed": 0,
@@ -1447,6 +2473,29 @@
             "baseline_parse_fail_rate": 0.0,
             "baseline_strong_accuracy": 0.5,
             "baseline_weak_accuracy": 1.0,
+            "elapsed_seconds": 285.77997279167175,
+            "gaussian_conditions": [],
+            "gaussian_max_abs_accuracy_delta": null,
+            "gaussian_max_changed": null,
+            "gaussian_max_false_to_true": null,
+            "gaussian_max_true_to_false": null,
+            "has_matched_gaussian_control": false,
+            "has_regenerated_baseline": true,
+            "json_report_path": "docs/qwen35_raw_steering_27b_l53_property_pilot.json",
+            "matched_noise_summary": {
+              "control_max_changed": 0,
+              "control_max_false_to_true": 0,
+              "gaussian_max_changed": null,
+              "gaussian_max_false_to_true": null,
+              "has_matched_gaussian_control": false,
+              "orthogonal_max_changed": 0,
+              "orthogonal_max_false_to_true": 0,
+              "raw_max_changed": 0,
+              "raw_max_false_to_true": 0,
+              "repair_exceeds_controls_by_count": false,
+              "sigma_test_status": "not_estimated_from_single_matched_control_family",
+              "status": "missing_gaussian_control"
+            },
             "orthogonal_conditions": [
               "orthogonal_neg1sd",
               "orthogonal_pos1sd"
@@ -1467,12 +2516,51 @@
             "raw_max_false_to_true": 0,
             "raw_max_true_to_false": 0,
             "report_path": "results/stage2/steering/qwen35_raw_l53_property_steering_pilot.jsonl",
+            "selection": {
+              "available_counts": {
+                "h3_correct": 225,
+                "h3_incorrect": 225,
+                "h4_correct": 384,
+                "h4_incorrect": 366
+              },
+              "drop_parse_failed": true,
+              "heights": [
+                3,
+                4
+              ],
+              "per_height_label": 1,
+              "seed": 20260523,
+              "selected_counts": {
+                "h3_correct": 1,
+                "h3_incorrect": 1,
+                "h4_correct": 1,
+                "h4_incorrect": 1
+              },
+              "selected_rows": 4,
+              "source_file": "results/full/with_errortype/qwen35_27b_infer_property.jsonl",
+              "split": "test",
+              "split_family": "s1"
+            },
+            "slurm_job_id": "456266",
             "status": "available"
+          },
+          "related_error_subspace_steering": {
+            "status": "missing"
           }
         },
         "matched_noise_summary": {
-          "required_for_new_interventions": true,
-          "status": "missing"
+          "control_max_changed": 0,
+          "control_max_false_to_true": 0,
+          "gaussian_max_changed": null,
+          "gaussian_max_false_to_true": null,
+          "has_matched_gaussian_control": false,
+          "orthogonal_max_changed": 0,
+          "orthogonal_max_false_to_true": 0,
+          "raw_max_changed": 0,
+          "raw_max_false_to_true": 0,
+          "repair_exceeds_controls_by_count": false,
+          "sigma_test_status": "not_estimated_from_single_matched_control_family",
+          "status": "missing_gaussian_control"
         },
         "method": "steering_effectiveness_artifact_preflight",
         "model": "qwen35_27b",
@@ -1481,7 +2569,8 @@
           "Predicted regime is a planning label, not a manuscript claim.",
           "LAP/logit-lens accessibility report is available for this row.",
           "Metadata-residualization proxy is from L45, not requested site L53.",
-          "Historical steering lacks matched Gaussian/noise and known positive-control steering checks."
+          "Historical steering lacks matched Gaussian/noise controls.",
+          "Probe-confidence vs steering-effect correlation needs row-level probe scores or projections."
         ],
         "paired_flips": {
           "orthogonal_neg1sd": {
@@ -1523,16 +2612,13 @@
         "task": "infer_property"
       },
       "model_display": "Qwen3.5 27B",
-      "predicted_steerability_regime": "linearly_readable_activation_over_metadata_historical_raw_steering_null",
+      "predicted_steerability_regime": "linearly_readable_low_lap_accessibility_historical_raw_steering_null",
       "row_id": "qwen35_27b__infer_property__L53__s1"
     },
     {
       "diagnostics": {
         "best_metadata_baseline_auc": 0.6747869921164342,
         "best_metadata_feature_set": "b0_prompt",
-        "historical_raw_steering": {
-          "status": "missing"
-        },
         "lap_profile": {
           "kept_rows": 10999,
           "method": "saved_activation_logit_lens",
@@ -1607,8 +2693,20 @@
           "reference_metadata_set": "b0_prompt",
           "status": "available"
         },
+        "positive_control_gate": {
+          "status": "not_configured"
+        },
+        "probe_confidence_vs_steering_effect": {
+          "status": "missing_steering_rows"
+        },
         "raw_auc": 0.9012310491206792,
-        "raw_minus_best_metadata_auc": 0.22644405700424497
+        "raw_minus_best_metadata_auc": 0.22644405700424497,
+        "raw_steering": {
+          "status": "missing"
+        },
+        "related_error_subspace_steering": {
+          "status": "missing"
+        }
       },
       "experiment_report": {
         "baseline_metrics": {
@@ -1713,6 +2811,12 @@
             "reference_metadata_set": "b0_prompt",
             "status": "available"
           },
+          "positive_control_gate": {
+            "status": "not_configured"
+          },
+          "probe_confidence_vs_steering_effect": {
+            "status": "missing_steering_rows"
+          },
           "raw_minus_best_metadata_auc": 0.22644405700424497,
           "raw_probe": {
             "best_scanned_layer": "L45",
@@ -1741,9 +2845,12 @@
         },
         "causal_abstraction_claim": "Artifact-level diagnostic: raw correctness is linearly readable; steerability is not yet tested for this row.",
         "controls": [],
-        "created_at_utc": "2026-06-04T06:15:36.608073+00:00",
+        "created_at_utc": "2026-06-05T13:28:31.514891+00:00",
         "intervention_metrics": {
-          "historical_raw_steering": {
+          "raw_steering": {
+            "status": "missing"
+          },
+          "related_error_subspace_steering": {
             "status": "missing"
           }
         },
@@ -1769,16 +2876,13 @@
         "task": "infer_subtype"
       },
       "model_display": "Qwen3.5 27B",
-      "predicted_steerability_regime": "strong_activation_over_metadata_steerability_untested",
+      "predicted_steerability_regime": "strong_activation_over_metadata_low_lap_accessibility_steerability_untested",
       "row_id": "qwen35_27b__infer_subtype__L45__s1"
     },
     {
       "diagnostics": {
         "best_metadata_baseline_auc": 0.6747869921164342,
         "best_metadata_feature_set": "b0_prompt",
-        "historical_raw_steering": {
-          "status": "missing"
-        },
         "lap_profile": {
           "kept_rows": 10999,
           "method": "saved_activation_logit_lens",
@@ -1853,8 +2957,20 @@
           "reference_metadata_set": "b0_prompt",
           "status": "available"
         },
+        "positive_control_gate": {
+          "status": "not_configured"
+        },
+        "probe_confidence_vs_steering_effect": {
+          "status": "missing_steering_rows"
+        },
         "raw_auc": 0.9204821103699212,
-        "raw_minus_best_metadata_auc": 0.245695118253487
+        "raw_minus_best_metadata_auc": 0.245695118253487,
+        "raw_steering": {
+          "status": "missing"
+        },
+        "related_error_subspace_steering": {
+          "status": "missing"
+        }
       },
       "experiment_report": {
         "baseline_metrics": {
@@ -1959,6 +3075,12 @@
             "reference_metadata_set": "b0_prompt",
             "status": "available"
           },
+          "positive_control_gate": {
+            "status": "not_configured"
+          },
+          "probe_confidence_vs_steering_effect": {
+            "status": "missing_steering_rows"
+          },
           "raw_minus_best_metadata_auc": 0.245695118253487,
           "raw_probe": {
             "best_scanned_layer": "L53",
@@ -1999,9 +3121,12 @@
         },
         "causal_abstraction_claim": "Artifact-level diagnostic: raw correctness is linearly readable; steerability is not yet tested for this row.",
         "controls": [],
-        "created_at_utc": "2026-06-04T06:15:36.620224+00:00",
+        "created_at_utc": "2026-06-05T13:28:31.521253+00:00",
         "intervention_metrics": {
-          "historical_raw_steering": {
+          "raw_steering": {
+            "status": "missing"
+          },
+          "related_error_subspace_steering": {
             "status": "missing"
           }
         },
@@ -2028,15 +3153,15 @@
         "task": "infer_subtype"
       },
       "model_display": "Qwen3.5 27B",
-      "predicted_steerability_regime": "strong_activation_over_metadata_steerability_untested",
+      "predicted_steerability_regime": "strong_activation_over_metadata_low_lap_accessibility_steerability_untested",
       "row_id": "qwen35_27b__infer_subtype__L53__s1"
     }
   ],
   "next_actions": [
-    "Run or refresh GPU LAP/logit-lens profiles for Gemma scanned layers and Qwen L53/scanned layers.",
-    "Regenerate balanced baseline rows before interpreting new causal interventions.",
-    "Run a known positive-control steering task before treating any new steering null as evidence.",
-    "Add matched Gaussian/noise controls and orthogonal controls to optimized/DAS/decode-time intervention jobs."
+    "Gemma property projection-enabled reruns are complete; add projection-enabled matched-control reruns only for rows that still need causal interpretation.",
+    "Add entropy/branching/KL-style steerability predictors where the required logits are available.",
+    "Refresh Qwen property steering with regenerated baseline, orthogonal, Gaussian, and Qwen positive-control gates if Qwen causal interpretation is needed.",
+    "Use this diagnostic table to choose the next intervention family: optimized vectors, DAS/distributed interchange, or decode-time correction."
   ],
   "qwen_metadata_comparison": {
     "claim": "Qwen strengthens the activation-over-metadata result because Qwen B0 baselines are much weaker than raw readouts.",
@@ -2068,14 +3193,15 @@
       "raw-probe AUCs",
       "metadata baselines",
       "metadata-adjusted proxy diagnostics where available",
-      "historical raw-direction steering summaries where available"
+      "historical raw-direction steering summaries where available",
+      "matched Gaussian controls for refreshed Gemma raw/error steering reruns",
+      "positive-control gate status for Gemma L45 hook family"
     ],
     "pending": [
-      "LAP/logit-lens accessibility profiles",
       "entropy/branching/KL steerability predictors",
-      "probe-confidence vs steering-effect correlations on regenerated paired baselines",
-      "matched Gaussian/noise controls",
-      "known positive-control steering task"
+      "probe-confidence vs steering-effect correlations for Qwen/historical rows that still lack projection-enabled sidecars",
+      "matched Gaussian/noise controls for Qwen steering pilots and future intervention families",
+      "known positive-control steering task for Qwen/future non-Gemma hook families"
     ],
     "status": "artifact_preflight"
   },
