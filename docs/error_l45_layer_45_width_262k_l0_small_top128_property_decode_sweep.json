@@ -1,8 +1,8 @@
 {
   "activation_path": "results/stage2/sae_reconstructions/gemma3_27b_infer_property_L45_layer_45_width_262k_l0_small_top128_error.safetensors",
-  "created_at_utc": "2026-05-24T23:22:28.854254+00:00",
+  "created_at_utc": "2026-06-05T01:26:02.885256+00:00",
   "direction_output": "results/stage2/steering/error_l45_layer_45_width_262k_l0_small_top128_property_decode_sweep_direction.npz",
-  "elapsed_seconds": 7226.917699098587,
+  "elapsed_seconds": 9932.425938606262,
   "generation": {
     "conditions": [
       {
@@ -68,6 +68,36 @@
       {
         "direction_kind": "orthogonal",
         "label": "orthogonal_pos1sd",
+        "strength_sd": 1.0
+      },
+      {
+        "direction_kind": "gaussian",
+        "label": "gaussian_neg0p25sd",
+        "strength_sd": -0.25
+      },
+      {
+        "direction_kind": "gaussian",
+        "label": "gaussian_neg0p5sd",
+        "strength_sd": -0.5
+      },
+      {
+        "direction_kind": "gaussian",
+        "label": "gaussian_neg1sd",
+        "strength_sd": -1.0
+      },
+      {
+        "direction_kind": "gaussian",
+        "label": "gaussian_pos0p25sd",
+        "strength_sd": 0.25
+      },
+      {
+        "direction_kind": "gaussian",
+        "label": "gaussian_pos0p5sd",
+        "strength_sd": 0.5
+      },
+      {
+        "direction_kind": "gaussian",
+        "label": "gaussian_pos1sd",
         "strength_sd": 1.0
       }
     ],
@@ -161,7 +191,7 @@
     "split_family": "s1"
   },
   "sidecar_path": "results/stage2/sae_reconstructions/gemma3_27b_infer_property_L45_layer_45_width_262k_l0_small_top128_error.example_ids.jsonl",
-  "slurm_job_id": "456305",
+  "slurm_job_id": "456664",
   "split_family": "s1",
   "splits": "results/stage2/splits.jsonl",
   "summary": {
@@ -196,6 +226,204 @@
         "mean_quality": 0.658068783068783,
         "n": 8,
         "parse_fail_rate": 0.0,
+        "strong_accuracy": 0.375,
+        "weak_accuracy": 0.625
+      },
+      "gaussian_neg0p25sd": {
+        "by_height": {
+          "h3": {
+            "n": 4,
+            "parse_fail_rate": 0.0,
+            "strong_accuracy": 0.5
+          },
+          "h4": {
+            "n": 4,
+            "parse_fail_rate": 0.25,
+            "strong_accuracy": 0.25
+          }
+        },
+        "by_original_is_correct_strong": {
+          "false": {
+            "n": 4,
+            "parse_fail_rate": 0.25,
+            "strong_accuracy": 0.25
+          },
+          "true": {
+            "n": 4,
+            "parse_fail_rate": 0.0,
+            "strong_accuracy": 0.5
+          }
+        },
+        "mean_generated_tokens": 96.0,
+        "mean_output_chars": 150.75,
+        "mean_quality": 0.6164021164021164,
+        "n": 8,
+        "parse_fail_rate": 0.125,
+        "strong_accuracy": 0.375,
+        "weak_accuracy": 0.625
+      },
+      "gaussian_neg0p5sd": {
+        "by_height": {
+          "h3": {
+            "n": 4,
+            "parse_fail_rate": 0.0,
+            "strong_accuracy": 0.5
+          },
+          "h4": {
+            "n": 4,
+            "parse_fail_rate": 0.25,
+            "strong_accuracy": 0.25
+          }
+        },
+        "by_original_is_correct_strong": {
+          "false": {
+            "n": 4,
+            "parse_fail_rate": 0.25,
+            "strong_accuracy": 0.25
+          },
+          "true": {
+            "n": 4,
+            "parse_fail_rate": 0.0,
+            "strong_accuracy": 0.5
+          }
+        },
+        "mean_generated_tokens": 96.0,
+        "mean_output_chars": 150.75,
+        "mean_quality": 0.6164021164021164,
+        "n": 8,
+        "parse_fail_rate": 0.125,
+        "strong_accuracy": 0.375,
+        "weak_accuracy": 0.625
+      },
+      "gaussian_neg1sd": {
+        "by_height": {
+          "h3": {
+            "n": 4,
+            "parse_fail_rate": 0.0,
+            "strong_accuracy": 0.5
+          },
+          "h4": {
+            "n": 4,
+            "parse_fail_rate": 0.25,
+            "strong_accuracy": 0.25
+          }
+        },
+        "by_original_is_correct_strong": {
+          "false": {
+            "n": 4,
+            "parse_fail_rate": 0.25,
+            "strong_accuracy": 0.25
+          },
+          "true": {
+            "n": 4,
+            "parse_fail_rate": 0.0,
+            "strong_accuracy": 0.5
+          }
+        },
+        "mean_generated_tokens": 96.0,
+        "mean_output_chars": 150.75,
+        "mean_quality": 0.6164021164021164,
+        "n": 8,
+        "parse_fail_rate": 0.125,
+        "strong_accuracy": 0.375,
+        "weak_accuracy": 0.625
+      },
+      "gaussian_pos0p25sd": {
+        "by_height": {
+          "h3": {
+            "n": 4,
+            "parse_fail_rate": 0.25,
+            "strong_accuracy": 0.25
+          },
+          "h4": {
+            "n": 4,
+            "parse_fail_rate": 0.0,
+            "strong_accuracy": 0.25
+          }
+        },
+        "by_original_is_correct_strong": {
+          "false": {
+            "n": 4,
+            "parse_fail_rate": 0.25,
+            "strong_accuracy": 0.0
+          },
+          "true": {
+            "n": 4,
+            "parse_fail_rate": 0.0,
+            "strong_accuracy": 0.5
+          }
+        },
+        "mean_generated_tokens": 96.0,
+        "mean_output_chars": 199.375,
+        "mean_quality": 0.533068783068783,
+        "n": 8,
+        "parse_fail_rate": 0.125,
+        "strong_accuracy": 0.25,
+        "weak_accuracy": 0.5
+      },
+      "gaussian_pos0p5sd": {
+        "by_height": {
+          "h3": {
+            "n": 4,
+            "parse_fail_rate": 0.0,
+            "strong_accuracy": 0.5
+          },
+          "h4": {
+            "n": 4,
+            "parse_fail_rate": 0.25,
+            "strong_accuracy": 0.25
+          }
+        },
+        "by_original_is_correct_strong": {
+          "false": {
+            "n": 4,
+            "parse_fail_rate": 0.25,
+            "strong_accuracy": 0.25
+          },
+          "true": {
+            "n": 4,
+            "parse_fail_rate": 0.0,
+            "strong_accuracy": 0.5
+          }
+        },
+        "mean_generated_tokens": 96.0,
+        "mean_output_chars": 150.75,
+        "mean_quality": 0.6164021164021164,
+        "n": 8,
+        "parse_fail_rate": 0.125,
+        "strong_accuracy": 0.375,
+        "weak_accuracy": 0.625
+      },
+      "gaussian_pos1sd": {
+        "by_height": {
+          "h3": {
+            "n": 4,
+            "parse_fail_rate": 0.0,
+            "strong_accuracy": 0.5
+          },
+          "h4": {
+            "n": 4,
+            "parse_fail_rate": 0.25,
+            "strong_accuracy": 0.25
+          }
+        },
+        "by_original_is_correct_strong": {
+          "false": {
+            "n": 4,
+            "parse_fail_rate": 0.25,
+            "strong_accuracy": 0.25
+          },
+          "true": {
+            "n": 4,
+            "parse_fail_rate": 0.0,
+            "strong_accuracy": 0.5
+          }
+        },
+        "mean_generated_tokens": 96.0,
+        "mean_output_chars": 150.75,
+        "mean_quality": 0.6164021164021164,
+        "n": 8,
+        "parse_fail_rate": 0.125,
         "strong_accuracy": 0.375,
         "weak_accuracy": 0.625
       },
@@ -597,6 +825,48 @@
       }
     },
     "flips_vs_baseline": {
+      "gaussian_neg0p25sd": {
+        "changed": 0,
+        "false_to_true": 0,
+        "net_accuracy_delta": 0.0,
+        "paired_n": 8,
+        "true_to_false": 0
+      },
+      "gaussian_neg0p5sd": {
+        "changed": 0,
+        "false_to_true": 0,
+        "net_accuracy_delta": 0.0,
+        "paired_n": 8,
+        "true_to_false": 0
+      },
+      "gaussian_neg1sd": {
+        "changed": 0,
+        "false_to_true": 0,
+        "net_accuracy_delta": 0.0,
+        "paired_n": 8,
+        "true_to_false": 0
+      },
+      "gaussian_pos0p25sd": {
+        "changed": 1,
+        "false_to_true": 0,
+        "net_accuracy_delta": -0.125,
+        "paired_n": 8,
+        "true_to_false": 1
+      },
+      "gaussian_pos0p5sd": {
+        "changed": 0,
+        "false_to_true": 0,
+        "net_accuracy_delta": 0.0,
+        "paired_n": 8,
+        "true_to_false": 0
+      },
+      "gaussian_pos1sd": {
+        "changed": 0,
+        "false_to_true": 0,
+        "net_accuracy_delta": 0.0,
+        "paired_n": 8,
+        "true_to_false": 0
+      },
       "orthogonal_neg0p25sd": {
         "changed": 1,
         "false_to_true": 0,

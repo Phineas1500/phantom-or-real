@@ -56,6 +56,12 @@ def has_condition_prefix(report: dict[str, Any] | None, prefix: str) -> bool:
     return any(label.startswith(prefix) for label in condition_labels(report))
 
 
+def completed_report_with_prefixes(report: dict[str, Any] | None, prefixes: list[str]) -> bool:
+    if report is None or not report.get("slurm_job_id"):
+        return False
+    return all(has_condition_prefix(report, prefix) for prefix in prefixes)
+
+
 def report_brief(path: Path) -> dict[str, Any]:
     report = read_json(path)
     if report is None:
@@ -114,6 +120,72 @@ def build_payload() -> dict[str, Any]:
     historical_has_orthogonal = any(
         has_condition_prefix(report, "orthogonal") for report in (raw_report, error_report, answer_report)
     )
+    raw_error_baseline_complete = all(
+        completed_report_with_prefixes(report, ["baseline"]) for report in (raw_report, error_report)
+    )
+    raw_error_gaussian_complete = all(
+        completed_report_with_prefixes(report, ["baseline", "orthogonal", "gaussian"])
+        for report in (raw_report, error_report)
+    )
+    baseline_status = (
+        "completed_for_current_raw_error_reruns"
+        if raw_error_baseline_complete
+        else "historical_small_n_available_refresh_required"
+    )
+    baseline_next_action = (
+        "Current raw/error steering reruns include paired regenerated baselines; repeat this per future intervention family."
+        if raw_error_baseline_complete
+        else "Regenerate balanced h3/h4 Gemma 3 27B infer_property baselines in the same job as each new intervention family; use paired regenerated rows, not historical labels, for flips."
+    )
+    gaussian_status = (
+        "completed_for_current_raw_error_reruns"
+        if raw_error_gaussian_complete
+        else "raw_direction_scaffolded_pending_gpu_rerun"
+    )
+    gaussian_next_action = (
+        "Current raw/error steering reruns include matched-Gaussian controls; keep matched-noise controls in every future intervention family."
+        if raw_error_gaussian_complete
+        else "Rerun the relevant Gemma 27B steering job with `gaussian` conditions before claiming repair exceeds matched noise."
+    )
+
+    next_jobs = [
+        {
+            "priority": 1,
+            "purpose": "Verify A40 availability before long jobs.",
+            "command": "srun -A gpu --constraint=J --gres=gpu:1 --time=00:03:00 --ntasks=1 --cpus-per-task=1 --mem=12G --immediate=60 bash -lc 'hostname; nvidia-smi -L'",
+        }
+    ]
+    if not positive_passes:
+        next_jobs.append(
+            {
+                "priority": 2,
+                "purpose": "Run the active format positive-control steering gate; answer-property and verbosity candidates did not pass.",
+                "command": f"sbatch {POSITIVE_CONTROL_FORMAT_JOB}",
+            }
+        )
+    if not raw_error_gaussian_complete:
+        next_jobs.extend(
+            [
+                {
+                    "priority": 3,
+                    "purpose": "Refresh raw-direction correctness steering with regenerated baseline, orthogonal, and matched-Gaussian controls.",
+                    "command": "sbatch scripts/stage2_steer_raw_27b_L45_property_decode_sweep.sbatch",
+                },
+                {
+                    "priority": 4,
+                    "purpose": "Refresh reconstruction-error steering with regenerated baseline, orthogonal, and matched-Gaussian controls if the raw preflight passes.",
+                    "command": "sbatch scripts/stage2_steer_error_27b_L45_property_decode_sweep.sbatch",
+                },
+            ]
+        )
+    else:
+        next_jobs.append(
+            {
+                "priority": 2,
+                "purpose": "Summarize and commit the completed raw/error matched-control reruns.",
+                "command": "git status --short && git diff --stat",
+            }
+        )
 
     gates = [
         {
@@ -129,14 +201,14 @@ def build_payload() -> dict[str, Any]:
         },
         {
             "gate": "regenerated_balanced_baseline",
-            "status": "historical_small_n_available_refresh_required",
+            "status": baseline_status,
             "required_before_new_interpretation": True,
             "evidence": [
                 report_brief(RAW_STEERING_REPORT),
                 report_brief(ERROR_STEERING_REPORT),
             ],
             "passes_for_future_jobs": False,
-            "next_action": "Regenerate balanced h3/h4 Gemma 3 27B infer_property baselines in the same job as each new intervention family; use paired regenerated rows, not historical labels, for flips.",
+            "next_action": baseline_next_action,
         },
         {
             "gate": "positive_control_steering",
@@ -169,7 +241,7 @@ def build_payload() -> dict[str, Any]:
         },
         {
             "gate": "matched_gaussian_noise_control",
-            "status": "raw_direction_scaffolded_pending_gpu_rerun",
+            "status": gaussian_status,
             "required_before_new_interpretation": True,
             "evidence": [
                 "src/stage2_steering.py supports `gaussian` condition for raw-direction steering.",
@@ -178,7 +250,7 @@ def build_payload() -> dict[str, Any]:
                 "scripts/stage2_steer_error_27b_L45_property_decode_sweep.sbatch includes gaussian controls for future reruns.",
             ],
             "passes_for_future_jobs": False,
-            "next_action": "Rerun the relevant Gemma 27B steering job with `gaussian` conditions before claiming repair exceeds matched noise.",
+            "next_action": gaussian_next_action,
         },
         {
             "gate": "paired_flip_and_parse_reporting",
@@ -208,28 +280,7 @@ def build_payload() -> dict[str, Any]:
         "primary_task": "infer_property",
         "primary_split": "s1_test_h3_h4_balanced",
         "gates": gates,
-        "next_jobs": [
-            {
-                "priority": 1,
-                "purpose": "Verify A40 availability before long jobs.",
-                "command": "srun -A gpu --constraint=J --gres=gpu:1 --time=00:03:00 --ntasks=1 --cpus-per-task=1 --mem=12G --immediate=60 bash -lc 'hostname; nvidia-smi -L'",
-            },
-            {
-                "priority": 2,
-                "purpose": "Run the active format positive-control steering gate; answer-property and verbosity candidates did not pass.",
-                "command": f"sbatch {POSITIVE_CONTROL_FORMAT_JOB}",
-            },
-            {
-                "priority": 3,
-                "purpose": "Refresh raw-direction correctness steering with regenerated baseline, orthogonal, and matched-Gaussian controls.",
-                "command": "sbatch scripts/stage2_steer_raw_27b_L45_property_decode_sweep.sbatch",
-            },
-            {
-                "priority": 4,
-                "purpose": "Refresh reconstruction-error steering with regenerated baseline, orthogonal, and matched-Gaussian controls if the raw preflight passes.",
-                "command": "sbatch scripts/stage2_steer_error_27b_L45_property_decode_sweep.sbatch",
-            },
-        ],
+        "next_jobs": next_jobs,
         "interpretation_rule": "Do not interpret optimized vectors, DAS, decode-time correction, or AtP* nulls unless regenerated baselines, positive controls, orthogonal controls, and matched-noise controls are present for the relevant method.",
     }
 

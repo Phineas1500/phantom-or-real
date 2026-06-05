@@ -1,5 +1,5 @@
 {
-  "created_at_utc": "2026-06-04T20:10:52.380421+00:00",
+  "created_at_utc": "2026-06-05T02:01:13.280841+00:00",
   "gates": [
     {
       "evidence": [
@@ -27,7 +27,11 @@
             "orthogonal_neg0p5sd",
             "orthogonal_neg1sd",
             "orthogonal_pos0p5sd",
-            "orthogonal_pos1sd"
+            "orthogonal_pos1sd",
+            "gaussian_neg0p5sd",
+            "gaussian_neg1sd",
+            "gaussian_pos0p5sd",
+            "gaussian_pos1sd"
           ],
           "exists": true,
           "layer": 45,
@@ -77,7 +81,13 @@
             "orthogonal_neg1sd",
             "orthogonal_pos0p25sd",
             "orthogonal_pos0p5sd",
-            "orthogonal_pos1sd"
+            "orthogonal_pos1sd",
+            "gaussian_neg0p25sd",
+            "gaussian_neg0p5sd",
+            "gaussian_neg1sd",
+            "gaussian_pos0p25sd",
+            "gaussian_pos0p5sd",
+            "gaussian_pos1sd"
           ],
           "exists": true,
           "layer": 45,
@@ -112,10 +122,10 @@
         }
       ],
       "gate": "regenerated_balanced_baseline",
-      "next_action": "Regenerate balanced h3/h4 Gemma 3 27B infer_property baselines in the same job as each new intervention family; use paired regenerated rows, not historical labels, for flips.",
+      "next_action": "Current raw/error steering reruns include paired regenerated baselines; repeat this per future intervention family.",
       "passes_for_future_jobs": false,
       "required_before_new_interpretation": true,
-      "status": "historical_small_n_available_refresh_required"
+      "status": "completed_for_current_raw_error_reruns"
     },
     {
       "evidence": {
@@ -260,10 +270,10 @@
         "scripts/stage2_steer_error_27b_L45_property_decode_sweep.sbatch includes gaussian controls for future reruns."
       ],
       "gate": "matched_gaussian_noise_control",
-      "next_action": "Rerun the relevant Gemma 27B steering job with `gaussian` conditions before claiming repair exceeds matched noise.",
+      "next_action": "Current raw/error steering reruns include matched-Gaussian controls; keep matched-noise controls in every future intervention family.",
       "passes_for_future_jobs": false,
       "required_before_new_interpretation": true,
-      "status": "raw_direction_scaffolded_pending_gpu_rerun"
+      "status": "completed_for_current_raw_error_reruns"
     },
     {
       "evidence": [
@@ -293,19 +303,9 @@
       "purpose": "Verify A40 availability before long jobs."
     },
     {
-      "command": "sbatch scripts/stage2_positive_control_format_27b_L45.sbatch",
+      "command": "git status --short && git diff --stat",
       "priority": 2,
-      "purpose": "Run the active format positive-control steering gate; answer-property and verbosity candidates did not pass."
-    },
-    {
-      "command": "sbatch scripts/stage2_steer_raw_27b_L45_property_decode_sweep.sbatch",
-      "priority": 3,
-      "purpose": "Refresh raw-direction correctness steering with regenerated baseline, orthogonal, and matched-Gaussian controls."
-    },
-    {
-      "command": "sbatch scripts/stage2_steer_error_27b_L45_property_decode_sweep.sbatch",
-      "priority": 4,
-      "purpose": "Refresh reconstruction-error steering with regenerated baseline, orthogonal, and matched-Gaussian controls if the raw preflight passes."
+      "purpose": "Summarize and commit the completed raw/error matched-control reruns."
     }
   ],
   "objective": "Freeze current Gemma/Qwen evidence and build the preflight gate for interpretable causal-intervention tests.",
