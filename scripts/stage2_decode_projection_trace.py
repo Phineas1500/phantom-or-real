@@ -119,6 +119,177 @@ def generate_one(
     return new_ids, reply
 
 
+def load_jsonl_with_indices(path: Path) -> dict[int, dict[str, Any]]:
+    rows: dict[int, dict[str, Any]] = {}
+    with path.open() as f:
+        for idx, line in enumerate(f):
+            if not line.strip():
+                continue
+            row = json.loads(line)
+            row["row_index"] = idx
+            rows[idx] = row
+    return rows
+
+
+def select_manifest_stage1_rows(
+    *,
+    jsonl_path: Path,
+    manifest_path: Path,
+    model_key: str,
+    task: str,
+    require_no_decode_trace: bool,
+    limit: int,
+) -> tuple[list[dict[str, Any]], dict[str, Any]]:
+    source_file = str(jsonl_path)
+    source_rows = load_jsonl_with_indices(jsonl_path)
+    with manifest_path.open() as f:
+        manifest = json.load(f)
+
+    selected: list[dict[str, Any]] = []
+    skipped: dict[str, int] = {
+        "model_task": 0,
+        "source_file": 0,
+        "not_recognition_gap": 0,
+        "already_decode_traced": 0,
+        "missing_source_row": 0,
+    }
+    for manifest_row in manifest.get("rows", []):
+        if manifest_row.get("model") != model_key or manifest_row.get("task") != task:
+            skipped["model_task"] += 1
+            continue
+        if manifest_row.get("source_file") != source_file:
+            skipped["source_file"] += 1
+            continue
+        if "recognition_generation_gap" not in manifest_row.get("recommended_use", []):
+            skipped["not_recognition_gap"] += 1
+            continue
+        if require_no_decode_trace and manifest_row.get("coverage_flags", {}).get("has_decode_trace"):
+            skipped["already_decode_traced"] += 1
+            continue
+        row_index = int(manifest_row["source_row_index"])
+        source_row = source_rows.get(row_index)
+        if source_row is None:
+            skipped["missing_source_row"] += 1
+            continue
+        row = dict(source_row)
+        row["manifest_entry"] = manifest_row
+        selected.append(row)
+
+    selected.sort(key=lambda row: (int(row.get("height", -1)), int(row["row_index"])))
+    if limit > 0:
+        selected = selected[:limit]
+
+    counts: dict[str, int] = {}
+    for row in selected:
+        height = row.get("height")
+        key = f"h{height}"
+        counts[key] = counts.get(key, 0) + 1
+
+    return selected, {
+        "source_file": source_file,
+        "selection_mode": "manifest_recognition_gap",
+        "manifest": str(manifest_path),
+        "model_key": model_key,
+        "task": task,
+        "require_no_decode_trace": require_no_decode_trace,
+        "limit": limit,
+        "selected_rows": len(selected),
+        "selected_counts": counts,
+        "skipped_counts": skipped,
+        "manifest_report_n": manifest.get("n"),
+    }
+
+
+def score_candidate_logprob(
+    *,
+    model,
+    prompt_token_ids: list[int],
+    candidate_text: str,
+) -> dict[str, Any]:
+    tokenizer = model.tokenizer
+    if tokenizer is None:
+        raise ValueError("model has no tokenizer")
+    candidate_ids = tokenizer(candidate_text, add_special_tokens=False)["input_ids"]
+    if not candidate_ids:
+        raise ValueError(f"candidate text produced no tokens: {candidate_text!r}")
+
+    input_ids = prompt_token_ids + candidate_ids[:-1]
+    target_ids = candidate_ids
+    input_device = input_device_for_model(model)
+    tokens = torch.tensor([input_ids], dtype=torch.long, device=input_device)
+    with torch.inference_mode():
+        logits = model(tokens, return_type="logits", prepend_bos=False)
+        positions = torch.arange(
+            len(prompt_token_ids) - 1,
+            len(prompt_token_ids) - 1 + len(candidate_ids),
+            device=logits.device,
+        )
+        target = torch.tensor(target_ids, dtype=torch.long, device=logits.device)
+        selected_logits = logits[0, positions, :]
+        log_probs = torch.log_softmax(selected_logits.float(), dim=-1)
+        token_logprob = log_probs[torch.arange(len(candidate_ids), device=logits.device), target]
+        total = float(token_logprob.sum().detach().cpu())
+    return {
+        "text": candidate_text,
+        "token_count": len(candidate_ids),
+        "logprob": total,
+        "mean_logprob": total / len(candidate_ids),
+    }
+
+
+def score_prompt_margins(
+    *,
+    model,
+    prompt_token_ids: list[int],
+    gold_hypothesis: str | None,
+    foil_hypothesis: str | None,
+    parsed_hypotheses: list[Any],
+) -> dict[str, Any]:
+    selected_hypothesis = str(parsed_hypotheses[0]) if parsed_hypotheses else None
+    if not gold_hypothesis or not foil_hypothesis:
+        return {
+            "available": False,
+            "selected_hypothesis": selected_hypothesis,
+            "selected_hypothesis_count": len(parsed_hypotheses),
+        }
+
+    gold = score_candidate_logprob(
+        model=model,
+        prompt_token_ids=prompt_token_ids,
+        candidate_text=gold_hypothesis,
+    )
+    foil = score_candidate_logprob(
+        model=model,
+        prompt_token_ids=prompt_token_ids,
+        candidate_text=foil_hypothesis,
+    )
+    selected = None
+    if selected_hypothesis:
+        selected = score_candidate_logprob(
+            model=model,
+            prompt_token_ids=prompt_token_ids,
+            candidate_text=selected_hypothesis,
+        )
+
+    out = {
+        "available": True,
+        "gold_hypothesis": gold_hypothesis,
+        "foil_hypothesis": foil_hypothesis,
+        "selected_hypothesis": selected_hypothesis,
+        "selected_hypothesis_count": len(parsed_hypotheses),
+        "gold": gold,
+        "foil": foil,
+        "gold_vs_foil_logprob_margin": gold["logprob"] - foil["logprob"],
+        "gold_vs_foil_mean_logprob_margin": gold["mean_logprob"] - foil["mean_logprob"],
+    }
+    if selected is not None:
+        out["selected"] = selected
+        out["selected_vs_gold_logprob_margin"] = selected["logprob"] - gold["logprob"]
+        out["selected_vs_foil_logprob_margin"] = selected["logprob"] - foil["logprob"]
+        out["gold_vs_selected_logprob_margin"] = gold["logprob"] - selected["logprob"]
+    return out
+
+
 def make_projection_trace_hook(
     *,
     layer: int,
@@ -235,6 +406,37 @@ def summarize_trace_rows(rows: list[dict[str, Any]], layers: list[int]) -> dict[
     return summary
 
 
+def summarize_prompt_margins(rows: list[dict[str, Any]]) -> dict[str, Any]:
+    available = [row for row in rows if row.get("prompt_margin_scores", {}).get("available")]
+
+    def collect(key: str, subset: list[dict[str, Any]]) -> list[float]:
+        values = []
+        for row in subset:
+            value = row.get("prompt_margin_scores", {}).get(key)
+            if value is not None:
+                values.append(float(value))
+        return values
+
+    by_generated_correct = {}
+    for label in (False, True):
+        subset = [row for row in available if bool(row.get("is_correct_strong")) is label]
+        by_generated_correct[str(label).lower()] = {
+            "rows": len(subset),
+            "gold_vs_foil_logprob_margin": summarize_values(collect("gold_vs_foil_logprob_margin", subset)),
+            "selected_vs_gold_logprob_margin": summarize_values(collect("selected_vs_gold_logprob_margin", subset)),
+            "selected_vs_foil_logprob_margin": summarize_values(collect("selected_vs_foil_logprob_margin", subset)),
+        }
+
+    return {
+        "rows": len(rows),
+        "available_rows": len(available),
+        "gold_vs_foil_logprob_margin": summarize_values(collect("gold_vs_foil_logprob_margin", available)),
+        "selected_vs_gold_logprob_margin": summarize_values(collect("selected_vs_gold_logprob_margin", available)),
+        "selected_vs_foil_logprob_margin": summarize_values(collect("selected_vs_foil_logprob_margin", available)),
+        "by_generated_is_correct_strong": by_generated_correct,
+    }
+
+
 def build_arg_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser()
     parser.add_argument("--jsonl", type=Path, default=Path("results/full/with_errortype/gemma3_27b_infer_property.jsonl"))
@@ -247,6 +449,10 @@ def build_arg_parser() -> argparse.ArgumentParser:
     parser.add_argument("--split-family", default="s1")
     parser.add_argument("--heights", default="3,4")
     parser.add_argument("--per-height-label", type=int, default=2)
+    parser.add_argument("--selection-mode", choices=("balanced", "manifest_recognition_gap"), default="balanced")
+    parser.add_argument("--manifest", type=Path, default=Path("docs/commitment_rowset_manifest.json"))
+    parser.add_argument("--manifest-limit", type=int, default=0)
+    parser.add_argument("--manifest-require-no-decode-trace", action=argparse.BooleanOptionalAction, default=False)
     parser.add_argument("--selection-seed", type=int, default=20260427)
     parser.add_argument("--probe-seed", type=int, default=20260472)
     parser.add_argument("--c-values", default="0.01,0.1,1.0,10.0")
@@ -322,19 +528,33 @@ def main() -> int:
         )
     save_direction_artifact(path=args.direction_output, directions=directions)
 
-    selected_rows, selection_summary = select_balanced_stage1_rows(
-        jsonl_path=args.jsonl,
-        splits_path=args.splits,
-        source_file=source_file,
-        split_family=args.split_family,
-        heights=heights,
-        per_height_label=args.per_height_label,
-        seed=args.selection_seed,
-        drop_parse_failed=True,
-    )
+    if args.selection_mode == "balanced":
+        selected_rows, selection_summary = select_balanced_stage1_rows(
+            jsonl_path=args.jsonl,
+            splits_path=args.splits,
+            source_file=source_file,
+            split_family=args.split_family,
+            heights=heights,
+            per_height_label=args.per_height_label,
+            seed=args.selection_seed,
+            drop_parse_failed=True,
+        )
+    else:
+        selected_rows, selection_summary = select_manifest_stage1_rows(
+            jsonl_path=args.jsonl,
+            manifest_path=args.manifest,
+            model_key=args.model_key,
+            task=args.task,
+            require_no_decode_trace=args.manifest_require_no_decode_trace,
+            limit=args.manifest_limit,
+        )
+    if not selected_rows:
+        raise ValueError(f"selection produced no rows: {selection_summary}")
     print(
         f"selected_rows={len(selected_rows)} "
-        f"available_counts={selection_summary['available_counts']}",
+        f"selection_mode={selection_summary.get('selection_mode', 'balanced')} "
+        f"selected_counts={selection_summary.get('selected_counts')} "
+        f"available_counts={selection_summary.get('available_counts')}",
         flush=True,
     )
     for layer in layers:
@@ -411,6 +631,15 @@ def main() -> int:
                     cache_dtype=dtype,
                 )
             score = score_reply(stage1_row, reply)
+            manifest_entry = stage1_row.get("manifest_entry")
+            recognition = manifest_entry.get("recognition") if manifest_entry else None
+            margin_scores = score_prompt_margins(
+                model=model,
+                prompt_token_ids=token_ids,
+                gold_hypothesis=recognition.get("gold_hypothesis") if recognition else None,
+                foil_hypothesis=recognition.get("foil_hypothesis") if recognition else None,
+                parsed_hypotheses=score.get("parsed_hypotheses") or [],
+            )
             projection_fields = {
                 f"L{layer}": projection_sidecars[layer]["by_row_index"].get(int(stage1_row["row_index"]), {})
                 for layer in layers
@@ -431,6 +660,12 @@ def main() -> int:
                 "method": "baseline_decode_projection_trace",
                 "target_variable": "commitment_state",
                 "representation_type": "raw_direction",
+                "selection_mode": args.selection_mode,
+                "manifest_id": manifest_entry.get("manifest_id") if manifest_entry else None,
+                "manifest_recommended_use": manifest_entry.get("recommended_use") if manifest_entry else [],
+                "recognition": recognition,
+                "gold_hypothesis": recognition.get("gold_hypothesis") if recognition else None,
+                "foil_hypothesis": recognition.get("foil_hypothesis") if recognition else None,
                 "layers": layers,
                 "hook_names": hook_by_layer,
                 "prompt_token_count": len(token_ids),
@@ -438,6 +673,7 @@ def main() -> int:
                 "model_output": reply,
                 "prompt_projection_sidecar": projection_fields,
                 "projection_traces": {f"L{layer}": trace_state[layer] for layer in layers},
+                "prompt_margin_scores": margin_scores,
                 **score,
             }
             rows.append(output_row)
@@ -474,6 +710,8 @@ def main() -> int:
         "jsonl": str(args.jsonl),
         "splits": str(args.splits),
         "split_family": args.split_family,
+        "selection_mode": args.selection_mode,
+        "manifest": str(args.manifest) if args.selection_mode != "balanced" else None,
         "direction_output": str(args.direction_output),
         "out_jsonl": str(args.out_jsonl),
         "probe_directions": {f"L{layer}": serializable_direction_summary(directions[layer]) for layer in layers},
@@ -503,10 +741,11 @@ def main() -> int:
         "controls": ["regenerated_baseline"],
         "causal_abstraction_claim": (
             "Predictive calibration diagnostic only: traces whether raw correctness "
-            "directions separate regenerated correct and incorrect decode trajectories. "
-            "No causal repair claim is made."
+            "directions and prompt-continuation margins separate regenerated correct "
+            "and incorrect decode trajectories. No causal repair claim is made."
         ),
         "summary": trace_summary,
+        "prompt_margin_summary": summarize_prompt_margins(rows),
     }
     args.output.parent.mkdir(parents=True, exist_ok=True)
     with args.output.open("w") as f:
