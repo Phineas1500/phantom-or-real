@@ -1,0 +1,113 @@
+{
+  "bottom_line": "The prefix-conditioned diagnostics support a cross-model predictive pattern: on recognition-gap rows, the wrong/free-form hypothesis is already more likely than gold at the prompt-only checkpoint. This is evidence for a recognition-vs-generation deployment gap, not evidence that we have found a causal commitment-transition handle.",
+  "causal_abstraction_claim": "Predictive only. The reports test `selected_hypothesis`, `gold_vs_foil_margin`, and `commitment_state` as readouts under prefix-conditioned contexts; they do not intervene on the model state.",
+  "created_at_utc": "2026-06-06T20:53:20.429282+00:00",
+  "inputs": {
+    "gemma_jsonl": "results/stage2/decode_time/prefix_conditioned_margin_trajectory_gemma_manifest.jsonl",
+    "gemma_report": "docs/prefix_conditioned_margin_trajectory_gemma_manifest.json",
+    "qwen_jsonl": "results/stage2/decode_time/qwen_prefix_conditioned_margin_trajectory_h4_subset.jsonl",
+    "qwen_report": "docs/qwen_prefix_conditioned_margin_trajectory_h4_subset.json"
+  },
+  "models": [
+    {
+      "baseline_metrics": {
+        "generated_strong_accuracy": 0.21428571428571427,
+        "parse_fail_rate": 0.07142857142857142
+      },
+      "checkpoint_0": {
+        "gold_vs_foil_mean": -11.650485457054206,
+        "gold_vs_foil_nonnegative": 1,
+        "n": 14,
+        "selected_available": 13,
+        "selected_vs_gold_mean": 17.31829518538255,
+        "selected_vs_gold_nonnegative": 13
+      },
+      "comparison_caveat": "property h3/h4 regenerated decode trace; one parse-failed row lacks selected hypothesis",
+      "final": {
+        "gold_vs_foil_mean": 3.2879299436296736,
+        "gold_vs_foil_nonnegative": 8,
+        "n": 14,
+        "selected_available": 13,
+        "selected_vs_gold_mean": 2.6927994948167067,
+        "selected_vs_gold_nonnegative": 9
+      },
+      "model_key": "gemma3_27b",
+      "n_rows": 14,
+      "n_trajectory_rows": 112,
+      "name": "Gemma 3 27B",
+      "row_metadata": {
+        "exists": true,
+        "heights": {
+          "3": 6,
+          "4": 8
+        },
+        "jsonl": "results/stage2/decode_time/prefix_conditioned_margin_trajectory_gemma_manifest.jsonl",
+        "models": {
+          "gemma3_27b": 14
+        },
+        "n_rows": 14,
+        "n_trajectory_rows": 112,
+        "parse_failures": {
+          "False": 13,
+          "True": 1
+        },
+        "tasks": {
+          "infer_property": 14
+        }
+      },
+      "selected_definition": "regenerated selected hypothesis",
+      "task": "infer_property"
+    },
+    {
+      "baseline_metrics": {
+        "mcq_choice_accuracy": 1.0,
+        "original_parse_fail_rate": 0.0,
+        "original_strong_accuracy": 0.0
+      },
+      "checkpoint_0": {
+        "gold_vs_foil_mean": -12.863684517996651,
+        "gold_vs_foil_nonnegative": 0,
+        "n": 14,
+        "selected_available": 14,
+        "selected_vs_gold_mean": 12.863684517996651,
+        "selected_vs_gold_nonnegative": 14
+      },
+      "comparison_caveat": "subtype h4 original Stage 1 output prefixes; selected equals hard foil by construction",
+      "final": {
+        "gold_vs_foil_mean": -8.611207008361816,
+        "gold_vs_foil_nonnegative": 0,
+        "n": 14,
+        "selected_available": 14,
+        "selected_vs_gold_mean": 8.611207008361816,
+        "selected_vs_gold_nonnegative": 14
+      },
+      "model_key": "qwen35_27b",
+      "n_rows": 14,
+      "n_trajectory_rows": 112,
+      "name": "Qwen3.5 27B",
+      "row_metadata": {
+        "exists": true,
+        "heights": {
+          "4": 14
+        },
+        "jsonl": "results/stage2/decode_time/qwen_prefix_conditioned_margin_trajectory_h4_subset.jsonl",
+        "models": {
+          "qwen35_27b": 14
+        },
+        "n_rows": 14,
+        "n_trajectory_rows": 112,
+        "parse_failures": {
+          "False": 14
+        },
+        "tasks": {
+          "infer_subtype": 14
+        }
+      },
+      "selected_definition": "Stage 1 hard foil",
+      "task": "infer_subtype"
+    }
+  ],
+  "recommendation": "Close the prefix-conditioned trajectory measurement as predictive evidence for now. Do not run another broad trajectory batch unless it is tied to a specific intervention. If we continue this track causally, the next experiment should first train or calibrate a decode-trajectory monitor on selected-vs-gold or gold-vs-foil margin state, then test a gated intervention against matched-noise and positive controls.",
+  "schema_version": 1,
+  "script": "scripts/compare_prefix_conditioned_margin_trajectories.py"
+}

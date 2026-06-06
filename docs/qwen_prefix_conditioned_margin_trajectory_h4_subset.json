@@ -1,0 +1,529 @@
+{
+  "baseline_metrics": {
+    "mcq_choice_accuracy": 1.0,
+    "original_parse_fail_rate": 0.0,
+    "original_strong_accuracy": 0.0
+  },
+  "causal_abstraction_claim": "Predictive trajectory diagnostic only. It tests whether the Stage 1 hard-foil hypothesis is already more likely than gold under prompt and generated-prefix contexts; it does not perform a causal intervention.",
+  "checkpoints": [
+    0,
+    1,
+    4,
+    8,
+    16,
+    32,
+    64,
+    "final"
+  ],
+  "controls": [
+    "historical_stage1_generation_prefix",
+    "hard_foil_selected_hypothesis"
+  ],
+  "created_at_utc": "2026-06-06T19:43:13.427946+00:00",
+  "elapsed_seconds": 290.00454592704773,
+  "interpretation_note": "This is not a causal result. It uses Qwen's original Stage 1 free-form output as the prefix trajectory and treats the hard foil as the emitted selected hypothesis. It is comparable to the Gemma prefix-conditioned diagnostic only as cross-model recognition-gap trajectory evidence; it is not a matched regenerated decode-trace replication.",
+  "intervention_metrics": {},
+  "matched_noise_summary": {},
+  "method": "qwen_prefix_conditioned_margin_trajectory",
+  "model": "Qwen/Qwen3.5-27B",
+  "model_key": "qwen35_27b",
+  "n": 112,
+  "n_rows": 14,
+  "out_jsonl": "results/stage2/decode_time/qwen_prefix_conditioned_margin_trajectory_h4_subset.jsonl",
+  "paired_flips": {},
+  "parse_fail_rate": {
+    "original_generation": 0.0
+  },
+  "recognition_jsonl": "results/stage2/qwen_causal/qwen35_27b_infer_subtype_h4_hardfoil_forced_choice.jsonl",
+  "representation_type": "prompt_margin",
+  "schema_version": 1,
+  "script": "scripts/stage2_qwen_prefix_conditioned_margin_trajectory.py",
+  "selected_hypothesis_source": "stage1_hard_foil",
+  "selection": {
+    "available_by_height": {
+      "h4": 43
+    },
+    "available_total": 43,
+    "height": 4,
+    "limit": 14,
+    "model_key": "qwen35_27b",
+    "selected_rows": 14,
+    "selection_mode": "qwen_hard_foil_recognition_generation_gap",
+    "skipped_height": 0,
+    "skipped_missing": 0,
+    "skipped_model": 0,
+    "skipped_not_gap": 21,
+    "skipped_parse": 0,
+    "skipped_task": 0,
+    "task": "infer_subtype"
+  },
+  "slurm_job_id": "456738",
+  "source_jsonl": "results/full/with_errortype/qwen35_27b_infer_subtype.jsonl",
+  "summary": {
+    "by_checkpoint": {
+      "0": {
+        "gold_vs_foil_logprob_margin": {
+          "fraction_below_0": 1.0,
+          "max": -11.645546436309814,
+          "mean": -12.863684517996651,
+          "min": -15.393080592155457,
+          "n": 14,
+          "std": 1.0808779855680328
+        },
+        "gold_vs_foil_nonnegative": 0,
+        "n": 14,
+        "prefix_token_count": 0,
+        "prefix_token_count_summary": {
+          "max": 0,
+          "mean": 0.0,
+          "min": 0
+        },
+        "selected_available": 14,
+        "selected_vs_foil_logprob_margin": {
+          "fraction_below_0": 0.0,
+          "max": 0.0,
+          "mean": 0.0,
+          "min": 0.0,
+          "n": 14,
+          "std": 0.0
+        },
+        "selected_vs_gold_logprob_margin": {
+          "fraction_below_0": 0.0,
+          "max": 15.393080592155457,
+          "mean": 12.863684517996651,
+          "min": 11.645546436309814,
+          "n": 14,
+          "std": 1.0808779855680328
+        },
+        "selected_vs_gold_nonnegative": 14
+      },
+      "1": {
+        "gold_vs_foil_logprob_margin": {
+          "fraction_below_0": 1.0,
+          "max": -5.181291580200195,
+          "mean": -9.78720338003976,
+          "min": -15.731563568115234,
+          "n": 14,
+          "std": 2.687359918437729
+        },
+        "gold_vs_foil_nonnegative": 0,
+        "n": 14,
+        "prefix_token_count": 1,
+        "prefix_token_count_summary": {
+          "max": 1,
+          "mean": 1.0,
+          "min": 1
+        },
+        "selected_available": 14,
+        "selected_vs_foil_logprob_margin": {
+          "fraction_below_0": 0.0,
+          "max": 0.0,
+          "mean": 0.0,
+          "min": 0.0,
+          "n": 14,
+          "std": 0.0
+        },
+        "selected_vs_gold_logprob_margin": {
+          "fraction_below_0": 0.0,
+          "max": 15.731563568115234,
+          "mean": 9.78720338003976,
+          "min": 5.181291580200195,
+          "n": 14,
+          "std": 2.687359918437729
+        },
+        "selected_vs_gold_nonnegative": 14
+      },
+      "16": {
+        "gold_vs_foil_logprob_margin": {
+          "fraction_below_0": 1.0,
+          "max": -2.555988311767578,
+          "mean": -6.829974174499512,
+          "min": -13.199626922607422,
+          "n": 14,
+          "std": 2.503973208979591
+        },
+        "gold_vs_foil_nonnegative": 0,
+        "n": 14,
+        "prefix_token_count": 16,
+        "prefix_token_count_summary": {
+          "max": 16,
+          "mean": 16.0,
+          "min": 16
+        },
+        "selected_available": 14,
+        "selected_vs_foil_logprob_margin": {
+          "fraction_below_0": 0.0,
+          "max": 0.0,
+          "mean": 0.0,
+          "min": 0.0,
+          "n": 14,
+          "std": 0.0
+        },
+        "selected_vs_gold_logprob_margin": {
+          "fraction_below_0": 0.0,
+          "max": 13.199626922607422,
+          "mean": 6.829974174499512,
+          "min": 2.555988311767578,
+          "n": 14,
+          "std": 2.503973208979591
+        },
+        "selected_vs_gold_nonnegative": 14
+      },
+      "32": {
+        "gold_vs_foil_logprob_margin": {
+          "fraction_below_0": 1.0,
+          "max": -3.710573196411133,
+          "mean": -8.611207008361816,
+          "min": -13.807693481445312,
+          "n": 14,
+          "std": 2.3682879211365724
+        },
+        "gold_vs_foil_nonnegative": 0,
+        "n": 14,
+        "prefix_token_count": 17,
+        "prefix_token_count_summary": {
+          "max": 31,
+          "mean": 26.285714285714285,
+          "min": 17
+        },
+        "selected_available": 14,
+        "selected_vs_foil_logprob_margin": {
+          "fraction_below_0": 0.0,
+          "max": 0.0,
+          "mean": 0.0,
+          "min": 0.0,
+          "n": 14,
+          "std": 0.0
+        },
+        "selected_vs_gold_logprob_margin": {
+          "fraction_below_0": 0.0,
+          "max": 13.807693481445312,
+          "mean": 8.611207008361816,
+          "min": 3.710573196411133,
+          "n": 14,
+          "std": 2.3682879211365724
+        },
+        "selected_vs_gold_nonnegative": 14
+      },
+      "4": {
+        "gold_vs_foil_logprob_margin": {
+          "fraction_below_0": 1.0,
+          "max": -1.9317855834960938,
+          "mean": -6.04284531729562,
+          "min": -13.333967208862305,
+          "n": 14,
+          "std": 3.0012865245045064
+        },
+        "gold_vs_foil_nonnegative": 0,
+        "n": 14,
+        "prefix_token_count": 4,
+        "prefix_token_count_summary": {
+          "max": 4,
+          "mean": 4.0,
+          "min": 4
+        },
+        "selected_available": 14,
+        "selected_vs_foil_logprob_margin": {
+          "fraction_below_0": 0.0,
+          "max": 0.0,
+          "mean": 0.0,
+          "min": 0.0,
+          "n": 14,
+          "std": 0.0
+        },
+        "selected_vs_gold_logprob_margin": {
+          "fraction_below_0": 0.0,
+          "max": 13.333967208862305,
+          "mean": 6.04284531729562,
+          "min": 1.9317855834960938,
+          "n": 14,
+          "std": 3.0012865245045064
+        },
+        "selected_vs_gold_nonnegative": 14
+      },
+      "64": {
+        "gold_vs_foil_logprob_margin": {
+          "fraction_below_0": 1.0,
+          "max": -3.710573196411133,
+          "mean": -8.611207008361816,
+          "min": -13.807693481445312,
+          "n": 14,
+          "std": 2.3682879211365724
+        },
+        "gold_vs_foil_nonnegative": 0,
+        "n": 14,
+        "prefix_token_count": 17,
+        "prefix_token_count_summary": {
+          "max": 31,
+          "mean": 26.285714285714285,
+          "min": 17
+        },
+        "selected_available": 14,
+        "selected_vs_foil_logprob_margin": {
+          "fraction_below_0": 0.0,
+          "max": 0.0,
+          "mean": 0.0,
+          "min": 0.0,
+          "n": 14,
+          "std": 0.0
+        },
+        "selected_vs_gold_logprob_margin": {
+          "fraction_below_0": 0.0,
+          "max": 13.807693481445312,
+          "mean": 8.611207008361816,
+          "min": 3.710573196411133,
+          "n": 14,
+          "std": 2.3682879211365724
+        },
+        "selected_vs_gold_nonnegative": 14
+      },
+      "8": {
+        "gold_vs_foil_logprob_margin": {
+          "fraction_below_0": 1.0,
+          "max": -1.1991996765136719,
+          "mean": -6.806544167654855,
+          "min": -12.138837814331055,
+          "n": 14,
+          "std": 2.9878746235246396
+        },
+        "gold_vs_foil_nonnegative": 0,
+        "n": 14,
+        "prefix_token_count": 8,
+        "prefix_token_count_summary": {
+          "max": 8,
+          "mean": 8.0,
+          "min": 8
+        },
+        "selected_available": 14,
+        "selected_vs_foil_logprob_margin": {
+          "fraction_below_0": 0.0,
+          "max": 0.0,
+          "mean": 0.0,
+          "min": 0.0,
+          "n": 14,
+          "std": 0.0
+        },
+        "selected_vs_gold_logprob_margin": {
+          "fraction_below_0": 0.0,
+          "max": 12.138837814331055,
+          "mean": 6.806544167654855,
+          "min": 1.1991996765136719,
+          "n": 14,
+          "std": 2.9878746235246396
+        },
+        "selected_vs_gold_nonnegative": 14
+      },
+      "final": {
+        "gold_vs_foil_logprob_margin": {
+          "fraction_below_0": 1.0,
+          "max": -3.710573196411133,
+          "mean": -8.611207008361816,
+          "min": -13.807693481445312,
+          "n": 14,
+          "std": 2.3682879211365724
+        },
+        "gold_vs_foil_nonnegative": 0,
+        "n": 14,
+        "prefix_token_count": 17,
+        "prefix_token_count_summary": {
+          "max": 31,
+          "mean": 26.285714285714285,
+          "min": 17
+        },
+        "selected_available": 14,
+        "selected_vs_foil_logprob_margin": {
+          "fraction_below_0": 0.0,
+          "max": 0.0,
+          "mean": 0.0,
+          "min": 0.0,
+          "n": 14,
+          "std": 0.0
+        },
+        "selected_vs_gold_logprob_margin": {
+          "fraction_below_0": 0.0,
+          "max": 13.807693481445312,
+          "mean": 8.611207008361816,
+          "min": 3.710573196411133,
+          "n": 14,
+          "std": 2.3682879211365724
+        },
+        "selected_vs_gold_nonnegative": 14
+      }
+    },
+    "row_commitments": [
+      {
+        "example_id": "ontology_h4_00085",
+        "first_gold_vs_foil_nonnegative_checkpoint": null,
+        "first_gold_vs_foil_nonnegative_prefix_tokens": null,
+        "first_selected_vs_gold_nonnegative_checkpoint": "0",
+        "first_selected_vs_gold_nonnegative_prefix_tokens": 0,
+        "height": 4,
+        "mcq_is_correct_choice": true,
+        "original_is_correct_strong": false,
+        "original_parse_failed": false,
+        "source_row_index": 6085
+      },
+      {
+        "example_id": "ontology_h4_00100",
+        "first_gold_vs_foil_nonnegative_checkpoint": null,
+        "first_gold_vs_foil_nonnegative_prefix_tokens": null,
+        "first_selected_vs_gold_nonnegative_checkpoint": "0",
+        "first_selected_vs_gold_nonnegative_prefix_tokens": 0,
+        "height": 4,
+        "mcq_is_correct_choice": true,
+        "original_is_correct_strong": false,
+        "original_parse_failed": false,
+        "source_row_index": 6100
+      },
+      {
+        "example_id": "ontology_h4_00184",
+        "first_gold_vs_foil_nonnegative_checkpoint": null,
+        "first_gold_vs_foil_nonnegative_prefix_tokens": null,
+        "first_selected_vs_gold_nonnegative_checkpoint": "0",
+        "first_selected_vs_gold_nonnegative_prefix_tokens": 0,
+        "height": 4,
+        "mcq_is_correct_choice": true,
+        "original_is_correct_strong": false,
+        "original_parse_failed": false,
+        "source_row_index": 6184
+      },
+      {
+        "example_id": "ontology_h4_00293",
+        "first_gold_vs_foil_nonnegative_checkpoint": null,
+        "first_gold_vs_foil_nonnegative_prefix_tokens": null,
+        "first_selected_vs_gold_nonnegative_checkpoint": "0",
+        "first_selected_vs_gold_nonnegative_prefix_tokens": 0,
+        "height": 4,
+        "mcq_is_correct_choice": true,
+        "original_is_correct_strong": false,
+        "original_parse_failed": false,
+        "source_row_index": 6293
+      },
+      {
+        "example_id": "ontology_h4_00322",
+        "first_gold_vs_foil_nonnegative_checkpoint": null,
+        "first_gold_vs_foil_nonnegative_prefix_tokens": null,
+        "first_selected_vs_gold_nonnegative_checkpoint": "0",
+        "first_selected_vs_gold_nonnegative_prefix_tokens": 0,
+        "height": 4,
+        "mcq_is_correct_choice": true,
+        "original_is_correct_strong": false,
+        "original_parse_failed": false,
+        "source_row_index": 6322
+      },
+      {
+        "example_id": "ontology_h4_00610",
+        "first_gold_vs_foil_nonnegative_checkpoint": null,
+        "first_gold_vs_foil_nonnegative_prefix_tokens": null,
+        "first_selected_vs_gold_nonnegative_checkpoint": "0",
+        "first_selected_vs_gold_nonnegative_prefix_tokens": 0,
+        "height": 4,
+        "mcq_is_correct_choice": true,
+        "original_is_correct_strong": false,
+        "original_parse_failed": false,
+        "source_row_index": 6610
+      },
+      {
+        "example_id": "ontology_h4_00676",
+        "first_gold_vs_foil_nonnegative_checkpoint": null,
+        "first_gold_vs_foil_nonnegative_prefix_tokens": null,
+        "first_selected_vs_gold_nonnegative_checkpoint": "0",
+        "first_selected_vs_gold_nonnegative_prefix_tokens": 0,
+        "height": 4,
+        "mcq_is_correct_choice": true,
+        "original_is_correct_strong": false,
+        "original_parse_failed": false,
+        "source_row_index": 6676
+      },
+      {
+        "example_id": "ontology_h4_00757",
+        "first_gold_vs_foil_nonnegative_checkpoint": null,
+        "first_gold_vs_foil_nonnegative_prefix_tokens": null,
+        "first_selected_vs_gold_nonnegative_checkpoint": "0",
+        "first_selected_vs_gold_nonnegative_prefix_tokens": 0,
+        "height": 4,
+        "mcq_is_correct_choice": true,
+        "original_is_correct_strong": false,
+        "original_parse_failed": false,
+        "source_row_index": 6757
+      },
+      {
+        "example_id": "ontology_h4_00925",
+        "first_gold_vs_foil_nonnegative_checkpoint": null,
+        "first_gold_vs_foil_nonnegative_prefix_tokens": null,
+        "first_selected_vs_gold_nonnegative_checkpoint": "0",
+        "first_selected_vs_gold_nonnegative_prefix_tokens": 0,
+        "height": 4,
+        "mcq_is_correct_choice": true,
+        "original_is_correct_strong": false,
+        "original_parse_failed": false,
+        "source_row_index": 6925
+      },
+      {
+        "example_id": "ontology_h4_00932",
+        "first_gold_vs_foil_nonnegative_checkpoint": null,
+        "first_gold_vs_foil_nonnegative_prefix_tokens": null,
+        "first_selected_vs_gold_nonnegative_checkpoint": "0",
+        "first_selected_vs_gold_nonnegative_prefix_tokens": 0,
+        "height": 4,
+        "mcq_is_correct_choice": true,
+        "original_is_correct_strong": false,
+        "original_parse_failed": false,
+        "source_row_index": 6932
+      },
+      {
+        "example_id": "ontology_h4_00971",
+        "first_gold_vs_foil_nonnegative_checkpoint": null,
+        "first_gold_vs_foil_nonnegative_prefix_tokens": null,
+        "first_selected_vs_gold_nonnegative_checkpoint": "0",
+        "first_selected_vs_gold_nonnegative_prefix_tokens": 0,
+        "height": 4,
+        "mcq_is_correct_choice": true,
+        "original_is_correct_strong": false,
+        "original_parse_failed": false,
+        "source_row_index": 6971
+      },
+      {
+        "example_id": "ontology_h4_01145",
+        "first_gold_vs_foil_nonnegative_checkpoint": null,
+        "first_gold_vs_foil_nonnegative_prefix_tokens": null,
+        "first_selected_vs_gold_nonnegative_checkpoint": "0",
+        "first_selected_vs_gold_nonnegative_prefix_tokens": 0,
+        "height": 4,
+        "mcq_is_correct_choice": true,
+        "original_is_correct_strong": false,
+        "original_parse_failed": false,
+        "source_row_index": 7145
+      },
+      {
+        "example_id": "ontology_h4_01306",
+        "first_gold_vs_foil_nonnegative_checkpoint": null,
+        "first_gold_vs_foil_nonnegative_prefix_tokens": null,
+        "first_selected_vs_gold_nonnegative_checkpoint": "0",
+        "first_selected_vs_gold_nonnegative_prefix_tokens": 0,
+        "height": 4,
+        "mcq_is_correct_choice": true,
+        "original_is_correct_strong": false,
+        "original_parse_failed": false,
+        "source_row_index": 7306
+      },
+      {
+        "example_id": "ontology_h4_01452",
+        "first_gold_vs_foil_nonnegative_checkpoint": null,
+        "first_gold_vs_foil_nonnegative_prefix_tokens": null,
+        "first_selected_vs_gold_nonnegative_checkpoint": "0",
+        "first_selected_vs_gold_nonnegative_prefix_tokens": 0,
+        "height": 4,
+        "mcq_is_correct_choice": true,
+        "original_is_correct_strong": false,
+        "original_parse_failed": false,
+        "source_row_index": 7452
+      }
+    ],
+    "rows_gold_vs_foil_nonnegative_at_checkpoint_0": 0,
+    "rows_selected_vs_gold_nonnegative_at_checkpoint_0": 14,
+    "rows_with_selected_available": 14
+  },
+  "target_variable": "commitment_state",
+  "task": "infer_subtype"
+}
