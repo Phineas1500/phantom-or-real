@@ -1,0 +1,800 @@
+{
+  "baseline_metrics": {
+    "by_height": {
+      "h3": {
+        "n": 6,
+        "parse_fail_rate": 0.16666666666666666,
+        "strong_accuracy": 0.3333333333333333
+      },
+      "h4": {
+        "n": 8,
+        "parse_fail_rate": 0.0,
+        "strong_accuracy": 0.125
+      }
+    },
+    "generated_strong_correct": 3,
+    "generated_strong_incorrect": 11,
+    "parse_fail_count": 1,
+    "parse_fail_rate": 0.07142857142857142,
+    "strong_accuracy": 0.21428571428571427,
+    "weak_accuracy": 0.6428571428571429
+  },
+  "causal_abstraction_claim": "The manifest-selected Gemma rows preserve the recognition-vs-generation gap: forced-choice recognition was correct by construction, but regenerated free-form strong correctness remained low. Prompt-trained correctness projections stay negative through decoding and do not distinguish regenerated-correct rows. Prompt gold-vs-foil scoring remains wrong on almost all rows, while the selected hypothesis is at least as prompt-likely as gold on every parsed row; this points toward testing prefix-conditioned margins rather than reusing the prompt-trained z gate.",
+  "generated_at": "2026-06-06T16:28:49.943340+00:00",
+  "layer_summary": {
+    "L45": {
+      "by_generated_is_correct_strong": {
+        "false": {
+          "decode_z": {
+            "fraction_below_0": 0.9751196172248804,
+            "max": 2.7153074741363525,
+            "mean": -3.749470001602608,
+            "min": -9.697030067443848,
+            "n": 1045,
+            "std": 1.7094127764368316
+          },
+          "first_decode_z": {
+            "fraction_below_0": 0.9090909090909091,
+            "max": 0.23300886154174805,
+            "mean": -3.750158754262057,
+            "min": -6.527603626251221,
+            "n": 11,
+            "std": 1.909778214564727
+          },
+          "last_decode_z": {
+            "fraction_below_0": 1.0,
+            "max": -3.3686416149139404,
+            "mean": -4.243704969232732,
+            "min": -5.079168319702148,
+            "n": 11,
+            "std": 0.6180826376577225
+          },
+          "rows": 11
+        },
+        "true": {
+          "decode_z": {
+            "fraction_below_0": 0.9789473684210527,
+            "max": 2.656036615371704,
+            "mean": -3.9784030324534365,
+            "min": -8.057219505310059,
+            "n": 285,
+            "std": 1.6275448442390021
+          },
+          "first_decode_z": {
+            "fraction_below_0": 1.0,
+            "max": -0.4242170453071594,
+            "mean": -1.375923256079356,
+            "min": -2.72880220413208,
+            "n": 3,
+            "std": 0.9826775878255236
+          },
+          "last_decode_z": {
+            "fraction_below_0": 1.0,
+            "max": -3.096848249435425,
+            "mean": -4.046044588088989,
+            "min": -5.085419654846191,
+            "n": 3,
+            "std": 0.8143313047550651
+          },
+          "rows": 3
+        }
+      },
+      "decode_z": {
+        "fraction_below_0": 0.9759398496240601,
+        "max": 2.7153074741363525,
+        "mean": -3.798527079642071,
+        "min": -9.697030067443848,
+        "n": 1330,
+        "std": 1.6948084119259614
+      },
+      "first_decode_z": {
+        "fraction_below_0": 0.9285714285714286,
+        "max": 0.23300886154174805,
+        "mean": -3.2413940046514784,
+        "min": -6.527603626251221,
+        "n": 14,
+        "std": 2.00542028830037
+      },
+      "last_decode_z": {
+        "fraction_below_0": 1.0,
+        "max": -3.096848249435425,
+        "mean": -4.201349173273359,
+        "min": -5.085419654846191,
+        "n": 14,
+        "std": 0.6699566472609683
+      },
+      "prefill_z": {
+        "fraction_below_0": 0.6428571428571429,
+        "max": 0.6113647818565369,
+        "mean": -0.5868740507534572,
+        "min": -1.8702657222747803,
+        "n": 14,
+        "std": 0.8843542144506046
+      }
+    },
+    "L53": {
+      "by_generated_is_correct_strong": {
+        "false": {
+          "decode_z": {
+            "fraction_below_0": 0.9779904306220095,
+            "max": 1.7638428211212158,
+            "mean": -3.23836651548521,
+            "min": -8.385217666625977,
+            "n": 1045,
+            "std": 1.4255193206018848
+          },
+          "first_decode_z": {
+            "fraction_below_0": 1.0,
+            "max": -2.2432360649108887,
+            "mean": -4.164031809026545,
+            "min": -6.398840427398682,
+            "n": 11,
+            "std": 1.2855729211476459
+          },
+          "last_decode_z": {
+            "fraction_below_0": 1.0,
+            "max": -4.219282150268555,
+            "mean": -4.678267088803378,
+            "min": -5.276585578918457,
+            "n": 11,
+            "std": 0.2509673499470985
+          },
+          "rows": 11
+        },
+        "true": {
+          "decode_z": {
+            "fraction_below_0": 0.9859649122807017,
+            "max": 0.6512417197227478,
+            "mean": -3.5345198633508725,
+            "min": -6.478878021240234,
+            "n": 285,
+            "std": 1.416107532709565
+          },
+          "first_decode_z": {
+            "fraction_below_0": 1.0,
+            "max": -3.0286178588867188,
+            "mean": -3.235352039337158,
+            "min": -3.6079418659210205,
+            "n": 3,
+            "std": 0.2639888227398038
+          },
+          "last_decode_z": {
+            "fraction_below_0": 1.0,
+            "max": -4.418455600738525,
+            "mean": -4.72780164082845,
+            "min": -5.241994380950928,
+            "n": 3,
+            "std": 0.366083468181873
+          },
+          "rows": 3
+        }
+      },
+      "decode_z": {
+        "fraction_below_0": 0.9796992481203007,
+        "max": 1.7638428211212158,
+        "mean": -3.3018279471707093,
+        "min": -8.385217666625977,
+        "n": 1330,
+        "std": 1.428685154011154
+      },
+      "first_decode_z": {
+        "fraction_below_0": 1.0,
+        "max": -2.2432360649108887,
+        "mean": -3.965029001235962,
+        "min": -6.398840427398682,
+        "n": 14,
+        "std": 1.2077622189651624
+      },
+      "last_decode_z": {
+        "fraction_below_0": 1.0,
+        "max": -4.219282150268555,
+        "mean": -4.6888816356658936,
+        "min": -5.276585578918457,
+        "n": 14,
+        "std": 0.28039075925062545
+      },
+      "prefill_z": {
+        "fraction_below_0": 0.8571428571428571,
+        "max": 0.16873256862163544,
+        "mean": -0.6596983016601631,
+        "min": -1.891656517982483,
+        "n": 14,
+        "std": 0.636265432318535
+      }
+    }
+  },
+  "margin_summary": {
+    "counts": {
+      "gold_vs_foil_below_0": 13,
+      "selected_margin_available": 13,
+      "selected_vs_gold_ge_0": 13
+    },
+    "gold_vs_foil_logprob_margin": {
+      "fraction_below_0": 0.9285714285714286,
+      "max": 64.93148870766163,
+      "mean": -11.650485457054206,
+      "min": -28.311682850122452,
+      "n": 14,
+      "std": 22.392706579401626
+    },
+    "gold_vs_foil_mean_logprob_margin": {
+      "fraction_below_0": 0.9285714285714286,
+      "max": 9.275926958237374,
+      "mean": -1.809245626266852,
+      "min": -4.316111932198207,
+      "n": 14,
+      "std": 3.2402217286671577
+    },
+    "gold_vs_selected_logprob_margin": {
+      "fraction_below_0": 0.9230769230769231,
+      "max": 0.0,
+      "mean": -17.31829518538255,
+      "min": -28.311682850122452,
+      "n": 13,
+      "std": 8.672525378290796
+    },
+    "selected_vs_foil_logprob_margin": {
+      "fraction_below_0": 0.15384615384615385,
+      "max": 64.93148870766163,
+      "mean": 6.2033609094528055,
+      "min": -3.4257904291152954,
+      "n": 13,
+      "std": 17.19537503649516
+    },
+    "selected_vs_gold_logprob_margin": {
+      "fraction_below_0": 0.0,
+      "max": 28.311682850122452,
+      "mean": 17.31829518538255,
+      "min": 0.0,
+      "n": 13,
+      "std": 8.672525378290796
+    }
+  },
+  "method": "row_level_commitment_decode_trace_analysis",
+  "model": "google/gemma-3-27b-it",
+  "model_key": "gemma3_27b",
+  "n": 14,
+  "next_job_recommendation": {
+    "candidate_continuations": [
+      "gold_hypothesis",
+      "hard_foil_hypothesis",
+      "selected_hypothesis"
+    ],
+    "input_rows": "same 14 rows from docs/commitment_rowset_manifest.json with recognition_generation_gap",
+    "interpretation": "If selected-vs-gold becomes positive early and stays positive on wrong rows, that is a stronger commitment-state signature than prompt-trained raw-probe z. If margins only flip late, commitment may be output-trajectory-local rather than pre-generation.",
+    "metrics": [
+      "gold_vs_foil_logprob_margin_after_prefix",
+      "selected_vs_gold_logprob_margin_after_prefix",
+      "selected_vs_foil_logprob_margin_after_prefix",
+      "first_checkpoint_where_selected_exceeds_gold",
+      "first_checkpoint_where_gold_exceeds_foil"
+    ],
+    "model": "google/gemma-3-27b-it",
+    "model_key": "gemma3_27b",
+    "name": "prefix_conditioned_margin_trajectory_gemma_manifest",
+    "prefix_checkpoints": [
+      0,
+      1,
+      4,
+      8,
+      16,
+      32,
+      64,
+      "final"
+    ],
+    "task": "infer_property"
+  },
+  "representation_type": "raw_direction_and_prompt_margin",
+  "row_summaries": [
+    {
+      "example_id": "property_h3_00073",
+      "generated_is_correct_strong": false,
+      "generated_is_correct_weak": true,
+      "height": 3,
+      "layer_trace": {
+        "L45": {
+          "decode_z_fraction_below_0": 0.9789473684210527,
+          "decode_z_max": 1.3709663152694702,
+          "decode_z_mean": -3.7341855137755995,
+          "decode_z_min": -6.372048377990723,
+          "first_decode_z": -2.405674695968628,
+          "last_decode_z": -5.079168319702148,
+          "prefill_z_mean": -1.0177562236785889
+        },
+        "L53": {
+          "decode_z_fraction_below_0": 0.968421052631579,
+          "decode_z_max": 1.5157910585403442,
+          "decode_z_mean": -3.2104625417997963,
+          "decode_z_min": -6.398840427398682,
+          "first_decode_z": -6.398840427398682,
+          "last_decode_z": -5.276585578918457,
+          "prefill_z_mean": -0.9205597043037415
+        }
+      },
+      "mcq_margin_gold_minus_foil": 13.749999880791279,
+      "original_margin_gold_minus_foil": -20.500622868537903,
+      "parse_failed": false,
+      "prompt_gold_vs_foil_logprob_margin": -20.500622868537903,
+      "prompt_selected_vs_foil_logprob_margin": -3.4257904291152954,
+      "prompt_selected_vs_gold_logprob_margin": 17.074832439422607,
+      "quality_score": 0.4444444444444444,
+      "selected_hypothesis": "Grimpants are not sunny.",
+      "selected_hypothesis_count": 6,
+      "source_row_index": 3073
+    },
+    {
+      "example_id": "property_h3_00290",
+      "generated_is_correct_strong": true,
+      "generated_is_correct_weak": true,
+      "height": 3,
+      "layer_trace": {
+        "L45": {
+          "decode_z_fraction_below_0": 0.9894736842105263,
+          "decode_z_max": 0.8797138929367065,
+          "decode_z_mean": -4.287813595094179,
+          "decode_z_min": -6.750799179077148,
+          "first_decode_z": -2.72880220413208,
+          "last_decode_z": -3.9558658599853516,
+          "prefill_z_mean": 0.2951112985610962
+        },
+        "L53": {
+          "decode_z_fraction_below_0": 0.9894736842105263,
+          "decode_z_max": 0.03888700157403946,
+          "decode_z_mean": -3.779743030118315,
+          "decode_z_min": -5.5543012619018555,
+          "first_decode_z": -3.0286178588867188,
+          "last_decode_z": -4.522954940795898,
+          "prefill_z_mean": -0.030552886426448822
+        }
+      },
+      "mcq_margin_gold_minus_foil": 12.750000000004093,
+      "original_margin_gold_minus_foil": 64.93148870766163,
+      "parse_failed": false,
+      "prompt_gold_vs_foil_logprob_margin": 64.93148870766163,
+      "prompt_selected_vs_foil_logprob_margin": 64.93148870766163,
+      "prompt_selected_vs_gold_logprob_margin": 0.0,
+      "quality_score": 1.0,
+      "selected_hypothesis": "Every umpist is not transparent.",
+      "selected_hypothesis_count": 3,
+      "source_row_index": 3290
+    },
+    {
+      "example_id": "property_h3_00415",
+      "generated_is_correct_strong": false,
+      "generated_is_correct_weak": true,
+      "height": 3,
+      "layer_trace": {
+        "L45": {
+          "decode_z_fraction_below_0": 0.9368421052631579,
+          "decode_z_max": 2.335181951522827,
+          "decode_z_mean": -3.1634563265662443,
+          "decode_z_min": -8.08410930633545,
+          "first_decode_z": -4.113851547241211,
+          "last_decode_z": -4.515780925750732,
+          "prefill_z_mean": -1.7702758312225342
+        },
+        "L53": {
+          "decode_z_fraction_below_0": 0.968421052631579,
+          "decode_z_max": 0.42798975110054016,
+          "decode_z_mean": -2.7641588040079164,
+          "decode_z_min": -5.9178853034973145,
+          "first_decode_z": -5.142251968383789,
+          "last_decode_z": -4.482503414154053,
+          "prefill_z_mean": -1.891656517982483
+        }
+      },
+      "mcq_margin_gold_minus_foil": 10.000000358661055,
+      "original_margin_gold_minus_foil": -4.034003496170044,
+      "parse_failed": false,
+      "prompt_gold_vs_foil_logprob_margin": -4.034003496170044,
+      "prompt_selected_vs_foil_logprob_margin": 3.3049802780151367,
+      "prompt_selected_vs_gold_logprob_margin": 7.338983774185181,
+      "quality_score": 0.5333333333333333,
+      "selected_hypothesis": "Laura is temperate",
+      "selected_hypothesis_count": 10,
+      "source_row_index": 3415
+    },
+    {
+      "example_id": "property_h3_01322",
+      "generated_is_correct_strong": true,
+      "generated_is_correct_weak": true,
+      "height": 3,
+      "layer_trace": {
+        "L45": {
+          "decode_z_fraction_below_0": 0.9894736842105263,
+          "decode_z_max": 1.0481245517730713,
+          "decode_z_mean": -3.938624414095753,
+          "decode_z_min": -8.057219505310059,
+          "first_decode_z": -0.4242170453071594,
+          "last_decode_z": -5.085419654846191,
+          "prefill_z_mean": -0.8923547863960266
+        },
+        "L53": {
+          "decode_z_fraction_below_0": 1.0,
+          "decode_z_max": -0.016761787235736847,
+          "decode_z_mean": -3.5672696189660775,
+          "decode_z_min": -6.478878021240234,
+          "first_decode_z": -3.6079418659210205,
+          "last_decode_z": -5.241994380950928,
+          "prefill_z_mean": 0.06817761063575745
+        }
+      },
+      "mcq_margin_gold_minus_foil": 14.25000035762804,
+      "original_margin_gold_minus_foil": -14.906185567378998,
+      "parse_failed": false,
+      "prompt_gold_vs_foil_logprob_margin": -14.906185567378998,
+      "prompt_selected_vs_foil_logprob_margin": 0.3366897702217102,
+      "prompt_selected_vs_gold_logprob_margin": 15.242875337600708,
+      "quality_score": 1.0,
+      "selected_hypothesis": "Shimpees are not moderate.",
+      "selected_hypothesis_count": 5,
+      "source_row_index": 4322
+    },
+    {
+      "example_id": "property_h3_01675",
+      "generated_is_correct_strong": false,
+      "generated_is_correct_weak": false,
+      "height": 3,
+      "layer_trace": {
+        "L45": {
+          "decode_z_fraction_below_0": 0.9894736842105263,
+          "decode_z_max": 1.7550960779190063,
+          "decode_z_mean": -3.7613077345647308,
+          "decode_z_min": -6.527603626251221,
+          "first_decode_z": -6.527603626251221,
+          "last_decode_z": -3.3686416149139404,
+          "prefill_z_mean": -1.749102234840393
+        },
+        "L53": {
+          "decode_z_fraction_below_0": 0.9789473684210527,
+          "decode_z_max": 0.9935125112533569,
+          "decode_z_mean": -3.4574694219388458,
+          "decode_z_min": -6.4424357414245605,
+          "first_decode_z": -5.829085826873779,
+          "last_decode_z": -4.7425947189331055,
+          "prefill_z_mean": -1.2925870418548584
+        }
+      },
+      "mcq_margin_gold_minus_foil": 14.749999642372188,
+      "original_margin_gold_minus_foil": -19.34586191177368,
+      "parse_failed": false,
+      "prompt_gold_vs_foil_logprob_margin": -19.34586191177368,
+      "prompt_selected_vs_foil_logprob_margin": 0.10868585109710693,
+      "prompt_selected_vs_gold_logprob_margin": 19.45454776287079,
+      "quality_score": 0.3333333333333333,
+      "selected_hypothesis": "Moderate is not a shilpant.",
+      "selected_hypothesis_count": 6,
+      "source_row_index": 4675
+    },
+    {
+      "example_id": "property_h3_02292",
+      "generated_is_correct_strong": false,
+      "generated_is_correct_weak": false,
+      "height": 3,
+      "layer_trace": {
+        "L45": {
+          "decode_z_fraction_below_0": 1.0,
+          "decode_z_max": -1.1700371503829956,
+          "decode_z_mean": -3.6786280456342193,
+          "decode_z_min": -6.925410270690918,
+          "first_decode_z": -3.16619610786438,
+          "last_decode_z": -3.4972336292266846,
+          "prefill_z_mean": 0.28573930263519287
+        },
+        "L53": {
+          "decode_z_fraction_below_0": 0.9894736842105263,
+          "decode_z_max": 0.9908323884010315,
+          "decode_z_mean": -4.212460633171232,
+          "decode_z_min": -5.9349751472473145,
+          "first_decode_z": -3.872864246368408,
+          "last_decode_z": -4.736900806427002,
+          "prefill_z_mean": -0.6456520557403564
+        }
+      },
+      "mcq_margin_gold_minus_foil": 15.24999976158145,
+      "original_margin_gold_minus_foil": -18.61265081167221,
+      "parse_failed": true,
+      "prompt_gold_vs_foil_logprob_margin": -18.61265081167221,
+      "prompt_selected_vs_foil_logprob_margin": null,
+      "prompt_selected_vs_gold_logprob_margin": null,
+      "quality_score": 0.0,
+      "selected_hypothesis": null,
+      "selected_hypothesis_count": 0,
+      "source_row_index": 5292
+    },
+    {
+      "example_id": "property_h4_00188",
+      "generated_is_correct_strong": false,
+      "generated_is_correct_weak": false,
+      "height": 4,
+      "layer_trace": {
+        "L45": {
+          "decode_z_fraction_below_0": 0.968421052631579,
+          "decode_z_max": 2.7153074741363525,
+          "decode_z_mean": -3.5190370289902937,
+          "decode_z_min": -7.765687465667725,
+          "first_decode_z": -3.166707992553711,
+          "last_decode_z": -4.672269344329834,
+          "prefill_z_mean": 0.11166499555110931
+        },
+        "L53": {
+          "decode_z_fraction_below_0": 0.968421052631579,
+          "decode_z_max": 0.5384745597839355,
+          "decode_z_mean": -3.2429539966740104,
+          "decode_z_min": -7.091312408447266,
+          "first_decode_z": -3.47851824760437,
+          "last_decode_z": -4.705302715301514,
+          "prefill_z_mean": -0.511574387550354
+        }
+      },
+      "mcq_margin_gold_minus_foil": 10.999999523302904,
+      "original_margin_gold_minus_foil": -28.311682850122452,
+      "parse_failed": false,
+      "prompt_gold_vs_foil_logprob_margin": -28.311682850122452,
+      "prompt_selected_vs_foil_logprob_margin": 0.0,
+      "prompt_selected_vs_gold_logprob_margin": 28.311682850122452,
+      "quality_score": 0.3333333333333333,
+      "selected_hypothesis": "Fruity is not storpist.",
+      "selected_hypothesis_count": 8,
+      "source_row_index": 6188
+    },
+    {
+      "example_id": "property_h4_00327",
+      "generated_is_correct_strong": false,
+      "generated_is_correct_weak": true,
+      "height": 4,
+      "layer_trace": {
+        "L45": {
+          "decode_z_fraction_below_0": 0.9894736842105263,
+          "decode_z_max": 0.5551767945289612,
+          "decode_z_mean": -4.24807508399612,
+          "decode_z_min": -8.683669090270996,
+          "first_decode_z": -5.591779708862305,
+          "last_decode_z": -4.784214496612549,
+          "prefill_z_mean": -0.3108499050140381
+        },
+        "L53": {
+          "decode_z_fraction_below_0": 1.0,
+          "decode_z_max": -0.018683169037103653,
+          "decode_z_mean": -3.2552465767060457,
+          "decode_z_min": -8.385217666625977,
+          "first_decode_z": -4.640690326690674,
+          "last_decode_z": -4.680727481842041,
+          "prefill_z_mean": -0.2179269939661026
+        }
+      },
+      "mcq_margin_gold_minus_foil": 14.624999523162955,
+      "original_margin_gold_minus_foil": -4.444934457540512,
+      "parse_failed": false,
+      "prompt_gold_vs_foil_logprob_margin": -4.444934457540512,
+      "prompt_selected_vs_foil_logprob_margin": 0.0,
+      "prompt_selected_vs_gold_logprob_margin": 4.444934457540512,
+      "quality_score": 0.5238095238095238,
+      "selected_hypothesis": "Patrick is a shumple.",
+      "selected_hypothesis_count": 7,
+      "source_row_index": 6327
+    },
+    {
+      "example_id": "property_h4_02035",
+      "generated_is_correct_strong": false,
+      "generated_is_correct_weak": true,
+      "height": 4,
+      "layer_trace": {
+        "L45": {
+          "decode_z_fraction_below_0": 0.968421052631579,
+          "decode_z_max": 0.7262226343154907,
+          "decode_z_mean": -4.360701701201891,
+          "decode_z_min": -6.561546802520752,
+          "first_decode_z": -1.892600178718567,
+          "last_decode_z": -3.628584384918213,
+          "prefill_z_mean": -0.15291307866573334
+        },
+        "L53": {
+          "decode_z_fraction_below_0": 0.9789473684210527,
+          "decode_z_max": 0.8724404573440552,
+          "decode_z_mean": -3.7655759519652316,
+          "decode_z_min": -5.534854888916016,
+          "first_decode_z": -3.1180813312530518,
+          "last_decode_z": -4.738335609436035,
+          "prefill_z_mean": -0.07450498640537262
+        }
+      },
+      "mcq_margin_gold_minus_foil": 11.5000003576788,
+      "original_margin_gold_minus_foil": -22.326241478323936,
+      "parse_failed": false,
+      "prompt_gold_vs_foil_logprob_margin": -22.326241478323936,
+      "prompt_selected_vs_foil_logprob_margin": 0.0,
+      "prompt_selected_vs_gold_logprob_margin": 22.326241478323936,
+      "quality_score": 0.5555555555555556,
+      "selected_hypothesis": "Stergits are not transparent.",
+      "selected_hypothesis_count": 3,
+      "source_row_index": 8035
+    },
+    {
+      "example_id": "property_h4_02298",
+      "generated_is_correct_strong": false,
+      "generated_is_correct_weak": false,
+      "height": 4,
+      "layer_trace": {
+        "L45": {
+          "decode_z_fraction_below_0": 0.9894736842105263,
+          "decode_z_max": 0.8260905742645264,
+          "decode_z_mean": -4.298742002562473,
+          "decode_z_min": -7.062971115112305,
+          "first_decode_z": -4.763777732849121,
+          "last_decode_z": -3.373932361602783,
+          "prefill_z_mean": -1.713990569114685
+        },
+        "L53": {
+          "decode_z_fraction_below_0": 1.0,
+          "decode_z_max": -0.4150621294975281,
+          "decode_z_mean": -3.3456892628418773,
+          "decode_z_min": -5.576807975769043,
+          "first_decode_z": -3.4647772312164307,
+          "last_decode_z": -4.835578441619873,
+          "prefill_z_mean": -1.8732075691223145
+        }
+      },
+      "mcq_margin_gold_minus_foil": 11.250000357712452,
+      "original_margin_gold_minus_foil": -24.9944589138031,
+      "parse_failed": false,
+      "prompt_gold_vs_foil_logprob_margin": -24.9944589138031,
+      "prompt_selected_vs_foil_logprob_margin": 2.6910555958747864,
+      "prompt_selected_vs_gold_logprob_margin": 27.685514509677887,
+      "quality_score": 0.3333333333333333,
+      "selected_hypothesis": "Muffled things are pergits.",
+      "selected_hypothesis_count": 8,
+      "source_row_index": 8298
+    },
+    {
+      "example_id": "property_h4_02874",
+      "generated_is_correct_strong": false,
+      "generated_is_correct_weak": true,
+      "height": 4,
+      "layer_trace": {
+        "L45": {
+          "decode_z_fraction_below_0": 0.9473684210526315,
+          "decode_z_max": 1.1144317388534546,
+          "decode_z_mean": -3.8200201623533903,
+          "decode_z_min": -7.452369213104248,
+          "first_decode_z": 0.23300886154174805,
+          "last_decode_z": -4.295340538024902,
+          "prefill_z_mean": 0.6113647818565369
+        },
+        "L53": {
+          "decode_z_fraction_below_0": 0.968421052631579,
+          "decode_z_max": 0.9736970067024231,
+          "decode_z_mean": -3.083139704559979,
+          "decode_z_min": -5.398720741271973,
+          "first_decode_z": -5.062620639801025,
+          "last_decode_z": -4.51543664932251,
+          "prefill_z_mean": -0.7642733454704285
+        }
+      },
+      "mcq_margin_gold_minus_foil": 13.499999523163865,
+      "original_margin_gold_minus_foil": -18.806623697280884,
+      "parse_failed": false,
+      "prompt_gold_vs_foil_logprob_margin": -18.806623697280884,
+      "prompt_selected_vs_foil_logprob_margin": 3.4442542493343353,
+      "prompt_selected_vs_gold_logprob_margin": 22.25087794661522,
+      "quality_score": 0.5,
+      "selected_hypothesis": "Frompors are not transparent.",
+      "selected_hypothesis_count": 8,
+      "source_row_index": 8874
+    },
+    {
+      "example_id": "property_h4_03549",
+      "generated_is_correct_strong": false,
+      "generated_is_correct_weak": true,
+      "height": 4,
+      "layer_trace": {
+        "L45": {
+          "decode_z_fraction_below_0": 0.9894736842105263,
+          "decode_z_max": 0.8401204943656921,
+          "decode_z_mean": -3.693554926163664,
+          "decode_z_min": -6.281777381896973,
+          "first_decode_z": -3.648993492126465,
+          "last_decode_z": -4.820910453796387,
+          "prefill_z_mean": -0.5843942761421204
+        },
+        "L53": {
+          "decode_z_fraction_below_0": 0.9894736842105263,
+          "decode_z_max": 0.30109745264053345,
+          "decode_z_mean": -2.9589987519540286,
+          "decode_z_min": -5.377774715423584,
+          "first_decode_z": -2.2432360649108887,
+          "last_decode_z": -4.527690410614014,
+          "prefill_z_mean": -0.516140341758728
+        }
+      },
+      "mcq_margin_gold_minus_foil": 8.000000294676283,
+      "original_margin_gold_minus_foil": -26.68877039849758,
+      "parse_failed": false,
+      "prompt_gold_vs_foil_logprob_margin": -26.68877039849758,
+      "prompt_selected_vs_foil_logprob_margin": 0.0,
+      "prompt_selected_vs_gold_logprob_margin": 26.68877039849758,
+      "quality_score": 0.4166666666666667,
+      "selected_hypothesis": "Shalpists are not mean.",
+      "selected_hypothesis_count": 8,
+      "source_row_index": 9549
+    },
+    {
+      "example_id": "property_h4_04079",
+      "generated_is_correct_strong": false,
+      "generated_is_correct_weak": false,
+      "height": 4,
+      "layer_trace": {
+        "L45": {
+          "decode_z_fraction_below_0": 0.968421052631579,
+          "decode_z_max": 2.1400794982910156,
+          "decode_z_mean": -2.966461491820059,
+          "decode_z_min": -9.697030067443848,
+          "first_decode_z": -6.2075700759887695,
+          "last_decode_z": -4.644678592681885,
+          "prefill_z_mean": -1.8702657222747803
+        },
+        "L53": {
+          "decode_z_fraction_below_0": 0.9473684210526315,
+          "decode_z_max": 1.7638428211212158,
+          "decode_z_mean": -2.3258760247183474,
+          "decode_z_min": -4.954219818115234,
+          "first_decode_z": -2.5533835887908936,
+          "last_decode_z": -4.219282150268555,
+          "prefill_z_mean": -0.7340505719184875
+        }
+      },
+      "mcq_margin_gold_minus_foil": 11.999999523181941,
+      "original_margin_gold_minus_foil": -12.237847328186035,
+      "parse_failed": false,
+      "prompt_gold_vs_foil_logprob_margin": -12.237847328186035,
+      "prompt_selected_vs_foil_logprob_margin": 9.280416488647461,
+      "prompt_selected_vs_gold_logprob_margin": 21.518263816833496,
+      "quality_score": 0.3333333333333333,
+      "selected_hypothesis": "Being oriental is a property",
+      "selected_hypothesis_count": 1,
+      "source_row_index": 10079
+    },
+    {
+      "example_id": "property_h4_04714",
+      "generated_is_correct_strong": true,
+      "generated_is_correct_weak": true,
+      "height": 4,
+      "layer_trace": {
+        "L45": {
+          "decode_z_fraction_below_0": 0.9578947368421052,
+          "decode_z_max": 2.656036615371704,
+          "decode_z_mean": -3.7087710881703777,
+          "decode_z_min": -7.091795444488525,
+          "first_decode_z": -0.9747505187988281,
+          "last_decode_z": -3.096848249435425,
+          "prefill_z_mean": 0.5417855381965637
+        },
+        "L53": {
+          "decode_z_fraction_below_0": 0.968421052631579,
+          "decode_z_max": 0.6512417197227478,
+          "decode_z_mean": -3.256546940968225,
+          "decode_z_min": -5.520694255828857,
+          "first_decode_z": -3.0694963932037354,
+          "last_decode_z": -4.418455600738525,
+          "prefill_z_mean": 0.16873256862163544
+        }
+      },
+      "mcq_margin_gold_minus_foil": 13.499999523163865,
+      "original_margin_gold_minus_foil": -12.828401327133179,
+      "parse_failed": false,
+      "prompt_gold_vs_foil_logprob_margin": -12.828401327133179,
+      "prompt_selected_vs_foil_logprob_margin": -0.028088688850402832,
+      "prompt_selected_vs_gold_logprob_margin": 12.800312638282776,
+      "quality_score": 1.0,
+      "selected_hypothesis": "Lompees are large.",
+      "selected_hypothesis_count": 8,
+      "source_row_index": 10714
+    }
+  ],
+  "schema_version": 1,
+  "source_report": "scripts/stage2_decode_projection_trace.py",
+  "source_report_json": "docs/decode_projection_trace_27b_l45_l53_property_manifest_recognition_gap.json",
+  "source_trace_jsonl": "results/stage2/decode_time/decode_projection_trace_27b_l45_l53_property_manifest_recognition_gap.jsonl",
+  "target_variable": "commitment_state",
+  "task": "infer_property"
+}
