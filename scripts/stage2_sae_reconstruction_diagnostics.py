@@ -17,6 +17,7 @@ from safetensors.torch import load_file, save_file
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from src.activations import sha256_file  # noqa: E402
+from src.stage2_paths import DEFAULT_ACTIVATION_SITE, activation_stem  # noqa: E402
 from src.stage2_probes import (  # noqa: E402
     DEFAULT_C_VALUES,
     read_json,
@@ -49,11 +50,18 @@ def output_prefix(
     model_key: str,
     task: str,
     layer: int,
+    activation_site: str,
     sae_id: str,
     top_k: int,
     kind: str,
 ) -> Path:
-    return out_dir / f"{model_key}_{task}_L{layer}_{sae_id}_top{top_k}_{kind}"
+    stem = activation_stem(
+        model_key=model_key,
+        task=task,
+        layer=layer,
+        activation_site=activation_site,
+    )
+    return out_dir / f"{stem}_{sae_id}_top{top_k}_{kind}"
 
 
 def verify_sparse_decode(
@@ -225,6 +233,7 @@ def run_diagnostics(
     model_key: str,
     tasks: list[str],
     layer: int,
+    activation_site: str,
     sae_release: str,
     sae_ids: list[str],
     top_k: int,
@@ -254,6 +263,7 @@ def run_diagnostics(
         "model_key": model_key,
         "tasks": tasks,
         "layer": layer,
+        "activation_site": activation_site,
         "sae_ids": sae_ids,
         "top_k": top_k,
         "splits_path": str(splits_path),
@@ -282,13 +292,20 @@ def run_diagnostics(
         sae.eval()
         report["results"][sae_id] = {}
         for task in tasks:
-            activation_prefix = activation_dir / f"{model_key}_{task}_L{layer}"
-            feature_prefix = feature_dir / f"{model_key}_{task}_L{layer}_{sae_id}_top{top_k}"
+            stem = activation_stem(
+                model_key=model_key,
+                task=task,
+                layer=layer,
+                activation_site=activation_site,
+            )
+            activation_prefix = activation_dir / stem
+            feature_prefix = feature_dir / f"{stem}_{sae_id}_top{top_k}"
             recon_prefix = output_prefix(
                 out_dir=out_dir,
                 model_key=model_key,
                 task=task,
                 layer=layer,
+                activation_site=activation_site,
                 sae_id=sae_id,
                 top_k=top_k,
                 kind="reconstruction",
@@ -298,6 +315,7 @@ def run_diagnostics(
                 model_key=model_key,
                 task=task,
                 layer=layer,
+                activation_site=activation_site,
                 sae_id=sae_id,
                 top_k=top_k,
                 kind="error",
@@ -349,6 +367,7 @@ def run_existing_component_probes(
     model_key: str,
     tasks: list[str],
     layer: int,
+    activation_site: str,
     sae_ids: list[str],
     top_k: int,
     splits_path: Path,
@@ -370,6 +389,7 @@ def run_existing_component_probes(
         "model_key": model_key,
         "tasks": tasks,
         "layer": layer,
+        "activation_site": activation_site,
         "sae_ids": sae_ids,
         "top_k": top_k,
         "splits_path": str(splits_path),
@@ -389,6 +409,7 @@ def run_existing_component_probes(
                 model_key=model_key,
                 task=task,
                 layer=layer,
+                activation_site=activation_site,
                 sae_id=sae_id,
                 top_k=top_k,
                 kind="reconstruction",
@@ -398,6 +419,7 @@ def run_existing_component_probes(
                 model_key=model_key,
                 task=task,
                 layer=layer,
+                activation_site=activation_site,
                 sae_id=sae_id,
                 top_k=top_k,
                 kind="error",
@@ -436,6 +458,7 @@ def main() -> None:
     parser.add_argument("--model-key", required=True)
     parser.add_argument("--tasks", nargs="+", required=True)
     parser.add_argument("--layer", type=int, required=True)
+    parser.add_argument("--activation-site", default=DEFAULT_ACTIVATION_SITE)
     parser.add_argument("--sae-release", default="gemma-scope-2-27b-it-res-all")
     parser.add_argument("--sae-ids", nargs="+", required=True)
     parser.add_argument("--top-k", type=int, default=128)
@@ -467,6 +490,7 @@ def main() -> None:
             model_key=args.model_key,
             tasks=args.tasks,
             layer=args.layer,
+            activation_site=args.activation_site,
             sae_ids=args.sae_ids,
             top_k=args.top_k,
             splits_path=args.splits,
@@ -485,6 +509,7 @@ def main() -> None:
             model_key=args.model_key,
             tasks=args.tasks,
             layer=args.layer,
+            activation_site=args.activation_site,
             sae_release=args.sae_release,
             sae_ids=args.sae_ids,
             top_k=args.top_k,
