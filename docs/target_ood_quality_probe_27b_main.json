@@ -1,0 +1,3652 @@
+{
+  "activation_dir": "results/stage2/activations",
+  "activation_site": "resid_post",
+  "alphas": [
+    10.0,
+    100.0,
+    1000.0,
+    10000.0
+  ],
+  "bootstrap_samples": 1000,
+  "causal_abstraction_claim": {
+    "claim_type": "predictive",
+    "note": "Continuous target analysis; no causal claim is made.",
+    "target_variable": "quality_score",
+    "tested_representation": "raw residual activation"
+  },
+  "created_at_utc": "2026-06-06T05:19:07.738228+00:00",
+  "drop_parse_failed": true,
+  "height_val_fraction": 0.15,
+  "max_iter": 2000,
+  "method": "raw_activation_quality_regression",
+  "model_layers": [
+    {
+      "layer": 45,
+      "model_key": "gemma3_27b"
+    },
+    {
+      "layer": 53,
+      "model_key": "qwen35_27b"
+    }
+  ],
+  "representation_type": "raw activation",
+  "results": {
+    "gemma3_27b": {
+      "infer_property": {
+        "activation_prefix": "results/stage2/activations/gemma3_27b_infer_property_L45",
+        "model": "gemma3_27b",
+        "n": 10025,
+        "parse_fail_rate": 0.08863636363636364,
+        "quality_unique_count": 82,
+        "site_or_layer": "L45/resid_post",
+        "source_file": "results/full/with_errortype/gemma3_27b_infer_property.jsonl",
+        "splits": {
+          "height_h12_to_h34": {
+            "quality_residual_after_strong": {
+              "raw_regression": {
+                "alphas": [
+                  10.0,
+                  100.0,
+                  1000.0,
+                  10000.0
+                ],
+                "best_alpha": 10000.0,
+                "selection_metric": "val_spearman",
+                "status": "ok",
+                "test_metric_ci": {
+                  "pearson": {
+                    "high": 0.3720310404057464,
+                    "low": 0.32894130123132587,
+                    "samples_used": 1000
+                  },
+                  "r2": {
+                    "high": 0.09371052744988023,
+                    "low": 0.06225524818748967,
+                    "samples_used": 1000
+                  },
+                  "samples_requested": 1000,
+                  "seed": 20269189,
+                  "spearman": {
+                    "high": 0.3623157409740278,
+                    "low": 0.3225723267757199,
+                    "samples_used": 1000
+                  }
+                },
+                "test_metrics": {
+                  "mae": 0.06576473430710765,
+                  "n": 7219,
+                  "pearson": 0.34956416527260264,
+                  "prediction_mean": -0.029320266623663046,
+                  "prediction_std": 0.029067218015735894,
+                  "r2": 0.07802025063469797,
+                  "rmse": 0.08393312681147176,
+                  "spearman": 0.34214481576113476,
+                  "target_mean": -0.04763199045995318,
+                  "target_std": 0.08741233296379813
+                },
+                "val_metrics": {
+                  "mae": 0.03565277360936007,
+                  "n": 421,
+                  "pearson": 0.4287936707473244,
+                  "prediction_mean": 0.0019821861268060448,
+                  "prediction_std": 0.027478598448655096,
+                  "r2": 0.17796991598236722,
+                  "rmse": 0.06270143918337429,
+                  "spearman": 0.42353638823350426,
+                  "target_mean": 0.006825461690989231,
+                  "target_std": 0.06915660315586798
+                }
+              },
+              "residualization_means": {
+                "0": 0.4733849633043182,
+                "1": 1.0
+              }
+            },
+            "raw_delta_vs_strong_baseline": {
+              "pearson": -0.4835407371497347,
+              "r2": -0.8306098099785263,
+              "spearman": -0.42310025948944985
+            },
+            "raw_regression": {
+              "alphas": [
+                10.0,
+                100.0,
+                1000.0,
+                10000.0
+              ],
+              "best_alpha": 10000.0,
+              "selection_metric": "val_spearman",
+              "status": "ok",
+              "test_metric_ci": {
+                "pearson": {
+                  "high": 0.49577253298858454,
+                  "low": 0.46206187075277344,
+                  "samples_used": 1000
+                },
+                "r2": {
+                  "high": 0.0800926326692282,
+                  "low": 0.031723625242098895,
+                  "samples_used": 1000
+                },
+                "samples_requested": 1000,
+                "seed": 20266188,
+                "spearman": {
+                  "high": 0.4610528676249296,
+                  "low": 0.4213699798169475,
+                  "samples_used": 1000
+                }
+              },
+              "test_metrics": {
+                "mae": 0.25885980238221706,
+                "n": 7219,
+                "pearson": 0.4790528790927076,
+                "prediction_mean": 0.7277609846411625,
+                "prediction_std": 0.11330593679510705,
+                "r2": 0.05644363930589369,
+                "rmse": 0.28772538707768347,
+                "spearman": 0.44078668496592543,
+                "target_mean": 0.6079053134218851,
+                "target_std": 0.2962062784463443
+              },
+              "val_metrics": {
+                "mae": 0.13473764528822982,
+                "n": 421,
+                "pearson": 0.5854881297216092,
+                "prediction_mean": 0.864726895178865,
+                "prediction_std": 0.1338747089217833,
+                "r2": 0.3399087178095541,
+                "rmse": 0.1833959901508247,
+                "spearman": 0.571985048015824,
+                "target_mean": 0.876735286355239,
+                "target_std": 0.22572924931847388
+              }
+            },
+            "split": "height_h12_to_h34",
+            "split_counts": {
+              "test": {
+                "n": 7219,
+                "quality_max": 1.0,
+                "quality_mean": 0.6079053134218851,
+                "quality_min": 0.3333333333333333,
+                "quality_std": 0.2962062784463443,
+                "strong_positive_n": 2497,
+                "weak_positive_n": 3922
+              },
+              "train": {
+                "n": 2385,
+                "quality_max": 1.0,
+                "quality_mean": 0.8699470622164542,
+                "quality_min": 0.3333333333333333,
+                "quality_std": 0.23650905140171202,
+                "strong_positive_n": 1796,
+                "weak_positive_n": 2110
+              },
+              "val": {
+                "n": 421,
+                "quality_max": 1.0,
+                "quality_mean": 0.876735286355239,
+                "quality_min": 0.3333333333333333,
+                "quality_std": 0.22572924931847388,
+                "strong_positive_n": 317,
+                "weak_positive_n": 381
+              }
+            },
+            "strong_label_mean_baseline": {
+              "fallback_mean": 0.8699470622164542,
+              "splits": {
+                "test": {
+                  "metric_ci": {
+                    "pearson": {
+                      "high": 0.965738267636032,
+                      "low": 0.959508833597482,
+                      "samples_used": 1000
+                    },
+                    "r2": {
+                      "high": 0.8922015568221786,
+                      "low": 0.8819803575568653,
+                      "samples_used": 1000
+                    },
+                    "samples_requested": 1000,
+                    "seed": 20267197,
+                    "spearman": {
+                      "high": 0.871147369242416,
+                      "low": 0.8562215299580223,
+                      "samples_used": 1000
+                    }
+                  },
+                  "metrics": {
+                    "mae": 0.07173596331342101,
+                    "n": 7219,
+                    "pearson": 0.9625936162424423,
+                    "prediction_mean": 0.6555373038818383,
+                    "prediction_std": 0.25048889464318813,
+                    "r2": 0.88705344928442,
+                    "rmse": 0.09954758896804573,
+                    "spearman": 0.8638869444553753,
+                    "target_mean": 0.6079053134218851,
+                    "target_std": 0.2962062784463443
+                  }
+                },
+                "train": {
+                  "metric_ci": null,
+                  "metrics": {
+                    "mae": 0.027250110296367147,
+                    "n": 2385,
+                    "pearson": 0.9602137475366842,
+                    "prediction_mean": 0.8699470622164542,
+                    "prediction_std": 0.22709924257278435,
+                    "r2": 0.9220104409584448,
+                    "rmse": 0.06604896227652106,
+                    "spearman": 0.9843274606175256,
+                    "target_mean": 0.8699470622164542,
+                    "target_std": 0.23650905140171202
+                  }
+                },
+                "val": {
+                  "metric_ci": null,
+                  "metrics": {
+                    "mae": 0.02802456095115661,
+                    "n": 421,
+                    "pearson": 0.9533752983404719,
+                    "prediction_mean": 0.8699098246642496,
+                    "prediction_std": 0.22712108827517005,
+                    "r2": 0.9052233055457346,
+                    "rmse": 0.06949260886852192,
+                    "spearman": 0.9811926935332155,
+                    "target_mean": 0.876735286355239,
+                    "target_std": 0.22572924931847388
+                  }
+                }
+              },
+              "train_means": {
+                "0": 0.4733849633043182,
+                "1": 1.0
+              }
+            },
+            "target_variable": "quality_score",
+            "weak_label_mean_baseline": {
+              "fallback_mean": 0.8699470622164542,
+              "splits": {
+                "test": {
+                  "metric_ci": {
+                    "pearson": {
+                      "high": 0.7419732141599696,
+                      "low": 0.7186263331778355,
+                      "samples_used": 1000
+                    },
+                    "r2": {
+                      "high": 0.4616853464485309,
+                      "low": 0.40218640476229967,
+                      "samples_used": 1000
+                    },
+                    "samples_requested": 1000,
+                    "seed": 20268191,
+                    "spearman": {
+                      "high": 0.8150029930146291,
+                      "low": 0.7944850295943724,
+                      "samples_used": 1000
+                    }
+                  },
+                  "metrics": {
+                    "mae": 0.151509235095948,
+                    "n": 7219,
+                    "pearson": 0.7304004998623682,
+                    "prediction_mean": 0.687728224162044,
+                    "prediction_std": 0.2658621281099175,
+                    "r2": 0.43292173934429146,
+                    "rmse": 0.22305694972495355,
+                    "spearman": 0.8048651214906145,
+                    "target_mean": 0.6079053134218851,
+                    "target_std": 0.2962062784463443
+                  }
+                },
+                "train": {
+                  "metric_ci": null,
+                  "metrics": {
+                    "mae": 0.11409775383380164,
+                    "n": 2385,
+                    "pearson": 0.7207616574737641,
+                    "prediction_mean": 0.8699470622164542,
+                    "prediction_std": 0.17046665589584564,
+                    "r2": 0.5194973668843281,
+                    "rmse": 0.1639440472314411,
+                    "spearman": 0.6902230362759425,
+                    "target_mean": 0.8699470622164542,
+                    "target_std": 0.23650905140171202
+                  }
+                },
+                "val": {
+                  "metric_ci": null,
+                  "metrics": {
+                    "mae": 0.11803609301585798,
+                    "n": 421,
+                    "pearson": 0.6728529907406744,
+                    "prediction_mean": 0.8807775343318959,
+                    "prediction_std": 0.15650587249355588,
+                    "r2": 0.451990976816406,
+                    "rmse": 0.16710201696979882,
+                    "spearman": 0.6225417572376442,
+                    "target_mean": 0.876735286355239,
+                    "target_std": 0.22572924931847388
+                  }
+                }
+              },
+              "train_means": {
+                "0": 0.3977597402597403,
+                "1": 0.9314880638932771
+              }
+            }
+          },
+          "s1": {
+            "quality_residual_after_strong": {
+              "raw_regression": {
+                "alphas": [
+                  10.0,
+                  100.0,
+                  1000.0,
+                  10000.0
+                ],
+                "best_alpha": 1000.0,
+                "selection_metric": "val_spearman",
+                "status": "ok",
+                "test_metric_ci": {
+                  "pearson": {
+                    "high": 0.5669464950606589,
+                    "low": 0.482573100985146,
+                    "samples_used": 1000
+                  },
+                  "r2": {
+                    "high": 0.3147029440478063,
+                    "low": 0.19855895423402742,
+                    "samples_used": 1000
+                  },
+                  "samples_requested": 1000,
+                  "seed": 20267798,
+                  "spearman": {
+                    "high": 0.5153267726563105,
+                    "low": 0.43010500767932197,
+                    "samples_used": 1000
+                  }
+                },
+                "test_metrics": {
+                  "mae": 0.048387096619797815,
+                  "n": 1512,
+                  "pearson": 0.5286087607260557,
+                  "prediction_mean": -0.0016701782393890123,
+                  "prediction_std": 0.05071549763603752,
+                  "r2": 0.26475568533305627,
+                  "rmse": 0.06693356921493833,
+                  "spearman": 0.47548982459939826,
+                  "target_mean": -0.0018986300711290403,
+                  "target_std": 0.07805992807287704
+                },
+                "val_metrics": {
+                  "mae": 0.04804772095806158,
+                  "n": 1525,
+                  "pearson": 0.5351567440085143,
+                  "prediction_mean": 0.001283614222485368,
+                  "prediction_std": 0.050356555887484125,
+                  "r2": 0.27549009343384523,
+                  "rmse": 0.06701936310835828,
+                  "spearman": 0.5030810075725437,
+                  "target_mean": 0.0011330848319528368,
+                  "target_std": 0.07873686743610188
+                }
+              },
+              "residualization_means": {
+                "0": 0.4106261368113031,
+                "1": 1.0
+              }
+            },
+            "raw_delta_vs_strong_baseline": {
+              "pearson": -0.2704736943997953,
+              "r2": -0.44994079116241914,
+              "spearman": -0.23401470824015536
+            },
+            "raw_regression": {
+              "alphas": [
+                10.0,
+                100.0,
+                1000.0,
+                10000.0
+              ],
+              "best_alpha": 10000.0,
+              "selection_metric": "val_spearman",
+              "status": "ok",
+              "test_metric_ci": {
+                "pearson": {
+                  "high": 0.7213727578542316,
+                  "low": 0.6722980233366902,
+                  "samples_used": 1000
+                },
+                "r2": {
+                  "high": 0.5188859048498248,
+                  "low": 0.4516250336143988,
+                  "samples_used": 1000
+                },
+                "samples_requested": 1000,
+                "seed": 20264797,
+                "spearman": {
+                  "high": 0.7143699912540702,
+                  "low": 0.6614435888590116,
+                  "samples_used": 1000
+                }
+              },
+              "test_metrics": {
+                "mae": 0.1747315134213302,
+                "n": 1512,
+                "pearson": 0.6963501264827191,
+                "prediction_mean": 0.679978436223729,
+                "prediction_std": 0.20909107653854353,
+                "r2": 0.48473629453257294,
+                "rmse": 0.21929996994492917,
+                "spearman": 0.6882846926607893,
+                "target_mean": 0.6784673965064295,
+                "target_std": 0.30550885037826453
+              },
+              "val_metrics": {
+                "mae": 0.17660790051034397,
+                "n": 1525,
+                "pearson": 0.6800042888512713,
+                "prediction_mean": 0.6804748629546556,
+                "prediction_std": 0.20968209763627624,
+                "r2": 0.46223286465891233,
+                "rmse": 0.22205550345825814,
+                "spearman": 0.6763921124588813,
+                "target_mean": 0.6791996893983893,
+                "target_std": 0.30280595548878064
+              }
+            },
+            "split": "s1",
+            "split_counts": {
+              "test": {
+                "n": 1512,
+                "quality_max": 1.0,
+                "quality_mean": 0.6784673965064295,
+                "quality_min": 0.3333333333333333,
+                "quality_std": 0.30550885037826453,
+                "strong_positive_n": 692,
+                "weak_positive_n": 952
+              },
+              "train": {
+                "n": 6988,
+                "quality_max": 1.0,
+                "quality_mean": 0.6827097204756901,
+                "quality_min": 0.3333333333333333,
+                "quality_std": 0.3043051441341958,
+                "strong_positive_n": 3226,
+                "weak_positive_n": 4489
+              },
+              "val": {
+                "n": 1525,
+                "quality_max": 1.0,
+                "quality_mean": 0.6791996893983893,
+                "quality_min": 0.3333333333333333,
+                "quality_std": 0.30280595548878064,
+                "strong_positive_n": 692,
+                "weak_positive_n": 972
+              }
+            },
+            "strong_label_mean_baseline": {
+              "fallback_mean": 0.6827097204756901,
+              "splits": {
+                "test": {
+                  "metric_ci": {
+                    "pearson": {
+                      "high": 0.9719425497171619,
+                      "low": 0.9610033914365353,
+                      "samples_used": 1000
+                    },
+                    "r2": {
+                      "high": 0.9442386415605636,
+                      "low": 0.9235061373569853,
+                      "samples_used": 1000
+                    },
+                    "samples_requested": 1000,
+                    "seed": 20265806,
+                    "spearman": {
+                      "high": 0.9323699446251134,
+                      "low": 0.9108482521078428,
+                      "samples_used": 1000
+                    }
+                  },
+                  "metrics": {
+                    "mae": 0.04777431678489237,
+                    "n": 1512,
+                    "pearson": 0.9668238208825144,
+                    "prediction_mean": 0.6803660265775586,
+                    "prediction_std": 0.29362907341835137,
+                    "r2": 0.9346770856949921,
+                    "rmse": 0.07808301458633453,
+                    "spearman": 0.9222994009009446,
+                    "target_mean": 0.6784673965064295,
+                    "target_std": 0.30550885037826453
+                  }
+                },
+                "train": {
+                  "metric_ci": null,
+                  "metrics": {
+                    "mae": 0.04707208299753285,
+                    "n": 6988,
+                    "pearson": 0.9655399755251737,
+                    "prediction_mean": 0.6827097204756901,
+                    "prediction_std": 0.293818781419516,
+                    "r2": 0.9322674443371537,
+                    "rmse": 0.07919687135035311,
+                    "spearman": 0.9190927801116849,
+                    "target_mean": 0.6827097204756901,
+                    "target_std": 0.3043051441341958
+                  }
+                },
+                "val": {
+                  "metric_ci": null,
+                  "metrics": {
+                    "mae": 0.0484272971311329,
+                    "n": 1525,
+                    "pearson": 0.965608131057366,
+                    "prediction_mean": 0.6780666045664364,
+                    "prediction_std": 0.2934246374467395,
+                    "r2": 0.9323734284991402,
+                    "rmse": 0.07874502000054785,
+                    "spearman": 0.9173866065782991,
+                    "target_mean": 0.6791996893983893,
+                    "target_std": 0.30280595548878064
+                  }
+                }
+              },
+              "train_means": {
+                "0": 0.4106261368113031,
+                "1": 1.0
+              }
+            },
+            "target_variable": "quality_score",
+            "weak_label_mean_baseline": {
+              "fallback_mean": 0.6827097204756901,
+              "splits": {
+                "test": {
+                  "metric_ci": {
+                    "pearson": {
+                      "high": 0.7957720051374524,
+                      "low": 0.7506893311376152,
+                      "samples_used": 1000
+                    },
+                    "r2": {
+                      "high": 0.6308909743762893,
+                      "low": 0.5620077305535309,
+                      "samples_used": 1000
+                    },
+                    "samples_requested": 1000,
+                    "seed": 20266800,
+                    "spearman": {
+                      "high": 0.8467177144645369,
+                      "low": 0.8070736022987496,
+                      "samples_used": 1000
+                    }
+                  },
+                  "metrics": {
+                    "mae": 0.1534471851940021,
+                    "n": 1512,
+                    "pearson": 0.7736726894987922,
+                    "prediction_mean": 0.6765927357606549,
+                    "prediction_std": 0.23154673529730171,
+                    "r2": 0.5982831627670515,
+                    "rmse": 0.19363497926772166,
+                    "spearman": 0.8269861863162878,
+                    "target_mean": 0.6784673965064295,
+                    "target_std": 0.30550885037826453
+                  }
+                },
+                "train": {
+                  "metric_ci": null,
+                  "metrics": {
+                    "mae": 0.1584645404120304,
+                    "n": 6988,
+                    "pearson": 0.7552203884835719,
+                    "prediction_mean": 0.6827097204756899,
+                    "prediction_std": 0.22981744917057542,
+                    "r2": 0.5703578351812717,
+                    "rmse": 0.19946318157310036,
+                    "spearman": 0.8098385534356306,
+                    "target_mean": 0.6827097204756901,
+                    "target_std": 0.3043051441341958
+                  }
+                },
+                "val": {
+                  "metric_ci": null,
+                  "metrics": {
+                    "mae": 0.15870664207091087,
+                    "n": 1525,
+                    "pearson": 0.7537180843540625,
+                    "prediction_mean": 0.6803075323719551,
+                    "prediction_std": 0.23051745699708232,
+                    "r2": 0.5680205156480809,
+                    "rmse": 0.19901965695900595,
+                    "spearman": 0.8069821196497956,
+                    "target_mean": 0.6791996893983893,
+                    "target_std": 0.30280595548878064
+                  }
+                }
+              },
+              "train_means": {
+                "0": 0.37469272902725703,
+                "1": 0.8541809750155952
+              }
+            }
+          },
+          "s3": {
+            "quality_residual_after_strong": {
+              "raw_regression": {
+                "alphas": [
+                  10.0,
+                  100.0,
+                  1000.0,
+                  10000.0
+                ],
+                "best_alpha": 1000.0,
+                "selection_metric": "val_spearman",
+                "status": "ok",
+                "test_metric_ci": {
+                  "pearson": {
+                    "high": 0.5341788366618773,
+                    "low": 0.44762916905646144,
+                    "samples_used": 1000
+                  },
+                  "r2": {
+                    "high": 0.2705645318881098,
+                    "low": 0.16039423160218969,
+                    "samples_used": 1000
+                  },
+                  "samples_requested": 1000,
+                  "seed": 20267800,
+                  "spearman": {
+                    "high": 0.48958425589638016,
+                    "low": 0.4057917032511946,
+                    "samples_used": 1000
+                  }
+                },
+                "test_metrics": {
+                  "mae": 0.04993654113776573,
+                  "n": 1526,
+                  "pearson": 0.49128390752747425,
+                  "prediction_mean": 0.000337497776188107,
+                  "prediction_std": 0.05113231552889093,
+                  "r2": 0.217169689272381,
+                  "rmse": 0.07003589666176922,
+                  "spearman": 0.44848734703251014,
+                  "target_mean": 0.001623966066773314,
+                  "target_std": 0.07915655352599939
+                },
+                "val_metrics": {
+                  "mae": 0.049895538866128374,
+                  "n": 1509,
+                  "pearson": 0.5194187220412759,
+                  "prediction_mean": 0.0016010201854443336,
+                  "prediction_std": 0.04914583269212504,
+                  "r2": 0.2614757258516639,
+                  "rmse": 0.06993152111041025,
+                  "spearman": 0.46798067086845985,
+                  "target_mean": 0.004391233477422665,
+                  "target_std": 0.0813749224383709
+                }
+              },
+              "residualization_means": {
+                "0": 0.40873374201275353,
+                "1": 1.0
+              }
+            },
+            "raw_delta_vs_strong_baseline": {
+              "pearson": -0.28548238468261267,
+              "r2": -0.47151500920871847,
+              "spearman": -0.252120333265786
+            },
+            "raw_regression": {
+              "alphas": [
+                10.0,
+                100.0,
+                1000.0,
+                10000.0
+              ],
+              "best_alpha": 10000.0,
+              "selection_metric": "val_spearman",
+              "status": "ok",
+              "test_metric_ci": {
+                "pearson": {
+                  "high": 0.707064492853293,
+                  "low": 0.6537932749933714,
+                  "samples_used": 1000
+                },
+                "r2": {
+                  "high": 0.49726251579770475,
+                  "low": 0.4255083090483264,
+                  "samples_used": 1000
+                },
+                "samples_requested": 1000,
+                "seed": 20264799,
+                "spearman": {
+                  "high": 0.7028046474673121,
+                  "low": 0.6494137846194346,
+                  "samples_used": 1000
+                }
+              },
+              "test_metrics": {
+                "mae": 0.17769840773360845,
+                "n": 1526,
+                "pearson": 0.6801059928103822,
+                "prediction_mean": 0.6814838045351158,
+                "prediction_std": 0.2044706084750593,
+                "r2": 0.46079116860804636,
+                "rmse": 0.22345096536536055,
+                "spearman": 0.6765137896961196,
+                "target_mean": 0.6939795303905782,
+                "target_std": 0.30430125041805656
+              },
+              "val_metrics": {
+                "mae": 0.17431276145376504,
+                "n": 1509,
+                "pearson": 0.6907544232991879,
+                "prediction_mean": 0.6701765337908323,
+                "prediction_std": 0.2033600777418328,
+                "r2": 0.4737378865639391,
+                "rmse": 0.21900880023853062,
+                "spearman": 0.6817022937260853,
+                "target_mean": 0.6870117311781054,
+                "target_std": 0.30189819281880687
+              }
+            },
+            "split": "s3",
+            "split_counts": {
+              "test": {
+                "n": 1526,
+                "quality_max": 1.0,
+                "quality_mean": 0.6939795303905782,
+                "quality_min": 0.3333333333333333,
+                "quality_std": 0.30430125041805656,
+                "strong_positive_n": 732,
+                "weak_positive_n": 993
+              },
+              "train": {
+                "n": 6990,
+                "quality_max": 1.0,
+                "quality_mean": 0.6776372375980836,
+                "quality_min": 0.3333333333333333,
+                "quality_std": 0.3046743571951142,
+                "strong_positive_n": 3179,
+                "weak_positive_n": 4436
+              },
+              "val": {
+                "n": 1509,
+                "quality_max": 1.0,
+                "quality_mean": 0.6870117311781054,
+                "quality_min": 0.3333333333333333,
+                "quality_std": 0.30189819281880687,
+                "strong_positive_n": 699,
+                "weak_positive_n": 984
+              }
+            },
+            "strong_label_mean_baseline": {
+              "fallback_mean": 0.6776372375980836,
+              "splits": {
+                "test": {
+                  "metric_ci": {
+                    "pearson": {
+                      "high": 0.9711785520206451,
+                      "low": 0.9597233236197887,
+                      "samples_used": 1000
+                    },
+                    "r2": {
+                      "high": 0.9431175522335563,
+                      "low": 0.9201705317339438,
+                      "samples_used": 1000
+                    },
+                    "samples_requested": 1000,
+                    "seed": 20265808,
+                    "spearman": {
+                      "high": 0.9385878112295202,
+                      "low": 0.9179494838182617,
+                      "samples_used": 1000
+                    }
+                  },
+                  "metrics": {
+                    "mae": 0.04673198084119404,
+                    "n": 1526,
+                    "pearson": 0.9655883774929949,
+                    "prediction_mean": 0.6923555643238049,
+                    "prediction_std": 0.295389023950345,
+                    "r2": 0.9323061778167648,
+                    "rmse": 0.07917321031700329,
+                    "spearman": 0.9286341229619056,
+                    "target_mean": 0.6939795303905782,
+                    "target_std": 0.30430125041805656
+                  }
+                },
+                "train": {
+                  "metric_ci": null,
+                  "metrics": {
+                    "mae": 0.04704007575894335,
+                    "n": 6990,
+                    "pearson": 0.966350675859521,
+                    "prediction_mean": 0.6776372375980834,
+                    "prediction_std": 0.2944222709925635,
+                    "r2": 0.9338336287341517,
+                    "rmse": 0.07837085093220268,
+                    "spearman": 0.917320344977319,
+                    "target_mean": 0.6776372375980836,
+                    "target_std": 0.3046743571951142
+                  }
+                },
+                "val": {
+                  "metric_ci": null,
+                  "metrics": {
+                    "mae": 0.0479006043577383,
+                    "n": 1509,
+                    "pearson": 0.963082796361378,
+                    "prediction_mean": 0.6826204977006829,
+                    "prediction_std": 0.2948322272184804,
+                    "r2": 0.9271343274384284,
+                    "rmse": 0.08149331833533419,
+                    "spearman": 0.918826297123911,
+                    "target_mean": 0.6870117311781054,
+                    "target_std": 0.30189819281880687
+                  }
+                }
+              },
+              "train_means": {
+                "0": 0.40873374201275353,
+                "1": 1.0
+              }
+            },
+            "target_variable": "quality_score",
+            "weak_label_mean_baseline": {
+              "fallback_mean": 0.6776372375980836,
+              "splits": {
+                "test": {
+                  "metric_ci": {
+                    "pearson": {
+                      "high": 0.796164995827354,
+                      "low": 0.7514803880244734,
+                      "samples_used": 1000
+                    },
+                    "r2": {
+                      "high": 0.6293864155745554,
+                      "low": 0.5643911202636173,
+                      "samples_used": 1000
+                    },
+                    "samples_requested": 1000,
+                    "seed": 20266802,
+                    "spearman": {
+                      "high": 0.8449017144779375,
+                      "low": 0.8059003470042586,
+                      "samples_used": 1000
+                    }
+                  },
+                  "metrics": {
+                    "mae": 0.15515322527342967,
+                    "n": 1526,
+                    "pearson": 0.7738716929281062,
+                    "prediction_mean": 0.6853430248027099,
+                    "prediction_std": 0.22817924076845597,
+                    "r2": 0.597494683557924,
+                    "rmse": 0.19305877558004544,
+                    "spearman": 0.8253512175384459,
+                    "target_mean": 0.6939795303905782,
+                    "target_std": 0.30430125041805656
+                  }
+                },
+                "train": {
+                  "metric_ci": null,
+                  "metrics": {
+                    "mae": 0.15806812211116708,
+                    "n": 6990,
+                    "pearson": 0.756459308748016,
+                    "prediction_mean": 0.6776372375980835,
+                    "prediction_std": 0.23047375363706285,
+                    "r2": 0.5722306857915294,
+                    "rmse": 0.19926944777536393,
+                    "spearman": 0.8118085677828738,
+                    "target_mean": 0.6776372375980836,
+                    "target_std": 0.3046743571951142
+                  }
+                },
+                "val": {
+                  "metric_ci": null,
+                  "metrics": {
+                    "mae": 0.16079148266197144,
+                    "n": 1509,
+                    "pearson": 0.7474534052217263,
+                    "prediction_mean": 0.6859971266943913,
+                    "prediction_std": 0.22797141598757378,
+                    "r2": 0.558616417360935,
+                    "rmse": 0.20057121301603856,
+                    "spearman": 0.798327163700734,
+                    "target_mean": 0.6870117311781054,
+                    "target_std": 0.30189819281880687
+                  }
+                }
+              },
+              "train_means": {
+                "0": 0.37389387441655514,
+                "1": 0.8525156301962854
+              }
+            }
+          }
+        },
+        "task": "infer_property"
+      },
+      "infer_subtype": {
+        "activation_prefix": "results/stage2/activations/gemma3_27b_infer_subtype_L45",
+        "model": "gemma3_27b",
+        "n": 10737,
+        "parse_fail_rate": 0.023909090909090908,
+        "quality_unique_count": 133,
+        "site_or_layer": "L45/resid_post",
+        "source_file": "results/full/with_errortype/gemma3_27b_infer_subtype.jsonl",
+        "splits": {
+          "height_h12_to_h34": {
+            "quality_residual_after_strong": {
+              "raw_regression": {
+                "alphas": [
+                  10.0,
+                  100.0,
+                  1000.0,
+                  10000.0
+                ],
+                "best_alpha": 10000.0,
+                "selection_metric": "val_spearman",
+                "status": "ok",
+                "test_metric_ci": {
+                  "pearson": {
+                    "high": 0.30849853173944153,
+                    "low": 0.26371713259765184,
+                    "samples_used": 1000
+                  },
+                  "r2": {
+                    "high": 0.00581144094156324,
+                    "low": -0.047639596296057844,
+                    "samples_used": 1000
+                  },
+                  "samples_requested": 1000,
+                  "seed": 20269068,
+                  "spearman": {
+                    "high": 0.29070106715299354,
+                    "low": 0.2502940809258887,
+                    "samples_used": 1000
+                  }
+                },
+                "test_metrics": {
+                  "mae": 0.07343220756796198,
+                  "n": 7872,
+                  "pearson": 0.2868368916844385,
+                  "prediction_mean": -0.04296560863742666,
+                  "prediction_std": 0.03224389253894087,
+                  "r2": -0.018785746185226326,
+                  "rmse": 0.08886457670017966,
+                  "spearman": 0.27039095990603845,
+                  "target_mean": -0.07006708734161389,
+                  "target_std": 0.08804146213824948
+                },
+                "val_metrics": {
+                  "mae": 0.04915739361904682,
+                  "n": 430,
+                  "pearson": 0.18487436141391209,
+                  "prediction_mean": -0.0007361255769928691,
+                  "prediction_std": 0.03081704868405372,
+                  "r2": -0.002609748324817973,
+                  "rmse": 0.0828513090457836,
+                  "spearman": 0.23403910443207673,
+                  "target_mean": -0.004053080239354531,
+                  "target_std": 0.08274340966009863
+                }
+              },
+              "residualization_means": {
+                "0": 0.4610357274186565,
+                "1": 1.0
+              }
+            },
+            "raw_delta_vs_strong_baseline": {
+              "pearson": -0.5692925307305712,
+              "r2": -0.5961828533848116,
+              "spearman": -0.31182617365210885
+            },
+            "raw_regression": {
+              "alphas": [
+                10.0,
+                100.0,
+                1000.0,
+                10000.0
+              ],
+              "best_alpha": 10000.0,
+              "selection_metric": "val_spearman",
+              "status": "ok",
+              "test_metric_ci": {
+                "pearson": {
+                  "high": 0.34100579189546676,
+                  "low": 0.2969439545509665,
+                  "samples_used": 1000
+                },
+                "r2": {
+                  "high": 0.06492023490423132,
+                  "low": 0.013141237562743232,
+                  "samples_used": 1000
+                },
+                "samples_requested": 1000,
+                "seed": 20266067,
+                "spearman": {
+                  "high": 0.2367143966809358,
+                  "low": 0.19114065238529335,
+                  "samples_used": 1000
+                }
+              },
+              "test_metrics": {
+                "mae": 0.1292375974979525,
+                "n": 7872,
+                "pearson": 0.3190651765854579,
+                "prediction_mean": 0.4199515683084302,
+                "prediction_std": 0.10395724073214939,
+                "r2": 0.039756950730646,
+                "rmse": 0.18273964363488326,
+                "spearman": 0.21356618248432244,
+                "target_mean": 0.4334175538220163,
+                "target_std": 0.18648426257888884
+              },
+              "val_metrics": {
+                "mae": 0.15627474618223164,
+                "n": 430,
+                "pearson": 0.6855824394311707,
+                "prediction_mean": 0.77034648934076,
+                "prediction_std": 0.18881249057519378,
+                "r2": 0.467854294238814,
+                "rmse": 0.20494121661337944,
+                "spearman": 0.6745718987060378,
+                "target_mean": 0.7828680212982538,
+                "target_std": 0.28094029174314233
+              }
+            },
+            "split": "height_h12_to_h34",
+            "split_counts": {
+              "test": {
+                "n": 7872,
+                "quality_max": 1.0,
+                "quality_mean": 0.4334175538220163,
+                "quality_min": 0.3333333333333333,
+                "quality_std": 0.18648426257888884,
+                "strong_positive_n": 620,
+                "weak_positive_n": 2285
+              },
+              "train": {
+                "n": 2435,
+                "quality_max": 1.0,
+                "quality_mean": 0.7627229157259958,
+                "quality_min": 0.3333333333333333,
+                "quality_std": 0.28246597917929406,
+                "strong_positive_n": 1363,
+                "weak_positive_n": 1861
+              },
+              "val": {
+                "n": 430,
+                "quality_max": 1.0,
+                "quality_mean": 0.7828680212982538,
+                "quality_min": 0.3333333333333333,
+                "quality_std": 0.28094029174314233,
+                "strong_positive_n": 260,
+                "weak_positive_n": 340
+              }
+            },
+            "strong_label_mean_baseline": {
+              "fallback_mean": 0.7627229157259958,
+              "splits": {
+                "test": {
+                  "metric_ci": {
+                    "pearson": {
+                      "high": 0.8981965126141569,
+                      "low": 0.8775719680841251,
+                      "samples_used": 1000
+                    },
+                    "r2": {
+                      "high": 0.6568821578702492,
+                      "low": 0.6111266578944087,
+                      "samples_used": 1000
+                    },
+                    "samples_requested": 1000,
+                    "seed": 20267076,
+                    "spearman": {
+                      "high": 0.5416500330607005,
+                      "low": 0.5067678002460139,
+                      "samples_used": 1000
+                    }
+                  },
+                  "metrics": {
+                    "mae": 0.09786206234118246,
+                    "n": 7872,
+                    "pearson": 0.888357707316029,
+                    "prediction_mean": 0.5034846411636303,
+                    "prediction_std": 0.14517760722749123,
+                    "r2": 0.6359398041154576,
+                    "rmse": 0.11251975730500918,
+                    "spearman": 0.5253923561364313,
+                    "target_mean": 0.4334175538220163,
+                    "target_std": 0.18648426257888884
+                  }
+                },
+                "train": {
+                  "metric_ci": null,
+                  "metrics": {
+                    "mae": 0.04929506870200923,
+                    "n": 2435,
+                    "pearson": 0.9471967174131464,
+                    "prediction_mean": 0.7627229157259959,
+                    "prediction_std": 0.2675508482595185,
+                    "r2": 0.897181621478247,
+                    "rmse": 0.09057357776597694,
+                    "spearman": 0.9449486022992596,
+                    "target_mean": 0.7627229157259958,
+                    "target_std": 0.28246597917929406
+                  }
+                },
+                "val": {
+                  "metric_ci": null,
+                  "metrics": {
+                    "mae": 0.04014074669071849,
+                    "n": 430,
+                    "pearson": 0.9558108898841982,
+                    "prediction_mean": 0.7869211015376084,
+                    "prediction_std": 0.2635133707087188,
+                    "r2": 0.913048001464181,
+                    "rmse": 0.08284261766509766,
+                    "spearman": 0.9496664400761483,
+                    "target_mean": 0.7828680212982538,
+                    "target_std": 0.28094029174314233
+                  }
+                }
+              },
+              "train_means": {
+                "0": 0.4610357274186565,
+                "1": 1.0
+              }
+            },
+            "target_variable": "quality_score",
+            "weak_label_mean_baseline": {
+              "fallback_mean": 0.7627229157259958,
+              "splits": {
+                "test": {
+                  "metric_ci": {
+                    "pearson": {
+                      "high": 0.5797091895847467,
+                      "low": 0.5503606306871495,
+                      "samples_used": 1000
+                    },
+                    "r2": {
+                      "high": -0.25865904868389133,
+                      "low": -0.44096979387536334,
+                      "samples_used": 1000
+                    },
+                    "samples_requested": 1000,
+                    "seed": 20268070,
+                    "spearman": {
+                      "high": 0.6937041528071124,
+                      "low": 0.662602286458322,
+                      "samples_used": 1000
+                    }
+                  },
+                  "metrics": {
+                    "mae": 0.1550548380156814,
+                    "n": 7872,
+                    "pearson": 0.5658151317558767,
+                    "prediction_mean": 0.5394045831977817,
+                    "prediction_std": 0.21384140269537266,
+                    "r2": -0.34029362716223877,
+                    "rmse": 0.21589479091418864,
+                    "spearman": 0.6776938448896177,
+                    "target_mean": 0.4334175538220163,
+                    "target_std": 0.18648426257888884
+                  }
+                },
+                "train": {
+                  "metric_ci": null,
+                  "metrics": {
+                    "mae": 0.1651032211060492,
+                    "n": 2435,
+                    "pearson": 0.7079595774020555,
+                    "prediction_mean": 0.7627229157259959,
+                    "prediction_std": 0.19997449525023067,
+                    "r2": 0.5012067632352961,
+                    "rmse": 0.19949243254603136,
+                    "spearman": 0.7260801053115279,
+                    "target_mean": 0.7627229157259958,
+                    "target_std": 0.28246597917929406
+                  }
+                },
+                "val": {
+                  "metric_ci": null,
+                  "metrics": {
+                    "mae": 0.1665460219042354,
+                    "n": 430,
+                    "pearson": 0.6878767316396959,
+                    "prediction_mean": 0.7751733981649881,
+                    "prediction_std": 0.19166230186386551,
+                    "r2": 0.4723922202691242,
+                    "rmse": 0.20406551729369599,
+                    "spearman": 0.703162140599884,
+                    "target_mean": 0.7828680212982538,
+                    "target_std": 0.28094029174314233
+                  }
+                }
+              },
+              "train_means": {
+                "0": 0.40264884409048174,
+                "1": 0.8737828389494161
+              }
+            }
+          },
+          "s1": {
+            "quality_residual_after_strong": {
+              "raw_regression": {
+                "alphas": [
+                  10.0,
+                  100.0,
+                  1000.0,
+                  10000.0
+                ],
+                "best_alpha": 10000.0,
+                "selection_metric": "val_spearman",
+                "status": "ok",
+                "test_metric_ci": {
+                  "pearson": {
+                    "high": 0.5461074042532912,
+                    "low": 0.4604461125458173,
+                    "samples_used": 1000
+                  },
+                  "r2": {
+                    "high": 0.2896516084170985,
+                    "low": 0.2106357527025674,
+                    "samples_used": 1000
+                  },
+                  "samples_requested": 1000,
+                  "seed": 20267677,
+                  "spearman": {
+                    "high": 0.5120248834730635,
+                    "low": 0.4304497721842525,
+                    "samples_used": 1000
+                  }
+                },
+                "test_metrics": {
+                  "mae": 0.05383538589058118,
+                  "n": 1616,
+                  "pearson": 0.5039011929354552,
+                  "prediction_mean": 0.0006604220628528625,
+                  "prediction_std": 0.0397211887247149,
+                  "r2": 0.25187800564540364,
+                  "rmse": 0.07449061570030019,
+                  "spearman": 0.47154497034690396,
+                  "target_mean": -0.0006070953351995829,
+                  "target_std": 0.08612224701426081
+                },
+                "val_metrics": {
+                  "mae": 0.05603412755577087,
+                  "n": 1606,
+                  "pearson": 0.4607609887107674,
+                  "prediction_mean": -0.001571773329302019,
+                  "prediction_std": 0.038783340290644244,
+                  "r2": 0.2099555120095472,
+                  "rmse": 0.08328816195090324,
+                  "spearman": 0.460883106857957,
+                  "target_mean": -0.00042975862630636303,
+                  "target_std": 0.09370386492287223
+                }
+              },
+              "residualization_means": {
+                "0": 0.39609109854644364,
+                "1": 1.0
+              }
+            },
+            "raw_delta_vs_strong_baseline": {
+              "pearson": -0.21333760794182488,
+              "r2": -0.35723704032393744,
+              "spearman": -0.13198727705345847
+            },
+            "raw_regression": {
+              "alphas": [
+                10.0,
+                100.0,
+                1000.0,
+                10000.0
+              ],
+              "best_alpha": 10000.0,
+              "selection_metric": "val_spearman",
+              "status": "ok",
+              "test_metric_ci": {
+                "pearson": {
+                  "high": 0.7575477279252701,
+                  "low": 0.7004004008552496,
+                  "samples_used": 1000
+                },
+                "r2": {
+                  "high": 0.5730461762294183,
+                  "low": 0.4889638758672133,
+                  "samples_used": 1000
+                },
+                "samples_requested": 1000,
+                "seed": 20264676,
+                "spearman": {
+                  "high": 0.6505681716124928,
+                  "low": 0.580748087508129,
+                  "samples_used": 1000
+                }
+              },
+              "test_metrics": {
+                "mae": 0.12441868048902521,
+                "n": 1616,
+                "pearson": 0.7303514334971852,
+                "prediction_mean": 0.522089778399556,
+                "prediction_std": 0.19274633923281417,
+                "r2": 0.5333050946692172,
+                "rmse": 0.17783579720054388,
+                "spearman": 0.6164665559210172,
+                "target_mean": 0.5214229263485265,
+                "target_std": 0.260317075232111
+              },
+              "val_metrics": {
+                "mae": 0.12465512003674044,
+                "n": 1606,
+                "pearson": 0.7357035568059886,
+                "prediction_mean": 0.5214671395338636,
+                "prediction_std": 0.19015793601865566,
+                "r2": 0.5410608666156025,
+                "rmse": 0.17841503910061407,
+                "spearman": 0.6156782477136166,
+                "target_mean": 0.5223844406610143,
+                "target_std": 0.26336248648716876
+              }
+            },
+            "split": "s1",
+            "split_counts": {
+              "test": {
+                "n": 1616,
+                "quality_max": 1.0,
+                "quality_mean": 0.5214229263485265,
+                "quality_min": 0.3333333333333333,
+                "quality_std": 0.260317075232111,
+                "strong_positive_n": 337,
+                "weak_positive_n": 671
+              },
+              "train": {
+                "n": 7515,
+                "quality_max": 1.0,
+                "quality_mean": 0.5221766695884436,
+                "quality_min": 0.3333333333333333,
+                "quality_std": 0.2613272485965031,
+                "strong_positive_n": 1569,
+                "weak_positive_n": 3139
+              },
+              "val": {
+                "n": 1606,
+                "quality_max": 1.0,
+                "quality_mean": 0.5223844406610143,
+                "quality_min": 0.3333333333333333,
+                "quality_std": 0.26336248648716876,
+                "strong_positive_n": 337,
+                "weak_positive_n": 676
+              }
+            },
+            "strong_label_mean_baseline": {
+              "fallback_mean": 0.5221766695884436,
+              "splits": {
+                "test": {
+                  "metric_ci": {
+                    "pearson": {
+                      "high": 0.9531788954883393,
+                      "low": 0.9329501147205913,
+                      "samples_used": 1000
+                    },
+                    "r2": {
+                      "high": 0.9084483541925592,
+                      "low": 0.8701791217954522,
+                      "samples_used": 1000
+                    },
+                    "samples_requested": 1000,
+                    "seed": 20265685,
+                    "spearman": {
+                      "high": 0.7721854915286629,
+                      "low": 0.7229474611212441,
+                      "samples_used": 1000
+                    }
+                  },
+                  "metrics": {
+                    "mae": 0.06141978879574714,
+                    "n": 1616,
+                    "pearson": 0.9436890414390101,
+                    "prediction_mean": 0.5220300216837263,
+                    "prediction_std": 0.24534674312307833,
+                    "r2": 0.8905421349931546,
+                    "rmse": 0.08612438676432696,
+                    "spearman": 0.7484538329744757,
+                    "target_mean": 0.5214229263485265,
+                    "target_std": 0.260317075232111
+                  }
+                },
+                "train": {
+                  "metric_ci": null,
+                  "metrics": {
+                    "mae": 0.06242397367133327,
+                    "n": 7515,
+                    "pearson": 0.9392510178268293,
+                    "prediction_mean": 0.5221766695884437,
+                    "prediction_std": 0.24545188423015077,
+                    "r2": 0.8821924744887375,
+                    "rmse": 0.08969561520435208,
+                    "spearman": 0.7496402027607618,
+                    "target_mean": 0.5221766695884436,
+                    "target_std": 0.2613272485965031
+                  }
+                },
+                "val": {
+                  "metric_ci": null,
+                  "metrics": {
+                    "mae": 0.06267069844138692,
+                    "n": 1606,
+                    "pearson": 0.9345632344176957,
+                    "prediction_mean": 0.5228141992873208,
+                    "prediction_std": 0.2459074303387942,
+                    "r2": 0.873405069160995,
+                    "rmse": 0.09370485042921083,
+                    "spearman": 0.7498123342656973,
+                    "target_mean": 0.5223844406610143,
+                    "target_std": 0.26336248648716876
+                  }
+                }
+              },
+              "train_means": {
+                "0": 0.39609109854644364,
+                "1": 1.0
+              }
+            },
+            "target_variable": "quality_score",
+            "weak_label_mean_baseline": {
+              "fallback_mean": 0.5221766695884436,
+              "splits": {
+                "test": {
+                  "metric_ci": {
+                    "pearson": {
+                      "high": 0.71615771797836,
+                      "low": 0.6669449628549875,
+                      "samples_used": 1000
+                    },
+                    "r2": {
+                      "high": 0.5112700231751283,
+                      "low": 0.4416379969845117,
+                      "samples_used": 1000
+                    },
+                    "samples_requested": 1000,
+                    "seed": 20266679,
+                    "spearman": {
+                      "high": 0.7921860378478752,
+                      "low": 0.7418869232142328,
+                      "samples_used": 1000
+                    }
+                  },
+                  "metrics": {
+                    "mae": 0.14538377166618716,
+                    "n": 1616,
+                    "pearson": 0.6915234889010873,
+                    "prediction_mean": 0.5212742835119749,
+                    "prediction_std": 0.17964867007461885,
+                    "r2": 0.47820242528941215,
+                    "rmse": 0.18804149019709435,
+                    "spearman": 0.7670314364924071,
+                    "target_mean": 0.5214229263485265,
+                    "target_std": 0.260317075232111
+                  }
+                },
+                "train": {
+                  "metric_ci": null,
+                  "metrics": {
+                    "mae": 0.14611540285181132,
+                    "n": 7515,
+                    "pearson": 0.6880323084582268,
+                    "prediction_mean": 0.5221766695884436,
+                    "prediction_std": 0.17980159011488842,
+                    "r2": 0.47338845748235403,
+                    "rmse": 0.18963997218723738,
+                    "spearman": 0.7674661049061022,
+                    "target_mean": 0.5221766695884436,
+                    "target_std": 0.2613272485965031
+                  }
+                },
+                "val": {
+                  "metric_ci": null,
+                  "metrics": {
+                    "mae": 0.14810712778270654,
+                    "n": 1606,
+                    "pearson": 0.6781088171989672,
+                    "prediction_mean": 0.5233519195758138,
+                    "prediction_std": 0.17999377268549857,
+                    "r2": 0.45978959812125664,
+                    "rmse": 0.19356881217794322,
+                    "spearman": 0.7718228609405939,
+                    "target_mean": 0.5223844406610143,
+                    "target_std": 0.26336248648716876
+                  }
+                }
+              },
+              "train_means": {
+                "0": 0.3698939832462277,
+                "1": 0.7344700864197711
+              }
+            }
+          },
+          "s3": {
+            "quality_residual_after_strong": {
+              "raw_regression": {
+                "alphas": [
+                  10.0,
+                  100.0,
+                  1000.0,
+                  10000.0
+                ],
+                "best_alpha": 1000.0,
+                "selection_metric": "val_spearman",
+                "status": "ok",
+                "test_metric_ci": {
+                  "pearson": {
+                    "high": 0.5319580566700635,
+                    "low": 0.4405657643747855,
+                    "samples_used": 1000
+                  },
+                  "r2": {
+                    "high": 0.28150766393756804,
+                    "low": 0.17030043097816758,
+                    "samples_used": 1000
+                  },
+                  "samples_requested": 1000,
+                  "seed": 20267679,
+                  "spearman": {
+                    "high": 0.4935605842222411,
+                    "low": 0.4091096303395705,
+                    "samples_used": 1000
+                  }
+                },
+                "test_metrics": {
+                  "mae": 0.05817072756664867,
+                  "n": 1598,
+                  "pearson": 0.48733014744579795,
+                  "prediction_mean": 0.002538597186454292,
+                  "prediction_std": 0.054892702461522384,
+                  "r2": 0.23038053939002645,
+                  "rmse": 0.08424305479893375,
+                  "spearman": 0.452381233093652,
+                  "target_mean": 0.0027018016102996895,
+                  "target_std": 0.09602760256521979
+                },
+                "val_metrics": {
+                  "mae": 0.05478185397111971,
+                  "n": 1642,
+                  "pearson": 0.5042034963837998,
+                  "prediction_mean": 0.0008895471539947075,
+                  "prediction_std": 0.05488350575802895,
+                  "r2": 0.2379812965192033,
+                  "rmse": 0.0759351946763924,
+                  "spearman": 0.48592749474288655,
+                  "target_mean": -0.00027792946840005843,
+                  "target_std": 0.0869881901533235
+                }
+              },
+              "residualization_means": {
+                "0": 0.39543977087965804,
+                "1": 1.0
+              }
+            },
+            "raw_delta_vs_strong_baseline": {
+              "pearson": -0.20185552437528953,
+              "r2": -0.3422533093783424,
+              "spearman": -0.12595643333205597
+            },
+            "raw_regression": {
+              "alphas": [
+                10.0,
+                100.0,
+                1000.0,
+                10000.0
+              ],
+              "best_alpha": 1000.0,
+              "selection_metric": "val_spearman",
+              "status": "ok",
+              "test_metric_ci": {
+                "pearson": {
+                  "high": 0.7581728678151199,
+                  "low": 0.6964526651133623,
+                  "samples_used": 1000
+                },
+                "r2": {
+                  "high": 0.5655502321926295,
+                  "low": 0.4712405431186765,
+                  "samples_used": 1000
+                },
+                "samples_requested": 1000,
+                "seed": 20264678,
+                "spearman": {
+                  "high": 0.639970356086201,
+                  "low": 0.5678769018243767,
+                  "samples_used": 1000
+                }
+              },
+              "test_metrics": {
+                "mae": 0.12810199918551918,
+                "n": 1598,
+                "pearson": 0.7264574871177181,
+                "prediction_mean": 0.525465025304256,
+                "prediction_std": 0.21004228978729805,
+                "r2": 0.5193752025065854,
+                "rmse": 0.1790390220361873,
+                "spearman": 0.6054098010776818,
+                "target_mean": 0.5180699783918028,
+                "target_std": 0.2582525448895913
+              },
+              "val_metrics": {
+                "mae": 0.13370984927325408,
+                "n": 1642,
+                "pearson": 0.710522676088072,
+                "prediction_mean": 0.5248224665019458,
+                "prediction_std": 0.21158091510595772,
+                "r2": 0.49435278085912204,
+                "rmse": 0.18530254314286673,
+                "spearman": 0.6042968321438895,
+                "target_mean": 0.5210812070380283,
+                "target_std": 0.26058989336697375
+              }
+            },
+            "split": "s3",
+            "split_counts": {
+              "test": {
+                "n": 1598,
+                "quality_max": 1.0,
+                "quality_mean": 0.5180699783918028,
+                "quality_min": 0.3333333333333333,
+                "quality_std": 0.2582525448895913,
+                "strong_positive_n": 317,
+                "weak_positive_n": 648
+              },
+              "train": {
+                "n": 7497,
+                "quality_max": 1.0,
+                "quality_mean": 0.5231739849555046,
+                "quality_min": 0.3333333333333333,
+                "quality_std": 0.2623493692303056,
+                "strong_positive_n": 1584,
+                "weak_positive_n": 3155
+              },
+              "val": {
+                "n": 1642,
+                "quality_max": 1.0,
+                "quality_mean": 0.5210812070380283,
+                "quality_min": 0.3333333333333333,
+                "quality_std": 0.26058989336697375,
+                "strong_positive_n": 342,
+                "weak_positive_n": 683
+              }
+            },
+            "strong_label_mean_baseline": {
+              "fallback_mean": 0.5231739849555046,
+              "splits": {
+                "test": {
+                  "metric_ci": {
+                    "pearson": {
+                      "high": 0.9410787578710972,
+                      "low": 0.9140289372340277,
+                      "samples_used": 1000
+                    },
+                    "r2": {
+                      "high": 0.8855646455089994,
+                      "low": 0.8345789566233346,
+                      "samples_used": 1000
+                    },
+                    "samples_requested": 1000,
+                    "seed": 20265687,
+                    "spearman": {
+                      "high": 0.7568074723753639,
+                      "low": 0.7054488884391874,
+                      "samples_used": 1000
+                    }
+                  },
+                  "metrics": {
+                    "mae": 0.06413574683594464,
+                    "n": 1598,
+                    "pearson": 0.9283130114930076,
+                    "prediction_mean": 0.5153681767815032,
+                    "prediction_std": 0.24108322630971057,
+                    "r2": 0.8616285118849278,
+                    "rmse": 0.09606560355488965,
+                    "spearman": 0.7313662344097378,
+                    "target_mean": 0.5180699783918028,
+                    "target_std": 0.2582525448895913
+                  }
+                },
+                "train": {
+                  "metric_ci": null,
+                  "metrics": {
+                    "mae": 0.06180945925147112,
+                    "n": 7497,
+                    "pearson": 0.9407052476854353,
+                    "prediction_mean": 0.5231739849555047,
+                    "prediction_std": 0.24679342836191243,
+                    "r2": 0.8849263630229167,
+                    "rmse": 0.08899547883411167,
+                    "spearman": 0.7533620531962856,
+                    "target_mean": 0.5231739849555046,
+                    "target_std": 0.2623493692303056
+                  }
+                },
+                "val": {
+                  "metric_ci": null,
+                  "metrics": {
+                    "mae": 0.06171029871065468,
+                    "n": 1642,
+                    "pearson": 0.9426396164635904,
+                    "prediction_mean": 0.5213591365064284,
+                    "prediction_std": 0.24549980426501386,
+                    "r2": 0.8885680097678579,
+                    "rmse": 0.08698863414803207,
+                    "spearman": 0.7490817211550698,
+                    "target_mean": 0.5210812070380283,
+                    "target_std": 0.26058989336697375
+                  }
+                }
+              },
+              "train_means": {
+                "0": 0.39543977087965804,
+                "1": 1.0
+              }
+            },
+            "target_variable": "quality_score",
+            "weak_label_mean_baseline": {
+              "fallback_mean": 0.5231739849555046,
+              "splits": {
+                "test": {
+                  "metric_ci": {
+                    "pearson": {
+                      "high": 0.6961913967333314,
+                      "low": 0.6395017862046778,
+                      "samples_used": 1000
+                    },
+                    "r2": {
+                      "high": 0.4829921121056357,
+                      "low": 0.4041620487437854,
+                      "samples_used": 1000
+                    },
+                    "samples_requested": 1000,
+                    "seed": 20266681,
+                    "spearman": {
+                      "high": 0.7723296781362289,
+                      "low": 0.7166107616792616,
+                      "samples_used": 1000
+                    }
+                  },
+                  "metrics": {
+                    "mae": 0.14679615492639966,
+                    "n": 1598,
+                    "pearson": 0.6675447969203726,
+                    "prediction_mean": 0.5175435806072034,
+                    "prediction_std": 0.18035297350775056,
+                    "r2": 0.44466238978771533,
+                    "rmse": 0.19245232112276542,
+                    "spearman": 0.7459631847081404,
+                    "target_mean": 0.5180699783918028,
+                    "target_std": 0.2582525448895913
+                  }
+                },
+                "train": {
+                  "metric_ci": null,
+                  "metrics": {
+                    "mae": 0.1456417483806772,
+                    "n": 7497,
+                    "pearson": 0.6912383622271849,
+                    "prediction_mean": 0.5231739849555045,
+                    "prediction_std": 0.18134594831809156,
+                    "r2": 0.47781047341452165,
+                    "rmse": 0.1895806914328336,
+                    "spearman": 0.7732772459215868,
+                    "target_mean": 0.5231739849555046,
+                    "target_std": 0.2623493692303056
+                  }
+                },
+                "val": {
+                  "metric_ci": null,
+                  "metrics": {
+                    "mae": 0.14565694464087287,
+                    "n": 1642,
+                    "pearson": 0.6864484728089953,
+                    "prediction_mean": 0.5213818603214971,
+                    "prediction_std": 0.18104947884798572,
+                    "r2": 0.471140962736437,
+                    "rmse": 0.18950799343601546,
+                    "spearman": 0.7654316512832541,
+                    "target_mean": 0.5210812070380283,
+                    "target_std": 0.26058989336697375
+                  }
+                }
+              },
+              "train_means": {
+                "0": 0.36859066542433655,
+                "1": 0.7359159099648015
+              }
+            }
+          }
+        },
+        "task": "infer_subtype"
+      }
+    },
+    "qwen35_27b": {
+      "infer_property": {
+        "activation_prefix": "results/stage2/activations/qwen35_27b_infer_property_L53",
+        "model": "qwen35_27b",
+        "n": 10997,
+        "parse_fail_rate": 0.00027272727272727274,
+        "quality_unique_count": 20,
+        "site_or_layer": "L53/resid_post",
+        "source_file": "results/full/with_errortype/qwen35_27b_infer_property.jsonl",
+        "splits": {
+          "height_h12_to_h34": {
+            "quality_residual_after_strong": {
+              "raw_regression": {
+                "alphas": [
+                  10.0,
+                  100.0,
+                  1000.0,
+                  10000.0
+                ],
+                "best_alpha": 1000.0,
+                "selection_metric": "val_spearman",
+                "status": "ok",
+                "test_metric_ci": {
+                  "pearson": {
+                    "high": 0.6032641994757719,
+                    "low": 0.571823940801745,
+                    "samples_used": 1000
+                  },
+                  "r2": {
+                    "high": 0.16715623508363156,
+                    "low": 0.11712899881540718,
+                    "samples_used": 1000
+                  },
+                  "samples_requested": 1000,
+                  "seed": 20269174,
+                  "spearman": {
+                    "high": 0.6389202566065036,
+                    "low": 0.6096790767404845,
+                    "samples_used": 1000
+                  }
+                },
+                "test_metrics": {
+                  "mae": 0.08601888665910908,
+                  "n": 7997,
+                  "pearson": 0.5879707057339941,
+                  "prediction_mean": -0.06469753162454922,
+                  "prediction_std": 0.08007838245655576,
+                  "r2": 0.14282070357914867,
+                  "rmse": 0.10662677843905283,
+                  "spearman": 0.6249919830892385,
+                  "target_mean": -0.014317129121987756,
+                  "target_std": 0.11516763575615976
+                },
+                "val_metrics": {
+                  "mae": 0.04356188005093112,
+                  "n": 450,
+                  "pearson": 0.672090021758081,
+                  "prediction_mean": 0.002617683770869108,
+                  "prediction_std": 0.06035764666325118,
+                  "r2": 0.45142906660117044,
+                  "rmse": 0.06802574689583527,
+                  "spearman": 0.680081302413627,
+                  "target_mean": 0.0032876975548830917,
+                  "target_std": 0.0918452969623546
+                }
+              },
+              "residualization_means": {
+                "0": 0.6733679204496323,
+                "1": 1.0
+              }
+            },
+            "raw_delta_vs_strong_baseline": {
+              "pearson": -0.31749316935302674,
+              "r2": -0.46190604189431883,
+              "spearman": -0.3788928745853767
+            },
+            "raw_regression": {
+              "alphas": [
+                10.0,
+                100.0,
+                1000.0,
+                10000.0
+              ],
+              "best_alpha": 10000.0,
+              "selection_metric": "val_spearman",
+              "status": "ok",
+              "test_metric_ci": {
+                "pearson": {
+                  "high": 0.5410873478047867,
+                  "low": 0.5072636743160364,
+                  "samples_used": 1000
+                },
+                "r2": {
+                  "high": 0.25242052993609726,
+                  "low": 0.22046722278027375,
+                  "samples_used": 1000
+                },
+                "samples_requested": 1000,
+                "seed": 20266173,
+                "spearman": {
+                  "high": 0.5761815530326039,
+                  "low": 0.543758415512224,
+                  "samples_used": 1000
+                }
+              },
+              "test_metrics": {
+                "mae": 0.15491417448086772,
+                "n": 7997,
+                "pearson": 0.523865892679476,
+                "prediction_mean": 0.7874188141791809,
+                "prediction_std": 0.09412974103275114,
+                "r2": 0.23665324827680778,
+                "rmse": 0.18468032682883062,
+                "spearman": 0.5598647555017022,
+                "target_mean": 0.825001290166352,
+                "target_std": 0.21137796062603037
+              },
+              "val_metrics": {
+                "mae": 0.08601813616576018,
+                "n": 450,
+                "pearson": 0.6806501590563164,
+                "prediction_mean": 0.9030781737963358,
+                "prediction_std": 0.10683690439231307,
+                "r2": 0.45834203318123057,
+                "rmse": 0.12787859687376524,
+                "spearman": 0.7001176960874002,
+                "target_mean": 0.8987654320987655,
+                "target_std": 0.17375419343959686
+              }
+            },
+            "split": "height_h12_to_h34",
+            "split_counts": {
+              "test": {
+                "n": 7997,
+                "quality_max": 1.0,
+                "quality_mean": 0.825001290166352,
+                "quality_min": 0.3333333333333333,
+                "quality_std": 0.21137796062603037,
+                "strong_positive_n": 4063,
+                "weak_positive_n": 7616
+              },
+              "train": {
+                "n": 2550,
+                "quality_max": 1.0,
+                "quality_mean": 0.9012418300653594,
+                "quality_min": 0.3333333333333333,
+                "quality_std": 0.17500190503632648,
+                "strong_positive_n": 1779,
+                "weak_positive_n": 2502
+              },
+              "val": {
+                "n": 450,
+                "quality_max": 1.0,
+                "quality_mean": 0.8987654320987655,
+                "quality_min": 0.3333333333333333,
+                "quality_std": 0.17375419343959686,
+                "strong_positive_n": 306,
+                "weak_positive_n": 441
+              }
+            },
+            "strong_label_mean_baseline": {
+              "fallback_mean": 0.9012418300653594,
+              "splits": {
+                "test": {
+                  "metric_ci": {
+                    "pearson": {
+                      "high": 0.84720670613273,
+                      "low": 0.8361984699055238,
+                      "samples_used": 1000
+                    },
+                    "r2": {
+                      "high": 0.7067463941881731,
+                      "low": 0.6908876176870182,
+                      "samples_used": 1000
+                    },
+                    "samples_requested": 1000,
+                    "seed": 20267182,
+                    "spearman": {
+                      "high": 0.9426256172830513,
+                      "low": 0.9348515440107515,
+                      "samples_used": 1000
+                    }
+                  },
+                  "metrics": {
+                    "mae": 0.0746383606949388,
+                    "n": 7997,
+                    "pearson": 0.8413590620325028,
+                    "prediction_mean": 0.8393184192883397,
+                    "prediction_std": 0.16329479009843534,
+                    "r2": 0.6985592901711266,
+                    "rmse": 0.11605414474269825,
+                    "spearman": 0.9387576300870789,
+                    "target_mean": 0.825001290166352,
+                    "target_std": 0.21137796062603037
+                  }
+                },
+                "train": {
+                  "metric_ci": null,
+                  "metrics": {
+                    "mae": 0.046421335503505336,
+                    "n": 2550,
+                    "pearson": 0.8572175269380042,
+                    "prediction_mean": 0.9012418300653594,
+                    "prediction_std": 0.15001470024467903,
+                    "r2": 0.7348218884897051,
+                    "rmse": 0.09011801416388708,
+                    "spearman": 0.98252544038372,
+                    "target_mean": 0.9012418300653594,
+                    "target_std": 0.17500190503632648
+                  }
+                },
+                "val": {
+                  "metric_ci": null,
+                  "metrics": {
+                    "mae": 0.04861219195849546,
+                    "n": 450,
+                    "pearson": 0.8493232362371108,
+                    "prediction_mean": 0.8954777345438822,
+                    "prediction_std": 0.15236607545371816,
+                    "r2": 0.7202311320686645,
+                    "rmse": 0.0919041213946115,
+                    "spearman": 0.980111643095345,
+                    "target_mean": 0.8987654320987655,
+                    "target_std": 0.17375419343959686
+                  }
+                }
+              },
+              "train_means": {
+                "0": 0.6733679204496323,
+                "1": 1.0
+              }
+            },
+            "target_variable": "quality_score",
+            "weak_label_mean_baseline": {
+              "fallback_mean": 0.9012418300653594,
+              "splits": {
+                "test": {
+                  "metric_ci": {
+                    "pearson": {
+                      "high": 0.4967299632231864,
+                      "low": 0.4568907381433366,
+                      "samples_used": 1000
+                    },
+                    "r2": {
+                      "high": 0.1675754034878794,
+                      "low": 0.11437026470429702,
+                      "samples_used": 1000
+                    },
+                    "samples_requested": 1000,
+                    "seed": 20268176,
+                    "spearman": {
+                      "high": 0.39554967924618173,
+                      "low": 0.3599146089895816,
+                      "samples_used": 1000
+                    }
+                  },
+                  "metrics": {
+                    "mae": 0.1541170303960003,
+                    "n": 7997,
+                    "pearson": 0.47810976459074633,
+                    "prediction_mean": 0.8858189319357185,
+                    "prediction_std": 0.11399370497124053,
+                    "r2": 0.14206337820120662,
+                    "rmse": 0.19578855753549598,
+                    "spearman": 0.3786337736171392,
+                    "target_mean": 0.825001290166352,
+                    "target_std": 0.21137796062603037
+                  }
+                },
+                "train": {
+                  "metric_ci": null,
+                  "metrics": {
+                    "mae": 0.12491667450353437,
+                    "n": 2550,
+                    "pearson": 0.4155883112639676,
+                    "prediction_mean": 0.90124183006536,
+                    "prediction_std": 0.07272874618202423,
+                    "r2": 0.17271364445923676,
+                    "rmse": 0.15917347846024515,
+                    "spearman": 0.28492932081790223,
+                    "target_mean": 0.9012418300653594,
+                    "target_std": 0.17500190503632648
+                  }
+                },
+                "val": {
+                  "metric_ci": null,
+                  "metrics": {
+                    "mae": 0.12331177650472208,
+                    "n": 450,
+                    "pearson": 0.4395107912031921,
+                    "prediction_mean": 0.9006122324362736,
+                    "prediction_std": 0.07492211786126655,
+                    "r2": 0.19298762867242691,
+                    "rmse": 0.1560901115549927,
+                    "spearman": 0.2923748736711705,
+                    "target_mean": 0.8987654320987655,
+                    "target_std": 0.17375419343959686
+                  }
+                }
+              },
+              "train_means": {
+                "0": 0.3761574074074074,
+                "1": 0.91131539213074
+              }
+            }
+          },
+          "s1": {
+            "quality_residual_after_strong": {
+              "raw_regression": {
+                "alphas": [
+                  10.0,
+                  100.0,
+                  1000.0,
+                  10000.0
+                ],
+                "best_alpha": 1000.0,
+                "selection_metric": "val_spearman",
+                "status": "ok",
+                "test_metric_ci": {
+                  "pearson": {
+                    "high": 0.7251092878236357,
+                    "low": 0.6707418572749014,
+                    "samples_used": 1000
+                  },
+                  "r2": {
+                    "high": 0.524736448893829,
+                    "low": 0.44776644985342995,
+                    "samples_used": 1000
+                  },
+                  "samples_requested": 1000,
+                  "seed": 20267783,
+                  "spearman": {
+                    "high": 0.7197252502706278,
+                    "low": 0.661934703245098,
+                    "samples_used": 1000
+                  }
+                },
+                "test_metrics": {
+                  "mae": 0.05394411604642333,
+                  "n": 1650,
+                  "pearson": 0.6991819346296652,
+                  "prediction_mean": -0.0008915472032414541,
+                  "prediction_std": 0.07677694734276383,
+                  "r2": 0.4883318707338592,
+                  "rmse": 0.07608630805782221,
+                  "spearman": 0.6915031545931262,
+                  "target_mean": -0.0005260488073294559,
+                  "target_std": 0.1063683268754035
+                },
+                "val_metrics": {
+                  "mae": 0.05450922627498923,
+                  "n": 1649,
+                  "pearson": 0.704208382922788,
+                  "prediction_mean": -0.002047600589675058,
+                  "prediction_std": 0.07807353518573339,
+                  "r2": 0.4955439435622385,
+                  "rmse": 0.07740349109131614,
+                  "spearman": 0.7036091469051212,
+                  "target_mean": -0.0036525846088336527,
+                  "target_std": 0.10898052071329262
+                }
+              },
+              "residualization_means": {
+                "0": 0.6514822687406658,
+                "1": 1.0
+              }
+            },
+            "raw_delta_vs_strong_baseline": {
+              "pearson": -0.18090638119344238,
+              "r2": -0.2775462325482222,
+              "spearman": -0.26982968547819597
+            },
+            "raw_regression": {
+              "alphas": [
+                10.0,
+                100.0,
+                1000.0,
+                10000.0
+              ],
+              "best_alpha": 1000.0,
+              "selection_metric": "val_spearman",
+              "status": "ok",
+              "test_metric_ci": {
+                "pearson": {
+                  "high": 0.6968374082409208,
+                  "low": 0.6458818251391355,
+                  "samples_used": 1000
+                },
+                "r2": {
+                  "high": 0.48425188863195995,
+                  "low": 0.41257064973229524,
+                  "samples_used": 1000
+                },
+                "samples_requested": 1000,
+                "seed": 20264782,
+                "spearman": {
+                  "high": 0.7088639979990607,
+                  "low": 0.657646741560784,
+                  "samples_used": 1000
+                }
+              },
+              "test_metrics": {
+                "mae": 0.11158076821071933,
+                "n": 1650,
+                "pearson": 0.6718243360826592,
+                "prediction_mean": 0.8466541005806489,
+                "prediction_std": 0.14529292664073176,
+                "r2": 0.44958831785323206,
+                "rmse": 0.15107311576037494,
+                "spearman": 0.6841666912763866,
+                "target_mean": 0.8457037037037036,
+                "target_std": 0.2036307518589254
+              },
+              "val_metrics": {
+                "mae": 0.11313155284351678,
+                "n": 1649,
+                "pearson": 0.6621930850490868,
+                "prediction_mean": 0.8447082299691681,
+                "prediction_std": 0.1454770853842267,
+                "r2": 0.43700755029336213,
+                "rmse": 0.156028216365833,
+                "spearman": 0.6630624923419409,
+                "target_mean": 0.8426952682562142,
+                "target_std": 0.2079466166233212
+              }
+            },
+            "split": "s1",
+            "split_counts": {
+              "test": {
+                "n": 1650,
+                "quality_max": 1.0,
+                "quality_mean": 0.8457037037037036,
+                "quality_min": 0.3333333333333333,
+                "quality_std": 0.2036307518589254,
+                "strong_positive_n": 922,
+                "weak_positive_n": 1588
+              },
+              "train": {
+                "n": 7698,
+                "quality_max": 1.0,
+                "quality_mean": 0.8463407144850377,
+                "quality_min": 0.3333333333333333,
+                "quality_std": 0.2044612609402674,
+                "strong_positive_n": 4304,
+                "weak_positive_n": 7392
+              },
+              "val": {
+                "n": 1649,
+                "quality_max": 1.0,
+                "quality_mean": 0.8426952682562142,
+                "quality_min": 0.3333333333333333,
+                "quality_std": 0.2079466166233212,
+                "strong_positive_n": 922,
+                "weak_positive_n": 1579
+              }
+            },
+            "strong_label_mean_baseline": {
+              "fallback_mean": 0.8463407144850377,
+              "splits": {
+                "test": {
+                  "metric_ci": {
+                    "pearson": {
+                      "high": 0.8636957692781245,
+                      "low": 0.8412736796467097,
+                      "samples_used": 1000
+                    },
+                    "r2": {
+                      "high": 0.7455365834123686,
+                      "low": 0.7072773457783849,
+                      "samples_used": 1000
+                    },
+                    "samples_requested": 1000,
+                    "seed": 20265791,
+                    "spearman": {
+                      "high": 0.9600080961273526,
+                      "low": 0.947371710979165,
+                      "samples_used": 1000
+                    }
+                  },
+                  "metrics": {
+                    "mae": 0.06448400023846891,
+                    "n": 1650,
+                    "pearson": 0.8527307172761016,
+                    "prediction_mean": 0.846229752511033,
+                    "prediction_std": 0.17305019149721546,
+                    "r2": 0.7271345504014542,
+                    "rmse": 0.10636962766513935,
+                    "spearman": 0.9539963767545826,
+                    "target_mean": 0.8457037037037036,
+                    "target_std": 0.2036307518589254
+                  }
+                },
+                "train": {
+                  "metric_ci": null,
+                  "metrics": {
+                    "mae": 0.06588645755571924,
+                    "n": 7698,
+                    "pearson": 0.846307105138326,
+                    "prediction_mean": 0.8463407144850376,
+                    "prediction_std": 0.17303701785928996,
+                    "r2": 0.7162357162076162,
+                    "rmse": 0.10891555295570923,
+                    "spearman": 0.9543311327122621,
+                    "target_mean": 0.8463407144850377,
+                    "target_std": 0.2044612609402674
+                  }
+                },
+                "val": {
+                  "metric_ci": null,
+                  "metrics": {
+                    "mae": 0.06548056287519553,
+                    "n": 1649,
+                    "pearson": 0.8518991461078779,
+                    "prediction_mean": 0.8463478528650479,
+                    "prediction_std": 0.1730361679054929,
+                    "r2": 0.7250323403809185,
+                    "rmse": 0.10904171343694619,
+                    "spearman": 0.95429412773447,
+                    "target_mean": 0.8426952682562142,
+                    "target_std": 0.2079466166233212
+                  }
+                }
+              },
+              "train_means": {
+                "0": 0.6514822687406658,
+                "1": 1.0
+              }
+            },
+            "target_variable": "quality_score",
+            "weak_label_mean_baseline": {
+              "fallback_mean": 0.8463407144850377,
+              "splits": {
+                "test": {
+                  "metric_ci": {
+                    "pearson": {
+                      "high": 0.498227451878863,
+                      "low": 0.39847401485277556,
+                      "samples_used": 1000
+                    },
+                    "r2": {
+                      "high": 0.24802400225180976,
+                      "low": 0.1571067947863594,
+                      "samples_used": 1000
+                    },
+                    "samples_requested": 1000,
+                    "seed": 20266785,
+                    "spearman": {
+                      "high": 0.38410209116964084,
+                      "low": 0.30094468484434794,
+                      "samples_used": 1000
+                    }
+                  },
+                  "metrics": {
+                    "mae": 0.15440664885482813,
+                    "n": 1650,
+                    "pearson": 0.45283340764587054,
+                    "prediction_mean": 0.8474153823987508,
+                    "prediction_std": 0.09396945706015634,
+                    "r2": 0.20491284914056718,
+                    "rmse": 0.1815727755449066,
+                    "spearman": 0.34424999967417164,
+                    "target_mean": 0.8457037037037036,
+                    "target_std": 0.2036307518589254
+                  }
+                },
+                "train": {
+                  "metric_ci": null,
+                  "metrics": {
+                    "mae": 0.1524207784111499,
+                    "n": 7698,
+                    "pearson": 0.4721742713199497,
+                    "prediction_mean": 0.8463407144850379,
+                    "prediction_std": 0.09654134689762929,
+                    "r2": 0.22294854249652774,
+                    "rmse": 0.18023366934198426,
+                    "spearman": 0.3600053490921204,
+                    "target_mean": 0.8463407144850377,
+                    "target_std": 0.2044612609402674
+                  }
+                },
+                "val": {
+                  "metric_ci": null,
+                  "metrics": {
+                    "mae": 0.1551665230207821,
+                    "n": 1649,
+                    "pearson": 0.4739553196148736,
+                    "prediction_mean": 0.845006841686487,
+                    "prediction_std": 0.09962515208062572,
+                    "r2": 0.22448371006859313,
+                    "rmse": 0.18312486644774656,
+                    "spearman": 0.36935154324752545,
+                    "target_mean": 0.8426952682562142,
+                    "target_std": 0.2079466166233212
+                  }
+                }
+              },
+              "train_means": {
+                "0": 0.37184355223570914,
+                "1": 0.8659830483119173
+              }
+            }
+          },
+          "s3": {
+            "quality_residual_after_strong": {
+              "raw_regression": {
+                "alphas": [
+                  10.0,
+                  100.0,
+                  1000.0,
+                  10000.0
+                ],
+                "best_alpha": 1000.0,
+                "selection_metric": "val_spearman",
+                "status": "ok",
+                "test_metric_ci": {
+                  "pearson": {
+                    "high": 0.7319167124126903,
+                    "low": 0.6830505482588818,
+                    "samples_used": 1000
+                  },
+                  "r2": {
+                    "high": 0.5332264148214215,
+                    "low": 0.460483401089205,
+                    "samples_used": 1000
+                  },
+                  "samples_requested": 1000,
+                  "seed": 20267785,
+                  "spearman": {
+                    "high": 0.7131110331670999,
+                    "low": 0.6551982843069168,
+                    "samples_used": 1000
+                  }
+                },
+                "test_metrics": {
+                  "mae": 0.05317948283493787,
+                  "n": 1674,
+                  "pearson": 0.7082595885316618,
+                  "prediction_mean": 0.0013765329417922874,
+                  "prediction_std": 0.07950929327633423,
+                  "r2": 0.49877528913346547,
+                  "rmse": 0.07401158105499377,
+                  "spearman": 0.6854634332992408,
+                  "target_mean": 0.0025257403174625444,
+                  "target_std": 0.10454022845181886
+                },
+                "val_metrics": {
+                  "mae": 0.055101519876659816,
+                  "n": 1598,
+                  "pearson": 0.6927435529758686,
+                  "prediction_mean": 0.00042534980101218605,
+                  "prediction_std": 0.07921602653070167,
+                  "r2": 0.47636243547652457,
+                  "rmse": 0.07646884382288659,
+                  "spearman": 0.7003117249715091,
+                  "target_mean": 0.0022425843093248363,
+                  "target_std": 0.10567423845582502
+                }
+              },
+              "residualization_means": {
+                "0": 0.6484501318939359,
+                "1": 1.0
+              }
+            },
+            "raw_delta_vs_strong_baseline": {
+              "pearson": -0.18774863904555994,
+              "r2": -0.28796903884353786,
+              "spearman": -0.2964241846163589
+            },
+            "raw_regression": {
+              "alphas": [
+                10.0,
+                100.0,
+                1000.0,
+                10000.0
+              ],
+              "best_alpha": 1000.0,
+              "selection_metric": "val_spearman",
+              "status": "ok",
+              "test_metric_ci": {
+                "pearson": {
+                  "high": 0.6943070248933948,
+                  "low": 0.6354849603062501,
+                  "samples_used": 1000
+                },
+                "r2": {
+                  "high": 0.479843130259403,
+                  "low": 0.3971358818490599,
+                  "samples_used": 1000
+                },
+                "samples_requested": 1000,
+                "seed": 20264784,
+                "spearman": {
+                  "high": 0.689752175902978,
+                  "low": 0.6329411444077401,
+                  "samples_used": 1000
+                }
+              },
+              "test_metrics": {
+                "mae": 0.10910735417517689,
+                "n": 1674,
+                "pearson": 0.6652109494908661,
+                "prediction_mean": 0.8463623594924398,
+                "prediction_std": 0.14210897764612287,
+                "r2": 0.43919521149928786,
+                "rmse": 0.14992200502316827,
+                "spearman": 0.6627479973053383,
+                "target_mean": 0.8536315608149538,
+                "target_std": 0.20019790347144623
+              },
+              "val_metrics": {
+                "mae": 0.11043478277003967,
+                "n": 1598,
+                "pearson": 0.6708086391788678,
+                "prediction_mean": 0.8421511308794773,
+                "prediction_std": 0.14654865403697653,
+                "r2": 0.44252979396063874,
+                "rmse": 0.1499664126325039,
+                "spearman": 0.6670809347233468,
+                "target_mean": 0.8548468323499613,
+                "target_std": 0.20085524265786892
+              }
+            },
+            "split": "s3",
+            "split_counts": {
+              "test": {
+                "n": 1674,
+                "quality_max": 1.0,
+                "quality_mean": 0.8536315608149538,
+                "quality_min": 0.3333333333333333,
+                "quality_std": 0.20019790347144623,
+                "strong_positive_n": 965,
+                "weak_positive_n": 1619
+              },
+              "train": {
+                "n": 7725,
+                "quality_max": 1.0,
+                "quality_mean": 0.8420869848119039,
+                "quality_min": 0.3333333333333333,
+                "quality_std": 0.20657536544378113,
+                "strong_positive_n": 4255,
+                "weak_positive_n": 7400
+              },
+              "val": {
+                "n": 1598,
+                "quality_max": 1.0,
+                "quality_mean": 0.8548468323499613,
+                "quality_min": 0.3333333333333333,
+                "quality_std": 0.20085524265786892,
+                "strong_positive_n": 928,
+                "weak_positive_n": 1540
+              }
+            },
+            "strong_label_mean_baseline": {
+              "fallback_mean": 0.8420869848119039,
+              "splits": {
+                "test": {
+                  "metric_ci": {
+                    "pearson": {
+                      "high": 0.8643037918235971,
+                      "low": 0.8415835002195716,
+                      "samples_used": 1000
+                    },
+                    "r2": {
+                      "high": 0.7468917355927425,
+                      "low": 0.7057175647517129,
+                      "samples_used": 1000
+                    },
+                    "samples_requested": 1000,
+                    "seed": 20265793,
+                    "spearman": {
+                      "high": 0.9648706903995993,
+                      "low": 0.9523145993404637,
+                      "samples_used": 1000
+                    }
+                  },
+                  "metrics": {
+                    "mae": 0.06225538730632743,
+                    "n": 1674,
+                    "pearson": 0.8529595885364261,
+                    "prediction_mean": 0.8511058204974915,
+                    "prediction_std": 0.17370737599809138,
+                    "r2": 0.7271642503428257,
+                    "rmse": 0.10457073552820469,
+                    "spearman": 0.9591721819216972,
+                    "target_mean": 0.8536315608149538,
+                    "target_std": 0.20019790347144623
+                  }
+                },
+                "train": {
+                  "metric_ci": null,
+                  "metrics": {
+                    "mae": 0.06682290896779579,
+                    "n": 7725,
+                    "pearson": 0.8464950856054145,
+                    "prediction_mean": 0.8420869848119039,
+                    "prediction_std": 0.17486503165530326,
+                    "r2": 0.7165539299541177,
+                    "rmse": 0.10998000869440554,
+                    "spearman": 0.9519522428232804,
+                    "target_mean": 0.8420869848119039,
+                    "target_std": 0.20657536544378113
+                  }
+                },
+                "val": {
+                  "metric_ci": null,
+                  "metrics": {
+                    "mae": 0.06208763300388999,
+                    "n": 1598,
+                    "pearson": 0.8505109953749481,
+                    "prediction_mean": 0.8526042480406365,
+                    "prediction_std": 0.173468871746611,
+                    "r2": 0.7230716270493953,
+                    "rmse": 0.10569803147458802,
+                    "spearman": 0.9596786978984192,
+                    "target_mean": 0.8548468323499613,
+                    "target_std": 0.20085524265786892
+                  }
+                }
+              },
+              "train_means": {
+                "0": 0.6484501318939359,
+                "1": 1.0
+              }
+            },
+            "target_variable": "quality_score",
+            "weak_label_mean_baseline": {
+              "fallback_mean": 0.8420869848119039,
+              "splits": {
+                "test": {
+                  "metric_ci": {
+                    "pearson": {
+                      "high": 0.5096049130536118,
+                      "low": 0.4037262514973827,
+                      "samples_used": 1000
+                    },
+                    "r2": {
+                      "high": 0.2548897000150688,
+                      "low": 0.1617769461899312,
+                      "samples_used": 1000
+                    },
+                    "samples_requested": 1000,
+                    "seed": 20266787,
+                    "spearman": {
+                      "high": 0.38236455288947496,
+                      "low": 0.29657406886128374,
+                      "samples_used": 1000
+                    }
+                  },
+                  "metrics": {
+                    "mae": 0.15249876346471328,
+                    "n": 1674,
+                    "pearson": 0.4580927475382247,
+                    "prediction_mean": 0.8465824664187864,
+                    "prediction_std": 0.08695495240707524,
+                    "r2": 0.20804521991941605,
+                    "rmse": 0.17815980035023551,
+                    "spearman": 0.34023270903591607,
+                    "target_mean": 0.8536315608149538,
+                    "target_std": 0.20019790347144623
+                  }
+                },
+                "train": {
+                  "metric_ci": null,
+                  "metrics": {
+                    "mae": 0.1542509519726348,
+                    "n": 7725,
+                    "pearson": 0.47405150401718554,
+                    "prediction_mean": 0.8420869848119039,
+                    "prediction_std": 0.09792736268152358,
+                    "r2": 0.22472482846095299,
+                    "rmse": 0.18188901353977668,
+                    "spearman": 0.36586564577131125,
+                    "target_mean": 0.8420869848119039,
+                    "target_std": 0.20657536544378113
+                  }
+                },
+                "val": {
+                  "metric_ci": null,
+                  "metrics": {
+                    "mae": 0.1525876191420622,
+                    "n": 1598,
+                    "pearson": 0.457616011813917,
+                    "prediction_mean": 0.8449044546341167,
+                    "prediction_std": 0.09123103218381569,
+                    "r2": 0.2069505614623205,
+                    "rmse": 0.17886826854824228,
+                    "spearman": 0.34404446560272484,
+                    "target_mean": 0.8548468323499613,
+                    "target_std": 0.20085524265786892
+                  }
+                }
+              },
+              "train_means": {
+                "0": 0.3748058608058608,
+                "1": 0.8626094666094665
+              }
+            }
+          }
+        },
+        "task": "infer_property"
+      },
+      "infer_subtype": {
+        "activation_prefix": "results/stage2/activations/qwen35_27b_infer_subtype_L53",
+        "model": "qwen35_27b",
+        "n": 10999,
+        "parse_fail_rate": 9.09090909090909e-05,
+        "quality_unique_count": 18,
+        "site_or_layer": "L53/resid_post",
+        "source_file": "results/full/with_errortype/qwen35_27b_infer_subtype.jsonl",
+        "splits": {
+          "height_h12_to_h34": {
+            "quality_residual_after_strong": {
+              "raw_regression": {
+                "alphas": [
+                  10.0,
+                  100.0,
+                  1000.0,
+                  10000.0
+                ],
+                "best_alpha": 1000.0,
+                "selection_metric": "val_spearman",
+                "status": "ok",
+                "test_metric_ci": {
+                  "pearson": {
+                    "high": 0.567476156710341,
+                    "low": 0.5354636537209405,
+                    "samples_used": 1000
+                  },
+                  "r2": {
+                    "high": 0.31269653678995857,
+                    "low": 0.28199399753509324,
+                    "samples_used": 1000
+                  },
+                  "samples_requested": 1000,
+                  "seed": 20269053,
+                  "spearman": {
+                    "high": 0.5831891389291791,
+                    "low": 0.5479916839775525,
+                    "samples_used": 1000
+                  }
+                },
+                "test_metrics": {
+                  "mae": 0.10580502627865974,
+                  "n": 7999,
+                  "pearson": 0.5520073255369136,
+                  "prediction_mean": -0.04874601973871091,
+                  "prediction_std": 0.07534433203451867,
+                  "r2": 0.2977600387920578,
+                  "rmse": 0.13458249553304727,
+                  "spearman": 0.5663395364751702,
+                  "target_mean": -0.04726127485497091,
+                  "target_std": 0.16060009850188978
+                },
+                "val_metrics": {
+                  "mae": 0.056059442307879105,
+                  "n": 450,
+                  "pearson": 0.6048994001176191,
+                  "prediction_mean": -0.0008516643759099276,
+                  "prediction_std": 0.07112993726567979,
+                  "r2": 0.35632081879869415,
+                  "rmse": 0.0813453747132205,
+                  "spearman": 0.5745398757418981,
+                  "target_mean": -0.002430499855836034,
+                  "target_std": 0.10139070262246859
+                }
+              },
+              "residualization_means": {
+                "0": 0.6524828969096486,
+                "1": 1.0
+              }
+            },
+            "raw_delta_vs_strong_baseline": {
+              "pearson": -0.31211298306183616,
+              "r2": -0.37340681108977125,
+              "spearman": -0.36431715770862877
+            },
+            "raw_regression": {
+              "alphas": [
+                10.0,
+                100.0,
+                1000.0,
+                10000.0
+              ],
+              "best_alpha": 10000.0,
+              "selection_metric": "val_spearman",
+              "status": "ok",
+              "test_metric_ci": {
+                "pearson": {
+                  "high": 0.48567157156608143,
+                  "low": 0.45231405320138596,
+                  "samples_used": 1000
+                },
+                "r2": {
+                  "high": 0.1957664092105924,
+                  "low": 0.17202448199195247,
+                  "samples_used": 1000
+                },
+                "samples_requested": 1000,
+                "seed": 20266052,
+                "spearman": {
+                  "high": 0.49454702569145,
+                  "low": 0.45992538140535155,
+                  "samples_used": 1000
+                }
+              },
+              "test_metrics": {
+                "mae": 0.1970182445429764,
+                "n": 7999,
+                "pearson": 0.46930573779781964,
+                "prediction_mean": 0.7482860597212145,
+                "prediction_std": 0.07975954297465271,
+                "r2": 0.18455467620515353,
+                "rmse": 0.227377810698517,
+                "spearman": 0.4775794233928862,
+                "target_mean": 0.7202207184267442,
+                "target_std": 0.25179706135116153
+              },
+              "val_metrics": {
+                "mae": 0.10933383438763794,
+                "n": 450,
+                "pearson": 0.6422198694479998,
+                "prediction_mean": 0.8669880157709122,
+                "prediction_std": 0.11824968280283148,
+                "r2": 0.409840671793705,
+                "rmse": 0.1533369480697017,
+                "spearman": 0.676980525403499,
+                "target_mean": 0.8647407407407407,
+                "target_std": 0.19960075376949304
+              }
+            },
+            "split": "height_h12_to_h34",
+            "split_counts": {
+              "test": {
+                "n": 7999,
+                "quality_max": 1.0,
+                "quality_mean": 0.7202207184267442,
+                "quality_min": 0.3333333333333333,
+                "quality_std": 0.25179706135116153,
+                "strong_positive_n": 2647,
+                "weak_positive_n": 6503
+              },
+              "train": {
+                "n": 2550,
+                "quality_max": 1.0,
+                "quality_mean": 0.8716230936819171,
+                "quality_min": 0.3333333333333333,
+                "quality_std": 0.19827674882688626,
+                "strong_positive_n": 1608,
+                "weak_positive_n": 2421
+              },
+              "val": {
+                "n": 450,
+                "quality_max": 1.0,
+                "quality_mean": 0.8647407407407407,
+                "quality_min": 0.3333333333333333,
+                "quality_std": 0.19960075376949304,
+                "strong_positive_n": 278,
+                "weak_positive_n": 428
+              }
+            },
+            "strong_label_mean_baseline": {
+              "fallback_mean": 0.8716230936819171,
+              "splits": {
+                "test": {
+                  "metric_ci": {
+                    "pearson": {
+                      "high": 0.7885488849591761,
+                      "low": 0.7734259393623891,
+                      "samples_used": 1000
+                    },
+                    "r2": {
+                      "high": 0.5676844980151512,
+                      "low": 0.5475898549007029,
+                      "samples_used": 1000
+                    },
+                    "samples_requested": 1000,
+                    "seed": 20267061,
+                    "spearman": {
+                      "high": 0.8497424944072495,
+                      "low": 0.8338968516837016,
+                      "samples_used": 1000
+                    }
+                  },
+                  "metrics": {
+                    "mae": 0.1208376973736975,
+                    "n": 7999,
+                    "pearson": 0.7814187208596558,
+                    "prediction_mean": 0.7674819932817151,
+                    "prediction_std": 0.16352174370045366,
+                    "r2": 0.5579614872949248,
+                    "rmse": 0.1674097360960043,
+                    "spearman": 0.841896581101515,
+                    "target_mean": 0.7202207184267442,
+                    "target_std": 0.25179706135116153
+                  }
+                },
+                "train": {
+                  "metric_ci": null,
+                  "metrics": {
+                    "mae": 0.057082228975572295,
+                    "n": 2550,
+                    "pearson": 0.8459266114665768,
+                    "prediction_mean": 0.8716230936819171,
+                    "prediction_std": 0.16772757826773674,
+                    "r2": 0.715591831987319,
+                    "rmse": 0.10574085593468768,
+                    "spearman": 0.969388585974046,
+                    "target_mean": 0.8716230936819171,
+                    "target_std": 0.19827674882688626
+                  }
+                },
+                "val": {
+                  "metric_ci": null,
+                  "metrics": {
+                    "mae": 0.05562176613981285,
+                    "n": 450,
+                    "pearson": 0.8615153149292519,
+                    "prediction_mean": 0.8671712405965767,
+                    "prediction_std": 0.16886913972159157,
+                    "r2": 0.7418207100499213,
+                    "rmse": 0.101419829953649,
+                    "spearman": 0.9668300547755316,
+                    "target_mean": 0.8647407407407407,
+                    "target_std": 0.19960075376949304
+                  }
+                }
+              },
+              "train_means": {
+                "0": 0.6524828969096486,
+                "1": 1.0
+              }
+            },
+            "target_variable": "quality_score",
+            "weak_label_mean_baseline": {
+              "fallback_mean": 0.8716230936819171,
+              "splits": {
+                "test": {
+                  "metric_ci": {
+                    "pearson": {
+                      "high": 0.6965951210386451,
+                      "low": 0.6749433858723501,
+                      "samples_used": 1000
+                    },
+                    "r2": {
+                      "high": 0.3708470303894153,
+                      "low": 0.3217860969152751,
+                      "samples_used": 1000
+                    },
+                    "samples_requested": 1000,
+                    "seed": 20268055,
+                    "spearman": {
+                      "high": 0.6648061409083235,
+                      "low": 0.6398708441750028,
+                      "samples_used": 1000
+                    }
+                  },
+                  "metrics": {
+                    "mae": 0.16427160344540467,
+                    "n": 7999,
+                    "pearson": 0.6861529552488308,
+                    "prediction_mean": 0.8084715995576973,
+                    "prediction_std": 0.18048634819609224,
+                    "r2": 0.34702792592606246,
+                    "rmse": 0.203468864438156,
+                    "spearman": 0.652152222596388,
+                    "target_mean": 0.7202207184267442,
+                    "target_std": 0.25179706135116153
+                  }
+                },
+                "train": {
+                  "metric_ci": null,
+                  "metrics": {
+                    "mae": 0.13889840749097224,
+                    "n": 2550,
+                    "pearson": 0.5116083938555815,
+                    "prediction_mean": 0.8716230936819171,
+                    "prediction_std": 0.10144004900622988,
+                    "r2": 0.26174314866348813,
+                    "rmse": 0.17036309924092663,
+                    "spearman": 0.3979848115969375,
+                    "target_mean": 0.8716230936819171,
+                    "target_std": 0.19827674882688626
+                  }
+                },
+                "val": {
+                  "metric_ci": null,
+                  "metrics": {
+                    "mae": 0.14525270710643529,
+                    "n": 450,
+                    "pearson": 0.465927070913729,
+                    "prediction_mean": 0.8724096671589375,
+                    "prediction_std": 0.0998109276688112,
+                    "r2": 0.21444726737283115,
+                    "rmse": 0.17690896792792452,
+                    "spearman": 0.3742244156190012,
+                    "target_mean": 0.8647407407407407,
+                    "target_std": 0.19960075376949304
+                  }
+                }
+              },
+              "train_means": {
+                "0": 0.4321705426356589,
+                "1": 0.8950387810363026
+              }
+            }
+          },
+          "s1": {
+            "quality_residual_after_strong": {
+              "raw_regression": {
+                "alphas": [
+                  10.0,
+                  100.0,
+                  1000.0,
+                  10000.0
+                ],
+                "best_alpha": 1000.0,
+                "selection_metric": "val_spearman",
+                "status": "ok",
+                "test_metric_ci": {
+                  "pearson": {
+                    "high": 0.7463671010302823,
+                    "low": 0.6949064617932693,
+                    "samples_used": 1000
+                  },
+                  "r2": {
+                    "high": 0.5528994820206223,
+                    "low": 0.4762209947884267,
+                    "samples_used": 1000
+                  },
+                  "samples_requested": 1000,
+                  "seed": 20267662,
+                  "spearman": {
+                    "high": 0.708660592025147,
+                    "low": 0.645690129203238,
+                    "samples_used": 1000
+                  }
+                },
+                "test_metrics": {
+                  "mae": 0.07590392708160817,
+                  "n": 1650,
+                  "pearson": 0.721418476230789,
+                  "prediction_mean": 0.0006174597231791158,
+                  "prediction_std": 0.10985376345442141,
+                  "r2": 0.5161936691561116,
+                  "rmse": 0.10074678012278893,
+                  "spearman": 0.6771720767562749,
+                  "target_mean": 0.008391287756330173,
+                  "target_std": 0.14484229630488726
+                },
+                "val_metrics": {
+                  "mae": 0.07644787491424214,
+                  "n": 1650,
+                  "pearson": 0.708745491812906,
+                  "prediction_mean": -0.0005591576051577277,
+                  "prediction_std": 0.10258934317808495,
+                  "r2": 0.5021030815044016,
+                  "rmse": 0.10222346732076465,
+                  "spearman": 0.6150322431405949,
+                  "target_mean": 0.0015735869386293534,
+                  "target_std": 0.14487081005284233
+                }
+              },
+              "residualization_means": {
+                "0": 0.5913046250651199,
+                "1": 1.0
+              }
+            },
+            "raw_delta_vs_strong_baseline": {
+              "pearson": -0.14315340200916193,
+              "r2": -0.21100671599418508,
+              "spearman": -0.2399161525416461
+            },
+            "raw_regression": {
+              "alphas": [
+                10.0,
+                100.0,
+                1000.0,
+                10000.0
+              ],
+              "best_alpha": 1000.0,
+              "selection_metric": "val_spearman",
+              "status": "ok",
+              "test_metric_ci": {
+                "pearson": {
+                  "high": 0.6852792412154003,
+                  "low": 0.6325643911164344,
+                  "samples_used": 1000
+                },
+                "r2": {
+                  "high": 0.4675157282870486,
+                  "low": 0.39244504934421964,
+                  "samples_used": 1000
+                },
+                "samples_requested": 1000,
+                "seed": 20264661,
+                "spearman": {
+                  "high": 0.6807605483087783,
+                  "low": 0.6233330951894542,
+                  "samples_used": 1000
+                }
+              },
+              "test_metrics": {
+                "mae": 0.1408945083967363,
+                "n": 1650,
+                "pearson": 0.6586941895574365,
+                "prediction_mean": 0.7584364959507277,
+                "prediction_std": 0.1712584370363261,
+                "r2": 0.42990960543201995,
+                "rmse": 0.18280877180796606,
+                "spearman": 0.653155680908594,
+                "target_mean": 0.7681279461279461,
+                "target_std": 0.24211693588148184
+              },
+              "val_metrics": {
+                "mae": 0.14405241725237222,
+                "n": 1650,
+                "pearson": 0.6615102949895161,
+                "prediction_mean": 0.7630511034618724,
+                "prediction_std": 0.16986436545993608,
+                "r2": 0.4368347999414899,
+                "rmse": 0.18523262929176992,
+                "spearman": 0.6608856871183293,
+                "target_mean": 0.7613102453102453,
+                "target_std": 0.2468309337776223
+              }
+            },
+            "split": "s1",
+            "split_counts": {
+              "test": {
+                "n": 1650,
+                "quality_max": 1.0,
+                "quality_mean": 0.7681279461279461,
+                "quality_min": 0.3333333333333333,
+                "quality_std": 0.24211693588148184,
+                "strong_positive_n": 680,
+                "weak_positive_n": 1426
+              },
+              "train": {
+                "n": 7699,
+                "quality_max": 1.0,
+                "quality_mean": 0.7597408407643503,
+                "quality_min": 0.3333333333333333,
+                "quality_std": 0.24899639849576707,
+                "strong_positive_n": 3173,
+                "weak_positive_n": 6509
+              },
+              "val": {
+                "n": 1650,
+                "quality_max": 1.0,
+                "quality_mean": 0.7613102453102453,
+                "quality_min": 0.3333333333333333,
+                "quality_std": 0.2468309337776223,
+                "strong_positive_n": 680,
+                "weak_positive_n": 1417
+              }
+            },
+            "strong_label_mean_baseline": {
+              "fallback_mean": 0.7597408407643503,
+              "splits": {
+                "test": {
+                  "metric_ci": {
+                    "pearson": {
+                      "high": 0.8145518527581379,
+                      "low": 0.7882632813430475,
+                      "samples_used": 1000
+                    },
+                    "r2": {
+                      "high": 0.6628169174941522,
+                      "low": 0.6163338839703794,
+                      "samples_used": 1000
+                    },
+                    "samples_requested": 1000,
+                    "seed": 20265670,
+                    "spearman": {
+                      "high": 0.9043464118014127,
+                      "low": 0.8799079975475528,
+                      "samples_used": 1000
+                    }
+                  },
+                  "metrics": {
+                    "mae": 0.0938627177518432,
+                    "n": 1650,
+                    "pearson": 0.8018475915665985,
+                    "prediction_mean": 0.759736658371616,
+                    "prediction_std": 0.20116670489790803,
+                    "r2": 0.640916321426205,
+                    "rmse": 0.14508516295294394,
+                    "spearman": 0.8930718334502401,
+                    "target_mean": 0.7681279461279461,
+                    "target_std": 0.24211693588148184
+                  }
+                },
+                "train": {
+                  "metric_ci": null,
+                  "metrics": {
+                    "mae": 0.09525875063499045,
+                    "n": 7699,
+                    "pearson": 0.8079130974553587,
+                    "prediction_mean": 0.7597408407643503,
+                    "prediction_std": 0.2011674515639437,
+                    "r2": 0.6527235730399097,
+                    "rmse": 0.14673398684398656,
+                    "spearman": 0.8926468042401607,
+                    "target_mean": 0.7597408407643503,
+                    "target_std": 0.24899639849576707
+                  }
+                },
+                "val": {
+                  "metric_ci": null,
+                  "metrics": {
+                    "mae": 0.09345190890798091,
+                    "n": 1650,
+                    "pearson": 0.8096601808518887,
+                    "prediction_mean": 0.759736658371616,
+                    "prediction_std": 0.20116670489790803,
+                    "r2": 0.6554804740055753,
+                    "rmse": 0.14487935595253087,
+                    "spearman": 0.8926047462795711,
+                    "target_mean": 0.7613102453102453,
+                    "target_std": 0.2468309337776223
+                  }
+                }
+              },
+              "train_means": {
+                "0": 0.5913046250651199,
+                "1": 1.0
+              }
+            },
+            "target_variable": "quality_score",
+            "weak_label_mean_baseline": {
+              "fallback_mean": 0.7597408407643503,
+              "splits": {
+                "test": {
+                  "metric_ci": {
+                    "pearson": {
+                      "high": 0.6819657359204383,
+                      "low": 0.6249641538927438,
+                      "samples_used": 1000
+                    },
+                    "r2": {
+                      "high": 0.46438038913546603,
+                      "low": 0.39022263462559015,
+                      "samples_used": 1000
+                    },
+                    "samples_requested": 1000,
+                    "seed": 20266664,
+                    "spearman": {
+                      "high": 0.612361606658529,
+                      "low": 0.5489389481151374,
+                      "samples_used": 1000
+                    }
+                  },
+                  "metrics": {
+                    "mae": 0.14825594372824663,
+                    "n": 1650,
+                    "pearson": 0.6559190061004918,
+                    "prediction_mean": 0.7684472317950145,
+                    "prediction_std": 0.15856103914191952,
+                    "r2": 0.43022695382630016,
+                    "rmse": 0.182757883258913,
+                    "spearman": 0.5841314600637181,
+                    "target_mean": 0.7681279461279461,
+                    "target_std": 0.24211693588148184
+                  }
+                },
+                "train": {
+                  "metric_ci": null,
+                  "metrics": {
+                    "mae": 0.1493513558412584,
+                    "n": 7699,
+                    "pearson": 0.6720473717506519,
+                    "prediction_mean": 0.7597408407643504,
+                    "prediction_std": 0.16733737518445738,
+                    "r2": 0.4516476698769546,
+                    "rmse": 0.1843838640723178,
+                    "spearman": 0.6099869294070657,
+                    "target_mean": 0.7597408407643503,
+                    "target_std": 0.24899639849576707
+                  }
+                },
+                "val": {
+                  "metric_ci": null,
+                  "metrics": {
+                    "mae": 0.15068394276288047,
+                    "n": 1650,
+                    "pearson": 0.6609857843524449,
+                    "prediction_mean": 0.7659222676185159,
+                    "prediction_std": 0.16120391951616264,
+                    "r2": 0.4364908072262962,
+                    "rmse": 0.1852891925771896,
+                    "spearman": 0.5975400345734485,
+                    "target_mean": 0.7613102453102453,
+                    "target_std": 0.2468309337776223
+                  }
+                }
+              },
+              "train_means": {
+                "0": 0.36838068560757636,
+                "1": 0.8312907846323117
+              }
+            }
+          },
+          "s3": {
+            "quality_residual_after_strong": {
+              "raw_regression": {
+                "alphas": [
+                  10.0,
+                  100.0,
+                  1000.0,
+                  10000.0
+                ],
+                "best_alpha": 1000.0,
+                "selection_metric": "val_spearman",
+                "status": "ok",
+                "test_metric_ci": {
+                  "pearson": {
+                    "high": 0.7339206993781533,
+                    "low": 0.6744558470415827,
+                    "samples_used": 1000
+                  },
+                  "r2": {
+                    "high": 0.538424449400394,
+                    "low": 0.45105656902776675,
+                    "samples_used": 1000
+                  },
+                  "samples_requested": 1000,
+                  "seed": 20267664,
+                  "spearman": {
+                    "high": 0.6621240724653266,
+                    "low": 0.5882908144974266,
+                    "samples_used": 1000
+                  }
+                },
+                "test_metrics": {
+                  "mae": 0.0775400279724121,
+                  "n": 1635,
+                  "pearson": 0.7061882917863175,
+                  "prediction_mean": -6.198079205728322e-05,
+                  "prediction_std": 0.10783142066653013,
+                  "r2": 0.49778004922981445,
+                  "rmse": 0.10482304931876434,
+                  "spearman": 0.6262062107831899,
+                  "target_mean": -0.0030234727868456842,
+                  "target_std": 0.14791417946635235
+                },
+                "val_metrics": {
+                  "mae": 0.08117572890505952,
+                  "n": 1648,
+                  "pearson": 0.6812903132605194,
+                  "prediction_mean": 0.0006560289672908537,
+                  "prediction_std": 0.10771414613707364,
+                  "r2": 0.46056013204807356,
+                  "rmse": 0.10673068068318424,
+                  "spearman": 0.6381471092358044,
+                  "target_mean": 0.0009153501344732025,
+                  "target_std": 0.14531744687242526
+                }
+              },
+              "residualization_means": {
+                "0": 0.5943786931491849,
+                "1": 1.0
+              }
+            },
+            "raw_delta_vs_strong_baseline": {
+              "pearson": -0.15913566158264947,
+              "r2": -0.23695417188658885,
+              "spearman": -0.23635724961097515
+            },
+            "raw_regression": {
+              "alphas": [
+                10.0,
+                100.0,
+                1000.0,
+                10000.0
+              ],
+              "best_alpha": 1000.0,
+              "selection_metric": "val_spearman",
+              "status": "ok",
+              "test_metric_ci": {
+                "pearson": {
+                  "high": 0.6705545652199945,
+                  "low": 0.6170825421545048,
+                  "samples_used": 1000
+                },
+                "r2": {
+                  "high": 0.4437752887556003,
+                  "low": 0.37155966820590847,
+                  "samples_used": 1000
+                },
+                "samples_requested": 1000,
+                "seed": 20264663,
+                "spearman": {
+                  "high": 0.6698233817556457,
+                  "low": 0.6115796733506415,
+                  "samples_used": 1000
+                }
+              },
+              "test_metrics": {
+                "mae": 0.1506366396046953,
+                "n": 1635,
+                "pearson": 0.6445330292147625,
+                "prediction_mean": 0.7647777141963306,
+                "prediction_std": 0.17086432063055162,
+                "r2": 0.4086886611105929,
+                "rmse": 0.19111202397331437,
+                "spearman": 0.6412028213787438,
+                "target_mean": 0.747401582447454,
+                "target_std": 0.24853062295014375
+              },
+              "val_metrics": {
+                "mae": 0.1446341529088038,
+                "n": 1648,
+                "pearson": 0.6654054516273142,
+                "prediction_mean": 0.7610744875720115,
+                "prediction_std": 0.17609239935370502,
+                "r2": 0.4397153002015075,
+                "rmse": 0.18491870054964304,
+                "spearman": 0.6653488535605567,
+                "target_mean": 0.7680769057892844,
+                "target_std": 0.24704521782050434
+              }
+            },
+            "split": "s3",
+            "split_counts": {
+              "test": {
+                "n": 1635,
+                "quality_max": 1.0,
+                "quality_mean": 0.747401582447454,
+                "quality_min": 0.3333333333333333,
+                "quality_std": 0.24853062295014375,
+                "strong_positive_n": 629,
+                "weak_positive_n": 1382
+              },
+              "train": {
+                "n": 7716,
+                "quality_max": 1.0,
+                "quality_mean": 0.7627041758521801,
+                "quality_min": 0.3333333333333333,
+                "quality_std": 0.24751288540731242,
+                "strong_positive_n": 3202,
+                "weak_positive_n": 6570
+              },
+              "val": {
+                "n": 1648,
+                "quality_max": 1.0,
+                "quality_mean": 0.7680769057892844,
+                "quality_min": 0.3333333333333333,
+                "quality_std": 0.24704521782050434,
+                "strong_positive_n": 702,
+                "weak_positive_n": 1400
+              }
+            },
+            "strong_label_mean_baseline": {
+              "fallback_mean": 0.7627041758521801,
+              "splits": {
+                "test": {
+                  "metric_ci": {
+                    "pearson": {
+                      "high": 0.8177836279705663,
+                      "low": 0.7895746100979004,
+                      "samples_used": 1000
+                    },
+                    "r2": {
+                      "high": 0.6664786749809206,
+                      "low": 0.6233371481458128,
+                      "samples_used": 1000
+                    },
+                    "samples_requested": 1000,
+                    "seed": 20265672,
+                    "spearman": {
+                      "high": 0.8905274237303591,
+                      "low": 0.8626371021249476,
+                      "samples_used": 1000
+                    }
+                  },
+                  "metrics": {
+                    "mae": 0.09791505409593342,
+                    "n": 1635,
+                    "pearson": 0.803668690797412,
+                    "prediction_mean": 0.7504250552342998,
+                    "prediction_std": 0.19734554010233166,
+                    "r2": 0.6456428329971817,
+                    "rmse": 0.14794507722427633,
+                    "spearman": 0.877560070989719,
+                    "target_mean": 0.747401582447454,
+                    "target_std": 0.24853062295014375
+                  }
+                },
+                "train": {
+                  "metric_ci": null,
+                  "metrics": {
+                    "mae": 0.09488280596909461,
+                    "n": 7716,
+                    "pearson": 0.8074621412517541,
+                    "prediction_mean": 0.76270417585218,
+                    "prediction_std": 0.1998572844383883,
+                    "r2": 0.6519951095548657,
+                    "rmse": 0.14601265116272136,
+                    "spearman": 0.8942611759643325,
+                    "target_mean": 0.7627041758521801,
+                    "target_std": 0.24751288540731242
+                  }
+                },
+                "val": {
+                  "metric_ci": null,
+                  "metrics": {
+                    "mae": 0.09406436178231099,
+                    "n": 1648,
+                    "pearson": 0.8087057536259606,
+                    "prediction_mean": 0.7671615556548113,
+                    "prediction_std": 0.200575404562271,
+                    "r2": 0.653981079996044,
+                    "rmse": 0.14532032972502096,
+                    "spearman": 0.8993425332951156,
+                    "target_mean": 0.7680769057892844,
+                    "target_std": 0.24704521782050434
+                  }
+                }
+              },
+              "train_means": {
+                "0": 0.5943786931491849,
+                "1": 1.0
+              }
+            },
+            "target_variable": "quality_score",
+            "weak_label_mean_baseline": {
+              "fallback_mean": 0.7627041758521801,
+              "splits": {
+                "test": {
+                  "metric_ci": {
+                    "pearson": {
+                      "high": 0.6852612192390751,
+                      "low": 0.6300834698169056,
+                      "samples_used": 1000
+                    },
+                    "r2": {
+                      "high": 0.4684541286904152,
+                      "low": 0.3906884535006069,
+                      "samples_used": 1000
+                    },
+                    "samples_requested": 1000,
+                    "seed": 20266666,
+                    "spearman": {
+                      "high": 0.6356327707525192,
+                      "low": 0.577032934859082,
+                      "samples_used": 1000
+                    }
+                  },
+                  "metrics": {
+                    "mae": 0.1508419894194605,
+                    "n": 1635,
+                    "pearson": 0.6595470812767062,
+                    "prediction_mean": 0.759808269211335,
+                    "prediction_std": 0.16844749089482644,
+                    "r2": 0.4321781253499296,
+                    "rmse": 0.1872776572810527,
+                    "spearman": 0.6084203163757984,
+                    "target_mean": 0.747401582447454,
+                    "target_std": 0.24853062295014375
+                  }
+                },
+                "train": {
+                  "metric_ci": null,
+                  "metrics": {
+                    "mae": 0.14870509602723134,
+                    "n": 7716,
+                    "pearson": 0.6691954552164147,
+                    "prediction_mean": 0.76270417585218,
+                    "prediction_std": 0.1656344980220755,
+                    "r2": 0.4478225572823088,
+                    "rmse": 0.18392346644087706,
+                    "spearman": 0.6033185085896954,
+                    "target_mean": 0.7627041758521801,
+                    "target_std": 0.24751288540731242
+                  }
+                },
+                "val": {
+                  "metric_ci": null,
+                  "metrics": {
+                    "mae": 0.1480410425421771,
+                    "n": 1648,
+                    "pearson": 0.6725355185331845,
+                    "prediction_mean": 0.7617899296268958,
+                    "prediction_std": 0.16653314050866197,
+                    "r2": 0.45165394098717226,
+                    "rmse": 0.18293795279340866,
+                    "spearman": 0.6060346460659669,
+                    "target_mean": 0.7680769057892844,
+                    "target_std": 0.24704521782050434
+                  }
+                }
+              },
+              "train_means": {
+                "0": 0.36611471231890086,
+                "1": 0.8318809681214552
+              }
+            }
+          }
+        },
+        "task": "infer_subtype"
+      }
+    }
+  },
+  "schema_version": 1,
+  "seed": 20260606,
+  "split_families": [
+    "s1",
+    "s3",
+    "height_h12_to_h34"
+  ],
+  "splits_path": "results/stage2/splits.jsonl",
+  "target_variable": "quality_score",
+  "tasks": [
+    "infer_property",
+    "infer_subtype"
+  ]
+}
