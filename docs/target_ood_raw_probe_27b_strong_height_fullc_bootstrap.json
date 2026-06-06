@@ -1,0 +1,496 @@
+{
+  "activation_dir": "results/stage2/activations",
+  "activation_site": "resid_post",
+  "bootstrap_samples": 1000,
+  "c_values": [
+    0.01,
+    0.1,
+    1.0,
+    10.0
+  ],
+  "causal_abstraction_claim": {
+    "claim_type": "predictive",
+    "note": "No causal claim is made by this report; it tests target/OOD readout feasibility.",
+    "target_variables": [
+      "is_correct_strong"
+    ],
+    "tested_representation": "raw residual activation"
+  },
+  "created_at_utc": "2026-06-06T04:52:44.242578+00:00",
+  "drop_parse_failed": true,
+  "height_val_fraction": 0.15,
+  "include_split_indices": false,
+  "max_iter": 2000,
+  "method": "raw_activation_logistic_probe",
+  "model_layers": [
+    {
+      "layer": 45,
+      "model_key": "gemma3_27b"
+    },
+    {
+      "layer": 53,
+      "model_key": "qwen35_27b"
+    }
+  ],
+  "representation_type": "raw direction",
+  "results": {
+    "gemma3_27b": {
+      "infer_property": {
+        "activation_prefix": "results/stage2/activations/gemma3_27b_infer_property_L45",
+        "input_rows": 11000,
+        "model": "gemma3_27b",
+        "n": 10025,
+        "parse_fail_rate": 0.08863636363636364,
+        "site_or_layer": "L45/resid_post",
+        "source_file": "results/full/with_errortype/gemma3_27b_infer_property.jsonl",
+        "source_total_rows": 11000,
+        "targets": {
+          "is_correct_strong": {
+            "height_h12_to_h34": {
+              "baseline_metrics": {
+                "target_class_counts": {
+                  "test": {
+                    "n": 7219,
+                    "negative_n": 4722,
+                    "positive_n": 2497
+                  },
+                  "train": {
+                    "n": 2385,
+                    "negative_n": 589,
+                    "positive_n": 1796
+                  },
+                  "val": {
+                    "n": 421,
+                    "negative_n": 104,
+                    "positive_n": 317
+                  }
+                }
+              },
+              "best_c": 0.01,
+              "c_values": [
+                0.01,
+                0.1,
+                1.0,
+                10.0
+              ],
+              "causal_abstraction_claim": {
+                "representation": "raw residual activation",
+                "type": "predictive_only",
+                "variable": "is_correct_strong"
+              },
+              "controls": {
+                "drop_parse_failed": true,
+                "source_join": "activation sidecar row_index to full JSONL",
+                "split_source": "height_h12_to_h34"
+              },
+              "intervention_metrics": null,
+              "matched_noise_summary": null,
+              "max_iter": 2000,
+              "method": "logistic_probe",
+              "model": "gemma3_27b",
+              "n": 10025,
+              "paired_flips": null,
+              "parse_fail_rate": 0.08863636363636364,
+              "per_height": {
+                "h3": {
+                  "auc": 0.7875051739537721,
+                  "n": 2737,
+                  "negative_n": 1560,
+                  "positive_n": 1177
+                },
+                "h4": {
+                  "auc": 0.7565912924309508,
+                  "n": 4482,
+                  "negative_n": 3162,
+                  "positive_n": 1320
+                }
+              },
+              "probe_type": "logistic",
+              "representation_type": "raw activation",
+              "site_or_layer": "L45/resid_post",
+              "solver": "lbfgs",
+              "split": "height_h12_to_h34",
+              "split_counts": {
+                "test": {
+                  "n": 7219,
+                  "negative_n": 4722,
+                  "positive_n": 2497
+                },
+                "train": {
+                  "n": 2385,
+                  "negative_n": 589,
+                  "positive_n": 1796
+                },
+                "val": {
+                  "n": 421,
+                  "negative_n": 104,
+                  "positive_n": 317
+                }
+              },
+              "status": "ok",
+              "target_variable": "is_correct_strong",
+              "task": "infer_property",
+              "test_auc": 0.7487194714131333,
+              "test_auc_ci": {
+                "alpha": 0.05,
+                "high": 0.7601895155058781,
+                "low": 0.7372947758510435,
+                "mean": 0.7488366842954967,
+                "samples_requested": 1000,
+                "samples_used": 1000
+              },
+              "val_auc": 0.8974460082504246
+            }
+          }
+        },
+        "task": "infer_property"
+      },
+      "infer_subtype": {
+        "activation_prefix": "results/stage2/activations/gemma3_27b_infer_subtype_L45",
+        "input_rows": 11000,
+        "model": "gemma3_27b",
+        "n": 10737,
+        "parse_fail_rate": 0.023909090909090908,
+        "site_or_layer": "L45/resid_post",
+        "source_file": "results/full/with_errortype/gemma3_27b_infer_subtype.jsonl",
+        "source_total_rows": 11000,
+        "targets": {
+          "is_correct_strong": {
+            "height_h12_to_h34": {
+              "baseline_metrics": {
+                "target_class_counts": {
+                  "test": {
+                    "n": 7872,
+                    "negative_n": 7252,
+                    "positive_n": 620
+                  },
+                  "train": {
+                    "n": 2436,
+                    "negative_n": 1056,
+                    "positive_n": 1380
+                  },
+                  "val": {
+                    "n": 429,
+                    "negative_n": 186,
+                    "positive_n": 243
+                  }
+                }
+              },
+              "best_c": 0.01,
+              "c_values": [
+                0.01,
+                0.1,
+                1.0,
+                10.0
+              ],
+              "causal_abstraction_claim": {
+                "representation": "raw residual activation",
+                "type": "predictive_only",
+                "variable": "is_correct_strong"
+              },
+              "controls": {
+                "drop_parse_failed": true,
+                "source_join": "activation sidecar row_index to full JSONL",
+                "split_source": "height_h12_to_h34"
+              },
+              "intervention_metrics": null,
+              "matched_noise_summary": null,
+              "max_iter": 2000,
+              "method": "logistic_probe",
+              "model": "gemma3_27b",
+              "n": 10737,
+              "paired_flips": null,
+              "parse_fail_rate": 0.023909090909090908,
+              "per_height": {
+                "h3": {
+                  "auc": 0.7496033055254435,
+                  "n": 2941,
+                  "negative_n": 2598,
+                  "positive_n": 343
+                },
+                "h4": {
+                  "auc": 0.758353902314534,
+                  "n": 4931,
+                  "negative_n": 4654,
+                  "positive_n": 277
+                }
+              },
+              "probe_type": "logistic",
+              "representation_type": "raw activation",
+              "site_or_layer": "L45/resid_post",
+              "solver": "lbfgs",
+              "split": "height_h12_to_h34",
+              "split_counts": {
+                "test": {
+                  "n": 7872,
+                  "negative_n": 7252,
+                  "positive_n": 620
+                },
+                "train": {
+                  "n": 2436,
+                  "negative_n": 1056,
+                  "positive_n": 1380
+                },
+                "val": {
+                  "n": 429,
+                  "negative_n": 186,
+                  "positive_n": 243
+                }
+              },
+              "status": "ok",
+              "target_variable": "is_correct_strong",
+              "task": "infer_subtype",
+              "test_auc": 0.753730450331833,
+              "test_auc_ci": {
+                "alpha": 0.05,
+                "high": 0.7727385107142052,
+                "low": 0.7349129437294725,
+                "mean": 0.7543677057042559,
+                "samples_requested": 1000,
+                "samples_used": 1000
+              },
+              "val_auc": 0.8946856055577681
+            }
+          }
+        },
+        "task": "infer_subtype"
+      }
+    },
+    "qwen35_27b": {
+      "infer_property": {
+        "activation_prefix": "results/stage2/activations/qwen35_27b_infer_property_L53",
+        "input_rows": 10997,
+        "model": "qwen35_27b",
+        "n": 10997,
+        "parse_fail_rate": 0.00027272727272727274,
+        "site_or_layer": "L53/resid_post",
+        "source_file": "results/full/with_errortype/qwen35_27b_infer_property.jsonl",
+        "source_total_rows": 11000,
+        "targets": {
+          "is_correct_strong": {
+            "height_h12_to_h34": {
+              "baseline_metrics": {
+                "target_class_counts": {
+                  "test": {
+                    "n": 7997,
+                    "negative_n": 3934,
+                    "positive_n": 4063
+                  },
+                  "train": {
+                    "n": 2550,
+                    "negative_n": 778,
+                    "positive_n": 1772
+                  },
+                  "val": {
+                    "n": 450,
+                    "negative_n": 137,
+                    "positive_n": 313
+                  }
+                }
+              },
+              "best_c": 0.01,
+              "c_values": [
+                0.01,
+                0.1,
+                1.0,
+                10.0
+              ],
+              "causal_abstraction_claim": {
+                "representation": "raw residual activation",
+                "type": "predictive_only",
+                "variable": "is_correct_strong"
+              },
+              "controls": {
+                "drop_parse_failed": true,
+                "source_join": "activation sidecar row_index to full JSONL",
+                "split_source": "height_h12_to_h34"
+              },
+              "intervention_metrics": null,
+              "matched_noise_summary": null,
+              "max_iter": 2000,
+              "method": "logistic_probe",
+              "model": "qwen35_27b",
+              "n": 10997,
+              "paired_flips": null,
+              "parse_fail_rate": 0.00027272727272727274,
+              "per_height": {
+                "h3": {
+                  "auc": 0.8869815768561364,
+                  "n": 3000,
+                  "negative_n": 1498,
+                  "positive_n": 1502
+                },
+                "h4": {
+                  "auc": 0.8475628170184445,
+                  "n": 4997,
+                  "negative_n": 2436,
+                  "positive_n": 2561
+                }
+              },
+              "probe_type": "logistic",
+              "representation_type": "raw activation",
+              "site_or_layer": "L53/resid_post",
+              "solver": "lbfgs",
+              "split": "height_h12_to_h34",
+              "split_counts": {
+                "test": {
+                  "n": 7997,
+                  "negative_n": 3934,
+                  "positive_n": 4063
+                },
+                "train": {
+                  "n": 2550,
+                  "negative_n": 778,
+                  "positive_n": 1772
+                },
+                "val": {
+                  "n": 450,
+                  "negative_n": 137,
+                  "positive_n": 313
+                }
+              },
+              "status": "ok",
+              "target_variable": "is_correct_strong",
+              "task": "infer_property",
+              "test_auc": 0.8625484411069628,
+              "test_auc_ci": {
+                "alpha": 0.05,
+                "high": 0.870223731300932,
+                "low": 0.8544827301806079,
+                "mean": 0.8625318944020318,
+                "samples_requested": 1000,
+                "samples_used": 1000
+              },
+              "val_auc": 0.9676313518807863
+            }
+          }
+        },
+        "task": "infer_property"
+      },
+      "infer_subtype": {
+        "activation_prefix": "results/stage2/activations/qwen35_27b_infer_subtype_L53",
+        "input_rows": 10999,
+        "model": "qwen35_27b",
+        "n": 10999,
+        "parse_fail_rate": 9.09090909090909e-05,
+        "site_or_layer": "L53/resid_post",
+        "source_file": "results/full/with_errortype/qwen35_27b_infer_subtype.jsonl",
+        "source_total_rows": 11000,
+        "targets": {
+          "is_correct_strong": {
+            "height_h12_to_h34": {
+              "baseline_metrics": {
+                "target_class_counts": {
+                  "test": {
+                    "n": 7999,
+                    "negative_n": 5352,
+                    "positive_n": 2647
+                  },
+                  "train": {
+                    "n": 2550,
+                    "negative_n": 947,
+                    "positive_n": 1603
+                  },
+                  "val": {
+                    "n": 450,
+                    "negative_n": 167,
+                    "positive_n": 283
+                  }
+                }
+              },
+              "best_c": 0.01,
+              "c_values": [
+                0.01,
+                0.1,
+                1.0,
+                10.0
+              ],
+              "causal_abstraction_claim": {
+                "representation": "raw residual activation",
+                "type": "predictive_only",
+                "variable": "is_correct_strong"
+              },
+              "controls": {
+                "drop_parse_failed": true,
+                "source_join": "activation sidecar row_index to full JSONL",
+                "split_source": "height_h12_to_h34"
+              },
+              "intervention_metrics": null,
+              "matched_noise_summary": null,
+              "max_iter": 2000,
+              "method": "logistic_probe",
+              "model": "qwen35_27b",
+              "n": 10999,
+              "paired_flips": null,
+              "parse_fail_rate": 9.09090909090909e-05,
+              "per_height": {
+                "h3": {
+                  "auc": 0.8408196586289928,
+                  "n": 2999,
+                  "negative_n": 1929,
+                  "positive_n": 1070
+                },
+                "h4": {
+                  "auc": 0.8023644001718391,
+                  "n": 5000,
+                  "negative_n": 3423,
+                  "positive_n": 1577
+                }
+              },
+              "probe_type": "logistic",
+              "representation_type": "raw activation",
+              "site_or_layer": "L53/resid_post",
+              "solver": "lbfgs",
+              "split": "height_h12_to_h34",
+              "split_counts": {
+                "test": {
+                  "n": 7999,
+                  "negative_n": 5352,
+                  "positive_n": 2647
+                },
+                "train": {
+                  "n": 2550,
+                  "negative_n": 947,
+                  "positive_n": 1603
+                },
+                "val": {
+                  "n": 450,
+                  "negative_n": 167,
+                  "positive_n": 283
+                }
+              },
+              "status": "ok",
+              "target_variable": "is_correct_strong",
+              "task": "infer_subtype",
+              "test_auc": 0.8182092511871465,
+              "test_auc_ci": {
+                "alpha": 0.05,
+                "high": 0.8268610909793849,
+                "low": 0.808720880609818,
+                "mean": 0.8178067312305006,
+                "samples_requested": 1000,
+                "samples_used": 1000
+              },
+              "val_auc": 0.9420875563360911
+            }
+          }
+        },
+        "task": "infer_subtype"
+      }
+    }
+  },
+  "schema_version": 1,
+  "seed": 20260605,
+  "solver": "lbfgs",
+  "split_families": [
+    "height_h12_to_h34"
+  ],
+  "splits_path": "results/stage2/splits.jsonl",
+  "targets": [
+    "is_correct_strong"
+  ],
+  "tasks": [
+    "infer_property",
+    "infer_subtype"
+  ]
+}

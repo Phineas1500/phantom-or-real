@@ -1,0 +1,1354 @@
+{
+  "activation_dir": "results/stage2/activations",
+  "activation_site": "resid_post",
+  "bootstrap_samples": 1000,
+  "c_values": [
+    0.01,
+    0.1,
+    1.0,
+    10.0
+  ],
+  "causal_abstraction_claim": {
+    "claim_type": "predictive",
+    "note": "No causal claim is made by this report; it tests target/OOD readout feasibility.",
+    "target_variables": [
+      "is_correct_weak"
+    ],
+    "tested_representation": "raw residual activation"
+  },
+  "created_at_utc": "2026-06-06T04:48:39.220762+00:00",
+  "drop_parse_failed": true,
+  "height_val_fraction": 0.15,
+  "include_split_indices": false,
+  "max_iter": 2000,
+  "method": "raw_activation_logistic_probe",
+  "model_layers": [
+    {
+      "layer": 45,
+      "model_key": "gemma3_27b"
+    },
+    {
+      "layer": 53,
+      "model_key": "qwen35_27b"
+    }
+  ],
+  "representation_type": "raw direction",
+  "results": {
+    "gemma3_27b": {
+      "infer_property": {
+        "activation_prefix": "results/stage2/activations/gemma3_27b_infer_property_L45",
+        "input_rows": 11000,
+        "model": "gemma3_27b",
+        "n": 10025,
+        "parse_fail_rate": 0.08863636363636364,
+        "site_or_layer": "L45/resid_post",
+        "source_file": "results/full/with_errortype/gemma3_27b_infer_property.jsonl",
+        "source_total_rows": 11000,
+        "targets": {
+          "is_correct_weak": {
+            "height_h12_to_h34": {
+              "baseline_metrics": {
+                "target_class_counts": {
+                  "test": {
+                    "n": 7219,
+                    "negative_n": 3297,
+                    "positive_n": 3922
+                  },
+                  "train": {
+                    "n": 2385,
+                    "negative_n": 268,
+                    "positive_n": 2117
+                  },
+                  "val": {
+                    "n": 421,
+                    "negative_n": 47,
+                    "positive_n": 374
+                  }
+                }
+              },
+              "best_c": 0.01,
+              "c_values": [
+                0.01,
+                0.1,
+                1.0,
+                10.0
+              ],
+              "causal_abstraction_claim": {
+                "representation": "raw residual activation",
+                "type": "predictive_only",
+                "variable": "is_correct_weak"
+              },
+              "controls": {
+                "drop_parse_failed": true,
+                "source_join": "activation sidecar row_index to full JSONL",
+                "split_source": "height_h12_to_h34"
+              },
+              "intervention_metrics": null,
+              "matched_noise_summary": null,
+              "max_iter": 2000,
+              "method": "logistic_probe",
+              "model": "gemma3_27b",
+              "n": 10025,
+              "paired_flips": null,
+              "parse_fail_rate": 0.08863636363636364,
+              "per_height": {
+                "h3": {
+                  "auc": 0.7162539092716772,
+                  "n": 2737,
+                  "negative_n": 936,
+                  "positive_n": 1801
+                },
+                "h4": {
+                  "auc": 0.6864838235502622,
+                  "n": 4482,
+                  "negative_n": 2361,
+                  "positive_n": 2121
+                }
+              },
+              "probe_type": "logistic",
+              "representation_type": "raw activation",
+              "site_or_layer": "L45/resid_post",
+              "solver": "lbfgs",
+              "split": "height_h12_to_h34",
+              "split_counts": {
+                "test": {
+                  "n": 7219,
+                  "negative_n": 3297,
+                  "positive_n": 3922
+                },
+                "train": {
+                  "n": 2385,
+                  "negative_n": 268,
+                  "positive_n": 2117
+                },
+                "val": {
+                  "n": 421,
+                  "negative_n": 47,
+                  "positive_n": 374
+                }
+              },
+              "status": "ok",
+              "target_variable": "is_correct_weak",
+              "task": "infer_property",
+              "test_auc": 0.6672255633318005,
+              "test_auc_ci": {
+                "alpha": 0.05,
+                "high": 0.6795525522327106,
+                "low": 0.6541722421084957,
+                "mean": 0.6671610071835649,
+                "samples_requested": 1000,
+                "samples_used": 1000
+              },
+              "val_auc": 0.8148822391625896
+            },
+            "s1": {
+              "baseline_metrics": {
+                "target_class_counts": {
+                  "test": {
+                    "n": 1512,
+                    "negative_n": 560,
+                    "positive_n": 952
+                  },
+                  "train": {
+                    "n": 6988,
+                    "negative_n": 2499,
+                    "positive_n": 4489
+                  },
+                  "val": {
+                    "n": 1525,
+                    "negative_n": 553,
+                    "positive_n": 972
+                  }
+                }
+              },
+              "best_c": 0.01,
+              "c_values": [
+                0.01,
+                0.1,
+                1.0,
+                10.0
+              ],
+              "causal_abstraction_claim": {
+                "representation": "raw residual activation",
+                "type": "predictive_only",
+                "variable": "is_correct_weak"
+              },
+              "controls": {
+                "drop_parse_failed": true,
+                "source_join": "activation sidecar row_index to full JSONL",
+                "split_source": "stage2_splits"
+              },
+              "intervention_metrics": null,
+              "matched_noise_summary": null,
+              "max_iter": 2000,
+              "method": "logistic_probe",
+              "model": "gemma3_27b",
+              "n": 10025,
+              "paired_flips": null,
+              "parse_fail_rate": 0.08863636363636364,
+              "per_height": {
+                "h1": {
+                  "auc": 0.9277777777777777,
+                  "n": 149,
+                  "negative_n": 5,
+                  "positive_n": 144
+                },
+                "h2": {
+                  "auc": 0.8113738738738738,
+                  "n": 262,
+                  "negative_n": 40,
+                  "positive_n": 222
+                },
+                "h3": {
+                  "auc": 0.8301726796176381,
+                  "n": 417,
+                  "negative_n": 141,
+                  "positive_n": 276
+                },
+                "h4": {
+                  "auc": 0.7571502501293773,
+                  "n": 684,
+                  "negative_n": 374,
+                  "positive_n": 310
+                }
+              },
+              "probe_type": "logistic",
+              "representation_type": "raw activation",
+              "site_or_layer": "L45/resid_post",
+              "solver": "lbfgs",
+              "split": "s1",
+              "split_counts": {
+                "test": {
+                  "n": 1512,
+                  "negative_n": 560,
+                  "positive_n": 952
+                },
+                "train": {
+                  "n": 6988,
+                  "negative_n": 2499,
+                  "positive_n": 4489
+                },
+                "val": {
+                  "n": 1525,
+                  "negative_n": 553,
+                  "positive_n": 972
+                }
+              },
+              "status": "ok",
+              "target_variable": "is_correct_weak",
+              "task": "infer_property",
+              "test_auc": 0.8416360294117646,
+              "test_auc_ci": {
+                "alpha": 0.05,
+                "high": 0.8619004015890842,
+                "low": 0.8226395845617983,
+                "mean": 0.8415233498416398,
+                "samples_requested": 1000,
+                "samples_used": 1000
+              },
+              "val_auc": 0.8281279068902134
+            },
+            "s3": {
+              "baseline_metrics": {
+                "target_class_counts": {
+                  "test": {
+                    "n": 1526,
+                    "negative_n": 533,
+                    "positive_n": 993
+                  },
+                  "train": {
+                    "n": 6990,
+                    "negative_n": 2554,
+                    "positive_n": 4436
+                  },
+                  "val": {
+                    "n": 1509,
+                    "negative_n": 525,
+                    "positive_n": 984
+                  }
+                }
+              },
+              "best_c": 0.01,
+              "c_values": [
+                0.01,
+                0.1,
+                1.0,
+                10.0
+              ],
+              "causal_abstraction_claim": {
+                "representation": "raw residual activation",
+                "type": "predictive_only",
+                "variable": "is_correct_weak"
+              },
+              "controls": {
+                "drop_parse_failed": true,
+                "source_join": "activation sidecar row_index to full JSONL",
+                "split_source": "stage2_splits"
+              },
+              "intervention_metrics": null,
+              "matched_noise_summary": null,
+              "max_iter": 2000,
+              "method": "logistic_probe",
+              "model": "gemma3_27b",
+              "n": 10025,
+              "paired_flips": null,
+              "parse_fail_rate": 0.08863636363636364,
+              "per_height": {
+                "h1": {
+                  "auc": 0.9858387799564271,
+                  "n": 159,
+                  "negative_n": 6,
+                  "positive_n": 153
+                },
+                "h2": {
+                  "auc": 0.8183838383838384,
+                  "n": 269,
+                  "negative_n": 44,
+                  "positive_n": 225
+                },
+                "h3": {
+                  "auc": 0.7799043062200957,
+                  "n": 439,
+                  "negative_n": 154,
+                  "positive_n": 285
+                },
+                "h4": {
+                  "auc": 0.7955512572533849,
+                  "n": 659,
+                  "negative_n": 329,
+                  "positive_n": 330
+                }
+              },
+              "probe_type": "logistic",
+              "representation_type": "raw activation",
+              "site_or_layer": "L45/resid_post",
+              "solver": "lbfgs",
+              "split": "s3",
+              "split_counts": {
+                "test": {
+                  "n": 1526,
+                  "negative_n": 533,
+                  "positive_n": 993
+                },
+                "train": {
+                  "n": 6990,
+                  "negative_n": 2554,
+                  "positive_n": 4436
+                },
+                "val": {
+                  "n": 1509,
+                  "negative_n": 525,
+                  "positive_n": 984
+                }
+              },
+              "status": "ok",
+              "target_variable": "is_correct_weak",
+              "task": "infer_property",
+              "test_auc": 0.8428209473821441,
+              "test_auc_ci": {
+                "alpha": 0.05,
+                "high": 0.8615397335991302,
+                "low": 0.8239515414466807,
+                "mean": 0.8427099790114391,
+                "samples_requested": 1000,
+                "samples_used": 1000
+              },
+              "val_auc": 0.8284978706929926
+            }
+          }
+        },
+        "task": "infer_property"
+      },
+      "infer_subtype": {
+        "activation_prefix": "results/stage2/activations/gemma3_27b_infer_subtype_L45",
+        "input_rows": 11000,
+        "model": "gemma3_27b",
+        "n": 10737,
+        "parse_fail_rate": 0.023909090909090908,
+        "site_or_layer": "L45/resid_post",
+        "source_file": "results/full/with_errortype/gemma3_27b_infer_subtype.jsonl",
+        "source_total_rows": 11000,
+        "targets": {
+          "is_correct_weak": {
+            "height_h12_to_h34": {
+              "baseline_metrics": {
+                "target_class_counts": {
+                  "test": {
+                    "n": 7872,
+                    "negative_n": 5587,
+                    "positive_n": 2285
+                  },
+                  "train": {
+                    "n": 2435,
+                    "negative_n": 564,
+                    "positive_n": 1871
+                  },
+                  "val": {
+                    "n": 430,
+                    "negative_n": 100,
+                    "positive_n": 330
+                  }
+                }
+              },
+              "best_c": 0.01,
+              "c_values": [
+                0.01,
+                0.1,
+                1.0,
+                10.0
+              ],
+              "causal_abstraction_claim": {
+                "representation": "raw residual activation",
+                "type": "predictive_only",
+                "variable": "is_correct_weak"
+              },
+              "controls": {
+                "drop_parse_failed": true,
+                "source_join": "activation sidecar row_index to full JSONL",
+                "split_source": "height_h12_to_h34"
+              },
+              "intervention_metrics": null,
+              "matched_noise_summary": null,
+              "max_iter": 2000,
+              "method": "logistic_probe",
+              "model": "gemma3_27b",
+              "n": 10737,
+              "paired_flips": null,
+              "parse_fail_rate": 0.023909090909090908,
+              "per_height": {
+                "h3": {
+                  "auc": 0.6283304007645518,
+                  "n": 2941,
+                  "negative_n": 1854,
+                  "positive_n": 1087
+                },
+                "h4": {
+                  "auc": 0.5819682505041217,
+                  "n": 4931,
+                  "negative_n": 3733,
+                  "positive_n": 1198
+                }
+              },
+              "probe_type": "logistic",
+              "representation_type": "raw activation",
+              "site_or_layer": "L45/resid_post",
+              "solver": "lbfgs",
+              "split": "height_h12_to_h34",
+              "split_counts": {
+                "test": {
+                  "n": 7872,
+                  "negative_n": 5587,
+                  "positive_n": 2285
+                },
+                "train": {
+                  "n": 2435,
+                  "negative_n": 564,
+                  "positive_n": 1871
+                },
+                "val": {
+                  "n": 430,
+                  "negative_n": 100,
+                  "positive_n": 330
+                }
+              },
+              "status": "ok",
+              "target_variable": "is_correct_weak",
+              "task": "infer_subtype",
+              "test_auc": 0.6229000661507508,
+              "test_auc_ci": {
+                "alpha": 0.05,
+                "high": 0.635918611210355,
+                "low": 0.6087663220717211,
+                "mean": 0.6224042676024898,
+                "samples_requested": 1000,
+                "samples_used": 1000
+              },
+              "val_auc": 0.7407272727272727
+            },
+            "s1": {
+              "baseline_metrics": {
+                "target_class_counts": {
+                  "test": {
+                    "n": 1616,
+                    "negative_n": 945,
+                    "positive_n": 671
+                  },
+                  "train": {
+                    "n": 7515,
+                    "negative_n": 4376,
+                    "positive_n": 3139
+                  },
+                  "val": {
+                    "n": 1606,
+                    "negative_n": 930,
+                    "positive_n": 676
+                  }
+                }
+              },
+              "best_c": 0.01,
+              "c_values": [
+                0.01,
+                0.1,
+                1.0,
+                10.0
+              ],
+              "causal_abstraction_claim": {
+                "representation": "raw residual activation",
+                "type": "predictive_only",
+                "variable": "is_correct_weak"
+              },
+              "controls": {
+                "drop_parse_failed": true,
+                "source_join": "activation sidecar row_index to full JSONL",
+                "split_source": "stage2_splits"
+              },
+              "intervention_metrics": null,
+              "matched_noise_summary": null,
+              "max_iter": 2000,
+              "method": "logistic_probe",
+              "model": "gemma3_27b",
+              "n": 10737,
+              "paired_flips": null,
+              "parse_fail_rate": 0.023909090909090908,
+              "per_height": {
+                "h1": {
+                  "auc": 0.6575342465753424,
+                  "n": 150,
+                  "negative_n": 4,
+                  "positive_n": 146
+                },
+                "h2": {
+                  "auc": 0.676019265232975,
+                  "n": 285,
+                  "negative_n": 93,
+                  "positive_n": 192
+                },
+                "h3": {
+                  "auc": 0.7090165785788498,
+                  "n": 439,
+                  "negative_n": 282,
+                  "positive_n": 157
+                },
+                "h4": {
+                  "auc": 0.6941154031480887,
+                  "n": 742,
+                  "negative_n": 566,
+                  "positive_n": 176
+                }
+              },
+              "probe_type": "logistic",
+              "representation_type": "raw activation",
+              "site_or_layer": "L45/resid_post",
+              "solver": "lbfgs",
+              "split": "s1",
+              "split_counts": {
+                "test": {
+                  "n": 1616,
+                  "negative_n": 945,
+                  "positive_n": 671
+                },
+                "train": {
+                  "n": 7515,
+                  "negative_n": 4376,
+                  "positive_n": 3139
+                },
+                "val": {
+                  "n": 1606,
+                  "negative_n": 930,
+                  "positive_n": 676
+                }
+              },
+              "status": "ok",
+              "target_variable": "is_correct_weak",
+              "task": "infer_subtype",
+              "test_auc": 0.8006781318256728,
+              "test_auc_ci": {
+                "alpha": 0.05,
+                "high": 0.8218886752209581,
+                "low": 0.7780486759069909,
+                "mean": 0.8009214111645006,
+                "samples_requested": 1000,
+                "samples_used": 1000
+              },
+              "val_auc": 0.7692403130368392
+            },
+            "s3": {
+              "baseline_metrics": {
+                "target_class_counts": {
+                  "test": {
+                    "n": 1598,
+                    "negative_n": 950,
+                    "positive_n": 648
+                  },
+                  "train": {
+                    "n": 7497,
+                    "negative_n": 4342,
+                    "positive_n": 3155
+                  },
+                  "val": {
+                    "n": 1642,
+                    "negative_n": 959,
+                    "positive_n": 683
+                  }
+                }
+              },
+              "best_c": 0.01,
+              "c_values": [
+                0.01,
+                0.1,
+                1.0,
+                10.0
+              ],
+              "causal_abstraction_claim": {
+                "representation": "raw residual activation",
+                "type": "predictive_only",
+                "variable": "is_correct_weak"
+              },
+              "controls": {
+                "drop_parse_failed": true,
+                "source_join": "activation sidecar row_index to full JSONL",
+                "split_source": "stage2_splits"
+              },
+              "intervention_metrics": null,
+              "matched_noise_summary": null,
+              "max_iter": 2000,
+              "method": "logistic_probe",
+              "model": "gemma3_27b",
+              "n": 10737,
+              "paired_flips": null,
+              "parse_fail_rate": 0.023909090909090908,
+              "per_height": {
+                "h1": {
+                  "auc": 0.738562091503268,
+                  "n": 154,
+                  "negative_n": 1,
+                  "positive_n": 153
+                },
+                "h2": {
+                  "auc": 0.6374113475177304,
+                  "n": 250,
+                  "negative_n": 94,
+                  "positive_n": 156
+                },
+                "h3": {
+                  "auc": 0.6811828625938368,
+                  "n": 453,
+                  "negative_n": 282,
+                  "positive_n": 171
+                },
+                "h4": {
+                  "auc": 0.635014127815175,
+                  "n": 741,
+                  "negative_n": 573,
+                  "positive_n": 168
+                }
+              },
+              "probe_type": "logistic",
+              "representation_type": "raw activation",
+              "site_or_layer": "L45/resid_post",
+              "solver": "lbfgs",
+              "split": "s3",
+              "split_counts": {
+                "test": {
+                  "n": 1598,
+                  "negative_n": 950,
+                  "positive_n": 648
+                },
+                "train": {
+                  "n": 7497,
+                  "negative_n": 4342,
+                  "positive_n": 3155
+                },
+                "val": {
+                  "n": 1642,
+                  "negative_n": 959,
+                  "positive_n": 683
+                }
+              },
+              "status": "ok",
+              "target_variable": "is_correct_weak",
+              "task": "infer_subtype",
+              "test_auc": 0.7723489278752436,
+              "test_auc_ci": {
+                "alpha": 0.05,
+                "high": 0.7956443464263794,
+                "low": 0.7489899649111661,
+                "mean": 0.7722553079947588,
+                "samples_requested": 1000,
+                "samples_used": 1000
+              },
+              "val_auc": 0.7937425667598479
+            }
+          }
+        },
+        "task": "infer_subtype"
+      }
+    },
+    "qwen35_27b": {
+      "infer_property": {
+        "activation_prefix": "results/stage2/activations/qwen35_27b_infer_property_L53",
+        "input_rows": 10997,
+        "model": "qwen35_27b",
+        "n": 10997,
+        "parse_fail_rate": 0.00027272727272727274,
+        "site_or_layer": "L53/resid_post",
+        "source_file": "results/full/with_errortype/qwen35_27b_infer_property.jsonl",
+        "source_total_rows": 11000,
+        "targets": {
+          "is_correct_weak": {
+            "height_h12_to_h34": {
+              "baseline_metrics": {
+                "target_class_counts": {
+                  "test": {
+                    "n": 7997,
+                    "negative_n": 381,
+                    "positive_n": 7616
+                  },
+                  "train": {
+                    "n": 2550,
+                    "negative_n": 48,
+                    "positive_n": 2502
+                  },
+                  "val": {
+                    "n": 450,
+                    "negative_n": 9,
+                    "positive_n": 441
+                  }
+                }
+              },
+              "best_c": 0.01,
+              "c_values": [
+                0.01,
+                0.1,
+                1.0,
+                10.0
+              ],
+              "causal_abstraction_claim": {
+                "representation": "raw residual activation",
+                "type": "predictive_only",
+                "variable": "is_correct_weak"
+              },
+              "controls": {
+                "drop_parse_failed": true,
+                "source_join": "activation sidecar row_index to full JSONL",
+                "split_source": "height_h12_to_h34"
+              },
+              "intervention_metrics": null,
+              "matched_noise_summary": null,
+              "max_iter": 2000,
+              "method": "logistic_probe",
+              "model": "qwen35_27b",
+              "n": 10997,
+              "paired_flips": null,
+              "parse_fail_rate": 0.00027272727272727274,
+              "per_height": {
+                "h3": {
+                  "auc": 0.6736069542253522,
+                  "n": 3000,
+                  "negative_n": 160,
+                  "positive_n": 2840
+                },
+                "h4": {
+                  "auc": 0.6335798525053624,
+                  "n": 4997,
+                  "negative_n": 221,
+                  "positive_n": 4776
+                }
+              },
+              "probe_type": "logistic",
+              "representation_type": "raw activation",
+              "site_or_layer": "L53/resid_post",
+              "solver": "lbfgs",
+              "split": "height_h12_to_h34",
+              "split_counts": {
+                "test": {
+                  "n": 7997,
+                  "negative_n": 381,
+                  "positive_n": 7616
+                },
+                "train": {
+                  "n": 2550,
+                  "negative_n": 48,
+                  "positive_n": 2502
+                },
+                "val": {
+                  "n": 450,
+                  "negative_n": 9,
+                  "positive_n": 441
+                }
+              },
+              "status": "ok",
+              "target_variable": "is_correct_weak",
+              "task": "infer_property",
+              "test_auc": 0.6494949850018747,
+              "test_auc_ci": {
+                "alpha": 0.05,
+                "high": 0.676096048154323,
+                "low": 0.619828264985046,
+                "mean": 0.6498108195430762,
+                "samples_requested": 1000,
+                "samples_used": 1000
+              },
+              "val_auc": 0.710002519526329
+            },
+            "s1": {
+              "baseline_metrics": {
+                "target_class_counts": {
+                  "test": {
+                    "n": 1650,
+                    "negative_n": 62,
+                    "positive_n": 1588
+                  },
+                  "train": {
+                    "n": 7698,
+                    "negative_n": 306,
+                    "positive_n": 7392
+                  },
+                  "val": {
+                    "n": 1649,
+                    "negative_n": 70,
+                    "positive_n": 1579
+                  }
+                }
+              },
+              "best_c": 0.01,
+              "c_values": [
+                0.01,
+                0.1,
+                1.0,
+                10.0
+              ],
+              "causal_abstraction_claim": {
+                "representation": "raw residual activation",
+                "type": "predictive_only",
+                "variable": "is_correct_weak"
+              },
+              "controls": {
+                "drop_parse_failed": true,
+                "source_join": "activation sidecar row_index to full JSONL",
+                "split_source": "stage2_splits"
+              },
+              "intervention_metrics": null,
+              "matched_noise_summary": null,
+              "max_iter": 2000,
+              "method": "logistic_probe",
+              "model": "qwen35_27b",
+              "n": 10997,
+              "paired_flips": null,
+              "parse_fail_rate": 0.00027272727272727274,
+              "per_height": {
+                "h1": {
+                  "auc": null,
+                  "n": 150,
+                  "negative_n": 0,
+                  "positive_n": 150
+                },
+                "h2": {
+                  "auc": 0.7097505668934241,
+                  "n": 300,
+                  "negative_n": 6,
+                  "positive_n": 294
+                },
+                "h3": {
+                  "auc": 0.7647859216255443,
+                  "n": 450,
+                  "negative_n": 26,
+                  "positive_n": 424
+                },
+                "h4": {
+                  "auc": 0.8137037037037036,
+                  "n": 750,
+                  "negative_n": 30,
+                  "positive_n": 720
+                }
+              },
+              "probe_type": "logistic",
+              "representation_type": "raw activation",
+              "site_or_layer": "L53/resid_post",
+              "solver": "lbfgs",
+              "split": "s1",
+              "split_counts": {
+                "test": {
+                  "n": 1650,
+                  "negative_n": 62,
+                  "positive_n": 1588
+                },
+                "train": {
+                  "n": 7698,
+                  "negative_n": 306,
+                  "positive_n": 7392
+                },
+                "val": {
+                  "n": 1649,
+                  "negative_n": 70,
+                  "positive_n": 1579
+                }
+              },
+              "status": "ok",
+              "target_variable": "is_correct_weak",
+              "task": "infer_property",
+              "test_auc": 0.8057000081254571,
+              "test_auc_ci": {
+                "alpha": 0.05,
+                "high": 0.861387590920152,
+                "low": 0.745651916132657,
+                "mean": 0.8048637008968602,
+                "samples_requested": 1000,
+                "samples_used": 1000
+              },
+              "val_auc": 0.8321451189722248
+            },
+            "s3": {
+              "baseline_metrics": {
+                "target_class_counts": {
+                  "test": {
+                    "n": 1674,
+                    "negative_n": 55,
+                    "positive_n": 1619
+                  },
+                  "train": {
+                    "n": 7725,
+                    "negative_n": 325,
+                    "positive_n": 7400
+                  },
+                  "val": {
+                    "n": 1598,
+                    "negative_n": 58,
+                    "positive_n": 1540
+                  }
+                }
+              },
+              "best_c": 0.01,
+              "c_values": [
+                0.01,
+                0.1,
+                1.0,
+                10.0
+              ],
+              "causal_abstraction_claim": {
+                "representation": "raw residual activation",
+                "type": "predictive_only",
+                "variable": "is_correct_weak"
+              },
+              "controls": {
+                "drop_parse_failed": true,
+                "source_join": "activation sidecar row_index to full JSONL",
+                "split_source": "stage2_splits"
+              },
+              "intervention_metrics": null,
+              "matched_noise_summary": null,
+              "max_iter": 2000,
+              "method": "logistic_probe",
+              "model": "qwen35_27b",
+              "n": 10997,
+              "paired_flips": null,
+              "parse_fail_rate": 0.00027272727272727274,
+              "per_height": {
+                "h1": {
+                  "auc": null,
+                  "n": 154,
+                  "negative_n": 0,
+                  "positive_n": 154
+                },
+                "h2": {
+                  "auc": 0.7531549722362443,
+                  "n": 290,
+                  "negative_n": 7,
+                  "positive_n": 283
+                },
+                "h3": {
+                  "auc": 0.6399020807833536,
+                  "n": 449,
+                  "negative_n": 19,
+                  "positive_n": 430
+                },
+                "h4": {
+                  "auc": 0.8231841526045487,
+                  "n": 781,
+                  "negative_n": 29,
+                  "positive_n": 752
+                }
+              },
+              "probe_type": "logistic",
+              "representation_type": "raw activation",
+              "site_or_layer": "L53/resid_post",
+              "solver": "lbfgs",
+              "split": "s3",
+              "split_counts": {
+                "test": {
+                  "n": 1674,
+                  "negative_n": 55,
+                  "positive_n": 1619
+                },
+                "train": {
+                  "n": 7725,
+                  "negative_n": 325,
+                  "positive_n": 7400
+                },
+                "val": {
+                  "n": 1598,
+                  "negative_n": 58,
+                  "positive_n": 1540
+                }
+              },
+              "status": "ok",
+              "target_variable": "is_correct_weak",
+              "task": "infer_property",
+              "test_auc": 0.7735190072435285,
+              "test_auc_ci": {
+                "alpha": 0.05,
+                "high": 0.8299138385036107,
+                "low": 0.7088055273828293,
+                "mean": 0.7717637128508525,
+                "samples_requested": 1000,
+                "samples_used": 1000
+              },
+              "val_auc": 0.8167375727720555
+            }
+          }
+        },
+        "task": "infer_property"
+      },
+      "infer_subtype": {
+        "activation_prefix": "results/stage2/activations/qwen35_27b_infer_subtype_L53",
+        "input_rows": 10999,
+        "model": "qwen35_27b",
+        "n": 10999,
+        "parse_fail_rate": 9.09090909090909e-05,
+        "site_or_layer": "L53/resid_post",
+        "source_file": "results/full/with_errortype/qwen35_27b_infer_subtype.jsonl",
+        "source_total_rows": 11000,
+        "targets": {
+          "is_correct_weak": {
+            "height_h12_to_h34": {
+              "baseline_metrics": {
+                "target_class_counts": {
+                  "test": {
+                    "n": 7999,
+                    "negative_n": 1496,
+                    "positive_n": 6503
+                  },
+                  "train": {
+                    "n": 2550,
+                    "negative_n": 128,
+                    "positive_n": 2422
+                  },
+                  "val": {
+                    "n": 450,
+                    "negative_n": 23,
+                    "positive_n": 427
+                  }
+                }
+              },
+              "best_c": 0.01,
+              "c_values": [
+                0.01,
+                0.1,
+                1.0,
+                10.0
+              ],
+              "causal_abstraction_claim": {
+                "representation": "raw residual activation",
+                "type": "predictive_only",
+                "variable": "is_correct_weak"
+              },
+              "controls": {
+                "drop_parse_failed": true,
+                "source_join": "activation sidecar row_index to full JSONL",
+                "split_source": "height_h12_to_h34"
+              },
+              "intervention_metrics": null,
+              "matched_noise_summary": null,
+              "max_iter": 2000,
+              "method": "logistic_probe",
+              "model": "qwen35_27b",
+              "n": 10999,
+              "paired_flips": null,
+              "parse_fail_rate": 9.09090909090909e-05,
+              "per_height": {
+                "h3": {
+                  "auc": 0.7155753388789302,
+                  "n": 2999,
+                  "negative_n": 379,
+                  "positive_n": 2620
+                },
+                "h4": {
+                  "auc": 0.6696962703389266,
+                  "n": 5000,
+                  "negative_n": 1117,
+                  "positive_n": 3883
+                }
+              },
+              "probe_type": "logistic",
+              "representation_type": "raw activation",
+              "site_or_layer": "L53/resid_post",
+              "solver": "lbfgs",
+              "split": "height_h12_to_h34",
+              "split_counts": {
+                "test": {
+                  "n": 7999,
+                  "negative_n": 1496,
+                  "positive_n": 6503
+                },
+                "train": {
+                  "n": 2550,
+                  "negative_n": 128,
+                  "positive_n": 2422
+                },
+                "val": {
+                  "n": 450,
+                  "negative_n": 23,
+                  "positive_n": 427
+                }
+              },
+              "status": "ok",
+              "target_variable": "is_correct_weak",
+              "task": "infer_subtype",
+              "test_auc": 0.6944846927909044,
+              "test_auc_ci": {
+                "alpha": 0.05,
+                "high": 0.7084496302902203,
+                "low": 0.6805491994517004,
+                "mean": 0.6946384309015565,
+                "samples_requested": 1000,
+                "samples_used": 1000
+              },
+              "val_auc": 0.8009367681498828
+            },
+            "s1": {
+              "baseline_metrics": {
+                "target_class_counts": {
+                  "test": {
+                    "n": 1650,
+                    "negative_n": 224,
+                    "positive_n": 1426
+                  },
+                  "train": {
+                    "n": 7699,
+                    "negative_n": 1190,
+                    "positive_n": 6509
+                  },
+                  "val": {
+                    "n": 1650,
+                    "negative_n": 233,
+                    "positive_n": 1417
+                  }
+                }
+              },
+              "best_c": 0.01,
+              "c_values": [
+                0.01,
+                0.1,
+                1.0,
+                10.0
+              ],
+              "causal_abstraction_claim": {
+                "representation": "raw residual activation",
+                "type": "predictive_only",
+                "variable": "is_correct_weak"
+              },
+              "controls": {
+                "drop_parse_failed": true,
+                "source_join": "activation sidecar row_index to full JSONL",
+                "split_source": "stage2_splits"
+              },
+              "intervention_metrics": null,
+              "matched_noise_summary": null,
+              "max_iter": 2000,
+              "method": "logistic_probe",
+              "model": "qwen35_27b",
+              "n": 10999,
+              "paired_flips": null,
+              "parse_fail_rate": 9.09090909090909e-05,
+              "per_height": {
+                "h1": {
+                  "auc": null,
+                  "n": 150,
+                  "negative_n": 0,
+                  "positive_n": 150
+                },
+                "h2": {
+                  "auc": 0.7778998587348925,
+                  "n": 300,
+                  "negative_n": 23,
+                  "positive_n": 277
+                },
+                "h3": {
+                  "auc": 0.853042274898442,
+                  "n": 450,
+                  "negative_n": 57,
+                  "positive_n": 393
+                },
+                "h4": {
+                  "auc": 0.8298038137147047,
+                  "n": 750,
+                  "negative_n": 144,
+                  "positive_n": 606
+                }
+              },
+              "probe_type": "logistic",
+              "representation_type": "raw activation",
+              "site_or_layer": "L53/resid_post",
+              "solver": "lbfgs",
+              "split": "s1",
+              "split_counts": {
+                "test": {
+                  "n": 1650,
+                  "negative_n": 224,
+                  "positive_n": 1426
+                },
+                "train": {
+                  "n": 7699,
+                  "negative_n": 1190,
+                  "positive_n": 6509
+                },
+                "val": {
+                  "n": 1650,
+                  "negative_n": 233,
+                  "positive_n": 1417
+                }
+              },
+              "status": "ok",
+              "target_variable": "is_correct_weak",
+              "task": "infer_subtype",
+              "test_auc": 0.8570520687237027,
+              "test_auc_ci": {
+                "alpha": 0.05,
+                "high": 0.8795343917309473,
+                "low": 0.8332349794312675,
+                "mean": 0.857131078987097,
+                "samples_requested": 1000,
+                "samples_used": 1000
+              },
+              "val_auc": 0.8724198194214339
+            },
+            "s3": {
+              "baseline_metrics": {
+                "target_class_counts": {
+                  "test": {
+                    "n": 1635,
+                    "negative_n": 253,
+                    "positive_n": 1382
+                  },
+                  "train": {
+                    "n": 7716,
+                    "negative_n": 1146,
+                    "positive_n": 6570
+                  },
+                  "val": {
+                    "n": 1648,
+                    "negative_n": 248,
+                    "positive_n": 1400
+                  }
+                }
+              },
+              "best_c": 0.01,
+              "c_values": [
+                0.01,
+                0.1,
+                1.0,
+                10.0
+              ],
+              "causal_abstraction_claim": {
+                "representation": "raw residual activation",
+                "type": "predictive_only",
+                "variable": "is_correct_weak"
+              },
+              "controls": {
+                "drop_parse_failed": true,
+                "source_join": "activation sidecar row_index to full JSONL",
+                "split_source": "stage2_splits"
+              },
+              "intervention_metrics": null,
+              "matched_noise_summary": null,
+              "max_iter": 2000,
+              "method": "logistic_probe",
+              "model": "qwen35_27b",
+              "n": 10999,
+              "paired_flips": null,
+              "parse_fail_rate": 9.09090909090909e-05,
+              "per_height": {
+                "h1": {
+                  "auc": null,
+                  "n": 153,
+                  "negative_n": 0,
+                  "positive_n": 153
+                },
+                "h2": {
+                  "auc": 0.8431226765799257,
+                  "n": 289,
+                  "negative_n": 20,
+                  "positive_n": 269
+                },
+                "h3": {
+                  "auc": 0.8357187048876058,
+                  "n": 438,
+                  "negative_n": 65,
+                  "positive_n": 373
+                },
+                "h4": {
+                  "auc": 0.8527723695951975,
+                  "n": 755,
+                  "negative_n": 168,
+                  "positive_n": 587
+                }
+              },
+              "probe_type": "logistic",
+              "representation_type": "raw activation",
+              "site_or_layer": "L53/resid_post",
+              "solver": "lbfgs",
+              "split": "s3",
+              "split_counts": {
+                "test": {
+                  "n": 1635,
+                  "negative_n": 253,
+                  "positive_n": 1382
+                },
+                "train": {
+                  "n": 7716,
+                  "negative_n": 1146,
+                  "positive_n": 6570
+                },
+                "val": {
+                  "n": 1648,
+                  "negative_n": 248,
+                  "positive_n": 1400
+                }
+              },
+              "status": "ok",
+              "target_variable": "is_correct_weak",
+              "task": "infer_subtype",
+              "test_auc": 0.8727941975598178,
+              "test_auc_ci": {
+                "alpha": 0.05,
+                "high": 0.8959927949079642,
+                "low": 0.8507111706082414,
+                "mean": 0.8726448272546999,
+                "samples_requested": 1000,
+                "samples_used": 1000
+              },
+              "val_auc": 0.8427044930875576
+            }
+          }
+        },
+        "task": "infer_subtype"
+      }
+    }
+  },
+  "schema_version": 1,
+  "seed": 20260605,
+  "solver": "lbfgs",
+  "split_families": [
+    "s1",
+    "s3",
+    "height_h12_to_h34"
+  ],
+  "splits_path": "results/stage2/splits.jsonl",
+  "targets": [
+    "is_correct_weak"
+  ],
+  "tasks": [
+    "infer_property",
+    "infer_subtype"
+  ]
+}

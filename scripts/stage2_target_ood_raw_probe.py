@@ -218,7 +218,10 @@ def run_grid(args: argparse.Namespace) -> dict[str, Any]:
         "seed": args.seed,
         "c_values": list(args.c_values),
         "max_iter": args.max_iter,
+        "solver": args.solver,
+        "bootstrap_samples": args.bootstrap_samples,
         "height_val_fraction": args.height_val_fraction,
+        "include_split_indices": args.include_split_indices,
         "causal_abstraction_claim": {
             "target_variables": list(args.targets),
             "tested_representation": "raw residual activation",
@@ -281,6 +284,8 @@ def run_grid(args: argparse.Namespace) -> dict[str, Any]:
                         bootstrap_seed=split_seed,
                     )
                     probe.pop("_artifact_model", None)
+                    if not args.include_split_indices:
+                        probe.pop("split_indices", None)
                     target_result[split_family] = {
                         "model": model_key,
                         "task": task,
@@ -346,6 +351,11 @@ def main() -> None:
     parser.add_argument("--solver", default="lbfgs")
     parser.add_argument("--bootstrap-samples", type=int, default=0)
     parser.add_argument("--height-val-fraction", type=float, default=0.15)
+    parser.add_argument(
+        "--include-split-indices",
+        action="store_true",
+        help="Include full split-index arrays in the JSON report. Disabled by default to keep validation reports compact.",
+    )
     parser.add_argument("--output", type=Path, default=Path("docs/target_ood_raw_probe_27b_main.json"))
     args = parser.parse_args()
 
