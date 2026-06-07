@@ -49,6 +49,8 @@ Purpose: track the program testing whether InAbHyD correctness is linearly reada
 
 | Track | Status | Artifact | Note |
 | --- | --- | --- | --- |
+| Qwen robustness appendix table | completed | docs/qwen_robustness_appendix_table.md | Manuscript-facing cross-model appendix/table: Qwen supports predictive and recognition-vs-generation robustness, while causal/patching claims remain scoped to Gemma. |
+| Next-paper synthesis | completed | docs/next_paper_synthesis.md | Consolidates Qwen robustness, dictionary/dark-matter, trajectory, target/OOD, and controlled intervention nulls into current-paper integration guidance and next-paper thesis. |
 | Steering-effectiveness diagnostics | artifact_preflight | docs/steering_effectiveness_diagnostics.md | Artifact preflight over existing probe, metadata, and historical steering reports. |
 | Intervention preflight | started | docs/intervention_preflight.md | Part 1 gate for regenerated baselines, positive controls, matched noise, paired flips, and parse-failure reporting. |
 | Positive-control steering gate | passed | docs/positive_control_format_gemma3_27b_l45.json | Gemma 3 27B L45 casing/output-format control passed and is reused for raw/error/optimized L45 intervention interpretation. Verbosity gate failed by length saturation. |
