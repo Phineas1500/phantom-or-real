@@ -130,6 +130,12 @@ SAEs can still miss the signal that matters for prediction.
 - L53 residual SAE follow-up: raw L53 was strong for S1 property, but L53
   sparse features remain weak. L30+L53+L45 all-sparse gives S1 `0.839/0.886`
   and S3 `0.825/0.882`, below the existing best sparse stacks.
+- Qwen3.5-27B robustness appendix result: raw L53 probes are stronger than
+  metadata baselines, public residual Qwen Scope reconstructions leave
+  predictive error probes, local MLP/transcoder stand-ins move much of the
+  signal into reconstruction, and forced-choice subtype h4 recovers `43/64`
+  free-form failures. Keep this as cross-model robustness evidence rather than
+  a matched causal replication.
 - Cross-method comparison: after exact-hook correction, sparse-family concat,
   and the big-L0 exact transcoder, the best learned-dictionary result moves up
   but still does not improve over raw activations. Crosscoders remain useful as
@@ -218,6 +224,7 @@ SAEs can still miss the signal that matters for prediction.
 - Appendix table: bf16-vs-fp32 sparse encoding stability check.
 - Appendix table/note: corrected L45 262K transcoder Neuronpedia feature audit.
 - Small appendix table: steering pilot summary and null result.
+- Qwen robustness appendix table: `docs/qwen_robustness_appendix_table.md`.
 
 ## One-Sentence Abstract Candidate
 
@@ -225,3 +232,11 @@ We find that Gemma 3 27B pre-generation residuals robustly predict ontology
 reasoning success, but Gemma Scope residual SAEs only partially expose this
 signal; reconstruction diagnostics show the missing predictive component is
 concentrated in the small raw-minus-SAE error subspace.
+
+## Qwen-Aware Abstract Variant
+
+We find that Gemma 3 27B pre-generation residuals robustly predict ontology
+reasoning success, but Gemma Scope residual SAEs only partially expose this
+signal; reconstruction diagnostics show the missing predictive component is
+concentrated in the small raw-minus-SAE error subspace, and Qwen3.5-27B
+corroborates the predictive-versus-causal gap as a cross-model robustness check.

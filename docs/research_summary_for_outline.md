@@ -73,7 +73,7 @@ current evidence does not support.
 | Strong | Tested sparse dictionaries expose only part of the raw correctness signal. | Residual SAEs, corrected exact-hook transcoders, big-L0 transcoders, sparse concats, and crosscoders generally trail raw activations. | Safe main-text claim; note big-L0 and sparse concat improvements. |
 | Strong | Residual SAE reconstruction error preserves much of the predictive signal. | Residual SAEs reconstruct about 95% energy, while raw-minus-reconstruction error probes recover near-raw AUC. | Central report claim. |
 | Strong | Probe-derived steering directions did not reliably repair free-form answers. | Raw correctness, reconstruction-error, sparse-bundle, single-feature, 4B answer-property, and 27B answer-property steering all failed to produce controlled beneficial repairs. Qwen repeats the steering null across raw L45/L53, answer-property, sparse-bundle, and single-feature residual-SAE tests. | Safe causal-null claim if scoped to tested settings. |
-| Strong | Qwen3.5-27B supports the predictive-versus-causal theme as cross-model evidence. | Qwen raw L53 reaches S1 `0.940`/`0.921` and S3 `0.933`/`0.915`, sparse/local dictionaries trail raw, hard-foil forced choice recovers `43/64` h4 subtype failures, and tested steering/patching remains null or weak. | Use as appendix/robustness evidence; do not make it the main mechanistic story. |
+| Strong | Qwen3.5-27B supports the predictive-versus-causal theme as cross-model evidence. | Qwen raw L53 reaches S1 `0.940`/`0.920` and S3 `0.933`/`0.915`, metadata baselines remain much weaker, public residual dictionaries leave predictive reconstruction error, local stand-in dictionaries recover much of that signal, hard-foil forced choice recovers `43/64` h4 subtype failures, and tested steering/patching remains null or weak. | Use as appendix/robustness evidence; do not make it the main mechanistic story. |
 | Strong | Forced-choice recognition can be intact when free-form generation is wrong. | In the Gemma 27B hard-foil setup, baseline MCQ selected gold in 14/16 rows that were free-form wrong; Qwen selected gold in 43/64 h4 subtype failures. | Safe main-text claim; avoid claiming all errors are recognition-intact. |
 | Strong | Forward h1-to-h4 patching did not reveal a clean transplantable repair state. | Clean h1 patches did not consistently outperform matched noise at late `last_prompt` sites. | Safe claim scoped to tested layers, landmarks, and strict natural pairs. |
 | Moderate | Reverse h4-to-h1 patching shows an asymmetric disruption effect. | Aggregate corrupt-state breakage exceeded noise at L35-L50, but the effect is driven by lower/mid-headroom pairs and high-headroom pairs are mixed. | Good result, but present as asymmetry before mechanism. |
@@ -507,6 +507,42 @@ Useful taxonomy for discussion:
 - Emergent correctness/free-form-generation directions: predictive but not
   necessarily causal steering axes.
 
+
+## Current-Paper Qwen Appendix Placement
+
+Use `docs/qwen_robustness_appendix_table.md` as the source for the current-paper
+Qwen robustness appendix/table. The Qwen material should support the Gemma story
+rather than replacing it:
+
+- Main text: one short cross-model robustness paragraph after the main Gemma
+  predictive/causal results.
+- Appendix table: four panels covering predictive readout and metadata controls,
+  sparse dictionary/dark-matter evidence, recognition-vs-generation/trajectory
+  evidence, and intervention/patching checks.
+- Discussion: Qwen strengthens the predictive-versus-causal gap, especially
+  because Qwen raw probes are strong while metadata and LAP/logit-style margins
+  are weak.
+- Limitations: Qwen local MLP/transcoder/crosscoder dictionaries are local
+  stand-ins, not first-party Qwen Scope artifacts; Qwen patching does not
+  reproduce the Gemma reverse-disruption asymmetry; Gemma `14/16` and Qwen
+  `43/64` recognition results are not matched replications.
+
+Conservative body-text insert:
+
+> As a cross-model robustness check, we repeated the main predictive and
+> recognition analyses on Qwen3.5-27B using Qwen Scope residual dictionaries and
+> local dictionary stand-ins. Qwen shows strong raw correctness readouts at L53
+> (S1 AUC `0.940` for property and `0.920` for subtype), well above metadata
+> baselines. Public residual Qwen Scope reconstructions leave near-raw probes in
+> reconstruction error, while local high-fidelity MLP/transcoder dictionaries
+> shift much of the signal into reconstruction. Qwen also exhibits a
+> recognition-vs-generation gap: on subtype h4 free-form-wrong rows, forced
+> choice selects the gold answer in `43/64` cases, and a 14-row trajectory
+> subset already prefers the hard-foil hypothesis over gold at prompt-only
+> scoring. These Qwen results support the cross-model predictive pattern but
+> should not be treated as a matched causal replication of the Gemma patching
+> asymmetry.
+
 ## Recommended Report Structure
 
 1. Introduction
@@ -557,6 +593,7 @@ Good appendix items:
 - Dense-active and dtype sanity checks.
 - Neuronpedia/top-feature audit examples.
 - Full steering condition tables.
+- Qwen robustness appendix table (`docs/qwen_robustness_appendix_table.md`).
 - Patching per-pair/headroom breakdowns.
 
 Probably omit from main text:
@@ -601,6 +638,7 @@ Important result reports:
 - `docs/qwen_scope_replication_plan.md`
 - `docs/qwen_causal_followup_plan.md`
 - `docs/qwen_27b_completion_audit.md`
+- `docs/qwen_robustness_appendix_table.md`
 - `docs/next_paper_causal_abstraction_schema.json`
 
 Figures already available:
