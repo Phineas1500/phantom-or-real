@@ -134,6 +134,8 @@ Turn this synthesis into paper edits:
 
 Only run more A40 jobs if we implement a different intervention family, not another raw-direction gate.
 
+`docs/causal_handle_directions.md` ranks the candidate families and argues the current nulls only establish inaccessibility under single-site, single-direction, additive, low-power interventions on the correctness summary. Its top two candidates — multi-layer subspace erasure (a necessity test with no null outcome) and recognition-state cross-prompt patching (donor activations for repair demonstrably exist on the same rows) — qualify as different families under this rule.
+
 A worthwhile next experiment would need to be qualitatively different:
 
 - A decode-time method that edits trajectory state, rollback/cache state, or candidate continuation policy rather than adding the same raw correctness vector at every step.
