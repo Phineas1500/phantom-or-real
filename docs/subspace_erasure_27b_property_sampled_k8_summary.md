@@ -54,10 +54,15 @@ decode-gate nulls: interventions on a gauge do not move the machine.
 ## Caveats
 
 - Direction vs information: this erases the probe's 1D axis per layer, not
-  all linearly decodable correctness information. The dictionary results
-  show the signal is recoverable in other bases, so the model may re-read it
-  elsewhere. The stronger claim needs full linear concept erasure
-  (LEACE-style) plus a probe-on-erased-activations check.
+  all linearly decodable correctness information. The probe-on-erased check
+  (docs/probe_on_erased_activations_27b_property.json) quantifies this: a
+  retrained probe recovers AUC 0.877 at L45 (baseline 0.897) after the first
+  mean-ablation, and eight successive INLP rounds only reach 0.858 (L30:
+  0.856 -> 0.841 -> plateau near 0.82). Correctness information is
+  high-dimensionally redundant, so the scoped claim is that the canonical
+  readout axis is not load-bearing even while abundant correctness
+  information remains decodable. A full information-level necessity test
+  would need LEACE-style subspace erasure of many directions.
 - Five of 62 layers; the readout could in principle be re-derived between
   erased layers (though it stays clamped at the erased ones through decode).
 - Control magnitudes are matched in per-direction train-projection sd units,
