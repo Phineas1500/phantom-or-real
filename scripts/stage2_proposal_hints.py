@@ -34,6 +34,16 @@ from src.stage2_steering import score_reply  # noqa: E402
 GENERATION_REQUEST = "Please come up with hypotheses to explain observations."
 
 
+def wrong_concept(row: dict[str, Any]) -> str:
+    gold = row["ontology_fol_structured"]["hypothesis"]["subject"].lower()
+    inheritance = row["ontology_fol_structured"]["inheritance"]
+    for child, parents in sorted(inheritance.items()):
+        for concept in (child, *parents):
+            if concept and concept.lower() != gold:
+                return concept
+    raise ValueError("no alternative concept found")
+
+
 def make_user_prompt(row: dict[str, Any], condition: str) -> str:
     hyp = row["ontology_fol_structured"]["hypothesis"]
     concept = hyp["subject"]
@@ -41,6 +51,16 @@ def make_user_prompt(row: dict[str, Any], condition: str) -> str:
     base = GENERATION_REQUEST_RE.sub("", row["prompt_text"]).strip()
     if condition == "baseline":
         return row["prompt_text"]
+    if condition == "hint_concept_first":
+        return (
+            f"Hint: the hypothesis should be about {concept}.\n\n"
+            f"{base}\n\n{GENERATION_REQUEST}"
+        )
+    if condition == "hint_wrong_concept_first":
+        return (
+            f"Hint: the hypothesis should be about {wrong_concept(row)}.\n\n"
+            f"{base}\n\n{GENERATION_REQUEST}"
+        )
     if condition == "hint_concept":
         extra = f"Hint: the hypothesis should be about {concept}."
     elif condition == "hint_concept_property":
@@ -58,7 +78,14 @@ def make_user_prompt(row: dict[str, Any], condition: str) -> str:
     return f"{base}\n\n{extra}\n\n{GENERATION_REQUEST}"
 
 
-CONDITIONS = ("baseline", "hint_concept", "hint_concept_property", "parsimony")
+CONDITIONS = (
+    "baseline",
+    "hint_concept",
+    "hint_concept_property",
+    "parsimony",
+    "hint_concept_first",
+    "hint_wrong_concept_first",
+)
 
 
 async def run_condition(

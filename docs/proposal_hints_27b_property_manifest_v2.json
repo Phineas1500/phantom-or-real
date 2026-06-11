@@ -1,0 +1,197 @@
+{
+  "causal_abstraction_claim": "Hint gradient decomposes the proposal failure: if naming the target concept alone recovers most of the candidates-in-context lift, the failure is selecting what to hypothesize about; if only concept+property does, it is statement formation; if parsimony emphasis helps, it is a hypothesis-form preference. Prompt-level evidence.",
+  "controls": [
+    "paired_baseline"
+  ],
+  "created_at_utc": "2026-06-11T21:51:17.860959+00:00",
+  "elapsed_seconds": 24.074563026428223,
+  "endpoint": "modal_openai_compatible",
+  "generation": {
+    "conditions": [
+      "baseline",
+      "hint_concept",
+      "hint_concept_property",
+      "parsimony",
+      "hint_concept_first",
+      "hint_wrong_concept_first"
+    ],
+    "max_tokens": 96,
+    "samples_per_row": 8,
+    "temperature": 0.7
+  },
+  "method": "proposal_hint_gradient",
+  "model": "gemma3-27b",
+  "n": 672,
+  "representation_type": "prompt_text",
+  "schema_version": 1,
+  "script": "scripts/stage2_proposal_hints.py",
+  "selection": {
+    "calibration_generated_correct_rows": 3,
+    "calibration_generated_wrong_rows": 11,
+    "calibration_parse_fail_rows": 1,
+    "checkpoint": "0",
+    "heights": {
+      "h3": 6,
+      "h4": 8
+    },
+    "limit": null,
+    "prefix_jsonl": "results/stage2/decode_time/prefix_conditioned_margin_trajectory_gemma_manifest.jsonl",
+    "prompt_gold_vs_foil_threshold": 0.0,
+    "prompt_margin_gate_correct_triggered": 2,
+    "prompt_margin_gate_triggered_rows": 13,
+    "prompt_margin_gate_wrong_triggered": 11,
+    "selected_rows": 14,
+    "selection_mode": "prefix_conditioned_margin_manifest_checkpoint",
+    "skipped_missing_source": 0,
+    "source_jsonl": "results/full/with_errortype/gemma3_27b_infer_property.jsonl",
+    "triggered_source_row_indices": [
+      3073,
+      3415,
+      4322,
+      4675,
+      5292,
+      6188,
+      6327,
+      8035,
+      8298,
+      8874,
+      9549,
+      10079,
+      10714
+    ]
+  },
+  "summary": {
+    "baseline": {
+      "n_rows": 14,
+      "per_row_p_strong": {
+        "10079": 0.0,
+        "10714": 0.0,
+        "3073": 0.0,
+        "3290": 0.0,
+        "3415": 0.0,
+        "4322": 0.375,
+        "4675": 0.0,
+        "5292": 0.125,
+        "6188": 0.0,
+        "6327": 0.0,
+        "8035": 0.0,
+        "8298": 0.0,
+        "8874": 0.0,
+        "9549": 0.0
+      },
+      "strong_accuracy": 0.03571428571428571
+    },
+    "hint_concept": {
+      "false_to_true_rows": 12,
+      "mean_delta_p_strong_vs_baseline": 0.9375,
+      "n_rows": 14,
+      "per_row_p_strong": {
+        "10079": 1.0,
+        "10714": 1.0,
+        "3073": 1.0,
+        "3290": 1.0,
+        "3415": 0.625,
+        "4322": 1.0,
+        "4675": 1.0,
+        "5292": 1.0,
+        "6188": 1.0,
+        "6327": 1.0,
+        "8035": 1.0,
+        "8298": 1.0,
+        "8874": 1.0,
+        "9549": 1.0
+      },
+      "strong_accuracy": 0.9732142857142857
+    },
+    "hint_concept_first": {
+      "false_to_true_rows": 12,
+      "mean_delta_p_strong_vs_baseline": 0.9642857142857143,
+      "n_rows": 14,
+      "per_row_p_strong": {
+        "10079": 1.0,
+        "10714": 1.0,
+        "3073": 1.0,
+        "3290": 1.0,
+        "3415": 1.0,
+        "4322": 1.0,
+        "4675": 1.0,
+        "5292": 1.0,
+        "6188": 1.0,
+        "6327": 1.0,
+        "8035": 1.0,
+        "8298": 1.0,
+        "8874": 1.0,
+        "9549": 1.0
+      },
+      "strong_accuracy": 1.0
+    },
+    "hint_concept_property": {
+      "false_to_true_rows": 12,
+      "mean_delta_p_strong_vs_baseline": 0.9642857142857143,
+      "n_rows": 14,
+      "per_row_p_strong": {
+        "10079": 1.0,
+        "10714": 1.0,
+        "3073": 1.0,
+        "3290": 1.0,
+        "3415": 1.0,
+        "4322": 1.0,
+        "4675": 1.0,
+        "5292": 1.0,
+        "6188": 1.0,
+        "6327": 1.0,
+        "8035": 1.0,
+        "8298": 1.0,
+        "8874": 1.0,
+        "9549": 1.0
+      },
+      "strong_accuracy": 1.0
+    },
+    "hint_wrong_concept_first": {
+      "false_to_true_rows": 0,
+      "mean_delta_p_strong_vs_baseline": -0.03571428571428571,
+      "n_rows": 14,
+      "per_row_p_strong": {
+        "10079": 0.0,
+        "10714": 0.0,
+        "3073": 0.0,
+        "3290": 0.0,
+        "3415": 0.0,
+        "4322": 0.0,
+        "4675": 0.0,
+        "5292": 0.0,
+        "6188": 0.0,
+        "6327": 0.0,
+        "8035": 0.0,
+        "8298": 0.0,
+        "8874": 0.0,
+        "9549": 0.0
+      },
+      "strong_accuracy": 0.0
+    },
+    "parsimony": {
+      "false_to_true_rows": 5,
+      "mean_delta_p_strong_vs_baseline": 0.14285714285714285,
+      "n_rows": 14,
+      "per_row_p_strong": {
+        "10079": 0.0,
+        "10714": 0.375,
+        "3073": 0.25,
+        "3290": 0.25,
+        "3415": 0.0,
+        "4322": 0.625,
+        "4675": 0.0,
+        "5292": 0.5,
+        "6188": 0.0,
+        "6327": 0.0,
+        "8035": 0.375,
+        "8298": 0.0,
+        "8874": 0.125,
+        "9549": 0.0
+      },
+      "strong_accuracy": 0.17857142857142858
+    }
+  },
+  "target_variable": "selected_hypothesis",
+  "task": "infer_property"
+}
