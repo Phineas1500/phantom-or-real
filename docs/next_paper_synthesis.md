@@ -6,9 +6,11 @@ Generated after the Qwen robustness, local-dictionary, target/OOD, trajectory, a
 
 The strongest current framing is:
 
-**InAbHyD correctness is linearly readable, sparsely lossy under public reconstruction dictionaries, recoverable in better local bases, and causally inaccessible under the raw-direction, DAS-style, patch/localization, and decode-gated interventions tested so far.**
+**InAbHyD correctness is linearly readable, sparsely lossy under public reconstruction dictionaries, recoverable in better local bases, and causally epiphenomenal as a readout direction: a direct multi-layer necessity test (mean-ablating the per-layer probe direction at every position) leaves behavior statistically unchanged while matched control erasures are destructive.**
 
-The word `distributed` should remain a hypothesis, not a conclusion. The current evidence supports `causally inaccessible under tested methods` more strongly than it supports a positive distributed-causal handle.
+The word `distributed` should remain a hypothesis, not a conclusion. As of 2026-06-11 the evidence has moved past `causally inaccessible under tested methods`: the necessity test (jobs 456912, 456915-456918; docs/subspace_erasure_27b_property_sampled_k8_summary.md) supports the stronger positive claim that the correctness readout direction is not load-bearing — erase_raw delta-P=-0.016 (0.4 sigma from zero) vs erase_orthogonal -0.367 (3.4 sigma separation) over 512 sampled generations. This predicts and explains the raw-steering, optimized-vector, DAS, and decode-gate nulls: they intervened on a gauge, not a mechanism. Scope caveats: the erased object is the probe axis, not all linearly decodable correctness information; property/Gemma, 5 of 62 layers (subtype replication in flight).
+
+The companion recognition-state cross-prompt patch (job 456913; docs/recognition_state_patch_27b_property_manifest.json) is a controlled repair null with localization value: donors select gold on 14/14 recognition-gap rows, yet their shared ontology-context encodings transplant no gold preference (F->T=0, disruption equal to matched noise). The causally potent selection state therefore lives in the explicit hypothesis-option tokens or the comparison computation, not in context encodings — the target of the within-recognition interchange experiment in docs/causal_handle_directions.md (experiment 7).
 
 ## Current Paper Integration
 
@@ -95,13 +97,13 @@ This evidence does not justify the positive claim `causally distributed`. It sup
 
 ## Revised Thesis
 
-Use this as the next-paper thesis unless a new trajectory-level repair method succeeds:
+Use this as the next-paper thesis (updated 2026-06-11 after the necessity test):
 
-**Correctness in ontology reasoning is robustly decodable but not robustly controllable. It is linearly readable across Gemma and Qwen, lossy under public sparse reconstruction dictionaries, partly recoverable in local high-fidelity bases, and resistant to raw-direction, low-rank interchange, exact/localized patching, and prompt-margin gated decode-time repair.**
+**Correctness in ontology reasoning is robustly decodable but causally epiphenomenal as a readout. It is linearly readable across Gemma and Qwen, lossy under public sparse reconstruction dictionaries, partly recoverable in local high-fidelity bases, and removable without behavioral cost: multi-layer erasure of the readout direction leaves task behavior statistically unchanged while matched control erasures are destructive. The causally potent variable is hypothesis selection, computed during prompt processing, whose state is not carried by context-token encodings.**
 
 Shorter version:
 
-**Correctness is readable, sparsely basis-sensitive, and causally inaccessible under tested interventions.**
+**Correctness is readable everywhere and needed nowhere: the probe reads an epiphenomenal evaluation of a selection process that the tested interventions never touched.**
 
 Avoid:
 
