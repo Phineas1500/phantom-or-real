@@ -41,6 +41,8 @@ echo "Started: $(date)"
 echo "CUDA_VISIBLE_DEVICES=${CUDA_VISIBLE_DEVICES:-<unset>}"
 nvidia-smi
 
+ERASURE_TASK="${ERASURE_TASK:-infer_property}"
+ERASURE_JSONL="${ERASURE_JSONL:-results/full/with_errortype/gemma3_27b_infer_property.jsonl}"
 ERASURE_LAYERS="${ERASURE_LAYERS:-15,30,40,45,53}"
 ERASURE_CONDITIONS="${ERASURE_CONDITIONS:-baseline,erase_raw,erase_orthogonal,erase_gaussian}"
 ERASURE_HEIGHTS="${ERASURE_HEIGHTS:-3,4}"
@@ -58,10 +60,10 @@ if [ -n "$ERASURE_ROW_SHARD" ]; then
 fi
 
 python -u scripts/stage2_subspace_erasure.py \
-    --jsonl results/full/with_errortype/gemma3_27b_infer_property.jsonl \
+    --jsonl "$ERASURE_JSONL" \
     --model google/gemma-3-27b-it \
     --model-key gemma3_27b \
-    --task infer_property \
+    --task "$ERASURE_TASK" \
     --layers "$ERASURE_LAYERS" \
     --activation-dir results/stage2/activations \
     --splits results/stage2/splits.jsonl \

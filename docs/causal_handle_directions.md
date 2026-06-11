@@ -162,6 +162,40 @@ and MLP paths set it during prompt processing, then intervene on those
 components. AtP estimates already track exact patches at L50 (r=0.97), so
 the tooling exists — it was pointed at correctness instead of commitment.
 
+### 7. Within-recognition selection-circuit localization (added 2026-06-11)
+
+Successor to experiment 2 after its null: the gold preference demonstrably
+exists inside the recognition run, so localize it there, where minimal pairs
+are cheap and scoring needs no generation (teacher-forced logprob of `(A)`
+vs `(B)`).
+
+Design, on the manifest recognition-gap rows:
+
+- Minimal pair: original MCQ prompt (gold at A) vs option-swapped prompt
+  (gold at B). Baselines on both verify the choice follows content, not
+  letter position.
+- `patch_options_from_swap`: replace the gold-option and foil-option token
+  spans in the original prompt with the same-content spans from the swapped
+  run (identical text, swapped letter-binding context; small RoPE position
+  offsets are a flagged caveat, calibrated by the noise control). If the
+  choice flips to follow the donor binding, the per-option comparison
+  result is stored in the option spans — a causal handle on
+  `selected_hypothesis`.
+- `patch_tail_from_swap`: patch the matched post-options instruction block
+  and final positions from the swapped run. If this alone flips the choice,
+  the decision is already resolved downstream of the options by the patched
+  layers.
+- Controls: magnitude-matched noise on the same spans, both baselines,
+  layer-band flag for later sweeps (start with L30/L40/L45 as in
+  experiment 2).
+- Metric: per-row choice flips plus gold-vs-foil letter logprob margins;
+  k-sample dP not needed since scoring is deterministic.
+
+Payoff: a positive interchange-intervention result on `selected_hypothesis`
+inside recognition, which then sharpens the free-form question to "why does
+generation not deploy the comparison circuit that these spans/positions
+demonstrably carry?"
+
 ## Cross-Cutting Protocol Upgrades
 
 Apply to every experiment above:
