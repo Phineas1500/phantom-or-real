@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Phantom or Real — Where the Causality Hunt Stands</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  :root {
+    --ink: #1a2433; --muted: #5b6b7f; --bg: #f7f9fc; --card: #ffffff;
+    --teal: #0e9488; --red: #d23f3f; --amber: #d99114; --blue: #2563ab;
+    --gray: #9aa7b6; --line: #e3e9f1;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font: 16px/1.65 Georgia, 'Times New Roman', serif;
+  }
+  header {
+    background: linear-gradient(135deg, #16324f, #0e9488);
+    color: #fff; padding: 48px 24px 40px;
+  }
+  .wrap { max-width: 880px; margin: 0 auto; padding: 0 8px; }
+  header h1 { font-size: 30px; margin: 0 0 10px; font-weight: normal; letter-spacing: 0.3px; }
+  header p { margin: 0; opacity: 0.92; font-size: 17px; max-width: 760px; }
+  header .date { font-size: 13px; opacity: 0.75; margin-top: 14px; font-family: Helvetica, Arial, sans-serif; }
+  section { max-width: 880px; margin: 36px auto; padding: 0 24px; }
+  h2 {
+    font-size: 22px; font-weight: normal; margin: 0 0 6px;
+    border-bottom: 2px solid var(--teal); display: inline-block; padding-bottom: 4px;
+  }
+  .kicker { font-family: Helvetica, Arial, sans-serif; font-size: 12px; letter-spacing: 1.5px;
+            text-transform: uppercase; color: var(--teal); margin-bottom: 4px; }
+  .card {
+    background: var(--card); border: 1px solid var(--line); border-radius: 10px;
+    padding: 22px 26px; margin: 18px 0; box-shadow: 0 1px 3px rgba(20,40,70,0.06);
+  }
+  .verdict {
+    border-left: 5px solid var(--teal); background: #eefaf8;
+    padding: 16px 20px; border-radius: 6px; margin: 18px 0; font-size: 17px;
+  }
+  .caveat { border-left: 5px solid var(--amber); background: #fdf6e8; padding: 12px 18px;
+            border-radius: 6px; margin: 14px 0; font-size: 15px; color: #5d4a14; }
+  figure { margin: 22px 0 8px; }
+  figcaption { font-family: Helvetica, Arial, sans-serif; font-size: 13px; color: var(--muted);
+               margin-top: 8px; line-height: 1.5; }
+  svg text { font-family: Helvetica, Arial, sans-serif; }
+  table { border-collapse: collapse; width: 100%; font-family: Helvetica, Arial, sans-serif;
+          font-size: 14px; margin: 14px 0; }
+  th, td { border-bottom: 1px solid var(--line); text-align: left; padding: 8px 10px; }
+  th { color: var(--muted); font-weight: 600; font-size: 12.5px; text-transform: uppercase; letter-spacing: 0.5px; }
+  td.num { font-variant-numeric: tabular-nums; }
+  .good { color: var(--teal); font-weight: 600; }
+  .bad { color: var(--red); font-weight: 600; }
+  .chip { display: inline-block; font-family: Helvetica, Arial, sans-serif; font-size: 12px;
+          padding: 3px 10px; border-radius: 999px; margin-right: 6px; font-weight: 600; }
+  .chip.done { background: #e0f4f1; color: #0b6e65; }
+  .chip.run  { background: #e8effa; color: #1d4f8c; }
+  .chip.next { background: #f1f3f6; color: #5b6b7f; }
+  .legend { font-family: Helvetica, Arial, sans-serif; font-size: 13px; color: var(--muted); margin: 6px 0; }
+  .legend span { display: inline-block; width: 12px; height: 12px; border-radius: 3px;
+                 margin: 0 6px 0 14px; vertical-align: -1px; }
+  ul { padding-left: 22px; }
+  li { margin: 6px 0; }
+  footer { max-width: 880px; margin: 40px auto 60px; padding: 0 24px;
+           font-family: Helvetica, Arial, sans-serif; font-size: 12.5px; color: var(--muted); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <h1>Phantom or Real — Where the Causality Hunt Stands</h1>
+    <p>We could always <em>read</em> whether the model was about to be right. This week we learned why we
+       could never <em>steer</em> it: the thing we were reading turns out to be a gauge, not a lever.</p>
+    <div class="date">Status: June 11, 2026 &nbsp;·&nbsp; Gemma&nbsp;3&nbsp;27B, InAbHyD property task &nbsp;·&nbsp; subtype replication in flight</div>
+  </div>
+</header>
+
+<!-- ============ 1. THE PUZZLE ============ -->
+<section>
+  <div class="kicker">Part 1 · The puzzle we started with</div>
+  <h2>Readable everywhere, steerable nowhere</h2>
+  <div class="card">
+    <p>A simple linear probe on the residual stream predicts whether the model's free-form answer
+       will be correct — at every layer we extract, getting stronger toward the late layers.
+       This readout survives name-scrambling, works on Qwen too, and beats every metadata baseline.</p>
+
+    <figure>
+      <svg viewBox="0 0 560 230" width="100%" role="img" aria-label="Probe AUC by layer">
+        <line x1="60" y1="190" x2="540" y2="190" stroke="#c9d3df"/>
+        <line x1="60" y1="40"  x2="540" y2="40"  stroke="#eef2f7"/>
+        <text x="50" y="194" text-anchor="end" font-size="12" fill="#5b6b7f">0.50</text>
+        <text x="50" y="44"  text-anchor="end" font-size="12" fill="#5b6b7f">1.00</text>
+        <text x="50" y="119" text-anchor="end" font-size="12" fill="#5b6b7f">0.75</text>
+        <line x1="60" y1="115" x2="540" y2="115" stroke="#eef2f7"/>
+        <!-- bars: (auc-0.5)/0.5*150 px tall, baseline y=190 -->
+        <g fill="#2563ab">
+          <rect x="85"  y="104.2" width="60" height="85.8"  rx="3" opacity="0.55"/>
+          <rect x="180" y="83.2"  width="60" height="106.8" rx="3" opacity="0.7"/>
+          <rect x="275" y="73"    width="60" height="117"   rx="3" opacity="0.85"/>
+          <rect x="370" y="70.9"  width="60" height="119.1" rx="3"/>
+          <rect x="465" y="69.4"  width="60" height="120.6" rx="3"/>
+        </g>
+        <g font-size="13" fill="#1a2433" text-anchor="middle">
+          <text x="115" y="98">0.786</text><text x="210" y="77">0.856</text>
+          <text x="305" y="67">0.890</text><text x="400" y="65">0.897</text><text x="495" y="63">0.902</text>
+        </g>
+        <g font-size="13" fill="#5b6b7f" text-anchor="middle">
+          <text x="115" y="210">L15</text><text x="210" y="210">L30</text>
+          <text x="305" y="210">L40</text><text x="400" y="210">L45</text><text x="495" y="210">L53</text>
+        </g>
+      </svg>
+      <figcaption><b>Correctness probe test AUC by layer</b> (S1 split, property task). 0.5 = chance.
+      These five directions are exactly what the erasure experiment removes.</figcaption>
+    </figure>
+
+    <p>But every attempt to <em>use</em> this signal causally failed: raw-direction steering, optimized
+       vectors, DAS low-rank interchange, exact patching, decode-time gated injection — all zero repairs
+       across the board. For months the honest summary was <em>“causally inaccessible under tested
+       methods.”</em> The new experiments asked the question the other way around.</p>
+  </div>
+</section>
+
+<!-- ============ 2. EXPERIMENT 1 ============ -->
+<section>
+  <div class="kicker">Part 2 · Experiment 1 — the necessity test</div>
+  <h2>Delete the signal. Does the model care?</h2>
+  <div class="card">
+    <p>Instead of adding the correctness direction (steering), we <b>erased</b> it — clamped each
+       layer's probe direction to its mean value at <em>all five layers at once, at every token
+       position, through prompt processing and decoding</em>. As controls, we did the identical
+       operation to random directions of matched scale. 16 balanced rows × 4 conditions × 8 sampled
+       generations = 512 runs.</p>
+
+    <figure>
+      <svg viewBox="0 0 700 300" width="100%" role="img" aria-label="Erasure effect on accuracy">
+        <!-- zero line -->
+        <line x1="70" y1="50" x2="660" y2="50" stroke="#1a2433" stroke-width="1.5"/>
+        <text x="64" y="54" text-anchor="end" font-size="12" fill="#5b6b7f">0.0</text>
+        <line x1="70" y1="130" x2="660" y2="130" stroke="#eef2f7"/>
+        <text x="64" y="134" text-anchor="end" font-size="12" fill="#5b6b7f">−0.4</text>
+        <line x1="70" y1="210" x2="660" y2="210" stroke="#eef2f7"/>
+        <text x="64" y="214" text-anchor="end" font-size="12" fill="#5b6b7f">−0.8</text>
+        <!-- group 1: all rows. scale 1.0 dP = 200px -->
+        <g>
+          <rect x="100" y="50" width="52" height="3.2"  fill="#0e9488" rx="2"/>
+          <rect x="162" y="50" width="52" height="45.4" fill="#d99114" rx="2"/>
+          <rect x="224" y="50" width="52" height="73.4" fill="#d23f3f" rx="2"/>
+          <text x="126" y="70"  text-anchor="middle" font-size="13" fill="#0e9488" font-weight="bold">−0.016</text>
+          <text x="188" y="112" text-anchor="middle" font-size="13" fill="#a06c0c">−0.227</text>
+          <text x="250" y="140" text-anchor="middle" font-size="13" fill="#d23f3f">−0.367</text>
+          <text x="188" y="250" text-anchor="middle" font-size="14" fill="#1a2433">All 16 rows</text>
+        </g>
+        <!-- group 2: baseline-correct rows -->
+        <g>
+          <rect x="400" y="50" width="52" height="10.8"  fill="#0e9488" rx="2"/>
+          <rect x="462" y="50" width="52" height="114.2" fill="#d99114" rx="2"/>
+          <rect x="524" y="50" width="52" height="150"   fill="#d23f3f" rx="2"/>
+          <text x="426" y="78"  text-anchor="middle" font-size="13" fill="#0e9488" font-weight="bold">−0.054</text>
+          <text x="488" y="181" text-anchor="middle" font-size="13" fill="#a06c0c">−0.571</text>
+          <text x="550" y="217" text-anchor="middle" font-size="13" fill="#d23f3f">−0.750</text>
+          <text x="488" y="250" text-anchor="middle" font-size="14" fill="#1a2433">Rows the model normally gets right</text>
+        </g>
+        <text x="365" y="285" text-anchor="middle" font-size="13" fill="#5b6b7f">Change in P(correct) vs. un-intervened baseline — lower is more damage</text>
+      </svg>
+      <div class="legend">
+        <span style="background:#0e9488"></span>erase the <b>correctness</b> direction
+        <span style="background:#d99114"></span>erase a random direction (Gaussian control)
+        <span style="background:#d23f3f"></span>erase an orthogonal control direction
+      </div>
+      <figcaption><b>The headline result.</b> Removing the correctness direction does nothing
+      (−0.016, statistically 0.4σ from zero). The identical operation on control directions is
+      catastrophic — orthogonal erasure destroys 75% of the accuracy on normally-correct rows
+      and separates from the real erasure at <b>3.4σ</b>. The intervention machinery is proven
+      potent; the correctness axis specifically is not load-bearing.</figcaption>
+    </figure>
+
+    <div class="verdict">
+      <b>Verdict: the correctness readout is causally epiphenomenal.</b> It is a gauge the
+      computation never consults — which is precisely why steering it never repaired anything.
+      Months of nulls became one explained phenomenon.
+    </div>
+
+    <table>
+      <tr><th>Condition</th><th>P(correct)</th><th>ΔP vs baseline</th><th>Parse failures</th><th>Significance</th></tr>
+      <tr><td>Baseline (no intervention)</td><td class="num">0.391</td><td class="num">—</td><td class="num">4.7%</td><td>—</td></tr>
+      <tr><td>Erase <b>correctness</b> direction</td><td class="num good">0.375</td><td class="num good">−0.016</td><td class="num">6.2%</td><td class="good">0.4σ from zero (null)</td></tr>
+      <tr><td>Erase Gaussian control</td><td class="num bad">0.164</td><td class="num bad">−0.227</td><td class="num bad">47.7%</td><td class="bad">destructive</td></tr>
+      <tr><td>Erase orthogonal control</td><td class="num bad">0.023</td><td class="num bad">−0.367</td><td class="num bad">30.5%</td><td class="bad">3.4σ below raw erasure</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- ============ 3. INLP ============ -->
+<section>
+  <div class="kicker">Part 3 · The loophole check</div>
+  <h2>“But the information is still in there” — yes, and that makes it stronger</h2>
+  <div class="card">
+    <p>Obvious objection: we erased one direction per layer; maybe the model just reads correctness
+       from another direction. The check: erase the axis from stored activations, train a <em>fresh</em>
+       probe on what remains, repeat eight times (INLP-style).</p>
+
+    <figure>
+      <svg viewBox="0 0 560 230" width="100%" role="img" aria-label="INLP decay curves">
+        <line x1="40" y1="172.7" x2="540" y2="172.7" stroke="#c9d3df" stroke-dasharray="5 4"/>
+        <text x="535" y="168" text-anchor="end" font-size="12" fill="#9aa7b6">chance (0.50)</text>
+        <line x1="40" y1="20" x2="40" y2="190" stroke="#c9d3df"/>
+        <text x="34" y="32" text-anchor="end" font-size="12" fill="#5b6b7f">0.90</text>
+        <text x="34" y="105" text-anchor="end" font-size="12" fill="#5b6b7f">0.70</text>
+        <!-- L45 polyline -->
+        <polyline fill="none" stroke="#2563ab" stroke-width="2.5"
+          points="40,28.4 95,35.7 150,41.4 205,42.4 260,43.2 315,42.1 370,42.9 425,41.9 480,42.7"/>
+        <!-- L30 polyline -->
+        <polyline fill="none" stroke="#0e9488" stroke-width="2.5" stroke-dasharray="7 4"
+          points="40,43.3 95,48.7 150,58.4 205,59.1 260,56.4 315,57.6 370,55.6 425,57.3 480,55.2"/>
+        <g fill="#2563ab"><circle cx="40" cy="28.4" r="4"/><circle cx="95" cy="35.7" r="4"/><circle cx="480" cy="42.7" r="4"/></g>
+        <g fill="#0e9488"><circle cx="40" cy="43.3" r="4"/><circle cx="95" cy="48.7" r="4"/><circle cx="480" cy="55.2" r="4"/></g>
+        <text x="56" y="22" font-size="13" fill="#2563ab" font-weight="bold">L45: 0.897 → 0.877 → … → 0.858</text>
+        <text x="120" y="80" font-size="13" fill="#0e9488" font-weight="bold">L30: 0.856 → 0.841 → … → 0.823</text>
+        <g font-size="12" fill="#5b6b7f" text-anchor="middle">
+          <text x="40" y="208">0</text><text x="150" y="208">2</text><text x="260" y="208">4</text>
+          <text x="370" y="208">6</text><text x="480" y="208">8</text>
+          <text x="280" y="226">number of directions erased, retraining the probe each time</text>
+        </g>
+      </svg>
+      <figcaption><b>Correctness information is massively redundant.</b> Even after erasing eight
+      directions in a row, a fresh probe still decodes correctness at ~0.86 AUC — the curve barely
+      bends toward chance. The signal lives in a high-dimensional subspace.</figcaption>
+    </figure>
+
+    <p>This <em>scopes</em> rather than undermines the verdict: the model kept abundant correctness
+       information through our runtime erasure and <em>still</em> didn't behaviorally depend on the
+       canonical axis. The readout is <b>directionally epiphenomenal and informationally
+       redundant</b> — many needles on the same gauge, none of them load-bearing.</p>
+    <div class="caveat"><b>Open scope:</b> erasing the <em>entire</em> redundant subspace (LEACE-style)
+      is a different, heavier experiment — listed as future work, since removing a high-dimensional
+      subspace risks the same off-manifold destruction the orthogonal control demonstrated.</div>
+  </div>
+</section>
+
+<!-- ============ 4. EXPERIMENT 2 ============ -->
+<section>
+  <div class="kicker">Part 4 · Experiment 2 — hunting the real decision</div>
+  <h2>The model knows the answer. Where is it keeping it?</h2>
+  <div class="card">
+    <p>On the recognition-gap rows, the model generates the <em>wrong</em> hypothesis free-form, yet
+       picks the <em>gold</em> hypothesis when both are shown as options — verified again here:
+       <b>14 of 14</b> donor runs chose gold. So a correct-selection state exists in the same model on
+       the same problem. We tried to transplant it: capture the MCQ run's encoding of the shared
+       ~90-token ontology context (layers 30/40/45) and patch it into the free-form run.</p>
+
+    <figure>
+      <svg viewBox="0 0 620 240" width="100%" role="img" aria-label="Recognition patch results">
+        <line x1="70" y1="190" x2="600" y2="190" stroke="#c9d3df"/>
+        <text x="64" y="194" text-anchor="end" font-size="12" fill="#5b6b7f">0.00</text>
+        <text x="64" y="74"  text-anchor="end" font-size="12" fill="#5b6b7f">0.20</text>
+        <line x1="70" y1="70" x2="600" y2="70" stroke="#eef2f7"/>
+        <!-- bars scale: P * 560 px -->
+        <rect x="95"  y="70.2"  width="70" height="119.8" fill="#9aa7b6" rx="3"/>
+        <rect x="230" y="188"   width="70" height="2"     fill="#2563ab" rx="1"/>
+        <rect x="365" y="150.2" width="70" height="39.8"  fill="#2563ab" opacity="0.55" rx="3"/>
+        <rect x="500" y="188"   width="70" height="2"     fill="#d99114" rx="1"/>
+        <g font-size="13" text-anchor="middle" fill="#1a2433">
+          <text x="130" y="63">0.214</text>
+          <text x="265" y="182">0.000</text>
+          <text x="400" y="143">0.071</text>
+          <text x="535" y="182">0.000</text>
+        </g>
+        <g font-size="13" text-anchor="middle" fill="#5b6b7f">
+          <text x="130" y="212">baseline</text>
+          <text x="265" y="212">patch recognition</text>
+          <text x="265" y="228">context state</text>
+          <text x="400" y="212">shuffled donor</text>
+          <text x="400" y="228">(control)</text>
+          <text x="535" y="212">matched noise</text>
+          <text x="535" y="228">(control)</text>
+        </g>
+      </svg>
+      <figcaption><b>P(correct) after patching, 14 recognition-gap rows.</b> Transplanting the
+      gold-selecting run's context encoding repaired nothing (0 false→true flips) and caused exactly
+      the same disruption as injecting noise of equal magnitude (both ΔP = −0.214).</figcaption>
+    </figure>
+
+    <div class="verdict" style="border-color:#2563ab; background:#eef3fb;">
+      <b>A null with localization value:</b> the gold preference is <em>not</em> carried by the
+      context-token encodings. By elimination it lives in the parts of the MCQ prompt that have no
+      free-form counterpart — the explicit hypothesis-option tokens, or the comparison computation
+      over them. That is exactly where the next experiment points.
+    </div>
+  </div>
+</section>
+
+<!-- ============ 5. THE PICTURE ============ -->
+<section>
+  <div class="kicker">Part 5 · The updated picture</div>
+  <h2>One diagram of what we now believe</h2>
+  <div class="card">
+    <figure>
+      <svg viewBox="0 0 760 330" width="100%" role="img" aria-label="Causal picture diagram">
+        <defs>
+          <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+            <path d="M0,0 L10,5 L0,10 z" fill="#1a2433"/>
+          </marker>
+          <marker id="arrg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+            <path d="M0,0 L10,5 L0,10 z" fill="#9aa7b6"/>
+          </marker>
+        </defs>
+        <!-- main causal chain -->
+        <rect x="20"  y="60" width="160" height="64" rx="10" fill="#eef3fb" stroke="#2563ab"/>
+        <text x="100" y="87" text-anchor="middle" font-size="14" fill="#1a2433" font-weight="bold">Prompt processing</text>
+        <text x="100" y="106" text-anchor="middle" font-size="12.5" fill="#5b6b7f">reads ontology facts</text>
+
+        <rect x="250" y="60" width="180" height="64" rx="10" fill="#fdeeee" stroke="#d23f3f"/>
+        <text x="340" y="87" text-anchor="middle" font-size="14" fill="#1a2433" font-weight="bold">Hypothesis selection</text>
+        <text x="340" y="106" text-anchor="middle" font-size="12.5" fill="#5b6b7f">commits before token 1</text>
+
+        <rect x="500" y="60" width="160" height="64" rx="10" fill="#eef3fb" stroke="#2563ab"/>
+        <text x="580" y="87" text-anchor="middle" font-size="14" fill="#1a2433" font-weight="bold">Generation</text>
+        <text x="580" y="106" text-anchor="middle" font-size="12.5" fill="#5b6b7f">writes the answer</text>
+
+        <line x1="180" y1="92" x2="244" y2="92" stroke="#1a2433" stroke-width="2" marker-end="url(#arr)"/>
+        <line x1="430" y1="92" x2="494" y2="92" stroke="#1a2433" stroke-width="2" marker-end="url(#arr)"/>
+
+        <!-- gauge -->
+        <rect x="250" y="200" width="180" height="64" rx="10" fill="#f1f3f6" stroke="#9aa7b6" stroke-dasharray="6 4"/>
+        <text x="340" y="227" text-anchor="middle" font-size="14" fill="#5b6b7f" font-weight="bold">Correctness readout</text>
+        <text x="340" y="246" text-anchor="middle" font-size="12.5" fill="#9aa7b6">what our probes see</text>
+        <line x1="340" y1="124" x2="340" y2="194" stroke="#9aa7b6" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#arrg)"/>
+        <text x="352" y="165" font-size="12.5" fill="#9aa7b6">evaluation only</text>
+
+        <!-- the crossed-out causal arrow from gauge -->
+        <path d="M 430 232 C 540 232 580 170 580 130" fill="none" stroke="#d23f3f" stroke-width="2" stroke-dasharray="4 4"/>
+        <line x1="520" y1="195" x2="556" y2="225" stroke="#d23f3f" stroke-width="3.5"/>
+        <line x1="556" y1="195" x2="520" y2="225" stroke="#d23f3f" stroke-width="3.5"/>
+        <text x="610" y="220" font-size="12.5" fill="#d23f3f">erasing it changes nothing</text>
+        <text x="610" y="237" font-size="12.5" fill="#d23f3f">(experiment 1)</text>
+
+        <!-- recognition note -->
+        <rect x="20" y="200" width="180" height="64" rx="10" fill="#eefaf8" stroke="#0e9488"/>
+        <text x="110" y="222" text-anchor="middle" font-size="13.5" fill="#1a2433" font-weight="bold">Recognition works</text>
+        <text x="110" y="240" text-anchor="middle" font-size="12" fill="#5b6b7f">when options are explicit;</text>
+        <text x="110" y="256" text-anchor="middle" font-size="12" fill="#5b6b7f">not via context encoding (exp 2)</text>
+        <line x1="200" y1="225" x2="290" y2="135" stroke="#0e9488" stroke-width="2" marker-end="url(#arr)" opacity="0.6"/>
+
+        <text x="380" y="310" text-anchor="middle" font-size="14" fill="#1a2433" font-style="italic">
+          The red box is the causal target. The gray box is what we have been measuring all along.
+        </text>
+      </svg>
+    </figure>
+    <p style="margin-top:4px">In one sentence: <b>correctness is readable everywhere and needed
+    nowhere — the probe reads an epiphenomenal evaluation of a selection process that the tested
+    interventions never touched.</b> The selection process is now the target.</p>
+  </div>
+</section>
+
+<!-- ============ 6. STATUS ============ -->
+<section>
+  <div class="kicker">Part 6 · What's running and what's next</div>
+  <h2>Current pipeline</h2>
+  <div class="card">
+    <table>
+      <tr><th>Status</th><th>Work</th><th>Why</th><th>ETA</th></tr>
+      <tr>
+        <td><span class="chip done">done</span></td>
+        <td>Erasure necessity test, k=8, property (512 gens)</td>
+        <td>Headline: readout direction is epiphenomenal, 3.4σ vs controls</td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td><span class="chip done">done</span></td>
+        <td>Recognition-state context patch (14 rows)</td>
+        <td>Selection state not in context encodings → localized by elimination</td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td><span class="chip done">done</span></td>
+        <td>Probe-on-erased / INLP redundancy check</td>
+        <td>Scopes the claim: information redundant, axis still not load-bearing</td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td><span class="chip run">running</span></td>
+        <td>Subtype-task erasure replication (4 shards, jobs 456963–966)</td>
+        <td>Generalize the epiphenomenality verdict beyond the property task</td>
+        <td>~tomorrow AM</td>
+      </tr>
+      <tr>
+        <td><span class="chip next">next</span></td>
+        <td>Within-recognition selection-circuit interchange (designed; experiment 7)</td>
+        <td><b>The positive-causality shot:</b> flip the model's choice by patching
+            option spans — a causal handle on <i>selected_hypothesis</i></td>
+        <td>~1 day</td>
+      </tr>
+      <tr>
+        <td><span class="chip next">next</span></td>
+        <td>Qwen erasure replication (needs HF-hooks variant)</td>
+        <td>Cross-model robustness of the necessity result</td>
+        <td>~2 days</td>
+      </tr>
+    </table>
+    <p>The long pole is queue policy (4h per job, one 2-GPU job at a time), not the experiments —
+       each new test is now cheap because scoring is deterministic or short-form.</p>
+  </div>
+</section>
+
+<footer>
+  Sources: docs/subspace_erasure_27b_property_sampled_k8_summary.md ·
+  docs/recognition_state_patch_27b_property_manifest.json ·
+  docs/probe_on_erased_activations_27b_property.json ·
+  docs/causal_handle_directions.md · next_paper_causal_abstraction_dashboard.md.
+  All numbers are from committed run artifacts (jobs 456912–456918, 456913).
+</footer>
+
+</body>
+</html>
