@@ -353,10 +353,19 @@
         <td class="num">0.045 → <b>0.196</b> (+0.15; 3 rows improve, none degrade)</td>
         <td>Token-routed evaluation helps a little, but can't conjure the missing candidate — ~5× weaker than supplying candidates</td>
       </tr>
+      <tr>
+        <td><b>Hint gradient:</b> name only the target concept — zero hypothesis content</td>
+        <td class="num">0.045 → <b>0.955</b> (concept+property: 1.000; parsimony hint: 0.241)</td>
+        <td><b>The proposal failure is a focus failure</b> — pointed at the right concept, the model
+            forms the correct hypothesis almost perfectly, beating even full candidates (0.839)</td>
+      </tr>
     </table>
-    <p>So the bottleneck is precisely localized: <b>proposing gold, not evaluating it.</b>
-    Recognition (14/14), candidate selection (0.839), and weak self-evaluation (+0.15) all work;
-    unprompted generation of the gold hypothesis is what fails.</p>
+    <p>So the bottleneck is now localized to a single variable: <b>choosing which concept to
+    hypothesize about.</b> Recognition (14/14), candidate selection (0.839), statement formation
+    (0.955 once the concept is named), and weak self-evaluation (+0.15) all work. Baseline
+    proposals cluster in a small neighborhood (the modal wrong answer takes 58% of 16 samples)
+    that simply never contains gold. <code>target_concept</code> selection during prompt
+    processing is the prime target for the activation-level interchange experiment.</p>
   </div>
 </section>
 
