@@ -49,7 +49,13 @@ ERASURE_SAMPLES_PER_ROW="${ERASURE_SAMPLES_PER_ROW:-1}"
 ERASURE_TEMPERATURE="${ERASURE_TEMPERATURE:-0}"
 ERASURE_SAMPLE_FLAG="${ERASURE_SAMPLE_FLAG:-}"
 ERASURE_MAX_NEW_TOKENS="${ERASURE_MAX_NEW_TOKENS:-96}"
+ERASURE_ROW_SHARD="${ERASURE_ROW_SHARD:-}"
 ERASURE_SUFFIX="${ERASURE_SUFFIX:-subspace_erasure_27b_property_smoke}"
+
+ERASURE_SHARD_ARGS=()
+if [ -n "$ERASURE_ROW_SHARD" ]; then
+    ERASURE_SHARD_ARGS=(--row-shard "$ERASURE_ROW_SHARD")
+fi
 
 python -u scripts/stage2_subspace_erasure.py \
     --jsonl results/full/with_errortype/gemma3_27b_infer_property.jsonl \
@@ -67,6 +73,7 @@ python -u scripts/stage2_subspace_erasure.py \
     --max-new-tokens "$ERASURE_MAX_NEW_TOKENS" \
     --temperature "$ERASURE_TEMPERATURE" \
     $ERASURE_SAMPLE_FLAG \
+    ${ERASURE_SHARD_ARGS[@]+"${ERASURE_SHARD_ARGS[@]}"} \
     --n-devices 2 \
     --n-ctx 4096 \
     --dtype bfloat16 \

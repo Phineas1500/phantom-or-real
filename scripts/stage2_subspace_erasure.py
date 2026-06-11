@@ -304,6 +304,11 @@ def build_arg_parser() -> argparse.ArgumentParser:
     parser.add_argument("--heights", default="3,4")
     parser.add_argument("--per-height-label", type=int, default=4)
     parser.add_argument("--samples-per-row", type=int, default=1)
+    parser.add_argument(
+        "--row-shard",
+        default=None,
+        help="Optional 'i/n' slice of the selected rows so long sampled runs fit the 4h wall limit.",
+    )
     parser.add_argument("--selection-seed", type=int, default=20260427)
     parser.add_argument("--probe-seed", type=int, default=20260472)
     parser.add_argument("--orthogonal-seed", type=int, default=20260545)
@@ -363,6 +368,13 @@ def main() -> int:
         seed=args.selection_seed,
         target_split="test",
     )
+    if args.row_shard:
+        shard_index, shard_count = (int(part) for part in args.row_shard.split("/"))
+        if not (0 <= shard_index < shard_count):
+            raise ValueError(f"invalid --row-shard {args.row_shard!r}")
+        selected_rows = selected_rows[shard_index::shard_count]
+        selection_summary["row_shard"] = args.row_shard
+        selection_summary["shard_rows"] = len(selected_rows)
     total_generations = len(selected_rows) * len(condition_plan) * args.samples_per_row
     print(
         f"selected_rows={len(selected_rows)} total_generations={total_generations} "

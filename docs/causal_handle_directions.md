@@ -87,6 +87,14 @@ control). Cheap, well-powered, and decisive either way:
 This is the cheapest path to upgrading `inaccessible under tested methods`
 to a real causal statement.
 
+Status (2026-06-10): smoke completed (job 456912,
+docs/subspace_erasure_27b_property_smoke.json). Raw-direction erasure at
+L15/L30/L40/L45/L53 left behavior nearly intact (delta-P=-0.06, 1/16 rows
+degraded) while orthogonal (-0.375) and Gaussian (-0.19, 44% parse failures)
+erasure controls were destructive — first direct evidence for the
+epiphenomenal-readout branch. Sampled k=8 confirmation queued as jobs
+456915-456918.
+
 ### 2. Cross-prompt patching: transplant the recognition state into generation
 
 The model demonstrably contains a gold-preferring state — it surfaces under
@@ -100,6 +108,16 @@ cannot carry *which* hypothesis is right, but a donor state carries the full
 content. A repair here with controls is the positive causal result, and it
 directly tests the deployment-gap hypothesis against the
 correctness-summary hypothesis.
+
+Status (2026-06-10): completed as a controlled repair null (job 456913,
+docs/recognition_state_patch_27b_property_manifest.json). Donors selected
+gold on 14/14 rows, but patching the shared ontology-context block
+(about 90 tokens, L30/L40/L45) gave F->T=0 with disruption equal to
+magnitude-matched noise. The recognition advantage is not carried by the
+context-token encodings; the remaining candidates are the hypothesis-option
+tokens and the comparison/decision positions, which have no matched
+receiver positions — a future variant needs a different transplant design
+(e.g., appending scored-hypothesis text or patching the decision position).
 
 ### 3. ITI-style multi-head intervention
 

@@ -1,0 +1,224 @@
+{
+  "baseline_metrics": {
+    "mean_quality": 0.5219387755102041,
+    "n_generations": 14,
+    "n_rows": 14,
+    "parse_fail_rate": 0.07142857142857142,
+    "strong_accuracy": 0.21428571428571427,
+    "weak_accuracy": 0.6428571428571429
+  },
+  "causal_abstraction_claim": "Tests whether the recognition run's encoding of the shared ontology context carries the gold-preferring selection state into free-form generation. A repair claim requires false-to-true repairs above position-shuffled donor and magnitude-matched Gaussian controls on rows where the donor selects gold.",
+  "controls": [
+    "regenerated_baseline",
+    "position_shuffled_donor",
+    "magnitude_matched_gaussian_noise",
+    "donor_choice_verification"
+  ],
+  "created_at_utc": "2026-06-11T00:14:15.853342+00:00",
+  "elapsed_seconds": 3900.918262243271,
+  "foil_source": "stage1_model_output",
+  "generation": {
+    "conditions": [
+      {
+        "label": "baseline",
+        "patch_kind": null
+      },
+      {
+        "label": "patch_recognition",
+        "patch_kind": "patch_recognition"
+      },
+      {
+        "label": "patch_shuffled",
+        "patch_kind": "patch_shuffled"
+      },
+      {
+        "label": "noise_matched",
+        "patch_kind": "noise_matched"
+      }
+    ],
+    "do_sample": false,
+    "dtype": "torch.bfloat16",
+    "load_mode": "no-processing",
+    "max_new_tokens": 96,
+    "n_ctx": 4096,
+    "n_devices": 2,
+    "samples_per_row": 1,
+    "stop_at_eos": true,
+    "temperature": 0.0
+  },
+  "hook_names": {
+    "30": "blocks.30.hook_resid_post",
+    "40": "blocks.40.hook_resid_post",
+    "45": "blocks.45.hook_resid_post"
+  },
+  "intervention_metrics": {
+    "noise_matched": {
+      "mean_quality": 0.23809523809523808,
+      "n_generations": 14,
+      "n_rows": 14,
+      "parse_fail_rate": 0.2857142857142857,
+      "strong_accuracy": 0.0,
+      "weak_accuracy": 0.0
+    },
+    "patch_recognition": {
+      "mean_quality": 0.3825396825396825,
+      "n_generations": 14,
+      "n_rows": 14,
+      "parse_fail_rate": 0.07142857142857142,
+      "strong_accuracy": 0.0,
+      "weak_accuracy": 0.35714285714285715
+    },
+    "patch_shuffled": {
+      "mean_quality": 0.39087301587301587,
+      "n_generations": 14,
+      "n_rows": 14,
+      "parse_fail_rate": 0.14285714285714285,
+      "strong_accuracy": 0.07142857142857142,
+      "weak_accuracy": 0.42857142857142855
+    }
+  },
+  "jsonl": "results/full/with_errortype/gemma3_27b_infer_property.jsonl",
+  "layers": [
+    30,
+    40,
+    45
+  ],
+  "method": "recognition_state_cross_prompt_patch",
+  "min_block_tokens": 32,
+  "model": "google/gemma-3-27b-it",
+  "model_key": "gemma3_27b",
+  "n": 56,
+  "option_seed": 20260430,
+  "out_jsonl": "results/stage2/erasure/recognition_state_patch_27b_property_manifest.jsonl",
+  "paired_flips": {
+    "noise_matched": {
+      "false_to_true": 0,
+      "mean_delta_p_strong": -0.21428571428571427,
+      "paired_n": 14,
+      "rows_degraded": 3,
+      "rows_improved": 0,
+      "true_to_false": 3
+    },
+    "patch_recognition": {
+      "false_to_true": 0,
+      "mean_delta_p_strong": -0.21428571428571427,
+      "paired_n": 14,
+      "rows_degraded": 3,
+      "rows_improved": 0,
+      "true_to_false": 3
+    },
+    "patch_shuffled": {
+      "false_to_true": 0,
+      "mean_delta_p_strong": -0.14285714285714285,
+      "paired_n": 14,
+      "rows_degraded": 2,
+      "rows_improved": 0,
+      "true_to_false": 2
+    }
+  },
+  "prefix_trajectory_jsonl": "results/stage2/decode_time/prefix_conditioned_margin_trajectory_gemma_manifest.jsonl",
+  "representation_type": "patched_residual_state",
+  "schema_version": 1,
+  "script": "scripts/stage2_recognition_state_patch.py",
+  "selection": {
+    "calibration_generated_correct_rows": 3,
+    "calibration_generated_wrong_rows": 11,
+    "calibration_parse_fail_rows": 1,
+    "checkpoint": "0",
+    "heights": {
+      "h3": 6,
+      "h4": 8
+    },
+    "limit": null,
+    "prefix_jsonl": "results/stage2/decode_time/prefix_conditioned_margin_trajectory_gemma_manifest.jsonl",
+    "prompt_gold_vs_foil_threshold": 0.0,
+    "prompt_margin_gate_correct_triggered": 2,
+    "prompt_margin_gate_triggered_rows": 13,
+    "prompt_margin_gate_wrong_triggered": 11,
+    "selected_rows": 14,
+    "selection_mode": "prefix_conditioned_margin_manifest_checkpoint",
+    "skipped_missing_source": 0,
+    "source_jsonl": "results/full/with_errortype/gemma3_27b_infer_property.jsonl",
+    "triggered_source_row_indices": [
+      3073,
+      3415,
+      4322,
+      4675,
+      5292,
+      6188,
+      6327,
+      8035,
+      8298,
+      8874,
+      9549,
+      10079,
+      10714
+    ]
+  },
+  "skipped_rows": [],
+  "slurm_job_id": "456913",
+  "summary": {
+    "by_condition": {
+      "baseline": {
+        "mean_quality": 0.5219387755102041,
+        "n_generations": 14,
+        "n_rows": 14,
+        "parse_fail_rate": 0.07142857142857142,
+        "strong_accuracy": 0.21428571428571427,
+        "weak_accuracy": 0.6428571428571429
+      },
+      "noise_matched": {
+        "mean_quality": 0.23809523809523808,
+        "n_generations": 14,
+        "n_rows": 14,
+        "parse_fail_rate": 0.2857142857142857,
+        "strong_accuracy": 0.0,
+        "weak_accuracy": 0.0
+      },
+      "patch_recognition": {
+        "mean_quality": 0.3825396825396825,
+        "n_generations": 14,
+        "n_rows": 14,
+        "parse_fail_rate": 0.07142857142857142,
+        "strong_accuracy": 0.0,
+        "weak_accuracy": 0.35714285714285715
+      },
+      "patch_shuffled": {
+        "mean_quality": 0.39087301587301587,
+        "n_generations": 14,
+        "n_rows": 14,
+        "parse_fail_rate": 0.14285714285714285,
+        "strong_accuracy": 0.07142857142857142,
+        "weak_accuracy": 0.42857142857142855
+      }
+    },
+    "paired_vs_baseline": {
+      "noise_matched": {
+        "false_to_true": 0,
+        "mean_delta_p_strong": -0.21428571428571427,
+        "paired_n": 14,
+        "rows_degraded": 3,
+        "rows_improved": 0,
+        "true_to_false": 3
+      },
+      "patch_recognition": {
+        "false_to_true": 0,
+        "mean_delta_p_strong": -0.21428571428571427,
+        "paired_n": 14,
+        "rows_degraded": 3,
+        "rows_improved": 0,
+        "true_to_false": 3
+      },
+      "patch_shuffled": {
+        "false_to_true": 0,
+        "mean_delta_p_strong": -0.14285714285714285,
+        "paired_n": 14,
+        "rows_degraded": 2,
+        "rows_improved": 0,
+        "true_to_false": 2
+      }
+    }
+  },
+  "target_variable": "selected_hypothesis",
+  "task": "infer_property"
+}
