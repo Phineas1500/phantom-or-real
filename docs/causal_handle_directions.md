@@ -196,6 +196,15 @@ inside recognition, which then sharpens the free-form question to "why does
 generation not deploy the comparison circuit that these spans/positions
 demonstrably carry?"
 
+Behavioral precursor (2026-06-11, Modal endpoint,
+docs/candidates_in_context_27b_property_manifest.json): listing candidates in
+the free-form prompt flips the recognition-gap rows — baseline
+P(strong)=0.036, gold-among-candidates=0.839 (10/14 rows false-to-true),
+foils-only=0.232 (upper bound on priming; those successes negate the listed
+polarity foil into gold). The deployment gap is candidate availability at
+selection time. The interchange experiment above is the activation-level
+version of this result.
+
 ## Cross-Cutting Protocol Upgrades
 
 Apply to every experiment above:

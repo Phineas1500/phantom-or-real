@@ -1,0 +1,137 @@
+{
+  "causal_abstraction_claim": "Behavioral deployment-gap test: if free-form generation becomes strong-correct when gold is among in-context candidates but not when only foils are listed, the recognition-generation gap is candidate availability at selection time, not missing knowledge. Prompt-level evidence; not an activation-level intervention.",
+  "controls": [
+    "regenerated_baseline",
+    "foils_only_candidates",
+    "candidate_order_shuffled"
+  ],
+  "created_at_utc": "2026-06-11T21:27:04.948071+00:00",
+  "elapsed_seconds": 17.514140367507935,
+  "endpoint": "modal_openai_compatible",
+  "generation": {
+    "concurrency": 8,
+    "max_tokens": 96,
+    "order_seed": 20260430,
+    "samples_per_row": 8,
+    "temperature": 0.7
+  },
+  "jsonl": "results/full/with_errortype/gemma3_27b_infer_property.jsonl",
+  "method": "candidates_in_context",
+  "model": "gemma3-27b",
+  "n": 336,
+  "prefix_trajectory_jsonl": "results/stage2/decode_time/prefix_conditioned_margin_trajectory_gemma_manifest.jsonl",
+  "representation_type": "prompt_text",
+  "schema_version": 1,
+  "script": "scripts/stage2_candidates_in_context.py",
+  "selection": {
+    "calibration_generated_correct_rows": 3,
+    "calibration_generated_wrong_rows": 11,
+    "calibration_parse_fail_rows": 1,
+    "checkpoint": "0",
+    "heights": {
+      "h3": 6,
+      "h4": 8
+    },
+    "limit": null,
+    "prefix_jsonl": "results/stage2/decode_time/prefix_conditioned_margin_trajectory_gemma_manifest.jsonl",
+    "prompt_gold_vs_foil_threshold": 0.0,
+    "prompt_margin_gate_correct_triggered": 2,
+    "prompt_margin_gate_triggered_rows": 13,
+    "prompt_margin_gate_wrong_triggered": 11,
+    "selected_rows": 14,
+    "selection_mode": "prefix_conditioned_margin_manifest_checkpoint",
+    "skipped_missing_source": 0,
+    "source_jsonl": "results/full/with_errortype/gemma3_27b_infer_property.jsonl",
+    "triggered_source_row_indices": [
+      3073,
+      3415,
+      4322,
+      4675,
+      5292,
+      6188,
+      6327,
+      8035,
+      8298,
+      8874,
+      9549,
+      10079,
+      10714
+    ]
+  },
+  "summary": {
+    "baseline": {
+      "n_generations": 112,
+      "n_rows": 14,
+      "per_row_p_strong": {
+        "10079": 0.0,
+        "10714": 0.0,
+        "3073": 0.0,
+        "3290": 0.0,
+        "3415": 0.0,
+        "4322": 0.375,
+        "4675": 0.0,
+        "5292": 0.125,
+        "6188": 0.0,
+        "6327": 0.0,
+        "8035": 0.0,
+        "8298": 0.0,
+        "8874": 0.0,
+        "9549": 0.0
+      },
+      "strong_accuracy": 0.03571428571428571
+    },
+    "candidates_foils_only": {
+      "false_to_true_rows": 3,
+      "mean_delta_p_strong_vs_baseline": 0.19642857142857142,
+      "n_generations": 112,
+      "n_rows": 14,
+      "per_row_p_strong": {
+        "10079": 1.0,
+        "10714": 0.0,
+        "3073": 0.0,
+        "3290": 1.0,
+        "3415": 0.0,
+        "4322": 0.25,
+        "4675": 1.0,
+        "5292": 0.0,
+        "6188": 0.0,
+        "6327": 0.0,
+        "8035": 0.0,
+        "8298": 0.0,
+        "8874": 0.0,
+        "9549": 0.0
+      },
+      "rows_degraded": 2,
+      "rows_improved": 3,
+      "strong_accuracy": 0.23214285714285715
+    },
+    "candidates_gold_present": {
+      "false_to_true_rows": 10,
+      "mean_delta_p_strong_vs_baseline": 0.8035714285714286,
+      "n_generations": 112,
+      "n_rows": 14,
+      "per_row_p_strong": {
+        "10079": 1.0,
+        "10714": 1.0,
+        "3073": 0.0,
+        "3290": 1.0,
+        "3415": 1.0,
+        "4322": 0.75,
+        "4675": 1.0,
+        "5292": 1.0,
+        "6188": 1.0,
+        "6327": 1.0,
+        "8035": 1.0,
+        "8298": 1.0,
+        "8874": 1.0,
+        "9549": 0.0
+      },
+      "rows_degraded": 0,
+      "rows_improved": 12,
+      "strong_accuracy": 0.8392857142857143
+    },
+    "gold_present_minus_foils_only": 0.6071428571428572
+  },
+  "target_variable": "selected_hypothesis",
+  "task": "infer_property"
+}
