@@ -338,6 +338,25 @@
       selection machinery — what free-form generation lacks is candidates to select among. The
       next experiment (option-span interchange) is the activation-level version of exactly this.
     </div>
+
+    <p style="margin-top:20px"><b>Two follow-ups (also Modal, ~1 minute each) pin down which stage
+    is broken:</b></p>
+    <table>
+      <tr><th>Test</th><th>Result</th><th>Meaning</th></tr>
+      <tr>
+        <td>Best-of-16 sampling: does gold ever appear in the model's own free-form samples?</td>
+        <td class="num">gold proposed on only <b>4–5 of 14 rows</b> (temp 0.7 / 1.0); weak-correct on 11–12</td>
+        <td><b>Proposal failure dominates</b> — on ~⅔ of rows the model never says gold unprompted, though it gets close</td>
+      </tr>
+      <tr>
+        <td>Self-critique: generate, then ask the model to verify &amp; revise its own answer</td>
+        <td class="num">0.045 → <b>0.196</b> (+0.15; 3 rows improve, none degrade)</td>
+        <td>Token-routed evaluation helps a little, but can't conjure the missing candidate — ~5× weaker than supplying candidates</td>
+      </tr>
+    </table>
+    <p>So the bottleneck is precisely localized: <b>proposing gold, not evaluating it.</b>
+    Recognition (14/14), candidate selection (0.839), and weak self-evaluation (+0.15) all work;
+    unprompted generation of the gold hypothesis is what fails.</p>
   </div>
 </section>
 
@@ -433,6 +452,12 @@
         <td><span class="chip done">done</span></td>
         <td>Candidates-in-context behavioral test (Modal endpoint, parallel lane)</td>
         <td>Deployment gap confirmed: gold-in-context lifts P(correct) 0.036 → 0.839</td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td><span class="chip done">done</span></td>
+        <td>Proposal-distribution + self-critique tests (Modal, parallel lane)</td>
+        <td>Bottleneck localized: gold absent from own samples on ~⅔ of rows; critique only +0.15</td>
         <td>—</td>
       </tr>
       <tr>

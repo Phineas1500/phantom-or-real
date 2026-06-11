@@ -1,0 +1,106 @@
+{
+  "causal_abstraction_claim": "Tests whether the internal correctness evaluation, causally epiphenomenal in the residual stream under erasure, becomes behaviorally deployable when routed through the context window via a self-critique turn. Prompt-level evidence.",
+  "controls": [
+    "paired_first_pass_baseline"
+  ],
+  "created_at_utc": "2026-06-11T21:37:31.274363+00:00",
+  "critique_prompt": "Review your answer. Check each hypothesis against the theories and observations given above: does it follow from them, and is it the best available explanation? If you find an error, correct it. Reply with only your final hypothesis or hypotheses, one per line, in the same format as before.",
+  "elapsed_seconds": 88.87997055053711,
+  "endpoint": "modal_openai_compatible",
+  "generation": {
+    "max_tokens": 96,
+    "samples_per_row": 8,
+    "temperature": 0.7
+  },
+  "method": "self_critique_two_pass",
+  "model": "gemma3-27b",
+  "n": 224,
+  "representation_type": "prompt_text",
+  "schema_version": 1,
+  "script": "scripts/stage2_self_critique.py",
+  "selection": {
+    "calibration_generated_correct_rows": 3,
+    "calibration_generated_wrong_rows": 11,
+    "calibration_parse_fail_rows": 1,
+    "checkpoint": "0",
+    "heights": {
+      "h3": 6,
+      "h4": 8
+    },
+    "limit": null,
+    "prefix_jsonl": "results/stage2/decode_time/prefix_conditioned_margin_trajectory_gemma_manifest.jsonl",
+    "prompt_gold_vs_foil_threshold": 0.0,
+    "prompt_margin_gate_correct_triggered": 2,
+    "prompt_margin_gate_triggered_rows": 13,
+    "prompt_margin_gate_wrong_triggered": 11,
+    "selected_rows": 14,
+    "selection_mode": "prefix_conditioned_margin_manifest_checkpoint",
+    "skipped_missing_source": 0,
+    "source_jsonl": "results/full/with_errortype/gemma3_27b_infer_property.jsonl",
+    "triggered_source_row_indices": [
+      3073,
+      3415,
+      4322,
+      4675,
+      5292,
+      6188,
+      6327,
+      8035,
+      8298,
+      8874,
+      9549,
+      10079,
+      10714
+    ]
+  },
+  "summary": {
+    "baseline": {
+      "n_generations": 112,
+      "n_rows": 14,
+      "per_row_p_strong": {
+        "10079": 0.0,
+        "10714": 0.0,
+        "3073": 0.0,
+        "3290": 0.0,
+        "3415": 0.0,
+        "4322": 0.625,
+        "4675": 0.0,
+        "5292": 0.0,
+        "6188": 0.0,
+        "6327": 0.0,
+        "8035": 0.0,
+        "8298": 0.0,
+        "8874": 0.0,
+        "9549": 0.0
+      },
+      "strong_accuracy": 0.044642857142857144
+    },
+    "self_critique": {
+      "false_to_true_rows": 3,
+      "mean_delta_p_strong_vs_baseline": 0.15178571428571427,
+      "n_generations": 112,
+      "n_rows": 14,
+      "per_row_p_strong": {
+        "10079": 0.0,
+        "10714": 0.0,
+        "3073": 1.0,
+        "3290": 0.0,
+        "3415": 0.0,
+        "4322": 0.625,
+        "4675": 0.0,
+        "5292": 1.0,
+        "6188": 0.0,
+        "6327": 0.0,
+        "8035": 0.125,
+        "8298": 0.0,
+        "8874": 0.0,
+        "9549": 0.0
+      },
+      "rows_degraded": 0,
+      "rows_improved": 3,
+      "strong_accuracy": 0.19642857142857142
+    }
+  },
+  "target_variable": "selected_hypothesis",
+  "task": "infer_property"
+}

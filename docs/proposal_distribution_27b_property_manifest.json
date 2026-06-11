@@ -1,0 +1,105 @@
+{
+  "causal_abstraction_claim": "Decomposes the recognition-generation gap: rows where gold appears among n free-form samples are ranking failures (selection-fixable); rows where gold never appears are proposal failures. Prompt-level evidence.",
+  "created_at_utc": "2026-06-11T21:35:59.577973+00:00",
+  "elapsed_seconds": 22.96180534362793,
+  "endpoint": "modal_openai_compatible",
+  "generation": {
+    "max_tokens": 96,
+    "samples_per_row": 16,
+    "temperatures": [
+      0.7,
+      1.0
+    ]
+  },
+  "method": "proposal_distribution_best_of_n",
+  "model": "gemma3-27b",
+  "n": 448,
+  "representation_type": "prompt_text",
+  "schema_version": 1,
+  "script": "scripts/stage2_proposal_distribution.py",
+  "selection": {
+    "calibration_generated_correct_rows": 3,
+    "calibration_generated_wrong_rows": 11,
+    "calibration_parse_fail_rows": 1,
+    "checkpoint": "0",
+    "heights": {
+      "h3": 6,
+      "h4": 8
+    },
+    "limit": null,
+    "prefix_jsonl": "results/stage2/decode_time/prefix_conditioned_margin_trajectory_gemma_manifest.jsonl",
+    "prompt_gold_vs_foil_threshold": 0.0,
+    "prompt_margin_gate_correct_triggered": 2,
+    "prompt_margin_gate_triggered_rows": 13,
+    "prompt_margin_gate_wrong_triggered": 11,
+    "selected_rows": 14,
+    "selection_mode": "prefix_conditioned_margin_manifest_checkpoint",
+    "skipped_missing_source": 0,
+    "source_jsonl": "results/full/with_errortype/gemma3_27b_infer_property.jsonl",
+    "triggered_source_row_indices": [
+      3073,
+      3415,
+      4322,
+      4675,
+      5292,
+      6188,
+      6327,
+      8035,
+      8298,
+      8874,
+      9549,
+      10079,
+      10714
+    ]
+  },
+  "summary": {
+    "temp_0.7": {
+      "mean_p_strong": 0.03571428571428571,
+      "n_rows": 14,
+      "per_row_strong_hits": {
+        "10079": 1,
+        "10714": 0,
+        "3073": 0,
+        "3290": 0,
+        "3415": 0,
+        "4322": 5,
+        "4675": 0,
+        "5292": 1,
+        "6188": 0,
+        "6327": 0,
+        "8035": 0,
+        "8298": 0,
+        "8874": 1,
+        "9549": 0
+      },
+      "rows_gold_proposed_strong": 4,
+      "rows_gold_proposed_weak": 11,
+      "samples_per_row": 16
+    },
+    "temp_1": {
+      "mean_p_strong": 0.07142857142857142,
+      "n_rows": 14,
+      "per_row_strong_hits": {
+        "10079": 0,
+        "10714": 2,
+        "3073": 0,
+        "3290": 0,
+        "3415": 0,
+        "4322": 6,
+        "4675": 0,
+        "5292": 6,
+        "6188": 0,
+        "6327": 0,
+        "8035": 1,
+        "8298": 0,
+        "8874": 1,
+        "9549": 0
+      },
+      "rows_gold_proposed_strong": 5,
+      "rows_gold_proposed_weak": 12,
+      "samples_per_row": 16
+    }
+  },
+  "target_variable": "selected_hypothesis",
+  "task": "infer_property"
+}
