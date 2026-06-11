@@ -205,6 +205,38 @@ polarity foil into gold). The deployment gap is candidate availability at
 selection time. The interchange experiment above is the activation-level
 version of this result.
 
+RE-AIMED at `target_concept` (2026-06-11, after the hint-gradient result in
+docs/proposal_hints_27b_property_manifest.json: concept-only hint takes
+P(strong) 0.045 -> 0.955, concept+property -> 1.000). The failing variable is
+which concept the model hypothesizes about, so the interchange should target
+the concept-focus state, not MCQ option spans:
+
+- Minimal pair: baseline free-form prompt (receiver) vs hint-augmented prompt
+  (donor) for the same row. Place the hint line BEFORE the ontology context
+  in the donor so the shared context-block encodings actually differ under
+  causal attention (a hint placed after the context cannot alter
+  context-token representations); validate behaviorally that hint-first
+  retains the ~0.955 repair before patching. Also keep a hint-after-context
+  variant whose donor patch is the post-hint tail positions only.
+- `patch_hint_state`: patch the donor's context-block (hint-first variant)
+  or post-context tail (hint-after variant) residuals into the receiver at
+  matched positions (LCS alignment, reuse
+  scripts/stage2_recognition_state_patch.py machinery), then generate.
+- Bidirectional control — the strongest causal test: a wrong-concept-hint
+  donor. If patching the wrong-concept hint state makes generation
+  hypothesize about THAT concept, the patched state causally sets
+  `target_concept` in both directions.
+- Output metric upgrade: score not only strong correctness but which concept
+  the generated hypothesis is about (subject extraction via
+  `ontology_fol_structured`-style parsing), so steering claims are
+  concept-resolved rather than only accuracy-resolved.
+- Controls: regenerated baseline, position-shuffled donor, magnitude-matched
+  noise, k>=8 samples per row, layer/position-band sweep flag (start
+  L30/L40/L45).
+- Decision rule: patched-repair (or patched-misdirection) of at least 3 rows
+  beyond both controls establishes `target_concept` as a causal handle; the
+  MCQ option-span variant remains a follow-up for the recognition side.
+
 ## Cross-Cutting Protocol Upgrades
 
 Apply to every experiment above:
