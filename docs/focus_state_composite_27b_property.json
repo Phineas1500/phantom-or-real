@@ -1,0 +1,224 @@
+{
+  "arms": [
+    {
+      "kind": "none",
+      "label": "baseline",
+      "receiver": "unhinted",
+      "reference": "none",
+      "scale": 1.0
+    },
+    {
+      "kind": "none",
+      "label": "hinted_baseline",
+      "receiver": "hinted",
+      "reference": "none",
+      "scale": 1.0
+    },
+    {
+      "kind": "replace_concept_with_unhinted",
+      "label": "reverse_subset",
+      "receiver": "hinted",
+      "reference": "hinted_baseline",
+      "scale": 1.0
+    },
+    {
+      "kind": "replace_random_with_unhinted",
+      "label": "reverse_random",
+      "receiver": "hinted",
+      "reference": "hinted_baseline",
+      "scale": 1.0
+    },
+    {
+      "kind": "restricted_add",
+      "label": "restricted_add_s1",
+      "receiver": "unhinted",
+      "reference": "baseline",
+      "scale": 1.0
+    },
+    {
+      "kind": "spotlight_rank1",
+      "label": "spotlight_rank1",
+      "receiver": "unhinted",
+      "reference": "baseline",
+      "scale": 1.0
+    },
+    {
+      "kind": "restricted_add",
+      "label": "restricted_add_s4",
+      "receiver": "unhinted",
+      "reference": "baseline",
+      "scale": 4.0
+    },
+    {
+      "kind": "replace_complement_with_hinted",
+      "label": "complement",
+      "receiver": "unhinted",
+      "reference": "baseline",
+      "scale": 1.0
+    },
+    {
+      "kind": "spotlight_perpos",
+      "label": "spotlight_perpos",
+      "receiver": "unhinted",
+      "reference": "baseline",
+      "scale": 1.0
+    }
+  ],
+  "causal_abstraction_claim": "Necessity (reverse subset vs hinted baseline, against random-position control), expressivity ladder (replacement -> per-position add -> rank-1 -> foreign rank-1), spotlight-vs-commitment, and the complement decomposition \u2014 at the concept-mention positions established by job 456999. KV transplant deferred to a dedicated job.",
+  "controls": [
+    "in_job_hinted_baseline",
+    "reverse_patch_random_positions",
+    "matched_random_subsets_from_456999",
+    "spotlight_uses_gold_validated_donors"
+  ],
+  "created_at_utc": "2026-06-12T21:03:51.638354+00:00",
+  "elapsed_seconds": 8297.079146623611,
+  "generation": {
+    "max_new_tokens": 96,
+    "samples_per_row": 8,
+    "temperature": 0.7
+  },
+  "layers": [
+    30,
+    40,
+    45
+  ],
+  "method": "focus_state_composite",
+  "model": "google/gemma-3-27b-it",
+  "n": 936,
+  "representation_type": "patched_residual_state",
+  "schema_version": 1,
+  "script": "scripts/stage2_focus_state_composite.py",
+  "selection": {
+    "calibration_generated_correct_rows": 3,
+    "calibration_generated_wrong_rows": 11,
+    "calibration_parse_fail_rows": 1,
+    "checkpoint": "0",
+    "heights": {
+      "h3": 6,
+      "h4": 8
+    },
+    "limit": null,
+    "prefix_jsonl": "results/stage2/decode_time/prefix_conditioned_margin_trajectory_gemma_manifest.jsonl",
+    "prompt_gold_vs_foil_threshold": 0.0,
+    "prompt_margin_gate_correct_triggered": 2,
+    "prompt_margin_gate_triggered_rows": 13,
+    "prompt_margin_gate_wrong_triggered": 11,
+    "selected_rows": 14,
+    "selection_mode": "prefix_conditioned_margin_manifest_checkpoint",
+    "skipped_missing_source": 0,
+    "source_jsonl": "results/full/with_errortype/gemma3_27b_infer_property.jsonl",
+    "triggered_source_row_indices": [
+      3073,
+      3415,
+      4322,
+      4675,
+      5292,
+      6188,
+      6327,
+      8035,
+      8298,
+      8874,
+      9549,
+      10079,
+      10714
+    ]
+  },
+  "slurm_job_id": "457002",
+  "states_output": "results/stage2/erasure/focus_state_composite_27b_property_states.npz",
+  "summary": {
+    "baseline": {
+      "n_rows": 13,
+      "reference": "none",
+      "strong_accuracy": 0.16346153846153846,
+      "targets_gold_concept_rate": 0.6057692307692307
+    },
+    "complement": {
+      "n_rows": 13,
+      "paired_ci95": [
+        0.0,
+        0.16346153846153846
+      ],
+      "paired_delta_vs_reference": 0.07692307692307693,
+      "reference": "baseline",
+      "strong_accuracy": 0.2403846153846154,
+      "targets_gold_concept_rate": 0.6538461538461539
+    },
+    "hinted_baseline": {
+      "n_rows": 13,
+      "reference": "none",
+      "strong_accuracy": 1.0,
+      "targets_gold_concept_rate": 1.0
+    },
+    "restricted_add_s1": {
+      "n_rows": 13,
+      "paired_ci95": [
+        -0.1346153846153846,
+        0.27908653846153497
+      ],
+      "paired_delta_vs_reference": 0.057692307692307696,
+      "reference": "baseline",
+      "strong_accuracy": 0.22115384615384615,
+      "targets_gold_concept_rate": 0.41346153846153844
+    },
+    "restricted_add_s4": {
+      "n_rows": 13,
+      "paired_ci95": [
+        -0.34615384615384615,
+        -0.019230769230769232
+      ],
+      "paired_delta_vs_reference": -0.16346153846153846,
+      "reference": "baseline",
+      "strong_accuracy": 0.0,
+      "targets_gold_concept_rate": 0.0
+    },
+    "reverse_random": {
+      "n_rows": 13,
+      "paired_ci95": [
+        0.0,
+        0.0
+      ],
+      "paired_delta_vs_reference": 0.0,
+      "reference": "hinted_baseline",
+      "strong_accuracy": 1.0,
+      "targets_gold_concept_rate": 1.0
+    },
+    "reverse_subset": {
+      "n_rows": 13,
+      "paired_ci95": [
+        0.0,
+        0.0
+      ],
+      "paired_delta_vs_reference": 0.0,
+      "reference": "hinted_baseline",
+      "strong_accuracy": 1.0,
+      "targets_gold_concept_rate": 1.0
+    },
+    "spotlight_perpos": {
+      "n_rows": 13,
+      "paired_ci95": [
+        -0.3557692307692308,
+        -0.019230769230769232
+      ],
+      "paired_delta_vs_reference": -0.16346153846153846,
+      "reference": "baseline",
+      "strong_accuracy": 0.0,
+      "targets_donor_concept_rate": 0.08653846153846154,
+      "targets_gold_concept_rate": 0.22115384615384615
+    },
+    "spotlight_rank1": {
+      "n_rows": 13,
+      "paired_ci95": [
+        -0.07692307692307693,
+        0.21153846153846154
+      ],
+      "paired_delta_vs_reference": 0.057692307692307696,
+      "reference": "baseline",
+      "strong_accuracy": 0.22115384615384615,
+      "targets_donor_concept_rate": 0.09615384615384616,
+      "targets_gold_concept_rate": 0.46153846153846156
+    }
+  },
+  "target_variable": "target_concept",
+  "task": "infer_property"
+}
