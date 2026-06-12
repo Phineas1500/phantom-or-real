@@ -40,7 +40,12 @@ from scripts.stage2_recognition_state_patch import (  # noqa: E402
     run_donor,
     summarize_patch_rows,
 )
-from src.activations import load_tl_model, render_chat_text, validate_hooks  # noqa: E402
+from src.activations import (  # noqa: E402
+    input_device_for_model,
+    load_tl_model,
+    render_chat_text,
+    validate_hooks,
+)
 from src.bd_path import ensure_on_path  # noqa: E402
 from src.gemma3_parse import parse_hypotheses  # noqa: E402
 from src.stage2_steering import parse_int_list, score_reply  # noqa: E402
@@ -60,6 +65,49 @@ CONDITION_PLAN = (
     InterchangeCondition("patch_shuffled", "gold", "patch_shuffled"),
     InterchangeCondition("noise_matched", "gold", "noise_matched"),
 )
+
+
+def generate_sample_batch(
+    *,
+    model,
+    token_ids: list[int],
+    n_samples: int,
+    max_new_tokens: int,
+    temperature: float,
+    stop_at_eos: bool,
+    cache_dtype: torch.dtype,
+) -> list[tuple[list[int], str]]:
+    """Sample n completions of one prompt in a single batched generate call.
+
+    The batch rows share an identical prompt, so no padding or attention-mask
+    handling is needed; patch hooks broadcast over the batch dimension.
+    """
+    tokenizer = model.tokenizer
+    device = input_device_for_model(model)
+    tokens = torch.tensor([token_ids] * n_samples, dtype=torch.long, device=device)
+    previous_default_dtype = torch.get_default_dtype()
+    with torch.inference_mode():
+        try:
+            torch.set_default_dtype(cache_dtype)
+            output_tokens = model.generate(
+                tokens,
+                max_new_tokens=max_new_tokens,
+                stop_at_eos=stop_at_eos,
+                do_sample=True,
+                temperature=temperature,
+                prepend_bos=False,
+                return_type="tokens",
+                verbose=False,
+                use_past_kv_cache=True,
+            )
+        finally:
+            torch.set_default_dtype(previous_default_dtype)
+    results = []
+    for sample_row in output_tokens:
+        new_ids = sample_row.detach().cpu().tolist()[len(token_ids):]
+        reply = tokenizer.decode(new_ids, skip_special_tokens=True).strip()
+        results.append((new_ids, reply))
+    return results
 
 
 def concept_mention_fields(reply: str, gold_concept: str, wrong: str) -> dict[str, Any]:
@@ -172,28 +220,36 @@ def main() -> int:
                   flush=True)
 
             for condition_index, condition in enumerate(CONDITION_PLAN):
-                for sample_index in range(args.samples_per_row):
-                    if args.do_sample:
-                        torch.manual_seed(args.sample_seed + source_row_index * 10007
-                                          + condition_index * 101 + sample_index)
-                    fwd_hooks = []
-                    if condition.patch_kind is not None:
-                        blocks = donor_blocks[condition.donor]
-                        r_start = receiver_starts[condition.donor]
-                        for layer in layers:
-                            hook_fn, _ = make_patch_hook(
-                                donor_block=blocks[layer],
-                                receiver_start=r_start,
-                                patch_kind=condition.patch_kind,
-                                seed=args.sample_seed + source_row_index * 10007
-                                + condition_index * 101 + sample_index + layer)
-                            fwd_hooks.append((hook_name_by_layer[layer], hook_fn))
-                    with model.hooks(fwd_hooks=fwd_hooks):
-                        new_ids, reply = generate_one(
+                if args.do_sample:
+                    torch.manual_seed(args.sample_seed + source_row_index * 10007
+                                      + condition_index * 101)
+                fwd_hooks = []
+                if condition.patch_kind is not None:
+                    blocks = donor_blocks[condition.donor]
+                    r_start = receiver_starts[condition.donor]
+                    for layer in layers:
+                        hook_fn, _ = make_patch_hook(
+                            donor_block=blocks[layer],
+                            receiver_start=r_start,
+                            patch_kind=condition.patch_kind,
+                            seed=args.sample_seed + source_row_index * 10007
+                            + condition_index * 101 + layer)
+                        fwd_hooks.append((hook_name_by_layer[layer], hook_fn))
+                with model.hooks(fwd_hooks=fwd_hooks):
+                    if args.do_sample and args.samples_per_row > 1:
+                        sample_batch = generate_sample_batch(
+                            model=model, token_ids=receiver_ids,
+                            n_samples=args.samples_per_row,
+                            max_new_tokens=args.max_new_tokens,
+                            temperature=args.temperature,
+                            stop_at_eos=args.stop_at_eos, cache_dtype=dtype)
+                    else:
+                        sample_batch = [generate_one(
                             model=model, token_ids=receiver_ids,
                             max_new_tokens=args.max_new_tokens, do_sample=args.do_sample,
                             temperature=args.temperature, stop_at_eos=args.stop_at_eos,
-                            cache_dtype=dtype)
+                            cache_dtype=dtype)]
+                for sample_index, (new_ids, reply) in enumerate(sample_batch):
                     score = score_reply(stage1_row, reply)
                     output_row = {
                         "schema_version": 1,
