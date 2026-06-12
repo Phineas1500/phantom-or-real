@@ -421,6 +421,35 @@ five fronts. Actions, in priority order:
      through tokens but not residual patches; a gold-KV arm re-demonstrates
      known repair and is cut if budget binds).
 
+   Pre-registered before job 457002 unblinds (review, 2026-06-12):
+   - **Reversion metric on reverse_subset**: score arm 3 not only for
+     collapse but for targets-modal-wrong-answer (modal answer taken from
+     the in-job baseline arm per row). Collapse-to-attractor would mean the
+     intervention toggles the variable between its two natural values — set
+     by the hint, reverted to default when unset: bidirectional control
+     achieved through the necessity direction after the injection direction
+     failed.
+   - **Conditional link 1 (necessity null)**: if the hinted repair survives
+     the reverse patch, that is evidence the hint works through decode-time
+     attention to the literal hint tokens rather than context encodings
+     alone — the KV job jumps the queue rather than staying deferred.
+   - **Conditional link 2 (rank-1 null at both scales)**: the offline PCA
+     spectrum on the concept-position submatrix gatekeeps a future causal
+     rank-k arm — concentrated spectrum (2-3 components) earns the rank-k
+     add before any rank claim; flat spectrum plus the rank-1 null jointly
+     support the claim with no further cluster time.
+   - **Scale-sweep insurance**: null-at-1/partial-at-4 earns a x2 follow-up
+     before interpretation; a two-point sweep can straddle a window.
+   - **Hinted-baseline calibration**: read the in-job hinted baseline FIRST;
+     its gap from the Modal 1.000 calibrates the harness tax for every
+     behavioral-vs-patched comparison in the program.
+   - **KV job redesign (deferral consequence)**: in a dedicated job the
+     gold-hint KV arm flips from redundant to essential — it is the positive
+     control for the cache-splicing machinery; a null wrong-KV without a
+     working gold-KV beside it is uninterpretable. Three arms minimum:
+     baseline, gold-KV (machinery check), wrong-KV (the question), scored on
+     targets-hinted-concept.
+
    Spec refinements (review, 2026-06-12):
    - **Expressivity ladder, explicit**: subset replacement (done, +0.250) ->
      per-position additive delta (drops replacement) -> own restricted
