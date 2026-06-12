@@ -469,10 +469,26 @@ five fronts. Actions, in priority order:
    - Wrong-KV bins crossed with the above: misdirects (token-level
      misdirection localizes to the KV pathway) / does not (asymmetric
      controllability extends to the cache).
-   - Arms: hinted_baseline, hint_span_ablation, ablation_x_reversion,
-     gold_KV_transplant (machinery control), wrong_KV_transplant, plus the
-     owed x2 restricted scale and layer-resolved rank-k at L30 if budget
-     allows; ~7 arms ~ 800 generations ~ one slot.
+   - Arms (kill-safe order; review catch: five arms reference the UNHINTED
+     baseline, which must be in-job — baselines have wobbled 0.196 -> 0.161
+     -> 0.163 across jobs, hence the house rule): unhinted_baseline,
+     hinted_baseline, hint_span_masking, masking_x_reversion (combination),
+     gold_KV_transplant (machinery control + attention telemetry),
+     wrong_KV_transplant, restricted_add_x2, rank_k_L30. Masking and
+     combination arms do not touch the splice machinery, so a splice bug
+     discovered via telemetry costs only the splice-dependent arms, never
+     the exhaustive-necessity headline. ~8 arms ~ 900 generations ~ one
+     slot.
+
+   457005 BINS (pre-registered ~2h before landing): positive = row-paired
+   CI excludes zero. full_patch repairs AND subset_concept repairs with
+   subset_random null -> localization replicates cross-task (claim 12
+   lands). full_patch repairs but subset_concept does not -> localization
+   is task-dependent; the localization claim scopes to property and claim
+   12 records the scoping. Both null -> focus-state causal accessibility
+   itself is task-dependent; claims 5-6 scope to property and the
+   discussion gains a task-dependence subsection. subset_random non-null ->
+   control failure; no interpretation until understood.
    - **Redundancy symmetry (discussion spine)**: the program has produced
      the same lesson twice at different granularities — directional
      necessity failed for the gauge (information redundant across
