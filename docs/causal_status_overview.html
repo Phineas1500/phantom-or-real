@@ -72,7 +72,7 @@
     <h1>Phantom or Real — Where the Causality Hunt Stands</h1>
     <p>We could always <em>read</em> whether the model was about to be right. This week we learned why we
        could never <em>steer</em> it: the thing we were reading turns out to be a gauge, not a lever.</p>
-    <div class="date">Status: June 12, 2026 &nbsp;·&nbsp; Gemma&nbsp;3&nbsp;27B, InAbHyD property + subtype &nbsp;·&nbsp; erasure replicated on both tasks; interchange repair confirmed at k=8; hint-delta verdict in: focus state localized to concept mentions (geometry pending restriction check)</div>
+    <div class="date">Status: June 12, 2026 &nbsp;·&nbsp; Gemma&nbsp;3&nbsp;27B, InAbHyD property + subtype &nbsp;·&nbsp; erasure replicated on both tasks; interchange repair confirmed at k=8; composite verdict in: concept commitment written in place, multiply realized, invisible to the readable subspace (quantified)</div>
   </div>
 </header>
 
@@ -551,7 +551,7 @@
       <b>Verdict (pre-registered bin): the focus state is positionally localized — and not
       captured by a uniform rank-1 summary.</b> It is written at the concept-mention tokens:
       roughly <b>6× per-token potency</b> there versus matched-size random positions (+0.250 vs
-      +0.045). Geometry, pending one check: the deltas project onto the full 9-direction
+      +0.045). Geometry — since verified on restricted deltas, see Part 9: the deltas project onto the full 9-direction
       <em>readable</em> subspace at 0.009–0.021, below the 0.041 chance level — but these are
       block-mean deltas, so the claim must survive recomputation on concept-position-restricted
       deltas before it becomes the paper's line.
@@ -560,7 +560,7 @@
       averaged over ~90 tokens when the causal content sits at 5–15, with the geometrically
       shared (and causally inert, pairwise cos 0.23–0.38) component dominating the mean. The arm
       tested "uniform rank-1 across the block," not "low-rank where it lives." The same dilution
-      overdetermines the cross-row inertness. Sharpened tests in the next composite job:
+      overdetermines the cross-row inertness. Sharpened tests — all since run in the composite job (Part 9):
       restricted delta-add with scale sweep, rank-k PCA on the concept-position submatrix,
       <b>the spotlight test</b> (row A's concept-position delta at row B's concept positions —
       movable attention operator vs in-place concept commitment), reverse subset patch
@@ -573,9 +573,71 @@
   </div>
 </section>
 
-<!-- ============ 9. STATUS ============ -->
+<!-- ============ 9. THE COMPOSITE VERDICT ============ -->
 <section>
-  <div class="kicker">Part 9 · What's running and what's next</div>
+  <div class="kicker">Part 9 · The composite verdict — commitment, written in place, multiply realized</div>
+  <h2>What lives at the concept mentions — and why no single cut removes it</h2>
+  <div class="card">
+    <p>Nine arms, every pre-registered bin answered (job 457002, 1,008 generations). Left side:
+       the necessity test. Right side: the expressivity ladder and spotlight.</p>
+    <figure>
+      <svg viewBox="0 0 740 250" width="100%" role="img" aria-label="Composite arms">
+        <line x1="60" y1="190" x2="720" y2="190" stroke="#c9d3df"/>
+        <line x1="60" y1="40"  x2="720" y2="40"  stroke="#eef2f7"/>
+        <text x="54" y="194" text-anchor="end" font-size="12" fill="#5b6b7f">0.0</text>
+        <text x="54" y="44"  text-anchor="end" font-size="12" fill="#5b6b7f">1.0</text>
+        <!-- bars: P*150 from y=190 -->
+        <rect x="75"  y="40"    width="58" height="150"  fill="#0e9488" rx="3"/>
+        <rect x="165" y="40"    width="58" height="150"  fill="#d23f3f" opacity="0.55" rx="3"/>
+        <rect x="255" y="40"    width="58" height="150"  fill="#9aa7b6" rx="3"/>
+        <rect x="375" y="165.5" width="58" height="24.5" fill="#9aa7b6" rx="3"/>
+        <rect x="465" y="156.8" width="58" height="33.2" fill="#d99114" rx="3"/>
+        <rect x="555" y="188"   width="58" height="2"    fill="#d23f3f" rx="1"/>
+        <rect x="645" y="154"   width="58" height="36"   fill="#2563ab" opacity="0.6" rx="3"/>
+        <g font-size="13" text-anchor="middle" fill="#1a2433" font-weight="bold">
+          <text x="104" y="33">1.000</text><text x="194" y="33">1.000</text><text x="284" y="33">1.000</text>
+          <text x="404" y="159">0.163</text><text x="494" y="150">0.221</text>
+          <text x="584" y="181">0.000</text><text x="674" y="147">0.240</text>
+        </g>
+        <g font-size="11.5" text-anchor="middle" fill="#5b6b7f">
+          <text x="104" y="210">hinted baseline</text><text x="104" y="224">(in-job)</text>
+          <text x="194" y="210">revert concept</text><text x="194" y="224">positions</text>
+          <text x="284" y="210">revert random</text><text x="284" y="224">(control)</text>
+          <text x="404" y="210">unhinted</text><text x="404" y="224">baseline</text>
+          <text x="494" y="210">restricted</text><text x="494" y="224">rank-1 ×1</text>
+          <text x="584" y="210">foreign per-pos</text><text x="584" y="224">spotlight</text>
+          <text x="674" y="210">complement</text><text x="674" y="224">patch</text>
+        </g>
+      </svg>
+      <figcaption><b>Left: the necessity null at ceiling.</b> Reverting the hinted run's
+      concept-position encodings has no detectable effect at ceiling (1.000; sub-ceiling
+      degradation invisible at n=112) — a parallel pathway exists. <b>Right: the ladder falls
+      off below full local states.</b> Rank-1 summaries are null-to-destructive; foreign
+      per-position deltas disrupt (0.000) and never misdirect (donor-targeting &lt;0.10) —
+      <b>commitment, not spotlight</b>; the complement is marginal (+0.077), making the
+      decomposition superadditive.</figcaption>
+    </figure>
+    <div class="verdict">
+      <b>The geometry is now quantified and bulletproof:</b> concept-position-restricted deltas
+      project onto the readable subspace at 0.013–0.014 against an empirical null of
+      0.040 ± 0.009 — z ≈ −2.8 per delta, with 86% of all 360 per-position deltas individually
+      below the null−2σ line. <em>The causal content is invisible to everything the probes can
+      read.</em>
+    </div>
+    <p><b>The discussion's spine — redundancy symmetry:</b> the program has now produced the
+       same lesson at two granularities. Directional necessity failed for the <em>gauge</em>
+       (information redundant across directions: the INLP curve), and positional necessity
+       failed for the <em>lever</em> (commitment redundant across pathways: the hint-token span
+       plus in-place writes). In causal-abstraction terms the variable is <b>multiply
+       realized</b> — interchange sufficiency is the right probe, and exhaustive necessity
+       requires ablating all realizations at once, which is exactly the KV job's combination
+       arm (hint-span decode-masking × concept-position reversion, bins pre-registered).</p>
+  </div>
+</section>
+
+<!-- ============ 10. STATUS ============ -->
+<section>
+  <div class="kicker">Part 10 · What's running and what's next</div>
   <h2>Current pipeline</h2>
   <div class="card">
     <table>
@@ -733,7 +795,7 @@
   docs/recognition_state_patch_27b_property_manifest.json ·
   docs/probe_on_erased_activations_27b_property.json ·
   docs/causal_handle_directions.md · next_paper_causal_abstraction_dashboard.md.
-  All numbers are from committed run artifacts (jobs 456912–456918, 456963–456966, 456968, 456990, 456999).
+  All numbers are from committed run artifacts (jobs 456912–456918, 456963–456966, 456968, 456990, 456999, 457002, 457005).
 </footer>
 
 </body>
