@@ -275,6 +275,11 @@ five fronts. Actions, in priority order:
    toward random guessing, with larger models more robust to arbitrary
    directions. The control asymmetry here is that phenomenon at higher dose,
    which makes the between-run control the natural decisive addition.
+   Pre-registered prediction for the variance test: if the probe direction's
+   within-run positional variance is far below the controls', the
+   constant-offset account is live and the between-run control is mandatory
+   before any writeup; if comparable, the current potent-machinery
+   interpretation strengthens. Either outcome is reportable.
 2. **Sigma accounting.** DONE: row-level cluster bootstrap is now the primary
    test in both erasure summaries; raw CIs straddle zero, all control CIs
    exclude zero; the null rules out effects above ~0.1 at n=16 rows. Naive
@@ -295,13 +300,37 @@ five fronts. Actions, in priority order:
    framing is asymmetric controllability (token-reachable vs
    intervention-reachable states diverge, connecting to the non-surjectivity
    result).
-5. **Hint-delta program (handle -> variable).** Compute difference-in-means
-   between gold-hint and unhinted context encodings; (a) erase it in hinted
-   runs (necessity of the focus state), (b) add it to unhinted runs
-   (low-rank sufficiency), (c) check overlap with SAE features at those
-   positions and with the old correctness probe direction. Low-rank success
-   localizes the variable; failure gives `causally distributed` a sharper
-   second datapoint tied to the sparse-dictionary thesis.
+   Attractor-strength reanalysis (2026-06-12, zero compute): NOT supported.
+   Per-row wrong-hint concept shift vs baseline modal-answer share gives
+   Spearman rho=+0.17 (p=0.56, wrong sign for the account); repair vs
+   attractor rho=-0.27 (p=0.35). Row-level misdirection shifts are
+   heterogeneous (-0.88 to +0.88, mean ~0) with no attractor pattern, so the
+   easy-information/hard-displacement account does not explain the
+   asymmetry in this data; the KV transplant remains the discriminating
+   test.
+5. **Hint-delta program (handle -> variable) — re-scoped after k=8 into one
+   batched job.** The k=8 content-dominance result (shuffled donor retains
+   +0.393 of +0.491) makes the mean delta the single highest-information
+   experiment left, and the shuffle arm already answered the ordering half
+   of content-vs-position. One combined batched 4h job on the same 14 rows:
+   (a) **delta-add sweep**: mean (hinted - unhinted) over the context
+   positions, one vector per layer, added to the unhinted run at a small
+   scale sweep — if it reproduces a large fraction of +0.39, the focus
+   state is a low-rank causal variable;
+   (b) **subset-band patching**: full patch restricted to concept-mention
+   token positions vs matched random subsets — which positions' content
+   carries it;
+   (c) **cross-row delta transplant**: row A's delta into row B should
+   misdirect toward A's concept if the delta is concept-specific — a
+   cleaner misdirection test than the wrong-hint donor since both deltas
+   are gold-validated.
+   Save the per-layer delta vectors; three geometry checks are then free:
+   cosine vs the correctness probe direction (near-orthogonality would be
+   the paper's sharpest contrast: the causal direction is not the readable
+   one), overlap with Gemma Scope decoder rows (sparse-dictionary thesis),
+   and delta-norm by layer. Either outcome is publishable: low-rank gives a
+   clean DAS-style variable; failure gives `causally distributed` its
+   sharpest datapoint with a demonstrated repair attached.
 
 ## Cross-Cutting Protocol Upgrades
 

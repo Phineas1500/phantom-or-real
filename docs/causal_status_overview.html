@@ -72,7 +72,7 @@
     <h1>Phantom or Real — Where the Causality Hunt Stands</h1>
     <p>We could always <em>read</em> whether the model was about to be right. This week we learned why we
        could never <em>steer</em> it: the thing we were reading turns out to be a gauge, not a lever.</p>
-    <div class="date">Status: June 12, 2026 &nbsp;·&nbsp; Gemma&nbsp;3&nbsp;27B, InAbHyD property + subtype (erasure verdict replicated on both) &nbsp;·&nbsp; k=8 interchange rerun in flight</div>
+    <div class="date">Status: June 12, 2026 &nbsp;·&nbsp; Gemma&nbsp;3&nbsp;27B, InAbHyD property + subtype &nbsp;·&nbsp; erasure verdict replicated on both tasks; interchange repair confirmed at k=8</div>
   </div>
 </header>
 
@@ -516,7 +516,8 @@
       <tr>
         <td><span class="chip done">done</span></td>
         <td>Erasure necessity test, k=8, property (512 gens)</td>
-        <td>Headline: readout direction is epiphenomenal, 3.4σ vs controls</td>
+        <td>Headline: readout direction is epiphenomenal — raw CI [−0.10, +0.07] straddles zero;
+            orthogonal control CI [−0.56, −0.19] excludes it decisively</td>
         <td>—</td>
       </tr>
       <tr>
@@ -547,7 +548,8 @@
         <td><span class="chip done">done</span></td>
         <td>Subtype-task erasure replication (512 generations)</td>
         <td>Replicated, cleaner than property: raw erasure ΔP=+0.008 (null);
-            orthogonal −0.430 (3.5σ), Gaussian −0.344 (3.0σ) — verdict now spans both tasks</td>
+            orthogonal CI [−0.68, −0.19] (the control carrying the significance),
+            Gaussian CI [−0.57, −0.13] — verdict now spans both tasks</td>
         <td>—</td>
       </tr>
       <tr>
@@ -569,9 +571,21 @@
       </tr>
       <tr>
         <td><span class="chip next">next</span></td>
-        <td>Interchange follow-ups: position-band sweep, content-vs-position decomposition</td>
-        <td>Turn the repair handle into a localized causal variable claim</td>
-        <td>~1–2 days</td>
+        <td><b>The decisive experiment:</b> combined hint-delta job — mean-delta add sweep
+            (one vector per layer), subset-band patching, cross-row delta transplant; one
+            batched 4h job</td>
+        <td>Answers the one question everything reduces to: is the focus state a low-rank,
+            concept-specific variable, or distributed content with a working handle? Both
+            outcomes publishable; geometry checks (cosine vs probe direction, SAE overlap)
+            come free</td>
+        <td>~1 day</td>
+      </tr>
+      <tr>
+        <td><span class="chip done">done</span></td>
+        <td>Attractor-strength reanalysis (zero compute)</td>
+        <td>The easy-info/hard-displacement account of the misdirection asymmetry is NOT
+            supported (ρ=+0.17, wrong sign); KV transplant remains the discriminating test</td>
+        <td>—</td>
       </tr>
       <tr>
         <td><span class="chip done">done</span></td>
