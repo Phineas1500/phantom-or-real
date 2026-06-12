@@ -249,6 +249,49 @@ Follow-ups: k>=8 batched rerun for power, position-band sweep, and a
 content-vs-position decomposition before claiming a localized
 `target_concept` variable.
 
+## Review Response Follow-Ups (2026-06-12)
+
+External review of the status overview accepted the core story and pushed on
+five fronts. Actions, in priority order:
+
+1. **Erasure control matching.** Alternative account to rule out: the raw
+   probe direction may carry between-run information that is near-constant
+   within a run (clamping it shifts every position by roughly one vector,
+   which models tolerate), while random/orthogonal directions carry
+   within-run-varying structure. Hook telemetry recorded mean |delta| only
+   (conflates offset and variance), so this needs a small GPU job: report
+   within-run projection variance per direction, add a between-run control
+   direction by construction (e.g., a height/difficulty-probe direction),
+   dose-response the controls to the scale where parse failures reach
+   baseline, and state explicitly that the clamp target is the global scalar
+   train-projection mean applied at every position.
+   DONE from existing data: P(strong|parsed) separates precision from
+   demolition — orthogonal erasure destroys correctness even among parsed
+   outputs (property 0.410->0.034, subtype 0.474->0.000), so the controls are
+   not mere format demolition; Gaussian damage is substantially format.
+2. **Sigma accounting.** DONE: row-level cluster bootstrap is now the primary
+   test in both erasure summaries; raw CIs straddle zero, all control CIs
+   exclude zero; the null rules out effects above ~0.1 at n=16 rows. Naive
+   per-generation sigmas demoted to planning numbers. Policy: any future
+   sigma figure uses row-level bootstrap or a mixed model.
+3. **Interchange power.** k=8 batched rerun running as job 456990; treat the
+   k=2 0.714 as wide-CI until it lands.
+4. **Bidirectionality.** Hypothesis: the hint works partly through
+   decode-time attention back to the literal hint tokens, which a
+   context-only patch cannot reproduce. Tests: transplant the donor KV cache
+   at the hint positions, or patch with the hint span structurally retained
+   but content-neutral. If misdirection still fails through activations, the
+   framing is asymmetric controllability (token-reachable vs
+   intervention-reachable states diverge, connecting to the non-surjectivity
+   result).
+5. **Hint-delta program (handle -> variable).** Compute difference-in-means
+   between gold-hint and unhinted context encodings; (a) erase it in hinted
+   runs (necessity of the focus state), (b) add it to unhinted runs
+   (low-rank sufficiency), (c) check overlap with SAE features at those
+   positions and with the old correctness probe direction. Low-rank success
+   localizes the variable; failure gives `causally distributed` a sharper
+   second datapoint tied to the sparse-dictionary thesis.
+
 ## Cross-Cutting Protocol Upgrades
 
 Apply to every experiment above:

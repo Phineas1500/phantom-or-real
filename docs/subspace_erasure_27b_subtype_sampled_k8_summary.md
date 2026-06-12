@@ -16,12 +16,18 @@ k=8 samples at temperature 0.7, 512 generations.
 | erase_orthogonal | 0.000 | 0.375 | -0.430 | -0.982 |
 | erase_gaussian | 0.086 | 0.023 | -0.344 | -0.821 |
 
-Significance (paired per-row deltas, n=16):
+Significance (paired per-row deltas, n=16; row-level cluster bootstrap is
+the primary test — the effective n is rows, not generations):
 
-- erase_raw vs zero: +0.008, 1.0 sigma. Null.
-- erase_raw vs erase_orthogonal: +0.438, **3.5 sigma**.
-- erase_raw vs erase_gaussian: +0.352, **3.0 sigma** (stronger than the
-  property run's 1.9 sigma; both controls now clear the 2-sigma bar).
+- erase_raw vs zero: +0.008, bootstrap 95% CI [+0.000, +0.023]. Null.
+- erase_orthogonal: -0.430, CI [-0.680, -0.188] — excludes zero.
+- erase_gaussian: -0.344, CI [-0.570, -0.125] — excludes zero.
+- Naive per-generation sigmas (3.5 / 3.0) are retained as planning numbers
+  only.
+
+Precision vs demolition — P(strong | parsed): baseline 0.474, erase_raw
+0.438, erase_orthogonal 0.000, erase_gaussian 0.088. Both controls destroy
+correctness even among parsed outputs on subtype.
 
 ## Interpretation
 

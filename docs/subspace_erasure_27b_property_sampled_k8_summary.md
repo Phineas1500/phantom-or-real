@@ -28,13 +28,23 @@ smoke result in `docs/subspace_erasure_27b_property_smoke.json` (job 456912).
 
 Baseline-correct rows = 7 rows with baseline P(strong) >= 0.5.
 
-Significance (paired per-row deltas, n=16):
+Significance (paired per-row deltas, n=16; the effective n is rows, not
+generations, so row-level cluster bootstrap is the primary test):
 
-- erase_raw vs zero: mean dP = -0.016, SE = 0.044 -> 0.4 sigma. Null.
-- erase_raw vs erase_orthogonal: mean diff = +0.352, SE = 0.104 -> 3.4 sigma.
-- erase_raw vs erase_gaussian: mean diff = +0.211, SE = 0.109 -> 1.9 sigma
-  (the Gaussian condition's damage is partly format destruction: 48% parse
-  failures, so its correctness deltas are noisier).
+- erase_raw vs zero: dP = -0.016, bootstrap 95% CI [-0.102, +0.070]. Null;
+  at n=16 rows this rules out causal effects larger than about 0.1, not
+  smaller.
+- erase_orthogonal: dP = -0.367, CI [-0.562, -0.188] — excludes zero.
+- erase_gaussian: dP = -0.227, CI [-0.422, -0.039] — excludes zero.
+- Naive per-generation SEs (raw-vs-orthogonal 3.4 sigma) overstate
+  precision and are retained only as historical planning numbers.
+
+Precision vs demolition — P(strong | parsed):
+
+- baseline 0.410, erase_raw 0.400, erase_orthogonal 0.034, erase_gaussian
+  0.313. Orthogonal erasure destroys correctness even among outputs that
+  parse, so its damage is not mere format destruction; the Gaussian
+  condition's damage is substantially format (48% parse failures).
 
 ## Interpretation
 
