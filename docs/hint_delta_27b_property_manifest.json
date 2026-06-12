@@ -1,0 +1,188 @@
+{
+  "arms": [
+    {
+      "kind": "baseline",
+      "label": "baseline",
+      "scale": 1.0
+    },
+    {
+      "kind": "delta_add",
+      "label": "delta_add_s1",
+      "scale": 1.0
+    },
+    {
+      "kind": "delta_add",
+      "label": "delta_add_s2",
+      "scale": 2.0
+    },
+    {
+      "kind": "subset_concept",
+      "label": "subset_concept",
+      "scale": 1.0
+    },
+    {
+      "kind": "subset_random",
+      "label": "subset_random",
+      "scale": 1.0
+    },
+    {
+      "kind": "cross_row_delta",
+      "label": "cross_row_delta",
+      "scale": 1.0
+    }
+  ],
+  "causal_abstraction_claim": "Low-rank-vs-distributed decider: if the per-layer mean hint-delta added to the unhinted run reproduces a large fraction of the full-patch repair, the focus state is a low-rank causal variable; subset arms localize which positions carry it; the cross-row arm tests concept specificity (row B under row A's delta should target A's concept).",
+  "controls": [
+    "regenerated_baseline",
+    "matched_random_position_subset",
+    "cross_row_concept_specificity"
+  ],
+  "created_at_utc": "2026-06-12T18:00:20.612984+00:00",
+  "delta_output": "results/stage2/erasure/hint_delta_27b_property_manifest_deltas.npz",
+  "delta_scales": [
+    1.0,
+    2.0
+  ],
+  "elapsed_seconds": 6006.85417175293,
+  "generation": {
+    "max_new_tokens": 96,
+    "samples_per_row": 8,
+    "temperature": 0.7
+  },
+  "geometry": {
+    "L30": {
+      "cos_mean_delta_vs_correctness_probe": -0.0013971546470028765,
+      "mean_delta_norm": 396.8323693774871,
+      "row_delta_cos_vs_probe_mean": -0.0005060179996303158,
+      "row_delta_cos_vs_probe_minmax": [
+        -0.007888134363278435,
+        0.00845342932117831
+      ]
+    },
+    "L40": {
+      "cos_mean_delta_vs_correctness_probe": -0.007964735194841943,
+      "mean_delta_norm": 434.0059876950273,
+      "row_delta_cos_vs_probe_mean": -0.004651416523729074,
+      "row_delta_cos_vs_probe_minmax": [
+        -0.008728660199472034,
+        0.0005432773375664915
+      ]
+    },
+    "L45": {
+      "cos_mean_delta_vs_correctness_probe": -0.00349511998911183,
+      "mean_delta_norm": 501.69253556926316,
+      "row_delta_cos_vs_probe_mean": -0.0015348116186604153,
+      "row_delta_cos_vs_probe_minmax": [
+        -0.0063793666111212535,
+        0.004823046112295684
+      ]
+    }
+  },
+  "layers": [
+    30,
+    40,
+    45
+  ],
+  "method": "hint_delta_program",
+  "model": "google/gemma-3-27b-it",
+  "n": 672,
+  "representation_type": "patched_residual_state",
+  "schema_version": 1,
+  "script": "scripts/stage2_hint_delta.py",
+  "selection": {
+    "calibration_generated_correct_rows": 3,
+    "calibration_generated_wrong_rows": 11,
+    "calibration_parse_fail_rows": 1,
+    "checkpoint": "0",
+    "heights": {
+      "h3": 6,
+      "h4": 8
+    },
+    "limit": null,
+    "prefix_jsonl": "results/stage2/decode_time/prefix_conditioned_margin_trajectory_gemma_manifest.jsonl",
+    "prompt_gold_vs_foil_threshold": 0.0,
+    "prompt_margin_gate_correct_triggered": 2,
+    "prompt_margin_gate_triggered_rows": 13,
+    "prompt_margin_gate_wrong_triggered": 11,
+    "selected_rows": 14,
+    "selection_mode": "prefix_conditioned_margin_manifest_checkpoint",
+    "skipped_missing_source": 0,
+    "source_jsonl": "results/full/with_errortype/gemma3_27b_infer_property.jsonl",
+    "triggered_source_row_indices": [
+      3073,
+      3415,
+      4322,
+      4675,
+      5292,
+      6188,
+      6327,
+      8035,
+      8298,
+      8874,
+      9549,
+      10079,
+      10714
+    ]
+  },
+  "slurm_job_id": "456999",
+  "summary": {
+    "baseline": {
+      "n_rows": 14,
+      "strong_accuracy": 0.16071428571428573,
+      "targets_gold_concept_rate": 0.5535714285714286
+    },
+    "cross_row_delta": {
+      "n_rows": 14,
+      "paired_ci95": [
+        -0.017857142857142856,
+        0.08035714285714286
+      ],
+      "paired_delta_p_strong": 0.026785714285714284,
+      "strong_accuracy": 0.1875,
+      "targets_donor_concept_rate": 0.026785714285714284,
+      "targets_gold_concept_rate": 0.5803571428571429
+    },
+    "delta_add_s1": {
+      "n_rows": 14,
+      "paired_ci95": [
+        -0.10714285714285714,
+        0.08928571428571429
+      ],
+      "paired_delta_p_strong": -0.008928571428571428,
+      "strong_accuracy": 0.15178571428571427,
+      "targets_gold_concept_rate": 0.5803571428571429
+    },
+    "delta_add_s2": {
+      "n_rows": 14,
+      "paired_ci95": [
+        -0.16071428571428573,
+        0.14285714285714285
+      ],
+      "paired_delta_p_strong": -0.017857142857142856,
+      "strong_accuracy": 0.14285714285714285,
+      "targets_gold_concept_rate": 0.5
+    },
+    "subset_concept": {
+      "n_rows": 14,
+      "paired_ci95": [
+        0.10714285714285714,
+        0.41964285714285715
+      ],
+      "paired_delta_p_strong": 0.25,
+      "strong_accuracy": 0.4107142857142857,
+      "targets_gold_concept_rate": 0.625
+    },
+    "subset_random": {
+      "n_rows": 14,
+      "paired_ci95": [
+        -0.008928571428571428,
+        0.09821428571428571
+      ],
+      "paired_delta_p_strong": 0.044642857142857144,
+      "strong_accuracy": 0.20535714285714285,
+      "targets_gold_concept_rate": 0.6339285714285714
+    }
+  },
+  "target_variable": "target_concept",
+  "task": "infer_property"
+}

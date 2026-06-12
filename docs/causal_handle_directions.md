@@ -381,6 +381,19 @@ five fronts. Actions, in priority order:
    - Calibration note on the attractor reanalysis: at n=14 the CI on rho
      spans roughly +/-0.5, so rho=+0.17 is "unsupported", not "refuted".
 
+   VERDICT (2026-06-12, job 456999;
+   docs/hint_delta_27b_property_summary.md): outcome-grid bin
+   delta_add(-)/subset_concept(+) — the focus state is positionally
+   localized but high-rank. Concept-position patching +0.250 CI
+   [+0.107,+0.420], random subsets null, mean-delta null at s1/s2,
+   cross-row inert (donor targeting 0.027). Geometry: deltas lie below
+   chance projection onto the full INLP readable subspace (0.009-0.021 vs
+   0.041) and share a causally inert common component (pairwise cos
+   0.23-0.38). Random-add control not triggered (delta_add null);
+   subset_random served as the matched control for the positive arm. Owed:
+   scale sweep + rank-k PCA add; then erase-delta-from-hinted + KV
+   transplant as the next cluster job.
+
 ## Cross-Cutting Protocol Upgrades
 
 Apply to every experiment above:
