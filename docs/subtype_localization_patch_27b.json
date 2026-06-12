@@ -1,0 +1,70 @@
+{
+  "arms": [
+    "baseline",
+    "full_patch",
+    "subset_concept",
+    "subset_random"
+  ],
+  "causal_abstraction_claim": "Cross-task replication of the localization result: full-block hint-state patch and concept-position subset patch vs matched random subsets on the subtype recognition-gap rowset. Claims-table row 12.",
+  "controls": [
+    "regenerated_baseline",
+    "matched_random_position_subset",
+    "behaviorally_validated_donors"
+  ],
+  "created_at_utc": "2026-06-12T23:29:30.915015+00:00",
+  "elapsed_seconds": 4700.622608184814,
+  "generation": {
+    "max_new_tokens": 96,
+    "samples_per_row": 8,
+    "temperature": 0.7
+  },
+  "layers": [
+    30,
+    40,
+    45
+  ],
+  "manifest": "docs/subtype_recognition_gap_27b_manifest.json",
+  "method": "subtype_localization_patch",
+  "model": "google/gemma-3-27b-it",
+  "n": 512,
+  "representation_type": "patched_residual_state",
+  "schema_version": 1,
+  "script": "scripts/stage2_subtype_localization_patch.py",
+  "slurm_job_id": "457005",
+  "states_output": "results/stage2/erasure/subtype_localization_patch_27b_states.npz",
+  "summary": {
+    "baseline": {
+      "n_rows": 16,
+      "strong_accuracy": 0.1796875
+    },
+    "full_patch": {
+      "n_rows": 16,
+      "paired_ci95": [
+        -0.15625,
+        0.234375
+      ],
+      "paired_delta_p_strong": 0.0390625,
+      "strong_accuracy": 0.21875
+    },
+    "subset_concept": {
+      "n_rows": 16,
+      "paired_ci95": [
+        -0.0078125,
+        0.1171875
+      ],
+      "paired_delta_p_strong": 0.0390625,
+      "strong_accuracy": 0.21875
+    },
+    "subset_random": {
+      "n_rows": 16,
+      "paired_ci95": [
+        -0.015625,
+        0.03125
+      ],
+      "paired_delta_p_strong": 0.0078125,
+      "strong_accuracy": 0.1875
+    }
+  },
+  "target_variable": "target_concept",
+  "task": "infer_subtype"
+}

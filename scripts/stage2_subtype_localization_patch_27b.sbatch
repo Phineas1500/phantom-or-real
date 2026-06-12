@@ -28,7 +28,6 @@ echo "Node: $(hostname)"; echo "Started: $(date)"
 
 python -u scripts/stage2_subtype_localization_patch.py \
     --samples-per-row 8 \
-    
     --layers 30,40,45 \
     --n-devices 2 --n-ctx 4096 --dtype bfloat16 --load-mode no-processing
 
