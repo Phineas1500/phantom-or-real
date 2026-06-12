@@ -237,6 +237,18 @@ the concept-focus state, not MCQ option spans:
   beyond both controls establishes `target_concept` as a causal handle; the
   MCQ option-span variant remains a follow-up for the recognition side.
 
+Status (2026-06-12): completed as the first positive activation-level repair
+(job 456968, docs/hint_state_interchange_27b_property_manifest.json).
+patch_hint_gold lifts P(strong) 0.214 -> 0.714 (+0.500, 8/14 rows
+false-to-true) vs matched noise at 0.036 — clears the decision rule for a
+repair handle. Qualifiers: the position-shuffled gold donor also repairs
+(+0.250), so the effect is partly content-not-position; and patch_hint_wrong
+is null (no misdirection, no rise in wrong-concept mentions), so
+bidirectional control did not transfer through activations at these sites.
+Follow-ups: k>=8 batched rerun for power, position-band sweep, and a
+content-vs-position decomposition before claiming a localized
+`target_concept` variable.
+
 ## Cross-Cutting Protocol Upgrades
 
 Apply to every experiment above:

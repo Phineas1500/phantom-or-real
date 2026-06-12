@@ -1,0 +1,566 @@
+{
+  "baseline_metrics": {
+    "by_original_is_correct_strong": {
+      "false": {
+        "n": 16,
+        "parse_fail_rate": 0.4375,
+        "strong_accuracy": 0.0
+      },
+      "true": {
+        "n": 16,
+        "parse_fail_rate": 0.0625,
+        "strong_accuracy": 0.5
+      }
+    },
+    "mean_quality": 0.42373511904761907,
+    "n_generations": 32,
+    "n_rows": 4,
+    "parse_fail_rate": 0.25,
+    "strong_accuracy": 0.25,
+    "weak_accuracy": 0.28125
+  },
+  "causal_abstraction_claim": "Necessity test: mean-ablates the per-layer raw correctness direction at every position across all listed residual layers during prompt processing and decode. A necessity claim requires baseline-correct rows to degrade under raw erasure beyond orthogonal and matched-Gaussian erasure; flat accuracy under raw erasure supports epiphenomenality of the correctness readout.",
+  "control_projection_stats": {
+    "L15": {
+      "gaussian": {
+        "projection_mean": 28.258106922006405,
+        "projection_std": 0.39487804385976616
+      },
+      "orthogonal": {
+        "projection_mean": -100.01204344871265,
+        "projection_std": 0.9700038726992768
+      }
+    },
+    "L30": {
+      "gaussian": {
+        "projection_mean": 733.0997631029221,
+        "projection_std": 13.614846524609678
+      },
+      "orthogonal": {
+        "projection_mean": -1296.0233204578096,
+        "projection_std": 15.965159832281739
+      }
+    },
+    "L40": {
+      "gaussian": {
+        "projection_mean": 585.0160201507097,
+        "projection_std": 71.31856942990782
+      },
+      "orthogonal": {
+        "projection_mean": 226.3962679437177,
+        "projection_std": 57.09467048096628
+      }
+    },
+    "L45": {
+      "gaussian": {
+        "projection_mean": 849.3353151108789,
+        "projection_std": 48.04603730976457
+      },
+      "orthogonal": {
+        "projection_mean": 1708.5670686646515,
+        "projection_std": 95.55951380024943
+      }
+    },
+    "L53": {
+      "gaussian": {
+        "projection_mean": -745.6621987633998,
+        "projection_std": 165.27219237441372
+      },
+      "orthogonal": {
+        "projection_mean": 578.6650533138138,
+        "projection_std": 151.110540507279
+      }
+    }
+  },
+  "controls": [
+    "regenerated_baseline",
+    "orthogonal_direction",
+    "matched_gaussian_noise",
+    "positive_control"
+  ],
+  "created_at_utc": "2026-06-11T23:04:59.313110+00:00",
+  "direction_output": "results/stage2/erasure/subspace_erasure_27b_subtype_sampled_k8_shard0_directions.npz",
+  "elapsed_seconds": 8659.515981674194,
+  "generation": {
+    "conditions": [
+      {
+        "label": "baseline",
+        "vector_kind": null
+      },
+      {
+        "label": "erase_raw",
+        "vector_kind": "raw"
+      },
+      {
+        "label": "erase_orthogonal",
+        "vector_kind": "orthogonal"
+      },
+      {
+        "label": "erase_gaussian",
+        "vector_kind": "gaussian"
+      }
+    ],
+    "do_sample": true,
+    "dtype": "torch.bfloat16",
+    "load_mode": "no-processing",
+    "max_new_tokens": 96,
+    "n_ctx": 4096,
+    "n_devices": 2,
+    "samples_per_row": 8,
+    "stop_at_eos": true,
+    "temperature": 0.7
+  },
+  "hook_names": {
+    "15": "blocks.15.hook_resid_post",
+    "30": "blocks.30.hook_resid_post",
+    "40": "blocks.40.hook_resid_post",
+    "45": "blocks.45.hook_resid_post",
+    "53": "blocks.53.hook_resid_post"
+  },
+  "intervention_metrics": {
+    "erase_gaussian": {
+      "by_original_is_correct_strong": {
+        "false": {
+          "n": 16,
+          "parse_fail_rate": 0.0,
+          "strong_accuracy": 0.0
+        },
+        "true": {
+          "n": 16,
+          "parse_fail_rate": 0.0625,
+          "strong_accuracy": 0.375
+        }
+      },
+      "mean_quality": 0.4583333333333333,
+      "n_generations": 32,
+      "n_rows": 4,
+      "parse_fail_rate": 0.03125,
+      "strong_accuracy": 0.1875,
+      "weak_accuracy": 0.25
+    },
+    "erase_orthogonal": {
+      "by_original_is_correct_strong": {
+        "false": {
+          "n": 16,
+          "parse_fail_rate": 0.375,
+          "strong_accuracy": 0.0
+        },
+        "true": {
+          "n": 16,
+          "parse_fail_rate": 0.0625,
+          "strong_accuracy": 0.0
+        }
+      },
+      "mean_quality": 0.26041666666666663,
+      "n_generations": 32,
+      "n_rows": 4,
+      "parse_fail_rate": 0.21875,
+      "strong_accuracy": 0.0,
+      "weak_accuracy": 0.09375
+    },
+    "erase_raw": {
+      "by_original_is_correct_strong": {
+        "false": {
+          "n": 16,
+          "parse_fail_rate": 0.0,
+          "strong_accuracy": 0.0
+        },
+        "true": {
+          "n": 16,
+          "parse_fail_rate": 0.0,
+          "strong_accuracy": 0.5
+        }
+      },
+      "mean_quality": 0.5084043560606061,
+      "n_generations": 32,
+      "n_rows": 4,
+      "parse_fail_rate": 0.0,
+      "strong_accuracy": 0.25,
+      "weak_accuracy": 0.4375
+    }
+  },
+  "jsonl": "results/full/with_errortype/gemma3_27b_infer_subtype.jsonl",
+  "layers": [
+    15,
+    30,
+    40,
+    45,
+    53
+  ],
+  "method": "multi_layer_subspace_erasure",
+  "model": "google/gemma-3-27b-it",
+  "model_key": "gemma3_27b",
+  "n": 128,
+  "out_jsonl": "results/stage2/erasure/subspace_erasure_27b_subtype_sampled_k8_shard0.jsonl",
+  "paired_flips": {
+    "erase_gaussian": {
+      "false_to_true": 0,
+      "mean_delta_p_strong": -0.0625,
+      "paired_n": 4,
+      "rows_degraded": 1,
+      "rows_improved": 0,
+      "std_delta_p_strong": 0.10825317547305482,
+      "true_to_false": 1
+    },
+    "erase_orthogonal": {
+      "false_to_true": 0,
+      "mean_delta_p_strong": -0.25,
+      "paired_n": 4,
+      "rows_degraded": 1,
+      "rows_improved": 0,
+      "std_delta_p_strong": 0.4330127018922193,
+      "true_to_false": 1
+    },
+    "erase_raw": {
+      "false_to_true": 0,
+      "mean_delta_p_strong": 0.0,
+      "paired_n": 4,
+      "rows_degraded": 0,
+      "rows_improved": 0,
+      "std_delta_p_strong": 0.0,
+      "true_to_false": 0
+    }
+  },
+  "probe_directions": {
+    "L15": {
+      "best_c": 0.01,
+      "c_values": [
+        0.01,
+        0.1,
+        1.0,
+        10.0
+      ],
+      "d_model": 5376,
+      "input_rows": 11000,
+      "kept_rows": 10737,
+      "max_iter": 2000,
+      "raw_coef_norm": 17.522395463755213,
+      "solver": "lbfgs",
+      "split_counts": {
+        "test": {
+          "n": 1616,
+          "negative_n": 1279,
+          "positive_n": 337
+        },
+        "train": {
+          "n": 7515,
+          "negative_n": 5946,
+          "positive_n": 1569
+        },
+        "val": {
+          "n": 1606,
+          "negative_n": 1269,
+          "positive_n": 337
+        }
+      },
+      "test_auc": 0.8543906009656096,
+      "train_projection_max": -0.19961534887771226,
+      "train_projection_mean": -0.7645866703509655,
+      "train_projection_min": -1.1447315572682546,
+      "train_projection_std": 0.14838596881236912,
+      "val_auc": 0.8515034385354483
+    },
+    "L30": {
+      "best_c": 0.01,
+      "c_values": [
+        0.01,
+        0.1,
+        1.0,
+        10.0
+      ],
+      "d_model": 5376,
+      "input_rows": 11000,
+      "kept_rows": 10737,
+      "max_iter": 2000,
+      "raw_coef_norm": 0.6214744319839757,
+      "solver": "lbfgs",
+      "split_counts": {
+        "test": {
+          "n": 1616,
+          "negative_n": 1279,
+          "positive_n": 337
+        },
+        "train": {
+          "n": 7515,
+          "negative_n": 5946,
+          "positive_n": 1569
+        },
+        "val": {
+          "n": 1606,
+          "negative_n": 1269,
+          "positive_n": 337
+        }
+      },
+      "test_auc": 0.9092739830589087,
+      "train_projection_max": -58.04659386166967,
+      "train_projection_mean": -79.28367128660611,
+      "train_projection_min": -93.75608336985317,
+      "train_projection_std": 5.582776335892907,
+      "val_auc": 0.9056080513874567
+    },
+    "L40": {
+      "best_c": 0.01,
+      "c_values": [
+        0.01,
+        0.1,
+        1.0,
+        10.0
+      ],
+      "d_model": 5376,
+      "input_rows": 11000,
+      "kept_rows": 10737,
+      "max_iter": 2000,
+      "raw_coef_norm": 0.21915645038012668,
+      "solver": "lbfgs",
+      "split_counts": {
+        "test": {
+          "n": 1616,
+          "negative_n": 1279,
+          "positive_n": 337
+        },
+        "train": {
+          "n": 7515,
+          "negative_n": 5946,
+          "positive_n": 1569
+        },
+        "val": {
+          "n": 1606,
+          "negative_n": 1269,
+          "positive_n": 337
+        }
+      },
+      "test_auc": 0.9062811033285927,
+      "train_projection_max": 120.56363618400283,
+      "train_projection_mean": 53.50330599726682,
+      "train_projection_min": 7.303344647070981,
+      "train_projection_std": 18.0447853024586,
+      "val_auc": 0.920650620947357
+    },
+    "L45": {
+      "best_c": 0.01,
+      "c_values": [
+        0.01,
+        0.1,
+        1.0,
+        10.0
+      ],
+      "d_model": 5376,
+      "input_rows": 11000,
+      "kept_rows": 10737,
+      "max_iter": 2000,
+      "raw_coef_norm": 0.17624344803542608,
+      "solver": "lbfgs",
+      "split_counts": {
+        "test": {
+          "n": 1616,
+          "negative_n": 1279,
+          "positive_n": 337
+        },
+        "train": {
+          "n": 7515,
+          "negative_n": 5946,
+          "positive_n": 1569
+        },
+        "val": {
+          "n": 1606,
+          "negative_n": 1269,
+          "positive_n": 337
+        }
+      },
+      "test_auc": 0.914445400825478,
+      "train_projection_max": 128.472872158702,
+      "train_projection_mean": 48.38292052417034,
+      "train_projection_min": -11.71148884113082,
+      "train_projection_std": 23.180758378069978,
+      "val_auc": 0.9174751492448316
+    },
+    "L53": {
+      "best_c": 0.01,
+      "c_values": [
+        0.01,
+        0.1,
+        1.0,
+        10.0
+      ],
+      "d_model": 5376,
+      "input_rows": 11000,
+      "kept_rows": 10737,
+      "max_iter": 2000,
+      "raw_coef_norm": 0.11773226921233898,
+      "solver": "lbfgs",
+      "split_counts": {
+        "test": {
+          "n": 1616,
+          "negative_n": 1279,
+          "positive_n": 337
+        },
+        "train": {
+          "n": 7515,
+          "negative_n": 5946,
+          "positive_n": 1569
+        },
+        "val": {
+          "n": 1606,
+          "negative_n": 1269,
+          "positive_n": 337
+        }
+      },
+      "test_auc": 0.9067497558134948,
+      "train_projection_max": 198.5529059891076,
+      "train_projection_mean": 72.49338241627007,
+      "train_projection_min": -16.281210332740997,
+      "train_projection_std": 33.0499073101545,
+      "val_auc": 0.9150573011296541
+    }
+  },
+  "representation_type": "raw_direction",
+  "schema_version": 1,
+  "script": "scripts/stage2_subspace_erasure.py",
+  "selection": {
+    "available_counts": {
+      "h3_correct": 51,
+      "h3_incorrect": 388,
+      "h4_correct": 42,
+      "h4_incorrect": 700
+    },
+    "drop_parse_failed": true,
+    "heights": [
+      3,
+      4
+    ],
+    "per_height_label": 4,
+    "row_shard": "0/4",
+    "seed": 20260427,
+    "selected_counts": {
+      "h3_correct": 4,
+      "h3_incorrect": 4,
+      "h4_correct": 4,
+      "h4_incorrect": 4
+    },
+    "selected_rows": 16,
+    "shard_rows": 4,
+    "source_file": "results/full/with_errortype/gemma3_27b_infer_subtype.jsonl",
+    "split": "test",
+    "split_family": "s1"
+  },
+  "site_or_layer": "L15,L30,L40,L45,L53",
+  "slurm_job_id": "456963",
+  "split": "s1",
+  "split_family": "s1",
+  "splits": "results/stage2/splits.jsonl",
+  "summary": {
+    "by_condition": {
+      "baseline": {
+        "by_original_is_correct_strong": {
+          "false": {
+            "n": 16,
+            "parse_fail_rate": 0.4375,
+            "strong_accuracy": 0.0
+          },
+          "true": {
+            "n": 16,
+            "parse_fail_rate": 0.0625,
+            "strong_accuracy": 0.5
+          }
+        },
+        "mean_quality": 0.42373511904761907,
+        "n_generations": 32,
+        "n_rows": 4,
+        "parse_fail_rate": 0.25,
+        "strong_accuracy": 0.25,
+        "weak_accuracy": 0.28125
+      },
+      "erase_gaussian": {
+        "by_original_is_correct_strong": {
+          "false": {
+            "n": 16,
+            "parse_fail_rate": 0.0,
+            "strong_accuracy": 0.0
+          },
+          "true": {
+            "n": 16,
+            "parse_fail_rate": 0.0625,
+            "strong_accuracy": 0.375
+          }
+        },
+        "mean_quality": 0.4583333333333333,
+        "n_generations": 32,
+        "n_rows": 4,
+        "parse_fail_rate": 0.03125,
+        "strong_accuracy": 0.1875,
+        "weak_accuracy": 0.25
+      },
+      "erase_orthogonal": {
+        "by_original_is_correct_strong": {
+          "false": {
+            "n": 16,
+            "parse_fail_rate": 0.375,
+            "strong_accuracy": 0.0
+          },
+          "true": {
+            "n": 16,
+            "parse_fail_rate": 0.0625,
+            "strong_accuracy": 0.0
+          }
+        },
+        "mean_quality": 0.26041666666666663,
+        "n_generations": 32,
+        "n_rows": 4,
+        "parse_fail_rate": 0.21875,
+        "strong_accuracy": 0.0,
+        "weak_accuracy": 0.09375
+      },
+      "erase_raw": {
+        "by_original_is_correct_strong": {
+          "false": {
+            "n": 16,
+            "parse_fail_rate": 0.0,
+            "strong_accuracy": 0.0
+          },
+          "true": {
+            "n": 16,
+            "parse_fail_rate": 0.0,
+            "strong_accuracy": 0.5
+          }
+        },
+        "mean_quality": 0.5084043560606061,
+        "n_generations": 32,
+        "n_rows": 4,
+        "parse_fail_rate": 0.0,
+        "strong_accuracy": 0.25,
+        "weak_accuracy": 0.4375
+      }
+    },
+    "paired_vs_baseline": {
+      "erase_gaussian": {
+        "false_to_true": 0,
+        "mean_delta_p_strong": -0.0625,
+        "paired_n": 4,
+        "rows_degraded": 1,
+        "rows_improved": 0,
+        "std_delta_p_strong": 0.10825317547305482,
+        "true_to_false": 1
+      },
+      "erase_orthogonal": {
+        "false_to_true": 0,
+        "mean_delta_p_strong": -0.25,
+        "paired_n": 4,
+        "rows_degraded": 1,
+        "rows_improved": 0,
+        "std_delta_p_strong": 0.4330127018922193,
+        "true_to_false": 1
+      },
+      "erase_raw": {
+        "false_to_true": 0,
+        "mean_delta_p_strong": 0.0,
+        "paired_n": 4,
+        "rows_degraded": 0,
+        "rows_improved": 0,
+        "std_delta_p_strong": 0.0,
+        "true_to_false": 0
+      }
+    }
+  },
+  "target_variable": "free_form_correctness",
+  "task": "infer_subtype"
+}

@@ -1,0 +1,194 @@
+{
+  "causal_abstraction_claim": "Interchange test on target_concept: behaviorally validated hint-first donors (gold repairs at 1.000, wrong-concept misdirects at 0.000) are patched into the unhinted run at the shared context block. A causal-handle claim requires gold-donor repair and wrong-donor misdirection beyond shuffled and matched-noise controls.",
+  "concept_mention_rates": {
+    "baseline": {
+      "mentions_gold_concept": 0.8928571428571429,
+      "mentions_wrong_concept": 0.5714285714285714
+    },
+    "noise_matched": {
+      "mentions_gold_concept": 0.03571428571428571,
+      "mentions_wrong_concept": 0.03571428571428571
+    },
+    "patch_hint_gold": {
+      "mentions_gold_concept": 0.8928571428571429,
+      "mentions_wrong_concept": 0.5
+    },
+    "patch_hint_wrong": {
+      "mentions_gold_concept": 0.8928571428571429,
+      "mentions_wrong_concept": 0.5357142857142857
+    },
+    "patch_shuffled": {
+      "mentions_gold_concept": 0.6785714285714286,
+      "mentions_wrong_concept": 0.5714285714285714
+    }
+  },
+  "controls": [
+    "regenerated_baseline",
+    "position_shuffled_donor",
+    "magnitude_matched_gaussian_noise",
+    "bidirectional_wrong_concept_donor"
+  ],
+  "created_at_utc": "2026-06-12T08:55:34.166625+00:00",
+  "elapsed_seconds": 9179.776172876358,
+  "generation": {
+    "conditions": [
+      {
+        "donor": null,
+        "label": "baseline",
+        "patch_kind": null
+      },
+      {
+        "donor": "gold",
+        "label": "patch_hint_gold",
+        "patch_kind": "patch_recognition"
+      },
+      {
+        "donor": "wrong",
+        "label": "patch_hint_wrong",
+        "patch_kind": "patch_recognition"
+      },
+      {
+        "donor": "gold",
+        "label": "patch_shuffled",
+        "patch_kind": "patch_shuffled"
+      },
+      {
+        "donor": "gold",
+        "label": "noise_matched",
+        "patch_kind": "noise_matched"
+      }
+    ],
+    "do_sample": true,
+    "max_new_tokens": 96,
+    "samples_per_row": 2,
+    "temperature": 0.7
+  },
+  "layers": [
+    30,
+    40,
+    45
+  ],
+  "method": "hint_state_interchange",
+  "model": "google/gemma-3-27b-it",
+  "n": 140,
+  "representation_type": "patched_residual_state",
+  "schema_version": 1,
+  "script": "scripts/stage2_hint_state_interchange.py",
+  "selection": {
+    "calibration_generated_correct_rows": 3,
+    "calibration_generated_wrong_rows": 11,
+    "calibration_parse_fail_rows": 1,
+    "checkpoint": "0",
+    "heights": {
+      "h3": 6,
+      "h4": 8
+    },
+    "limit": null,
+    "prefix_jsonl": "results/stage2/decode_time/prefix_conditioned_margin_trajectory_gemma_manifest.jsonl",
+    "prompt_gold_vs_foil_threshold": 0.0,
+    "prompt_margin_gate_correct_triggered": 2,
+    "prompt_margin_gate_triggered_rows": 13,
+    "prompt_margin_gate_wrong_triggered": 11,
+    "selected_rows": 14,
+    "selection_mode": "prefix_conditioned_margin_manifest_checkpoint",
+    "skipped_missing_source": 0,
+    "source_jsonl": "results/full/with_errortype/gemma3_27b_infer_property.jsonl",
+    "triggered_source_row_indices": [
+      3073,
+      3415,
+      4322,
+      4675,
+      5292,
+      6188,
+      6327,
+      8035,
+      8298,
+      8874,
+      9549,
+      10079,
+      10714
+    ]
+  },
+  "skipped_rows": [],
+  "slurm_job_id": "456968",
+  "summary": {
+    "by_condition": {
+      "baseline": {
+        "mean_quality": 0.5476662887377173,
+        "n_generations": 28,
+        "n_rows": 14,
+        "parse_fail_rate": 0.03571428571428571,
+        "strong_accuracy": 0.21428571428571427,
+        "weak_accuracy": 0.6428571428571429
+      },
+      "noise_matched": {
+        "mean_quality": 0.25,
+        "n_generations": 28,
+        "n_rows": 14,
+        "parse_fail_rate": 0.32142857142857145,
+        "strong_accuracy": 0.03571428571428571,
+        "weak_accuracy": 0.03571428571428571
+      },
+      "patch_hint_gold": {
+        "mean_quality": 0.807936507936508,
+        "n_generations": 28,
+        "n_rows": 14,
+        "parse_fail_rate": 0.03571428571428571,
+        "strong_accuracy": 0.7142857142857143,
+        "weak_accuracy": 0.75
+      },
+      "patch_hint_wrong": {
+        "mean_quality": 0.5497118291761149,
+        "n_generations": 28,
+        "n_rows": 14,
+        "parse_fail_rate": 0.03571428571428571,
+        "strong_accuracy": 0.17857142857142858,
+        "weak_accuracy": 0.6785714285714286
+      },
+      "patch_shuffled": {
+        "mean_quality": 0.6765400604686319,
+        "n_generations": 28,
+        "n_rows": 14,
+        "parse_fail_rate": 0.03571428571428571,
+        "strong_accuracy": 0.4642857142857143,
+        "weak_accuracy": 0.6785714285714286
+      }
+    },
+    "paired_vs_baseline": {
+      "noise_matched": {
+        "false_to_true": 1,
+        "mean_delta_p_strong": -0.17857142857142858,
+        "paired_n": 14,
+        "rows_degraded": 3,
+        "rows_improved": 1,
+        "true_to_false": 3
+      },
+      "patch_hint_gold": {
+        "false_to_true": 8,
+        "mean_delta_p_strong": 0.5,
+        "paired_n": 14,
+        "rows_degraded": 0,
+        "rows_improved": 8,
+        "true_to_false": 0
+      },
+      "patch_hint_wrong": {
+        "false_to_true": 0,
+        "mean_delta_p_strong": -0.03571428571428571,
+        "paired_n": 14,
+        "rows_degraded": 1,
+        "rows_improved": 0,
+        "true_to_false": 1
+      },
+      "patch_shuffled": {
+        "false_to_true": 6,
+        "mean_delta_p_strong": 0.25,
+        "paired_n": 14,
+        "rows_degraded": 2,
+        "rows_improved": 6,
+        "true_to_false": 2
+      }
+    }
+  },
+  "target_variable": "target_concept",
+  "task": "infer_property"
+}
