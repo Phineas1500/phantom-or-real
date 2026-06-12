@@ -72,7 +72,7 @@
     <h1>Phantom or Real — Where the Causality Hunt Stands</h1>
     <p>We could always <em>read</em> whether the model was about to be right. This week we learned why we
        could never <em>steer</em> it: the thing we were reading turns out to be a gauge, not a lever.</p>
-    <div class="date">Status: June 11, 2026 &nbsp;·&nbsp; Gemma&nbsp;3&nbsp;27B, InAbHyD property task &nbsp;·&nbsp; subtype replication in flight</div>
+    <div class="date">Status: June 12, 2026 &nbsp;·&nbsp; Gemma&nbsp;3&nbsp;27B, InAbHyD property + subtype (erasure verdict replicated on both) &nbsp;·&nbsp; k=8 interchange rerun in flight</div>
   </div>
 </header>
 
@@ -169,10 +169,12 @@
         <span style="background:#d23f3f"></span>erase an orthogonal control direction
       </div>
       <figcaption><b>The headline result.</b> Removing the correctness direction does nothing
-      (−0.016, statistically 0.4σ from zero). The identical operation on control directions is
-      catastrophic — orthogonal erasure destroys 75% of the accuracy on normally-correct rows
-      and separates from the real erasure at <b>3.4σ</b>. The intervention machinery is proven
-      potent; the correctness axis specifically is not load-bearing.</figcaption>
+      (−0.016, row-level bootstrap 95% CI [−0.10, +0.07] — straddles zero). The identical
+      operation on control directions is catastrophic: both control CIs exclude zero, and
+      orthogonal erasure destroys correctness even among outputs that still parse
+      (P(correct&nbsp;|&nbsp;parsed) 0.41 → 0.03). The clamp targets each direction's global
+      scalar train-projection mean (computed at the last prompt position), applied at every
+      position. The machinery is proven potent; the correctness axis is not load-bearing.</figcaption>
     </figure>
 
     <div class="verdict">
@@ -184,9 +186,9 @@
     <table>
       <tr><th>Condition</th><th>P(correct)</th><th>ΔP vs baseline</th><th>Parse failures</th><th>Significance</th></tr>
       <tr><td>Baseline (no intervention)</td><td class="num">0.391</td><td class="num">—</td><td class="num">4.7%</td><td>—</td></tr>
-      <tr><td>Erase <b>correctness</b> direction</td><td class="num good">0.375</td><td class="num good">−0.016</td><td class="num">6.2%</td><td class="good">0.4σ from zero (null)</td></tr>
-      <tr><td>Erase Gaussian control</td><td class="num bad">0.164</td><td class="num bad">−0.227</td><td class="num bad">47.7%</td><td class="bad">destructive</td></tr>
-      <tr><td>Erase orthogonal control</td><td class="num bad">0.023</td><td class="num bad">−0.367</td><td class="num bad">30.5%</td><td class="bad">3.4σ below raw erasure</td></tr>
+      <tr><td>Erase <b>correctness</b> direction</td><td class="num good">0.375</td><td class="num good">−0.016</td><td class="num">6.2%</td><td class="good">CI [−0.10, +0.07] — null</td></tr>
+      <tr><td>Erase Gaussian control</td><td class="num bad">0.164</td><td class="num bad">−0.227</td><td class="num bad">47.7%</td><td class="bad">CI [−0.42, −0.04]</td></tr>
+      <tr><td>Erase orthogonal control</td><td class="num bad">0.023</td><td class="num bad">−0.367</td><td class="num bad">30.5%</td><td class="bad">CI [−0.56, −0.19]</td></tr>
     </table>
   </div>
 </section>
@@ -548,9 +550,17 @@
         <td>—</td>
       </tr>
       <tr>
+        <td><span class="chip done">done</span></td>
+        <td>Statistics hardening (zero-GPU reanalysis): row-level bootstrap CIs and
+            P(correct&nbsp;|&nbsp;parsed) for both erasure runs; concept-resolved misdirection
+            metric for the interchange</td>
+        <td>Effective n is rows, not generations; controls damage correctness, not just format;
+            misdirection now tested on a metric that can detect it</td>
+        <td>—</td>
+      </tr>
+      <tr>
         <td><span class="chip next">next</span></td>
-        <td>Interchange follow-ups: k≥8 batched-generation rerun, position-band sweep,
-            content-vs-position decomposition</td>
+        <td>Interchange follow-ups: position-band sweep, content-vs-position decomposition</td>
         <td>Turn the repair handle into a localized causal variable claim</td>
         <td>~1–2 days</td>
       </tr>
@@ -603,7 +613,7 @@
   docs/recognition_state_patch_27b_property_manifest.json ·
   docs/probe_on_erased_activations_27b_property.json ·
   docs/causal_handle_directions.md · next_paper_causal_abstraction_dashboard.md.
-  All numbers are from committed run artifacts (jobs 456912–456918, 456913).
+  All numbers are from committed run artifacts (jobs 456912–456918, 456963–456966, 456968, 456990).
 </footer>
 
 </body>

@@ -269,6 +269,12 @@ five fronts. Actions, in priority order:
    demolition — orthogonal erasure destroys correctness even among parsed
    outputs (property 0.410->0.034, subtype 0.474->0.000), so the controls are
    not mere format demolition; Gaussian damage is substantially format.
+   Citable precedent for the writeup: Cox et al. motivate orthogonal
+   baselines with exactly this hypothesis — large perturbations along
+   semantically irrelevant directions induce general reasoning degradation
+   toward random guessing, with larger models more robust to arbitrary
+   directions. The control asymmetry here is that phenomenon at higher dose,
+   which makes the between-run control the natural decisive addition.
 2. **Sigma accounting.** DONE: row-level cluster bootstrap is now the primary
    test in both erasure summaries; raw CIs straddle zero, all control CIs
    exclude zero; the null rules out effects above ~0.1 at n=16 rows. Naive
