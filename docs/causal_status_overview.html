@@ -72,7 +72,7 @@
     <h1>Phantom or Real — Where the Causality Hunt Stands</h1>
     <p>We could always <em>read</em> whether the model was about to be right. This week we learned why we
        could never <em>steer</em> it: the thing we were reading turns out to be a gauge, not a lever.</p>
-    <div class="date">Status: June 12, 2026 &nbsp;·&nbsp; Gemma&nbsp;3&nbsp;27B, InAbHyD property + subtype &nbsp;·&nbsp; erasure replicated on both tasks; interchange repair confirmed at k=8; hint-delta verdict in: focus state localized to concept mentions, outside the readable subspace</div>
+    <div class="date">Status: June 12, 2026 &nbsp;·&nbsp; Gemma&nbsp;3&nbsp;27B, InAbHyD property + subtype &nbsp;·&nbsp; erasure replicated on both tasks; interchange repair confirmed at k=8; hint-delta verdict in: focus state localized to concept mentions (geometry pending restriction check)</div>
   </div>
 </header>
 
@@ -638,14 +638,15 @@
       </tr>
       <tr>
         <td><span class="chip done">done</span></td>
-        <td><b>The decisive experiment (job 456999):</b> hint-delta program — verdict is the
-            third grid bin: <b>positionally localized, high-rank</b>. Concept-mention-position
-            patching repairs +0.250 [CI +0.11,+0.42] (~half the full patch); random subsets
-            null; mean-delta add null; cross-row transplant inert</td>
-        <td>The focus state is written at the concept-mention tokens, is not a movable
-            direction, and lies <b>outside even the redundant readable subspace</b>
-            (INLP-stack projection 0.009–0.021 vs chance 0.041) — the strongest form of the
-            gauge/lever dissociation. Owed: scale sweep + rank-k PCA before "not low-rank"</td>
+        <td><b>The decisive experiment (job 456999):</b> hint-delta program — verdict:
+            <b>positionally localized; not captured by a uniform rank-1 summary</b>.
+            Concept-mention-position patching repairs +0.250 [CI +0.11,+0.42]; random subsets
+            null (~6× per-token potency); block-mean delta null (diluted — see Part 8);
+            cross-row inertness overdetermined by the same dilution</td>
+        <td>The focus state is written at the concept-mention tokens. Geometry (block-mean
+            deltas project below chance onto the readable subspace) is <b>provisional pending
+            the concept-position-restricted recomputation</b>; restricted delta ladder and
+            rank-k PCA in the composite job decide the rank question</td>
         <td>—</td>
       </tr>
       <tr>
@@ -688,10 +689,11 @@
       </tr>
       <tr>
         <td><span class="chip next">next</span></td>
-        <td>Bidirectionality probe: KV-cache transplant at hint positions; hint-delta
-            program (erase in hinted / add to unhinted / SAE overlap)</td>
-        <td>Decide between localized variable and asymmetric controllability</td>
-        <td>~2 days</td>
+        <td>Subtype replication of the localization result (behavioral arms on Modal +
+            one concept-position patch cluster job)</td>
+        <td>The focus-state story is property-only; first question a reviewer asks of a
+            localization claim</td>
+        <td>~1–2 days</td>
       </tr>
       <tr>
         <td><span class="chip next">next</span></td>

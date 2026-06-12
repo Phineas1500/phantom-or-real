@@ -416,7 +416,33 @@ five fronts. Actions, in priority order:
      positions - transfers-and-repairs = movable attention-allocation
      operator ("spotlight"); inert/disruptive = concept commitment written
      in place;
-   - KV transplant at hint positions (bidirectionality mechanism).
+   - KV transplant at hint positions — the WRONG-HINT donor's KV, scored on
+     targets-hinted-concept (the open question is why misdirection transfers
+     through tokens but not residual patches; a gold-KV arm re-demonstrates
+     known repair and is cut if budget binds).
+
+   Spec refinements (review, 2026-06-12):
+   - **Expressivity ladder, explicit**: subset replacement (done, +0.250) ->
+     per-position additive delta (drops replacement) -> own restricted
+     rank-1 (drops rank) -> spotlight = foreign restricted rank-1 (drops row
+     identity). Each rung removes one property; where the effect falls off
+     IS the answer.
+   - Spotlight mapping rule (pre-registered): use the row-restricted MEAN
+     vector, so donor/receiver mention-count mismatch is moot — the
+     spotlight is exactly the own-rank-1 object with the row swapped. Also
+     run a per-position spotlight with cycled position mapping, which stays
+     interpretable even if the rank-1 rungs come back null.
+   - **Necessity controls (the erasure lesson)**: an in-job HINTED-baseline
+     arm (the 1.000 is a Modal prompt-level number; the hooked pairing
+     reference must be measured in-job), and a reverse-patch-at-RANDOM-
+     positions control in the hinted run — without it, a collapse is
+     vulnerable to "injecting unhinted states anywhere destroys the repair",
+     the demolition-vs-precision objection again.
+   - **Budget reality**: 456999 realized ~270 generations/hour, so ~1,250 is
+     ~4.6h — over the cap before the new controls. Order arms by priority
+     (hinted baseline + reverse pair first, then spotlight, KV-wrong, then
+     the delta ladder), write results incrementally per arm, and split the
+     ladder into a second job if the realized rate after two arms says so.
    Job must SAVE donor/receiver concept-position states per row/layer
    (~10MB): enables offline recomputation of the readable-subspace
    projection on restricted deltas, rank-k PCA on the concept-position
