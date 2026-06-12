@@ -450,6 +450,54 @@ five fronts. Actions, in priority order:
      baseline, gold-KV (machinery check), wrong-KV (the question), scored on
      targets-hinted-concept.
 
+   KV/HINT-SPAN JOB SPEC v2 (post-457002, pre-registered):
+   - Ablation spec pinned: **decode-only attention masking** of the
+     hint-span key positions (not full KV zeroing) — that is what tests the
+     actual sentence "available to decode-time attention"; if repair
+     survives decode-only masking, the commitment was already written
+     elsewhere during prompt processing.
+   - **The combination arm is the discriminating one**: hint-span ablation x
+     concept-position reversion, together. Three candidate carriers exist
+     in the hinted run (hint-span KV; context encodings at the 3 patched
+     layers; context encodings at the ~57 unpatched layers). The 457002
+     necessity null excluded only the second. Ablation alone cannot
+     separate the survivors. Bins: collapses only under the combination ->
+     the two pathways are enumerated and jointly exhaustive (strongest
+     claim); survives both -> the carrier is the unpatched layers and the
+     layer claims need rework; collapses under ablation alone ->
+     decode-time attention is the dominant carrier.
+   - Wrong-KV bins crossed with the above: misdirects (token-level
+     misdirection localizes to the KV pathway) / does not (asymmetric
+     controllability extends to the cache).
+   - Arms: hinted_baseline, hint_span_ablation, ablation_x_reversion,
+     gold_KV_transplant (machinery control), wrong_KV_transplant, plus the
+     owed x2 restricted scale and layer-resolved rank-k at L30 if budget
+     allows; ~7 arms ~ 800 generations ~ one slot.
+   - **Redundancy symmetry (discussion spine)**: the program has produced
+     the same lesson twice at different granularities — directional
+     necessity failed for the gauge (information redundant across
+     directions, the INLP curve) and positional necessity failed for the
+     lever (commitment redundant across pathways: token span + in-place
+     writes, plausibly across layers). The variable is multiply realized;
+     interchange sufficiency is the right probe of a multiply-realized
+     variable, and exhaustive necessity requires ablating all realizations
+     at once — exactly the combination arm. Connects to the Geiger
+     causal-abstraction framing as organizing citation.
+   - Geometry quantified (for prose): empirical null band for random
+     vectors is 0.040 +/- 0.009; observed restricted-delta means 0.013-0.014
+     (z ~ -2.8 per delta); 86% of all 360 per-position deltas individually
+     sit below null-2SD. At most one flagged sentence of mechanism
+     speculation (readable subspace dominated by global summary components;
+     deltas are local content edits).
+   - Necessity-null wording rule: "no detectable effect at ceiling" — 112
+     generations at 1.000 cannot see sub-ceiling degradation (a reversion
+     costing 10% of the repair margin is invisible); token logprobs were
+     not logged, caveat accepted rather than rerun.
+   - Qwen scoping: keep Qwen erasure on the critical path OR scope the
+     cross-model readability sentence in the paper — readability claimed
+     cross-model with Gemma-only epiphenomenality is the first asymmetry a
+     reviewer circles.
+
    Spec refinements (review, 2026-06-12):
    - **Expressivity ladder, explicit**: subset replacement (done, +0.250) ->
      per-position additive delta (drops replacement) -> own restricted

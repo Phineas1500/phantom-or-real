@@ -10,7 +10,7 @@ saved concept-position states and the L30/L40/L45 INLP stacks.
 | --- | --- | --- | --- |
 | baseline (unhinted) | 0.163 | — | |
 | hinted_baseline (in-job) | 1.000 | — | matches Modal exactly: zero harness tax |
-| reverse_subset (necessity) | 1.000 | +0.000 [0, 0] vs hinted | **necessity null** |
+| reverse_subset (necessity) | 1.000 | no detectable effect at ceiling | **necessity null (ceiling-limited)** |
 | reverse_random (control) | 1.000 | +0.000 | |
 | restricted_add x1 | 0.221 | +0.058 [-0.135, +0.279] | null-ish |
 | restricted_add x4 | 0.000 | -0.163 [-0.346, -0.019] | destructive overshoot |
