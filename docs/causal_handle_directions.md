@@ -479,14 +479,19 @@ five fronts. Actions, in priority order:
      additive, drops replacement" was never run as the OWN-row version — the
      composite ran only the foreign per-position spotlight and the rank-1
      mean; the rank-k reading rule needs the rank-full additive reference.)
-     KV positional convention PINNED: append-with-donor-phases — donor
-     hint-span K/V appended unmodified at the cache tail. Rotations are
-     baked into K at computation time, so query->hint relative geometry
-     matches the genuine hinted run (decode positions shift by +span_len,
-     matching hinted-prompt length); the known approximation is a uniform
-     +span_len distortion of query->context offsets relative to both
-     baselines, documented and adjudicated by the gold-KV control plus
-     attention telemetry. Masking and
+     KV positional convention — CORRECTED at implementation (source
+     verification, TL 3.0): "append-with-donor-phases" is unrealizable —
+     TransformerLens caches PRE-rotary keys and re-applies rotary from
+     mask-cumsum positions on every forward (abstract_attention.py:280-282),
+     so tail-appended donor K necessarily acquires the phases of its splice
+     slots. The de facto pinned convention is therefore RE-ROTATE-TO-SLOT:
+     the donor hint behaves geometrically as if its text were appended
+     after the receiver context — a coherent counterfactual prompt layout.
+     Values are position-free and exact; decode positions shift by
+     +span_len as pre-registered. Gold-KV control + attention telemetry
+     adjudicate machinery validity (CPU integration test on pythia-70m
+     passed: splice attention 0.11 mean, masking exactly 0.0, seeded
+     determinism verified before any GPU use). Masking and
      combination arms do not touch the splice machinery, so a splice bug
      discovered via telemetry costs only the splice-dependent arms, never
      the exhaustive-necessity headline. ~8 arms ~ 900 generations ~ one
