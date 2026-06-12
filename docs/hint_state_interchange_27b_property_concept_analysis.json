@@ -1,0 +1,107 @@
+{
+  "conditions": {
+    "baseline": {
+      "n_generations": 112,
+      "n_rows": 14,
+      "strong_rate": 0.19642857142857142,
+      "targets_gold_rate": 0.6696428571428571,
+      "targets_wrong_rate": 0.30357142857142855
+    },
+    "noise_matched": {
+      "n_generations": 112,
+      "n_rows": 14,
+      "strong_paired_ci95": [
+        -0.35714285714285715,
+        -0.008928571428571428
+      ],
+      "strong_paired_delta": -0.16964285714285715,
+      "strong_rate": 0.026785714285714284,
+      "targets_gold_paired_ci95": [
+        -0.8214285714285714,
+        -0.4107142857142857
+      ],
+      "targets_gold_paired_delta": -0.625,
+      "targets_gold_rate": 0.044642857142857144,
+      "targets_wrong_paired_ci95": [
+        -0.5267857142857143,
+        -0.08928571428571429
+      ],
+      "targets_wrong_paired_delta": -0.29464285714285715,
+      "targets_wrong_rate": 0.008928571428571428
+    },
+    "patch_hint_gold": {
+      "n_generations": 112,
+      "n_rows": 14,
+      "strong_paired_ci95": [
+        0.2767857142857143,
+        0.7053571428571429
+      ],
+      "strong_paired_delta": 0.49107142857142855,
+      "strong_rate": 0.6875,
+      "targets_gold_paired_ci95": [
+        -0.19642857142857142,
+        0.33035714285714285
+      ],
+      "targets_gold_paired_delta": 0.07142857142857142,
+      "targets_gold_rate": 0.7410714285714286,
+      "targets_wrong_paired_ci95": [
+        -0.08035714285714286,
+        0.29464285714285715
+      ],
+      "targets_wrong_paired_delta": 0.09821428571428571,
+      "targets_wrong_rate": 0.4017857142857143
+    },
+    "patch_hint_wrong": {
+      "n_generations": 112,
+      "n_rows": 14,
+      "strong_paired_ci95": [
+        -0.008928571428571428,
+        0.10714285714285714
+      ],
+      "strong_paired_delta": 0.044642857142857144,
+      "strong_rate": 0.24107142857142858,
+      "targets_gold_paired_ci95": [
+        -0.11607142857142858,
+        0.15178571428571427
+      ],
+      "targets_gold_paired_delta": 0.017857142857142856,
+      "targets_gold_rate": 0.6875,
+      "targets_wrong_paired_ci95": [
+        -0.21428571428571427,
+        0.25892857142857145
+      ],
+      "targets_wrong_paired_delta": 0.017857142857142856,
+      "targets_wrong_rate": 0.32142857142857145
+    },
+    "patch_shuffled": {
+      "n_generations": 112,
+      "n_rows": 14,
+      "strong_paired_ci95": [
+        0.15178571428571427,
+        0.6428571428571429
+      ],
+      "strong_paired_delta": 0.39285714285714285,
+      "strong_rate": 0.5892857142857143,
+      "targets_gold_paired_ci95": [
+        -0.16071428571428573,
+        0.32142857142857145
+      ],
+      "targets_gold_paired_delta": 0.08035714285714286,
+      "targets_gold_rate": 0.75,
+      "targets_wrong_paired_ci95": [
+        -0.09821428571428571,
+        0.24107142857142858
+      ],
+      "targets_wrong_paired_delta": 0.0625,
+      "targets_wrong_rate": 0.36607142857142855
+    }
+  },
+  "created_at_utc": "2026-06-12T15:11:38.017190+00:00",
+  "jsonl": "results/stage2/erasure/hint_state_interchange_27b_property_manifest.jsonl",
+  "method": "concept_resolved_row_paired_analysis",
+  "metric_note": "targets_X = any emitted hypothesis whose parsed subject equals concept X (singularized); replaces the loose substring mention metric. Misdirection through activations requires patch_hint_wrong to raise targets_wrong over baseline with a row-paired CI excluding zero.",
+  "n": 560,
+  "schema_version": 1,
+  "script": "scripts/stage2_interchange_concept_analysis.py",
+  "target_variable": "target_concept"
+}

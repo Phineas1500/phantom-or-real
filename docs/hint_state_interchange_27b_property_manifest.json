@@ -2,24 +2,24 @@
   "causal_abstraction_claim": "Interchange test on target_concept: behaviorally validated hint-first donors (gold repairs at 1.000, wrong-concept misdirects at 0.000) are patched into the unhinted run at the shared context block. A causal-handle claim requires gold-donor repair and wrong-donor misdirection beyond shuffled and matched-noise controls.",
   "concept_mention_rates": {
     "baseline": {
-      "mentions_gold_concept": 0.8928571428571429,
-      "mentions_wrong_concept": 0.5714285714285714
+      "mentions_gold_concept": 0.8660714285714286,
+      "mentions_wrong_concept": 0.5178571428571429
     },
     "noise_matched": {
-      "mentions_gold_concept": 0.03571428571428571,
-      "mentions_wrong_concept": 0.03571428571428571
+      "mentions_gold_concept": 0.044642857142857144,
+      "mentions_wrong_concept": 0.026785714285714284
     },
     "patch_hint_gold": {
-      "mentions_gold_concept": 0.8928571428571429,
-      "mentions_wrong_concept": 0.5
+      "mentions_gold_concept": 0.8482142857142857,
+      "mentions_wrong_concept": 0.5089285714285714
     },
     "patch_hint_wrong": {
-      "mentions_gold_concept": 0.8928571428571429,
-      "mentions_wrong_concept": 0.5357142857142857
+      "mentions_gold_concept": 0.8303571428571429,
+      "mentions_wrong_concept": 0.5089285714285714
     },
     "patch_shuffled": {
-      "mentions_gold_concept": 0.6785714285714286,
-      "mentions_wrong_concept": 0.5714285714285714
+      "mentions_gold_concept": 0.8035714285714286,
+      "mentions_wrong_concept": 0.5446428571428571
     }
   },
   "controls": [
@@ -28,8 +28,8 @@
     "magnitude_matched_gaussian_noise",
     "bidirectional_wrong_concept_donor"
   ],
-  "created_at_utc": "2026-06-12T08:55:34.166625+00:00",
-  "elapsed_seconds": 9179.776172876358,
+  "created_at_utc": "2026-06-12T15:11:01.393773+00:00",
+  "elapsed_seconds": 5100.932019948959,
   "generation": {
     "conditions": [
       {
@@ -60,7 +60,7 @@
     ],
     "do_sample": true,
     "max_new_tokens": 96,
-    "samples_per_row": 2,
+    "samples_per_row": 8,
     "temperature": 0.7
   },
   "layers": [
@@ -70,7 +70,7 @@
   ],
   "method": "hint_state_interchange",
   "model": "google/gemma-3-27b-it",
-  "n": 140,
+  "n": 560,
   "representation_type": "patched_residual_state",
   "schema_version": 1,
   "script": "scripts/stage2_hint_state_interchange.py",
@@ -110,82 +110,82 @@
     ]
   },
   "skipped_rows": [],
-  "slurm_job_id": "456968",
+  "slurm_job_id": "456990",
   "summary": {
     "by_condition": {
       "baseline": {
-        "mean_quality": 0.5476662887377173,
-        "n_generations": 28,
+        "mean_quality": 0.5232969576719577,
+        "n_generations": 112,
         "n_rows": 14,
-        "parse_fail_rate": 0.03571428571428571,
-        "strong_accuracy": 0.21428571428571427,
-        "weak_accuracy": 0.6428571428571429
+        "parse_fail_rate": 0.0625,
+        "strong_accuracy": 0.19642857142857142,
+        "weak_accuracy": 0.6607142857142857
       },
       "noise_matched": {
-        "mean_quality": 0.25,
-        "n_generations": 28,
+        "mean_quality": 0.23452380952380952,
+        "n_generations": 112,
         "n_rows": 14,
-        "parse_fail_rate": 0.32142857142857145,
-        "strong_accuracy": 0.03571428571428571,
-        "weak_accuracy": 0.03571428571428571
+        "parse_fail_rate": 0.35714285714285715,
+        "strong_accuracy": 0.026785714285714284,
+        "weak_accuracy": 0.044642857142857144
       },
       "patch_hint_gold": {
-        "mean_quality": 0.807936507936508,
-        "n_generations": 28,
+        "mean_quality": 0.7986162894645038,
+        "n_generations": 112,
         "n_rows": 14,
-        "parse_fail_rate": 0.03571428571428571,
-        "strong_accuracy": 0.7142857142857143,
-        "weak_accuracy": 0.75
+        "parse_fail_rate": 0.044642857142857144,
+        "strong_accuracy": 0.6875,
+        "weak_accuracy": 0.7946428571428571
       },
       "patch_hint_wrong": {
-        "mean_quality": 0.5497118291761149,
-        "n_generations": 28,
+        "mean_quality": 0.556255260942761,
+        "n_generations": 112,
         "n_rows": 14,
-        "parse_fail_rate": 0.03571428571428571,
-        "strong_accuracy": 0.17857142857142858,
+        "parse_fail_rate": 0.08035714285714286,
+        "strong_accuracy": 0.24107142857142858,
         "weak_accuracy": 0.6785714285714286
       },
       "patch_shuffled": {
-        "mean_quality": 0.6765400604686319,
-        "n_generations": 28,
+        "mean_quality": 0.7478320621177764,
+        "n_generations": 112,
         "n_rows": 14,
-        "parse_fail_rate": 0.03571428571428571,
-        "strong_accuracy": 0.4642857142857143,
-        "weak_accuracy": 0.6785714285714286
+        "parse_fail_rate": 0.0,
+        "strong_accuracy": 0.5892857142857143,
+        "weak_accuracy": 0.8660714285714286
       }
     },
     "paired_vs_baseline": {
       "noise_matched": {
-        "false_to_true": 1,
-        "mean_delta_p_strong": -0.17857142857142858,
+        "false_to_true": 0,
+        "mean_delta_p_strong": -0.16964285714285715,
         "paired_n": 14,
-        "rows_degraded": 3,
+        "rows_degraded": 4,
         "rows_improved": 1,
-        "true_to_false": 3
+        "true_to_false": 1
       },
       "patch_hint_gold": {
-        "false_to_true": 8,
-        "mean_delta_p_strong": 0.5,
+        "false_to_true": 7,
+        "mean_delta_p_strong": 0.49107142857142855,
         "paired_n": 14,
         "rows_degraded": 0,
-        "rows_improved": 8,
+        "rows_improved": 10,
         "true_to_false": 0
       },
       "patch_hint_wrong": {
         "false_to_true": 0,
-        "mean_delta_p_strong": -0.03571428571428571,
+        "mean_delta_p_strong": 0.044642857142857144,
         "paired_n": 14,
         "rows_degraded": 1,
-        "rows_improved": 0,
-        "true_to_false": 1
+        "rows_improved": 3,
+        "true_to_false": 0
       },
       "patch_shuffled": {
-        "false_to_true": 6,
-        "mean_delta_p_strong": 0.25,
+        "false_to_true": 5,
+        "mean_delta_p_strong": 0.39285714285714285,
         "paired_n": 14,
-        "rows_degraded": 2,
-        "rows_improved": 6,
-        "true_to_false": 2
+        "rows_degraded": 1,
+        "rows_improved": 8,
+        "true_to_false": 0
       }
     }
   },

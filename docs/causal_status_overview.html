@@ -456,22 +456,22 @@
         <line x1="70" y1="115" x2="680" y2="115" stroke="#eef2f7"/>
         <text x="64" y="119" text-anchor="end" font-size="12" fill="#5b6b7f">0.5</text>
         <!-- bars: P * 150px from y=190 -->
-        <rect x="95"  y="157.9" width="75" height="32.1"  fill="#9aa7b6" rx="3"/>
-        <rect x="215" y="82.9"  width="75" height="107.1" fill="#0e9488" rx="3"/>
-        <rect x="335" y="120.4" width="75" height="69.6"  fill="#0e9488" opacity="0.45" rx="3"/>
-        <rect x="455" y="163.2" width="75" height="26.8"  fill="#d99114" rx="3"/>
-        <rect x="575" y="184.6" width="75" height="5.4"   fill="#d23f3f" rx="3"/>
+        <rect x="95"  y="160.6" width="75" height="29.4"  fill="#9aa7b6" rx="3"/>
+        <rect x="215" y="86.8"  width="75" height="103.2" fill="#0e9488" rx="3"/>
+        <rect x="335" y="101.7" width="75" height="88.3"  fill="#0e9488" opacity="0.45" rx="3"/>
+        <rect x="455" y="153.9" width="75" height="36.1"  fill="#d99114" rx="3"/>
+        <rect x="575" y="186"   width="75" height="4"     fill="#d23f3f" rx="3"/>
         <g font-size="14" text-anchor="middle" fill="#1a2433" font-weight="bold">
-          <text x="132" y="151">0.214</text>
-          <text x="252" y="76">0.714</text>
-          <text x="372" y="113">0.464</text>
-          <text x="492" y="156">0.179</text>
-          <text x="612" y="178">0.036</text>
+          <text x="132" y="154">0.196</text>
+          <text x="252" y="80">0.688</text>
+          <text x="372" y="95">0.589</text>
+          <text x="492" y="147">0.241</text>
+          <text x="612" y="179">0.027</text>
         </g>
         <g font-size="12.5" text-anchor="middle" fill="#5b6b7f">
           <text x="132" y="212">baseline</text>
           <text x="252" y="212">patch gold-hint</text>
-          <text x="252" y="227">state (8/14 flip)</text>
+          <text x="252" y="227">state (7/14 flip)</text>
           <text x="372" y="212">shuffled donor</text>
           <text x="372" y="227">(control)</text>
           <text x="492" y="212">patch wrong-hint</text>
@@ -480,20 +480,29 @@
           <text x="612" y="227">(control)</text>
         </g>
       </svg>
-      <figcaption><b>P(correct) under interchange, 14 rows × k=2.</b> The gold-hint state patched
-      through activations lifts accuracy from 0.214 to 0.714 — eight rows flip false→true — while
-      matched noise destroys (0.036). The repair clears the pre-registered decision rule.</figcaption>
+      <figcaption><b>P(correct) under interchange, powered run: 14 rows × k=8 (560 generations,
+      row-paired bootstrap).</b> The gold-hint state patched through activations lifts accuracy
+      from 0.196 to 0.688 — ΔP = +0.491, CI [+0.28, +0.71], seven rows flip false→true — while
+      matched noise destroys (0.027, ΔP −0.170). The repair clears the pre-registered decision
+      rule with power.</figcaption>
     </figure>
     <div class="verdict">
-      <b>A causal repair handle, demonstrated.</b> After months in which no correctness-based
-      intervention moved the model, patching the hint-conditioned focus state repairs half the
-      probability mass on rows the model reliably gets wrong.
+      <b>A causal repair handle, confirmed at power.</b> After months in which no
+      correctness-based intervention moved the model, patching the hint-conditioned focus state
+      repairs half the probability mass on rows the model reliably gets wrong — and the effect
+      survived a 4× sample-size increase essentially unchanged.
     </div>
-    <div class="caveat"><b>Two honest qualifiers:</b> the position-shuffled donor also repairs
-      (+0.25, about half the effect), so the carrier is partly content rather than position
-      structure; and the wrong-concept arm did not misdirect — bidirectional control transfers
-      through tokens but not yet through activations. Follow-ups: higher-power k≥8 batched rerun,
-      position-band sweep, content-vs-position decomposition.</div>
+    <div class="caveat"><b>Two findings that shape what it is:</b> (1) the carrier is
+      predominantly <em>content</em> — the position-shuffled donor retains most of the repair
+      (+0.393 of +0.491), with the ordered patch adding a small but real increment (+0.098,
+      CI [+0.01, +0.21]). That raises the odds a low-rank hint-delta can reproduce the effect,
+      making the add-to-unhinted arm the priority follow-up. (2) Misdirection does not transfer
+      through activations: the wrong-donor arm is null on accuracy (+0.045) <em>and</em> on the
+      concept-resolved metric built to detect it (targets-wrong-concept Δ = +0.018,
+      CI [−0.21, +0.26]) — while the same wrong hint through tokens misdirects completely.
+      <b>Asymmetric controllability:</b> token-reachable and intervention-reachable states
+      diverge. The KV-transplant variant tests whether decode-time attention to literal hint
+      tokens explains the asymmetry.</div>
   </div>
 </section>
 
@@ -573,11 +582,11 @@
         <td>—</td>
       </tr>
       <tr>
-        <td><span class="chip run">running</span></td>
-        <td>k=8 batched interchange rerun (job 456990, 560 generations in one job)</td>
-        <td>Power confirmation of the 0.214 → 0.714 repair; tightens the content-vs-position
-            gap and the misdirection null</td>
-        <td>~3 h</td>
+        <td><span class="chip done">done</span></td>
+        <td>k=8 batched interchange rerun (job 456990 — 560 generations in 1h25 via batching)</td>
+        <td>Repair confirmed: ΔP=+0.491 CI [+0.28,+0.71]; carrier mostly content (shuffled
+            +0.393, ordered increment +0.098); misdirection null on the concept-resolved metric</td>
+        <td>—</td>
       </tr>
       <tr>
         <td><span class="chip next">next</span></td>

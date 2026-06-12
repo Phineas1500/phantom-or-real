@@ -280,8 +280,13 @@ five fronts. Actions, in priority order:
    exclude zero; the null rules out effects above ~0.1 at n=16 rows. Naive
    per-generation sigmas demoted to planning numbers. Policy: any future
    sigma figure uses row-level bootstrap or a mixed model.
-3. **Interchange power.** k=8 batched rerun running as job 456990; treat the
-   k=2 0.714 as wide-CI until it lands.
+3. **Interchange power.** DONE: job 456990 (docs/hint_state_interchange_27b_property_k8_summary.md).
+   Repair confirmed at +0.491 CI [+0.277, +0.705]; shuffled donor retains
+   +0.393 (carrier predominantly content; ordered increment +0.098 with CI
+   excluding zero); misdirection null on both accuracy and the
+   concept-resolved targets_wrong metric. Framing: asymmetric
+   controllability. Consequence for item 5: the add-to-unhinted low-rank
+   delta arm is now the priority — content-dominance raises its prior.
 4. **Bidirectionality.** Hypothesis: the hint works partly through
    decode-time attention back to the literal hint tokens, which a
    context-only patch cannot reproduce. Tests: transplant the donor KV cache
