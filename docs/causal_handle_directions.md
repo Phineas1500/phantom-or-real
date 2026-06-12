@@ -489,6 +489,24 @@ five fronts. Actions, in priority order:
      sit below null-2SD. At most one flagged sentence of mechanism
      speculation (readable subspace dominated by global summary components;
      deltas are local content edits).
+   - KV spec v2 additions (review, 2026-06-12): (a) **attention-mass
+     telemetry to spliced positions during decode** — disambiguates a
+     gold-KV null between splice failure (no attention reaches the splice:
+     bug, fix first) and genuine insufficiency (attention flows, no repair:
+     itself a finding); (b) **positional convention pinned explicitly**
+     before implementation — spliced keys carry donor RoPE phases; decide
+     donor-absolute vs re-rotated vs appended, since silent misconvention is
+     how cache machinery fails without erroring; (c) **gold-KV positive bin
+     pre-registered**: KV-alone repair means both pathways (context-encoding
+     writes and decode-time span access) are individually sufficient — the
+     strongest version of the multiply-realized frame, a bin not a surprise;
+     (d) **rank-k reading rule**: k <= 4 recovering >= 70% of the
+     subset-patch effect = "compactly structured"; anything else =
+     distributed-with-structure. Read by rule, not vibes.
+   - Geometry clustering note: the 86%-of-360 figure is descriptive; the
+     360 per-position deltas are clustered (positions within rows, layers
+     within rows). Any joint p-value clusters at row level (n=14). The
+     per-delta z ~ -2.8 is the correct per-unit statement.
    - Necessity-null wording rule: "no detectable effect at ceiling" — 112
      generations at 1.000 cannot see sub-ceiling degradation (a reversion
      costing 10% of the repair margin is invisible); token logprobs were

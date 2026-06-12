@@ -551,16 +551,16 @@
       <b>Verdict (pre-registered bin): the focus state is positionally localized — and not
       captured by a uniform rank-1 summary.</b> It is written at the concept-mention tokens:
       roughly <b>6× per-token potency</b> there versus matched-size random positions (+0.250 vs
-      +0.045). Geometry — since verified on restricted deltas, see Part 9: the deltas project onto the full 9-direction
-      <em>readable</em> subspace at 0.009–0.021, below the 0.041 chance level — but these are
-      block-mean deltas, so the claim must survive recomputation on concept-position-restricted
-      deltas before it becomes the paper's line.
+      +0.045). Geometry: the block-mean deltas project onto the full 9-direction
+      <em>readable</em> subspace at 0.009–0.021, below the 0.041 chance level — a claim that
+      has since been verified on concept-position-restricted deltas and quantified (Part 9).
     </div>
     <div class="caveat"><b>The dilution catch:</b> the mean-delta null is diluted, not decisive —
       averaged over ~90 tokens when the causal content sits at 5–15, with the geometrically
       shared (and causally inert, pairwise cos 0.23–0.38) component dominating the mean. The arm
       tested "uniform rank-1 across the block," not "low-rank where it lives." The same dilution
-      overdetermines the cross-row inertness. Sharpened tests — all since run in the composite job (Part 9):
+      overdetermines the cross-row inertness. Sharpened tests — most since run in the composite
+      job (Part 9); the causal rank-k add and the KV transplant ride the KV job:
       restricted delta-add with scale sweep, rank-k PCA on the concept-position submatrix,
       <b>the spotlight test</b> (row A's concept-position delta at row B's concept positions —
       movable attention operator vs in-place concept commitment), reverse subset patch
@@ -715,7 +715,7 @@
         <td><span class="chip done">done</span></td>
         <td><b>Composite job (457002, 9 arms, 1,008 generations):</b> verdict — <b>commitment,
             not spotlight</b> (foreign deltas disrupt −0.163, never misdirect); necessity of
-            context encodings NULL (hinted repair survives reversion at exactly 1.000 — the
+            context encodings: no detectable effect at ceiling (1.000 — the
             literal hint tokens are a parallel pathway); decomposition superadditive; rank-1
             unsupported with a scale-window caveat (×2 owed); in-job hinted baseline = 1.000
             (zero harness tax)</td>
@@ -726,10 +726,14 @@
       </tr>
       <tr>
         <td><span class="chip next">next</span></td>
-        <td><b>KV/hint-span job (jumped the queue via conditional link 1):</b> baseline,
-            gold-KV (machinery control), wrong-KV, hint-span ablation; plus ×2 restricted scale
-            and layer-resolved rank-k at L30 (PCA top-1 = 49%)</td>
-        <td>The discriminating test of the token-level pathway the necessity null revealed</td>
+        <td><b>KV/hint-span job, spec v2:</b> hinted baseline, decode-only hint-span masking,
+            <b>the combination arm</b> (masking × concept-position reversion — the exhaustive
+            necessity test Part 9 points to), gold-KV (machinery control, with attention-mass
+            telemetry to the splice), wrong-KV; plus ×2 restricted scale and L30 rank-k with
+            its reading rule</td>
+        <td>Enumerates the carriers: collapse-only-under-combination = pathways jointly
+            exhaustive; gold-KV positive = both routes individually sufficient (the strongest
+            multiply-realized picture, pre-registered as a bin)</td>
         <td>~1 day</td>
       </tr>
       <tr>
