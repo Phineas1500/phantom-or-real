@@ -118,6 +118,7 @@ def main() -> int:
     parser.add_argument("--layers", default="30,40,45")
     parser.add_argument("--delta-scales", default="1,2")
     parser.add_argument("--min-block-tokens", type=int, default=32)
+    parser.add_argument("--with-random-add", action="store_true", help="Add matched-norm random-direction add arms (conditional control if delta_add is positive).")
     parser.add_argument("--samples-per-row", type=int, default=8)
     parser.add_argument("--sample-seed", type=int, default=20260613)
     parser.add_argument("--max-new-tokens", type=int, default=96)
@@ -145,6 +146,8 @@ def main() -> int:
         DeltaArm("subset_random", "subset_random"),
         DeltaArm("cross_row_delta", "cross_row_delta"),
     ]
+    if args.with_random_add:
+        arms += [DeltaArm(f"random_add_s{scale:g}".replace(".", "p"), "random_add", float(scale)) for scale in scales]
 
     selected_rows, selection_summary = select_prefix_rows(
         prefix_jsonl=args.prefix_trajectory_jsonl,
@@ -220,6 +223,13 @@ def main() -> int:
                 if arm.kind == "delta_add":
                     for layer in layers:
                         fwd_hooks.append((hook_by_layer[layer], make_add_hook(prep["deltas"][layer], prep["r_start"], prep["block_len"], arm.scale)))
+                elif arm.kind == "random_add":
+                    gen = torch.Generator().manual_seed(args.sample_seed + prep["source_row_index"] * 31 + arm_index)
+                    for layer in layers:
+                        delta = prep["deltas"][layer]
+                        rand = torch.randn(delta.shape, generator=gen, dtype=torch.float32)
+                        rand = rand * (float(delta.norm()) / float(rand.norm()))
+                        fwd_hooks.append((hook_by_layer[layer], make_add_hook(rand, prep["r_start"], prep["block_len"], arm.scale)))
                 elif arm.kind == "cross_row_delta":
                     donor_concept = cross["gold_concept"]
                     for layer in layers:

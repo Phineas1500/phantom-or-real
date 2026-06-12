@@ -332,6 +332,55 @@ five fronts. Actions, in priority order:
    clean DAS-style variable; failure gives `causally distributed` its
    sharpest datapoint with a demonstrated repair attached.
 
+   Pre-registered analysis plan for job 456999 (recorded before data):
+
+   - **Conditional control**: if delta_add is positive, run the
+     matched-norm random-direction add arms before any writeup
+     (`--with-random-add`, implemented; 112 generations per scale). Addition
+     and replacement are different operations, so the 456990 noise control
+     does not cover generic-add effects. If delta_add repairs AND cross_row
+     misdirects toward the donor concept, the pair jointly rules out generic
+     perturbation; the random-add arm is mandatory only if cross_row is
+     inert.
+   - **Geometry analyses on the .npz**: (a) project each delta onto the full
+     INLP readable-subspace stack per layer (directions saved by the
+     extended probe-on-erased check), not only the canonical probe axis —
+     "outside even the redundant readable subspace" is the maximal contrast;
+     substantial projection onto INLP rounds 2-8 would be the alternative
+     publishable nuance. Report against the chance level: at d~5376 random
+     cosines concentrate around 1/sqrt(d) ~ 0.014, so 0.08 is six times
+     chance, not "orthogonal". (b) Pairwise cosines among per-row deltas:
+     clustering implies a shared focus component; mutual near-randomness
+     implies concept-specific deltas — a geometric preview of the cross_row
+     behavioral result, and agreement between the two is itself a result.
+   - **Anchoring**: no full-patch arm is in-job, so "fraction of the content
+     effect reproduced" is computed by row-paired cross-job differencing
+     against 456990's shuffled (+0.393) and full (+0.491) arms on the same
+     14 rows — not pooled-mean comparison. Subset arms should sit below the
+     456990 full patch as a consistency check.
+   - **Outcome grid**: delta_add+/subset_concept+ = low-rank pointer written
+     at concept mentions (cleanest result). delta_add+/subsets equal =
+     low-rank broadcast focus bias, position-free, consistent with the
+     shuffle finding. delta_add-/subset_concept+ = positionally localized
+     but high-rank (patchable spans, no summarizing vector). Both- =
+     strongest `causally distributed with a working handle`. cross_row has
+     three readings: misdirects toward donor concept (direction-level
+     misdirection works; the wrong-hint-donor failure becomes the anomaly,
+     plausibly coherent-vs-conflicted donor states); inert (deltas are
+     context-bound); row B improves toward its OWN gold (delta carries
+     generic hypothesize-well content, connecting to the parsimony hint's
+     0.241).
+   - **Null-branch caution**: flat s1/s2 licenses only "rank-1 insufficient
+     at tested scales" — a wider scale sweep and a rank-k PCA add (top
+     components of per-position deltas) are owed before "not low-rank"
+     appears anywhere.
+   - **Necessity gap**: all six arms are sufficiency-flavored. The
+     erase-delta-from-hinted-runs arm (does the 1.000 collapse?) is what
+     completes the variable claim; it pairs with the KV transplant as the
+     next cluster job.
+   - Calibration note on the attractor reanalysis: at n=14 the CI on rho
+     spans roughly +/-0.5, so rho=+0.17 is "unsupported", not "refuted".
+
 ## Cross-Cutting Protocol Upgrades
 
 Apply to every experiment above:

@@ -85,6 +85,7 @@ def main() -> int:
     parser.add_argument("--iter-c", type=float, default=1.0)
     parser.add_argument("--seed", type=int, default=20260472)
     parser.add_argument("--output", type=Path, default=Path("docs/probe_on_erased_activations_27b_property.json"))
+    parser.add_argument("--directions-output", type=Path, default=None, help="Optional npz path for the per-round INLP unit directions (the readable-subspace stack).")
     args = parser.parse_args()
     started = time.time()
 
@@ -110,6 +111,7 @@ def main() -> int:
         train, val, test = splits["train"], splits["val"], splits["test"]
 
         rounds = []
+        round_directions = []
         current = x
         for round_index in range(args.rounds + 1):
             round_c = c_values if round_index <= 1 else (args.iter_c,)
@@ -127,8 +129,14 @@ def main() -> int:
                 f"(val={probe['val_auc']:.4f}, c={probe['best_c']})",
                 flush=True,
             )
+            round_directions.append(probe["unit_direction"].astype(np.float32))
             if round_index < args.rounds:
                 current = mean_ablate(current, probe["unit_direction"], train)
+        if args.directions_output is not None:
+            args.directions_output.parent.mkdir(parents=True, exist_ok=True)
+            existing = dict(np.load(args.directions_output)) if args.directions_output.exists() else {}
+            existing[f"L{layer}_inlp_stack"] = np.stack(round_directions)
+            np.savez_compressed(args.directions_output, **existing)
         by_layer[f"L{layer}"] = {
             "baseline_test_auc": rounds[0]["test_auc"],
             "after_first_erasure_test_auc": rounds[1]["test_auc"] if len(rounds) > 1 else None,
