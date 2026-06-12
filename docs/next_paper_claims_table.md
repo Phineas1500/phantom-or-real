@@ -18,7 +18,7 @@ and `docs/causal_handle_directions.md` (designs and pre-registrations).
 | 9 | Geometry: the causal focus content lies outside the readable correctness subspace. | provisional | block-mean deltas project below chance onto the 9-direction INLP stack | MUST survive recomputation on concept-position-restricted deltas (states saved by 457002) before becoming prose |
 | 10 | Unification: each prompt format stores selection state where its candidates live (MCQ at option tokens — context patch null; hints at concept mentions — patch repairs). | landed | jobs 456913 + 456990/456999 read jointly | wording only; no new experiment |
 | 11 | Cross-model robustness of the necessity/epiphenomenality result (Qwen). | queued | needs HF-hooks erasure variant | not started |
-| 12 | Cross-task robustness of the localization result (subtype). | queued | task 10: Modal behavioral prerequisites, then one concept-position patch job | not started; first reviewer question for any localization claim |
+| 12 | Cross-task robustness of the localization result (subtype). | behavioral half landed | docs/subtype_recognition_gap_27b_manifest.json: recognition gap 33/48; on 16 gap rows baseline 0.000, candidates 1.000, hint-first 0.875 | concept-position patch job queued; consumes gap_row_indices |
 
 Negative-results table (for the appendix): CAA/raw steering, optimized
 vectors, DAS L45/L50, AtP/exact patching, raw-z decode gates, prompt-margin

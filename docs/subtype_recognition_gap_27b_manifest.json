@@ -1,0 +1,50 @@
+{
+  "causal_abstraction_claim": "Subtype prerequisites for the localization replication: recognition-gap rowset plus behavioral validation of the hint-first donor and candidates effect. Prompt-level evidence; the concept-position patch job consumes gap_row_indices.",
+  "created_at_utc": "2026-06-12T19:39:48.926805+00:00",
+  "elapsed_seconds": 198.22067213058472,
+  "endpoint": "modal_openai_compatible",
+  "gap_row_indices": [
+    3047,
+    3049,
+    3080,
+    3086,
+    3090,
+    3091,
+    3103,
+    3111,
+    3137,
+    3138,
+    3146,
+    3153,
+    3163,
+    3173,
+    3181,
+    3182
+  ],
+  "method": "subtype_recognition_gap_prerequisites",
+  "model": "gemma3-27b",
+  "n": 384,
+  "option_seed": 20260430,
+  "scan": {
+    "recognition_correct": 33,
+    "scanned": 48
+  },
+  "schema_version": 1,
+  "script": "scripts/stage2_subtype_recognition_gap.py",
+  "summary": {
+    "baseline": {
+      "n_rows": 16,
+      "strong_accuracy": 0.0
+    },
+    "candidates_gold_present": {
+      "n_rows": 16,
+      "strong_accuracy": 1.0
+    },
+    "hint_concept_first": {
+      "n_rows": 16,
+      "strong_accuracy": 0.875
+    }
+  },
+  "target_variable": "target_concept",
+  "task": "infer_subtype"
+}
