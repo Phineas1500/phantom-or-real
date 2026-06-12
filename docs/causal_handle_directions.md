@@ -390,9 +390,43 @@ five fronts. Actions, in priority order:
    chance projection onto the full INLP readable subspace (0.009-0.021 vs
    0.041) and share a causally inert common component (pairwise cos
    0.23-0.38). Random-add control not triggered (delta_add null);
-   subset_random served as the matched control for the positive arm. Owed:
-   scale sweep + rank-k PCA add; then erase-delta-from-hinted + KV
-   transplant as the next cluster job.
+   subset_random served as the matched control for the positive arm.
+
+   REVIEW CATCH (2026-06-12): the mean-delta null and the geometry numbers
+   are diluted - averaged over ~90 tokens when the causal content sits at
+   5-15 concept-mention tokens, with the inert shared component dominating
+   the position-mean. Supportable phrasing until the restricted tests run:
+   "positionally localized; not captured by a uniform rank-1 summary".
+   Cross-row inertness is overdetermined by the same dilution.
+
+   NEXT CLUSTER JOB (composite, ~10-11 arms x 14 rows x k=8 ~ 1,250
+   generations ~ 3h batched - one 4h slot):
+   - baseline;
+   - reverse subset patch (necessity, dilution-immune): hinted receiver
+     with the UNHINTED run's concept-position states - does the 1.000
+     collapse? Exactly symmetric to the positive sufficiency arm;
+   - complement patch: everything except concept positions - decomposes
+     the missing half of +0.491 (additive split vs superadditive
+     surroundings);
+   - restricted delta add: concept-position-restricted mean delta at
+     concept positions, scales ~1/2/4/8;
+   - own-position delta: row B's concept-position delta at B's own
+     positions (the sharpened low-rank test);
+   - spotlight test: row A's concept-position delta at B's gold-concept
+     positions - transfers-and-repairs = movable attention-allocation
+     operator ("spotlight"); inert/disruptive = concept commitment written
+     in place;
+   - KV transplant at hint positions (bidirectionality mechanism).
+   Job must SAVE donor/receiver concept-position states per row/layer
+   (~10MB): enables offline recomputation of the readable-subspace
+   projection on restricted deltas, rank-k PCA on the concept-position
+   submatrix, and the Gemma Scope 2 SAE feature-diff (sparsity in the
+   learned basis - closes the loop to the sparsely-lossy thesis) with no
+   further cluster time.
+   Unification note for the writeup: the recognition-patch null and the
+   hint-patch success are one account - MCQ selection happens at option
+   tokens, hints rewrite the context at concept mentions; each prompt
+   format stores selection state where its candidates live.
 
 ## Cross-Cutting Protocol Upgrades
 

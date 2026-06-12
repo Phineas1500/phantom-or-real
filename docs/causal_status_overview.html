@@ -548,20 +548,28 @@
       never steers B toward A's concept.</figcaption>
     </figure>
     <div class="verdict">
-      <b>Verdict (pre-registered bin): the focus state is positionally localized but high-rank.</b>
-      It is written at the concept-mention tokens — patchable spans, not a movable direction.
-      And the geometry delivers the program's sharpest line: the hint-conditioned deltas project
-      onto the full 9-direction <em>readable</em> subspace at 0.009–0.021, <em>below</em> the
-      0.041 chance level. The causal content lies outside everything the probes can read —
-      the gauge and the lever are geometrically disjoint.
+      <b>Verdict (pre-registered bin): the focus state is positionally localized — and not
+      captured by a uniform rank-1 summary.</b> It is written at the concept-mention tokens:
+      roughly <b>6× per-token potency</b> there versus matched-size random positions (+0.250 vs
+      +0.045). Geometry, pending one check: the deltas project onto the full 9-direction
+      <em>readable</em> subspace at 0.009–0.021, below the 0.041 chance level — but these are
+      block-mean deltas, so the claim must survive recomputation on concept-position-restricted
+      deltas before it becomes the paper's line.
     </div>
-    <div class="caveat"><b>Discipline notes:</b> per-row deltas do share a geometric component
-      (pairwise cos 0.23–0.38), but it is causally inert — it's exactly what the null mean-delta
-      adds. "Not low-rank" stays unwritten until the owed scale sweep and rank-k PCA add run.
-      The random-add control's trigger condition (positive delta_add) did not fire;
-      subset_random served as the matched control for the arm that was positive. Remaining for
-      the airtight variable claim: erase-delta-from-hinted (necessity) + KV transplant
-      (bidirectionality mechanism), one cluster job.</div>
+    <div class="caveat"><b>The dilution catch:</b> the mean-delta null is diluted, not decisive —
+      averaged over ~90 tokens when the causal content sits at 5–15, with the geometrically
+      shared (and causally inert, pairwise cos 0.23–0.38) component dominating the mean. The arm
+      tested "uniform rank-1 across the block," not "low-rank where it lives." The same dilution
+      overdetermines the cross-row inertness. Sharpened tests in the next composite job:
+      restricted delta-add with scale sweep, rank-k PCA on the concept-position submatrix,
+      <b>the spotlight test</b> (row A's concept-position delta at row B's concept positions —
+      movable attention operator vs in-place concept commitment), reverse subset patch
+      (necessity: does the hint's 1.000 collapse without its concept-position states?),
+      complement patch, and the KV transplant.</div>
+    <p>One loop this result closes: the recognition-patch null and the hint-patch success are a
+       single account — MCQ selection happens at option tokens, hints rewrite the context at
+       concept mentions. <em>Each prompt format stores its selection state where its candidates
+       live.</em></p>
   </div>
 </section>
 
@@ -642,10 +650,11 @@
       </tr>
       <tr>
         <td><span class="chip next">next</span></td>
-        <td>Next cluster job: erase-delta-from-hinted (necessity of the focus state) +
-            KV-cache transplant (bidirectionality mechanism)</td>
-        <td>Completes the variable claim from the necessity side; decides the
-            token/activation asymmetry account</td>
+        <td>Composite cluster job (~11 arms, one 4h slot): reverse subset patch (necessity),
+            complement patch, restricted delta-add scale sweep, own-position delta, spotlight
+            test, KV transplant — saving concept-position states for offline geometry + SAE diff</td>
+        <td>Spotlight vs commitment; necessity at the same positions as sufficiency — what turns
+            "patchable spans" into a causal variable claim that survives review</td>
         <td>~1 day</td>
       </tr>
       <tr>
@@ -704,7 +713,7 @@
   docs/recognition_state_patch_27b_property_manifest.json ·
   docs/probe_on_erased_activations_27b_property.json ·
   docs/causal_handle_directions.md · next_paper_causal_abstraction_dashboard.md.
-  All numbers are from committed run artifacts (jobs 456912–456918, 456963–456966, 456968, 456990).
+  All numbers are from committed run artifacts (jobs 456912–456918, 456963–456966, 456968, 456990, 456999).
 </footer>
 
 </body>
