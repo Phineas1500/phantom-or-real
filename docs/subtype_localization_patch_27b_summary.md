@@ -52,3 +52,37 @@ In-job sampled baseline (0.180 at temp 0.7) sits well above the Modal
 behavioral baseline (0.000) on these rows, unlike the hinted ceiling which
 matched exactly at 1.000 on property. Baseline-level cross-lane comparisons
 should use in-job numbers only; ceiling-level ones are lane-robust.
+
+## Instrument verification (post-hoc, before prose; all offline)
+
+- Resolved config verified from the run's own log (`using_hooks` resolved to
+  L30/40/45; 16 rows; blocks 92-99 tokens) — not argparse reasoning.
+  Program-wide fix adopted: future scripts dump resolved args into the report.
+- Span audit: 16/16 rows clean — concept positions decode to the literal
+  concept tokens, donor/receiver token ids match at every patched position,
+  hint offset 11 tokens.
+- Arm coincidence check: full_patch and subset_concept per-row patterns are
+  entirely different (the equal +0.039 means is averaging coincidence).
+- Delta-norm diagnostic: subtype per-position concept-delta norms EQUAL OR
+  EXCEED property's at all three layers (L45: 8683 vs 8058). The hint writes
+  to subtype context encodings at normal magnitude; the writes are present
+  but not causally transferable at these layers.
+
+## Rival account registered (same breath as pathway-mix)
+
+**Layer mismatch**: subtype's causally potent hint-writes may live at layers
+other than the property-derived 30/40/45. Both accounts predict subtype
+gold-KV repairs, so KV alone cannot discriminate. Separation logic
+(pre-registered): (1) capture-ladder triage — hinted-vs-unhinted delta norms
+at a ladder of layers on the subtype rows, forward passes only (triage, not
+verdict: norm is not causal content); (2) a targeted patch at any off-trio
+peak is the discriminator — repairs -> layer-mismatch; null at every ladder
+layer while subtype gold-KV repairs -> pathway-mix earned. Also riding the
+next job: the property full-patch arm through THIS script's code path (the
+positive-instrument demonstration, 112 generations).
+
+Terminology: the predicted pattern is a **cross-task route dissociation**
+(property: both routes sufficient; subtype: token-route-only), NOT a double
+dissociation. The true double-dissociation bin exists only if property
+gold-KV unexpectedly fails (property writes-only + subtype tokens-only) —
+named now since job 457009 reports on it within hours.
