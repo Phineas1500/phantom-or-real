@@ -1,0 +1,264 @@
+{
+  "arms": [
+    {
+      "kind": "none",
+      "label": "unhinted_baseline",
+      "receiver": "unhinted",
+      "reference": "none",
+      "scale": 1.0
+    },
+    {
+      "kind": "telemetry_only",
+      "label": "hinted_baseline",
+      "receiver": "hinted",
+      "reference": "none",
+      "scale": 1.0
+    },
+    {
+      "kind": "mask_span",
+      "label": "hint_span_masking",
+      "receiver": "hinted",
+      "reference": "hinted_baseline",
+      "scale": 1.0
+    },
+    {
+      "kind": "mask_span_and_revert",
+      "label": "masking_x_reversion",
+      "receiver": "hinted",
+      "reference": "hinted_baseline",
+      "scale": 1.0
+    },
+    {
+      "kind": "kv_transplant_gold",
+      "label": "gold_kv_transplant",
+      "receiver": "unhinted",
+      "reference": "unhinted_baseline",
+      "scale": 1.0
+    },
+    {
+      "kind": "kv_transplant_wrong",
+      "label": "wrong_kv_transplant",
+      "receiver": "unhinted",
+      "reference": "unhinted_baseline",
+      "scale": 1.0
+    },
+    {
+      "kind": "perpos_add",
+      "label": "perpos_add_own",
+      "receiver": "unhinted",
+      "reference": "unhinted_baseline",
+      "scale": 1.0
+    },
+    {
+      "kind": "restricted_add",
+      "label": "restricted_add_x2",
+      "receiver": "unhinted",
+      "reference": "unhinted_baseline",
+      "scale": 2.0
+    },
+    {
+      "kind": "rank_k_add",
+      "label": "rank_k_L30",
+      "receiver": "unhinted",
+      "reference": "unhinted_baseline",
+      "scale": 1.0
+    }
+  ],
+  "causal_abstraction_claim": "Pre-registered bins: collapse-only-under-combination = pathways jointly exhaustive; survives-both = unpatched-layer carrier; collapses-under-masking-alone = decode-time attention dominant; gold-KV-positive = both pathways individually sufficient; gold-KV-null disambiguated by telemetry: no-attention = splice bug, attention-without-repair = genuine insufficiency. Rank-k rung read by rule: k<=4 recovering >=70% of the subset-patch effect (+0.250) = compactly structured; anything else = distributed-with-structure.",
+  "controls": [
+    "in_job_unhinted_and_hinted_baselines",
+    "decode_only_masking_preserves_prompt_encoding",
+    "masking_x_reversion_exhaustive_necessity_headline",
+    "wrong_kv_concept_specificity",
+    "arm3_telemetry_mean_must_be_zero_mask_check",
+    "gold_kv_telemetry_disambiguates_splice_bug_vs_insufficiency"
+  ],
+  "created_at_utc": "2026-06-13T01:48:15.068743+00:00",
+  "elapsed_seconds": 8264.488369941711,
+  "generation": {
+    "max_new_tokens": 96,
+    "samples_per_row": 8,
+    "temperature": 0.7
+  },
+  "kv_decode": {
+    "convention": "append-at-tail, unmodified donor K/V at slots [r_len, r_len+span_len). Deviation from the 'append-with-donor-phases' spec wording: TL 3.0 caches pre-rotary keys and re-applies rotary from mask-cumsum positions on every forward, so spliced keys acquire the phases of their tail slots, not the donor prompt's positions; values are position-free and exact.",
+    "decode_forwards_per_sample": 95,
+    "decode_position_shift": "+span_len (offset computed from cache/mask length; pre-registered, acceptable)",
+    "eos_truncation_ids": [
+      1
+    ],
+    "first_sampled_token_pre_splice": true
+  },
+  "layers": [
+    30,
+    40,
+    45
+  ],
+  "method": "kv_hint_span",
+  "model": "google/gemma-3-27b-it",
+  "n": 936,
+  "rank_k": {
+    "explained_variance_ratio": 0.6276646931970821,
+    "k": 4,
+    "layer": 30,
+    "n_pooled_arrays": 13,
+    "n_pooled_positions": 120,
+    "states_npz": "results/stage2/erasure/focus_state_composite_27b_property_states.npz"
+  },
+  "rank_k_reading_rule": "k<=4 recovering >=70% of the subset-patch effect (+0.250) = compactly structured; anything else = distributed-with-structure",
+  "representation_type": "patched_residual_state (arms 1-4, 7-9) / kv_cache_state (arms 5-6)",
+  "schema_version": 1,
+  "script": "scripts/stage2_kv_hint_span.py",
+  "selection": {
+    "calibration_generated_correct_rows": 3,
+    "calibration_generated_wrong_rows": 11,
+    "calibration_parse_fail_rows": 1,
+    "checkpoint": "0",
+    "heights": {
+      "h3": 6,
+      "h4": 8
+    },
+    "limit": null,
+    "prefix_jsonl": "results/stage2/decode_time/prefix_conditioned_margin_trajectory_gemma_manifest.jsonl",
+    "prompt_gold_vs_foil_threshold": 0.0,
+    "prompt_margin_gate_correct_triggered": 2,
+    "prompt_margin_gate_triggered_rows": 13,
+    "prompt_margin_gate_wrong_triggered": 11,
+    "selected_rows": 14,
+    "selection_mode": "prefix_conditioned_margin_manifest_checkpoint",
+    "skipped_missing_source": 0,
+    "source_jsonl": "results/full/with_errortype/gemma3_27b_infer_property.jsonl",
+    "triggered_source_row_indices": [
+      3073,
+      3415,
+      4322,
+      4675,
+      5292,
+      6188,
+      6327,
+      8035,
+      8298,
+      8874,
+      9549,
+      10079,
+      10714
+    ]
+  },
+  "slurm_job_id": "457009",
+  "span_bounds": [
+    2,
+    48
+  ],
+  "summary": {
+    "gold_kv_transplant": {
+      "attn_to_span_max": 1.0,
+      "attn_to_span_mean": 0.017889541063386086,
+      "n_rows": 13,
+      "paired_ci95": [
+        -0.057692307692307696,
+        0.07692307692307693
+      ],
+      "paired_delta_vs_reference": 0.009615384615384616,
+      "reference": "unhinted_baseline",
+      "strong_accuracy": 0.19230769230769232,
+      "targets_gold_concept_rate": 0.5288461538461539,
+      "targets_wrong_concept_rate": 0.17307692307692307
+    },
+    "hint_span_masking": {
+      "attn_to_span_max": 0.0,
+      "attn_to_span_mean": 0.0,
+      "n_rows": 13,
+      "paired_ci95": [
+        0.0,
+        0.0
+      ],
+      "paired_delta_vs_reference": 0.0,
+      "reference": "hinted_baseline",
+      "strong_accuracy": 1.0,
+      "targets_gold_concept_rate": 1.0,
+      "targets_wrong_concept_rate": 0.25
+    },
+    "hinted_baseline": {
+      "attn_to_span_max": 0.99609375,
+      "attn_to_span_mean": 0.005024570403083299,
+      "n_rows": 13,
+      "reference": "none",
+      "strong_accuracy": 1.0,
+      "targets_gold_concept_rate": 1.0,
+      "targets_wrong_concept_rate": 0.0673076923076923
+    },
+    "masking_x_reversion": {
+      "attn_to_span_max": 0.0,
+      "attn_to_span_mean": 0.0,
+      "n_rows": 13,
+      "paired_ci95": [
+        -0.057692307692307696,
+        0.0
+      ],
+      "paired_delta_vs_reference": -0.019230769230769232,
+      "reference": "hinted_baseline",
+      "strong_accuracy": 0.9807692307692307,
+      "targets_gold_concept_rate": 0.9807692307692307,
+      "targets_wrong_concept_rate": 0.2692307692307692
+    },
+    "perpos_add_own": {
+      "n_rows": 13,
+      "paired_ci95": [
+        -0.3269230769230769,
+        0.125
+      ],
+      "paired_delta_vs_reference": -0.09615384615384616,
+      "reference": "unhinted_baseline",
+      "strong_accuracy": 0.08653846153846154,
+      "targets_gold_concept_rate": 0.10576923076923077,
+      "targets_wrong_concept_rate": 0.28846153846153844
+    },
+    "rank_k_L30": {
+      "n_rows": 13,
+      "paired_ci95": [
+        0.11538461538461539,
+        0.4230769230769231
+      ],
+      "paired_delta_vs_reference": 0.25961538461538464,
+      "reference": "unhinted_baseline",
+      "strong_accuracy": 0.4423076923076923,
+      "targets_gold_concept_rate": 0.6730769230769231,
+      "targets_wrong_concept_rate": 0.38461538461538464
+    },
+    "restricted_add_x2": {
+      "n_rows": 13,
+      "paired_ci95": [
+        -0.38461538461538464,
+        -0.028846153846153848
+      ],
+      "paired_delta_vs_reference": -0.18269230769230768,
+      "reference": "unhinted_baseline",
+      "strong_accuracy": 0.0,
+      "targets_gold_concept_rate": 0.0,
+      "targets_wrong_concept_rate": 0.2403846153846154
+    },
+    "unhinted_baseline": {
+      "n_rows": 13,
+      "reference": "none",
+      "strong_accuracy": 0.18269230769230768,
+      "targets_gold_concept_rate": 0.6057692307692307,
+      "targets_wrong_concept_rate": 0.3269230769230769
+    },
+    "wrong_kv_transplant": {
+      "attn_to_span_max": 1.0,
+      "attn_to_span_mean": 0.017397823734567143,
+      "n_rows": 13,
+      "paired_ci95": [
+        -0.057692307692307696,
+        0.08653846153846154
+      ],
+      "paired_delta_vs_reference": 0.009615384615384616,
+      "reference": "unhinted_baseline",
+      "strong_accuracy": 0.19230769230769232,
+      "targets_gold_concept_rate": 0.4423076923076923,
+      "targets_wrong_concept_rate": 0.22115384615384615
+    }
+  },
+  "target_variable": "target_concept",
+  "task": "infer_property"
+}
