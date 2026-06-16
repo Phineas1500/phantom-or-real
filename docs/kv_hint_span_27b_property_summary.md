@@ -34,31 +34,51 @@ documented). All bins were written before the job ran.
    at its third granularity (directions, pathways, layers).
 3. **The surprise: the focus state has a compact causal core at L30.**
    The rank-4 PCA reconstruction of the concept-position deltas, ADDED at
-   L30 alone, repairs +0.260 — 104% of the three-layer subset-replacement
-   effect (+0.250), where rank-1 was null at every scale and the rank-full
-   ADD was null/harmful. Per the pre-registered reading rule (k<=4 recovering
-   >=70%): **compactly structured.** The PCA gatekeeper pointed at L30
-   (top-1 = 49% of variance) and the causal test confirmed it. Truncation
-   HELPS the additive route: the discarded high-rank residual is not just
-   inert but obstructive when added.
+   L30 alone, repairs +0.260 — matching the three-layer subset-replacement
+   effect (+0.250) within CI (point ratio 104%), where rank-1 was null at
+   every scale and the rank-full ADD was null/harmful. Per the pre-registered
+   reading rule (k<=4 recovering >=70%): **compactly structured.** The PCA
+   gatekeeper pointed at L30 (top-1 = 49% of variance) and the causal test
+   confirmed it. Truncation HELPS the additive route: the discarded high-rank
+   residual is not just inert but obstructive when added.
 4. Scale insurance resolved: x1/x2/x4 is monotone harmful past x1 — the
    rank-1 direction has no working scale; the structure, not the magnitude,
    was missing.
 
+## Rank-k guard (Job 457012)
+
+The post-finale held-out-basis guard passes. Leave-one-row-out PCA at L30
+repairs at rank 4: P(strong)=0.385, dP=+0.192 CI [+0.096,+0.288], or 77% of
+the +0.250 subset-replacement effect. Rank 8 is stronger (P=0.423, dP=+0.231
+CI [+0.087,+0.404], 92% of subset). The result is therefore not an in-sample
+low-rank fit, but the ladder is graded rather than a hard rank-4 cliff.
+
+## Rank-core geometry rider
+
+The held-out-surviving L30 core is essentially absent from the INLP readable
+subspace: rank4/rank8 subspace fractions are 0.0001/0.0002, below a random
+subspace null mean of 0.0017. Gemma Scope gives the complementary result: the
+core is dictionary-visible, with top decoder subspace sqrt-energy about 0.98 in
+both 16k and 262k residual decoders. But it is not sparse-small: the top 20
+decoder rows explain only 1.0% (16k) or 0.1% (262k) of decoder-overlap mass,
+with thousands of rows showing nontrivial overlap.
+
 ## The program's closing picture (property task)
 
-Concept commitment is written at mention sites redundantly across layers;
-its causally sufficient core is a <=4-dimensional structured object at L30;
-it is invisible to the readable correctness subspace; and the literal hint
-tokens, though present and attended, carry none of it at decode time.
-Subtype discriminator unchanged: capture ladder + targeted off-trio patch
-(the property evidence now weights layer-mismatch over pathway-mix there,
-since the token route did nothing even where it was most plausible).
+Concept commitment is written at mention sites redundantly across layers; a
+compact low-dimensional causal core is present by rank 4 at L30, with useful
+additional structure through rank 8; it is invisible to the readable
+correctness subspace but visible in Gemma Scope as a highly redundant decoder
+family rather than a compact sparse feature set; and the literal hint tokens,
+though present and attended, carry none of it at decode time. The subtype
+discriminator has now landed: the capture ladder found large late writes and
+selected L53/L50/L35, but targeted off-trio residual-state patches did not
+robustly repair (best L35 +0.102 CI [-0.008,+0.258]; L53 rank4 LOO add +0.000).
+This scopes the compact-core positive claim to property and leaves subtype in a
+residual-route-insufficiency bin rather than a clean layer-mismatch win.
 
 ## Next (final experimental items)
 
-- Capture ladder + subtype targeted patch + property-positive-control rider
-  (one job); erasure refinements (queued); Qwen erasure (critical path).
-- Geometry rider, free: project the rank-4 L30 components onto the INLP
-  stack and Gemma Scope decoders — is the compact causal core sparse in the
-  learned basis?
+- Qwen erasure / cross-model necessity robustness (critical path); erasure
+  refinements; optional L35 subtype replication only if we want to chase the
+  suggestive but non-landed bump.

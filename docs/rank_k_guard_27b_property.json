@@ -1,0 +1,415 @@
+{
+  "arms": [
+    {
+      "basis_mode": null,
+      "kind": "none",
+      "label": "unhinted_baseline",
+      "rank_k": null,
+      "reference": "none"
+    },
+    {
+      "basis_mode": "leave_one_row_out",
+      "kind": "rank_k_add",
+      "label": "rank1_loo_L30",
+      "rank_k": 1,
+      "reference": "unhinted_baseline"
+    },
+    {
+      "basis_mode": "leave_one_row_out",
+      "kind": "rank_k_add",
+      "label": "rank2_loo_L30",
+      "rank_k": 2,
+      "reference": "unhinted_baseline"
+    },
+    {
+      "basis_mode": "leave_one_row_out",
+      "kind": "rank_k_add",
+      "label": "rank3_loo_L30",
+      "rank_k": 3,
+      "reference": "unhinted_baseline"
+    },
+    {
+      "basis_mode": "leave_one_row_out",
+      "kind": "rank_k_add",
+      "label": "rank4_loo_L30",
+      "rank_k": 4,
+      "reference": "unhinted_baseline"
+    },
+    {
+      "basis_mode": "leave_one_row_out",
+      "kind": "rank_k_add",
+      "label": "rank6_loo_L30",
+      "rank_k": 6,
+      "reference": "unhinted_baseline"
+    },
+    {
+      "basis_mode": "leave_one_row_out",
+      "kind": "rank_k_add",
+      "label": "rank8_loo_L30",
+      "rank_k": 8,
+      "reference": "unhinted_baseline"
+    },
+    {
+      "basis_mode": "in_sample",
+      "kind": "rank_k_add",
+      "label": "rank1_in_sample_L30",
+      "rank_k": 1,
+      "reference": "unhinted_baseline"
+    },
+    {
+      "basis_mode": "in_sample",
+      "kind": "rank_k_add",
+      "label": "rank2_in_sample_L30",
+      "rank_k": 2,
+      "reference": "unhinted_baseline"
+    },
+    {
+      "basis_mode": "in_sample",
+      "kind": "rank_k_add",
+      "label": "rank3_in_sample_L30",
+      "rank_k": 3,
+      "reference": "unhinted_baseline"
+    },
+    {
+      "basis_mode": "in_sample",
+      "kind": "rank_k_add",
+      "label": "rank4_in_sample_L30",
+      "rank_k": 4,
+      "reference": "unhinted_baseline"
+    },
+    {
+      "basis_mode": "in_sample",
+      "kind": "rank_k_add",
+      "label": "rank6_in_sample_L30",
+      "rank_k": 6,
+      "reference": "unhinted_baseline"
+    },
+    {
+      "basis_mode": "in_sample",
+      "kind": "rank_k_add",
+      "label": "rank8_in_sample_L30",
+      "rank_k": 8,
+      "reference": "unhinted_baseline"
+    }
+  ],
+  "basis_modes": [
+    "leave_one_row_out",
+    "in_sample"
+  ],
+  "basis_summary": {
+    "rank1_in_sample_L30": {
+      "basis_mode": "in_sample",
+      "explained_variance_ratio_max": 0.48843906237226953,
+      "explained_variance_ratio_mean": 0.4884390623722696,
+      "explained_variance_ratio_min": 0.48843906237226953,
+      "n_bases": 13,
+      "rank_k": 1,
+      "source_rows_max": 13,
+      "source_rows_min": 13
+    },
+    "rank1_loo_L30": {
+      "basis_mode": "leave_one_row_out",
+      "explained_variance_ratio_max": 0.5032747557976782,
+      "explained_variance_ratio_mean": 0.48873317343944567,
+      "explained_variance_ratio_min": 0.4713560503151614,
+      "n_bases": 13,
+      "rank_k": 1,
+      "source_rows_max": 12,
+      "source_rows_min": 12
+    },
+    "rank2_in_sample_L30": {
+      "basis_mode": "in_sample",
+      "explained_variance_ratio_max": 0.574116721963138,
+      "explained_variance_ratio_mean": 0.5741167219631381,
+      "explained_variance_ratio_min": 0.574116721963138,
+      "n_bases": 13,
+      "rank_k": 2,
+      "source_rows_max": 13,
+      "source_rows_min": 13
+    },
+    "rank2_loo_L30": {
+      "basis_mode": "leave_one_row_out",
+      "explained_variance_ratio_max": 0.5868758824978282,
+      "explained_variance_ratio_mean": 0.5748535994371683,
+      "explained_variance_ratio_min": 0.562845683403724,
+      "n_bases": 13,
+      "rank_k": 2,
+      "source_rows_max": 12,
+      "source_rows_min": 12
+    },
+    "rank3_in_sample_L30": {
+      "basis_mode": "in_sample",
+      "explained_variance_ratio_max": 0.607545688424902,
+      "explained_variance_ratio_mean": 0.607545688424902,
+      "explained_variance_ratio_min": 0.607545688424902,
+      "n_bases": 13,
+      "rank_k": 3,
+      "source_rows_max": 13,
+      "source_rows_min": 13
+    },
+    "rank3_loo_L30": {
+      "basis_mode": "leave_one_row_out",
+      "explained_variance_ratio_max": 0.6212896019788239,
+      "explained_variance_ratio_mean": 0.6087758217513747,
+      "explained_variance_ratio_min": 0.5971931234453856,
+      "n_bases": 13,
+      "rank_k": 3,
+      "source_rows_max": 12,
+      "source_rows_min": 12
+    },
+    "rank4_in_sample_L30": {
+      "basis_mode": "in_sample",
+      "explained_variance_ratio_max": 0.6276646931970823,
+      "explained_variance_ratio_mean": 0.6276646931970823,
+      "explained_variance_ratio_min": 0.6276646931970823,
+      "n_bases": 13,
+      "rank_k": 4,
+      "source_rows_max": 13,
+      "source_rows_min": 13
+    },
+    "rank4_loo_L30": {
+      "basis_mode": "leave_one_row_out",
+      "explained_variance_ratio_max": 0.6417470333459263,
+      "explained_variance_ratio_mean": 0.6294384605540481,
+      "explained_variance_ratio_min": 0.6158300686281263,
+      "n_bases": 13,
+      "rank_k": 4,
+      "source_rows_max": 12,
+      "source_rows_min": 12
+    },
+    "rank6_in_sample_L30": {
+      "basis_mode": "in_sample",
+      "explained_variance_ratio_max": 0.6598750602129035,
+      "explained_variance_ratio_mean": 0.6598750602129037,
+      "explained_variance_ratio_min": 0.6598750602129035,
+      "n_bases": 13,
+      "rank_k": 6,
+      "source_rows_max": 13,
+      "source_rows_min": 13
+    },
+    "rank6_loo_L30": {
+      "basis_mode": "leave_one_row_out",
+      "explained_variance_ratio_max": 0.6731572741117078,
+      "explained_variance_ratio_mean": 0.6624273941565219,
+      "explained_variance_ratio_min": 0.6484882009830731,
+      "n_bases": 13,
+      "rank_k": 6,
+      "source_rows_max": 12,
+      "source_rows_min": 12
+    },
+    "rank8_in_sample_L30": {
+      "basis_mode": "in_sample",
+      "explained_variance_ratio_max": 0.684623306280446,
+      "explained_variance_ratio_mean": 0.684623306280446,
+      "explained_variance_ratio_min": 0.684623306280446,
+      "n_bases": 13,
+      "rank_k": 8,
+      "source_rows_max": 13,
+      "source_rows_min": 13
+    },
+    "rank8_loo_L30": {
+      "basis_mode": "leave_one_row_out",
+      "explained_variance_ratio_max": 0.6983531868314311,
+      "explained_variance_ratio_mean": 0.6880187902870443,
+      "explained_variance_ratio_min": 0.674769771669649,
+      "n_bases": 13,
+      "rank_k": 8,
+      "source_rows_max": 12,
+      "source_rows_min": 12
+    }
+  },
+  "controls": [
+    "same-run_unhinted_baseline",
+    "leave_one_row_out_basis_excludes_receiver_row",
+    "rank_ladder_1_2_3_4_6_8"
+  ],
+  "created_at_utc": "2026-06-13T06:05:48.720958+00:00",
+  "elapsed_seconds": 11660.904872894287,
+  "generation": {
+    "max_new_tokens": 96,
+    "samples_per_row": 8,
+    "temperature": 0.7
+  },
+  "interpretation_note": "Lead-claim guard for the compact-core result: if leave-one-row-out rank-4 repair survives, the L30 compact core is not merely an in-sample PCA fit. The rank ladder turns the point result into an intrinsic-dimensionality curve.",
+  "method": "rank_k_guard",
+  "model": "google/gemma-3-27b-it",
+  "n": 1352,
+  "rank_layer": 30,
+  "rank_list": [
+    1,
+    2,
+    3,
+    4,
+    6,
+    8
+  ],
+  "representation_type": "patched_residual_state",
+  "schema_version": 1,
+  "script": "scripts/stage2_rank_k_guard.py",
+  "selection": {
+    "calibration_generated_correct_rows": 3,
+    "calibration_generated_wrong_rows": 11,
+    "calibration_parse_fail_rows": 1,
+    "checkpoint": "0",
+    "heights": {
+      "h3": 6,
+      "h4": 8
+    },
+    "limit": null,
+    "prefix_jsonl": "results/stage2/decode_time/prefix_conditioned_margin_trajectory_gemma_manifest.jsonl",
+    "prompt_gold_vs_foil_threshold": 0.0,
+    "prompt_margin_gate_correct_triggered": 2,
+    "prompt_margin_gate_triggered_rows": 13,
+    "prompt_margin_gate_wrong_triggered": 11,
+    "selected_rows": 14,
+    "selection_mode": "prefix_conditioned_margin_manifest_checkpoint",
+    "skipped_missing_source": 0,
+    "source_jsonl": "results/full/with_errortype/gemma3_27b_infer_property.jsonl",
+    "triggered_source_row_indices": [
+      3073,
+      3415,
+      4322,
+      4675,
+      5292,
+      6188,
+      6327,
+      8035,
+      8298,
+      8874,
+      9549,
+      10079,
+      10714
+    ]
+  },
+  "slurm_job_id": "457012",
+  "states_npz": "results/stage2/erasure/focus_state_composite_27b_property_states.npz",
+  "summary": {
+    "rank1_in_sample_L30": {
+      "n_rows": 13,
+      "paired_ci95": [
+        0.009615384615384616,
+        0.21153846153846154
+      ],
+      "paired_delta_vs_reference": 0.09615384615384616,
+      "reference": "unhinted_baseline",
+      "strong_accuracy": 0.28846153846153844
+    },
+    "rank1_loo_L30": {
+      "n_rows": 13,
+      "paired_ci95": [
+        0.019230769230769232,
+        0.18269230769230768
+      ],
+      "paired_delta_vs_reference": 0.09615384615384616,
+      "reference": "unhinted_baseline",
+      "strong_accuracy": 0.28846153846153844
+    },
+    "rank2_in_sample_L30": {
+      "n_rows": 13,
+      "paired_ci95": [
+        0.038461538461538464,
+        0.28846153846153844
+      ],
+      "paired_delta_vs_reference": 0.14423076923076922,
+      "reference": "unhinted_baseline",
+      "strong_accuracy": 0.33653846153846156
+    },
+    "rank2_loo_L30": {
+      "n_rows": 13,
+      "paired_ci95": [
+        -0.028846153846153848,
+        0.15384615384615385
+      ],
+      "paired_delta_vs_reference": 0.0673076923076923,
+      "reference": "unhinted_baseline",
+      "strong_accuracy": 0.25961538461538464
+    },
+    "rank3_in_sample_L30": {
+      "n_rows": 13,
+      "paired_ci95": [
+        0.009615384615384616,
+        0.2692307692307692
+      ],
+      "paired_delta_vs_reference": 0.1346153846153846,
+      "reference": "unhinted_baseline",
+      "strong_accuracy": 0.3269230769230769
+    },
+    "rank3_loo_L30": {
+      "n_rows": 13,
+      "paired_ci95": [
+        -0.057692307692307696,
+        0.36538461538461536
+      ],
+      "paired_delta_vs_reference": 0.14423076923076922,
+      "reference": "unhinted_baseline",
+      "strong_accuracy": 0.33653846153846156
+    },
+    "rank4_in_sample_L30": {
+      "n_rows": 13,
+      "paired_ci95": [
+        0.009615384615384616,
+        0.33653846153846156
+      ],
+      "paired_delta_vs_reference": 0.16346153846153846,
+      "reference": "unhinted_baseline",
+      "strong_accuracy": 0.3557692307692308
+    },
+    "rank4_loo_L30": {
+      "n_rows": 13,
+      "paired_ci95": [
+        0.09615384615384616,
+        0.28846153846153844
+      ],
+      "paired_delta_vs_reference": 0.19230769230769232,
+      "reference": "unhinted_baseline",
+      "strong_accuracy": 0.38461538461538464
+    },
+    "rank6_in_sample_L30": {
+      "n_rows": 13,
+      "paired_ci95": [
+        0.0673076923076923,
+        0.36538461538461536
+      ],
+      "paired_delta_vs_reference": 0.21153846153846154,
+      "reference": "unhinted_baseline",
+      "strong_accuracy": 0.40384615384615385
+    },
+    "rank6_loo_L30": {
+      "n_rows": 13,
+      "paired_ci95": [
+        -0.009615384615384616,
+        0.28846153846153844
+      ],
+      "paired_delta_vs_reference": 0.1346153846153846,
+      "reference": "unhinted_baseline",
+      "strong_accuracy": 0.3269230769230769
+    },
+    "rank8_in_sample_L30": {
+      "n_rows": 13,
+      "paired_ci95": [
+        0.08653846153846154,
+        0.38461538461538464
+      ],
+      "paired_delta_vs_reference": 0.22115384615384615,
+      "reference": "unhinted_baseline",
+      "strong_accuracy": 0.41346153846153844
+    },
+    "rank8_loo_L30": {
+      "n_rows": 13,
+      "paired_ci95": [
+        0.08653846153846154,
+        0.40384615384615385
+      ],
+      "paired_delta_vs_reference": 0.23076923076923078,
+      "reference": "unhinted_baseline",
+      "strong_accuracy": 0.4230769230769231
+    },
+    "unhinted_baseline": {
+      "n_rows": 13,
+      "reference": "none",
+      "strong_accuracy": 0.19230769230769232
+    }
+  },
+  "target_variable": "target_concept",
+  "task": "infer_property"
+}

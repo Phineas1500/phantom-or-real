@@ -15,6 +15,43 @@ final report is easier to assemble.
 
 ## Running Notes
 
+### 2026-06-16
+
+#### Subtype Capture-Ladder Discriminator
+
+- Job `457170` completed in 2h48 and wrote `docs/subtype_discriminator_27b.json`, `docs/subtype_discriminator_27b_summary.md`, `results/stage2/erasure/subtype_discriminator_27b.jsonl`, and `results/stage2/erasure/subtype_discriminator_27b_states.npz` (16 rows x 9 arms x k=8; 1,152 generations).
+- Capture ladder showed large late hinted-vs-unhinted writes and selected off-trio layers `L53,L50,L35` by row-mean concept-delta norm (`L53` 15385.7, `L50` 11954.3, `L35` 6012.6; old trio `L30/L40/L45` were lower than the late off-trio peak except L35).
+- Causal result: old trio full replace remained null-ish (`+0.016` CI [-0.211,+0.227]); off-trio concept replacement did not decisively repair (`L53` +0.031 CI [-0.023,+0.117], `L50` +0.039 CI [-0.023,+0.141], `L35` +0.102 CI [-0.008,+0.258]); random controls were null; `L53_rank4_loo_add` was exactly baseline (`+0.000`).
+- Matched concept-minus-random deltas are suggestive only (`L35` +0.109 CI [+0.000,+0.266], `L50/L53` +0.039 with lower CI at 0). Wording: no landed layer-mismatch repair; subtype writes are present but not robustly transferable through tested residual-state concept-position replacements. `L35` is a possible replication target, not a paper claim.
+
+### 2026-06-15
+
+#### Rank-Core Geometry Rider
+
+- Added and ran `scripts/stage2_rank_core_geometry.py`, writing `docs/rank_core_geometry_27b_property.json` and `docs/rank_core_geometry_27b_property_summary.md` from saved L30 concept deltas, `results/stage2/erasure/inlp_direction_stacks_27b_property.npz`, and cached Gemma Scope L30 residual decoder params.
+- INLP result: rank4/rank8 core subspace fractions in the L30 readable stack are 0.0001/0.0002, below the random-subspace null mean 0.0017. This is the sharp form of gauge != lever: the compact causal core is even less in the readable subspace than random.
+- Gemma Scope result: decoder rows strongly expose the core (top rank4/rank8 subspace sqrt-energy about 0.98 in both 16k and 262k residual decoders), but the exposure is massively redundant rather than sparse-small. Top 20 decoder rows explain only about 1.0% of 16k overlap mass and 0.1% of 262k mass, with thousands of rows above 0.10 overlap.
+- Paper wording: compact, held-out, gauge-orthogonal, dictionary-visible, not captured by a small sparse feature set.
+
+### 2026-06-13
+
+#### Rank-k Guard Result
+
+- Job `457012` completed the L30 rank-k lead-claim guard in 3h14 and wrote `docs/rank_k_guard_27b_property.json`, `docs/rank_k_guard_27b_property_summary.md`, and `results/stage2/erasure/rank_k_guard_27b_property.jsonl` (1,352 generations; 13 rows x 13 arms x k=8).
+- The held-out-basis guard clears: `rank4_loo_L30` repaired +0.192 CI [+0.096,+0.288] over the in-job baseline P(strong)=0.192, reaching 77% of the +0.250 subset-replacement effect. This rules out the main in-sample PCA-fit artifact.
+- The ladder is graded, not a clean rank-4 threshold: `rank8_loo_L30` is strongest (+0.231 CI [+0.087,+0.404], 92% of subset), while rank1 has a small positive held-out effect. Paper wording should say compact low-dimensional core by rank 4 with useful structure through rank 8; do not claim exact intrinsic dimension = 4.
+- Remaining high-value rider: project the held-out-surviving L30 components onto the INLP stack and Gemma Scope decoders.
+
+### 2026-06-13 UTC / 2026-06-12 America/Indianapolis
+
+#### Property KV/Hint-Span Finale And Compact Core
+
+- Job `457009` completed the pre-registered property-side KV/hint-span finale and wrote `docs/kv_hint_span_27b_property.json`, `docs/kv_hint_span_27b_property_summary.md`, and `results/stage2/erasure/kv_hint_span_27b_property.jsonl` (936 generations; 13 rows x 9 arms x k=8; row 5292 self-skipped as documented).
+- Token-route verdict: natural decode attention to the literal hint span was 0.5%, hint-span masking cost exactly 0.000, gold-KV and wrong-KV transplants were null despite attention flowing to the splice at 3.6x natural, and wrong-KV did not misdirect. The null is therefore genuine insufficiency, not splice failure.
+- Exhaustive tested-route necessity verdict: masking x concept-position reversion left P(strong)=0.981, so the carrier is the unpatched layers and commitment is multiply realized across layers.
+- Positive surprise: rank-4 PCA reconstruction of concept-position deltas added at L30 alone repaired +0.260 CI [+0.115,+0.423], matching the three-layer subset-replacement effect within CI (point ratio 104%). Rank-1 was null/harmful at every tested scale, restricted x2 was harmful, and rank-full per-position add was null/harmful. Pre-registered bin: compactly structured.
+- Lead-claim guard before writing this as the paper's central result: `scripts/stage2_rank_k_guard.py` and `scripts/stage2_rank_k_guard_27b_property.sbatch` rerun the L30 rank-k add with held-out PCA bases and a rank ladder (1/2/3/4/6/8), then the surviving components should be projected onto the INLP stack and Gemma Scope decoders. The subtype follow-up has now landed (job `457170`): large late off-trio writes, but no decisive off-trio residual-state repair.
+
 ### 2026-05-01
 
 #### Stage 2 Forced-Choice And Patching Closeout

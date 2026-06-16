@@ -72,7 +72,7 @@
     <h1>Phantom or Real — Where the Causality Hunt Stands</h1>
     <p>We could always <em>read</em> whether the model was about to be right. This week we learned why we
        could never <em>steer</em> it: the thing we were reading turns out to be a gauge, not a lever.</p>
-    <div class="date">Status: June 12, 2026 &nbsp;·&nbsp; Gemma&nbsp;3&nbsp;27B, InAbHyD property + subtype &nbsp;·&nbsp; erasure replicated on both tasks; interchange repair confirmed at k=8; erasure verdict spans both tasks; the focus-state patching results (Parts 7–9) are <b>property-task</b> — on subtype the hint rides the token route and context patching is null (Part 9½)</div>
+    <div class="date">Status: June 16, 2026 &nbsp;·&nbsp; Gemma&nbsp;3&nbsp;27B, InAbHyD property + subtype &nbsp;·&nbsp; erasure replicated on both tasks; property focus-state repair has a held-out compact L30 causal core; subtype capture-ladder follow-up found large writes but no decisive off-trio residual-state repair</div>
   </div>
 </header>
 
@@ -654,14 +654,15 @@
        magnitude (L45 norm 8683 vs property's 8058) — the writes are present, they just carry
        no transferable repair at L30/40/45.</p>
     <div class="verdict" style="border-color:#2563ab; background:#eef3fb;">
-      <b>Two registered accounts, with separation logic, recorded before the KV job unblinds:</b>
-      <em>pathway-mix</em> (the hint's route mix — context writes vs decode-time token access —
-      is task-dependent; subtype rides tokens) vs <em>layer-mismatch</em> (subtype's causal
-      writes live off the property-derived L30/40/45 trio). Both predict subtype gold-KV
-      repairs, so KV alone cannot discriminate: a capture-ladder triage plus a targeted patch
-      at any off-trio peak is the discriminator. The predicted pattern is a <b>cross-task route
-      dissociation</b> — not a double dissociation, which becomes live only if property gold-KV
-      unexpectedly fails. Claims 5–6 scope to property until this resolves.
+      <b>The registered discriminator has now landed:</b> the subtype capture ladder found
+      large late hinted-vs-unhinted writes and selected off-trio layers L53/L50/L35, but
+      targeted causal patches did not deliver a decisive layer-mismatch repair. Old-trio
+      replay stayed null-ish (+0.016); L53/L50 concept replacement were small (+0.031/+0.039);
+      L35 was only suggestive (+0.102, CI crossing zero; matched concept-minus-random +0.109
+      with the lower CI at zero); and L53 rank-4 LOO add was exactly baseline. The subtype
+      writes are present, but simple residual-state concept-position replacement is not a
+      robust transfer route. Claims 5–6 therefore remain <b>property-scoped</b>, with L35 as
+      a possible replication target rather than a landed subtype causal handle.
     </div>
   </div>
 </section>
@@ -809,9 +810,10 @@
         <td>Subtype concept-position patch (job 457005): <b>task-dependence bin</b> — full
             patch null (+0.039 vs property's +0.491), clean random control, despite donors
             validated at 0.875 through tokens</td>
-        <td>Claims 5–6 scope to property; pathway-mix account pre-registered before the KV
-            job unblinds: the hint's route mix (context writes vs token access) is
-            task-dependent — subtype gold-KV predicted to repair (double dissociation)</td>
+        <td>Follow-up discriminator (job 457170) selected L53/L50/L35 from the capture ladder,
+            but off-trio repairs stayed weak: best L35 +0.102 CI crossing zero; matched
+            concept-minus-random +0.109 with lower CI at zero; L53 rank-4 LOO add +0.000.
+            Result: no clean layer-mismatch repair; residual-state route remains insufficient</td>
         <td>—</td>
       </tr>
       <tr>
@@ -821,10 +823,30 @@
             verifiably flowing at 3.6× natural — genuine insufficiency, not splice bug; no
             misdirection). Combination arm survives at 0.981 — carrier is the unpatched layers</td>
         <td><b>And the surprise: a compact causal core.</b> Rank-4 PCA add at L30 alone repairs
-            +0.260 [CI +0.12, +0.42] = 104% of the subset-replacement effect, where rank-1 failed
-            at every scale — the pre-registered reading rule fires: <b>compactly structured</b>.
-            The focus state's causal core is a ≤4-dim object at L30, written at concept
-            mentions, invisible to the readable subspace</td>
+            +0.260 [CI +0.12, +0.42], matching the subset-replacement effect within CI
+            (point ratio 104%); the pre-registered reading rule fires:
+            <b>compactly structured</b>.
+            The focus state's causal core is a low-dimensional object at L30, written at
+            concept mentions, invisible to the readable subspace</td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td><span class="chip done">done</span></td>
+        <td><b>Rank-k guard (457012):</b> held-out PCA basis and rank ladder at L30
+            (1/2/3/4/6/8), 1,352 generations</td>
+        <td>Free-parameter guard clears: rank4 leave-one-row-out repairs +0.192
+            [CI +0.096,+0.288], 77% of the subset effect, so the core is not an
+            in-sample PCA artifact. Rank8 LOO is stronger (+0.231), making the
+            ladder graded rather than exact dimension = 4</td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td><span class="chip done">done</span></td>
+        <td><b>Rank-core geometry rider:</b> project held-out-surviving L30 components
+            onto the INLP stack and Gemma Scope decoders</td>
+        <td>Gauge-orthogonal and dictionary-visible: rank4/rank8 INLP overlap is
+            0.0001/0.0002, below random null; Gemma Scope decoder rows align strongly
+            (top sqrt-energy ≈0.98) but redundantly, not as a compact feature set</td>
         <td>—</td>
       </tr>
       <tr>
@@ -846,8 +868,13 @@
   docs/subspace_erasure_27b_property_sampled_k8_summary.md ·
   docs/recognition_state_patch_27b_property_manifest.json ·
   docs/probe_on_erased_activations_27b_property.json ·
-  docs/causal_handle_directions.md · next_paper_causal_abstraction_dashboard.md.
-  All numbers are from committed run artifacts (jobs 456912–456918, 456963–456966, 456968, 456990, 456999, 457002, 457005).
+  docs/focus_state_composite_27b_property_summary.md ·
+  docs/kv_hint_span_27b_property_summary.md ·
+  docs/rank_k_guard_27b_property_summary.md ·
+  docs/rank_core_geometry_27b_property_summary.md ·
+  docs/subtype_discriminator_27b_summary.md ·
+  docs/causal_handle_directions.md · docs/next_paper_causal_abstraction_dashboard.md.
+  All numbers are from run artifacts (jobs 456912–456918, 456963–456966, 456968, 456990, 456999, 457002, 457005, 457009, 457012, 457170) and the offline rank-core geometry rider.
 </footer>
 
 </body>
