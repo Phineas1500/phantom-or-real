@@ -17,6 +17,7 @@ Scholar J-node A40 jobs.
 | Clean-to-corrupt patching | `456256` | 7 strict h1/h4 pairs | Strongest mean margin delta was L40 `last_prompt` at `-0.219`; no condition had any examples above `0.25` breakage/recovery | Clean h1 residual states are not a simple causal switch whose replacement reliably breaks or repairs subtype answers. |
 | Raw property steering, L45 | `456261` | 4 balanced h3/h4 rows | Raw direction test AUC `0.9179`; baseline, raw +/-1sd, and orthogonal +/-1sd all stayed at strong accuracy `0.5`, weak accuracy `1.0`, parse fail `0.0`; zero paired flips | A predictive correctness direction at the original Qwen Scope site is not a free-form repair knob. |
 | Raw property steering, L53 | `456266` | 4 balanced h3/h4 rows | Raw direction test AUC `0.9400`; projection std `0.5555`; baseline, raw +/-1sd, and orthogonal +/-1sd all stayed at strong accuracy `0.5`, weak accuracy `1.0`, parse fail `0.0`; zero paired flips | Moving to Qwen's strongest raw layer improves prediction but not control. |
+| Property multi-layer erasure | `457191`-`457194` | 16 balanced h3/h4 property rows, k=8 | Baseline P(strong)=`0.352`; raw-direction erasure P(strong)=`0.422`, dP=`+0.070` CI [`-0.031`,`+0.188`]; orthogonal dP=`+0.047`; Gaussian dP=`+0.016`; L53 probe test AUC `0.940`. | Cross-model support that the raw readout axis is not load-bearing. Controls are also non-destructive, so this is not a replication of Gemma's destructive-control separation. |
 | Answer-property steering, L45 | `456262` | 8 balanced h3/h4 rows | Gold-polarity direction val/test AUC `1.0000`/`1.0000`; no answer-content changes and no strong-accuracy flips under toward-gold, away-gold, or orthogonal conditions | Even a concrete answer-content direction does not loosen the free-form output. |
 | Sparse-probe bundle steering, L45 | `456263` | 8 balanced h3/h4 rows | W80K L0_100 sparse probe test AUC `0.8019`; bundle +/-0.5sd plus shuffled, random, and orthogonal controls all had zero output-correctness changes | Distributed residual-SAE decoder bundles reproduce the Gemma steering null at Qwen L45. |
 | Sparse-probe bundle steering, L53 | `456267` | 8 balanced h3/h4 rows | W80K L0_100 sparse probe test AUC `0.8687`; bundle +/-0.5sd plus shuffled, random, and orthogonal controls all had zero output-correctness changes | The stronger L53 sparse readout still does not become a steering handle. |
@@ -34,6 +35,8 @@ Detailed artifacts:
 - `results/stage2/steering/qwen35_raw_l45_property_steering_pilot.jsonl`
 - `docs/qwen35_raw_steering_27b_l53_property_pilot.json`
 - `results/stage2/steering/qwen35_raw_l53_property_steering_pilot.jsonl`
+- `docs/qwen35_subspace_erasure_27b_property_sampled_k8_summary.md`
+- `docs/qwen35_subspace_erasure_27b_property_sampled_k8.json`
 - `docs/qwen35_answer_property_steering_27b_l45_polarity_smoke.json`
 - `results/stage2/steering/qwen35_answer_property_l45_polarity_smoke.jsonl`
 - `docs/qwen35_scope_sparse_bundle_steering_27b_l45_l0_100_property_smoke.json`
@@ -46,13 +49,15 @@ Detailed artifacts:
 Bottom line: Qwen shows a strong format effect, strong pre-generation
 correctness readouts, and no strong single-site full-residual patching or
 decode-step steering effect, now including individual L53 Qwen Scope residual-SAE
-decoder columns. The forced-choice result says that a large share
-of the selected h4 subtype errors are not pure absence of the right answer. The
-patching and steering pilots say that the tested L35/L40/L45/L53 residual
-states and probe-derived directions are not enough, by themselves, to act as
-localized causal repair or breakage handles. This mirrors the Gemma-side
+decoder columns. The multi-layer property erasure now adds a causal non-necessity
+result: ablating the raw correctness direction did not degrade behavior over 512
+generations. The forced-choice result says that a large share of the selected h4
+subtype errors are not pure absence of the right answer. The patching and
+steering pilots say that the tested L35/L40/L45/L53 residual states and
+probe-derived directions are not enough, by themselves, to act as localized
+causal repair or breakage handles. This mirrors the Gemma-side
 predictive-versus-causal theme, with a clearer Qwen recognition-vs-generation
-split.
+split, but Qwen does not show Gemma's destructive-control erasure profile.
 
 ## 1. Hard-Foil Forced Choice
 

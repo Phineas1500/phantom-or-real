@@ -6,9 +6,9 @@ Generated after the Qwen robustness, local-dictionary, target/OOD, trajectory, a
 
 The strongest current framing is:
 
-**InAbHyD correctness is linearly readable, sparsely lossy under public reconstruction dictionaries, recoverable in better local bases, and causally epiphenomenal as a readout direction: a direct multi-layer necessity test (mean-ablating the per-layer probe direction at every position) leaves behavior statistically unchanged while matched control erasures are destructive.**
+**InAbHyD correctness is linearly readable, sparsely lossy under public reconstruction dictionaries, recoverable in better local bases, and causally epiphenomenal as a readout direction: direct multi-layer necessity tests leave the raw readout axis behaviorally non-load-bearing; in Gemma, matched control erasures are destructive.**
 
-The word `distributed` should remain a hypothesis, not a conclusion. As of 2026-06-11 the evidence has moved past `causally inaccessible under tested methods`: the necessity test (jobs 456912, 456915-456918; docs/subspace_erasure_27b_property_sampled_k8_summary.md) supports the stronger positive claim that the correctness readout direction is not load-bearing — erase_raw delta-P=-0.016 (0.4 sigma from zero) vs erase_orthogonal -0.367 (3.4 sigma separation) over 512 sampled generations. This predicts and explains the raw-steering, optimized-vector, DAS, and decode-gate nulls: they intervened on a gauge, not a mechanism. Scope caveats: the erased object is the probe axis, not all linearly decodable correctness information (the INLP check in docs/probe_on_erased_activations_27b_property.json shows retrained probes recover 0.877 AUC after axis erasure — directionally epiphenomenal, informationally redundant); Gemma, 5 of 62 layers. The subtype replication (jobs 456963-456966; docs/subspace_erasure_27b_subtype_sampled_k8_summary.md) is complete and cleaner than the property run: erase_raw delta-P=+0.008 (exactly 0.000 on baseline-correct rows) with orthogonal at 3.5 sigma and Gaussian at 3.0 sigma — the verdict now spans both tasks over 1024 sampled generations.
+The word `distributed` should remain a hypothesis, not a conclusion. As of 2026-06-11 the evidence has moved past `causally inaccessible under tested methods`: the necessity test (jobs 456912, 456915-456918; docs/subspace_erasure_27b_property_sampled_k8_summary.md) supports the stronger positive claim that the correctness readout direction is not load-bearing — erase_raw delta-P=-0.016 (0.4 sigma from zero) vs erase_orthogonal -0.367 (3.4 sigma separation) over 512 sampled generations. This predicts and explains the raw-steering, optimized-vector, DAS, and decode-gate nulls: they intervened on a gauge, not a mechanism. Scope caveats: the erased object is the probe axis, not all linearly decodable correctness information (the INLP check in docs/probe_on_erased_activations_27b_property.json shows retrained probes recover 0.877 AUC after axis erasure — directionally epiphenomenal, informationally redundant); Gemma, 5 of 62 layers. The subtype replication (jobs 456963-456966; docs/subspace_erasure_27b_subtype_sampled_k8_summary.md) is complete and cleaner than the property run: erase_raw delta-P=+0.008 (exactly 0.000 on baseline-correct rows) with orthogonal at 3.5 sigma and Gaussian at 3.0 sigma — the verdict now spans both tasks over 1024 sampled generations. A Qwen property HF-hook replication (jobs 457191-457194; docs/qwen35_subspace_erasure_27b_property_sampled_k8_summary.md) supports the non-necessity side cross-model: erase_raw dP=+0.070 CI [-0.031,+0.188] over 512 generations, but controls are also non-destructive, so Qwen does not show the same perturbation-sensitivity profile as Gemma.
 
 The companion recognition-state cross-prompt patch (job 456913; docs/recognition_state_patch_27b_property_manifest.json) is a controlled repair null with localization value: donors select gold on 14/14 recognition-gap rows, yet their shared ontology-context encodings transplant no gold preference (F->T=0, disruption equal to matched noise).
 
@@ -25,12 +25,12 @@ Recommended current-paper use:
 - Add the Qwen robustness appendix/table in `docs/qwen_robustness_appendix_table.md`, showing that Qwen3.5-27B also has strong raw correctness readouts and much weaker metadata baselines.
 - Include Qwen recognition-vs-generation evidence with careful non-matched wording: Gemma `14/16` property h3/h4 hard-foil rows and Qwen `43/64` subtype h4 hard-foil rows support the same theme but are not direct replications.
 - Include the Qwen prefix-conditioned result as supporting trajectory evidence only: Qwen h4 subtype hard-foil selected-vs-gold is nonnegative on `14/14` rows at checkpoint 0, and gold-vs-hard-foil is nonnegative on `0/14` rows.
-- Do not use Qwen to claim the Gemma patching asymmetry generalizes. Qwen patching remains weak/null under current artifacts.
+- Use Qwen to support raw-axis non-necessity on property, but do not use it to claim the Gemma patching asymmetry or destructive-control erasure profile generalizes. Qwen patching remains weak/null under current artifacts.
 - Keep Qwen local dictionaries labeled as local stand-ins, not first-party Qwen Scope artifacts.
 
 A conservative current-paper sentence:
 
-> Qwen3.5-27B reproduces the main predictive and recognition-vs-generation pattern: correctness remains linearly readable beyond metadata, and recognition-gap rows already prefer the free-form or hard-foil hypothesis over gold at prompt-only scoring. We treat this as cross-model robustness evidence, not a matched causal replication of the Gemma patching results.
+> Qwen3.5-27B reproduces the main predictive and recognition-vs-generation pattern: correctness remains linearly readable beyond metadata, recognition-gap rows already prefer the free-form or hard-foil hypothesis over gold at prompt-only scoring, and property raw-axis erasure does not degrade behavior. We treat this as cross-model robustness evidence for readout non-necessity, not a matched causal replication of the Gemma patching or destructive-control erasure results.
 
 ## Next-Paper Core Claims
 
@@ -103,7 +103,7 @@ This evidence does not justify the positive claim `causally distributed`. It sup
 
 Use this as the next-paper thesis (updated 2026-06-11 after the necessity test):
 
-**Correctness in ontology reasoning is robustly decodable but causally epiphenomenal as a readout. It is linearly readable across Gemma and Qwen, lossy under public sparse reconstruction dictionaries, partly recoverable in local high-fidelity bases, and removable without behavioral cost: multi-layer erasure of the readout direction leaves task behavior statistically unchanged while matched control erasures are destructive. The causally potent variable is hypothesis selection, computed during prompt processing, whose state is not carried by context-token encodings.**
+**Correctness in ontology reasoning is robustly decodable but causally epiphenomenal as a readout. It is linearly readable across Gemma and Qwen, lossy under public sparse reconstruction dictionaries, partly recoverable in local high-fidelity bases, and removable without behavioral cost: multi-layer erasure of the readout direction leaves task behavior statistically unchanged, with destructive matched controls in Gemma and non-destructive controls in the Qwen property replication. The causally potent variable is hypothesis selection, computed during prompt processing, whose state is not carried by context-token encodings.**
 
 Shorter version:
 
@@ -113,7 +113,7 @@ Avoid:
 
 - `Correctness is causally distributed` unless DAS or another distributed intervention actually repairs or disrupts behavior with controls.
 - `SAEs are useless`; the local dictionary results show the basis/objective story is more nuanced.
-- `Qwen replicates Gemma causally`; Qwen currently supports predictive and recognition-vs-generation robustness, not the Gemma causal asymmetry.
+- `Qwen replicates Gemma causally`; Qwen now supports predictive robustness, recognition-vs-generation robustness, and property raw-axis non-necessity, not the Gemma patching asymmetry, compact-core mechanism, or destructive-control erasure profile.
 
 ## What Is Done Enough
 

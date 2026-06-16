@@ -87,14 +87,18 @@ control). Cheap, well-powered, and decisive either way:
 This is the cheapest path to upgrading `inaccessible under tested methods`
 to a real causal statement.
 
-Status (2026-06-11): validated at k=8 (jobs 456912, 456915-456918;
-docs/subspace_erasure_27b_property_sampled_k8_summary.md). Pooled over 512
-generations: erase_raw delta-P=-0.016 (0.4 sigma from zero) while
-erase_orthogonal is -0.367 (3.4 sigma below erase_raw) and erase_gaussian
--0.227 with 48% parse failures. Outcome: the epiphenomenality branch — the
-correctness readout direction is not necessary for task behavior. Remaining
-tightenings: probe-on-erased-activations check, LEACE-style full concept
-erasure, subtype/Qwen replication, wider layer set.
+Status (2026-06-16): validated at k=8 for Gemma property (jobs 456912,
+456915-456918; docs/subspace_erasure_27b_property_sampled_k8_summary.md), Gemma
+subtype (jobs 456963-456966; docs/subspace_erasure_27b_subtype_sampled_k8_summary.md),
+and Qwen property (jobs 457191-457194;
+docs/qwen35_subspace_erasure_27b_property_sampled_k8_summary.md). Gemma property
+pooled over 512 generations: erase_raw delta-P=-0.016 (0.4 sigma from zero)
+while erase_orthogonal is -0.367 (3.4 sigma below erase_raw) and erase_gaussian
+-0.227 with 48% parse failures. Qwen property: erase_raw dP=+0.070 CI
+[-0.031,+0.188], with non-destructive controls. Outcome: the epiphenomenality
+branch — the correctness readout direction is not necessary for task behavior.
+Remaining tightenings: LEACE-style full concept erasure, wider layer set, and
+optional Qwen subtype if cross-task cross-model symmetry becomes necessary.
 
 ### 2. Cross-prompt patching: transplant the recognition state into generation
 

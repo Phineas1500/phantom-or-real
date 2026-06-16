@@ -78,9 +78,11 @@ decode-gate nulls: interventions on a gauge do not move the machine.
 - Control magnitudes are matched in per-direction train-projection sd units,
   not absolute residual L2; the orthogonal/gaussian projection means come
   from last-prompt-position statistics applied at all positions.
-- Gemma only; Qwen replication needs an HF-hooks variant. The subtype
-  replication is complete and confirms the verdict with both controls above
-  3 sigma — see docs/subspace_erasure_27b_subtype_sampled_k8_summary.md.
+- Historical scope at the time of this Gemma property run was Gemma-only. The
+  subtype replication later confirmed the Gemma verdict with both controls above
+  3 sigma — see docs/subspace_erasure_27b_subtype_sampled_k8_summary.md. A later
+  Qwen property HF-hook replication supports raw-axis non-necessity without the
+  same destructive-control profile — see docs/qwen35_subspace_erasure_27b_property_sampled_k8_summary.md.
 
 ## Status
 

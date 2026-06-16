@@ -42,5 +42,6 @@ controls separating at 3+ sigma:
 tasks — readable everywhere, needed nowhere.**
 
 Remaining scope caveats: probe axis (not all decodable information — see the
-INLP redundancy check), 5 of 62 layers, Gemma only (Qwen replication needs an
-HF-hooks variant).
+INLP redundancy check), 5 of 62 layers, and Gemma task scope for the destructive
+matched-control separation. A later Qwen property HF-hook replication supports
+raw-axis non-necessity but did not reproduce the destructive-control profile.

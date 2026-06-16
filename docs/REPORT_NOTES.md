@@ -17,6 +17,13 @@ final report is easier to assemble.
 
 ### 2026-06-16
 
+#### Qwen Property Subspace-Erasure Replication
+
+- Jobs `457191`-`457194` completed the Qwen3.5-27B property HF-hook erasure chain and wrote shard reports plus `docs/qwen35_subspace_erasure_27b_property_sampled_k8.json` and `docs/qwen35_subspace_erasure_27b_property_sampled_k8_summary.md` (16 balanced S1 h3/h4 rows x 4 arms x k=8; 512 generations).
+- Probe directions were strong at the later layers (`L53` test AUC `0.940`; `L45` `0.918`; `L40` `0.907`; `L31` `0.863`; `L16` `0.731`).
+- Causal result: baseline P(strong)=`0.352`; `erase_raw` P(strong)=`0.422`, dP=`+0.070` CI [`-0.031`,`+0.188`], with no true-to-false flips and 2 false-to-true row transitions. Matched controls were also non-destructive: orthogonal dP=`+0.047` CI [`-0.023`,`+0.141`], Gaussian dP=`+0.016` CI [`-0.039`,`+0.086`].
+- Wording: Qwen property supports cross-model non-necessity of the raw correctness readout axis. It does not replicate Gemma's destructive-control separation, so that stronger perturbation-sensitivity profile remains Gemma-scoped.
+
 #### Subtype Capture-Ladder Discriminator
 
 - Job `457170` completed in 2h48 and wrote `docs/subtype_discriminator_27b.json`, `docs/subtype_discriminator_27b_summary.md`, `results/stage2/erasure/subtype_discriminator_27b.jsonl`, and `results/stage2/erasure/subtype_discriminator_27b_states.npz` (16 rows x 9 arms x k=8; 1,152 generations).

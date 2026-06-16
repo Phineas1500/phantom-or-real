@@ -1,0 +1,569 @@
+{
+  "baseline_metrics": {
+    "by_original_is_correct_strong": {
+      "false": {
+        "n": 16,
+        "parse_fail_rate": 0.0,
+        "strong_accuracy": 0.0
+      },
+      "true": {
+        "n": 16,
+        "parse_fail_rate": 0.0,
+        "strong_accuracy": 0.5625
+      }
+    },
+    "mean_quality": 0.7654513888888889,
+    "n_generations": 32,
+    "n_rows": 4,
+    "parse_fail_rate": 0.0,
+    "strong_accuracy": 0.28125,
+    "weak_accuracy": 0.90625
+  },
+  "causal_abstraction_claim": "Qwen cross-model necessity test: mean-ablates the per-layer raw correctness direction at every available residual position during prompt processing and decode. A clean cross-model epiphenomenality result requires raw erasure to remain flat while orthogonal/Gaussian controls verify perturbation sensitivity.",
+  "control_projection_stats": {
+    "L16": {
+      "gaussian": {
+        "projection_mean": 0.7939035720649273,
+        "projection_std": 0.017055056419166773
+      },
+      "orthogonal": {
+        "projection_mean": -1.5197707255552417,
+        "projection_std": 0.02166239866729226
+      }
+    },
+    "L31": {
+      "gaussian": {
+        "projection_mean": 1.5453374259780714,
+        "projection_std": 0.03736097059113356
+      },
+      "orthogonal": {
+        "projection_mean": 0.09891927821997319,
+        "projection_std": 0.10487097933451324
+      }
+    },
+    "L40": {
+      "gaussian": {
+        "projection_mean": 0.5776007481319133,
+        "projection_std": 0.10048876104917727
+      },
+      "orthogonal": {
+        "projection_mean": -0.4669852130705163,
+        "projection_std": 0.10311601560229224
+      }
+    },
+    "L45": {
+      "gaussian": {
+        "projection_mean": 1.341592424243182,
+        "projection_std": 0.1112571385481961
+      },
+      "orthogonal": {
+        "projection_mean": 1.0748089569123758,
+        "projection_std": 0.19366463304530043
+      }
+    },
+    "L53": {
+      "gaussian": {
+        "projection_mean": 2.844035819663254,
+        "projection_std": 0.4691988879933446
+      },
+      "orthogonal": {
+        "projection_mean": -0.9019106380127779,
+        "projection_std": 0.420012524656055
+      }
+    }
+  },
+  "controls": [
+    "regenerated_baseline",
+    "orthogonal_direction",
+    "matched_gaussian_noise",
+    "qwen_hf_native_layer_hooks",
+    "disable_thinking_chat_template"
+  ],
+  "created_at_utc": "2026-06-16T15:41:47.350248+00:00",
+  "direction_output": "results/stage2/erasure/qwen35_subspace_erasure_27b_property_sampled_k8_shard2of4_directions.npz",
+  "elapsed_seconds": 992.0564272403717,
+  "generation": {
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    },
+    "conditions": [
+      {
+        "label": "baseline",
+        "vector_kind": null
+      },
+      {
+        "label": "erase_raw",
+        "vector_kind": "raw"
+      },
+      {
+        "label": "erase_orthogonal",
+        "vector_kind": "orthogonal"
+      },
+      {
+        "label": "erase_gaussian",
+        "vector_kind": "gaussian"
+      }
+    ],
+    "device_map": "auto",
+    "do_sample": true,
+    "dtype": "torch.bfloat16",
+    "max_new_tokens": 96,
+    "n_ctx": 4096,
+    "samples_per_row": 8,
+    "stop_at_eos": true,
+    "temperature": 0.7
+  },
+  "hook_names": {
+    "16": "model.model.layers.16.output",
+    "31": "model.model.layers.31.output",
+    "40": "model.model.layers.40.output",
+    "45": "model.model.layers.45.output",
+    "53": "model.model.layers.53.output"
+  },
+  "intervention_metrics": {
+    "erase_gaussian": {
+      "by_original_is_correct_strong": {
+        "false": {
+          "n": 16,
+          "parse_fail_rate": 0.0,
+          "strong_accuracy": 0.0
+        },
+        "true": {
+          "n": 16,
+          "parse_fail_rate": 0.0,
+          "strong_accuracy": 0.6875
+        }
+      },
+      "mean_quality": 0.7658234126984127,
+      "n_generations": 32,
+      "n_rows": 4,
+      "parse_fail_rate": 0.0,
+      "strong_accuracy": 0.34375,
+      "weak_accuracy": 0.96875
+    },
+    "erase_orthogonal": {
+      "by_original_is_correct_strong": {
+        "false": {
+          "n": 16,
+          "parse_fail_rate": 0.0,
+          "strong_accuracy": 0.25
+        },
+        "true": {
+          "n": 16,
+          "parse_fail_rate": 0.0,
+          "strong_accuracy": 0.5
+        }
+      },
+      "mean_quality": 0.7972470238095238,
+      "n_generations": 32,
+      "n_rows": 4,
+      "parse_fail_rate": 0.0,
+      "strong_accuracy": 0.375,
+      "weak_accuracy": 0.9375
+    },
+    "erase_raw": {
+      "by_original_is_correct_strong": {
+        "false": {
+          "n": 16,
+          "parse_fail_rate": 0.0,
+          "strong_accuracy": 0.125
+        },
+        "true": {
+          "n": 16,
+          "parse_fail_rate": 0.0,
+          "strong_accuracy": 0.8125
+        }
+      },
+      "mean_quality": 0.7981977513227513,
+      "n_generations": 32,
+      "n_rows": 4,
+      "parse_fail_rate": 0.0,
+      "strong_accuracy": 0.46875,
+      "weak_accuracy": 0.90625
+    }
+  },
+  "jsonl": "results/full/with_errortype/qwen35_27b_infer_property.jsonl",
+  "layers": [
+    16,
+    31,
+    40,
+    45,
+    53
+  ],
+  "method": "qwen_hf_multi_layer_subspace_erasure",
+  "model": "Qwen/Qwen3.5-27B",
+  "model_key": "qwen35_27b",
+  "n": 128,
+  "out_jsonl": "results/stage2/erasure/qwen35_subspace_erasure_27b_property_sampled_k8_shard2of4.jsonl",
+  "paired_flips": {
+    "erase_gaussian": {
+      "false_to_true": 0,
+      "mean_delta_p_strong": 0.0625,
+      "paired_n": 4,
+      "rows_degraded": 1,
+      "rows_improved": 1,
+      "std_delta_p_strong": 0.1875,
+      "true_to_false": 0
+    },
+    "erase_orthogonal": {
+      "false_to_true": 1,
+      "mean_delta_p_strong": 0.09375,
+      "paired_n": 4,
+      "rows_degraded": 1,
+      "rows_improved": 1,
+      "std_delta_p_strong": 0.240035804620894,
+      "true_to_false": 0
+    },
+    "erase_raw": {
+      "false_to_true": 1,
+      "mean_delta_p_strong": 0.1875,
+      "paired_n": 4,
+      "rows_degraded": 1,
+      "rows_improved": 2,
+      "std_delta_p_strong": 0.28641098093474,
+      "true_to_false": 0
+    }
+  },
+  "probe_directions": {
+    "L16": {
+      "best_c": 0.01,
+      "c_values": [
+        0.01,
+        0.1,
+        1.0,
+        10.0
+      ],
+      "d_model": 5120,
+      "input_rows": 10997,
+      "kept_rows": 10997,
+      "max_iter": 2000,
+      "raw_coef_norm": 179.0074089959481,
+      "solver": "lbfgs",
+      "split_counts": {
+        "test": {
+          "n": 1650,
+          "negative_n": 728,
+          "positive_n": 922
+        },
+        "train": {
+          "n": 7698,
+          "negative_n": 3394,
+          "positive_n": 4304
+        },
+        "val": {
+          "n": 1649,
+          "negative_n": 727,
+          "positive_n": 922
+        }
+      },
+      "test_auc": 0.7314307167886345,
+      "train_projection_max": 0.03978341849466408,
+      "train_projection_mean": -0.016468677707748382,
+      "train_projection_min": -0.048431840106617746,
+      "train_projection_std": 0.012782699742350455,
+      "val_auc": 0.710274894300113
+    },
+    "L31": {
+      "best_c": 0.01,
+      "c_values": [
+        0.01,
+        0.1,
+        1.0,
+        10.0
+      ],
+      "d_model": 5120,
+      "input_rows": 10997,
+      "kept_rows": 10997,
+      "max_iter": 2000,
+      "raw_coef_norm": 73.90984137076398,
+      "solver": "lbfgs",
+      "split_counts": {
+        "test": {
+          "n": 1650,
+          "negative_n": 728,
+          "positive_n": 922
+        },
+        "train": {
+          "n": 7698,
+          "negative_n": 3394,
+          "positive_n": 4304
+        },
+        "val": {
+          "n": 1649,
+          "negative_n": 727,
+          "positive_n": 922
+        }
+      },
+      "test_auc": 0.8633644013253559,
+      "train_projection_max": 0.02880662275816734,
+      "train_projection_mean": -0.12620883073590958,
+      "train_projection_min": -0.24292630198818904,
+      "train_projection_std": 0.03805837549787168,
+      "val_auc": 0.8501001053269163
+    },
+    "L40": {
+      "best_c": 0.01,
+      "c_values": [
+        0.01,
+        0.1,
+        1.0,
+        10.0
+      ],
+      "d_model": 5120,
+      "input_rows": 10997,
+      "kept_rows": 10997,
+      "max_iter": 2000,
+      "raw_coef_norm": 36.99632605905857,
+      "solver": "lbfgs",
+      "split_counts": {
+        "test": {
+          "n": 1650,
+          "negative_n": 728,
+          "positive_n": 922
+        },
+        "train": {
+          "n": 7698,
+          "negative_n": 3394,
+          "positive_n": 4304
+        },
+        "val": {
+          "n": 1649,
+          "negative_n": 727,
+          "positive_n": 922
+        }
+      },
+      "test_auc": 0.9068958427689449,
+      "train_projection_max": 0.5365025143515623,
+      "train_projection_mean": 0.15998976492521305,
+      "train_projection_min": -0.10329365474567637,
+      "train_projection_std": 0.09471853748031983,
+      "val_auc": 0.8963559273990219
+    },
+    "L45": {
+      "best_c": 0.01,
+      "c_values": [
+        0.01,
+        0.1,
+        1.0,
+        10.0
+      ],
+      "d_model": 5120,
+      "input_rows": 10997,
+      "kept_rows": 10997,
+      "max_iter": 2000,
+      "raw_coef_norm": 23.60268434554393,
+      "solver": "lbfgs",
+      "split_counts": {
+        "test": {
+          "n": 1650,
+          "negative_n": 728,
+          "positive_n": 922
+        },
+        "train": {
+          "n": 7698,
+          "negative_n": 3394,
+          "positive_n": 4304
+        },
+        "val": {
+          "n": 1649,
+          "negative_n": 727,
+          "positive_n": 922
+        }
+      },
+      "test_auc": 0.9179474267597912,
+      "train_projection_max": 0.33829259216246194,
+      "train_projection_mean": -0.15857444562484946,
+      "train_projection_min": -0.5708836976733834,
+      "train_projection_std": 0.15204045215539388,
+      "val_auc": 0.9060501809653674
+    },
+    "L53": {
+      "best_c": 0.01,
+      "c_values": [
+        0.01,
+        0.1,
+        1.0,
+        10.0
+      ],
+      "d_model": 5120,
+      "input_rows": 10997,
+      "kept_rows": 10997,
+      "max_iter": 2000,
+      "raw_coef_norm": 7.101078885093701,
+      "solver": "lbfgs",
+      "split_counts": {
+        "test": {
+          "n": 1650,
+          "negative_n": 728,
+          "positive_n": 922
+        },
+        "train": {
+          "n": 7698,
+          "negative_n": 3394,
+          "positive_n": 4304
+        },
+        "val": {
+          "n": 1649,
+          "negative_n": 727,
+          "positive_n": 922
+        }
+      },
+      "test_auc": 0.9400252675740746,
+      "train_projection_max": 1.1023164791606725,
+      "train_projection_mean": -0.31544337156383495,
+      "train_projection_min": -2.0574858154415514,
+      "train_projection_std": 0.5554674938781501,
+      "val_auc": 0.9329622523847745
+    }
+  },
+  "representation_type": "raw_direction",
+  "schema_version": 1,
+  "script": "scripts/stage2_qwen_subspace_erasure.py",
+  "selection": {
+    "available_counts": {
+      "h3_correct": 225,
+      "h3_incorrect": 225,
+      "h4_correct": 384,
+      "h4_incorrect": 366
+    },
+    "drop_parse_failed": true,
+    "heights": [
+      3,
+      4
+    ],
+    "per_height_label": 4,
+    "row_shard": "2/4",
+    "seed": 20260621,
+    "selected_counts": {
+      "h3_correct": 4,
+      "h3_incorrect": 4,
+      "h4_correct": 4,
+      "h4_incorrect": 4
+    },
+    "selected_rows": 16,
+    "shard_rows": 4,
+    "source_file": "results/full/with_errortype/qwen35_27b_infer_property.jsonl",
+    "split": "test",
+    "split_family": "s1"
+  },
+  "site_or_layer": "L16,L31,L40,L45,L53",
+  "slurm_job_id": "457193",
+  "split": "s1",
+  "split_family": "s1",
+  "splits": "results/stage2/splits.jsonl",
+  "summary": {
+    "by_condition": {
+      "baseline": {
+        "by_original_is_correct_strong": {
+          "false": {
+            "n": 16,
+            "parse_fail_rate": 0.0,
+            "strong_accuracy": 0.0
+          },
+          "true": {
+            "n": 16,
+            "parse_fail_rate": 0.0,
+            "strong_accuracy": 0.5625
+          }
+        },
+        "mean_quality": 0.7654513888888889,
+        "n_generations": 32,
+        "n_rows": 4,
+        "parse_fail_rate": 0.0,
+        "strong_accuracy": 0.28125,
+        "weak_accuracy": 0.90625
+      },
+      "erase_gaussian": {
+        "by_original_is_correct_strong": {
+          "false": {
+            "n": 16,
+            "parse_fail_rate": 0.0,
+            "strong_accuracy": 0.0
+          },
+          "true": {
+            "n": 16,
+            "parse_fail_rate": 0.0,
+            "strong_accuracy": 0.6875
+          }
+        },
+        "mean_quality": 0.7658234126984127,
+        "n_generations": 32,
+        "n_rows": 4,
+        "parse_fail_rate": 0.0,
+        "strong_accuracy": 0.34375,
+        "weak_accuracy": 0.96875
+      },
+      "erase_orthogonal": {
+        "by_original_is_correct_strong": {
+          "false": {
+            "n": 16,
+            "parse_fail_rate": 0.0,
+            "strong_accuracy": 0.25
+          },
+          "true": {
+            "n": 16,
+            "parse_fail_rate": 0.0,
+            "strong_accuracy": 0.5
+          }
+        },
+        "mean_quality": 0.7972470238095238,
+        "n_generations": 32,
+        "n_rows": 4,
+        "parse_fail_rate": 0.0,
+        "strong_accuracy": 0.375,
+        "weak_accuracy": 0.9375
+      },
+      "erase_raw": {
+        "by_original_is_correct_strong": {
+          "false": {
+            "n": 16,
+            "parse_fail_rate": 0.0,
+            "strong_accuracy": 0.125
+          },
+          "true": {
+            "n": 16,
+            "parse_fail_rate": 0.0,
+            "strong_accuracy": 0.8125
+          }
+        },
+        "mean_quality": 0.7981977513227513,
+        "n_generations": 32,
+        "n_rows": 4,
+        "parse_fail_rate": 0.0,
+        "strong_accuracy": 0.46875,
+        "weak_accuracy": 0.90625
+      }
+    },
+    "paired_vs_baseline": {
+      "erase_gaussian": {
+        "false_to_true": 0,
+        "mean_delta_p_strong": 0.0625,
+        "paired_n": 4,
+        "rows_degraded": 1,
+        "rows_improved": 1,
+        "std_delta_p_strong": 0.1875,
+        "true_to_false": 0
+      },
+      "erase_orthogonal": {
+        "false_to_true": 1,
+        "mean_delta_p_strong": 0.09375,
+        "paired_n": 4,
+        "rows_degraded": 1,
+        "rows_improved": 1,
+        "std_delta_p_strong": 0.240035804620894,
+        "true_to_false": 0
+      },
+      "erase_raw": {
+        "false_to_true": 1,
+        "mean_delta_p_strong": 0.1875,
+        "paired_n": 4,
+        "rows_degraded": 1,
+        "rows_improved": 2,
+        "std_delta_p_strong": 0.28641098093474,
+        "true_to_false": 0
+      }
+    }
+  },
+  "target_variable": "free_form_correctness",
+  "task": "infer_property"
+}

@@ -4,16 +4,17 @@ Purpose: manuscript-facing summary of the Qwen3.5-27B results relative to the Ge
 
 ## Recommended Current-Paper Claim
 
-Qwen3.5-27B supports the cross-model robustness of the predictive and recognition-vs-generation findings:
+Qwen3.5-27B supports the cross-model robustness of the predictive, recognition-vs-generation, and raw-axis non-necessity findings:
 
 - Correctness is strongly linearly readable from activations.
 - Metadata baselines are much weaker than the activation readout.
 - Public residual Qwen Scope dictionaries leave predictive reconstruction error.
 - Local Qwen MLP/transcoder stand-ins move much more signal into reconstruction.
 - Recognition-vs-generation rows show the same theme as Gemma, but the rowsets are not matched.
-- Qwen causal interventions and patching remain weak/null under current artifacts.
+- Qwen property raw-axis erasure does not degrade behavior over 512 generations.
+- Qwen steering and full-residual patching remain weak/null under current artifacts, and Qwen does not replicate Gemma's destructive-control erasure pattern.
 
-Use Qwen as robustness evidence for the predictive-causal gap. Do not claim Qwen replicates the Gemma reverse-patching asymmetry.
+Use Qwen as robustness evidence for the predictive-causal gap and for raw-axis non-necessity. Do not claim Qwen replicates the Gemma reverse-patching asymmetry or the Gemma destructive-control erasure profile.
 
 ## Table A: Predictive Readout and Metadata Controls
 
@@ -53,19 +54,21 @@ Manuscript wording should say that Qwen public residual SAEs reproduce the predi
 | Answer-property steering | Gold-polarity validation/test AUC `1.000`/`1.000`; 8-row smoke produced no answer-content changes and no strong-correctness flips. | Strong readout still failed as a simple content steering handle. |
 | Sparse bundle steering | L45 sparse probe AUC `0.802`; L53 sparse probe AUC `0.869`; 8-row smoke produced zero changes across bundle, shuffled, random, and orthogonal conditions. | Sparse features are predictive but not causal handles under tested steering. |
 | Single-feature steering | L53 features `7169`, `23296`, and `4212`, plus random controls, produced zero correctness changes. | Single-feature Qwen result mirrors the null steering theme. |
+| Multi-layer raw-direction erasure | Property HF-hook chain over 16 balanced h3/h4 rows and 512 generations: baseline P(strong)=`0.352`, erase_raw=`0.422`, dP=`+0.070` CI [`-0.031`,`+0.188`]; orthogonal dP=`+0.047`, Gaussian dP=`+0.016`; L53 probe AUC `0.940`. | Supports cross-model non-necessity of the raw readout axis; controls are also non-destructive, so the Gemma control-separation profile does not replicate here. |
 | Full-residual patching | Clean-to-corrupt and corrupt-to-clean subtype patching were weak/null at tested sites. | Do not claim Qwen replicates the Gemma reverse-patching asymmetry. |
 
 ## Suggested Appendix Caption
 
-Qwen3.5-27B reproduces the main predictive pattern from Gemma 3 27B: correctness is linearly readable from activations and remains well above metadata baselines, while public residual sparse dictionaries leave predictive reconstruction error. Local Qwen dictionary stand-ins show that high-fidelity component dictionaries can retain much of the signal, so the sparse-dictionary result is basis- and objective-sensitive rather than a blanket SAE failure. Qwen also supports the recognition-vs-generation theme, but the forced-choice and trajectory rowsets are not matched to Gemma. Qwen intervention and patching checks remain weak/null, so Qwen is robustness evidence for the predictive-causal gap, not a causal replication of the Gemma patching asymmetry.
+Qwen3.5-27B reproduces the main predictive pattern from Gemma 3 27B: correctness is linearly readable from activations and remains well above metadata baselines, while public residual sparse dictionaries leave predictive reconstruction error. Local Qwen dictionary stand-ins show that high-fidelity component dictionaries can retain much of the signal, so the sparse-dictionary result is basis- and objective-sensitive rather than a blanket SAE failure. Qwen also supports the recognition-vs-generation theme, but the forced-choice and trajectory rowsets are not matched to Gemma. The Qwen property erasure chain supports raw-axis non-necessity, while steering and patching checks remain weak/null. Qwen is therefore robustness evidence for the predictive-causal gap and readout-axis non-necessity, not a causal replication of the Gemma patching asymmetry or destructive-control erasure profile.
 
 ## Conservative Body Text
 
-As a cross-model robustness check, we repeated the main predictive and recognition analyses on Qwen3.5-27B using Qwen Scope residual dictionaries and local dictionary stand-ins. Qwen shows strong raw correctness readouts at L53 (S1 AUC `0.940` for property and `0.920` for subtype), well above metadata baselines. Public residual Qwen Scope reconstructions leave near-raw probes in reconstruction error, while local high-fidelity MLP/transcoder dictionaries shift much of the signal into reconstruction. Qwen also exhibits a recognition-vs-generation gap: on subtype h4 free-form-wrong rows, forced choice selects the gold answer in `43/64` cases, and a 14-row trajectory subset already prefers the hard-foil hypothesis over gold at prompt-only scoring. These Qwen results support the cross-model predictive pattern but should not be treated as a matched causal replication of the Gemma patching asymmetry.
+As a cross-model robustness check, we repeated the main predictive and recognition analyses on Qwen3.5-27B using Qwen Scope residual dictionaries and local dictionary stand-ins. Qwen shows strong raw correctness readouts at L53 (S1 AUC `0.940` for property and `0.920` for subtype), well above metadata baselines. Public residual Qwen Scope reconstructions leave near-raw probes in reconstruction error, while local high-fidelity MLP/transcoder dictionaries shift much of the signal into reconstruction. Qwen also exhibits a recognition-vs-generation gap: on subtype h4 free-form-wrong rows, forced choice selects the gold answer in `43/64` cases, and a 14-row trajectory subset already prefers the hard-foil hypothesis over gold at prompt-only scoring. Finally, Qwen property raw-axis erasure did not degrade behavior over 512 generations (dP=`+0.070`, CI [`-0.031`,`+0.188`]), though matched controls were also non-destructive. These Qwen results support the cross-model predictive pattern and raw-axis non-necessity, but should not be treated as a matched causal replication of the Gemma patching asymmetry or destructive-control erasure profile.
 
 ## Do Not Claim
 
 - Do not say Qwen proves the Gemma causal mechanism generalizes.
+- Do not say Qwen replicates Gemma destructive controls; it supports raw-axis non-necessity without the same control-separation profile.
 - Do not say the Qwen forced-choice result is a direct replication of Gemma `14/16`.
 - Do not call local Qwen MLP/transcoder/crosscoder dictionaries first-party Qwen Scope artifacts.
 - Do not claim `causally distributed` from current Qwen evidence.
@@ -84,3 +87,5 @@ As a cross-model robustness check, we repeated the main predictive and recogniti
 - `docs/qwen35_27b_infer_subtype_h4_hardfoil_forced_choice.json`
 - `docs/qwen_prefix_conditioned_margin_trajectory_h4_subset.json`
 - `docs/prefix_conditioned_margin_trajectory_comparison_gemma_qwen.json`
+- `docs/qwen35_subspace_erasure_27b_property_sampled_k8_summary.md`
+- `docs/qwen35_subspace_erasure_27b_property_sampled_k8.json`
