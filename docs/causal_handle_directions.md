@@ -630,3 +630,55 @@ Apply to every experiment above:
 3. ITI-style heads and dictionary clamping (cheap, reuse existing infra).
 4. Minimal-pair DAS and margin-circuit localization (heavier; run if 1-3
    leave the question open or a positive result needs mechanism).
+
+## Pre-Registered Manuscript-Hardening Jobs (2026-07-02)
+
+Two targeted runs before the report draft freezes claims 8 and 12. Both are
+power/robustness upgrades of already-landed designs; no new intervention
+family.
+
+### A. Property rank-k guard v2 (fresh-row expansion of claim 8)
+
+`scripts/stage2_rank_k_guard_v2.py`. The 457012 guard passed on the same 13
+rows that defined the compact core. This run re-tests sufficiency on rows
+that contributed to neither the PCA bases nor the original row selection.
+
+- Rows: 32 fresh property rows (16 h3 + 16 h4), drawn seeded from
+  `results/full/with_errortype/gemma3_27b_infer_property.jsonl` with
+  `parse_failed == False`, `is_correct_strong == False`, excluding the 13
+  composite-manifest rows. Run as 2 row-shards of 16 (interleaved for height
+  balance).
+- Arms (k=8, in-job references): `unhinted_baseline`; `hinted_baseline`
+  (hint-first prompt — per-row hint validation and ceiling);
+  `L30_concept_replace` (hinted states at concept positions — the in-job
+  subset-effect denominator); `L30_random_replace` (matched random-position
+  control); `rank4_loo_add_L30`; `rank8_loo_add_L30` (LOO PCA bases fit on
+  the shard's other 15 rows).
+- Primary metric: paired dP(strong) vs `unhinted_baseline`, row-level
+  bootstrap, shards pooled (32 rows).
+- Decision rule: claim 8 survives if pooled `rank4_loo` or `rank8_loo` CI
+  excludes zero AND reaches >=70% of the pooled in-job `L30_concept_replace`
+  effect. If `L30_concept_replace` itself fails on fresh rows (CI includes
+  zero), the compact-core claim gets scoped to recognition-gap-style rows —
+  report the scoping, not a guard failure. Secondary (reported either way):
+  the same contrasts restricted to hint-validated rows (per-row
+  `hinted_baseline` P(strong) >= 0.5), since sufficiency through hint deltas
+  presupposes the hint works on that row.
+
+### B. Subtype L35 targeted replication (resolves the claim-12 hedge)
+
+Existing `scripts/stage2_subtype_discriminator.py`, no code change: ladder
+`30,35,40,45`, `top-offtrio-layers=1` (selects L35), `rank-k=4`, k=8, same 16
+manifest rows, two seed shards (20260702 / 20260703; fresh random-position
+controls and generations), tagged outputs so job 457170 artifacts are
+untouched.
+
+- Primary metric: `L35_concept_replace` minus baseline, pooled across the two
+  new shards (effective k=16), row-level bootstrap; meta-check pooling with
+  the 457170 shard (effective k=24).
+- Decision rule: pooled-new CI excluding zero lands the off-trio
+  layer-mismatch repair and upgrades claim 12's wording (subtype carrier
+  reachable at L35). CI including zero with half-width <= ~0.10 closes the
+  hedge as a bounded null: residual-state concept replacement is insufficient
+  on subtype at all tested layers, and L35 stops being a replication target.
+  The matched `L35_random_replace` must stay null for either reading.

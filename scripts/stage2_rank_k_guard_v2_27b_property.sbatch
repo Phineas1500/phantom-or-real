@@ -6,9 +6,9 @@
 #SBATCH --cpus-per-task=8
 #SBATCH --mem=180G
 #SBATCH --time=4:00:00
-#SBATCH --job-name=subtype_disc
-#SBATCH --output=slurm_logs/subtype_disc_%j.out
-#SBATCH --error=slurm_logs/subtype_disc_%j.err
+#SBATCH --job-name=rank_k_guard_v2
+#SBATCH --output=slurm_logs/rank_k_guard_v2_%j.out
+#SBATCH --error=slurm_logs/rank_k_guard_v2_%j.err
 
 set -euo pipefail
 cd /scratch/scholar/$USER/phantom-or-real
@@ -26,18 +26,12 @@ export WANDB_MODE=disabled
 if [ -f .env ]; then set -a; source .env; set +a; fi
 echo "Node: $(hostname)"; echo "Started: $(date)"
 
-TAG="${SUBTYPE_DISC_TAG:-}"
-python -u scripts/stage2_subtype_discriminator.py \
-    --samples-per-row "${SUBTYPE_DISC_SAMPLES:-8}" \
-    --ladder-layers "${SUBTYPE_DISC_LADDER:-15,20,25,30,35,40,45,50,53}" \
-    --old-trio-layers "${SUBTYPE_DISC_OLD_TRIO:-30,40,45}" \
-    --top-offtrio-layers "${SUBTYPE_DISC_TOP_OFFTRIO:-3}" \
-    --rank-k "${SUBTYPE_DISC_RANK_K:-4}" \
-    --sample-seed "${SUBTYPE_DISC_SEED:-20260620}" \
-    --out-jsonl "results/stage2/erasure/subtype_discriminator_27b${TAG}.jsonl" \
-    --states-output "results/stage2/erasure/subtype_discriminator_27b${TAG}_states.npz" \
-    --output "docs/subtype_discriminator_27b${TAG}.json" \
-    --summary-md "docs/subtype_discriminator_27b${TAG}_summary.md" \
+python -u scripts/stage2_rank_k_guard_v2.py \
+    --shard-index "${GUARD_V2_SHARD_INDEX:-0}" \
+    --shard-count "${GUARD_V2_SHARD_COUNT:-2}" \
+    --per-height "${GUARD_V2_PER_HEIGHT:-16}" \
+    --rank-list "${GUARD_V2_RANKS:-4,8}" \
+    --samples-per-row "${GUARD_V2_SAMPLES:-8}" \
     --n-devices 2 --n-ctx 4096 --dtype bfloat16 --load-mode no-processing
 
 echo "Finished: $(date)"
