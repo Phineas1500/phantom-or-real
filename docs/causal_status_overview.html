@@ -174,7 +174,15 @@
       orthogonal erasure destroys correctness even among outputs that still parse
       (P(correct&nbsp;|&nbsp;parsed) 0.41 → 0.03). The clamp targets each direction's global
       scalar train-projection mean (computed at the last prompt position), applied at every
-      position. The machinery is proven potent; the correctness axis is not load-bearing.</figcaption>
+      position. The correctness axis is not load-bearing. <b>Control-matching caveat (jobs
+      457207–457210):</b> the pre-registered variance test fired the constant-offset branch —
+      the raw direction carries far less within-forward-pass positional variance than the
+      matched controls (L15: 10.7 vs 818/382 sd²), and a by-construction between-run height
+      direction (~zero variance) erases just as harmlessly (−0.047, CI straddles zero) while
+      orthogonal at full scale stays destructive (−0.344, CI excludes zero) with monotone
+      dose-response. So control destructiveness proves the erasure family has behavioral teeth
+      at matched norm, not that the correctness axis is specially inert among same-norm
+      directions: harmlessness tracks low within-run projection variance.</figcaption>
     </figure>
 
     <div class="verdict">
@@ -788,11 +796,14 @@
         <td>—</td>
       </tr>
       <tr>
-        <td><span class="chip next">next</span></td>
-        <td>Erasure control refinements: between-run control direction, dose-response,
-            within-run variance reporting</td>
-        <td>Rule out the constant-offset account of the control asymmetry (reviewer push)</td>
-        <td>~1 day</td>
+        <td><span class="chip done">done</span></td>
+        <td>Erasure control matching (jobs 457207–457210, 576 gens): between-run height control,
+            dose-response, within-run variance telemetry</td>
+        <td>Constant-offset branch fired: raw and height (both low within-run variance) erase
+            harmlessly; orthogonal_s1 destructive (−0.344 CI [−0.55, −0.16]) with monotone
+            dose-response. Wording softened: controls prove the family potent at matched norm,
+            not the raw axis specially inert</td>
+        <td>—</td>
       </tr>
       <tr>
         <td><span class="chip done">done</span></td>

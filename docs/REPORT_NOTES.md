@@ -15,6 +15,15 @@ final report is easier to assemble.
 
 ## Running Notes
 
+### 2026-07-02
+
+#### Erasure Control-Matching Verdict (results landed 2026-06-17, analyzed today)
+
+- Jobs `457207`-`457210` completed the reviewer-insurance control-matching run and wrote `docs/erasure_control_matching_27b_property_k4_shard{0..3}of4.json` plus row-level JSONLs and direction stacks under `results/stage2/erasure/`. The shards finished after the 2026-06-16 commits and sat unanalyzed until now; aggregate written to `docs/erasure_control_matching_27b_property_k4_summary.md` (576 generations; 16 balanced S1 h3/h4 property rows x 9 arms x k=4).
+- Behavioral: raw erasure null (dP `+0.031` CI [`-0.094`,`+0.172`]); between-run height-control erasure also null (`-0.047` CI [`-0.188`,`+0.125`]); orthogonal_s1 destructive (`-0.344` CI [`-0.547`,`-0.156`], 4/16 true-to-false) and gaussian_s1 destructive (`-0.234` CI [`-0.438`,`-0.016`]) with monotone dose-response (both controls null-ish at scale 0.5). `P(strong|parsed)` reproduces precision-vs-demolition: orthogonal 0.391->0.019, Gaussian damage substantially format (parse fail 0.50).
+- Telemetry fired the pre-registered constant-offset branch: raw within-run positional projection variance is far below the controls' where variance is large (L15 `10.65` vs `818`/`382` sd²; L30 `0.84` vs `3.1`/`75.3`), and the height direction has ~zero within-run variance and erases harmlessly.
+- Wording consequence recorded in claim 2 (claims table): keep non-necessity of the readout axis; cite control destructiveness as the erasure family having behavioral teeth at matched norm, not as the raw axis being specially inert among same-norm directions — harmlessness tracks low within-forward-pass projection variance.
+
 ### 2026-06-16
 
 #### Qwen Property Subspace-Erasure Replication

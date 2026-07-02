@@ -284,6 +284,16 @@ five fronts. Actions, in priority order:
    constant-offset account is live and the between-run control is mandatory
    before any writeup; if comparable, the current potent-machinery
    interpretation strengthens. Either outcome is reportable.
+   DONE (jobs 457207-457210, docs/erasure_control_matching_27b_property_k4_summary.md):
+   the constant-offset branch fired. Raw within-run projection variance is far
+   below the controls' at the high-variance layers (L15 10.65 vs 818/382 sd²;
+   L30 0.84 vs 3.1/75.3), and the between-run height control — near-zero
+   within-run variance by construction — erases as harmlessly as raw (dP
+   -0.047 vs raw +0.031, both CIs straddle zero), while orthogonal_s1 remains
+   destructive (-0.344, CI excludes zero) with monotone dose-response and the
+   precision-vs-demolition split reproduced. Consequence: keep the
+   non-necessity claim; do not cite control destructiveness as evidence the
+   raw axis is specially inert among same-norm directions.
 2. **Sigma accounting.** DONE: row-level cluster bootstrap is now the primary
    test in both erasure summaries; raw CIs straddle zero, all control CIs
    exclude zero; the null rules out effects above ~0.1 at n=16 rows. Naive

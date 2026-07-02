@@ -26,6 +26,7 @@ Recommended current-paper use:
 - Include Qwen recognition-vs-generation evidence with careful non-matched wording: Gemma `14/16` property h3/h4 hard-foil rows and Qwen `43/64` subtype h4 hard-foil rows support the same theme but are not direct replications.
 - Include the Qwen prefix-conditioned result as supporting trajectory evidence only: Qwen h4 subtype hard-foil selected-vs-gold is nonnegative on `14/14` rows at checkpoint 0, and gold-vs-hard-foil is nonnegative on `0/14` rows.
 - Use Qwen to support raw-axis non-necessity on property, but do not use it to claim the Gemma patching asymmetry or destructive-control erasure profile generalizes. Qwen patching remains weak/null under current artifacts.
+- Control-matching caveat (jobs 457207-457210; docs/erasure_control_matching_27b_property_k4_summary.md): the pre-registered variance test fired the constant-offset branch. The raw direction carries far less within-run positional projection variance than the matched controls, and a by-construction between-run height direction erases as harmlessly as raw while orthogonal at full scale stays destructive with monotone dose-response. Cite Gemma control destructiveness as evidence the erasure family has behavioral teeth at matched norm, not as evidence the raw axis is specially inert among same-norm directions.
 - Keep Qwen local dictionaries labeled as local stand-ins, not first-party Qwen Scope artifacts.
 
 A conservative current-paper sentence:
