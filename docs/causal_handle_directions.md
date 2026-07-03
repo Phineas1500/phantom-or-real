@@ -674,7 +674,21 @@ that contributed to neither the PCA bases nor the original row selection.
   `hinted_baseline` P(strong) >= 0.5), since sufficiency through hint deltas
   presupposes the hint works on that row.
 
-### B. Subtype L35 targeted replication (resolves the claim-12 hedge) — DELIVERY FAILED, RESUBMITTED (2026-07-03)
+### B. Subtype L35 targeted replication (resolves the claim-12 hedge) — DONE (jobs 458387/458388, 2026-07-03)
+
+**Outcome: positive branch fires.** Pooled new seeds (16 rows, k=16):
+`L35_concept_replace` +0.117 [+0.008, +0.254], CI excludes zero;
+`L35_random_replace` null (+0.023 [−0.004, +0.062]); old-trio full replace
+null in-job (+0.023). Meta-pool with 457170 (k=24): +0.112 [+0.003, +0.260].
+The subtype carrier is reachable at L35 — the old-trio nulls were layer
+mismatch. Caveats for wording: modest (~quarter of property's repair),
+row-sparse (3/13 addressable rows carry it), `L35_rank4_loo_add` only
+marginal (+0.047) so no compact core landed on subtype. Full verdict in
+`docs/subtype_l35_replication_pooled_summary.md`.
+
+Delivery note: the first submission (jobs 458376/458377) lost the ladder to
+sbatch `--export` comma-splitting and ran old-trio-only; rerun with env vars
+set in the submitting shell.
 
 Jobs 458376/458377 never ran the L35 arm: the submit line passed
 `SUBTYPE_DISC_LADDER=30,35,40,45` inside `sbatch --export=ALL,...`, and

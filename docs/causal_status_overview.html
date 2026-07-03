@@ -72,7 +72,7 @@
     <h1>Phantom or Real — Where the Causality Hunt Stands</h1>
     <p>We could always <em>read</em> whether the model was about to be right. This week we learned why we
        could never <em>steer</em> it: the thing we were reading turns out to be a gauge, not a lever.</p>
-    <div class="date">Status: July 3, 2026 &nbsp;·&nbsp; Gemma&nbsp;3&nbsp;27B + Qwen3.5&nbsp;27B, InAbHyD property + subtype &nbsp;·&nbsp; Compact L30 core passes the fresh-row guard (rank-8 = 91% of concept-replace on 26 unseen rows); erasure control matching fired the constant-offset branch (claim-2 wording softened); subtype old-trio null replicated on fresh seeds; L35 replication re-running (jobs 458387/458388)</div>
+    <div class="date">Status: July 3, 2026 &nbsp;·&nbsp; Gemma&nbsp;3&nbsp;27B + Qwen3.5&nbsp;27B, InAbHyD property + subtype &nbsp;·&nbsp; Compact L30 core passes the fresh-row guard (rank-8 = 91% of concept-replace on 26 unseen rows); subtype carrier reachable at L35 (+0.117, pre-registered positive branch — old-trio nulls were layer mismatch); erasure control matching fired the constant-offset branch (claim-2 wording softened); all paper slots filled — drafting next</div>
   </div>
 </header>
 
@@ -646,8 +646,8 @@
 
 <!-- ============ 9.5 SUBTYPE SCOPE ============ -->
 <section>
-  <div class="kicker">Part 9½ · The scope finding — on subtype, the patch is null</div>
-  <h2>Same hint, same machinery, different route</h2>
+  <div class="kicker">Part 9½ · The scope finding — on subtype, the old-trio patch is null, but L35 repairs</div>
+  <h2>Same hint, same machinery, different depth</h2>
   <div class="card">
     <p>The localization replication on the subtype task landed in its pre-registered
        <b>task-dependence bin</b>: the full-block hint-state patch is null (+0.039,
@@ -674,9 +674,20 @@
     </div>
     <p><b>Update (July 3):</b> the old-trio null now replicates on two fresh seeds (+0.047 and
        +0.000, CIs spanning zero — jobs 458376/458377, which ran old-trio-only after sbatch's
-       <code>--export</code> comma-splitting silently dropped the L35 ladder). The targeted L35
-       replication was resubmitted as jobs 458387/458388 with the pre-registered rule
-       unchanged.</p>
+       <code>--export</code> comma-splitting silently dropped the L35 ladder).</p>
+    <div class="verdict">
+      <b>And the L35 replication (jobs 458387/458388) fires the pre-registered positive
+      branch:</b> pooled over two fresh seeds (16 rows, k=16), L35 concept replacement repairs
+      <b>+0.117 [CI +0.008, +0.254]</b> with the matched random control null (+0.023) and the
+      old trio null again in-job; the k=24 meta-pool with job 457170 concurs (+0.112
+      [+0.003, +0.260]). <b>The subtype carrier is reachable at L35 — the old-trio nulls were
+      layer mismatch, not task-level absence of the variable.</b> Caveats carried into the
+      paper: the repair is modest (~a quarter of property's) and row-sparse (3 of 13
+      addressable rows carry it: 0→0.31, 0→0.62, 0.06→0.94), and the rank-4 LOO add is only
+      marginal (+0.047) — the focus-state variable exists on subtype at a different depth,
+      but no compact core is landed there. Section 5.6 now reads "different layer, weaker
+      handle," not "non-transfer."
+    </div>
   </div>
 </section>
 
@@ -865,13 +876,15 @@
         <td>—</td>
       </tr>
       <tr>
-        <td><span class="chip next">running</span></td>
-        <td>Subtype L35 targeted replication — resubmitted as jobs 458387/458388 after the
-            first attempt (458376/458377) lost the ladder to sbatch's --export comma-splitting
-            and ran old-trio-only (bonus: fresh-seed old-trio nulls +0.047 / +0.000)</td>
-        <td>Pre-registered (unchanged): pooled CI excluding zero lands the off-trio repair and
-            upgrades claim 12; a bounded null closes the L35 hedge for good</td>
-        <td>~1.6h/shard</td>
+        <td><span class="chip done">done</span></td>
+        <td>Subtype L35 targeted replication (jobs 458387/458388, after the first attempt lost
+            the ladder to sbatch's --export comma-splitting and ran old-trio-only — bonus:
+            fresh-seed old-trio nulls +0.047 / +0.000)</td>
+        <td><b>Positive branch fires — claim 12 upgraded.</b> Pooled L35 concept replace
+            +0.117 [+0.008, +0.254] at k=16 (meta-pool k=24: +0.112); random control and
+            old trio null. Subtype carrier reachable at L35; modest and row-sparse
+            (3/13 addressable rows), no subtype compact core (rank-4 add marginal)</td>
+        <td>—</td>
       </tr>
       <tr>
         <td><span class="chip done">done</span></td>
@@ -965,8 +978,9 @@
   docs/qwen35_subspace_erasure_27b_property_sampled_k8_summary.md ·
   docs/subtype_discriminator_27b_summary.md ·
   docs/erasure_control_matching_27b_property_k4_summary.md ·
+  docs/subtype_l35_replication_pooled_summary.md ·
   docs/causal_handle_directions.md · docs/next_paper_causal_abstraction_dashboard.md.
-  All numbers are from run artifacts (jobs 456912–456918, 456963–456966, 456968, 456990, 456999, 457002, 457005, 457009, 457012, 457170, 457191–457194, 457207–457210, 458374–458377) and the offline rank-core geometry rider.
+  All numbers are from run artifacts (jobs 456912–456918, 456963–456966, 456968, 456990, 456999, 457002, 457005, 457009, 457012, 457170, 457191–457194, 457207–457210, 458374–458377, 458387/458388) and the offline rank-core geometry rider.
 </footer>
 
 </body>

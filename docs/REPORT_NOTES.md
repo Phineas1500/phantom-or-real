@@ -34,6 +34,22 @@ final report is easier to assemble.
   is sufficient in-distribution (77% on the original guard) but under-transfers
   to fresh rows. Hint-validated slice (23/26 rows) concordant (89%).
 
+#### Subtype L35 Replication — Positive Branch Fires (jobs 458387/458388)
+
+- Rerun completed same day (1h37 each). Ladder correctly `[30,35,40,45]`,
+  L35 selected off-trio in both seeds. Pooled new seeds (16 manifest rows,
+  k=16): `L35_concept_replace` dP=`+0.117` CI [`+0.008`,`+0.254`] — CI
+  excludes zero, pre-registered positive branch. `L35_random_replace` null
+  (`+0.023`); old-trio full replace null in-job (`+0.023`). Meta-pool with
+  457170 (k=24): `+0.112` CI [`+0.003`,`+0.260`].
+- Claim-12 upgrade: subtype carrier reachable at L35; the repeated old-trio
+  nulls were layer mismatch, not task-level absence of the variable.
+- Wording caveats: modest effect (~quarter of property's L30 repair),
+  row-sparse (3/13 addressable rows: 3080 0→0.31, 3103 0→0.62, 3137
+  0.06→0.94; 10 rows never move at k=16), and `L35_rank4_loo_add` only
+  marginal (`+0.047`) — no compact core landed on subtype. Pooled verdict:
+  `docs/subtype_l35_replication_pooled_summary.md`.
+
 #### Subtype L35 Replication — Delivery Bug, Resubmitted
 
 - Jobs `458376`/`458377` ran old-trio-only: `sbatch --export=ALL,SUBTYPE_DISC_LADDER=30,35,40,45,...`
