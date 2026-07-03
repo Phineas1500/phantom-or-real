@@ -81,9 +81,9 @@ held-out, and outside the readable subspace (claims 8-9) → scope honestly
 | 5.1 Readable everywhere | 1, 3 | AUCs across models/scramble; INLP redundancy |
 | 5.2 Needed nowhere | 2 | raw/height erasures null vs destructive controls; constant-offset caveat wording per claim 2 |
 | 5.3 The causal variable | 4, 5, 6, 10 | recognition gap; +0.491 repair; ~6x positional potency |
-| 5.4 Compact core | 7, 8 | token-route null; rank4_loo +0.192 (77%); rank8_loo 92%; **slot: guard v2 fresh-row result (jobs 458374/458375)** |
+| 5.4 Compact core | 7, 8 | token-route null; rank4_loo +0.192 (77%); rank8_loo 92%; guard v2 fresh rows (458374/458375): rank8_loo +0.231 = 91% of concept-replace, rule passed; rank-4 under-transfers (57%) — state rank-8 as the portable core |
 | 5.5 Geometry | 9 | INLP overlap below random null; dictionary-visible, not sparse-small |
-| 5.6 Scope | 11, 12 | Qwen raw-axis non-necessity only; subtype non-transfer; **slot: L35 replication verdict (jobs 458376/458377)** |
+| 5.6 Scope | 11, 12 | Qwen raw-axis non-necessity only; subtype non-transfer; old-trio null replicated on fresh seeds (458376/458377); **slot: L35 replication verdict (resubmitted jobs 458387/458388)** |
 
 - Both slots have pre-registered branches ("Pre-Registered
   Manuscript-Hardening Jobs" in `docs/causal_handle_directions.md`); either
@@ -115,7 +115,8 @@ held-out, and outside the readable subspace (claims 8-9) → scope honestly
 ## Assembly order
 
 1. Freeze claims 1-10 text from the claims table wording rules (done rows).
-2. Land jobs 458374-458377; fill the two slots per pre-registered branches.
+2. Guard v2 slot filled (458374/458375 passed). Land L35 resubmission
+   (458387/458388) and fill the 5.6 slot per the pre-registered branches.
 3. Draft 5.2 with the softened control wording (claim 2 caveat) from the
    start — do not draft the potent-machinery version and patch it later.
 4. Negative-results appendix from the dashboard rows (status=completed nulls).

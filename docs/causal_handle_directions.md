@@ -637,7 +637,16 @@ Two targeted runs before the report draft freezes claims 8 and 12. Both are
 power/robustness upgrades of already-landed designs; no new intervention
 family.
 
-### A. Property rank-k guard v2 (fresh-row expansion of claim 8)
+### A. Property rank-k guard v2 (fresh-row expansion of claim 8) — DONE (jobs 458374/458375, 2026-07-03)
+
+**Outcome: claim 8 survives on fresh rows.** Pooled 26 rows (3 per shard
+skipped for missing concept positions): `rank8_loo` +0.231 [+0.111, +0.365],
+91% of the pooled `L30_concept_replace` effect (+0.255 [+0.111, +0.413]) —
+passes both prongs. `rank4_loo` +0.144 [+0.038, +0.264] excludes zero but
+reaches only 57% — rank-4 under-transfers; rank-8 is the fresh-row-portable
+core. `L30_random_replace` null (+0.038, CI spans zero). Hint-validated
+slice (23 rows) concordant: rank-8 at 89%. Full verdict in
+`docs/rank_k_guard_v2_27b_property_pooled_summary.md`.
 
 `scripts/stage2_rank_k_guard_v2.py`. The 457012 guard passed on the same 13
 rows that defined the compact core. This run re-tests sufficiency on rows
@@ -665,7 +674,18 @@ that contributed to neither the PCA bases nor the original row selection.
   `hinted_baseline` P(strong) >= 0.5), since sufficiency through hint deltas
   presupposes the hint works on that row.
 
-### B. Subtype L35 targeted replication (resolves the claim-12 hedge)
+### B. Subtype L35 targeted replication (resolves the claim-12 hedge) — DELIVERY FAILED, RESUBMITTED (2026-07-03)
+
+Jobs 458376/458377 never ran the L35 arm: the submit line passed
+`SUBTYPE_DISC_LADDER=30,35,40,45` inside `sbatch --export=ALL,...`, and
+sbatch splits `--export` on commas, so the ladder collapsed to `[30]` (plus
+the auto-appended old trio) and no off-trio layer was selected. The two runs
+are accidental old-trio replicates on fresh seeds — old-trio full replace
++0.047 [−0.164, +0.258] (seedA) and +0.000 [−0.227, +0.227] (seedB), both
+null, consistent with the original old-trio null. The L35 question is
+untouched; design, seeds, and decision rule below are unchanged. Resubmitted
+with env vars set in the submitting shell (no `--export` commas), tags
+`_l35rep2_seedA` / `_l35rep2_seedB`.
 
 Existing `scripts/stage2_subtype_discriminator.py`, no code change: ladder
 `30,35,40,45`, `top-offtrio-layers=1` (selects L35), `rank-k=4`, k=8, same 16

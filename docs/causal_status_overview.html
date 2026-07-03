@@ -72,7 +72,7 @@
     <h1>Phantom or Real — Where the Causality Hunt Stands</h1>
     <p>We could always <em>read</em> whether the model was about to be right. This week we learned why we
        could never <em>steer</em> it: the thing we were reading turns out to be a gauge, not a lever.</p>
-    <div class="date">Status: June 16, 2026 &nbsp;·&nbsp; Gemma&nbsp;3&nbsp;27B + Qwen3.5&nbsp;27B, InAbHyD property + subtype &nbsp;·&nbsp; Gemma erasure replicated on both tasks; Qwen property erasure supports raw-axis non-necessity; property focus-state repair has a held-out compact L30 causal core; subtype capture-ladder follow-up found large writes but no decisive off-trio residual-state repair</div>
+    <div class="date">Status: July 3, 2026 &nbsp;·&nbsp; Gemma&nbsp;3&nbsp;27B + Qwen3.5&nbsp;27B, InAbHyD property + subtype &nbsp;·&nbsp; Compact L30 core passes the fresh-row guard (rank-8 = 91% of concept-replace on 26 unseen rows); erasure control matching fired the constant-offset branch (claim-2 wording softened); subtype old-trio null replicated on fresh seeds; L35 replication re-running (jobs 458387/458388)</div>
   </div>
 </header>
 
@@ -672,6 +672,64 @@
       robust transfer route. Claims 5–6 therefore remain <b>property-scoped</b>, with L35 as
       a possible replication target rather than a landed subtype causal handle.
     </div>
+    <p><b>Update (July 3):</b> the old-trio null now replicates on two fresh seeds (+0.047 and
+       +0.000, CIs spanning zero — jobs 458376/458377, which ran old-trio-only after sbatch's
+       <code>--export</code> comma-splitting silently dropped the L35 ladder). The targeted L35
+       replication was resubmitted as jobs 458387/458388 with the pre-registered rule
+       unchanged.</p>
+  </div>
+</section>
+
+<!-- ============ 9.75 FRESH-ROW GUARD ============ -->
+<section>
+  <div class="kicker">Part 9¾ · The fresh-row guard — the compact core is not an artifact of its 13 rows (jobs 458374/458375)</div>
+  <h2>Rank-8 carries 91% of the repair to rows the core never saw</h2>
+  <div class="card">
+    <p>Every prior compact-core number came from the same 13 composite-manifest rows that
+       defined the PCA bases. Guard v2 re-ran the whole design on <b>26 fresh strong-incorrect
+       h3/h4 rows</b> (seeded selection, composite rows excluded; 1,248 generations, k=8,
+       in-job leave-one-row-out bases), with the pre-registered rule fixed before unblinding:
+       survive if a rank-k LOO CI excludes zero <em>and</em> reaches ≥70% of the in-job
+       concept-replace effect.</p>
+    <figure>
+      <svg viewBox="0 0 620 250" width="100%" role="img" aria-label="Fresh-row guard arms, P(strong)">
+        <line x1="60" y1="190" x2="600" y2="190" stroke="#c9d3df"/>
+        <line x1="60" y1="40"  x2="600" y2="40"  stroke="#eef2f7"/>
+        <text x="54" y="194" text-anchor="end" font-size="12" fill="#5b6b7f">0.0</text>
+        <text x="54" y="44"  text-anchor="end" font-size="12" fill="#5b6b7f">1.0</text>
+        <rect x="75"  y="172"    width="58" height="18"    fill="#9aa7b6" rx="3"/>
+        <rect x="165" y="59.5"   width="58" height="130.5" fill="#0e9488" opacity="0.45" rx="3"/>
+        <rect x="255" y="133.75" width="58" height="56.25" fill="#2563ab" rx="3"/>
+        <rect x="345" y="137.35" width="58" height="52.65" fill="#0e9488" rx="3"/>
+        <rect x="435" y="150.4"  width="58" height="39.6"  fill="#d99114" rx="3"/>
+        <rect x="525" y="166.15" width="58" height="23.85" fill="#9aa7b6" opacity="0.7" rx="3"/>
+        <g font-size="13" text-anchor="middle" fill="#1a2433" font-weight="bold">
+          <text x="104" y="166">0.120</text><text x="194" y="53">0.870</text>
+          <text x="284" y="127">0.375</text><text x="374" y="131">0.351</text>
+          <text x="464" y="144">0.264</text><text x="554" y="160">0.159</text>
+        </g>
+        <g font-size="11.5" text-anchor="middle" fill="#5b6b7f">
+          <text x="104" y="210">unhinted</text><text x="104" y="224">baseline</text>
+          <text x="194" y="210">hinted</text><text x="194" y="224">ceiling</text>
+          <text x="284" y="210">L30 concept</text><text x="284" y="224">replace</text>
+          <text x="374" y="210">rank-8 LOO</text><text x="374" y="224">add</text>
+          <text x="464" y="210">rank-4 LOO</text><text x="464" y="224">add</text>
+          <text x="554" y="210">random</text><text x="554" y="224">replace</text>
+        </g>
+      </svg>
+      <figcaption>Pooled P(strong) across 26 fresh rows. Deltas vs unhinted (row-cluster
+      bootstrap): concept replace +0.255 [+0.11, +0.41]; <b>rank-8 LOO +0.231 [+0.11, +0.37]
+      — 91% of the concept-replace effect, rule passes</b>; rank-4 LOO +0.144 = 57%, under the
+      70% bar; random replace null (+0.038). Hint-validated slice (23/26 rows) concordant at
+      89%.</figcaption>
+    </figure>
+    <div class="verdict">
+      <b>Claim 8 survives out-of-distribution, with sharpened wording:</b> the compact causal
+      core transfers to rows disjoint from its entire development history, but <b>rank-8 is the
+      portable basis</b> — rank-4 (77% in-distribution on the original guard) drops to 57% on
+      fresh rows. The paper states a low-dimensional core with useful structure through rank 8,
+      not intrinsic dimension = 4.
+    </div>
   </div>
 </section>
 
@@ -796,19 +854,23 @@
         <td>—</td>
       </tr>
       <tr>
-        <td><span class="chip next">running</span></td>
-        <td>Rank-k guard v2 (jobs 458374/458375): fresh-row expansion of the compact-core claim —
-            32 new baseline-wrong rows, in-job concept-replace denominator, rank-4/8 LOO adds</td>
-        <td>Pre-registered: claim 8 survives if pooled LOO CI excludes zero at ≥70% of the
-            in-job subset effect; a fresh-row concept-replace null scopes the claim instead</td>
-        <td>~2h/shard</td>
+        <td><span class="chip done">done</span></td>
+        <td>Rank-k guard v2 (jobs 458374/458375, 1,248 gens): 26 fresh baseline-wrong rows
+            disjoint from the core's development set, in-job concept-replace denominator,
+            rank-4/8 LOO adds</td>
+        <td><b>Pre-registered rule passes — claim 8 survives on fresh rows.</b> Concept-replace
+            +0.255 CI [+0.11, +0.41]; rank8_loo +0.231 CI [+0.11, +0.37] = 91% of the subset
+            effect; rank4_loo only 57% (under-transfers) — rank-8 is the portable core.
+            Random-replace null; hint-validated slice concordant (89%)</td>
+        <td>—</td>
       </tr>
       <tr>
         <td><span class="chip next">running</span></td>
-        <td>Subtype L35 targeted replication (jobs 458376/458377): two fresh-seed shards,
-            L35-only arms, pooled k=16 (+457170 → k=24)</td>
-        <td>Pre-registered: pooled CI excluding zero lands the off-trio repair and upgrades
-            claim 12; a bounded null closes the L35 hedge for good</td>
+        <td>Subtype L35 targeted replication — resubmitted as jobs 458387/458388 after the
+            first attempt (458376/458377) lost the ladder to sbatch's --export comma-splitting
+            and ran old-trio-only (bonus: fresh-seed old-trio nulls +0.047 / +0.000)</td>
+        <td>Pre-registered (unchanged): pooled CI excluding zero lands the off-trio repair and
+            upgrades claim 12; a bounded null closes the L35 hedge for good</td>
         <td>~1.6h/shard</td>
       </tr>
       <tr>
@@ -898,11 +960,13 @@
   docs/focus_state_composite_27b_property_summary.md ·
   docs/kv_hint_span_27b_property_summary.md ·
   docs/rank_k_guard_27b_property_summary.md ·
+  docs/rank_k_guard_v2_27b_property_pooled_summary.md ·
   docs/rank_core_geometry_27b_property_summary.md ·
   docs/qwen35_subspace_erasure_27b_property_sampled_k8_summary.md ·
   docs/subtype_discriminator_27b_summary.md ·
+  docs/erasure_control_matching_27b_property_k4_summary.md ·
   docs/causal_handle_directions.md · docs/next_paper_causal_abstraction_dashboard.md.
-  All numbers are from run artifacts (jobs 456912–456918, 456963–456966, 456968, 456990, 456999, 457002, 457005, 457009, 457012, 457170, 457191–457194) and the offline rank-core geometry rider.
+  All numbers are from run artifacts (jobs 456912–456918, 456963–456966, 456968, 456990, 456999, 457002, 457005, 457009, 457012, 457170, 457191–457194, 457207–457210, 458374–458377) and the offline rank-core geometry rider.
 </footer>
 
 </body>

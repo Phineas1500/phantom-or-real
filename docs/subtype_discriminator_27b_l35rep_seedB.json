@@ -1,0 +1,152 @@
+{
+  "arms": [
+    {
+      "basis_mode": null,
+      "kind": "none",
+      "label": "baseline",
+      "layers": [],
+      "rank_k": null,
+      "reference": "none"
+    },
+    {
+      "basis_mode": null,
+      "kind": "full_replace",
+      "label": "old_trio_full_replace_L30_40_45",
+      "layers": [
+        30,
+        40,
+        45
+      ],
+      "rank_k": null,
+      "reference": "baseline"
+    }
+  ],
+  "basis_records": [],
+  "capture_ladder": [
+    {
+      "is_old_trio": true,
+      "layer": 30,
+      "n_positions": 160,
+      "n_rows": 16,
+      "position_delta_norm_max": 12545.762428569473,
+      "position_delta_norm_mean": 4806.605306249792,
+      "position_delta_norm_median": 4228.753739586529,
+      "position_delta_norm_rms": 5319.7377076830135,
+      "row_max_delta_norm_mean": 9369.180615871024,
+      "row_mean_delta_norm_mean": 4837.992145798841,
+      "row_mean_delta_norm_median": 4671.476798161473
+    },
+    {
+      "is_old_trio": true,
+      "layer": 40,
+      "n_positions": 160,
+      "n_rows": 16,
+      "position_delta_norm_max": 22706.123570126976,
+      "position_delta_norm_mean": 6659.199823947713,
+      "position_delta_norm_median": 6196.085881701116,
+      "position_delta_norm_rms": 7169.049008788243,
+      "row_max_delta_norm_mean": 11341.20278877769,
+      "row_mean_delta_norm_mean": 6602.563056473569,
+      "row_mean_delta_norm_median": 6310.656681280509
+    },
+    {
+      "is_old_trio": true,
+      "layer": 45,
+      "n_positions": 160,
+      "n_rows": 16,
+      "position_delta_norm_max": 27466.834092934256,
+      "position_delta_norm_mean": 8259.902682799371,
+      "position_delta_norm_median": 7507.581256585341,
+      "position_delta_norm_rms": 8859.918743838425,
+      "row_max_delta_norm_mean": 13718.839189767832,
+      "row_mean_delta_norm_mean": 8221.980175314988,
+      "row_mean_delta_norm_median": 8046.4202727627135
+    }
+  ],
+  "controls": [
+    "same-run baseline",
+    "old L30/40/45 full-block patch replay",
+    "dynamic off-trio layer selection from pre-generation capture ladder",
+    "matched random-position replacements at selected layers",
+    "leave-one-row-out rank-k add at top selected layer"
+  ],
+  "created_at_utc": "2026-07-03T04:21:25.840515+00:00",
+  "elapsed_seconds": 2447.943848133087,
+  "generation": {
+    "max_new_tokens": 96,
+    "samples_per_row": 8,
+    "temperature": 0.7
+  },
+  "ladder_layers": [
+    30,
+    40,
+    45
+  ],
+  "manifest": "docs/subtype_recognition_gap_27b_manifest.json",
+  "method": "subtype_capture_ladder_discriminator",
+  "model": "google/gemma-3-27b-it",
+  "n": 256,
+  "old_trio_layers": [
+    30,
+    40,
+    45
+  ],
+  "out_jsonl": "results/stage2/erasure/subtype_discriminator_27b_l35rep_seedB.jsonl",
+  "output": "docs/subtype_discriminator_27b_l35rep_seedB.json",
+  "prepared_rows": 16,
+  "reading_rule": "Repair from selected off-trio concept replacement supports layer mismatch. Null selected-layer repairs with clean random controls and visible capture norms supports insufficiency of this residual-state route rather than a splice bug.",
+  "representation_type": "patched_residual_state",
+  "resolved_args": {
+    "dry_run": false,
+    "dtype": "bfloat16",
+    "jsonl": "results/full/with_errortype/gemma3_27b_infer_subtype.jsonl",
+    "ladder_layers": "30",
+    "load_mode": "no-processing",
+    "manifest": "docs/subtype_recognition_gap_27b_manifest.json",
+    "max_new_tokens": 96,
+    "min_block_tokens": 32,
+    "model": "google/gemma-3-27b-it",
+    "n_ctx": 4096,
+    "n_devices": 2,
+    "old_trio_layers": "30,40,45",
+    "out_jsonl": "results/stage2/erasure/subtype_discriminator_27b_l35rep_seedB.jsonl",
+    "output": "docs/subtype_discriminator_27b_l35rep_seedB.json",
+    "rank_k": 4,
+    "sample_seed": 20260703,
+    "samples_per_row": 8,
+    "states_output": "results/stage2/erasure/subtype_discriminator_27b_l35rep_seedB_states.npz",
+    "summary_md": "docs/subtype_discriminator_27b_l35rep_seedB_summary.md",
+    "task": "infer_subtype",
+    "temperature": 0.7,
+    "top_offtrio_layers": 1
+  },
+  "schema_version": 1,
+  "script": "scripts/stage2_subtype_discriminator.py",
+  "selected_layers": [],
+  "selected_rows": 16,
+  "selection_metric": "row_mean_delta_norm_mean",
+  "slurm_job_id": "458377",
+  "states_output": "results/stage2/erasure/subtype_discriminator_27b_l35rep_seedB_states.npz",
+  "summary": {
+    "baseline": {
+      "n_rows": 16,
+      "n_samples": 128,
+      "reference": "none",
+      "strong_accuracy": 0.1953125
+    },
+    "old_trio_full_replace_L30_40_45": {
+      "n_rows": 16,
+      "n_samples": 128,
+      "paired_ci95": [
+        -0.2265625,
+        0.2265625
+      ],
+      "paired_delta_vs_reference": 0.0,
+      "reference": "baseline",
+      "strong_accuracy": 0.1953125
+    }
+  },
+  "summary_md": "docs/subtype_discriminator_27b_l35rep_seedB_summary.md",
+  "target_variable": "target_concept",
+  "task": "infer_subtype"
+}

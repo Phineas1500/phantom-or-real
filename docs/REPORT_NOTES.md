@@ -15,6 +15,36 @@ final report is easier to assemble.
 
 ## Running Notes
 
+### 2026-07-03
+
+#### Rank-k Guard v2 (Fresh Rows) — Claim 8 Survives
+
+- Jobs `458374`/`458375` completed (~1h35 each) and wrote
+  `docs/rank_k_guard_v2_27b_property_shard{0,1}of2.json` + summaries and
+  row-level JSONLs/state stacks under `results/stage2/erasure/`. 26 fresh
+  strong-incorrect h3/h4 property rows pooled (3 skips/shard for missing
+  concept positions), 6 arms, k=8, 1,248 generations.
+- Pooled (row-cluster bootstrap, `docs/rank_k_guard_v2_27b_property_pooled_summary.md`):
+  unhinted baseline P(strong)=`0.120`, hinted `0.870`; `L30_concept_replace`
+  dP=`+0.255` CI [`+0.111`,`+0.413`]; `rank8_loo_add` dP=`+0.231` CI
+  [`+0.111`,`+0.365`] = **91%** of concept-replace; `rank4_loo_add` dP=`+0.144`
+  = 57%; random-replace null (`+0.038`). Pre-registered rule (either rank CI
+  excludes zero AND >=70% of concept-replace) **passes via rank-8**.
+- Wording consequence: rank-8 is the fresh-row-portable compact core; rank-4
+  is sufficient in-distribution (77% on the original guard) but under-transfers
+  to fresh rows. Hint-validated slice (23/26 rows) concordant (89%).
+
+#### Subtype L35 Replication — Delivery Bug, Resubmitted
+
+- Jobs `458376`/`458377` ran old-trio-only: `sbatch --export=ALL,SUBTYPE_DISC_LADDER=30,35,40,45,...`
+  is comma-split by sbatch, so the ladder collapsed to `[30]` + auto-appended
+  old trio and no off-trio layer was selected. The runs double as fresh-seed
+  old-trio replicates: full replace `+0.047` CI [`-0.164`,`+0.258`] (seedA) and
+  `+0.000` CI [`-0.227`,`+0.227`] (seedB) — both null, consistent with 457005/457170.
+- Resubmitted as jobs `458387`/`458388` (tags `_l35rep2_seed{A,B}`, same seeds
+  20260702/20260703) with env vars set in the submitting shell instead of
+  `--export`. Pre-registered decision rule unchanged.
+
 ### 2026-07-02
 
 #### Erasure Control-Matching Verdict (results landed 2026-06-17, analyzed today)
