@@ -87,6 +87,15 @@ final report is easier to assemble.
   experiment ladder starting with a CPU-only coefficient-predictability
   probe on data we already have. Skeleton §6 gained the corresponding
   one-paragraph discussion rule.
+- Step 1 ran same day and **passes**: LOO-by-row ridge from unhinted L30
+  concept-token states to the true rank-8 coefficients reaches cosine
+  `+0.631` over 120 positions vs shuffled-pairing null `+0.014` (max
+  `+0.180` over 50 permutations; observed beats 0/50); per-row R^2 vs
+  constant baseline `+0.408`, 12/13 rows positive. ~40% of the row-specific
+  commitment coordinates are linearly present in the failing run's own
+  states. Screening-grade (13 composite dev rows). Script:
+  `scripts/stage2_coeff_predictability.py`. Step 2 (closed-loop predicted-
+  coefficient repair) unlocked, to be pre-registered before launch.
 
 ### 2026-07-03
 

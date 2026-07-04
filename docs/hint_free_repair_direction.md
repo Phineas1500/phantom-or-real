@@ -93,6 +93,40 @@ sbatch each on the existing guard-v2 harness. If step 1 shows the
 coefficients are not decodable from unhinted states, the direction dies
 cheaply and the paper paragraph stays as "open question."
 
+## Step 1 result (2026-07-04): coefficients ARE decodable — gate passes
+
+Run on `focus_state_composite_27b_property_states.npz` (13 dev rows, 120
+concept positions, L30). Outer LOO by row; per-fold LOO rank-8 basis via
+`fit_pca_basis` (mirroring the guard); ridge from unhinted concept-token
+states to the 8 coefficients, alpha picked by inner LOO over
+{1e2..1e6} (chosen: 1e2/1e3); 50-permutation shuffled-pairing null.
+
+- cosine(predicted, true) = **+0.631** over 120 held-out positions.
+- Shuffled null mean +0.014, max over 50 permutations +0.180 → observed
+  beats **0/50**.
+- Per-row R^2 vs constant-coefficient baseline **+0.408**, positive on
+  12/13 rows. (The constant baseline itself is ~0 cosine by construction —
+  centered-PCA coefficients average to ~0 across rows — so the null, not
+  the baseline, is the meaningful bar.)
+
+Reading: ~40% of the row-specific commitment coordinates are linearly
+present in the failing run's own states at the same positions. The donor
+pass amplifies information the unhinted model already carries.
+
+Caveats before anyone gets excited: 13 development rows only (the rows the
+rank-8 story was built on — the only ones with saved unhinted states);
+screening-grade n; cosine ≠ behavioral repair (coefficient error may or
+may not matter behaviorally — that is exactly what step 2 measures).
+Analysis script: `scripts/stage2_coeff_predictability.py`; deterministic
+(seed 20260704).
+
+**Step 2 is now unlocked**: closed-loop arms on the guard-v2 harness —
+unhinted baseline / mean_only (floor) / rank8 true-coefficients (ceiling) /
+rank8 ridge-predicted coefficients (LOO) / rank8 shuffled-row coefficients
+(control). Pre-register deltas and rules in causal_handle_directions.md
+before launch; needs fresh rows' unhinted states captured in-job (the
+predictor training set can be the composite rows).
+
 ## Relation to the current paper
 
 Goes in §6 Discussion as one paragraph: some failures that look like
