@@ -77,6 +77,17 @@ final report is easier to assemble.
   position footprint. Claim 8 upgrades from "survives fresh rows" to
   "direction-specific on fresh rows".
 
+#### Hint-Free Repair Direction Documented
+
+- `docs/hint_free_repair_direction.md` (ideation, not pre-registered):
+  records that the rank-8 recipe's coefficients come from each row's own
+  donor pass (`concept_delta`), so the current result is an instrument, not
+  an accuracy method; the prerequisites any new task must meet; mean_only
+  (+0.087, donor-free) as the hint-free existence proof; and a 4-step
+  experiment ladder starting with a CPU-only coefficient-predictability
+  probe on data we already have. Skeleton §6 gained the corresponding
+  one-paragraph discussion rule.
+
 ### 2026-07-03
 
 #### Rank-k Guard v2 (Fresh Rows) — Claim 8 Survives

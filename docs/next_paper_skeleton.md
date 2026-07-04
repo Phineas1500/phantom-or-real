@@ -144,6 +144,13 @@ inert rather than entangled (2605.05715's rival account).
 - Limitations to state plainly: n=13-32 row scales; Gemma-scoped mechanism;
   subtype carrier unresolved; erased object is the probe axis, not all
   decodable information; constant-offset account of control destructiveness.
+- Hint-free repair paragraph (one only; wording rules and experiment ladder
+  in `docs/hint_free_repair_direction.md`): the rank-8 recipe's coefficients
+  still come from the row's own donor pass, so it is an instrument, not an
+  accuracy method; mean_only (+0.087, hint-free by construction) is the
+  existence proof that a donor-free effect is real; predicting the 8
+  coefficients from unhinted states is the question this paper makes
+  askable. Frame as open question, never as capability.
 - Negative-results appendix: the table enumerated at the bottom of
   `docs/next_paper_claims_table.md` (CAA/raw steering, optimized vectors,
   DAS, AtP, decode gates, recognition-context patch, block-mean/cross-row
