@@ -59,6 +59,24 @@ final report is easier to assemble.
   (pre-registered bar 0.99). L15/L53 INLP redundancy matches the known
   pattern (AUC ~0.90 -> ~0.87 over 8 rounds).
 
+#### Item C Verdict — Specificity PASSES on the Subspace-Load-Bearing Branch
+
+- Jobs `458401`/`458402` completed (3h05/3h03); 26 rows pooled
+  (`docs/rank8_specificity_27b_property_pooled_summary.md`; row-cluster
+  bootstrap, 10k draws, seed 20260704). `rank8_loo_add_L30` dP=`+0.245`
+  CI [`+0.111`,`+0.394`] — gate holds. Pooled rand_norm family dP=`-0.088`
+  CI [`-0.180`,`-0.017`] (slightly destructive, stricter than the
+  pre-registered "includes zero"); paired (rank8 − rand_norm) `+0.333`
+  CI [`+0.186`,`+0.489`] excludes zero → **PASS**; FAIL branch (noise
+  repairs at ≥50% of rank8) fires nowhere, no draw of either random family
+  repairs.
+- Decomposition grid landed on the strongest branch: mean_only is 35% of
+  rank8 (below the 0.70 mean-dominated bar), rand_subspace family is null
+  (`-0.041`) with (rank8 − rand_subspace) `+0.286` excluding zero → **the
+  PCA subspace itself is load-bearing**, not its mean, norm, rank, or
+  position footprint. Claim 8 upgrades from "survives fresh rows" to
+  "direction-specific on fresh rows".
+
 ### 2026-07-03
 
 #### Rank-k Guard v2 (Fresh Rows) — Claim 8 Survives
