@@ -1,12 +1,18 @@
 import json
 from pathlib import Path
 
+import numpy as np
+import torch
+
 from scripts.stage2_rank_k_guard_v2 import (
     COMPOSITE_MANIFEST_ROWS,
     build_arms,
+    build_specificity_arms,
+    control_add_matrix,
     select_fresh_rows,
     shard_rows,
 )
+from scripts.stage2_subtype_discriminator import fit_pca_basis, rank_k_reconstruction
 
 
 def _write_jsonl(path: Path, rows: list[dict]) -> None:
@@ -79,3 +85,52 @@ def test_build_arms_shape() -> None:
 def test_composite_manifest_rows_pinned() -> None:
     assert len(COMPOSITE_MANIFEST_ROWS) == 13
     assert COMPOSITE_MANIFEST_ROWS == sorted(COMPOSITE_MANIFEST_ROWS)
+
+
+def test_build_specificity_arms_shape() -> None:
+    arms = build_specificity_arms(30, 8, 2)
+    labels = [arm.label for arm in arms]
+    assert labels == [
+        "unhinted_baseline",
+        "hinted_baseline",
+        "rank8_loo_add_L30",
+        "mean_only_add_L30",
+        "rand_subspace_add_L30_d1",
+        "rand_subspace_add_L30_d2",
+        "rand_norm_add_L30_d1",
+        "rand_norm_add_L30_d2",
+    ]
+    assert all(arm.reference == "unhinted_baseline" for arm in arms[1:])
+    assert arms[3].basis_mode == "leave_one_row_out"
+    assert arms[4].basis_mode == "random_orthonormal"
+    assert arms[6].basis_mode == "norm_matched_gaussian"
+
+
+def test_control_add_matrix_norm_matching_and_determinism() -> None:
+    rng = np.random.default_rng(3)
+    delta_by_row = {i: rng.standard_normal((6, 32)).astype(np.float32) for i in range(4)}
+    basis = fit_pca_basis(delta_by_row, 4, exclude_rows={0})
+    delta = delta_by_row[0]
+    recon = rank_k_reconstruction(torch.from_numpy(delta), basis).numpy().astype(np.float32)
+    arms = build_specificity_arms(30, 4, 1)
+    by_kind = {arm.kind: arm for arm in arms if arm.kind in {"mean_add", "rand_subspace_add", "rand_norm_add"}}
+    q_cache: dict[int, np.ndarray] = {}
+    kwargs = {"control_seed": 11, "shard_index": 0, "source_row_index": 0, "q_cache": q_cache}
+
+    mean_vec = control_add_matrix(by_kind["mean_add"], delta, basis, recon, **kwargs)
+    assert np.allclose(mean_vec, np.tile(basis["mean"], (6, 1)), atol=1e-5)
+
+    sub = control_add_matrix(by_kind["rand_subspace_add"], delta, basis, recon, **kwargs)
+    np.testing.assert_allclose(
+        np.linalg.norm(sub - basis["mean"][None, :].astype(np.float32), axis=1),
+        np.linalg.norm(recon - basis["mean"][None, :].astype(np.float32), axis=1),
+        rtol=1e-3,
+    )
+    assert 1 in q_cache and q_cache[1].shape == (32, 4)
+
+    noise = control_add_matrix(by_kind["rand_norm_add"], delta, basis, recon, **kwargs)
+    np.testing.assert_allclose(np.linalg.norm(noise, axis=1), np.linalg.norm(recon, axis=1), rtol=1e-3)
+    assert not np.allclose(noise, recon)
+
+    again = control_add_matrix(by_kind["rand_norm_add"], delta, basis, recon, **kwargs)
+    np.testing.assert_allclose(noise, again)

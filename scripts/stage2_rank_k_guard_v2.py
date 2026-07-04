@@ -97,6 +97,65 @@ def build_arms(ranks: list[int], layer: int) -> list[Arm]:
     return arms
 
 
+def build_specificity_arms(layer: int, rank: int, draws: int) -> list[Arm]:
+    """Random-basis specificity ladder for claim 8 (pre-registered item C)."""
+    arms = [
+        Arm("unhinted_baseline", "none", "none"),
+        Arm("hinted_baseline", "hinted_prompt", "unhinted_baseline"),
+        Arm(f"rank{rank}_loo_add_L{layer}", "rank_k_add", "unhinted_baseline", (layer,), rank, "leave_one_row_out"),
+        Arm(f"mean_only_add_L{layer}", "mean_add", "unhinted_baseline", (layer,), rank, "leave_one_row_out"),
+    ]
+    for draw in range(1, draws + 1):
+        arms.append(Arm(f"rand_subspace_add_L{layer}_d{draw}", "rand_subspace_add", "unhinted_baseline", (layer,), rank, "random_orthonormal"))
+    for draw in range(1, draws + 1):
+        arms.append(Arm(f"rand_norm_add_L{layer}_d{draw}", "rand_norm_add", "unhinted_baseline", (layer,), rank, "norm_matched_gaussian"))
+    return arms
+
+
+def draw_index(label: str) -> int:
+    return int(label.rsplit("_d", 1)[1])
+
+
+def control_add_matrix(
+    arm: Arm,
+    concept_delta: np.ndarray,
+    basis: dict[str, Any],
+    recon_pca: np.ndarray,
+    *,
+    control_seed: int,
+    shard_index: int,
+    source_row_index: int,
+    q_cache: dict[int, np.ndarray],
+) -> np.ndarray:
+    """Per-position add matrix for the control arms, norm-matched to the PCA reconstruction."""
+    mean = np.asarray(basis["mean"], dtype=np.float32)
+    if arm.kind == "mean_add":
+        return np.tile(mean, (concept_delta.shape[0], 1))
+    if arm.kind == "rand_subspace_add":
+        draw = draw_index(arm.label)
+        q = q_cache.get(draw)
+        if q is None:
+            assert arm.rank_k is not None
+            rng = np.random.default_rng(control_seed + 7919 * draw + 104729 * shard_index)
+            q, _ = np.linalg.qr(rng.standard_normal((concept_delta.shape[1], arm.rank_k)))
+            q = q.astype(np.float32)
+            q_cache[draw] = q
+        centered = concept_delta - mean
+        rand_comp = (centered @ q) @ q.T
+        pca_comp = recon_pca - mean
+        target = np.linalg.norm(pca_comp, axis=1, keepdims=True)
+        current = np.maximum(np.linalg.norm(rand_comp, axis=1, keepdims=True), 1e-8)
+        return mean + rand_comp * (target / current)
+    if arm.kind == "rand_norm_add":
+        draw = draw_index(arm.label)
+        rng = np.random.default_rng(control_seed + 7919 * draw + 104729 * shard_index + source_row_index)
+        noise = rng.standard_normal(concept_delta.shape).astype(np.float32)
+        target = np.linalg.norm(recon_pca, axis=1, keepdims=True)
+        current = np.maximum(np.linalg.norm(noise, axis=1, keepdims=True), 1e-8)
+        return noise * (target / current)
+    raise ValueError(f"not a control arm kind: {arm.kind}")
+
+
 def hint_validated_summary(
     rows_out: list[dict[str, Any]],
     arms: list[Arm],
@@ -121,8 +180,13 @@ def hint_validated_summary(
 def write_markdown_summary(path: Path, report: dict[str, Any]) -> None:
     job = report.get("slurm_job_id") or "local"
     shard = report["shard"]
+    title = (
+        "Rank-8 Specificity Controls (fresh rows)"
+        if report["method"] == "rank8_specificity_controls_fresh_rows"
+        else "Rank-k Guard v2 (fresh rows)"
+    )
     lines = [
-        f"# Rank-k Guard v2 (fresh rows) - Job {job} - shard {shard['index']} of {shard['count']}",
+        f"# {title} - Job {job} - shard {shard['index']} of {shard['count']}",
         "",
         f"Output JSON: `{report['output']}`",
         f"Rows: {report['prepared_rows']} prepared from {report['selected_rows']} fresh-selection rows.",
@@ -145,10 +209,7 @@ def write_markdown_summary(path: Path, report: dict[str, Any]) -> None:
             "",
             f"Hint-validated rows (hinted P(strong) >= {hv['threshold']}): {hv['n_validated_rows']}.",
             "",
-            "Reading rule: pooled-shard rank4/rank8 LOO CI excluding zero at >=70% of the",
-            "pooled in-job concept-replace effect confirms claim 8 on fresh rows; a null",
-            "concept-replace on fresh rows scopes the compact-core claim to",
-            "recognition-gap-style rows rather than failing the guard.",
+            f"Reading rule: {report['pre_registered_decision_rule']}",
             "",
         ]
     )
@@ -178,6 +239,9 @@ def main() -> int:
     parser.add_argument("--n-ctx", type=int, default=4096)
     parser.add_argument("--dtype", default="bfloat16")
     parser.add_argument("--load-mode", choices=("no-processing", "default"), default="no-processing")
+    parser.add_argument("--specificity-controls", action="store_true")
+    parser.add_argument("--control-draws", type=int, default=4)
+    parser.add_argument("--control-seed", type=int, default=20260704)
     parser.add_argument("--dry-run", action="store_true")
     parser.add_argument("--out-jsonl", type=Path, default=None)
     parser.add_argument("--states-output", type=Path, default=None)
@@ -186,7 +250,12 @@ def main() -> int:
     args = parser.parse_args()
     started = time.time()
 
-    stem = f"rank_k_guard_v2_27b_property_shard{args.shard_index}of{args.shard_count}"
+    if args.specificity_controls:
+        stem = f"rank8_specificity_27b_property_shard{args.shard_index}of{args.shard_count}"
+        method = "rank8_specificity_controls_fresh_rows"
+    else:
+        stem = f"rank_k_guard_v2_27b_property_shard{args.shard_index}of{args.shard_count}"
+        method = "rank_k_guard_v2_fresh_rows"
     out_jsonl = args.out_jsonl or Path(f"results/stage2/erasure/{stem}.jsonl")
     states_output = args.states_output or Path(f"results/stage2/erasure/{stem}_states.npz")
     output = args.output or Path(f"docs/{stem}.json")
@@ -199,7 +268,12 @@ def main() -> int:
         args.jsonl, exclude=exclude, heights=heights, per_height=args.per_height, seed=args.selection_seed
     )
     selected_rows = shard_rows(all_rows, args.shard_index, args.shard_count)
-    arms = build_arms(ranks, args.layer)
+    if args.specificity_controls:
+        if len(ranks) != 1:
+            raise ValueError("--specificity-controls expects a single rank in --rank-list")
+        arms = build_specificity_arms(args.layer, ranks[0], args.control_draws)
+    else:
+        arms = build_arms(ranks, args.layer)
     total = len(selected_rows) * len(arms) * args.samples_per_row
     print(
         f"selected_rows={len(selected_rows)} of {len(all_rows)} "
@@ -295,6 +369,7 @@ def main() -> int:
     print(f"prepared_rows={len(prepared)} total_generations={total_after_skip}", flush=True)
 
     basis_cache: dict[tuple[int, int], dict[str, Any]] = {}
+    q_cache: dict[int, np.ndarray] = {}
 
     def basis_for(row_id: int, rank_k: int) -> dict[str, Any]:
         key = (row_id, rank_k)
@@ -339,6 +414,34 @@ def main() -> int:
                             "explained_variance_ratio": basis["explained_variance_ratio"],
                         }
                     )
+                elif arm.kind in {"mean_add", "rand_subspace_add", "rand_norm_add"}:
+                    assert arm.rank_k is not None
+                    basis = basis_for(prep["source_row_index"], arm.rank_k)
+                    recon_pca = rank_k_reconstruction(prep["concept_delta"], basis).numpy().astype(np.float32)
+                    vec = control_add_matrix(
+                        arm,
+                        prep["concept_delta"].numpy().astype(np.float32),
+                        basis,
+                        recon_pca,
+                        control_seed=args.control_seed,
+                        shard_index=args.shard_index,
+                        source_row_index=prep["source_row_index"],
+                        q_cache=q_cache,
+                    )
+                    positions = [start + rel_pos for rel_pos in prep["rel"]]
+                    fwd_hooks.append((hook_name, make_position_add_hook(torch.from_numpy(vec), positions, 1.0)))
+                    basis_records.append(
+                        {
+                            "condition": arm.label,
+                            "source_row_index": prep["source_row_index"],
+                            "layer": args.layer,
+                            "rank_k": arm.rank_k,
+                            "basis_mode": arm.basis_mode,
+                            "control_seed": args.control_seed,
+                            "mean_add_vector_norm": float(np.linalg.norm(vec, axis=1).mean()),
+                            "mean_pca_recon_norm": float(np.linalg.norm(recon_pca, axis=1).mean()),
+                        }
+                    )
                 with model.hooks(fwd_hooks=fwd_hooks):
                     batch = generate_sample_batch(
                         model=model,
@@ -368,7 +471,7 @@ def main() -> int:
                         "basis_source_rows": basis["source_rows"] if basis else None,
                         "basis_explained_variance_ratio": basis["explained_variance_ratio"] if basis else None,
                         "sample_index": sample_index,
-                        "method": "rank_k_guard_v2_fresh_rows",
+                        "method": method,
                         "target_variable": "target_concept",
                         "representation_type": "patched_residual_state",
                         "gold_concept": prep["gold_concept"],
@@ -402,7 +505,7 @@ def main() -> int:
         "model": args.model,
         "task": args.task,
         "target_variable": "target_concept",
-        "method": "rank_k_guard_v2_fresh_rows",
+        "method": method,
         "representation_type": "patched_residual_state",
         "shard": {"index": args.shard_index, "count": args.shard_count},
         "selection": {
@@ -430,17 +533,37 @@ def main() -> int:
         "summary_md": str(summary_md),
         "n": len(rows_out),
         "resolved_args": {key: str(value) if isinstance(value, Path) else value for key, value in vars(args).items()},
-        "controls": [
-            "in-job unhinted baseline",
-            "hinted-prompt per-row validation arm",
-            "in-job concept-position replacement denominator",
-            "matched random-position replacement",
-            "leave-one-row-out PCA bases fit within shard",
-        ],
+        "controls": (
+            [
+                "in-job unhinted baseline",
+                "hinted-prompt per-row validation arm",
+                "in-job rank-8 LOO positive reference",
+                "LOO mean-only decomposition arm",
+                "random orthonormal rank-k subspace adds, per-position norm-matched to the PCA non-mean component",
+                "matched-norm Gaussian per-position adds",
+            ]
+            if args.specificity_controls
+            else [
+                "in-job unhinted baseline",
+                "hinted-prompt per-row validation arm",
+                "in-job concept-position replacement denominator",
+                "matched random-position replacement",
+                "leave-one-row-out PCA bases fit within shard",
+            ]
+        ),
         "pre_registered_decision_rule": (
-            "Claim 8 survives if pooled rank4_loo or rank8_loo CI excludes zero and reaches >=70% of "
-            "the pooled in-job L30_concept_replace effect. A null concept_replace on fresh rows scopes "
-            "the compact-core claim to recognition-gap-style rows rather than failing the guard."
+            (
+                "Gate: pooled rank8_loo CI must exclude zero. Specificity passes if pooled rand_norm CI "
+                "includes zero and the paired (rank8 - rand_norm) difference CI excludes zero; fails if "
+                "rand_norm CI excludes zero at >=50% of the rank8 effect. mean_only and rand_subspace "
+                "decompose the carrier per the wording grid in docs/causal_handle_directions.md item C."
+            )
+            if args.specificity_controls
+            else (
+                "Claim 8 survives if pooled rank4_loo or rank8_loo CI excludes zero and reaches >=70% of "
+                "the pooled in-job L30_concept_replace effect. A null concept_replace on fresh rows scopes "
+                "the compact-core claim to recognition-gap-style rows rather than failing the guard."
+            )
         ),
     }
     output.parent.mkdir(parents=True, exist_ok=True)

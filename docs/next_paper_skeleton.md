@@ -17,12 +17,26 @@ related work ~1/2p, results 1+p).
 - The Readable Axis Is Not the Causal One: Necessity Tests and a Compact
   Causal Core in Gemma 3 27B
 
+Wording caution (2026-07-04): arXiv 2605.23315 already publishes the phrase
+"epiphenomenal correctness" (cross-model convergence result, no repair). Any
+title/abstract use of "epiphenomenal" must cite-and-differentiate at first
+use, or the title should pivot to the gauge/lever framing, which is not
+collided.
+
 ## Abstract skeleton
 
 Readable ≠ load-bearing (claims 1-3) → the causal variable is target-concept
 focus, localized and patchable (claims 4-6) → its causal core is compact,
 held-out, and outside the readable subspace (claims 8-9) → scope honestly
 (claims 7, 11, 12: token-route null, Qwen partial, subtype non-transfer).
+
+Positioning shift (2026-07-04, per docs/next_experiments_litreview_2026-07.md):
+three 2026 preprints independently report the readable-but-unsteerable gap
+(2605.05715, 2604.13068, 2605.23315), so that gap is now established
+background, not a headline. Lead with what none of them has: the positive
+identification of the causal carrier (rank-8 core, fresh-row-validated
+repair) plus the erasure-based demonstration that the readout is genuinely
+inert rather than entangled (2605.05715's rival account).
 
 ## 1. Introduction (~1 page)
 
@@ -65,14 +79,46 @@ held-out, and outside the readable subspace (claims 8-9) → scope honestly
   `docs/causal_handle_directions.md` before unblinding), reused across every
   job.
 
-## 4. Related Work (~1/2 page)
+## 4. Related Work (~1/2 page; restructured 2026-07-04 per docs/next_experiments_litreview_2026-07.md)
 
-- Cox et al. (activation probes + steering for reasoning correctness;
-  orthogonal-baseline motivation — cited in the control-matching section).
-- ITI / TruthfulQA line (readable-but-unsteerable precedent).
-- Hydra-effect / self-repair literature (why single-site nulls are weak).
-- SAE/dictionary interpretability (Gemma Scope) for the claim-9 rider.
-- Verify all 2026 citations from primary sources per dashboard guardrail.
+- Co-closest prior, differentiate first (cite both — a verifier panel split
+  on any "closest" superlative): arXiv 2605.05715 (failure regime decodable
+  at 71.6%, 29 fixed-linear-steering configs null; explanation =
+  ENTANGLEMENT, LEACE erasure destructive −3.6pp — the opposite causal
+  status from our harmless erasure) and arXiv 2604.13068
+  (detection-without-correction in 7/7 models incl. Qwen-2.5; self-described
+  clean negative). Both stop where our contribution starts: neither
+  localizes the causal variable nor demonstrates repair.
+- Terminology collision: arXiv 2605.23315 coins "epiphenomenal correctness"
+  (cross-model CKA convergence; top-PC ablation flips 1.5–5.5%). Cite at
+  first use of "epiphenomenal"; differentiate: within-model dissection with
+  a working repair vs cross-model convergence with neither.
+- Readable-vs-causal subspace precedent pair: Makelov, Lange & Nanda
+  2311.17030 (subspace-patching illusions via dormant pathways) with Wu et
+  al. 2401.12631 as the counterpoint (contests the normative framing, not
+  the phenomenon) — bounds the novelty claim to our specific form.
+- Correlational correctness probing (the "readable" half as background):
+  2604.05655 (GSM8K correctness AUC 0.87 mid-reasoning), 2504.05419
+  (intermediate-answer correctness, zero intervention vocabulary),
+  2602.06022 (CORAL — probe only re-weights outputs post-hoc).
+- Low-rank causal carriers precedent (plausibility support, not scoops):
+  2509.06608 (trained per-layer steering vectors recover 95.3%/87.8% of RL
+  reasoning gains), 2505.15634 (contrastive-delta PCA steering basis),
+  2506.18167 (reasoning behaviors readable AND steerable — opposite regime).
+- Methods bar our design answers: 2507.08802 (NeurIPS'25 spotlight —
+  causal-abstraction vacuity; state encoding assumptions explicitly: fixed
+  linear PCA basis, no trained alignment map), 2511.04638 (ICLR'26 oral —
+  harmless vs pernicious divergence; adopt the behavioral-null-space
+  vocabulary for the probe readout; item-C riders supply the
+  on-distribution diagnostics), 2506.11673 (ACL'25 Findings —
+  mean-projection/LEACE over INLP; cited for the item-D operation choice).
+- Kept from the prior plan: Cox et al. (orthogonal-baseline motivation in
+  the control-matching section), ITI / TruthfulQA line, hydra-effect /
+  self-repair, SAE/dictionary interpretability (Gemma Scope) for claim 9.
+- Guardrails: verify all 2026 citations from primary sources per dashboard
+  rule (the litreview's verifier passes cover the eleven above); re-run the
+  scoop check over the June–July 2026 arXiv window immediately before
+  submission.
 
 ## 5. Results (1+ page). Claim -> subsection map
 
@@ -92,6 +138,9 @@ held-out, and outside the readable subspace (claims 8-9) → scope honestly
 ## 6. Discussion / Limitations
 
 - Gauge-vs-lever as a cautionary tale for probe-based safety monitoring.
+- Free theory framing: the causally-null readout is a concrete instance of
+  2511.04638's behavioral null-space; the readable-but-inert stack (if item
+  D lands branch E) sharpens it from a direction to a rank-9 subspace.
 - Limitations to state plainly: n=13-32 row scales; Gemma-scoped mechanism;
   subtype carrier unresolved; erased object is the probe axis, not all
   decodable information; constant-offset account of control destructiveness.

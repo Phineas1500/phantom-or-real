@@ -37,7 +37,11 @@ from scripts.stage2_decode_time_correction import (  # noqa: E402
 )
 from src.activations import load_tl_model, render_chat_text, validate_hooks  # noqa: E402
 from src.bd_path import ensure_on_path  # noqa: E402
-from src.stage2_probes import load_probe_dataset  # noqa: E402
+from src.stage2_probes import (  # noqa: E402
+    load_probe_dataset,
+    read_split_assignments,
+    split_indices_from_assignments,
+)
 from src.stage2_steering import (  # noqa: E402
     make_gaussian_unit_direction,
     make_orthogonal_unit_direction,
@@ -55,7 +59,14 @@ class ErasureCondition:
 
 
 def parse_condition_kinds(value: str) -> list[str]:
-    allowed = {"baseline", "erase_raw", "erase_orthogonal", "erase_gaussian"}
+    allowed = {
+        "baseline",
+        "erase_raw",
+        "erase_orthogonal",
+        "erase_gaussian",
+        "erase_readable_stack",
+        "erase_random_stack",
+    }
     parsed = [part.strip().lower() for part in value.split(",") if part.strip()]
     if not parsed:
         raise ValueError("expected at least one condition")
@@ -65,7 +76,13 @@ def parse_condition_kinds(value: str) -> list[str]:
     return parsed
 
 
-def make_condition_plan(condition_kinds: list[str]) -> list[ErasureCondition]:
+def is_stack_kind(vector_kind: str | None) -> bool:
+    return vector_kind is not None and (
+        vector_kind == "readable_stack" or vector_kind.startswith("random_stack_d")
+    )
+
+
+def make_condition_plan(condition_kinds: list[str], random_stack_draws: int = 0) -> list[ErasureCondition]:
     plan: list[ErasureCondition] = []
     if "baseline" in condition_kinds:
         plan.append(ErasureCondition("baseline", None))
@@ -76,6 +93,13 @@ def make_condition_plan(condition_kinds: list[str]) -> list[ErasureCondition]:
     ):
         if kind in condition_kinds:
             plan.append(ErasureCondition(kind, vector_kind))
+    if "erase_readable_stack" in condition_kinds:
+        plan.append(ErasureCondition("erase_readable_stack", "readable_stack"))
+    if "erase_random_stack" in condition_kinds:
+        if random_stack_draws < 1:
+            raise ValueError("erase_random_stack requires --random-stack-draws >= 1")
+        for draw in range(1, random_stack_draws + 1):
+            plan.append(ErasureCondition(f"erase_random_stack_d{draw}", f"random_stack_d{draw}"))
     if not plan:
         raise ValueError("condition plan is empty")
     if plan[0].label != "baseline":
@@ -109,17 +133,137 @@ def make_erasure_hook(
     return hook_fn, state
 
 
+def make_subspace_erasure_hook(
+    *,
+    basis: np.ndarray,
+    projection_means: np.ndarray,
+    projection_stds: np.ndarray,
+) -> tuple[Any, dict[str, Any]]:
+    """Rank-k generalization of make_erasure_hook: clamp each orthonormal
+    component's projection to its train mean, at every position."""
+    cache: dict[str, tuple[torch.Tensor, torch.Tensor, torch.Tensor]] = {}
+    state: dict[str, Any] = {
+        "calls": 0,
+        "positions": 0,
+        "abs_delta_sd_sum": 0.0,
+        "prompt_projection_variance": None,
+        "prompt_projection_mean": None,
+    }
+
+    def hook_fn(act: torch.Tensor, hook) -> torch.Tensor:  # noqa: ARG001
+        key = str(act.device)
+        entry = cache.get(key)
+        if entry is None:
+            entry = (
+                torch.as_tensor(basis, device=act.device, dtype=torch.float32),
+                torch.as_tensor(projection_means, device=act.device, dtype=torch.float32),
+                torch.as_tensor(projection_stds, device=act.device, dtype=torch.float32),
+            )
+            cache[key] = entry
+        q, means, stds = entry
+        projection = act.float() @ q
+        delta = projection - means
+        act -= (delta @ q.T).to(act.dtype)
+        state["calls"] += 1
+        state["positions"] += int(delta.numel() // delta.shape[-1])
+        state["abs_delta_sd_sum"] += float((delta.abs() / stds).mean(dim=-1).sum().item())
+        if state["prompt_projection_variance"] is None and delta.dim() >= 2 and delta.shape[-2] > 1:
+            flat = projection.reshape(-1, projection.shape[-1])
+            state["prompt_projection_variance"] = [float(v) for v in flat.var(dim=0, unbiased=False).cpu()]
+            state["prompt_projection_mean"] = [float(v) for v in flat.mean(dim=0).cpu()]
+        return act
+
+    return hook_fn, state
+
+
 def summarize_hook_states(states: dict[int, dict[str, Any]]) -> dict[str, Any]:
-    return {
-        f"L{layer}": {
+    summary: dict[str, Any] = {}
+    for layer, state in sorted(states.items()):
+        entry: dict[str, Any] = {
             "calls": state["calls"],
             "positions": state["positions"],
             "mean_abs_delta_sd": (
                 state["abs_delta_sd_sum"] / state["positions"] if state["positions"] else None
             ),
         }
-        for layer, state in sorted(states.items())
-    }
+        if state.get("prompt_projection_variance") is not None:
+            entry["prompt_projection_variance"] = state["prompt_projection_variance"]
+            entry["prompt_projection_mean"] = state["prompt_projection_mean"]
+        summary[f"L{layer}"] = entry
+    return summary
+
+
+def build_layer_stacks(
+    *,
+    layers: list[int],
+    inlp_npz: Path,
+    stack_rank: int,
+    activation_dir: Path,
+    model_key: str,
+    task: str,
+    splits_path: Path,
+    source_file: str,
+    split_family: str,
+    random_draws: int,
+    random_seed: int,
+) -> dict[int, dict[str, dict[str, np.ndarray]]]:
+    """Per-layer orthonormalized INLP stack plus matched-rank random stacks,
+    each with train-split per-component projection means (the clamp targets)."""
+    stacks = np.load(inlp_npz)
+    assignments = read_split_assignments(splits_path)
+    by_layer: dict[int, dict[str, dict[str, np.ndarray]]] = {}
+    for layer in layers:
+        key = f"L{layer}_inlp_stack"
+        if key not in stacks:
+            raise KeyError(f"{inlp_npz} has no {key}; regenerate with stage2_probe_on_erased_check.py")
+        raw_stack = stacks[key][:stack_rank].astype(np.float64)
+        q_read, _ = np.linalg.qr(raw_stack.T)
+        prefix = activation_dir / f"{model_key}_{task}_L{layer}"
+        dataset = load_probe_dataset(
+            activation_path=prefix.with_suffix(".safetensors"),
+            sidecar_path=prefix.with_suffix(".example_ids.jsonl"),
+            drop_parse_failed=True,
+        )
+        splits = split_indices_from_assignments(
+            dataset["sidecar"],
+            assignments=assignments,
+            source_file=source_file,
+            split_field=f"{split_family}_split",
+        )
+        x_train = dataset["x"][splits["train"]].astype(np.float64)
+
+        def stats_for(q: np.ndarray) -> dict[str, np.ndarray]:
+            projections = x_train @ q
+            return {
+                "basis": q,
+                "means": projections.mean(axis=0),
+                "stds": np.maximum(projections.std(axis=0, ddof=0), 1e-6),
+            }
+
+        entries = {"readable_stack": stats_for(q_read)}
+        rank = q_read.shape[1]
+        for draw in range(1, random_draws + 1):
+            rng = np.random.default_rng(random_seed + 1000 * draw + layer)
+            q_rand, _ = np.linalg.qr(rng.standard_normal((q_read.shape[0], rank)))
+            entries[f"random_stack_d{draw}"] = stats_for(q_rand)
+        by_layer[layer] = entries
+        print(
+            f"L{layer}: stack_rank={rank} readable_proj_sd_mean={entries['readable_stack']['stds'].mean():.4f} "
+            f"random_draws={random_draws}",
+            flush=True,
+        )
+    return by_layer
+
+
+def save_layer_stack_artifact(path: Path, by_layer: dict[int, dict[str, dict[str, np.ndarray]]]) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    arrays: dict[str, np.ndarray] = {}
+    for layer, entries in by_layer.items():
+        for kind, entry in entries.items():
+            arrays[f"L{layer}_{kind}_basis"] = entry["basis"].astype(np.float32)
+            arrays[f"L{layer}_{kind}_projection_means"] = entry["means"].astype(np.float32)
+            arrays[f"L{layer}_{kind}_projection_stds"] = entry["stds"].astype(np.float32)
+    np.savez_compressed(path, **arrays)
 
 
 def projection_stats(x: np.ndarray, unit: np.ndarray) -> dict[str, float]:
@@ -317,6 +461,11 @@ def build_arg_parser() -> argparse.ArgumentParser:
     parser.add_argument("--max-iter", type=int, default=2000)
     parser.add_argument("--solver", default="lbfgs")
     parser.add_argument("--conditions", default="baseline,erase_raw,erase_orthogonal,erase_gaussian")
+    parser.add_argument("--inlp-npz", type=Path, default=Path("results/stage2/erasure/inlp_direction_stacks_27b_property_5layer.npz"))
+    parser.add_argument("--stack-rank", type=int, default=9)
+    parser.add_argument("--random-stack-draws", type=int, default=3)
+    parser.add_argument("--random-stack-seed", type=int, default=20260704)
+    parser.add_argument("--stack-output", type=Path, default=None)
     parser.add_argument("--max-new-tokens", type=int, default=96)
     parser.add_argument("--temperature", type=float, default=0.0)
     parser.add_argument("--do-sample", action="store_true")
@@ -343,9 +492,13 @@ def main() -> int:
     if args.samples_per_row > 1 and not args.do_sample:
         raise ValueError("--samples-per-row > 1 requires --do-sample")
     layers = parse_int_list(args.layers)
-    condition_plan = make_condition_plan(parse_condition_kinds(args.conditions))
+    condition_plan = make_condition_plan(parse_condition_kinds(args.conditions), args.random_stack_draws)
     dtype = torch_dtype(args.dtype)
     source_file = str(args.jsonl)
+    rank1_kinds_needed = any(
+        condition.vector_kind in {"raw", "orthogonal", "gaussian"} for condition in condition_plan
+    )
+    stack_kinds_needed = any(is_stack_kind(condition.vector_kind) for condition in condition_plan)
 
     print("Multi-layer subspace erasure", flush=True)
     print(f"cwd={Path.cwd()}", flush=True)
@@ -398,22 +551,41 @@ def main() -> int:
         )
         return 0
 
-    by_layer = build_layer_directions(
-        layers=layers,
-        activation_dir=args.activation_dir,
-        model_key=args.model_key,
-        task=args.task,
-        splits_path=args.splits,
-        source_file=source_file,
-        split_family=args.split_family,
-        probe_seed=args.probe_seed,
-        orthogonal_seed=args.orthogonal_seed,
-        gaussian_seed=args.gaussian_seed,
-        c_values=tuple(float(part) for part in args.c_values.split(",")),
-        max_iter=args.max_iter,
-        solver=args.solver,
-    )
-    save_layer_direction_artifact(args.direction_output, by_layer)
+    by_layer: dict[int, dict[str, Any]] = {}
+    if rank1_kinds_needed:
+        by_layer = build_layer_directions(
+            layers=layers,
+            activation_dir=args.activation_dir,
+            model_key=args.model_key,
+            task=args.task,
+            splits_path=args.splits,
+            source_file=source_file,
+            split_family=args.split_family,
+            probe_seed=args.probe_seed,
+            orthogonal_seed=args.orthogonal_seed,
+            gaussian_seed=args.gaussian_seed,
+            c_values=tuple(float(part) for part in args.c_values.split(",")),
+            max_iter=args.max_iter,
+            solver=args.solver,
+        )
+        save_layer_direction_artifact(args.direction_output, by_layer)
+    stacks_by_layer: dict[int, dict[str, dict[str, np.ndarray]]] = {}
+    if stack_kinds_needed:
+        stacks_by_layer = build_layer_stacks(
+            layers=layers,
+            inlp_npz=args.inlp_npz,
+            stack_rank=args.stack_rank,
+            activation_dir=args.activation_dir,
+            model_key=args.model_key,
+            task=args.task,
+            splits_path=args.splits,
+            source_file=source_file,
+            split_family=args.split_family,
+            random_draws=args.random_stack_draws,
+            random_seed=args.random_stack_seed,
+        )
+        if args.stack_output is not None:
+            save_layer_stack_artifact(args.stack_output, stacks_by_layer)
 
     bd_path = ensure_on_path()
     print(f"beyond_deduction_path={bd_path}", flush=True)
@@ -473,13 +645,21 @@ def main() -> int:
                     fwd_hooks = []
                     if condition.vector_kind is not None:
                         for layer in layers:
-                            entry = by_layer[layer]
-                            stats = entry["stats"][condition.vector_kind]
-                            hook_fn, hook_state = make_erasure_hook(
-                                vector=entry["vectors"][condition.vector_kind],
-                                projection_mean=stats["projection_mean"],
-                                projection_std=stats["projection_std"],
-                            )
+                            if is_stack_kind(condition.vector_kind):
+                                stack_entry = stacks_by_layer[layer][condition.vector_kind]
+                                hook_fn, hook_state = make_subspace_erasure_hook(
+                                    basis=stack_entry["basis"],
+                                    projection_means=stack_entry["means"],
+                                    projection_stds=stack_entry["stds"],
+                                )
+                            else:
+                                entry = by_layer[layer]
+                                stats = entry["stats"][condition.vector_kind]
+                                hook_fn, hook_state = make_erasure_hook(
+                                    vector=entry["vectors"][condition.vector_kind],
+                                    projection_mean=stats["projection_mean"],
+                                    projection_std=stats["projection_std"],
+                                )
                             hook_states[layer] = hook_state
                             fwd_hooks.append((hook_name_by_layer[layer], hook_fn))
                     with model.hooks(fwd_hooks=fwd_hooks):
@@ -508,7 +688,9 @@ def main() -> int:
                         "sample_index": sample_index,
                         "method": "multi_layer_subspace_erasure",
                         "target_variable": "free_form_correctness",
-                        "representation_type": "raw_direction",
+                        "representation_type": (
+                            "readable_subspace_stack" if is_stack_kind(condition.vector_kind) else "raw_direction"
+                        ),
                         "erasure_kind": condition.vector_kind,
                         "erasure_layers": layers,
                         "prompt_token_count": len(token_ids),
@@ -559,6 +741,29 @@ def main() -> int:
             f"L{layer}": {kind: stats for kind, stats in entry["stats"].items() if kind != "raw"}
             for layer, entry in by_layer.items()
         },
+        "stack_config": (
+            {
+                "inlp_npz": str(args.inlp_npz),
+                "stack_rank": args.stack_rank,
+                "random_stack_draws": args.random_stack_draws,
+                "random_stack_seed": args.random_stack_seed,
+                "clamp_target": "train-split per-component projection means (identical estimator for readable and random stacks)",
+                "stack_output": str(args.stack_output) if args.stack_output else None,
+                "per_layer": {
+                    f"L{layer}": {
+                        kind: {
+                            "rank": int(entry["basis"].shape[1]),
+                            "projection_means": entry["means"],
+                            "projection_stds": entry["stds"],
+                        }
+                        for kind, entry in entries.items()
+                    }
+                    for layer, entries in stacks_by_layer.items()
+                },
+            }
+            if stacks_by_layer
+            else None
+        ),
         "selection": selection_summary,
         "generation": {
             "conditions": [condition.__dict__ for condition in condition_plan],

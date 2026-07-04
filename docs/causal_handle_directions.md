@@ -716,3 +716,126 @@ untouched.
   hedge as a bounded null: residual-state concept replacement is insufficient
   on subtype at all tested layers, and L35 stops being a replication target.
   The matched `L35_random_replace` must stay null for either reading.
+
+## Pre-Registered Submission-Hardening Jobs (2026-07-04)
+
+Two experiments motivated by the literature sweep in
+`docs/next_experiments_litreview_2026-07.md`, recorded before any data.
+Both reuse landed designs; the first defends the flagship positive claim
+against the random-basis critique (arXiv 2507.08802, 2511.04638), the second
+discriminates against the entanglement account of steering nulls
+(arXiv 2605.05715) and closes claim 3's full-subspace future-work item.
+
+### C. Rank-8 specificity controls (random-basis guard for claim 8)
+
+`scripts/stage2_rank_k_guard_v2.py --specificity-controls`. Claim 8's guard
+arms include a random-POSITION control but no random-BASIS control; if
+matched-norm random bases repair as well as the LOO PCA basis, the
+compact-core specificity claim collapses. Existential and cheap, so it runs
+before anything else.
+
+- Rows: identical selection to guard v2 (seed 20260702, per-height 16,
+  composite-manifest rows excluded), same 2 shards — enables cross-job
+  row-paired comparison with 458374/458375.
+- Arms (12 per shard, k=8, generation config identical to guard v2):
+  `unhinted_baseline`; `hinted_baseline`; `rank8_loo_add_L30` (positive
+  reference, in-job); `mean_only_add_L30` (the LOO pooled mean delta tiled
+  at concept positions — decomposition rung); `rand_subspace_add_L30_d{1-4}`
+  (LOO mean + the row's centered delta projected onto a random orthonormal
+  rank-8 basis, per-position norm-matched to the PCA non-mean component;
+  one seeded basis per draw, shared across rows; distinct draws per shard →
+  8 bases pooled); `rand_norm_add_L30_d{1-4}` (pure Gaussian per-position
+  vectors, norm-matched to the full rank-8 reconstruction per position;
+  seeded per row × draw → 8 draws pooled).
+- The ladder decomposes the rank-8 add: full structure → mean + matched
+  content in a random subspace → mean alone → matched-norm noise. Each rung
+  removes one property; where the effect falls off is the answer.
+- Primary metric: pooled 2-shard paired dP(strong) vs in-job
+  `unhinted_baseline`, row-cluster bootstrap (10k), random families pooled
+  across draws and shards; per-draw reported descriptively.
+- Decision rules (recorded before unblinding):
+  - Gate: pooled `rank8_loo_add_L30` CI must exclude zero (replicating
+    +0.231). If it fails, machinery anomaly — no interpretation of the
+    controls, investigate before any claim edits.
+  - Specificity PASSES: pooled `rand_norm` CI includes zero AND the paired
+    (rank8 − rand_norm) difference CI excludes zero. Claim 8 gains a
+    specificity-guarded sentence; on-distribution riders move to a methods
+    sidebar.
+  - Specificity FAILS: pooled `rand_norm` CI excludes zero (positive) at
+    >= 50% of the rank8 effect → generic-perturbation confound; claim 8
+    rescopes and §5.4 drafting pauses pending redesign.
+  - Structure decomposition (wording pre-committed, reported either way):
+    `mean_only` >= 70% of rank8 → "the fresh-row-portable core is dominated
+    by the shared LOO mean delta; rank-8 structure adds the remainder";
+    `rand_subspace` ≈ rank8 (paired difference CI includes zero) while
+    `rand_norm` is null → "the content is the mean plus a per-position
+    magnitude profile; the specific PCA directions beyond the mean are not
+    privileged"; both clearly below rank8 → "the PCA subspace itself is
+    load-bearing".
+- Outputs: stem `rank8_specificity_27b_property_shard{i}of2` (guard-v2
+  artifacts untouched).
+- Offline riders on saved artifacts (CPU, after unblinding, non-gating):
+  logit-lens of the 8 components; principal angles vs the INLP stack; rank
+  sweep 1–16; nearest-neighbor distance of steered L30 states to natural
+  hinted states + dormant-unit check (the 2511.04638 pernicious-divergence
+  diagnostics), using `focus_state_composite_27b_property_states.npz`
+  hinted/unhinted blocks as the on-distribution reference.
+
+### D. Readable-stack erasure (full-subspace necessity, claims 2–3)
+
+`scripts/stage2_subspace_erasure.py` extended with subspace conditions. The
+landed erasure clamps the rank-1 probe axis; claim 3 records that
+correctness information is INLP-redundant and lists full-subspace erasure as
+future work. arXiv 2605.05715 (the closest rival) found the OPPOSITE causal
+status for its decodable direction via LEACE (−3.6pp damage), so this
+experiment discriminates entanglement vs epiphenomenality at subspace
+granularity. Mean-projection clamp retained as the erasure operation (ACL
+2025 Findings 2506.11673: comparable to LEACE, less collateral than INLP).
+
+- CPU pre-step (run before submission, non-blinding — it is probe fitting,
+  not behavior): regenerate INLP stacks for all five readable layers
+  (15/30/40/45/53, seed 20260472, rounds 8) into
+  `results/stage2/erasure/inlp_direction_stacks_27b_property_5layer.npz`
+  (new file; the existing 3-layer artifact stays untouched for
+  `stage2_rank_core_geometry.py`). Sanity check: recomputed L30 round-0
+  direction must match the erasure `_directions.npz` raw unit (|cos| > 0.99).
+- Conditions (6, all layers simultaneously, every position, prompt+decode):
+  `baseline`; `erase_raw` (rank-1 continuity anchor);
+  `erase_readable_stack` (per layer: QR-orthonormalized 9-direction INLP
+  stack, each orthonormal component clamped to its train-split projection
+  mean); `erase_random_stack_d{1-3}` (matched-rank-9 random orthonormal
+  bases per layer, seeded per draw × layer, identical clamp-target
+  estimator — train-split per-component projection means — removing the
+  estimator mismatch caveat from the control-matching job).
+- Rows: same balanced selection as the landed erasure (seed 20260427,
+  8 original-correct / 8 original-incorrect, heights 3/4), k=8 sampled at
+  temperature 0.7, `--row-shard i/2` → 2 jobs of 8 rows (384 generations
+  each).
+- Telemetry: per-component within-run positional projection variance on the
+  prompt forward, per condition × layer (the constant-offset lens from the
+  control-matching verdict).
+- Primary metric: pooled row-cluster bootstrap dP(strong) vs in-job
+  baseline over the 16 rows; P(strong|parsed) precision-vs-demolition
+  split; original-correct slice reported as the necessity-facing secondary.
+- Decision rules (recorded before unblinding; no null outcome exists):
+  - Continuity gate: `erase_raw` must replicate the landed null (CI
+    including zero). If not, investigate before interpretation.
+  - Branch E (epiphenomenality upgrade): `erase_readable_stack` pooled dP
+    CI includes zero → claim 3's future-work caveat is replaced by a
+    result: the entire readable stack at all probed layers is not
+    necessary; the entanglement account (2605.05715) is excluded in our
+    setting. Wording rule carried over from claim 2: state as
+    non-necessity; do NOT claim the stack is specially inert among
+    same-rank subspaces unless the variance telemetry shows within-run
+    variance comparable to the random stacks'.
+  - Branch N (first necessity positive): `erase_readable_stack` dP CI
+    excludes zero (negative) AND the paired (readable − random-stack)
+    difference CI excludes zero AND P(strong|parsed) degrades (not pure
+    format demolition) → claims 2–3 rescope to "axis not necessary, stack
+    is"; the paper reframes to reconcile with 2605.05715 at subspace
+    granularity.
+  - Ambiguous branch: readable stack destructive but not beyond the random
+    stacks → perturbation-load account (Cox-style degradation at rank 9);
+    necessity not established, inertness not established at rank 9; claim 3
+    caveat stays with sharpened wording.
+- Outputs: suffix `readable_stack_erasure_27b_property_k8_shard{i}of2`.

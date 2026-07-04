@@ -15,6 +15,50 @@ final report is easier to assemble.
 
 ## Running Notes
 
+### 2026-07-04
+
+#### Literature Sweep — Not Scooped, but the Negative Half Is Crowded
+
+- Deep-research sweep landed in `docs/next_experiments_litreview_2026-07.md`
+  (18 primary sources, 25 claims 3-vote verified). Three March–May 2026
+  preprints independently publish the readable-but-unsteerable gap: arXiv
+  2605.05715 (explanation = entanglement; LEACE erasure destructive −3.6pp —
+  opposite our harmless erasure), 2604.13068 (7/7 models incl. Qwen-2.5,
+  clean negative), 2605.23315 (coins "epiphenomenal correctness";
+  cross-model convergence, no repair). None localizes a causal carrier or
+  repairs behavior — the rank-8 core remains the moat. Consequences: lead
+  with the positive carrier + inert-vs-entangled discrimination; cite the
+  collision at first "epiphenomenal"; re-run the scoop check over the
+  June–July 2026 window before submission.
+- Skeleton §4 restructured (co-closest pair, collision paragraph,
+  Makelov/Wu precedent, correlational-probing and low-rank-carrier blocks,
+  methods bar 2507.08802/2511.04638/2506.11673); behavioral-null-space
+  framing added to the discussion; Qwen replication demoted to next paper
+  (the null half is already architecture-general).
+
+#### Submission-Hardening Items C/D Pre-Registered and Launched
+
+- Item C — rank-8 specificity controls (jobs `458401`/`458402`):
+  `--specificity-controls` mode in `stage2_rank_k_guard_v2.py`; 12-arm
+  ladder per shard on the guard-v2 fresh rows (rank8_loo reference, LOO
+  mean-only, 4x norm-matched random-subspace, 4x matched-norm Gaussian),
+  k=8, ~1,250 generations/shard, stems
+  `rank8_specificity_27b_property_shard{0,1}of2`. Unit tests cover
+  norm-matching and determinism. Decision rules in
+  `docs/causal_handle_directions.md` item C.
+- Item D — readable-stack erasure (jobs `458403`/`458404`):
+  `stage2_subspace_erasure.py` gained subspace conditions
+  (`make_subspace_erasure_hook`, `build_layer_stacks`); rank-9
+  QR-orthonormalized INLP stack clamped to train-split per-component means
+  at all five readable layers, 3 matched-rank random stacks with the
+  identical estimator, prompt-forward projection-variance telemetry;
+  suffixes `readable_stack_erasure_27b_property_k8_shard{0,1}of2`.
+- CPU pre-step: `inlp_direction_stacks_27b_property_5layer.npz` regenerated
+  for all five layers; L30/40/45 bit-identical to the existing 3-layer
+  artifact; round-0 directions match the erasure raw units at cos>0.9996
+  (pre-registered bar 0.99). L15/L53 INLP redundancy matches the known
+  pattern (AUC ~0.90 -> ~0.87 over 8 rounds).
+
 ### 2026-07-03
 
 #### Rank-k Guard v2 (Fresh Rows) — Claim 8 Survives

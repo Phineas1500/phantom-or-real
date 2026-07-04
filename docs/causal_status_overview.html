@@ -72,7 +72,7 @@
     <h1>Phantom or Real — Where the Causality Hunt Stands</h1>
     <p>We could always <em>read</em> whether the model was about to be right. This week we learned why we
        could never <em>steer</em> it: the thing we were reading turns out to be a gauge, not a lever.</p>
-    <div class="date">Status: July 3, 2026 &nbsp;·&nbsp; Gemma&nbsp;3&nbsp;27B + Qwen3.5&nbsp;27B, InAbHyD property + subtype &nbsp;·&nbsp; Compact L30 core passes the fresh-row guard (rank-8 = 91% of concept-replace on 26 unseen rows); subtype carrier reachable at L35 (+0.117, pre-registered positive branch — old-trio nulls were layer mismatch); erasure control matching fired the constant-offset branch (claim-2 wording softened); all paper slots filled — drafting next</div>
+    <div class="date">Status: July 4, 2026 &nbsp;·&nbsp; Gemma&nbsp;3&nbsp;27B + Qwen3.5&nbsp;27B, InAbHyD property + subtype &nbsp;·&nbsp; All 12 claims frozen. Literature sweep: not scooped, but three 2026 preprints publish the readable-but-unsteerable half — the rank-8 carrier is the moat. Two pre-registered submission-hardening jobs launched (rank-8 random-basis specificity 458401/458402; readable-stack erasure 458403/458404); related work restructured — drafting next</div>
   </div>
 </header>
 
@@ -957,6 +957,31 @@
             replication</td>
         <td>—</td>
       </tr>
+      <tr>
+        <td><span class="chip run">running</span></td>
+        <td><b>Rank-8 specificity controls (jobs 458401/458402, pre-registered item C):</b>
+            random-basis ladder on the guard-v2 fresh rows — rank8_loo reference, LOO
+            mean-only, 4× norm-matched random-subspace draws, 4× matched-norm Gaussian
+            draws, k=8, ~1,250 gens/shard</td>
+        <td>The control the reviewers' critiques demand (causal-abstraction vacuity;
+            pernicious divergence): if matched-norm random bases repair too, claim 8's
+            specificity collapses. Gate: rank8_loo CI excludes zero; pass: rand_norm null
+            AND paired (rank8 − rand_norm) CI excludes zero</td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td><span class="chip run">running</span></td>
+        <td><b>Readable-stack erasure (jobs 458403/458404, pre-registered item D):</b>
+            rank-9 orthonormalized INLP stack mean-projection clamp at all five readable
+            layers simultaneously, vs 3 matched-rank random stacks with the identical
+            clamp-target estimator; projection-variance telemetry; 6 conditions × 16
+            balanced rows × k=8</td>
+        <td>Discriminates the entanglement account (closest rival's LEACE damaged accuracy
+            −3.6pp) from genuine epiphenomenality. Branch E: stack null → claim 3's caveat
+            becomes a result. Branch N: stack destructive beyond random stacks with parsed
+            precision degrading → first necessity positive, claims 2–3 rescope</td>
+        <td>—</td>
+      </tr>
     </table>
     <p>The long pole is cluster queue policy (4h per job, one 2-GPU job at a time), not the
        experiments. Black-box experiments now run in a <b>parallel lane on the Modal endpoint</b>
@@ -979,8 +1004,9 @@
   docs/subtype_discriminator_27b_summary.md ·
   docs/erasure_control_matching_27b_property_k4_summary.md ·
   docs/subtype_l35_replication_pooled_summary.md ·
+  docs/next_experiments_litreview_2026-07.md ·
   docs/causal_handle_directions.md · docs/next_paper_causal_abstraction_dashboard.md.
-  All numbers are from run artifacts (jobs 456912–456918, 456963–456966, 456968, 456990, 456999, 457002, 457005, 457009, 457012, 457170, 457191–457194, 457207–457210, 458374–458377, 458387/458388) and the offline rank-core geometry rider.
+  All numbers are from run artifacts (jobs 456912–456918, 456963–456966, 456968, 456990, 456999, 457002, 457005, 457009, 457012, 457170, 457191–457194, 457207–457210, 458374–458377, 458387/458388; 458401–458404 in flight) and the offline rank-core geometry rider.
 </footer>
 
 </body>
