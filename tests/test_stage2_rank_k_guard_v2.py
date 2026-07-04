@@ -134,3 +134,73 @@ def test_control_add_matrix_norm_matching_and_determinism() -> None:
 
     again = control_add_matrix(by_kind["rand_norm_add"], delta, basis, recon, **kwargs)
     np.testing.assert_allclose(noise, again)
+
+
+def test_build_predcoeff_arms_shape() -> None:
+    from scripts.stage2_rank_k_guard_v2 import build_predcoeff_arms
+
+    arms = build_predcoeff_arms(30, 8)
+    assert [arm.label for arm in arms] == [
+        "unhinted_baseline",
+        "hinted_baseline",
+        "rank8_dev_add_L30",
+        "mean_only_dev_add_L30",
+        "rank8_pred_add_L30",
+        "rank8_shufpred_add_L30",
+    ]
+    assert [arm.kind for arm in arms] == [
+        "none",
+        "hinted_prompt",
+        "rank_dev_add",
+        "mean_dev_add",
+        "pred_add",
+        "shufpred_add",
+    ]
+    assert arms[4].basis_mode == "ridge_predicted"
+    assert arms[5].basis_mode == "ridge_shuffled"
+
+
+def test_load_dev_states_roundtrip(tmp_path: Path) -> None:
+    from scripts.stage2_rank_k_guard_v2 import load_dev_states
+
+    rng = np.random.default_rng(0)
+    arrays = {}
+    for row in (11, 22):
+        arrays[f"L30_row{row}_concept_delta"] = rng.standard_normal((5, 16)).astype(np.float32)
+        arrays[f"L30_row{row}_unhinted_concept_states"] = rng.standard_normal((5, 16)).astype(np.float32)
+    path = tmp_path / "dev.npz"
+    np.savez_compressed(path, **arrays)
+
+    unhinted, delta = load_dev_states(path, 30)
+    assert set(unhinted) == set(delta) == {11, 22}
+    assert unhinted[11].shape == (5, 16)
+
+
+def test_fit_coeff_predictor_recovers_linear_map_and_shuffle_breaks_it() -> None:
+    from scripts.stage2_rank_k_guard_v2 import _ridge_predict, fit_coeff_predictor
+
+    rng = np.random.default_rng(3)
+    true_map = rng.standard_normal((32, 4))
+    dev_unhinted = {}
+    dev_coeffs = {}
+    for row in range(8):
+        x = rng.standard_normal((6, 32))
+        dev_unhinted[row] = x
+        dev_coeffs[row] = x @ true_map + 0.01 * rng.standard_normal((6, 4))
+
+    fitted = fit_coeff_predictor(dev_unhinted, dev_coeffs, alphas=(1e-2, 1e0, 1e2))
+    again = fit_coeff_predictor(dev_unhinted, dev_coeffs, alphas=(1e-2, 1e0, 1e2))
+    assert fitted["alpha"] == again["alpha"]
+    assert fitted["loo_cosine"] == again["loo_cosine"]
+    assert fitted["loo_cosine"] > 0.8
+
+    shuffled = fit_coeff_predictor(dev_unhinted, dev_coeffs, alphas=(1e-2, 1e0, 1e2), shuffle_seed=5)
+    assert shuffled["loo_cosine"] < 0.3
+
+    probe_x = rng.standard_normal((3, 32))
+    pred = _ridge_predict(fitted["model"], probe_x)
+    assert pred.shape == (3, 4)
+    cos = (pred * (probe_x @ true_map)).sum(axis=1) / (
+        np.linalg.norm(pred, axis=1) * np.linalg.norm(probe_x @ true_map, axis=1) + 1e-12
+    )
+    assert cos.mean() > 0.8

@@ -839,3 +839,60 @@ granularity. Mean-projection clamp retained as the erasure operation (ACL
     necessity not established, inertness not established at rank 9; claim 3
     caveat stays with sharpened wording.
 - Outputs: suffix `readable_stack_erasure_27b_property_k8_shard{i}of2`.
+
+## Pre-Registered Exploratory Job (2026-07-04, evening)
+
+### E. Predicted-coefficient repair (hint-free repair ladder, step 2)
+
+`scripts/stage2_rank_k_guard_v2.py --predicted-coefficients`. Step 1 of
+`docs/hint_free_repair_direction.md` passed (LOO cosine +0.631 vs shuffled
+null +0.014, 0/50 permutations): the rank-8 coefficients are linearly
+decodable from the row's own UNHINTED L30 concept-token states. Step 2 asks
+whether ridge-PREDICTED coefficients repair behavior — donor-free steering.
+Exploratory (next-paper material): no current-paper claim moves on any
+outcome; failure costs nothing but the two job slots.
+
+- Rows: identical selection to guard v2 / item C (seed 20260702, per-height
+  16, composite-manifest rows excluded), same 2 shards — row-paired
+  comparability with 458374/458375 and 458401/458402.
+- Shared machinery: ONE dev basis (rank-8 PCA of the 13 composite rows'
+  L30 concept deltas from `focus_state_composite_27b_property_states.npz`,
+  no LOO — dev rows are disjoint from all fresh rows), so the four causal
+  arms differ ONLY in where the coefficients come from. Ridge predictor
+  trained on the 13 dev rows (X = unhinted concept states, Y = centered
+  delta @ Q_dev^T), alpha picked by LOO-by-row over {1e2..1e6} in-job,
+  deterministic; per-row donor deltas are computed in-job for the ceiling
+  arm and diagnostics ONLY — the pred arm never touches the target row's
+  hinted pass.
+- Arms (6 per shard, k=8 samples, generation config identical to guard v2):
+  `unhinted_baseline`; `hinted_baseline` (validation); `rank8_dev_add_L30`
+  (ceiling: row's own delta reconstructed on the dev basis, mean + QQ^T);
+  `mean_only_dev_add_L30` (floor: dev-basis mean tiled); `rank8_pred_add_L30`
+  (dev mean + Q_dev^T c_pred from the row's unhinted states); and
+  `rank8_shufpred_add_L30` (identical ridge pipeline trained on a seeded
+  row-level permutation of Y — breaks the X→Y pairing, preserves output
+  scale; seed 20260704).
+- Primary metric: pooled 2-shard paired dP(strong) vs in-job
+  `unhinted_baseline`, row-cluster bootstrap (10k draws, percentile CI),
+  the only sanctioned sigma source. Diagnostic: per-row cosine(pred, true)
+  recorded in basis_records.
+- Decision rules (recorded before unblinding):
+  - Gate: pooled `rank8_dev_add_L30` CI must exclude zero (dev-basis
+    transfer to fresh rows; guard v1 precedent). If it fails, the pred arm
+    is uninterpretable — report and stop; no rule evaluation.
+  - SUCCESS (donor-free repair): pooled `rank8_pred` CI excludes zero AND
+    paired (pred − mean_only_dev) CI excludes zero AND paired
+    (pred − shufpred) CI excludes zero. Report pred as % of the rank8_dev
+    ceiling. Consequence: step 3 (gated deployment test) unlocked;
+    hint-free direction upgrades from "askable" to "answered in-domain".
+  - PARTIAL (constant-vector steering only): pooled `rank8_pred` CI
+    excludes zero but (pred − mean_only_dev) straddles zero → the ridge
+    adds nothing behavioral beyond the dev mean; direction doc updated,
+    step 3 not unlocked.
+  - FAIL: `rank8_pred` CI straddles zero, or shufpred ≈ pred (paired CI
+    straddles zero) → coefficient decodability does not convert to
+    behavioral repair at this n; documented, ladder stops.
+- Budget: 6 arms × ~13 rows × 8 samples ≈ 624 generations/shard ≈ 1.6 h
+  per shard. Queue behind item D (458403/458404).
+- Outputs: stem `rank8_predcoeff_27b_property_shard{i}of2`; states npz also
+  saves per-row unhinted concept states.

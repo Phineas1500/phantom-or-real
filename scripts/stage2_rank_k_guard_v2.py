@@ -112,6 +112,111 @@ def build_specificity_arms(layer: int, rank: int, draws: int) -> list[Arm]:
     return arms
 
 
+def build_predcoeff_arms(layer: int, rank: int) -> list[Arm]:
+    """Predicted-coefficient repair arms for the hint-free ladder (pre-registered item E)."""
+    return [
+        Arm("unhinted_baseline", "none", "none"),
+        Arm("hinted_baseline", "hinted_prompt", "unhinted_baseline"),
+        Arm(f"rank{rank}_dev_add_L{layer}", "rank_dev_add", "unhinted_baseline", (layer,), rank, "dev_full"),
+        Arm(f"mean_only_dev_add_L{layer}", "mean_dev_add", "unhinted_baseline", (layer,), rank, "dev_full"),
+        Arm(f"rank{rank}_pred_add_L{layer}", "pred_add", "unhinted_baseline", (layer,), rank, "ridge_predicted"),
+        Arm(f"rank{rank}_shufpred_add_L{layer}", "shufpred_add", "unhinted_baseline", (layer,), rank, "ridge_shuffled"),
+    ]
+
+
+def load_dev_states(npz_path: Path, layer: int) -> tuple[dict[int, np.ndarray], dict[int, np.ndarray]]:
+    """Per-row unhinted concept states and concept deltas from a composite states npz."""
+    import re
+
+    data = np.load(npz_path)
+    unhinted: dict[int, np.ndarray] = {}
+    delta: dict[int, np.ndarray] = {}
+    for key in data.files:
+        match = re.match(rf"L{layer}_row(\d+)_(unhinted_concept_states|concept_delta)$", key)
+        if not match:
+            continue
+        row = int(match.group(1))
+        arr = data[key].astype(np.float64)
+        if match.group(2) == "concept_delta":
+            delta[row] = arr
+        else:
+            unhinted[row] = arr
+    if not unhinted or set(unhinted) != set(delta):
+        raise ValueError(f"dev npz {npz_path} lacks paired unhinted/delta arrays for layer {layer}")
+    return unhinted, delta
+
+
+def _ridge_fit(x: np.ndarray, y: np.ndarray, alpha: float) -> tuple[np.ndarray, ...]:
+    mu, sd = x.mean(axis=0), x.std(axis=0) + 1e-8
+    xs = (x - mu) / sd
+    n = xs.shape[0]
+    gram = xs @ xs.T
+    weights = xs.T @ np.linalg.solve(gram + alpha * np.eye(n), y - y.mean(axis=0))
+    return mu, sd, weights, y.mean(axis=0)
+
+
+def _ridge_predict(model: tuple[np.ndarray, ...], x: np.ndarray) -> np.ndarray:
+    mu, sd, weights, bias = model
+    return ((x - mu) / sd) @ weights + bias
+
+
+def fit_coeff_predictor(
+    dev_unhinted: dict[int, np.ndarray],
+    dev_coeffs: dict[int, np.ndarray],
+    *,
+    alphas: tuple[float, ...],
+    shuffle_seed: int | None = None,
+) -> dict[str, Any]:
+    """Ridge from unhinted concept states to dev-basis coefficients.
+
+    Alpha is picked by leave-one-dev-row-out mean cosine. With shuffle_seed,
+    training targets are reassigned by a seeded row derangement (positions
+    resampled from the partner row), breaking the X->Y pairing while keeping
+    output scale.
+    """
+    rows = sorted(dev_unhinted)
+    targets = dict(dev_coeffs)
+    if shuffle_seed is not None:
+        rng = np.random.default_rng(shuffle_seed)
+        partner = list(rows)
+        while True:
+            rng.shuffle(partner)
+            if all(a != b for a, b in zip(rows, partner)):
+                break
+        targets = {}
+        for row, mate in zip(rows, partner):
+            src = dev_coeffs[mate]
+            idx = rng.integers(0, src.shape[0], size=dev_unhinted[row].shape[0])
+            targets[row] = src[idx]
+
+    def cosines(a: np.ndarray, b: np.ndarray) -> np.ndarray:
+        num = (a * b).sum(axis=1)
+        den = np.linalg.norm(a, axis=1) * np.linalg.norm(b, axis=1) + 1e-12
+        return num / den
+
+    best: tuple[float, float] | None = None
+    for alpha in alphas:
+        scores = []
+        for held in rows:
+            train = [r for r in rows if r != held]
+            model = _ridge_fit(
+                np.concatenate([dev_unhinted[r] for r in train], axis=0),
+                np.concatenate([targets[r] for r in train], axis=0),
+                alpha,
+            )
+            scores.append(float(cosines(_ridge_predict(model, dev_unhinted[held]), targets[held]).mean()))
+        mean_score = float(np.mean(scores))
+        if best is None or mean_score > best[0]:
+            best = (mean_score, alpha)
+    loo_cosine, alpha = best
+    model = _ridge_fit(
+        np.concatenate([dev_unhinted[r] for r in rows], axis=0),
+        np.concatenate([targets[r] for r in rows], axis=0),
+        alpha,
+    )
+    return {"model": model, "alpha": alpha, "loo_cosine": loo_cosine, "shuffle_seed": shuffle_seed}
+
+
 def draw_index(label: str) -> int:
     return int(label.rsplit("_d", 1)[1])
 
@@ -180,11 +285,11 @@ def hint_validated_summary(
 def write_markdown_summary(path: Path, report: dict[str, Any]) -> None:
     job = report.get("slurm_job_id") or "local"
     shard = report["shard"]
-    title = (
-        "Rank-8 Specificity Controls (fresh rows)"
-        if report["method"] == "rank8_specificity_controls_fresh_rows"
-        else "Rank-k Guard v2 (fresh rows)"
-    )
+    titles = {
+        "rank8_specificity_controls_fresh_rows": "Rank-8 Specificity Controls (fresh rows)",
+        "rank8_predicted_coefficients_fresh_rows": "Rank-8 Predicted-Coefficient Repair (fresh rows)",
+    }
+    title = titles.get(report["method"], "Rank-k Guard v2 (fresh rows)")
     lines = [
         f"# {title} - Job {job} - shard {shard['index']} of {shard['count']}",
         "",
@@ -242,6 +347,14 @@ def main() -> int:
     parser.add_argument("--specificity-controls", action="store_true")
     parser.add_argument("--control-draws", type=int, default=4)
     parser.add_argument("--control-seed", type=int, default=20260704)
+    parser.add_argument("--predicted-coefficients", action="store_true")
+    parser.add_argument(
+        "--dev-states-npz",
+        type=Path,
+        default=Path("results/stage2/erasure/focus_state_composite_27b_property_states.npz"),
+    )
+    parser.add_argument("--ridge-alphas", default="1e2,1e3,1e4,1e5,1e6")
+    parser.add_argument("--pred-shuffle-seed", type=int, default=20260704)
     parser.add_argument("--dry-run", action="store_true")
     parser.add_argument("--out-jsonl", type=Path, default=None)
     parser.add_argument("--states-output", type=Path, default=None)
@@ -250,9 +363,14 @@ def main() -> int:
     args = parser.parse_args()
     started = time.time()
 
+    if args.specificity_controls and args.predicted_coefficients:
+        raise ValueError("--specificity-controls and --predicted-coefficients are mutually exclusive")
     if args.specificity_controls:
         stem = f"rank8_specificity_27b_property_shard{args.shard_index}of{args.shard_count}"
         method = "rank8_specificity_controls_fresh_rows"
+    elif args.predicted_coefficients:
+        stem = f"rank8_predcoeff_27b_property_shard{args.shard_index}of{args.shard_count}"
+        method = "rank8_predicted_coefficients_fresh_rows"
     else:
         stem = f"rank_k_guard_v2_27b_property_shard{args.shard_index}of{args.shard_count}"
         method = "rank_k_guard_v2_fresh_rows"
@@ -272,8 +390,33 @@ def main() -> int:
         if len(ranks) != 1:
             raise ValueError("--specificity-controls expects a single rank in --rank-list")
         arms = build_specificity_arms(args.layer, ranks[0], args.control_draws)
+    elif args.predicted_coefficients:
+        if len(ranks) != 1:
+            raise ValueError("--predicted-coefficients expects a single rank in --rank-list")
+        arms = build_predcoeff_arms(args.layer, ranks[0])
     else:
         arms = build_arms(ranks, args.layer)
+
+    dev_basis = None
+    predictors: dict[str, dict[str, Any]] = {}
+    if args.predicted_coefficients:
+        alphas = tuple(float(part) for part in args.ridge_alphas.split(","))
+        dev_unhinted, dev_delta = load_dev_states(args.dev_states_npz, args.layer)
+        dev_basis = fit_pca_basis(dev_delta, ranks[0])
+        dev_coeffs = {
+            row: (arr - dev_basis["mean"][None, :]) @ dev_basis["components"].T
+            for row, arr in dev_delta.items()
+        }
+        predictors["pred"] = fit_coeff_predictor(dev_unhinted, dev_coeffs, alphas=alphas)
+        predictors["shufpred"] = fit_coeff_predictor(
+            dev_unhinted, dev_coeffs, alphas=alphas, shuffle_seed=args.pred_shuffle_seed
+        )
+        print(
+            f"dev_basis rows={len(dev_delta)} evr={dev_basis['explained_variance_ratio']:.3f} "
+            f"pred alpha={predictors['pred']['alpha']} loo_cos={predictors['pred']['loo_cosine']:+.3f} "
+            f"shufpred alpha={predictors['shufpred']['alpha']} loo_cos={predictors['shufpred']['loo_cosine']:+.3f}",
+            flush=True,
+        )
     total = len(selected_rows) * len(arms) * args.samples_per_row
     print(
         f"selected_rows={len(selected_rows)} of {len(all_rows)} "
@@ -321,6 +464,7 @@ def main() -> int:
 
     prepared = []
     delta_by_row: dict[int, np.ndarray] = {}
+    unhinted_by_row: dict[int, np.ndarray] = {}
     for stage1_row in selected_rows:
         source_row_index = int(stage1_row["row_index"])
         gold_concept = stage1_row["ontology_fol_structured"]["hypothesis"]["subject"]
@@ -345,7 +489,9 @@ def main() -> int:
         h_block = hinted_cache[hook_name][h_start : h_start + block_len].detach().cpu()
         u_block = unhinted_cache[hook_name][r_start : r_start + block_len].detach().cpu()
         concept_delta = h_block[rel] - u_block[rel]
+        unhinted_concept = u_block[rel].numpy().astype(np.float32)
         delta_by_row[source_row_index] = concept_delta.numpy().astype(np.float32)
+        unhinted_by_row[source_row_index] = unhinted_concept
         prepared.append(
             {
                 "row": stage1_row,
@@ -414,6 +560,49 @@ def main() -> int:
                             "explained_variance_ratio": basis["explained_variance_ratio"],
                         }
                     )
+                elif arm.kind in {"rank_dev_add", "mean_dev_add", "pred_add", "shufpred_add"}:
+                    assert dev_basis is not None
+                    basis = dev_basis
+                    mean = dev_basis["mean"]
+                    components = dev_basis["components"]
+                    row_unhinted = unhinted_by_row[prep["source_row_index"]].astype(np.float64)
+                    true_coeffs = (
+                        prep["concept_delta"].numpy().astype(np.float64) - mean[None, :]
+                    ) @ components.T
+                    record: dict[str, Any] = {
+                        "condition": arm.label,
+                        "source_row_index": prep["source_row_index"],
+                        "layer": args.layer,
+                        "rank_k": arm.rank_k,
+                        "basis_mode": arm.basis_mode,
+                    }
+                    if arm.kind == "rank_dev_add":
+                        vec = mean[None, :] + true_coeffs @ components
+                    elif arm.kind == "mean_dev_add":
+                        vec = np.tile(mean, (len(prep["rel"]), 1))
+                    else:
+                        predictor = predictors["pred" if arm.kind == "pred_add" else "shufpred"]
+                        coeffs = _ridge_predict(predictor["model"], row_unhinted)
+                        vec = mean[None, :] + coeffs @ components
+                        num = (coeffs * true_coeffs).sum(axis=1)
+                        den = (
+                            np.linalg.norm(coeffs, axis=1) * np.linalg.norm(true_coeffs, axis=1) + 1e-12
+                        )
+                        record.update(
+                            {
+                                "ridge_alpha": predictor["alpha"],
+                                "ridge_loo_cosine_dev": predictor["loo_cosine"],
+                                "pred_true_cosine": float((num / den).mean()),
+                                "mean_pred_coeff_norm": float(np.linalg.norm(coeffs, axis=1).mean()),
+                                "mean_true_coeff_norm": float(np.linalg.norm(true_coeffs, axis=1).mean()),
+                            }
+                        )
+                    record["mean_add_vector_norm"] = float(np.linalg.norm(vec, axis=1).mean())
+                    positions = [start + rel_pos for rel_pos in prep["rel"]]
+                    fwd_hooks.append(
+                        (hook_name, make_position_add_hook(torch.from_numpy(vec.astype(np.float32)), positions, 1.0))
+                    )
+                    basis_records.append(record)
                 elif arm.kind in {"mean_add", "rand_subspace_add", "rand_norm_add"}:
                     assert arm.rank_k is not None
                     basis = basis_for(prep["source_row_index"], arm.rank_k)
@@ -491,6 +680,10 @@ def main() -> int:
                 torch.cuda.empty_cache()
 
     state_arrays = {f"L{args.layer}_row{row_id}_concept_delta": arr for row_id, arr in delta_by_row.items()}
+    if args.predicted_coefficients:
+        state_arrays.update(
+            {f"L{args.layer}_row{row_id}_unhinted_concept_states": arr for row_id, arr in unhinted_by_row.items()}
+        )
     states_output.parent.mkdir(parents=True, exist_ok=True)
     np.savez_compressed(states_output, **state_arrays)
 
@@ -546,10 +739,33 @@ def main() -> int:
             else [
                 "in-job unhinted baseline",
                 "hinted-prompt per-row validation arm",
+                "dev-basis true-coefficient ceiling arm",
+                "dev-basis mean-only floor arm",
+                "row-derangement shuffled-ridge control (identical pipeline, broken X->Y pairing)",
+            ]
+            if args.predicted_coefficients
+            else [
+                "in-job unhinted baseline",
+                "hinted-prompt per-row validation arm",
                 "in-job concept-position replacement denominator",
                 "matched random-position replacement",
                 "leave-one-row-out PCA bases fit within shard",
             ]
+        ),
+        "predictor_config": (
+            {
+                "dev_states_npz": str(args.dev_states_npz),
+                "dev_rows": sorted(dev_basis["source_rows"]),
+                "dev_basis_explained_variance_ratio": dev_basis["explained_variance_ratio"],
+                "ridge_alphas": args.ridge_alphas,
+                "pred_alpha": predictors["pred"]["alpha"],
+                "pred_loo_cosine_dev": predictors["pred"]["loo_cosine"],
+                "shufpred_alpha": predictors["shufpred"]["alpha"],
+                "shufpred_loo_cosine_dev": predictors["shufpred"]["loo_cosine"],
+                "pred_shuffle_seed": args.pred_shuffle_seed,
+            }
+            if args.predicted_coefficients
+            else None
         ),
         "pre_registered_decision_rule": (
             (
@@ -559,6 +775,14 @@ def main() -> int:
                 "decompose the carrier per the wording grid in docs/causal_handle_directions.md item C."
             )
             if args.specificity_controls
+            else (
+                "Gate: pooled rank8_dev CI must exclude zero (dev-basis transfer). SUCCESS if pooled "
+                "rank8_pred CI excludes zero AND paired (pred - mean_only_dev) CI excludes zero AND "
+                "paired (pred - shufpred) CI excludes zero. PARTIAL if pred excludes zero but "
+                "(pred - mean_only_dev) straddles zero. FAIL otherwise. Exploratory: no current-paper "
+                "claim moves; rules in docs/causal_handle_directions.md item E."
+            )
+            if args.predicted_coefficients
             else (
                 "Claim 8 survives if pooled rank4_loo or rank8_loo CI excludes zero and reaches >=70% of "
                 "the pooled in-job L30_concept_replace effect. A null concept_replace on fresh rows scopes "

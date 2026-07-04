@@ -96,6 +96,16 @@ final report is easier to assemble.
   states. Screening-grade (13 composite dev rows). Script:
   `scripts/stage2_coeff_predictability.py`. Step 2 (closed-loop predicted-
   coefficient repair) unlocked, to be pre-registered before launch.
+- Step 2 pre-registered as item E (`docs/causal_handle_directions.md`) and
+  launched (jobs `458409`/`458410`, queued behind item D):
+  `--predicted-coefficients` mode in `stage2_rank_k_guard_v2.py`, 6 arms on
+  the guard-v2 fresh rows — dev-basis ceiling/floor, ridge-predicted
+  coefficients from the row's own unhinted L30 states (donor pass never
+  touched for the pred arm), and a row-derangement shuffled-ridge control.
+  Dry-run predictor stats: dev LOO cosine `+0.656`, shuffled `+0.059`,
+  dev-basis EVR `0.685`. Rules: gate = rank8_dev CI excludes zero; SUCCESS =
+  pred CI excludes zero AND beats mean_only_dev AND shufpred (paired).
+  Exploratory — no current-paper claim moves on any outcome.
 
 ### 2026-07-03
 
