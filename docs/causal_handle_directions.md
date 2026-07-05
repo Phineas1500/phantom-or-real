@@ -1018,3 +1018,61 @@ only on-distribution specificity control to date).
 - Exploratory: no current-paper claim moves except via the W1 wording
   consequences enumerated above. Budget: 7 arms × ~13 rows × 8 ≈ 728
   gens/shard ≈ 1.8 h/shard, 2 shards, queued behind item D's remainder.
+
+## Pre-Registered Cross-Model Port (2026-07-05)
+
+### G. Qwen3.5-27B positive-carrier port (gorman lane; next-paper opener)
+
+Pre-registered before any Qwen causal-repair data. Claim 11 established the
+Qwen gauge (L53 AUC 0.940) and raw-axis non-necessity; item G asks whether
+the LEVER — the focus-state repair motif — exists in Qwen: is "commitment
+written at concept-mention tokens, low-rank, causally repairable" a
+cross-model motif or a Gemma idiosyncrasy? Either answer is a next-paper
+result. Primary model: Qwen/Qwen3.5-27B (evidence continuity). Qwen3.6-27B
+(same architecture class, released 2026-04) is a stretch replication (G5),
+run only if G2–G3 land.
+
+Runs as self-staging fp32 jobs on gorman-gpu
+(`scripts/gorman_stage_and_run.sbatch`); Scholar bf16 numbers are NOT
+stitchable — all comparisons are within-job or within-lane.
+
+- **G0 — calibration gate (in-job, first)**: unhinted + hinted baselines,
+  k=8, on the 16 balanced rows of jobs 457191–457194. Gate: unhinted
+  P(strong) within the row-cluster CI of the Scholar-era baseline (0.352);
+  hinted lift ≥ +0.30. Hinted-lift failure = no addressable failure mode
+  at this prompt format → STOP, port reported as behaviorally blocked
+  (itself informative: the recognition-gap motif would be Gemma-scoped).
+- **G1 — row selection**: in-job screen (reusing the sampled-baseline
+  machinery from the Qwen erasure family) for parse-ok strong-incorrect
+  h3/h4 rows, seeded, balanced, 16 selected / expect ~13 prepared.
+- **G2 — layer sweep (the localization step Gemma taught us to expect)**:
+  concept_replace vs random_replace at relative depths ≈ {0.40, 0.50,
+  0.60, 0.67, 0.75} of Qwen's stack, k=8, same rows. Winner = largest
+  pooled concept_replace dP whose CI excludes zero AND whose paired
+  (concept − random) CI excludes zero; ties → deeper layer. No winner →
+  STOP: "carrier not reachable at swept depths" (mirrors the subtype
+  old-trio lesson — report as layer-mismatch candidate, sweep finer only
+  in a follow-up registration).
+- **G3 — compact core + specificity at the winning layer**: the item C
+  ladder compressed — rank8_loo_add, mean_only_add, rand_subspace_add
+  (2 draws), rand_norm_add (2 draws), k=8. PASS = rank8_loo CI excludes
+  zero AND paired (rank8 − rand_norm family) CI excludes zero. Report
+  rank8 as % of G2's concept_replace.
+- **G4 — F-series rider (budget permitting)**: natural-state capture
+  (balanced correct/incorrect, no hints) + class_mean_proj at the winning
+  layer with one shuffled-label draw and the sign-flip. Descriptive
+  unless G3 passed.
+- **G5 — Qwen3.6-27B stretch**: rerun G0–G3 with the model name swapped
+  (in-job screening supplies rows; no stage-1 artifacts exist for 3.6).
+  Registered now to avoid garden-of-forking-paths later; runs only after
+  a G3 PASS on 3.5.
+- Stats: row-cluster bootstrap (10k, percentile), paired vs in-job
+  unhinted baseline, pooling per phase; random families pooled across
+  draws. Wording consequences: G3 PASS → "the focus-state control channel
+  is a cross-model motif (2/2 models tested), with model-specific layer
+  and basis"; G2/G3 nulls after a passing G0 → "the lever is not
+  reachable by the Gemma recipe in Qwen — motif not established beyond
+  Gemma," reported with equal prominence.
+- Budget: G0–G3 ≈ 2,000–2,500 generations ≈ 12–18 h fp32 on 5× V100 —
+  one gorman job with staging overhead; G4/G5 a second job. Exploratory:
+  no current-paper claim moves on any outcome.
