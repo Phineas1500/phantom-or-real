@@ -966,3 +966,55 @@ does it act through the lever subspace?
     stronger both-tests-run sentence.
 - Exploratory: no current-paper claim moves on any outcome. Budget: 6
   arms × ~13 rows × 8 ≈ 624 gens/shard ≈ 1.7 h/shard, 2 shards.
+
+### F(ii)-b. Shuffled-label projected control (label-specificity of +0.341)
+
+Pre-registered 2026-07-05 morning, after two round-2 adversarial reviews
+independently made this arm their condition for publication, and BEFORE
+any F(ii)-b data. Adjudicates whether F(ii)'s class_mean_proj (+0.341) is
+label-specific or generic to difference-shaped vectors in the lever
+subspace (the reviews' "top-variance cone" alternative — the program's
+only on-distribution specificity control to date).
+
+- Rows/harness/norms: identical to F(ii) (guard-v2 fresh selection, 2
+  shards, k=8, per-position norm target = the row's LOO rank-8 recon).
+- The F(ii) real-proj and baseline data are reused via verified
+  determinism (208/208 identical anchor outcomes); an in-job
+  unhinted_baseline is regenerated as an integrity check and must match
+  F(ii)'s row-for-row.
+- New arms (7 per shard):
+  `unhinted_baseline` (integrity);
+  `shuflabel_proj_add_L30_d{1-4}` — class-mean vectors from seeded
+  label permutations of the SAME 96-row capture (derangement-free simple
+  permutations, seeds 20260705+d), projected per-row onto the identical
+  LOO bases, norm-matched identically; pooled as a family across draws
+  and shards, per-draw descriptive (item-C convention);
+  `signflip_proj_add_L30` — the REAL class vector negated, projected,
+  norm-matched (label-content predicts null-or-harm; pure-geometry
+  predicts repair);
+  `fixednorm_proj_add_L30` — the real projected vector at a FIXED
+  per-position norm equal to the pooled mean recon norm of the OTHER
+  rows (leave-one-out pooled scale): the fully donor-free variant.
+- Decision rules (before unblinding):
+  - Integrity gate: in-job unhinted_baseline reproduces F(ii)'s per-row
+    outcomes (any mismatch → determinism broken → stop, no reuse).
+  - LABEL-SPECIFIC: paired (real_proj − shuflabel family) CI excludes
+    zero AND the shuflabel family sits below 50% of real_proj's dP.
+    Consequence: F(ii)'s endogeneity-adjacent wording ("causal alignment
+    without decodable alignment") is earned; claim-8 wording keeps "the
+    specific directions".
+  - GENERIC (the reviews' predicted outcome): paired (real_proj −
+    shuflabel family) CI includes zero → +0.341 reads as "high-variance
+    in-subspace amplification"; F(ii) §4 reverts fully to exogenous
+    mediation; claim 8's "specific 8 PCA directions" wording is replaced
+    by "an identified high-variance subspace" in the W1 sweep.
+  - Sign-flip rider (descriptive unless decisive): signflip repairing at
+    ≥50% of real_proj strongly supports GENERIC regardless of the
+    primary contrast; signflip null-or-negative with LABEL-SPECIFIC
+    primary supports content.
+  - Donor-free rider: fixednorm_proj CI excluding zero = the first fully
+    donor-free repair (direction and scale both hint-free); reported
+    regardless of primary outcome.
+- Exploratory: no current-paper claim moves except via the W1 wording
+  consequences enumerated above. Budget: 7 arms × ~13 rows × 8 ≈ 728
+  gens/shard ≈ 1.8 h/shard, 2 shards, queued behind item D's remainder.
