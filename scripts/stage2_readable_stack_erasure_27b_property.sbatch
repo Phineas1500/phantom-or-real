@@ -43,6 +43,10 @@ nvidia-smi
 STACKERASE_ROW_SHARD="${STACKERASE_ROW_SHARD:-0/2}"
 SHARD_TAG="${STACKERASE_ROW_SHARD/\//of}"
 STACKERASE_SUFFIX="${STACKERASE_SUFFIX:-readable_stack_erasure_27b_property_k8_shard${SHARD_TAG}}"
+ROW_INDICES_ARGS=()
+if [ -n "${STACKERASE_ROW_INDICES:-}" ]; then
+    ROW_INDICES_ARGS=(--row-indices "$STACKERASE_ROW_INDICES")
+fi
 
 python -u scripts/stage2_subspace_erasure.py \
     --jsonl results/full/with_errortype/gemma3_27b_infer_property.jsonl \
@@ -65,6 +69,7 @@ python -u scripts/stage2_subspace_erasure.py \
     --temperature 0.7 \
     --do-sample \
     --row-shard "$STACKERASE_ROW_SHARD" \
+    "${ROW_INDICES_ARGS[@]}" \
     --n-devices 2 \
     --n-ctx 4096 \
     --dtype bfloat16 \

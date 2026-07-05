@@ -453,6 +453,12 @@ def build_arg_parser() -> argparse.ArgumentParser:
         default=None,
         help="Optional 'i/n' slice of the selected rows so long sampled runs fit the 4h wall limit.",
     )
+    parser.add_argument(
+        "--row-indices",
+        default=None,
+        help="Optional comma list of source row indices to keep after selection/sharding "
+        "(remainder jobs after a wall-timeout; per-sample seeds do not depend on the slice).",
+    )
     parser.add_argument("--selection-seed", type=int, default=20260427)
     parser.add_argument("--probe-seed", type=int, default=20260472)
     parser.add_argument("--orthogonal-seed", type=int, default=20260545)
@@ -527,6 +533,14 @@ def main() -> int:
             raise ValueError(f"invalid --row-shard {args.row_shard!r}")
         selected_rows = selected_rows[shard_index::shard_count]
         selection_summary["row_shard"] = args.row_shard
+        selection_summary["shard_rows"] = len(selected_rows)
+    if args.row_indices:
+        keep = {int(part) for part in args.row_indices.split(",") if part.strip()}
+        missing = keep - {int(row["row_index"]) for row in selected_rows}
+        if missing:
+            raise ValueError(f"--row-indices not in the selected set: {sorted(missing)}")
+        selected_rows = [row for row in selected_rows if int(row["row_index"]) in keep]
+        selection_summary["row_indices"] = sorted(keep)
         selection_summary["shard_rows"] = len(selected_rows)
     total_generations = len(selected_rows) * len(condition_plan) * args.samples_per_row
     print(
