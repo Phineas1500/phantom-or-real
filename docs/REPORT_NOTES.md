@@ -96,6 +96,36 @@ final report is easier to assemble.
   states. Screening-grade (13 composite dev rows). Script:
   `scripts/stage2_coeff_predictability.py`. Step 2 (closed-loop predicted-
   coefficient repair) unlocked, to be pre-registered before launch.
+#### Item D Operations: Wall Timeout, Resharding, and a Sanctioned Preview
+
+- Job `458403` (shard 0/2, 8 rows) hit the 4 h wall at 50–56% — the 5-layer
+  rank-9 clamp makes each generation ~7x slower than the guard family
+  (~66 s/gen). TIMEOUT at 04:00:18 with rows `4926/5564/3315/4068` fully
+  complete (all 6 conditions x 8 samples, incremental JSONL intact) and row
+  `6604` partial. `458404` (same doomed config) was cancelled pre-start.
+- Recovery: per-sample seeds depend only on (row, condition, sample), never
+  the shard layout, so finer slices reproduce identical generations.
+  Resubmitted as `458412` (`--row-shard 1/4`), `458413` (`3/4`), and
+  `458414` (new `--row-indices 6604,8934,6705,7466` remainder mode with a
+  `_remainder` suffix so the partial shard-0 JSONL is not clobbered; row
+  6604's complete cells will reproduce exactly and the remainder copy is
+  authoritative). Commit `ca78894`.
+- Prediction registered BEFORE looking at the partial data (chat log,
+  2026-07-04 ~19:45): Branch E ~60%, ambiguous (both stacks destructive)
+  ~25-30%, true Branch N ~10-15%; mechanism forecast = readable-stack
+  projection variance far below the random stacks' (constant-offset account
+  at rank 9).
+- Sanctioned descriptive preview (4 complete rows, all h3, NO rule
+  evaluation): `erase_readable_stack` P(strong) 0.5625 vs baseline 0.500;
+  `erase_raw` 0.531 (continuity anchor on track); `erase_random_stack`
+  d1-d3 = 11/12 row-cells at 0.000 (one 0.125). Telemetry: mean
+  per-component prompt projection variance readable stack vs random stacks
+  = L15 10 vs ~15-20k; L30 1.3k vs 27-90k; L40 3.8k vs 34-96k; L45 3.9k vs
+  96-177k; L53 8.8k vs 83-108k. Both halves of the registered prediction
+  match on the preview; per the pre-registered wording rule, a Branch E
+  verdict will be claimed as non-necessity (realized perturbation
+  magnitudes are unmatched by construction), not special inertness.
+
 - Step 2 pre-registered as item E (`docs/causal_handle_directions.md`) and
   launched (jobs `458409`/`458410`, queued behind item D):
   `--predicted-coefficients` mode in `stage2_rank_k_guard_v2.py`, 6 arms on

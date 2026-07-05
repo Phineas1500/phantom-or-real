@@ -72,7 +72,7 @@
     <h1>Phantom or Real — Where the Causality Hunt Stands</h1>
     <p>We could always <em>read</em> whether the model was about to be right. This week we learned why we
        could never <em>steer</em> it: the thing we were reading turns out to be a gauge, not a lever.</p>
-    <div class="date">Status: July 4, 2026 (evening) &nbsp;·&nbsp; Gemma&nbsp;3&nbsp;27B + Qwen3.5&nbsp;27B, InAbHyD property + subtype &nbsp;·&nbsp; All 12 claims frozen. Literature sweep: not scooped — the rank-8 carrier is the moat. Item C landed: specificity PASSES on the subspace-load-bearing branch (rank8 +0.245 vs noise −0.088; jobs 458401/458402). Item D readable-stack erasure in flight (458403 running, 458404 queued) — drafting next</div>
+    <div class="date">Status: July 4, 2026 (late) &nbsp;·&nbsp; Gemma&nbsp;3&nbsp;27B + Qwen3.5&nbsp;27B, InAbHyD property + subtype &nbsp;·&nbsp; All 12 claims frozen. Item C landed: specificity PASSES on the subspace-load-bearing branch (rank8 +0.245 vs noise −0.088). Item D resharded after a 4h wall timeout (458412–458414 overnight); sanctioned 4-row preview matches the registered Branch-E prediction on both behavior and telemetry. Item E (hint-free predicted-coefficient repair) pre-registered and running overnight (458409/458410) after the offline decodability gate passed (cos +0.631 vs null +0.014) — drafting next</div>
   </div>
 </header>
 
@@ -973,15 +973,35 @@
       </tr>
       <tr>
         <td><span class="chip run">running</span></td>
-        <td><b>Readable-stack erasure (jobs 458403/458404, pre-registered item D):</b>
+        <td><b>Readable-stack erasure (pre-registered item D; jobs 458403 + 458412–458414
+            after a 4h wall timeout forced resharding):</b>
             rank-9 orthonormalized INLP stack mean-projection clamp at all five readable
             layers simultaneously, vs 3 matched-rank random stacks with the identical
             clamp-target estimator; projection-variance telemetry; 6 conditions × 16
-            balanced rows × k=8</td>
+            balanced rows × k=8. Seeds are shard-layout-independent, so stitching the
+            partial 458403 JSONL with the overnight shards is exact</td>
         <td>Discriminates the entanglement account (closest rival's LEACE damaged accuracy
             −3.6pp) from genuine epiphenomenality. Branch E: stack null → claim 3's caveat
             becomes a result. Branch N: stack destructive beyond random stacks with parsed
-            precision degrading → first necessity positive, claims 2–3 rescope</td>
+            precision degrading → first necessity positive, claims 2–3 rescope.
+            <b>Sanctioned 4-row preview</b> (descriptive, all h3): readable-stack arm 0.5625
+            vs baseline 0.500, random stacks 11/12 cells at 0.000, readable-stack projection
+            variance 10–1300× below the random stacks' — both halves of the registered
+            Branch-E prediction match so far</td>
+        <td>Verdict from the pooled 16 rows (~tomorrow morning)</td>
+      </tr>
+      <tr>
+        <td><span class="chip run">running</span></td>
+        <td><b>Predicted-coefficient repair (jobs 458409/458410, pre-registered item E,
+            exploratory):</b> can the rank-8 repair run donor-free? Offline gate passed —
+            the coefficients are ridge-decodable from the row's own UNHINTED L30 states
+            (LOO cosine +0.631 vs shuffled null +0.014, 0/50 permutations). 6 arms sharing
+            one dev basis: ceiling (true coefficients), floor (dev mean only), predicted
+            (from the failing run itself), and shuffled-ridge control</td>
+        <td>SUCCESS = pred CI excludes zero AND beats floor and shuffle (paired) →
+            donor-free repair demonstrated; next-paper thread upgrades from "askable" to
+            "answered in-domain". No current-paper claim moves on any outcome
+            (docs/hint_free_repair_direction.md)</td>
         <td>—</td>
       </tr>
     </table>
@@ -1008,7 +1028,7 @@
   docs/subtype_l35_replication_pooled_summary.md ·
   docs/next_experiments_litreview_2026-07.md ·
   docs/causal_handle_directions.md · docs/next_paper_causal_abstraction_dashboard.md.
-  All numbers are from run artifacts (jobs 456912–456918, 456963–456966, 456968, 456990, 456999, 457002, 457005, 457009, 457012, 457170, 457191–457194, 457207–457210, 458374–458377, 458387/458388, 458401/458402; 458403/458404 in flight) and the offline rank-core geometry rider.
+  All numbers are from run artifacts (jobs 456912–456918, 456963–456966, 456968, 456990, 456999, 457002, 457005, 457009, 457012, 457170, 457191–457194, 457207–457210, 458374–458377, 458387/458388, 458401/458402; 458403 partial + 458409/458410/458412–458414 in flight) and the offline rank-core geometry and coefficient-predictability riders.
 </footer>
 
 </body>
