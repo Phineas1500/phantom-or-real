@@ -282,3 +282,41 @@ def test_class_mean_b_arms_and_shuffled_vectors() -> None:
     for a, b in zip(shuf, again):
         assert np.allclose(a, b)
     assert not any(np.allclose(v, real) for v in shuf)
+
+
+def test_class_mean_c_arms_and_helpers(tmp_path: Path) -> None:
+    from scripts.stage2_rank_k_guard_v2 import (
+        all_concept_names,
+        build_classmean_c_arms,
+        select_correct_rows,
+    )
+
+    arms = build_classmean_c_arms(30, 8)
+    assert [arm.label for arm in arms] == [
+        "unhinted_baseline",
+        "fixednorm_proj_add_L30",
+        "fixednorm_allpos_add_L30",
+        "correct_unhinted_baseline",
+        "correct_fixednorm_add_L30",
+    ]
+    assert arms[3].kind == "none_correct"
+
+    row = {
+        "ontology_fol_structured": {
+            "inheritance": [{"subject": "zumpus", "object": "wumpus"}],
+            "membership": [{"subject": "stella", "object": "zumpus"}],
+            "hypothesis": {"subject": "zumpus"},
+        }
+    }
+    assert all_concept_names(row) == ["stella", "wumpus", "zumpus"]
+
+    rows = []
+    for _ in range(10):
+        rows.append(make_row(3, correct=True))
+        rows.append(make_row(4, correct=True))
+        rows.append(make_row(3, correct=False))
+    path = tmp_path / "stage1.jsonl"
+    _write_jsonl(path, rows)
+    selected = select_correct_rows(path, exclude={0, 1}, heights=[3, 4], per_height=4, seed=3)
+    assert len(selected) == 8
+    assert all(r["is_correct_strong"] for r in selected)

@@ -182,6 +182,60 @@ def build_classmean_b_arms(layer: int, rank: int, draws: int) -> list[Arm]:
     return arms
 
 
+def build_classmean_c_arms(layer: int, rank: int) -> list[Arm]:
+    """Deployment riders: position-leak + collateral arms (pre-registered item F(ii)-c)."""
+    return [
+        Arm("unhinted_baseline", "none", "none"),
+        Arm(f"fixednorm_proj_add_L{layer}", "fixednorm_proj_add", "unhinted_baseline", (layer,), rank, "class_mean_projected_fixed_pooled_norm"),
+        Arm(f"fixednorm_allpos_add_L{layer}", "fixednorm_allpos_add", "unhinted_baseline", (layer,), rank, "class_mean_projected_all_concept_positions"),
+        Arm("correct_unhinted_baseline", "none_correct", "none"),
+        Arm(f"correct_fixednorm_add_L{layer}", "correct_fixednorm_add", "correct_unhinted_baseline", (layer,), rank, "class_mean_projected_full_basis_correct_rows"),
+    ]
+
+
+def select_correct_rows(
+    jsonl: Path,
+    *,
+    exclude: set[int],
+    heights: list[int],
+    per_height: int,
+    seed: int,
+) -> list[dict[str, Any]]:
+    """Seeded balanced draw of parse-ok, strong-CORRECT rows outside `exclude`."""
+    pool: dict[int, list[dict[str, Any]]] = {height: [] for height in heights}
+    with jsonl.open() as f:
+        for row_index, line in enumerate(f):
+            if row_index in exclude or not line.strip():
+                continue
+            row = json.loads(line)
+            height = row.get("height")
+            if height not in pool or row.get("parse_failed") or not row.get("is_correct_strong"):
+                continue
+            row["row_index"] = row_index
+            pool[height].append(row)
+    rng = random.Random(seed)
+    selected = []
+    for height in heights:
+        candidates = pool[height]
+        if len(candidates) < per_height:
+            raise ValueError(f"height {height}: only {len(candidates)} correct rows, need {per_height}")
+        selected.extend(rng.sample(candidates, per_height))
+    return sorted(selected, key=lambda row: row["row_index"])
+
+
+def all_concept_names(stage1_row: dict[str, Any]) -> list[str]:
+    fol = stage1_row["ontology_fol_structured"]
+    names: set[str] = set()
+    for section in ("inheritance", "membership"):
+        for fact in fol.get(section, []) or []:
+            for key in ("subject", "object"):
+                value = fact.get(key)
+                if isinstance(value, str) and value:
+                    names.add(value)
+    names.add(fol["hypothesis"]["subject"])
+    return sorted(names)
+
+
 def load_capture_row_means(npz_path: Path, manifest_path: Path, layer: int) -> tuple[dict[int, np.ndarray], dict[int, bool]]:
     labels: dict[int, bool] = {}
     with manifest_path.open() as f:
@@ -451,6 +505,9 @@ def main() -> int:
     parser.add_argument("--class-mean-b", action="store_true")
     parser.add_argument("--shuffle-draws", type=int, default=4)
     parser.add_argument("--shuffle-label-seed", type=int, default=20260705)
+    parser.add_argument("--class-mean-c", action="store_true")
+    parser.add_argument("--correct-per-height", type=int, default=8)
+    parser.add_argument("--correct-seed", type=int, default=20260706)
     parser.add_argument(
         "--capture-npz",
         type=Path,
@@ -469,7 +526,7 @@ def main() -> int:
     args = parser.parse_args()
     started = time.time()
 
-    if sum([args.specificity_controls, args.predicted_coefficients, args.class_mean, args.class_mean_b]) > 1:
+    if sum([args.specificity_controls, args.predicted_coefficients, args.class_mean, args.class_mean_b, args.class_mean_c]) > 1:
         raise ValueError("mode flags are mutually exclusive")
     if args.specificity_controls:
         stem = f"rank8_specificity_27b_property_shard{args.shard_index}of{args.shard_count}"
@@ -483,6 +540,9 @@ def main() -> int:
     elif args.class_mean_b:
         stem = f"classmean_b_controls_27b_property_shard{args.shard_index}of{args.shard_count}"
         method = "shuffled_label_projected_controls_fresh_rows"
+    elif args.class_mean_c:
+        stem = f"classmean_c_deployment_27b_property_shard{args.shard_index}of{args.shard_count}"
+        method = "classmean_deployment_riders"
     else:
         stem = f"rank_k_guard_v2_27b_property_shard{args.shard_index}of{args.shard_count}"
         method = "rank_k_guard_v2_fresh_rows"
@@ -498,6 +558,22 @@ def main() -> int:
         args.jsonl, exclude=exclude, heights=heights, per_height=args.per_height, seed=args.selection_seed
     )
     selected_rows = shard_rows(all_rows, args.shard_index, args.shard_count)
+    if args.class_mean_c:
+        capture_row_ids = set()
+        with args.capture_manifest.open() as f:
+            for line in f:
+                capture_row_ids.add(int(json.loads(line)["source_row_index"]))
+        correct_exclude = exclude | {int(r["row_index"]) for r in all_rows} | capture_row_ids
+        correct_rows = select_correct_rows(
+            args.jsonl, exclude=correct_exclude, heights=heights,
+            per_height=args.correct_per_height, seed=args.correct_seed,
+        )
+        for row in selected_rows:
+            row["row_class"] = "failing"
+        for row in correct_rows:
+            row["row_class"] = "correct"
+        print(f"correct-side rows: {[r['row_index'] for r in correct_rows]}", flush=True)
+        selected_rows = selected_rows + correct_rows
     if args.specificity_controls:
         if len(ranks) != 1:
             raise ValueError("--specificity-controls expects a single rank in --rank-list")
@@ -534,6 +610,11 @@ def main() -> int:
             f"shuffled norms={[f'{np.linalg.norm(v):.1f}' for v in shuf_vectors]}",
             flush=True,
         )
+    if args.class_mean_c:
+        arms = build_classmean_c_arms(args.layer, ranks[0])
+        row_means, capture_labels = load_capture_row_means(args.capture_npz, args.capture_manifest, args.layer)
+        class_vector = class_vector_from_labels(row_means, capture_labels)
+        print(f"class_mean_c: |real|={np.linalg.norm(class_vector):.1f}", flush=True)
 
     dev_basis = None
     predictors: dict[str, dict[str, Any]] = {}
@@ -628,10 +709,21 @@ def main() -> int:
         u_block = unhinted_cache[hook_name][r_start : r_start + block_len].detach().cpu()
         concept_delta = h_block[rel] - u_block[rel]
         unhinted_concept = u_block[rel].numpy().astype(np.float32)
-        delta_by_row[source_row_index] = concept_delta.numpy().astype(np.float32)
-        unhinted_by_row[source_row_index] = unhinted_concept
+        row_class = stage1_row.get("row_class", "failing")
+        if row_class == "failing":
+            delta_by_row[source_row_index] = concept_delta.numpy().astype(np.float32)
+            unhinted_by_row[source_row_index] = unhinted_concept
+        all_rel: list[int] = []
+        if args.class_mean_c:
+            seen = set()
+            for name in all_concept_names(stage1_row):
+                for pos in concept_positions(tokenizer, receiver_text, name, r_start, block_len):
+                    seen.add(pos - r_start)
+            all_rel = sorted(seen)
         prepared.append(
             {
+                "row_class": row_class,
+                "all_rel": all_rel,
                 "row": stage1_row,
                 "source_row_index": source_row_index,
                 "gold_concept": gold_concept,
@@ -662,8 +754,10 @@ def main() -> int:
         return basis_cache[key]
 
     recon_norm_by_row: dict[int, float] = {}
-    if args.class_mean_b:
+    if args.class_mean_b or args.class_mean_c:
         for prep in prepared:
+            if prep.get("row_class", "failing") != "failing":
+                continue
             row_id = prep["source_row_index"]
             basis = basis_for(row_id, ranks[0])
             recon = rank_k_reconstruction(prep["concept_delta"], basis).numpy().astype(np.float64)
@@ -677,6 +771,8 @@ def main() -> int:
         for arm_index, arm in enumerate(arms):
             arm_started = time.time()
             for prep_index, prep in enumerate(prepared):
+                if (prep.get("row_class", "failing") == "correct") != arm.label.startswith("correct_"):
+                    continue
                 torch.manual_seed(args.sample_seed + prep["source_row_index"] * 10007 + arm_index * 101)
                 start = prep["r_start"]
                 token_ids = prep["receiver_ids"]
@@ -705,6 +801,33 @@ def main() -> int:
                             "n_source_rows": len(basis["source_rows"]),
                             "excluded": basis["exclude_rows"],
                             "explained_variance_ratio": basis["explained_variance_ratio"],
+                        }
+                    )
+                elif arm.kind in {"fixednorm_allpos_add", "correct_fixednorm_add"}:
+                    assert arm.rank_k is not None and class_vector is not None
+                    basis = basis_for(prep["source_row_index"], arm.rank_k)
+                    components = basis["components"]
+                    direction = (class_vector @ components.T) @ components
+                    rel_positions = prep["all_rel"] if arm.kind == "fixednorm_allpos_add" else prep["rel"]
+                    tiled = np.tile(direction, (len(rel_positions), 1))
+                    others = [v for r, v in recon_norm_by_row.items() if r != prep["source_row_index"]]
+                    target = np.full((len(rel_positions), 1), float(np.mean(others)))
+                    current = np.maximum(np.linalg.norm(tiled, axis=1, keepdims=True), 1e-8)
+                    vec = (tiled * (target / current)).astype(np.float32)
+                    positions = [start + rel_pos for rel_pos in rel_positions]
+                    fwd_hooks.append((hook_name, make_position_add_hook(torch.from_numpy(vec), positions, 1.0)))
+                    basis_records.append(
+                        {
+                            "condition": arm.label,
+                            "source_row_index": prep["source_row_index"],
+                            "row_class": prep.get("row_class", "failing"),
+                            "layer": args.layer,
+                            "rank_k": arm.rank_k,
+                            "basis_mode": arm.basis_mode,
+                            "n_positions_written": len(rel_positions),
+                            "n_gold_positions": len(prep["rel"]),
+                            "fixed_norm_target": float(target[0, 0]),
+                            "mean_add_vector_norm": float(np.linalg.norm(vec, axis=1).mean()),
                         }
                     )
                 elif arm.kind in {"shuflabel_proj_add", "signflip_proj_add", "fixednorm_proj_add"}:
@@ -873,6 +996,7 @@ def main() -> int:
                         "gold_concept": prep["gold_concept"],
                         "n_concept_positions": len(prep["rel"]),
                         "targets_gold_concept": canon(prep["gold_concept"]) in subjects_of(reply),
+                        "row_class": prep.get("row_class", "failing"),
                         "generated_token_count": len(new_ids),
                         "model_output": reply,
                         **score,
@@ -967,6 +1091,12 @@ def main() -> int:
             ]
             if args.class_mean_b
             else [
+                "in-job unhinted baselines on both row classes",
+                "all-concept-positions arm (no gold knowledge at inference)",
+                "fresh naturally-correct collateral slice (capture/guard/composite-disjoint)",
+            ]
+            if args.class_mean_c
+            else [
                 "in-job unhinted baseline",
                 "hinted-prompt per-row validation arm",
                 "in-job concept-position replacement denominator",
@@ -1019,6 +1149,13 @@ def main() -> int:
                 "fixednorm are riders. Rules in docs/causal_handle_directions.md item F(ii)-b."
             )
             if args.class_mean_b
+            else (
+                "POSITION-FREE if fixednorm_allpos CI excludes zero AND >=50% of fixednorm_proj "
+                "(paired). COLLATERAL-SAFE if correct-side dP point >= -0.10 AND CI low >= -0.20; "
+                "HARMFUL if CI entirely below -0.10. Rules in docs/causal_handle_directions.md "
+                "item F(ii)-c. Exploratory."
+            )
+            if args.class_mean_c
             else (
                 "Claim 8 survives if pooled rank4_loo or rank8_loo CI excludes zero and reaches >=70% of "
                 "the pooled in-job L30_concept_replace effect. A null concept_replace on fresh rows scopes "
