@@ -924,3 +924,45 @@ variable of natural computation, not just a hint-mediation channel.
 - Explicitly descriptive wrt heights: pooled h3+h4 primary; per-height
   secondary. No current-paper claim moves on any outcome (next-paper
   thread, same status as item E).
+
+### F(ii). Natural class-mean repair (endogeneity, causal half)
+
+Pre-registered 2026-07-04 ~23:30, after F(i)'s NULL and before any F(ii)
+data. F(i) showed the lever subspace carries no privileged NATURAL-outcome
+information; F(ii) asks the causal complement: does the natural
+correct-minus-incorrect difference repair failures at all, and if so,
+does it act through the lever subspace?
+
+- Rows: guard-v2 fresh selection (identical to items A/C/E; 2 shards) —
+  row-paired comparability across the whole family.
+- Class vector: from the 458416 capture (96 balanced rows, provenance-
+  disjoint), mean over natural-correct rows minus mean over natural-
+  incorrect rows of the per-row position-mean L30 state; one frozen
+  5,376-dim vector, computed in-job from the capture npz + manifest.
+- Arms (6, k=8, generation config identical to guard v2):
+  `unhinted_baseline`; `hinted_baseline`;
+  `rank8_loo_add_L30` (positive reference, fresh LOO basis — the +0.245
+  anchor); `class_mean_raw_add_L30` (class vector tiled at concept
+  positions, per-position norm-matched to the row's LOO rank-8 recon —
+  the same scale target item C used); `class_mean_proj_add_L30` (class
+  vector projected onto the row's LOO rank-8 basis first, then
+  norm-matched to the same target); `rand_norm_add_L30_d1` (matched-norm
+  Gaussian, item C seed — noise floor).
+- Metric: pooled 2-shard paired dP(strong) vs in-job unhinted baseline,
+  row-cluster bootstrap (10k), the only sanctioned sigma source.
+- Decision rules (before unblinding):
+  - Gate: `rank8_loo` CI excludes zero (machinery check).
+  - Natural-delta CAUSAL if `class_mean_raw` CI excludes zero AND paired
+    (class_mean_raw − rand_norm_d1) CI excludes zero.
+  - Channel dissociation (only if causal): paired (raw − proj) CI
+    excludes zero with proj null → the natural-outcome axis and the lever
+    channel are causally distinct (F(i)'s correlational dissociation
+    confirmed causally). proj ≈ raw with both positive → the natural
+    delta acts through the lever subspace and F(i)'s null must be
+    reinterpreted (subspace informative causally though not decodably).
+  - Both class arms null → the natural class-mean difference is not
+    causally potent at this scale/position: endogeneity fails on both
+    fronts; discussion wording stays at exogenous mediation with the
+    stronger both-tests-run sentence.
+- Exploratory: no current-paper claim moves on any outcome. Budget: 6
+  arms × ~13 rows × 8 ≈ 624 gens/shard ≈ 1.7 h/shard, 2 shards.
