@@ -252,3 +252,33 @@ def test_class_mean_arms_and_matrix(tmp_path: Path) -> None:
     in_span = (vec @ basis["components"].T) @ basis["components"]
     cos = float(np.dot(proj[0], in_span) / (np.linalg.norm(proj[0]) * np.linalg.norm(in_span)))
     assert cos > 0.999
+
+
+def test_class_mean_b_arms_and_shuffled_vectors() -> None:
+    from scripts.stage2_rank_k_guard_v2 import (
+        build_classmean_b_arms,
+        class_vector_from_labels,
+        shuffled_label_vectors,
+    )
+
+    arms = build_classmean_b_arms(30, 8, 4)
+    assert [arm.label for arm in arms] == [
+        "unhinted_baseline",
+        "shuflabel_proj_add_L30_d1",
+        "shuflabel_proj_add_L30_d2",
+        "shuflabel_proj_add_L30_d3",
+        "shuflabel_proj_add_L30_d4",
+        "signflip_proj_add_L30",
+        "fixednorm_proj_add_L30",
+    ]
+
+    rng = np.random.default_rng(2)
+    row_means = {r: rng.standard_normal(16) for r in range(10)}
+    labels = {r: r < 5 for r in range(10)}
+    real = class_vector_from_labels(row_means, labels)
+    shuf = shuffled_label_vectors(row_means, labels, draws=4, seed=99)
+    again = shuffled_label_vectors(row_means, labels, draws=4, seed=99)
+    assert len(shuf) == 4
+    for a, b in zip(shuf, again):
+        assert np.allclose(a, b)
+    assert not any(np.allclose(v, real) for v in shuf)

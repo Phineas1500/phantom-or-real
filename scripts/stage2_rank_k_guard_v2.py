@@ -172,6 +172,50 @@ def class_mean_add_matrix(
     return (tiled * (target / current)).astype(np.float32)
 
 
+def build_classmean_b_arms(layer: int, rank: int, draws: int) -> list[Arm]:
+    """Shuffled-label projected control + riders (pre-registered item F(ii)-b)."""
+    arms = [Arm("unhinted_baseline", "none", "none")]
+    for draw in range(1, draws + 1):
+        arms.append(Arm(f"shuflabel_proj_add_L{layer}_d{draw}", "shuflabel_proj_add", "unhinted_baseline", (layer,), rank, "shuffled_label_class_mean_projected"))
+    arms.append(Arm(f"signflip_proj_add_L{layer}", "signflip_proj_add", "unhinted_baseline", (layer,), rank, "negated_class_mean_projected"))
+    arms.append(Arm(f"fixednorm_proj_add_L{layer}", "fixednorm_proj_add", "unhinted_baseline", (layer,), rank, "class_mean_projected_fixed_pooled_norm"))
+    return arms
+
+
+def load_capture_row_means(npz_path: Path, manifest_path: Path, layer: int) -> tuple[dict[int, np.ndarray], dict[int, bool]]:
+    labels: dict[int, bool] = {}
+    with manifest_path.open() as f:
+        for line in f:
+            row = json.loads(line)
+            labels[int(row["source_row_index"])] = bool(row["is_correct_strong"])
+    data = np.load(npz_path)
+    means = {
+        row: data[f"L{layer}_row{row}_unhinted_concept_states"].astype(np.float64).mean(axis=0)
+        for row in labels
+        if f"L{layer}_row{row}_unhinted_concept_states" in data.files
+    }
+    return means, {row: labels[row] for row in means}
+
+
+def class_vector_from_labels(row_means: dict[int, np.ndarray], labels: dict[int, bool]) -> np.ndarray:
+    pos = np.stack([row_means[r] for r in sorted(row_means) if labels[r]])
+    neg = np.stack([row_means[r] for r in sorted(row_means) if not labels[r]])
+    return pos.mean(axis=0) - neg.mean(axis=0)
+
+
+def shuffled_label_vectors(
+    row_means: dict[int, np.ndarray], labels: dict[int, bool], *, draws: int, seed: int
+) -> list[np.ndarray]:
+    rows = sorted(row_means)
+    values = np.array([labels[r] for r in rows])
+    out = []
+    for draw in range(1, draws + 1):
+        rng = np.random.default_rng(seed + draw)
+        permuted = dict(zip(rows, values[rng.permutation(len(rows))]))
+        out.append(class_vector_from_labels(row_means, permuted))
+    return out
+
+
 def load_dev_states(npz_path: Path, layer: int) -> tuple[dict[int, np.ndarray], dict[int, np.ndarray]]:
     """Per-row unhinted concept states and concept deltas from a composite states npz."""
     import re
@@ -404,6 +448,9 @@ def main() -> int:
     parser.add_argument("--ridge-alphas", default="1e2,1e3,1e4,1e5,1e6")
     parser.add_argument("--pred-shuffle-seed", type=int, default=20260704)
     parser.add_argument("--class-mean", action="store_true")
+    parser.add_argument("--class-mean-b", action="store_true")
+    parser.add_argument("--shuffle-draws", type=int, default=4)
+    parser.add_argument("--shuffle-label-seed", type=int, default=20260705)
     parser.add_argument(
         "--capture-npz",
         type=Path,
@@ -422,8 +469,8 @@ def main() -> int:
     args = parser.parse_args()
     started = time.time()
 
-    if sum([args.specificity_controls, args.predicted_coefficients, args.class_mean]) > 1:
-        raise ValueError("--specificity-controls, --predicted-coefficients, and --class-mean are mutually exclusive")
+    if sum([args.specificity_controls, args.predicted_coefficients, args.class_mean, args.class_mean_b]) > 1:
+        raise ValueError("mode flags are mutually exclusive")
     if args.specificity_controls:
         stem = f"rank8_specificity_27b_property_shard{args.shard_index}of{args.shard_count}"
         method = "rank8_specificity_controls_fresh_rows"
@@ -433,6 +480,9 @@ def main() -> int:
     elif args.class_mean:
         stem = f"classmean_repair_27b_property_shard{args.shard_index}of{args.shard_count}"
         method = "natural_class_mean_repair_fresh_rows"
+    elif args.class_mean_b:
+        stem = f"classmean_b_controls_27b_property_shard{args.shard_index}of{args.shard_count}"
+        method = "shuffled_label_projected_controls_fresh_rows"
     else:
         stem = f"rank_k_guard_v2_27b_property_shard{args.shard_index}of{args.shard_count}"
         method = "rank_k_guard_v2_fresh_rows"
@@ -468,6 +518,20 @@ def main() -> int:
         class_vector = load_class_mean_vector(args.capture_npz, args.capture_manifest, args.layer)
         print(
             f"class_mean vector: |v|={np.linalg.norm(class_vector):.1f} from {args.capture_npz}",
+            flush=True,
+        )
+
+    shuf_vectors: list[np.ndarray] = []
+    if args.class_mean_b:
+        arms = build_classmean_b_arms(args.layer, ranks[0], args.shuffle_draws)
+        row_means, capture_labels = load_capture_row_means(args.capture_npz, args.capture_manifest, args.layer)
+        class_vector = class_vector_from_labels(row_means, capture_labels)
+        shuf_vectors = shuffled_label_vectors(
+            row_means, capture_labels, draws=args.shuffle_draws, seed=args.shuffle_label_seed
+        )
+        print(
+            f"class_mean_b: |real|={np.linalg.norm(class_vector):.1f} "
+            f"shuffled norms={[f'{np.linalg.norm(v):.1f}' for v in shuf_vectors]}",
             flush=True,
         )
 
@@ -597,6 +661,15 @@ def main() -> int:
             basis_cache[key] = fit_pca_basis(delta_by_row, rank_k, exclude_rows={row_id})
         return basis_cache[key]
 
+    recon_norm_by_row: dict[int, float] = {}
+    if args.class_mean_b:
+        for prep in prepared:
+            row_id = prep["source_row_index"]
+            basis = basis_for(row_id, ranks[0])
+            recon = rank_k_reconstruction(prep["concept_delta"], basis).numpy().astype(np.float64)
+            recon_norm_by_row[row_id] = float(np.linalg.norm(recon, axis=1).mean())
+        print(f"recon norms per row: {sorted(recon_norm_by_row.values())[:3]}..", flush=True)
+
     out_jsonl.parent.mkdir(parents=True, exist_ok=True)
     rows_out: list[dict[str, Any]] = []
     basis_records: list[dict[str, Any]] = []
@@ -632,6 +705,43 @@ def main() -> int:
                             "n_source_rows": len(basis["source_rows"]),
                             "excluded": basis["exclude_rows"],
                             "explained_variance_ratio": basis["explained_variance_ratio"],
+                        }
+                    )
+                elif arm.kind in {"shuflabel_proj_add", "signflip_proj_add", "fixednorm_proj_add"}:
+                    assert arm.rank_k is not None and class_vector is not None
+                    basis = basis_for(prep["source_row_index"], arm.rank_k)
+                    components = basis["components"]
+                    recon_pca = rank_k_reconstruction(prep["concept_delta"], basis).numpy().astype(np.float64)
+                    if arm.kind == "shuflabel_proj_add":
+                        source_vec = shuf_vectors[draw_index(arm.label) - 1]
+                    elif arm.kind == "signflip_proj_add":
+                        source_vec = -class_vector
+                    else:
+                        source_vec = class_vector
+                    direction = (source_vec @ components.T) @ components
+                    tiled = np.tile(direction, (len(prep["rel"]), 1))
+                    if arm.kind == "fixednorm_proj_add":
+                        others = [v for r, v in recon_norm_by_row.items() if r != prep["source_row_index"]]
+                        target = np.full((len(prep["rel"]), 1), float(np.mean(others)))
+                    else:
+                        target = np.linalg.norm(recon_pca, axis=1, keepdims=True)
+                    current = np.maximum(np.linalg.norm(tiled, axis=1, keepdims=True), 1e-8)
+                    vec = (tiled * (target / current)).astype(np.float32)
+                    positions = [start + rel_pos for rel_pos in prep["rel"]]
+                    fwd_hooks.append((hook_name, make_position_add_hook(torch.from_numpy(vec), positions, 1.0)))
+                    basis_records.append(
+                        {
+                            "condition": arm.label,
+                            "source_row_index": prep["source_row_index"],
+                            "layer": args.layer,
+                            "rank_k": arm.rank_k,
+                            "basis_mode": arm.basis_mode,
+                            "mean_add_vector_norm": float(np.linalg.norm(vec, axis=1).mean()),
+                            "mean_pca_recon_norm": float(np.linalg.norm(recon_pca, axis=1).mean()),
+                            "cos_to_real_proj": float(
+                                np.dot(direction, (class_vector @ components.T) @ components)
+                                / max(np.linalg.norm(direction) * np.linalg.norm((class_vector @ components.T) @ components), 1e-12)
+                            ),
                         }
                     )
                 elif arm.kind in {"class_mean_raw_add", "class_mean_proj_add"}:
@@ -850,6 +960,13 @@ def main() -> int:
             ]
             if args.class_mean
             else [
+                "in-job unhinted baseline (determinism integrity check vs F(ii))",
+                "shuffled-label projected class-mean family (4 draws)",
+                "sign-flipped real projected vector",
+                "fixed pooled-norm donor-free variant",
+            ]
+            if args.class_mean_b
+            else [
                 "in-job unhinted baseline",
                 "hinted-prompt per-row validation arm",
                 "in-job concept-position replacement denominator",
@@ -895,6 +1012,13 @@ def main() -> int:
                 "claim moves."
             )
             if args.class_mean
+            else (
+                "Integrity gate: in-job unhinted_baseline must reproduce F(ii)'s per-row outcomes. "
+                "LABEL-SPECIFIC if paired (F(ii) real_proj - shuflabel family) CI excludes zero AND "
+                "family < 50% of real_proj. GENERIC if the paired CI includes zero. Sign-flip and "
+                "fixednorm are riders. Rules in docs/causal_handle_directions.md item F(ii)-b."
+            )
+            if args.class_mean_b
             else (
                 "Claim 8 survives if pooled rank4_loo or rank8_loo CI excludes zero and reaches >=70% of "
                 "the pooled in-job L30_concept_replace effect. A null concept_replace on fresh rows scopes "
