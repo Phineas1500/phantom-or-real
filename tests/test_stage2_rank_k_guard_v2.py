@@ -303,12 +303,12 @@ def test_class_mean_c_arms_and_helpers(tmp_path: Path) -> None:
 
     row = {
         "ontology_fol_structured": {
-            "inheritance": [{"subject": "zumpus", "object": "wumpus"}],
-            "membership": [{"subject": "stella", "object": "zumpus"}],
+            "inheritance": {"zumpus": ["wumpus"], "wumpus": ["yumpus"]},
+            "membership": {"stella": ["zumpus"]},
             "hypothesis": {"subject": "zumpus"},
         }
     }
-    assert all_concept_names(row) == ["stella", "wumpus", "zumpus"]
+    assert all_concept_names(row) == ["wumpus", "yumpus", "zumpus"]
 
     rows = []
     for _ in range(10):

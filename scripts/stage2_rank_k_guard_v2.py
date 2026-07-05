@@ -224,16 +224,19 @@ def select_correct_rows(
 
 
 def all_concept_names(stage1_row: dict[str, Any]) -> list[str]:
+    """Taxonomy concept names: inheritance keys/values plus membership values
+    (parents), excluding membership keys (proper-noun individuals)."""
     fol = stage1_row["ontology_fol_structured"]
     names: set[str] = set()
-    for section in ("inheritance", "membership"):
-        for fact in fol.get(section, []) or []:
-            for key in ("subject", "object"):
-                value = fact.get(key)
-                if isinstance(value, str) and value:
-                    names.add(value)
+    inheritance = fol.get("inheritance") or {}
+    for child, parents in inheritance.items():
+        names.add(child)
+        names.update(parents or [])
+    membership = fol.get("membership") or {}
+    for parents in membership.values():
+        names.update(parents or [])
     names.add(fol["hypothesis"]["subject"])
-    return sorted(names)
+    return sorted(n for n in names if isinstance(n, str) and n)
 
 
 def load_capture_row_means(npz_path: Path, manifest_path: Path, layer: int) -> tuple[dict[int, np.ndarray], dict[int, bool]]:
