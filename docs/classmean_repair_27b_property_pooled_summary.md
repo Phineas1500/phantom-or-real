@@ -49,12 +49,25 @@ correct-vs-incorrect direction is ~13× more lever-aligned than chance.
 
 ## What this establishes (with F(i) read jointly)
 
-1. **The natural correct-vs-incorrect difference is strongly
-   lever-aligned as a direction** (half its energy in 8 of 5,376
-   dimensions) **and causally potent through exactly that component**:
-   +0.341 — the largest fresh-row repair measured in this program (139%
-   of the rank8_loo anchor, 45% of the full hint effect), from a
-   direction computed with NO hints anywhere.
+1. **The natural class-mean direction, projected into the lever subspace,
+   is causally potent**: +0.341 — the largest fresh-row repair measured
+   in this program (139% of the rank8_loo anchor, 45% of the full hint
+   effect), from a direction computed with NO hints anywhere.
+   **CORRECTION (same-day, before external review)**: the verdict's
+   original "~13× more lever-aligned than chance" gloss was wrong. A
+   shuffled-label control (500 permutations of the capture labels) shows
+   ANY difference-of-state-means vector is ~50% lever-aligned (null
+   median 0.489; the real vector's 0.515 sits at the 54th percentile) —
+   the states' variance concentrates in these directions, so alignment
+   is a property of the state geometry, not of the correct/incorrect
+   labels. What the labels contribute to the projected DIRECTION (vs any
+   shuffled-label projection) is therefore an OPEN control: the required
+   follow-up arm is a shuffled-label class-mean projected at the same
+   norm. Suggestive but not decisive: item E's shuffled in-subspace
+   content reached only +0.139 (different basis), and
+   cos(proj(class vector), proj(pooled hint-delta mean)) = 0.57 — the
+   projected class vector is neither the generic hint-mean direction
+   (mean_only: +0.087) nor independent of it.
 2. **F(i)'s null is refined, not contradicted**: per-row outcomes are not
    linearly decodable from the lever subspace better than chance (within-
    class variance drowns the class-mean shift), yet the class-mean shift
