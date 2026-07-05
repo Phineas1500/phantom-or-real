@@ -10,14 +10,14 @@ Legend: [ ] todo · [~] in flight · [x] done
 
 ## W1. Wording sweep (single commit, AFTER items D+E verdicts land)
 
-- [ ] W1.1 `docs/next_experiments_litreview_2026-07.md`: replace the
+- [x] W1.1 `docs/next_experiments_litreview_2026-07.md`: replace the
       positioning line "genuine epiphenomenality (ours — erasure harmless
       with destructive matched controls)" with non-necessity wording +
       the variance mechanism ("harmless erasure of a low-within-run-
       variance readout; matched controls confirm the family has teeth at
       matched norm, not that the axis is specially inert").
       Locate: `grep -n "destructive matched" docs/*.md`.
-- [ ] W1.2 `docs/next_paper_skeleton.md`:
+- [x] W1.2 `docs/next_paper_skeleton.md`:
       - Abstract: drop "destructive matched noise"; lead the repair with
         the fresh-row +0.255 [+0.111,+0.413] (dev-row +0.491 reported as
         the selected-row anchor, labeled as such).
@@ -29,7 +29,7 @@ Legend: [ ] todo · [~] in flight · [x] done
       - Title bullet: "Gauge, Not Lever" is retained only with §5.2
         scoped to non-necessity; list one fallback title for the
         item-F-null world.
-- [ ] W1.3 `docs/next_paper_claims_table.md`:
+- [x] W1.3 `docs/next_paper_claims_table.md`:
       - Claim 2 status/wording cells: non-necessity language throughout.
       - Claim 7: "costs exactly nothing" → "no cost detectable at this
         design (MDE ≈ 5pp)".
@@ -39,7 +39,7 @@ Legend: [ ] todo · [~] in flight · [x] done
         LOO-row sensitivity result from W2.2.
       - Claim 11 evidence cell: add the hook-telemetry manipulation check
         (deltas 7.1–11.9 sd-units, 217 positions/row — W3.2).
-- [ ] W1.4 `docs/hint_free_repair_direction.md`: strike "replicated at
+- [x] W1.4 `docs/hint_free_repair_direction.md`: strike "replicated at
       +0.245" (same rows, new seeds — same-row resample); annotate step-1
       result with the item E behavioral outcome once pooled (see W5.2).
 
@@ -82,15 +82,15 @@ Legend: [ ] todo · [~] in flight · [x] done
 
 ## W4. Item D completion + review-driven analysis additions
 
-- [~] W4.1 Pool 16 rows when 458412/458413/458414 land (stitch with the
+- [x] W4.1 Pool 16 rows when 458412/458413/458414 land (stitch with the
       458403 partial; row 6604 taken from the remainder job). Evaluate the
       pre-registered branches (gate: erase_raw continuity; E/N/ambiguous).
-- [ ] W4.2 NEW (review 1, sign-pattern/weak-lever probe): split every
+- [x] W4.2 NEW (review 1, sign-pattern/weak-lever probe): split every
       erasure arm by ORIGINAL row correctness (8/8 by design). Under the
       weak-lever account, erase_raw / erase_readable_stack should HURT the
       originally-correct rows. Descriptive, labeled as such (not
       pre-registered).
-- [ ] W4.3 Verdict doc must carry the variance-telemetry table
+- [x] W4.3 Verdict doc must carry the variance-telemetry table
       (readable-stack variance 10–1300× below random stacks) adjacent to
       the branch call, and the Branch-E wording locked to non-necessity.
 
@@ -110,7 +110,7 @@ Legend: [ ] todo · [~] in flight · [x] done
 
 ## W6. Item F — endogeneity test (the reviews' convergent demand)
 
-- [ ] W6.1 Pre-register in `docs/causal_handle_directions.md` (design in
+- [x] W6.1 Pre-register in `docs/causal_handle_directions.md` (design in
       triage §C): balanced naturally-correct vs naturally-incorrect
       unhinted rows, no hints anywhere; states captured in-job at L30
       concept positions.
@@ -123,9 +123,9 @@ Legend: [ ] todo · [~] in flight · [x] done
       winning intervention applied to originally-correct rows.
       Decision rules + wording consequences BOTH directions (title
       keeps/downgrades per W1.2).
-- [ ] W6.2 Harness: extend `stage2_rank_k_guard_v2.py` (natural-class
+- [x] W6.2 Harness: extend `stage2_rank_k_guard_v2.py` (natural-class
       capture + class-mean arm); unit tests; dry-run.
-- [ ] W6.3 Submit after the erasure remainder clears the queue; pool;
+- [x] W6.3 Submit after the erasure remainder clears the queue; pool;
       verdict doc; artifacts update.
 
 ## W7. Draft-time integration (when writing the paper)

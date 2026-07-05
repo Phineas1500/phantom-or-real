@@ -9,7 +9,7 @@ would run. Framing rule for the paper: one discussion paragraph, worded as
 ## The question
 
 The rank-8 recipe repairs failing rows it was never tuned on (+0.231 guard v2,
-replicated +0.245 in the specificity run). If failures on other hard tasks
+with the same-row/new-seed resample at +0.245 in the specificity run — an internal-consistency check, not a replication). If failures on other hard tasks
 have the same shape, does this generalize into a way to raise model accuracy
 on difficult tasks — steering without knowing the answer?
 

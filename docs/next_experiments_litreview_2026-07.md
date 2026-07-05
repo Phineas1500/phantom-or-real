@@ -82,8 +82,12 @@ differentiating contribution.
   + the erasure-based inertness demonstration.
 - Frame the erasure result explicitly as discriminating between two
   published accounts of steering nulls: entanglement (2605.05715 — erasure
-  destructive) vs. genuine epiphenomenality (ours — erasure harmless with
-  destructive matched controls).
+  destructive) vs. readable-stack non-necessity (ours — erasing the full
+  rank-9 readable subspace at all five layers is behaviorally free,
+  +0.047 [−0.070,+0.203], while matched-rank random stacks are
+  catastrophic, −0.38; wording per the control-matching verdict: the
+  harmlessness tracks the readout's low within-run variance, so we claim
+  non-necessity, not special inertness).
 - Free theory framing: our causally-null readout maps onto the "behavioral
   null-space" formalism of arXiv 2511.04638 (ICLR 2026 oral); the rank-8
   add must be shown non-"pernicious" in their sense (see experiment 2).

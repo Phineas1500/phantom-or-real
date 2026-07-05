@@ -34,9 +34,23 @@ Positioning shift (2026-07-04, per docs/next_experiments_litreview_2026-07.md):
 three 2026 preprints independently report the readable-but-unsteerable gap
 (2605.05715, 2604.13068, 2605.23315), so that gap is now established
 background, not a headline. Lead with what none of them has: the positive
-identification of the causal carrier (rank-8 core, fresh-row-validated
-repair) plus the erasure-based demonstration that the readout is genuinely
-inert rather than entangled (2605.05715's rival account).
+identification of the causal carrier (rank-8 core, fresh-row-validated,
+specificity- and label-controlled) plus full readable-STACK non-necessity
+(item D, Branch E: +0.047 [-0.070,+0.203] vs matched random stacks -0.38),
+which excludes the destruction-on-removal form of 2605.05715's entanglement
+account in our setting — the weak redundant-carrier form survives and is
+said so. WORDING: non-necessity, never "genuinely inert"; the harmlessness
+mechanism (low within-run variance) is stated, not hidden.
+
+Second positioning shift (2026-07-05, per
+docs/novelty_check_newresults_2026-07-05.md): a diff-in-means-for-reasoning
+lineage exists (AdaRAS 2601.19847, ALS 2509.18116, Valentino 2505.12189,
+trajectory steering 2604.05655) and probe-gated steering is published
+(AdaRAS; 2604.05655) — the phenomenon and the gauge-gating framing are
+CITED, not claimed. Ours: the raw-null/projected-potent necessity
+dissociation, the shuffled-label + sign-flip battery, causal-without-
+decodable, and the largest verified hardest-slice repair (+0.34 on 0.12
+baseline; self-consistency baseline 0.000, best-of-8 ceiling 0.192).
 
 ## 1. Introduction (~1 page)
 
@@ -126,7 +140,7 @@ inert rather than entangled (2605.05715's rival account).
 | --- | --- | --- |
 | 5.1 Readable everywhere | 1, 3 | AUCs across models/scramble; INLP redundancy |
 | 5.2 Needed nowhere | 2 | raw/height erasures null vs destructive controls; constant-offset caveat wording per claim 2 |
-| 5.3 The causal variable | 4, 5, 6, 10 | recognition gap; +0.491 repair; ~6x positional potency |
+| 5.3 The causal variable | 4, 5, 6, 10 | recognition gap; fresh-row +0.255 repair (dev-row +0.491 as selected-row anchor, labeled); ~6x positional potency |
 | 5.4 Compact core | 7, 8 | token-route null; rank4_loo +0.192 (77%); rank8_loo 92%; guard v2 fresh rows (458374/458375): rank8_loo +0.231 = 91% of concept-replace, rule passed; rank-4 under-transfers (57%) — state rank-8 as the portable core |
 | 5.5 Geometry | 9 | INLP overlap below random null; dictionary-visible, not sparse-small |
 | 5.6 Scope | 11, 12 | Qwen raw-axis non-necessity only; old-trio null replicated on fresh seeds (458376/458377); L35 replication (458387/458388) fires the positive branch: subtype carrier reachable at L35, +0.117 [+0.008,+0.254], random control null — a modest, row-sparse analogue at a different depth, so 5.6 reads "different layer, weaker handle" rather than "non-transfer" |

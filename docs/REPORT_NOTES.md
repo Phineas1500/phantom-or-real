@@ -17,6 +17,42 @@ final report is easier to assemble.
 
 ### 2026-07-05
 
+#### Afternoon: F(ii)-b, Item D, Novelty + Artifact Sweeps, W1 Executed
+
+- **Item F(ii)-b LABEL-SPECIFIC** (jobs `458424`/`458425`,
+  `docs/classmean_b_controls_27b_property_pooled_summary.md`): integrity
+  gate 26/26; shuffled-label family `-0.043 [-0.103,+0.006]`; signflip
+  `-0.120` (CI < 0); paired (real - shuffled) `+0.385 [+0.245,+0.534]`;
+  **fixednorm (fully donor-free) `+0.399 [+0.245,+0.558]`** — strongest
+  arm in the program. Both round-2 reviewers' GENERIC predictions
+  falsified.
+- **Item D Branch E** (jobs `458403`+`458412`-`458414` stitched;
+  `docs/readable_stack_erasure_27b_property_pooled_summary.md`):
+  continuity gate passes (`-0.016`); erase_readable_stack `+0.047
+  [-0.070,+0.203]`; random stacks `-0.38` with P(strong|parsed) ~0.01;
+  paired `+0.427 [+0.214,+0.643]`. Stitching proven exact (row 6604
+  overlap 8/8 identical). Registered 2026-07-04 prediction confirmed.
+  Weak-lever original-correctness split: sub-noise (raw on correct rows
+  `-0.062`); review-1's sign-pattern account unsupported.
+- **Item F(ii)-c launched** (job `458428`, running): position-leak
+  (all-concept-positions) + collateral (16 fresh naturally-correct rows)
+  riders; rules pre-registered.
+- **Novelty sweep landed** (`docs/novelty_check_newresults_2026-07-05.md`):
+  mechanism trio (raw-null/proj-potent, label battery,
+  causal-without-decodable) NOVEL; phenomenon lineage exists (AdaRAS,
+  ALS, Valentino, 2604.05655 — cite, not claim); gauge-gated framing
+  scooped.
+- **Artifact-checklist triage** (`docs/steering_artifact_triage_2026-07-05.md`,
+  Codex-outsourced): 7/10 classes cleared; new diagnostics —
+  self-consistency baseline 0.000, best-of-8 ceiling 0.192 vs proj 0.462;
+  per-row deltas 16 up / 0 harmed; no answer-collapse (gold-targeting
+  precision 32%→94%); length fixed by design.
+- **W1 wording sweep executed** (single pass): litreview non-necessity
+  line, claim 2 axis→stack upgrade, claim 3 caveat→result, claim 7
+  cluster-aware bound, claim 12 demotion + meta-pool drop, claim 5
+  headline rule (+0.255 leads), skeleton abstract second positioning
+  shift, "replication" struck.
+
 #### Overnight/Morning Verdict Cascade (items E, F(i), F(ii))
 
 - **Item E (jobs 458409/458410) — FAIL branch**, informative
