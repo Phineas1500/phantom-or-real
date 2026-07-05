@@ -1,8 +1,8 @@
 #!/bin/bash
 #SBATCH -p gorman-gpu
-#SBATCH --gres=gpu:tesla_v100_sxm2_32gb:6
+#SBATCH --gres=gpu:tesla_v100_sxm2_32gb:5
 #SBATCH --cpus-per-task=16
-#SBATCH --mem=300G
+#SBATCH --mem=280G
 #SBATCH --time=24:00:00
 #SBATCH --job-name=phantom_gorman
 #SBATCH --output=phantom_gorman_%j.out
