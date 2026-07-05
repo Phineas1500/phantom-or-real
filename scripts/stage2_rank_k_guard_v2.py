@@ -124,6 +124,54 @@ def build_predcoeff_arms(layer: int, rank: int) -> list[Arm]:
     ]
 
 
+def build_classmean_arms(layer: int, rank: int) -> list[Arm]:
+    """Natural class-mean repair arms (pre-registered item F(ii))."""
+    return [
+        Arm("unhinted_baseline", "none", "none"),
+        Arm("hinted_baseline", "hinted_prompt", "unhinted_baseline"),
+        Arm(f"rank{rank}_loo_add_L{layer}", "rank_k_add", "unhinted_baseline", (layer,), rank, "leave_one_row_out"),
+        Arm(f"class_mean_raw_add_L{layer}", "class_mean_raw_add", "unhinted_baseline", (layer,), rank, "natural_class_mean"),
+        Arm(f"class_mean_proj_add_L{layer}", "class_mean_proj_add", "unhinted_baseline", (layer,), rank, "natural_class_mean_rank_projected"),
+        Arm(f"rand_norm_add_L{layer}_d1", "rand_norm_add", "unhinted_baseline", (layer,), rank, "norm_matched_gaussian"),
+    ]
+
+
+def load_class_mean_vector(npz_path: Path, manifest_path: Path, layer: int) -> np.ndarray:
+    """Natural correct-minus-incorrect class mean of per-row position-mean states."""
+    labels = {}
+    with manifest_path.open() as f:
+        for line in f:
+            row = json.loads(line)
+            labels[int(row["source_row_index"])] = bool(row["is_correct_strong"])
+    data = np.load(npz_path)
+    per_class: dict[bool, list[np.ndarray]] = {True: [], False: []}
+    for row_index, label in labels.items():
+        key = f"L{layer}_row{row_index}_unhinted_concept_states"
+        if key in data:
+            per_class[label].append(data[key].astype(np.float64).mean(axis=0))
+    if not per_class[True] or not per_class[False]:
+        raise ValueError(f"capture npz {npz_path} lacks one of the classes for layer {layer}")
+    return np.stack(per_class[True]).mean(axis=0) - np.stack(per_class[False]).mean(axis=0)
+
+
+def class_mean_add_matrix(
+    arm: Arm,
+    class_vector: np.ndarray,
+    basis: dict[str, Any],
+    recon_pca: np.ndarray,
+) -> np.ndarray:
+    """Class vector (raw or basis-projected) tiled per position, norm-matched to the LOO recon."""
+    if arm.kind == "class_mean_proj_add":
+        components = basis["components"]
+        direction = (class_vector @ components.T) @ components
+    else:
+        direction = class_vector
+    tiled = np.tile(direction.astype(np.float64), (recon_pca.shape[0], 1))
+    target = np.linalg.norm(recon_pca.astype(np.float64), axis=1, keepdims=True)
+    current = np.maximum(np.linalg.norm(tiled, axis=1, keepdims=True), 1e-8)
+    return (tiled * (target / current)).astype(np.float32)
+
+
 def load_dev_states(npz_path: Path, layer: int) -> tuple[dict[int, np.ndarray], dict[int, np.ndarray]]:
     """Per-row unhinted concept states and concept deltas from a composite states npz."""
     import re
@@ -355,6 +403,17 @@ def main() -> int:
     )
     parser.add_argument("--ridge-alphas", default="1e2,1e3,1e4,1e5,1e6")
     parser.add_argument("--pred-shuffle-seed", type=int, default=20260704)
+    parser.add_argument("--class-mean", action="store_true")
+    parser.add_argument(
+        "--capture-npz",
+        type=Path,
+        default=Path("results/stage2/erasure/natural_state_capture_27b_property_L30.npz"),
+    )
+    parser.add_argument(
+        "--capture-manifest",
+        type=Path,
+        default=Path("results/stage2/erasure/natural_state_capture_27b_property_L30.manifest.jsonl"),
+    )
     parser.add_argument("--dry-run", action="store_true")
     parser.add_argument("--out-jsonl", type=Path, default=None)
     parser.add_argument("--states-output", type=Path, default=None)
@@ -363,14 +422,17 @@ def main() -> int:
     args = parser.parse_args()
     started = time.time()
 
-    if args.specificity_controls and args.predicted_coefficients:
-        raise ValueError("--specificity-controls and --predicted-coefficients are mutually exclusive")
+    if sum([args.specificity_controls, args.predicted_coefficients, args.class_mean]) > 1:
+        raise ValueError("--specificity-controls, --predicted-coefficients, and --class-mean are mutually exclusive")
     if args.specificity_controls:
         stem = f"rank8_specificity_27b_property_shard{args.shard_index}of{args.shard_count}"
         method = "rank8_specificity_controls_fresh_rows"
     elif args.predicted_coefficients:
         stem = f"rank8_predcoeff_27b_property_shard{args.shard_index}of{args.shard_count}"
         method = "rank8_predicted_coefficients_fresh_rows"
+    elif args.class_mean:
+        stem = f"classmean_repair_27b_property_shard{args.shard_index}of{args.shard_count}"
+        method = "natural_class_mean_repair_fresh_rows"
     else:
         stem = f"rank_k_guard_v2_27b_property_shard{args.shard_index}of{args.shard_count}"
         method = "rank_k_guard_v2_fresh_rows"
@@ -394,8 +456,20 @@ def main() -> int:
         if len(ranks) != 1:
             raise ValueError("--predicted-coefficients expects a single rank in --rank-list")
         arms = build_predcoeff_arms(args.layer, ranks[0])
+    elif args.class_mean:
+        if len(ranks) != 1:
+            raise ValueError("--class-mean expects a single rank in --rank-list")
+        arms = build_classmean_arms(args.layer, ranks[0])
     else:
         arms = build_arms(ranks, args.layer)
+
+    class_vector = None
+    if args.class_mean:
+        class_vector = load_class_mean_vector(args.capture_npz, args.capture_manifest, args.layer)
+        print(
+            f"class_mean vector: |v|={np.linalg.norm(class_vector):.1f} from {args.capture_npz}",
+            flush=True,
+        )
 
     dev_basis = None
     predictors: dict[str, dict[str, Any]] = {}
@@ -558,6 +632,29 @@ def main() -> int:
                             "n_source_rows": len(basis["source_rows"]),
                             "excluded": basis["exclude_rows"],
                             "explained_variance_ratio": basis["explained_variance_ratio"],
+                        }
+                    )
+                elif arm.kind in {"class_mean_raw_add", "class_mean_proj_add"}:
+                    assert arm.rank_k is not None and class_vector is not None
+                    basis = basis_for(prep["source_row_index"], arm.rank_k)
+                    recon_pca = rank_k_reconstruction(prep["concept_delta"], basis).numpy().astype(np.float32)
+                    vec = class_mean_add_matrix(arm, class_vector, basis, recon_pca)
+                    positions = [start + rel_pos for rel_pos in prep["rel"]]
+                    fwd_hooks.append((hook_name, make_position_add_hook(torch.from_numpy(vec), positions, 1.0)))
+                    basis_records.append(
+                        {
+                            "condition": arm.label,
+                            "source_row_index": prep["source_row_index"],
+                            "layer": args.layer,
+                            "rank_k": arm.rank_k,
+                            "basis_mode": arm.basis_mode,
+                            "class_vector_norm": float(np.linalg.norm(class_vector)),
+                            "mean_add_vector_norm": float(np.linalg.norm(vec, axis=1).mean()),
+                            "mean_pca_recon_norm": float(np.linalg.norm(recon_pca, axis=1).mean()),
+                            "proj_fraction_of_class_vector": float(
+                                np.linalg.norm((class_vector @ basis["components"].T) @ basis["components"])
+                                / max(np.linalg.norm(class_vector), 1e-8)
+                            ),
                         }
                     )
                 elif arm.kind in {"rank_dev_add", "mean_dev_add", "pred_add", "shufpred_add"}:
@@ -747,6 +844,14 @@ def main() -> int:
             else [
                 "in-job unhinted baseline",
                 "hinted-prompt per-row validation arm",
+                "in-job rank-8 LOO positive reference",
+                "lever-subspace projection arm (channel dissociation)",
+                "matched-norm Gaussian noise floor (item C seed)",
+            ]
+            if args.class_mean
+            else [
+                "in-job unhinted baseline",
+                "hinted-prompt per-row validation arm",
                 "in-job concept-position replacement denominator",
                 "matched random-position replacement",
                 "leave-one-row-out PCA bases fit within shard",
@@ -783,6 +888,13 @@ def main() -> int:
                 "claim moves; rules in docs/causal_handle_directions.md item E."
             )
             if args.predicted_coefficients
+            else (
+                "Gate: rank8_loo CI excludes zero. Natural-delta CAUSAL if class_mean_raw CI excludes "
+                "zero AND paired (class_mean_raw - rand_norm_d1) CI excludes zero. Channel dissociation "
+                "read per docs/causal_handle_directions.md item F(ii). Exploratory: no current-paper "
+                "claim moves."
+            )
+            if args.class_mean
             else (
                 "Claim 8 survives if pooled rank4_loo or rank8_loo CI excludes zero and reaches >=70% of "
                 "the pooled in-job L30_concept_replace effect. A null concept_replace on fresh rows scopes "

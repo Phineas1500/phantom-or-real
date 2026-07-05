@@ -204,3 +204,51 @@ def test_fit_coeff_predictor_recovers_linear_map_and_shuffle_breaks_it() -> None
         np.linalg.norm(pred, axis=1) * np.linalg.norm(probe_x @ true_map, axis=1) + 1e-12
     )
     assert cos.mean() > 0.8
+
+
+def test_class_mean_arms_and_matrix(tmp_path: Path) -> None:
+    from scripts.stage2_rank_k_guard_v2 import (
+        build_classmean_arms,
+        class_mean_add_matrix,
+        load_class_mean_vector,
+    )
+
+    arms = build_classmean_arms(30, 8)
+    assert [arm.label for arm in arms] == [
+        "unhinted_baseline",
+        "hinted_baseline",
+        "rank8_loo_add_L30",
+        "class_mean_raw_add_L30",
+        "class_mean_proj_add_L30",
+        "rand_norm_add_L30_d1",
+    ]
+
+    rng = np.random.default_rng(1)
+    arrays = {}
+    manifest_rows = []
+    for row, correct in ((5, True), (6, True), (7, False), (8, False)):
+        arrays[f"L30_row{row}_unhinted_concept_states"] = rng.standard_normal((4, 12)).astype(np.float32)
+        manifest_rows.append({"source_row_index": row, "is_correct_strong": correct})
+    npz = tmp_path / "cap.npz"
+    np.savez_compressed(npz, **arrays)
+    manifest = tmp_path / "cap.manifest.jsonl"
+    _write_jsonl(manifest, manifest_rows)
+
+    vec = load_class_mean_vector(npz, manifest, 30)
+    expected = np.stack([arrays["L30_row5_unhinted_concept_states"].mean(axis=0),
+                         arrays["L30_row6_unhinted_concept_states"].mean(axis=0)]).mean(axis=0) - \
+               np.stack([arrays["L30_row7_unhinted_concept_states"].mean(axis=0),
+                         arrays["L30_row8_unhinted_concept_states"].mean(axis=0)]).mean(axis=0)
+    assert np.allclose(vec, expected, atol=1e-6)
+
+    basis_deltas = {r: rng.standard_normal((5, 12)) for r in range(4)}
+    basis = fit_pca_basis(basis_deltas, 3)
+    recon = rng.standard_normal((6, 12)).astype(np.float32)
+    raw = class_mean_add_matrix(arms[3], vec, basis, recon)
+    proj = class_mean_add_matrix(arms[4], vec, basis, recon)
+    target = np.linalg.norm(recon.astype(np.float64), axis=1)
+    assert np.allclose(np.linalg.norm(raw, axis=1), target, rtol=1e-4)
+    assert np.allclose(np.linalg.norm(proj, axis=1), target, rtol=1e-4)
+    in_span = (vec @ basis["components"].T) @ basis["components"]
+    cos = float(np.dot(proj[0], in_span) / (np.linalg.norm(proj[0]) * np.linalg.norm(in_span)))
+    assert cos > 0.999
