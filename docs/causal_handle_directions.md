@@ -896,3 +896,31 @@ outcome; failure costs nothing but the two job slots.
   per shard. Queue behind item D (458403/458404).
 - Outputs: stem `rank8_predcoeff_27b_property_shard{i}of2`; states npz also
   saves per-row unhinted concept states.
+
+### F(i). Natural-state separation test (endogeneity, capture-only fast lane)
+
+Pre-registered before any capture data exists (2026-07-04 ~23:30). Both
+adversarial reviews demand evidence the rank-8 subspace is an ENDOGENOUS
+variable of natural computation, not just a hint-mediation channel.
+
+- Capture job (no hints, no generation): seeded balanced selection of
+  fresh property rows — 24 per (height 3/4 × naturally-correct/incorrect)
+  cell, parse-ok, excluding the 13 composite-manifest rows AND the 32
+  guard-v2 selection rows (both contributed to basis fits). Save L30
+  states at gold-concept mention positions per row.
+- CPU test: per-row feature = mean over concept positions of the state's
+  projection onto a rank-8 basis (8 features). Two bases, both frozen
+  before this test: (a) the dev/composite basis; (b) the guard-v2
+  full-26-row basis. Logistic regression, stratified 5-fold CV, AUC for
+  naturally-correct vs naturally-incorrect.
+- Null: 200 seeded random orthonormal rank-8 subspaces, same pipeline.
+  Also report the full-residual (5,376-dim, L2 logistic) AUC as ceiling.
+- Decision rule: endogeneity SUPPORTED for a basis if its CV AUC exceeds
+  the 95th percentile of its random-subspace null; strength reported as
+  (AUC − null median). If both bases sit inside their nulls, part (i) is
+  NULL: the rank-8 subspace carries no privileged natural-outcome
+  information at these positions, and item F(ii)'s class-mean arm becomes
+  the remaining route; the paper wording stays at exogenous mediation.
+- Explicitly descriptive wrt heights: pooled h3+h4 primary; per-height
+  secondary. No current-paper claim moves on any outcome (next-paper
+  thread, same status as item E).
