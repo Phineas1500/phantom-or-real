@@ -1076,3 +1076,38 @@ stitchable — all comparisons are within-job or within-lane.
 - Budget: G0–G3 ≈ 2,000–2,500 generations ≈ 12–18 h fp32 on 5× V100 —
   one gorman job with staging overhead; G4/G5 a second job. Exploratory:
   no current-paper claim moves on any outcome.
+
+### F(ii)-c. Deployment riders: position leak + collateral slice (Scholar)
+
+Pre-registered 2026-07-05 ~13:30, after F(ii)-b's LABEL-SPECIFIC verdict
+and before any F(ii)-c data. Two questions block the deployment reading of
+the donor-free result (fixednorm +0.399): (1) position selection currently
+uses GOLD-concept mentions — a sliver of answer information at inference
+time; (2) collateral cost on rows the model was getting right is unmeasured
+(the reviews' collateral-slice demand, item W4.2-adjacent).
+
+- Failing side (guard-v2 selection, 26 rows, single job, shard-count 1):
+  `unhinted_baseline`; `fixednorm_proj_add_L30` (LOO basis, gold
+  positions — in-family reference; expected ≈ +0.399 via determinism-
+  adjacent design but freshly generated here since arm indices differ);
+  `fixednorm_allpos_add_L30` (same frozen vector and fixed scale, written
+  at ALL taxonomy-concept mention positions in the prompt — no gold
+  knowledge at inference).
+- Correct side (16 FRESH naturally-correct rows, 8 per height, seeded
+  20260706, excluding composite + guard + capture rows):
+  `correct_unhinted_baseline`; `correct_fixednorm_add_L30` (frozen vector
+  projected onto the FULL failing-rows basis, gold positions, same fixed
+  scale) — the false-positive-firing cost.
+- Decision rules (before unblinding):
+  - POSITION-FREE if fixednorm_allpos CI excludes zero AND reaches ≥50%
+    of fixednorm_proj (paired). Then the intervention needs no answer
+    information at inference at all. If allpos is null while gold-pos
+    repairs, position selection is load-bearing and the deployment
+    claim keeps the "which concept" caveat.
+  - COLLATERAL-SAFE if correct-side dP point ≥ −0.10 AND CI lower bound
+    ≥ −0.20; COLLATERAL-HARMFUL if the CI sits entirely below −0.10;
+    in-between = underpowered, reported as such.
+- Stats: row-cluster bootstrap (10k, percentile) per side; paired
+  contrasts within the failing side. Exploratory: no current-paper claim
+  moves. Budget: (3 arms × 26 + 2 arms × 16) × 8 ≈ 880 generations ≈
+  2.6 h — one Scholar slot behind 458414.
