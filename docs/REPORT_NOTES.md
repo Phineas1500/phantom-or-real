@@ -34,9 +34,12 @@ final report is easier to assemble.
   overlap 8/8 identical). Registered 2026-07-04 prediction confirmed.
   Weak-lever original-correctness split: sub-noise (raw on correct rows
   `-0.062`); review-1's sign-pattern account unsupported.
-- **Item F(ii)-c launched** (job `458428`, running): position-leak
-  (all-concept-positions) + collateral (16 fresh naturally-correct rows)
-  riders; rules pre-registered.
+- **Item F(ii)-c landed** (job `458431` after a schema-bug resubmit;
+  `docs/classmean_c_deployment_27b_property_pooled_summary.md`):
+  POSITION-FREE fails (allpos `+0.029` n.s. — addressing is load-bearing);
+  COLLATERAL beneficial (`+0.266 [+0.086,+0.469]` on naturally-correct
+  rows, 0.727→0.992 — gauge-gating optional); fixednorm_proj internal
+  consistency at `+0.447 [+0.293,+0.611]`.
 - **Novelty sweep landed** (`docs/novelty_check_newresults_2026-07-05.md`):
   mechanism trio (raw-null/proj-potent, label battery,
   causal-without-decodable) NOVEL; phenomenon lineage exists (AdaRAS,

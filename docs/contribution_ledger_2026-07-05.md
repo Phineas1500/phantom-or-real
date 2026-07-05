@@ -49,9 +49,12 @@ adversarial search)
    +0.399 [+0.245,+0.558], the program's strongest arm; against
    in-distribution baselines nobody else reports: self-consistency
    (maj-of-8) 0.000, best-of-8 ceiling 0.192, per-row deltas 16↑/10=/0↓.
-   Evidence: F(ii)-b fixednorm rider + artifact-triage diagnostics.
-   (Position-selection and collateral riders = F(ii)-c, in flight;
-   claim the profile only as far as it lands.)
+   Evidence: F(ii)-b fixednorm rider + artifact-triage diagnostics +
+   F(ii)-c (landed 2026-07-05 evening): collateral firing on naturally-
+   correct rows is BENEFICIAL (+0.266 [+0.086,+0.469], 0.727→0.992), so
+   gauge-gating is optional; but POSITION-FREE fails (+0.029 n.s. at all
+   concept positions) — the method is answer-free in content, not yet in
+   addressing. State both.
 6. **Methodological contribution:** pre-registration with branch-complete
    decision rules before unblinding across 10+ jobs, two registered
    predictions confirmed (item D branch + mechanism), determinism-verified
