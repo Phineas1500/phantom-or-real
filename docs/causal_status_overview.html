@@ -72,7 +72,7 @@
     <h1>Phantom or Real — Where the Causality Hunt Stands</h1>
     <p>We could always <em>read</em> whether the model was about to be right. This week we learned why we
        could never <em>steer</em> it: the thing we were reading turns out to be a gauge, not a lever.</p>
-    <div class="date">Status: July 4, 2026 (late) &nbsp;·&nbsp; Gemma&nbsp;3&nbsp;27B + Qwen3.5&nbsp;27B, InAbHyD property + subtype &nbsp;·&nbsp; All 12 claims frozen. Item C landed: specificity PASSES on the subspace-load-bearing branch (rank8 +0.245 vs noise −0.088). Item D resharded after a 4h wall timeout (458412–458414 overnight); sanctioned 4-row preview matches the registered Branch-E prediction on both behavior and telemetry. Item E (hint-free predicted-coefficient repair) pre-registered and running overnight (458409/458410) after the offline decodability gate passed (cos +0.631 vs null +0.014) — drafting next</div>
+    <div class="date">Status: July 5, 2026 (midday) &nbsp;·&nbsp; Two adversarial review rounds survived (verdicts upgraded to Major/Major); statistical debt paid; three exploratory verdicts landed overnight — item E FAIL-but-informative (subspace ≫ coefficients), F(i) NULL (lever subspace not decodably privileged), F(ii) +0.341 [+0.202,+0.495] (natural class-mean, projected — corrected same-day). F(ii)-b shard 0: shuffled labels null, sign-flip 0.000, donor-free variant +0.269 — every arm label-specific, against both reviewers' predictions; pooled verdict early afternoon. Item D 12/16 rows, Branch-E signature holding; remainder queued. Second GPU lane (gorman, fp32) staged and calibrating.</div>
   </div>
 </header>
 
@@ -991,18 +991,42 @@
         <td>Verdict from the pooled 16 rows (~tomorrow morning)</td>
       </tr>
       <tr>
+        <td><span class="chip done">landed</span></td>
+        <td><b>Predicted-coefficient repair (jobs 458409/458410, item E):</b> FAIL branch,
+            informative. Predictor transfers out-of-sample (cos ≈ +0.59 vs ≈ 0 shuffled) but
+            adds nothing behavioral over shuffled in-subspace content (+0.014 [−0.034,+0.072]);
+            dev basis under-transfers (ceiling +0.135 vs fresh-LOO +0.245), collapsing the
+            design's range</td>
+        <td>Key synthesis with item C: <b>subspace ≫ coefficients</b> — generic content in the
+            true subspace repairs; content in random subspaces does not
+            (docs/rank8_predcoeff_27b_property_pooled_summary.md)</td>
+        <td>Reshaped items F(i)/F(ii)</td>
+      </tr>
+      <tr>
+        <td><span class="chip done">landed</span></td>
+        <td><b>Endogeneity tests (items F(i)/F(ii), jobs 458416/458418/458419):</b> F(i) NULL —
+            the lever subspace is not decodably privileged for natural outcomes (dev 0.701 /
+            guard 0.718 vs null p95 0.721; full-dim ceiling 0.807). F(ii): the natural
+            correct−incorrect class-mean, PROJECTED into the lever subspace and norm-matched,
+            repairs at <b>+0.341 [+0.202,+0.495]</b> (robust: BCa-stable, LOO [+0.315,+0.355],
+            content-not-format); the raw vector is null; noise hurts. Same-day corrections:
+            lever-alignment is generic to difference vectors; anchor arm was a deterministic
+            replay; no superlatives vs the anchor</td>
+        <td>Two round-2 adversarial reviews upgraded verdicts (Reject→Major, Major→Major) and
+            converged on one demand: the shuffled-label projected control
+            (docs/adversarial_review_round2_2026-07-05.md)</td>
+        <td>Label-specificity → F(ii)-b</td>
+      </tr>
+      <tr>
         <td><span class="chip run">running</span></td>
-        <td><b>Predicted-coefficient repair (jobs 458409/458410, pre-registered item E,
-            exploratory):</b> can the rank-8 repair run donor-free? Offline gate passed —
-            the coefficients are ridge-decodable from the row's own UNHINTED L30 states
-            (LOO cosine +0.631 vs shuffled null +0.014, 0/50 permutations). 6 arms sharing
-            one dev basis: ceiling (true coefficients), floor (dev mean only), predicted
-            (from the failing run itself), and shuffled-ridge control</td>
-        <td>SUCCESS = pred CI excludes zero AND beats floor and shuffle (paired) →
-            donor-free repair demonstrated; next-paper thread upgrades from "askable" to
-            "answered in-domain". No current-paper claim moves on any outcome
-            (docs/hint_free_repair_direction.md)</td>
-        <td>—</td>
+        <td><b>Shuffled-label projected control (item F(ii)-b, jobs 458424/458425):</b>
+            4 shuffled-label projected class-means, the sign-flipped real vector, and a fixed
+            pooled-norm (fully donor-free) variant, identical rows/norms to F(ii). Shard-0
+            descriptive: shuffled family −0.106..+0.019 (nothing), <b>sign-flip 0.000 absolute</b>,
+            donor-free variant +0.269 [+0.077,+0.481], baseline integrity exact</td>
+        <td>Every arm breaks LABEL-SPECIFIC — against both reviewers' predicted GENERIC
+            outcome. Pooled verdict decides claim 8's final wording in the W1 sweep</td>
+        <td>Pooled verdict ~13:40</td>
       </tr>
     </table>
     <p>The long pole is cluster queue policy (4h per job, one 2-GPU job at a time), not the

@@ -15,6 +15,72 @@ final report is easier to assemble.
 
 ## Running Notes
 
+### 2026-07-05
+
+#### Overnight/Morning Verdict Cascade (items E, F(i), F(ii))
+
+- **Item E (jobs 458409/458410) — FAIL branch**, informative
+  (`docs/rank8_predcoeff_27b_property_pooled_summary.md`): the ridge
+  predictor transfers out-of-sample (cos ≈ +0.59 vs ≈ 0 shuffled) but
+  prediction adds nothing behavioral over shuffled in-subspace content
+  ((pred − shufpred) +0.014 [−0.034,+0.072]); the dev basis under-transfers
+  (ceiling +0.135 vs fresh-LOO +0.245), collapsing the design's dynamic
+  range. Every dev-subspace arm repairs (+0.091..+0.154) while item C's
+  random subspaces did not → **subspace ≫ coefficients**.
+- **Item F(i) (job 458416 + CPU test) — NULL**
+  (`docs/natural_separation_test_27b_property.md`): natural correct vs
+  incorrect is not linearly separable in the lever subspace beyond
+  matched random-subspace nulls (dev 0.701 / guard 0.718 vs null p95
+  0.721; full-dim ceiling 0.807). Guard basis is a ~94th-percentile
+  result — call stands, "chance-level" prose withdrawn.
+- **Item F(ii) (jobs 458418/458419) — the observed cell (raw null, proj
+  strongly causal) was outside the enumerated branches**
+  (`docs/classmean_repair_27b_property_pooled_summary.md`):
+  class_mean_proj **+0.341 [+0.202,+0.495]** (BCa-stable, LOO
+  [+0.315,+0.355], per-height consistent, content-not-format), raw
+  +0.043 (null, MDE 0.159), noise −0.077. Same-day corrections: the
+  "13× lever-aligned" gloss retracted via a 500-permutation
+  shuffled-label control (any difference-of-state-means vector is ~50%
+  aligned; real = 54th pctile); the rank8_loo "gate" was a deterministic
+  seed replay of item C (208/208 identical) — integrity check, not
+  independent evidence; "139%/largest" superlatives retracted
+  (proj − anchor is boundary).
+
+#### Round-2 Adversarial Reviews — Verdicts Upgraded, One Demand
+
+- Both reviewers upgraded (Reject→Major, Major→Major); triage in
+  `docs/adversarial_review_round2_2026-07-05.md`; their catches (anchor
+  replay, rule-of-three clustering, missing hardening on new contrasts,
+  F(ii) parse split) all verified and patched same-day
+  (`docs/stat_hardening_newresults_2026-07-05.json`).
+- Convergent condition for publication: the shuffled-label projected
+  control → pre-registered as **item F(ii)-b** with sign-flip and
+  fixed-pooled-norm (fully donor-free) riders
+  (`docs/causal_handle_directions.md`).
+
+#### Item F(ii)-b Shard 0 (job 458424) — Every Arm Breaks Label-Specific
+
+- Descriptive, pooled verdict pending shard 1 (458425, ~13:40): in-job
+  baseline reproduces 0.115; shuffled-label family d1–d4 = −0.106..+0.019
+  (nothing); **signflip −0.115 (0.000 absolute — all 13 rows wrong)**;
+  **fixednorm (donor-free direction AND scale) +0.269 [+0.077,+0.481]**.
+  Against both reviewers' predicted GENERIC outcome.
+
+#### Item D Progress + Gorman Second Lane
+
+- Erasure: 458412/458413 complete (12/16 rows; readable stack at/above
+  baseline on all, random stacks ~0.00 — Branch-E signature holding);
+  remainder 458414 queued after F(ii)-b shard 1 (user-approved reorder).
+- **gorman-gpu lane operational** (queue.cs.purdue.edu, 2× DGX-1 V100):
+  no persistent user storage → self-staging jobs pull packed env (5.6GB)
+  + HF weights (52GB @ 262 MB/s ≈ 3.5 min) from Scholar into /dev/shm
+  (`scripts/gorman_stage_and_run.sbatch`). V100 has no bf16 → fp32,
+  est. ~1.5–2× slower/gen; NOT stitchable with Scholar bf16 — calibration
+  job 424 (fp32 rerun of F(ii) shard 0, `_gorman` suffixes) pending on
+  resources; gate: baselines within CI. Reverse SSH key user-approved.
+  Policy: Scholar = pre-registered/confirmatory; gorman = batched
+  exploratory campaigns and >4h walls.
+
 ### 2026-07-04
 
 #### Literature Sweep — Not Scooped, but the Negative Half Is Crowded
