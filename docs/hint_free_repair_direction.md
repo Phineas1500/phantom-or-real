@@ -120,12 +120,19 @@ may not matter behaviorally — that is exactly what step 2 measures).
 Analysis script: `scripts/stage2_coeff_predictability.py`; deterministic
 (seed 20260704).
 
-**Step 2 is now unlocked**: closed-loop arms on the guard-v2 harness —
-unhinted baseline / mean_only (floor) / rank8 true-coefficients (ceiling) /
-rank8 ridge-predicted coefficients (LOO) / rank8 shuffled-row coefficients
-(control). Pre-register deltas and rules in causal_handle_directions.md
-before launch; needs fresh rows' unhinted states captured in-job (the
-predictor training set can be the composite rows).
+**Step 2 ran 2026-07-04 (jobs 458409/458410, item E) and landed on the
+FAIL branch** (`docs/rank8_predcoeff_27b_property_pooled_summary.md`):
+the predictor transferred (out-of-sample cos ≈ +0.59 vs ≈ 0 shuffled) but
+prediction quality did not convert to behavior — (pred − shufpred) +0.014
+[−0.034,+0.072]. Cause: the dev basis under-transfers (ceiling +0.135 vs
++0.245 under a fresh-row LOO basis on the same rows), collapsing the
+dynamic range. The informative surprise: EVERY arm writing into the dev
+rank-8 subspace repairs (+0.091..+0.154, all CIs excluding zero, shuffled
+coefficients included) while random subspaces (item C) do not —
+**subspace ≫ coefficients**. Step 3 does not unlock; the thread folds
+into item F (endogeneity test), whose class-mean arm uses a fresh-row
+basis and whose deployment question becomes "right subspace + right
+scale," not per-row coefficient prediction.
 
 ## Relation to the current paper
 

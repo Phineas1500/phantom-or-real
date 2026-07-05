@@ -96,14 +96,14 @@ Legend: [ ] todo · [~] in flight · [x] done
 
 ## W5. Item E verdict + hint-free thread updates
 
-- [~] W5.1 Pool shards 0+1 when 458410 lands; evaluate the item E rules
+- [x] W5.1 Pool shards 0+1 when 458410 lands; evaluate the item E rules
       (gate: rank8_dev CI excludes zero; SUCCESS/PARTIAL/FAIL). Shard-0
       note: gate marginal (+0.067 [0.000,0.192]); shufpred (+0.135)
       matches pred (+0.106) — heading to FAIL-or-uninterpretable on the
       success question, with the informative surprise that generic
       coefficients in the true dev subspace repair while random subspaces
       (item C) do not.
-- [ ] W5.2 Update `docs/hint_free_repair_direction.md`: step-2 outcome;
+- [x] W5.2 Update `docs/hint_free_repair_direction.md`: step-2 outcome;
       reinterpret the ladder (per-row coefficient prediction may not be
       the binding constraint — subspace+scale may be); fold into the item
       F design rather than a separate step 3.
