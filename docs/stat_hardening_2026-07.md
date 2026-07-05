@@ -38,8 +38,13 @@ within ±0.05).
   is positive (+0.033..+0.092), consistent with the weak-lever sign
   pattern flagged in the triage — item D's original-correctness split is
   the discriminator.
-- **Claim 7's TOST "pass" is degenerate, but a stronger statement exists.**
-  Zero strong-flips in 104 paired samples at ceiling → rule-of-three 95%
-  upper bound ≈ 3/104 ≈ **2.9pp** on the masking cost. Use "masking costs
-  < ~3pp (95%, rule of three)" — tighter than the reviewers' suggested
-  "< ~5pp".
+- **Claim 7 (CORRECTED, round-2 review): the rule-of-three bound treated
+  104 clustered samples as independent.** With 13 row-clusters the honest
+  worst case is 3/13 ≈ 23pp; the truth sits between 2.9pp and 23pp
+  depending on within-row flip clustering. Since zero flips were observed,
+  no data constrains the clustering; the defensible statement is "zero
+  flips observed in 13 rows × 8 samples; a cluster-level rule of three
+  bounds the masking cost below ~23pp, and below ~3pp only under sample
+  independence." The reviewers' "< ~5pp" wording is NOT beaten; claim 7
+  wording (W1.3) should say "no cost detected; design cannot bound the
+  cost tighter than the cluster-level rule of three".

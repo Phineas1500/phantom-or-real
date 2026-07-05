@@ -1,0 +1,136 @@
+{
+  "seed": 20260705,
+  "n_boot": 10000,
+  "results": [
+    {
+      "label": "fii_proj_vs_baseline",
+      "condition": "class_mean_proj_add_L30",
+      "reference": "unhinted_baseline",
+      "n_rows": 26,
+      "point": 0.34134615384615385,
+      "percentile_ci95": [
+        0.1971153846153846,
+        0.49038461538461536
+      ],
+      "bca_ci95": [
+        0.20192307692307693,
+        0.4951923076923077
+      ],
+      "loo_point_range": [
+        0.315,
+        0.355
+      ],
+      "mde_95_halfwidth": 0.14663461538461536,
+      "ci90": [
+        0.22115384615384615,
+        0.46634615384615385
+      ],
+      "equivalent_within_margin": false,
+      "margin": 0.05
+    },
+    {
+      "label": "fii_proj_vs_anchor",
+      "condition": "class_mean_proj_add_L30",
+      "reference": "rank8_loo_add_L30",
+      "n_rows": 26,
+      "point": 0.09615384615384616,
+      "percentile_ci95": [
+        -0.004807692307692308,
+        0.21634615384615385
+      ],
+      "bca_ci95": [
+        0.004807692307692308,
+        0.23557692307692307
+      ],
+      "loo_point_range": [
+        0.06,
+        0.115
+      ],
+      "mde_95_halfwidth": 0.11057692307692309,
+      "ci90": [
+        0.009615384615384616,
+        0.19230769230769232
+      ],
+      "equivalent_within_margin": false,
+      "margin": 0.05
+    },
+    {
+      "label": "fii_proj_vs_randnorm",
+      "condition": "class_mean_proj_add_L30",
+      "reference": "rand_norm_add_L30_d1",
+      "n_rows": 26,
+      "point": 0.4182692307692308,
+      "percentile_ci95": [
+        0.25961538461538464,
+        0.5769230769230769
+      ],
+      "bca_ci95": [
+        0.25961538461538464,
+        0.5769230769230769
+      ],
+      "loo_point_range": [
+        0.395,
+        0.435
+      ],
+      "mde_95_halfwidth": 0.15865384615384612,
+      "ci90": [
+        0.28365384615384615,
+        0.5528846153846154
+      ],
+      "equivalent_within_margin": false,
+      "margin": 0.05
+    },
+    {
+      "label": "fii_raw_vs_baseline",
+      "condition": "class_mean_raw_add_L30",
+      "reference": "unhinted_baseline",
+      "n_rows": 26,
+      "point": 0.04326923076923077,
+      "percentile_ci95": [
+        -0.11538461538461539,
+        0.20192307692307693
+      ],
+      "bca_ci95": [
+        -0.125,
+        0.19230769230769232
+      ],
+      "loo_point_range": [
+        0.005,
+        0.085
+      ],
+      "mde_95_halfwidth": 0.15865384615384615,
+      "ci90": [
+        -0.09134615384615384,
+        0.1778846153846154
+      ],
+      "equivalent_within_margin": false,
+      "margin": 0.05
+    },
+    {
+      "label": "e_pred_vs_meanonly",
+      "condition": "rank8_pred_add_L30",
+      "reference": "mean_only_dev_add_L30",
+      "n_rows": 26,
+      "point": 0.0625,
+      "percentile_ci95": [
+        0.004807692307692308,
+        0.14423076923076922
+      ],
+      "bca_ci95": [
+        0.009615384615384616,
+        0.1778846153846154
+      ],
+      "loo_point_range": [
+        0.03,
+        0.07
+      ],
+      "mde_95_halfwidth": 0.06971153846153845,
+      "ci90": [
+        0.009615384615384616,
+        0.12980769230769232
+      ],
+      "equivalent_within_margin": false,
+      "margin": 0.05
+    }
+  ]
+}

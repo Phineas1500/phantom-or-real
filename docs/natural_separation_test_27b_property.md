@@ -14,7 +14,12 @@ excluded. Machine-readable: `docs/natural_separation_test_27b_property.json`.
 | guard-v2 rank-8 basis | 0.718 — inside the null |
 
 **Pre-registered outcome: NULL.** Neither frozen lever basis exceeds its
-random-subspace null's 95th percentile. The rank-8 subspace carries no
+random-subspace null's 95th percentile. (Round-2 nuance, accepted: the
+guard basis at 0.718 sits 0.003 under a p95 of 0.721 estimated from 200
+draws — a ~94th-percentile result within Monte-Carlo noise of the
+threshold. The pre-registered call stands; the prose phrase "no better
+than chance-level slices" overstated it and is withdrawn in favor of
+"does not exceed the pre-registered null threshold".) The rank-8 subspace carries no
 privileged information about natural success at these positions — it
 separates outcomes no better than chance-level 8-dim slices of a highly
 redundant state.

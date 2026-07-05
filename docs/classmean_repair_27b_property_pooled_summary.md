@@ -21,10 +21,21 @@ claim moves.
 | **class_mean_proj_add_L30** | **+0.341 [+0.202,+0.495]** |
 | rand_norm_add_L30_d1 (noise floor) | −0.077 [−0.168,−0.005] |
 
-Paired: (proj − raw) **+0.298 [+0.130 excl. zero via −CI on raw−proj]**;
-(proj − rand_norm) +0.418 [+0.264,+0.577]; (proj − rank8_loo) +0.096
-[+0.000,+0.216] (grazes zero — proj is at least the anchor's equal);
-(raw − rand_norm) +0.120 [−0.029,+0.284] (null).
+Paired (recomputed directly, with BCa/LOO per
+`docs/stat_hardening_newresults_2026-07-05.json`): (proj − rand_norm)
++0.418 pct[+0.260,+0.577] BCa identical, LOO [+0.395,+0.435];
+(proj − raw) +0.298 [+0.130,+0.471]; (proj − rank8_loo) +0.096
+pct[−0.005,+0.216] BCa[+0.005,+0.236] — **boundary: proj is not reliably
+larger than the anchor**, so no superlatives ("139%", "largest") are
+licensed; (raw − rand_norm) +0.120 [−0.029,+0.284] (null; raw's MDE is
+0.159, so "dead weight" is also not licensed — raw is undetermined at
+this design). Robustness of the headline arm: BCa ≈ percentile, LOO band
+[+0.315,+0.355], per-height +0.362 (h3) / +0.328 (h4) — not row-sparse,
+not height-driven. Parse split: proj parse rate 0.817 vs baseline 0.904
+(mild format degradation at this amplitude); P(strong|parsed) 0.565 vs
+baseline 0.133 — the repair is content, not format. Alignment-fraction
+conventions reconciled: 49.8% = mean over per-row LOO bases; 0.515 = the
+pooled full-basis figure used by the shuffled-label control.
 
 Diagnostic: the natural class vector holds **49.8%** of its norm inside
 the 8-dim lever subspace (per-row LOO bases, range 0.43–0.55). Random
@@ -33,8 +44,14 @@ correct-vs-incorrect direction is ~13× more lever-aligned than chance.
 
 ## Pre-registered rules → outcome
 
-- **Gate (rank8_loo CI excludes zero): HOLDS** (+0.245 — an exact
-  replication of item C's anchor on the same rows).
+- **Gate (rank8_loo CI excludes zero): holds, but is vacuous as designed
+  (CORRECTION, round-2 review)**: the anchor arm shares rows, sample
+  seeds, and arm index with item C's rank8_loo, and generation is
+  deterministic — 208/208 sample-level outcomes are bit-identical across
+  the two jobs. The arm is a pipeline-integrity check that could not have
+  failed independently; calling it "an exact replication" was wrong. (It
+  does confirm end-to-end harness determinism, which validates stitching
+  partial jobs.)
 - **Natural-delta CAUSAL (as defined on the RAW arm): NOT MET** — raw CI
   straddles zero and (raw − rand_norm) straddles zero.
 - **The observed combination (raw null, proj strongly causal) was not
