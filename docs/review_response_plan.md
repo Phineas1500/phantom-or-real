@@ -45,17 +45,17 @@ Legend: [ ] todo · [~] in flight · [x] done
 
 ## W2. Statistical hardening (CPU, offline; before drafting §5)
 
-- [ ] W2.1 BCa + wild-cluster bootstrap side-by-side with percentile CIs
+- [x] W2.1 BCa + wild-cluster bootstrap side-by-side with percentile CIs
       for every claim whose CI bound is within 0.02 of zero: claim 12
       pooled-new; subtype L35_rank4; guard-v2 rank4. Script:
       `scripts/stage2_bootstrap_hardening.py` (new, committed), reads the
       existing row-level JSONLs. If BCa lower bound crosses zero anywhere,
       the claim text weakens accordingly.
-- [ ] W2.2 Leave-one-row-out sensitivity tables (drop each row, recompute
+- [x] W2.2 Leave-one-row-out sensitivity tables (drop each row, recompute
       pooled dP) for claim 12 and claim 8 (guard v2 + specificity). Report
       min/max range next to the CI. Expect claim 12 to fail this (3/13
       rows carry it) — that is the point.
-- [ ] W2.3 Equivalence discipline: declare a 5pp margin; run TOST for
+- [x] W2.3 Equivalence discipline: declare a 5pp margin; run TOST for
       claim 2 raw erasure (control-matching rows), claim 7 masking, claim
       11 Qwen raw. Where power is insufficient, report the minimum
       detectable effect instead of "no cost".

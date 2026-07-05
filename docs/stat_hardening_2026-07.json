@@ -1,0 +1,214 @@
+{
+  "seed": 20260705,
+  "n_boot": 10000,
+  "results": [
+    {
+      "label": "claim12_L35_concept",
+      "condition": "L35_concept_replace",
+      "reference": "baseline",
+      "n_rows": 16,
+      "point": 0.1171875,
+      "percentile_ci95": [
+        0.0078125,
+        0.25390625
+      ],
+      "bca_ci95": [
+        0.0234375,
+        0.3046875
+      ],
+      "loo_point_range": [
+        0.06666666666666667,
+        0.125
+      ],
+      "mde_95_halfwidth": 0.123046875,
+      "ci90": [
+        0.0234375,
+        0.23046875
+      ],
+      "equivalent_within_margin": false,
+      "margin": 0.05
+    },
+    {
+      "label": "claim12_L35_rank4",
+      "condition": "L35_rank4_loo_add",
+      "reference": "baseline",
+      "n_rows": 16,
+      "point": 0.046875,
+      "percentile_ci95": [
+        0.0,
+        0.109375
+      ],
+      "bca_ci95": [
+        0.0078125,
+        0.13671875
+      ],
+      "loo_point_range": [
+        0.020833333333333332,
+        0.05
+      ],
+      "mde_95_halfwidth": 0.0546875,
+      "ci90": [
+        0.0078125,
+        0.09765625
+      ],
+      "equivalent_within_margin": false,
+      "margin": 0.05
+    },
+    {
+      "label": "claim8_guard_rank8",
+      "condition": "rank8_loo_add_L30",
+      "reference": "unhinted_baseline",
+      "n_rows": 26,
+      "point": 0.23076923076923078,
+      "percentile_ci95": [
+        0.11057692307692307,
+        0.3701923076923077
+      ],
+      "bca_ci95": [
+        0.11538461538461539,
+        0.375
+      ],
+      "loo_point_range": [
+        0.2,
+        0.245
+      ],
+      "mde_95_halfwidth": 0.12980769230769232,
+      "ci90": [
+        0.12956730769230793,
+        0.34134615384615385
+      ],
+      "equivalent_within_margin": false,
+      "margin": 0.05
+    },
+    {
+      "label": "claim8_guard_rank4",
+      "condition": "rank4_loo_add_L30",
+      "reference": "unhinted_baseline",
+      "n_rows": 26,
+      "point": 0.14423076923076922,
+      "percentile_ci95": [
+        0.038461538461538464,
+        0.2645432692307675
+      ],
+      "bca_ci95": [
+        0.04807692307692308,
+        0.27884615384615385
+      ],
+      "loo_point_range": [
+        0.115,
+        0.165
+      ],
+      "mde_95_halfwidth": 0.11304086538461451,
+      "ci90": [
+        0.052884615384615384,
+        0.24519230769230768
+      ],
+      "equivalent_within_margin": false,
+      "margin": 0.05
+    },
+    {
+      "label": "claim8_spec_rank8",
+      "condition": "rank8_loo_add_L30",
+      "reference": "unhinted_baseline",
+      "n_rows": 26,
+      "point": 0.24519230769230768,
+      "percentile_ci95": [
+        0.11538461538461539,
+        0.3942307692307692
+      ],
+      "bca_ci95": [
+        0.1201923076923077,
+        0.40384615384615385
+      ],
+      "loo_point_range": [
+        0.215,
+        0.26
+      ],
+      "mde_95_halfwidth": 0.13942307692307693,
+      "ci90": [
+        0.1346153846153846,
+        0.3701923076923077
+      ],
+      "equivalent_within_margin": false,
+      "margin": 0.05
+    },
+    {
+      "label": "claim2_erase_raw",
+      "condition": "erase_raw_s1",
+      "reference": "baseline",
+      "n_rows": 16,
+      "point": 0.03125,
+      "percentile_ci95": [
+        -0.09375,
+        0.171875
+      ],
+      "bca_ci95": [
+        -0.09375,
+        0.171875
+      ],
+      "loo_point_range": [
+        -0.016666666666666666,
+        0.06666666666666667
+      ],
+      "mde_95_halfwidth": 0.1328125,
+      "ci90": [
+        -0.078125,
+        0.15625
+      ],
+      "equivalent_within_margin": false,
+      "margin": 0.05
+    },
+    {
+      "label": "claim7_masking",
+      "condition": "hint_span_masking",
+      "reference": "hinted_baseline",
+      "n_rows": 13,
+      "point": 0.0,
+      "percentile_ci95": [
+        0.0,
+        0.0
+      ],
+      "bca_ci95": [
+        0.0,
+        0.0
+      ],
+      "loo_point_range": [
+        0.0,
+        0.0
+      ],
+      "mde_95_halfwidth": 0.0,
+      "ci90": [
+        0.0,
+        0.0
+      ],
+      "equivalent_within_margin": true,
+      "margin": 0.05
+    },
+    {
+      "label": "claim11_qwen_raw",
+      "condition": "erase_raw",
+      "reference": "baseline",
+      "n_rows": 16,
+      "point": 0.0703125,
+      "percentile_ci95": [
+        -0.03125,
+        0.1796875
+      ],
+      "bca_ci95": [
+        -0.03125,
+        0.1875
+      ],
+      "loo_point_range": [
+        0.03333333333333333,
+        0.09166666666666666
+      ],
+      "mde_95_halfwidth": 0.10546875,
+      "ci90": [
+        -0.015625,
+        0.1640625
+      ],
+      "equivalent_within_margin": false,
+      "margin": 0.05
+    }
+  ]
+}
