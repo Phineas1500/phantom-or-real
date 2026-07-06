@@ -1157,3 +1157,15 @@ firing the vector at each candidate concept separately.
 - Exploratory: no current-paper claim moves; feeds the discussion's
   deployment paragraph and the next paper. Budget: 208 + 208 + ~26×7×4
   ≈ 1,150 generations ≈ 2.9 h — one Scholar slot, queue currently empty.
+
+### G (amendment, 2026-07-06, before any G data): venue moved gorman → Scholar
+
+Recorded before G0 runs. gorman's queue is saturated (5-day neighbors);
+Scholar's is empty. Moving to Scholar bf16 REMOVES the original
+registration's fp32/no-stitching caveat: G numbers become directly
+comparable with the claim-11 Qwen artifacts (same hardware/dtype/harness
+family). Operational resharding for the 4h wall (G2 as 2 row-shards) is
+venue bookkeeping, not a design change. Phase gating unchanged: G0 must
+pass before G2 is submitted; G2's winner selection before G3. Row source:
+results/full/with_errortype/qwen35_27b_infer_property.jsonl (same schema
+as Gemma stage-1); G0 rows = the 16 balanced rows of jobs 457191-457194.
