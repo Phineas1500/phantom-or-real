@@ -523,6 +523,12 @@ def main() -> int:
     parser.add_argument("--position-policy", action="store_true")
     parser.add_argument("--percand-samples", type=int, default=4)
     parser.add_argument(
+        "--row-indices",
+        default=None,
+        help="Comma list of source row indices to keep after selection/sharding "
+        "(wall-timeout remainder jobs; per-sample seeds are layout-independent).",
+    )
+    parser.add_argument(
         "--capture-npz",
         type=Path,
         default=Path("results/stage2/erasure/natural_state_capture_27b_property_L30.npz"),
@@ -575,6 +581,13 @@ def main() -> int:
         args.jsonl, exclude=exclude, heights=heights, per_height=args.per_height, seed=args.selection_seed
     )
     selected_rows = shard_rows(all_rows, args.shard_index, args.shard_count)
+    if args.row_indices:
+        keep = {int(part) for part in args.row_indices.split(",") if part.strip()}
+        missing = keep - {int(row["row_index"]) for row in selected_rows}
+        if missing:
+            raise ValueError(f"--row-indices not in the selected set: {sorted(missing)}")
+        selected_rows = [row for row in selected_rows if int(row["row_index"]) in keep]
+        print(f"row-indices filter: kept {len(selected_rows)} rows", flush=True)
     if args.class_mean_c:
         capture_row_ids = set()
         with args.capture_manifest.open() as f:
