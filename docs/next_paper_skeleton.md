@@ -126,6 +126,12 @@ baseline; self-consistency baseline 0.000, best-of-8 ceiling 0.192).
   vocabulary for the probe readout; item-C riders supply the
   on-distribution diagnostics), 2506.11673 (ACL'25 Findings —
   mean-projection/LEACE over INLP; cited for the item-D operation choice).
+- Concurrent workspace convergence: Anthropic transformer-circuits 2026
+  ("global workspace" / J-lens) — same low-rank-causal vs decodable-inert
+  structure on verbalizable concepts in Claude models; cite as
+  independent convergence strengthening generality, differentiate on
+  variable (correctness), repair, controls, and pre-registration; their
+  ignition result frames our commitment/ignition discussion sentence.
 - Kept from the prior plan: Cox et al. (orthogonal-baseline motivation in
   the control-matching section), ITI / TruthfulQA line, hydra-effect /
   self-repair, SAE/dictionary interpretability (Gemma Scope) for claim 9.

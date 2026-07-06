@@ -42,6 +42,11 @@ recoverability.
   growing ambient dimensionality); our 27B projected result runs against
   the trend, consistent with filtering restoring scale-robustness.
 
+- Anthropic workspace paper (2026): non-J-space components of concept
+  vectors are causally inert (effects → 0 under J-clamping) despite
+  carrying ~93% of variance — independent, cross-lab confirmation of the
+  dead-weight premise via a completely different methodology.
+
 ## Failure modes (what would falsify or bound it)
 
 1. **Recoverability ceiling**: steering only fixes failures the model has

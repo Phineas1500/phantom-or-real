@@ -220,3 +220,22 @@ paper (and the survey's open question 3).
 - 2509.06608's vectors are per-layer dense biases (~100–230K params), a
   low-parameter but not literally rank-8 intervention; its gain-recovery
   figures are 95.3%/87.8% (verifier-corrected from the abstract's rounding).
+
+
+## Addendum (2026-07-06): Anthropic global-workspace paper
+
+transformer-circuits.pub/2026/workspace — "Verbalizable Representations
+Form a Global Workspace in Language Models" (Claude 4.5/4.6 family,
+Jacobian-lens methodology). Three deep parallels to our program, all
+convergent rather than competing: (1) tiny causally-privileged subspace
+vs causally-inert bulk = the structural twin of our raw-null/projected-
+potent necessity dissociation; (2) decodable-but-inert and working-but-
+not-lens-visible cases = our gauge/lever anatomy in both directions;
+(3) "ignition" (late, all-or-none interpretation commitment) = the shape
+of our concept-token commitment, and a frame for item H's verb/object
+finding (all-position marking → competing ignitions → cancellation).
+No claim overlap: no correctness variable, no failure repair, no label
+controls, no pre-registration. Consequences: fourth related-work block
+("concurrent workspace convergence"); next-paper bridging experiment —
+J-lens-style readout on Gemma, overlap with our rank-8 channel (is the
+lever the correctness-relevant slice of the workspace?).

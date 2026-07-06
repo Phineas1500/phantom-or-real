@@ -93,6 +93,18 @@ adversarial search)
 - **Subspace-illusion precedent** — Makelov/Lange/Nanda 2311.17030 with
   Wu 2401.12631 as counterpoint; our fresh-row/basis-provenance
   discipline is the response.
+- **Concurrent workspace convergence (Anthropic, transformer-circuits
+  2026 "Verbalizable Representations Form a Global Workspace")** — an
+  independent frontier-lab result with the SAME structural phenomena on
+  a different variable/model family: a small privileged subspace (6-7%
+  of concept-vector variance) is causally dominant (swap success 59% vs
+  5% for the non-J component, → 0 under clamping) while decodable-but-
+  causally-inert content exists elsewhere; sharp all-or-none "ignition"
+  commitment at workspace onset (relative depth 0.38-0.92 — our L30/62 ≈
+  0.48 sits inside). Cite as concurrent convergence, NOT as prior art on
+  correctness: they have no gauge, no repair, no label battery, no
+  accuracy claims. Their vocabulary (privileged subspace, routing) is
+  usable with citation.
 
 ## 3. SHARED TERRITORY (open questions where we contribute the strongest
 evidence, framed as adjudication rather than discovery)
