@@ -1111,3 +1111,49 @@ time; (2) collateral cost on rows the model was getting right is unmeasured
   contrasts within the failing side. Exploratory: no current-paper claim
   moves. Budget: (3 arms × 26 + 2 arms × 16) × 8 ≈ 880 generations ≈
   2.6 h — one Scholar slot behind 458414.
+
+### H. Position-selection policy (deployment gap closure, Scholar)
+
+Pre-registered 2026-07-05 ~20:15, before any data. F(ii)-c established
+that the donor-free vector's ADDRESSING is load-bearing: gold-position
+writes repair (+0.447), all-position writes cancel (+0.029 n.s.). Item H
+asks whether the address can be chosen without answer information, by
+firing the vector at each candidate concept separately.
+
+- Rows: the 26 failing guard rows (single job, shard-count 1). Vector,
+  basis, and scale identical to F(ii)-c's fixednorm arm (LOO rank-8
+  basis; pooled-others norm; class vector from the 458416 capture).
+- Arms:
+  `unhinted_baseline` (k=8);
+  `fixednorm_gold` (k=8, gold positions — in-family reference);
+  `percand_fire` — for EACH taxonomy concept c in the row (~5–10), one
+  generation batch (k=4) with the vector written ONLY at c's mention
+  positions; rows record `fired_concept`, `fired_is_gold`, and
+  `targets_fired_concept` (does the output's hypothesis subject equal the
+  fired concept?).
+- Pre-named offline selection policies (evaluated from percand outputs,
+  no further GPU):
+  P1 self-ratification (PRIMARY): choose the candidate whose fires most
+  often propose the fired concept itself; tie → most parseable, then
+  lowest candidate index. Rationale: if the vector amplifies commitment
+  to the marked concept only where commitment is licensed, the right
+  address ratifies itself.
+  P2 global majority: pool all fires' parsed hypotheses, majority vote.
+  P3 oracle (ceiling, not a policy): the gold-candidate fire.
+- Decision rules (before unblinding):
+  - Mechanism readout (reported regardless): wrong-concept fires' pooled
+    dP vs baseline, and targets_fired_concept rate at gold vs non-gold
+    candidates. Misdirection-asymmetry prediction: wrong-concept fires
+    do NOT pull hypotheses to the fired concept.
+  - Gate: gold-candidate fires (k=4 slice of percand) repair with CI
+    excluding zero (the k=4 analogue of +0.447; if k=4 is too noisy the
+    gate falls back to the k=8 fixednorm_gold arm).
+  - POLICY-VIABLE: P1's selected-fire P(strong) beats baseline (paired
+    CI excludes zero) AND reaches >=50% of the oracle fire (P3).
+  - POLICY-FAILS: P1 and P2 both below 50% of oracle → position
+    selection needs a trained policy or gauge-scored reruns; the
+    "answer-free in content, not addressing" caveat stands as final for
+    this paper.
+- Exploratory: no current-paper claim moves; feeds the discussion's
+  deployment paragraph and the next paper. Budget: 208 + 208 + ~26×7×4
+  ≈ 1,150 generations ≈ 2.9 h — one Scholar slot, queue currently empty.
