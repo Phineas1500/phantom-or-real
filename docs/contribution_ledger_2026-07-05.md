@@ -126,11 +126,18 @@ evidence, framed as adjudication rather than discovery)
   at 27B where CAA-style effects reportedly shrink (Ali) — but one task
   family, one model; scope stated.
 - **Cross-model generality.** Qwen raw-axis non-necessity replicates
-  (claim 11). Item G is RUNNING: G0 gate passed 2026-07-06 (baseline
-  0.359 vs 0.352 ref; hint lift +0.523 — the recognition-gap failure
-  mode exists in Qwen), G2 layer sweep in flight. Until G3 lands, the
-  §1 LEVER claims remain Gemma-3-27B/property scoped; the behavioral
-  precondition is now cross-model.
+  (claim 11). Item G LANDED 2026-07-06: G0 gate passed (baseline 0.359
+  vs 0.352 ref; hint lift +0.523 — the recognition-gap failure mode
+  exists in Qwen); G2 found the carrier at L43, rel depth 0.67 vs
+  Gemma's 0.48 (concept-replace +0.175 [+0.100,+0.258], uniquely
+  qualifying — depth is the non-transferable coordinate); G3 rank-8
+  ladder MISSED its pre-registered PASS (rank8 +0.083 [−0.025,+0.217],
+  48% of the carrier anchor; every control flat; MDE 0.12 —
+  under-powered directional miss, not a null). Two-tier wording: the
+  CARRIER is cross-model (2/2) at model-specific depth; the RANK-8
+  compression is Gemma-established, Qwen-directional-only. §1 LEVER
+  claims remain Gemma-3-27B/property scoped. G5 gated off; G4
+  descriptive-only per registration.
 
 ## 4. NOT CLAIMABLE (rejected wordings)
 

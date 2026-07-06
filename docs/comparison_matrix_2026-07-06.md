@@ -22,7 +22,7 @@ Sources: L1/L2/L3 verified sweeps + WebFetch of the Anthropic paper.
 | sampling-baseline comparison | ✓ self-consistency 0.000; best-of-8 0.192 | — | — | — | ~ | ~ | — | — | — | — |
 | collateral cost on correct inputs | ✓ beneficial +0.266 | — | — | — | — | — | — | — | — | — |
 | probe-gated deployment | ~ tested, gating OPTIONAL (collateral benign) | — | — | — | ✓ AUROC 0.8347 gate | ~ cosine gate | — | ✓ 12.3% gated | — | — |
-| model scale | 27B (+27B replication in flight) | mid | 7 models | multi | 1.7–4B | 7B | 1–9B | 8B | 8B | frontier (Claude 4.5/4.6) |
+| model scale | 27B (+27B: carrier replicates, rank-8 core directional-only) | mid | 7 models | multi | 1.7–4B | 7B | 1–9B | 8B | 8B | frontier (Claude 4.5/4.6) |
 | pre-registration / branch-complete rules | ✓ 10+ items, 2 predictions confirmed | — | — | — | — | — | — | — | — | — |
 
 ## Narrative: the three comparison frontiers
