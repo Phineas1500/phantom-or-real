@@ -26,8 +26,11 @@ export WANDB_MODE=disabled
 if [ -f .env ]; then set -a; source .env; set +a; fi
 echo "Node: $(hostname)"; echo "Started: $(date)"
 
+ROW_ARGS=()
+if [ -n "${POSPOL_ROW_INDICES:-}" ]; then ROW_ARGS=(--row-indices "$POSPOL_ROW_INDICES" --out-jsonl "results/stage2/erasure/position_policy_27b_property_remainder.jsonl" --states-output "results/stage2/erasure/position_policy_27b_property_remainder_states.npz" --output "docs/position_policy_27b_property_remainder.json" --summary-md "docs/position_policy_27b_property_remainder_summary.md"); fi
 python -u scripts/stage2_rank_k_guard_v2.py \
     --position-policy \
+    "${ROW_ARGS[@]}" \
     --rank-list 8 \
     --shard-index 0 \
     --shard-count 1 \
