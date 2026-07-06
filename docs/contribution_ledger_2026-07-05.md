@@ -54,7 +54,11 @@ adversarial search)
    correct rows is BENEFICIAL (+0.266 [+0.086,+0.469], 0.727→0.992), so
    gauge-gating is optional; but POSITION-FREE fails (+0.029 n.s. at all
    concept positions) — the method is answer-free in content, not yet in
-   addressing. State both.
+   addressing. State both. Item H (jobs 458435/458440) finalizes it:
+   pre-named answer-free position policies FAIL; mechanism readout — the
+   vector is a positional commitment COMMAND (fires pull hypotheses to
+   the marked concept ~50% regardless of gold-ness; wrong fires mildly
+   harmful −0.036) — content is the verb, address is the object.
 6. **Methodological contribution:** pre-registration with branch-complete
    decision rules before unblinding across 10+ jobs, two registered
    predictions confirmed (item D branch + mechanism), determinism-verified

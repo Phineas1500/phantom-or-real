@@ -1,0 +1,302 @@
+{
+  "arms": [
+    {
+      "basis_mode": null,
+      "kind": "none",
+      "label": "unhinted_baseline",
+      "layers": [],
+      "rank_k": null,
+      "reference": "none"
+    },
+    {
+      "basis_mode": "class_mean_projected_fixed_pooled_norm",
+      "kind": "fixednorm_proj_add",
+      "label": "fixednorm_gold_L30",
+      "layers": [
+        30
+      ],
+      "rank_k": 8,
+      "reference": "unhinted_baseline"
+    },
+    {
+      "basis_mode": "class_mean_projected_per_candidate",
+      "kind": "percand_fire",
+      "label": "percand_fire_L30",
+      "layers": [
+        30
+      ],
+      "rank_k": 8,
+      "reference": "unhinted_baseline"
+    }
+  ],
+  "basis_records": [
+    {
+      "basis_mode": "class_mean_projected_fixed_pooled_norm",
+      "condition": "fixednorm_gold_L30",
+      "cos_to_real_proj": 1.0000000000000002,
+      "layer": 30,
+      "mean_add_vector_norm": 3690.471435546875,
+      "mean_pca_recon_norm": 3172.7513061471013,
+      "rank_k": 8,
+      "source_row_index": 8552
+    },
+    {
+      "basis_mode": "class_mean_projected_fixed_pooled_norm",
+      "condition": "fixednorm_gold_L30",
+      "cos_to_real_proj": 0.9999999999999998,
+      "layer": 30,
+      "mean_add_vector_norm": 3511.695068359375,
+      "mean_pca_recon_norm": 4424.184914982875,
+      "rank_k": 8,
+      "source_row_index": 9254
+    },
+    {
+      "basis_mode": "class_mean_projected_fixed_pooled_norm",
+      "condition": "fixednorm_gold_L30",
+      "cos_to_real_proj": 1.0,
+      "layer": 30,
+      "mean_add_vector_norm": 3670.6328125,
+      "mean_pca_recon_norm": 3311.620589440777,
+      "rank_k": 8,
+      "source_row_index": 9552
+    },
+    {
+      "basis_mode": "class_mean_projected_fixed_pooled_norm",
+      "condition": "fixednorm_gold_L30",
+      "cos_to_real_proj": 1.0,
+      "layer": 30,
+      "mean_add_vector_norm": 3526.774658203125,
+      "mean_pca_recon_norm": 4318.628999777365,
+      "rank_k": 8,
+      "source_row_index": 9576
+    },
+    {
+      "basis_mode": "class_mean_projected_fixed_pooled_norm",
+      "condition": "fixednorm_gold_L30",
+      "cos_to_real_proj": 1.0000000000000002,
+      "layer": 30,
+      "mean_add_vector_norm": 3647.581298828125,
+      "mean_pca_recon_norm": 3472.983219946757,
+      "rank_k": 8,
+      "source_row_index": 9689
+    },
+    {
+      "basis_mode": "class_mean_projected_fixed_pooled_norm",
+      "condition": "fixednorm_gold_L30",
+      "cos_to_real_proj": 1.0000000000000002,
+      "layer": 30,
+      "mean_add_vector_norm": 3621.093017578125,
+      "mean_pca_recon_norm": 3658.4012136068513,
+      "rank_k": 8,
+      "source_row_index": 9907
+    },
+    {
+      "basis_mode": "class_mean_projected_fixed_pooled_norm",
+      "condition": "fixednorm_gold_L30",
+      "cos_to_real_proj": 1.0000000000000002,
+      "layer": 30,
+      "mean_add_vector_norm": 3661.87646484375,
+      "mean_pca_recon_norm": 3372.915610203553,
+      "rank_k": 8,
+      "source_row_index": 9949
+    },
+    {
+      "basis_mode": "class_mean_projected_fixed_pooled_norm",
+      "condition": "fixednorm_gold_L30",
+      "cos_to_real_proj": 1.0,
+      "layer": 30,
+      "mean_add_vector_norm": 3675.926513671875,
+      "mean_pca_recon_norm": 3274.564868892412,
+      "rank_k": 8,
+      "source_row_index": 10347
+    }
+  ],
+  "controls": [
+    "in-job unhinted baseline",
+    "gold-position fixednorm reference (k=8)",
+    "per-candidate firing with fired/targets telemetry (k=4 per candidate)"
+  ],
+  "created_at_utc": "2026-07-06T06:36:14.886658+00:00",
+  "elapsed_seconds": 6948.814893722534,
+  "generation": {
+    "max_new_tokens": 96,
+    "samples_per_row": 8,
+    "temperature": 0.7
+  },
+  "hint_validated": {
+    "n_validated_rows": 0,
+    "summary": {},
+    "threshold": 0.5,
+    "validated_rows": []
+  },
+  "layer": 30,
+  "method": "position_selection_policy",
+  "model": "google/gemma-3-27b-it",
+  "n": 448,
+  "out_jsonl": "results/stage2/erasure/position_policy_27b_property_remainder.jsonl",
+  "output": "docs/position_policy_27b_property_remainder.json",
+  "pre_registered_decision_rule": "Gate: gold-candidate fires repair (CI excl. zero; fallback fixednorm_gold k=8). POLICY-VIABLE if P1 self-ratification beats baseline (paired CI excl. zero) AND >=50% of the oracle fire. Mechanism readout (wrong-concept fires, targets_fired_concept) reported regardless. Rules: item H. Exploratory.",
+  "predictor_config": null,
+  "prepared_rows": 8,
+  "rank_list": [
+    8
+  ],
+  "representation_type": "patched_residual_state",
+  "resolved_args": {
+    "capture_manifest": "results/stage2/erasure/natural_state_capture_27b_property_L30.manifest.jsonl",
+    "capture_npz": "results/stage2/erasure/natural_state_capture_27b_property_L30.npz",
+    "class_mean": false,
+    "class_mean_b": false,
+    "class_mean_c": false,
+    "control_draws": 4,
+    "control_seed": 20260704,
+    "correct_per_height": 8,
+    "correct_seed": 20260706,
+    "dev_states_npz": "results/stage2/erasure/focus_state_composite_27b_property_states.npz",
+    "dry_run": false,
+    "dtype": "bfloat16",
+    "exclude_rows": "3073,3290,3415,4322,4675,6188,6327,8035,8298,8874,9549,10079,10714",
+    "heights": "3,4",
+    "jsonl": "results/full/with_errortype/gemma3_27b_infer_property.jsonl",
+    "layer": 30,
+    "load_mode": "no-processing",
+    "max_new_tokens": 96,
+    "min_block_tokens": 32,
+    "model": "google/gemma-3-27b-it",
+    "n_ctx": 4096,
+    "n_devices": 2,
+    "out_jsonl": "results/stage2/erasure/position_policy_27b_property_remainder.jsonl",
+    "output": "docs/position_policy_27b_property_remainder.json",
+    "per_height": 16,
+    "percand_samples": 4,
+    "position_policy": true,
+    "pred_shuffle_seed": 20260704,
+    "predicted_coefficients": false,
+    "rank_list": "8",
+    "ridge_alphas": "1e2,1e3,1e4,1e5,1e6",
+    "row_indices": "8552,9254,9552,9576,9689,9907,9949,10347",
+    "sample_seed": 20260702,
+    "samples_per_row": 8,
+    "selection_seed": 20260702,
+    "shard_count": 1,
+    "shard_index": 0,
+    "shuffle_draws": 4,
+    "shuffle_label_seed": 20260705,
+    "specificity_controls": false,
+    "states_output": "results/stage2/erasure/position_policy_27b_property_remainder_states.npz",
+    "summary_md": "docs/position_policy_27b_property_remainder_summary.md",
+    "task": "infer_property",
+    "temperature": 0.7
+  },
+  "schema_version": 1,
+  "script": "scripts/stage2_rank_k_guard_v2.py",
+  "selected_rows": 8,
+  "selection": {
+    "all_selected_rows": [
+      3378,
+      3488,
+      3492,
+      3501,
+      3666,
+      3704,
+      3744,
+      3810,
+      4142,
+      4193,
+      4201,
+      4257,
+      5192,
+      5226,
+      5687,
+      5858,
+      6300,
+      6450,
+      7321,
+      7429,
+      7698,
+      7891,
+      8150,
+      8361,
+      8552,
+      9254,
+      9552,
+      9576,
+      9689,
+      9907,
+      9949,
+      10347
+    ],
+    "excluded_rows": [
+      3073,
+      3290,
+      3415,
+      4322,
+      4675,
+      6188,
+      6327,
+      8035,
+      8298,
+      8874,
+      9549,
+      10079,
+      10714
+    ],
+    "heights": [
+      3,
+      4
+    ],
+    "jsonl": "results/full/with_errortype/gemma3_27b_infer_property.jsonl",
+    "per_height": 16,
+    "rule": "parse_ok, strong_incorrect, heights balanced, excluding composite-manifest rows",
+    "selection_seed": 20260702,
+    "shard_rows": [
+      8552,
+      9254,
+      9552,
+      9576,
+      9689,
+      9907,
+      9949,
+      10347
+    ]
+  },
+  "shard": {
+    "count": 1,
+    "index": 0
+  },
+  "slurm_job_id": "458440",
+  "states_output": "results/stage2/erasure/position_policy_27b_property_remainder_states.npz",
+  "summary": {
+    "fixednorm_gold_L30": {
+      "n_rows": 8,
+      "n_samples": 64,
+      "paired_ci95": [
+        0.125,
+        0.703125
+      ],
+      "paired_delta_vs_reference": 0.390625,
+      "reference": "unhinted_baseline",
+      "strong_accuracy": 0.40625
+    },
+    "percand_fire_L30": {
+      "n_rows": 8,
+      "n_samples": 320,
+      "paired_ci95": [
+        0.009375,
+        0.075
+      ],
+      "paired_delta_vs_reference": 0.0375,
+      "reference": "unhinted_baseline",
+      "strong_accuracy": 0.053125
+    },
+    "unhinted_baseline": {
+      "n_rows": 8,
+      "n_samples": 64,
+      "reference": "none",
+      "strong_accuracy": 0.015625
+    }
+  },
+  "summary_md": "docs/position_policy_27b_property_remainder_summary.md",
+  "target_variable": "target_concept",
+  "task": "infer_property"
+}
