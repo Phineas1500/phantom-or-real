@@ -182,6 +182,15 @@ def build_classmean_b_arms(layer: int, rank: int, draws: int) -> list[Arm]:
     return arms
 
 
+def build_position_policy_arms(layer: int, rank: int) -> list[Arm]:
+    """Per-candidate firing for position selection (pre-registered item H)."""
+    return [
+        Arm("unhinted_baseline", "none", "none"),
+        Arm(f"fixednorm_gold_L{layer}", "fixednorm_proj_add", "unhinted_baseline", (layer,), rank, "class_mean_projected_fixed_pooled_norm"),
+        Arm(f"percand_fire_L{layer}", "percand_fire", "unhinted_baseline", (layer,), rank, "class_mean_projected_per_candidate"),
+    ]
+
+
 def build_classmean_c_arms(layer: int, rank: int) -> list[Arm]:
     """Deployment riders: position-leak + collateral arms (pre-registered item F(ii)-c)."""
     return [
@@ -511,6 +520,8 @@ def main() -> int:
     parser.add_argument("--class-mean-c", action="store_true")
     parser.add_argument("--correct-per-height", type=int, default=8)
     parser.add_argument("--correct-seed", type=int, default=20260706)
+    parser.add_argument("--position-policy", action="store_true")
+    parser.add_argument("--percand-samples", type=int, default=4)
     parser.add_argument(
         "--capture-npz",
         type=Path,
@@ -529,7 +540,7 @@ def main() -> int:
     args = parser.parse_args()
     started = time.time()
 
-    if sum([args.specificity_controls, args.predicted_coefficients, args.class_mean, args.class_mean_b, args.class_mean_c]) > 1:
+    if sum([args.specificity_controls, args.predicted_coefficients, args.class_mean, args.class_mean_b, args.class_mean_c, args.position_policy]) > 1:
         raise ValueError("mode flags are mutually exclusive")
     if args.specificity_controls:
         stem = f"rank8_specificity_27b_property_shard{args.shard_index}of{args.shard_count}"
@@ -546,6 +557,9 @@ def main() -> int:
     elif args.class_mean_c:
         stem = f"classmean_c_deployment_27b_property_shard{args.shard_index}of{args.shard_count}"
         method = "classmean_deployment_riders"
+    elif args.position_policy:
+        stem = f"position_policy_27b_property_shard{args.shard_index}of{args.shard_count}"
+        method = "position_selection_policy"
     else:
         stem = f"rank_k_guard_v2_27b_property_shard{args.shard_index}of{args.shard_count}"
         method = "rank_k_guard_v2_fresh_rows"
@@ -618,6 +632,11 @@ def main() -> int:
         row_means, capture_labels = load_capture_row_means(args.capture_npz, args.capture_manifest, args.layer)
         class_vector = class_vector_from_labels(row_means, capture_labels)
         print(f"class_mean_c: |real|={np.linalg.norm(class_vector):.1f}", flush=True)
+    if args.position_policy:
+        arms = build_position_policy_arms(args.layer, ranks[0])
+        row_means, capture_labels = load_capture_row_means(args.capture_npz, args.capture_manifest, args.layer)
+        class_vector = class_vector_from_labels(row_means, capture_labels)
+        print(f"position_policy: |real|={np.linalg.norm(class_vector):.1f}", flush=True)
 
     dev_basis = None
     predictors: dict[str, dict[str, Any]] = {}
@@ -717,16 +736,20 @@ def main() -> int:
             delta_by_row[source_row_index] = concept_delta.numpy().astype(np.float32)
             unhinted_by_row[source_row_index] = unhinted_concept
         all_rel: list[int] = []
-        if args.class_mean_c:
+        rel_by_concept: dict[str, list[int]] = {}
+        if args.class_mean_c or args.position_policy:
             seen = set()
             for name in all_concept_names(stage1_row):
-                for pos in concept_positions(tokenizer, receiver_text, name, r_start, block_len):
-                    seen.add(pos - r_start)
+                rels = sorted(pos - r_start for pos in concept_positions(tokenizer, receiver_text, name, r_start, block_len))
+                if rels:
+                    rel_by_concept[name] = rels
+                    seen.update(rels)
             all_rel = sorted(seen)
         prepared.append(
             {
                 "row_class": row_class,
                 "all_rel": all_rel,
+                "rel_by_concept": rel_by_concept,
                 "row": stage1_row,
                 "source_row_index": source_row_index,
                 "gold_concept": gold_concept,
@@ -757,7 +780,7 @@ def main() -> int:
         return basis_cache[key]
 
     recon_norm_by_row: dict[int, float] = {}
-    if args.class_mean_b or args.class_mean_c:
+    if args.class_mean_b or args.class_mean_c or args.position_policy:
         for prep in prepared:
             if prep.get("row_class", "failing") != "failing":
                 continue
@@ -777,6 +800,62 @@ def main() -> int:
                 if (prep.get("row_class", "failing") == "correct") != arm.label.startswith("correct_"):
                     continue
                 torch.manual_seed(args.sample_seed + prep["source_row_index"] * 10007 + arm_index * 101)
+                if arm.kind == "percand_fire":
+                    basis = basis_for(prep["source_row_index"], arm.rank_k)
+                    components = basis["components"]
+                    direction = (class_vector @ components.T) @ components
+                    others = [v for r, v in recon_norm_by_row.items() if r != prep["source_row_index"]]
+                    fixed_target = float(np.mean(others))
+                    start_pos = prep["r_start"]
+                    for cand_index, (cand, rels) in enumerate(sorted(prep["rel_by_concept"].items())):
+                        torch.manual_seed(args.sample_seed + prep["source_row_index"] * 10007 + 555 + cand_index * 13)
+                        tiled = np.tile(direction, (len(rels), 1))
+                        current = np.maximum(np.linalg.norm(tiled, axis=1, keepdims=True), 1e-8)
+                        vec = (tiled * (fixed_target / current)).astype(np.float32)
+                        positions = [start_pos + rel_pos for rel_pos in rels]
+                        hooks = [(hook_name, make_position_add_hook(torch.from_numpy(vec), positions, 1.0))]
+                        with model.hooks(fwd_hooks=hooks):
+                            batch = generate_sample_batch(
+                                model=model, token_ids=prep["receiver_ids"],
+                                n_samples=args.percand_samples, max_new_tokens=args.max_new_tokens,
+                                temperature=args.temperature, stop_at_eos=True, cache_dtype=dtype,
+                            )
+                        fired_is_gold = canon(cand) == canon(prep["gold_concept"])
+                        for sample_index, (new_ids, reply) in enumerate(batch):
+                            score = score_reply(prep["row"], reply)
+                            subjects = subjects_of(reply)
+                            out = {
+                                "schema_version": 1,
+                                "source_row_index": prep["source_row_index"],
+                                "example_id": prep["row"].get("example_id"),
+                                "height": prep["row"].get("height"),
+                                "model": args.model, "task": args.task,
+                                "condition": arm.label, "arm_kind": arm.kind,
+                                "reference": arm.reference,
+                                "patch_layers": list(arm.layers) if arm.layers else None,
+                                "rank_k": arm.rank_k, "basis_mode": arm.basis_mode,
+                                "fired_concept": cand,
+                                "fired_is_gold": fired_is_gold,
+                                "fired_candidate_index": cand_index,
+                                "n_fired_positions": len(rels),
+                                "targets_fired_concept": canon(cand) in subjects,
+                                "targets_gold_concept": canon(prep["gold_concept"]) in subjects,
+                                "sample_index": sample_index, "method": method,
+                                "target_variable": "target_concept",
+                                "representation_type": "patched_residual_state",
+                                "gold_concept": prep["gold_concept"],
+                                "generated_token_count": len(new_ids),
+                                "model_output": reply,
+                                **score,
+                            }
+                            rows_out.append(out)
+                            fout.write(json.dumps(out, ensure_ascii=False, default=json_default) + "\n")
+                        fout.flush()
+                    print(
+                        f"arm {arm_index + 1}/{len(arms)} percand row {prep_index + 1}/{len(prepared)}: "
+                        f"{len(prep['rel_by_concept'])} candidates fired", flush=True,
+                    )
+                    continue
                 start = prep["r_start"]
                 token_ids = prep["receiver_ids"]
                 fwd_hooks = []
@@ -1101,6 +1180,12 @@ def main() -> int:
             if args.class_mean_c
             else [
                 "in-job unhinted baseline",
+                "gold-position fixednorm reference (k=8)",
+                "per-candidate firing with fired/targets telemetry (k=4 per candidate)",
+            ]
+            if args.position_policy
+            else [
+                "in-job unhinted baseline",
                 "hinted-prompt per-row validation arm",
                 "in-job concept-position replacement denominator",
                 "matched random-position replacement",
@@ -1159,6 +1244,13 @@ def main() -> int:
                 "item F(ii)-c. Exploratory."
             )
             if args.class_mean_c
+            else (
+                "Gate: gold-candidate fires repair (CI excl. zero; fallback fixednorm_gold k=8). "
+                "POLICY-VIABLE if P1 self-ratification beats baseline (paired CI excl. zero) AND "
+                ">=50% of the oracle fire. Mechanism readout (wrong-concept fires, "
+                "targets_fired_concept) reported regardless. Rules: item H. Exploratory."
+            )
+            if args.position_policy
             else (
                 "Claim 8 survives if pooled rank4_loo or rank8_loo CI excludes zero and reaches >=70% of "
                 "the pooled in-job L30_concept_replace effect. A null concept_replace on fresh rows scopes "
