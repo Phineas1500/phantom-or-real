@@ -15,6 +15,30 @@ final report is easier to assemble.
 
 ## Running Notes
 
+### 2026-07-06
+
+#### Item G (Qwen port) — G0 Gate PASSES on the HF Pathway
+
+- TL 3.0.0 lacks Qwen3.5 → item G rebuilt on the HF-hooks pathway used by
+  the claim-11 erasure family (`scripts/stage2_qwen_g0_hf.py`, job
+  `458461`; first attempt `458453` failed at the TL registry, 1:47, no
+  data). Venue amendment (Scholar bf16) recorded before data.
+- **G0 gate PASSES**: unhinted P(strong) `0.359` vs claim-11 reference
+  `0.352` (pathway calibration essentially exact); hint lift **`+0.523
+  [+0.367,+0.672]`** vs the `+0.30` bar. **Qwen has the recognition-gap
+  failure mode** — cross-model behavioral precondition established.
+  Speed: 2.99 s/gen (~3x faster than the Gemma TL harness).
+- **G2 layer sweep launched** (`scripts/stage2_qwen_g2_hf.py`, job
+  `458463`): 16 fresh Qwen failure rows (G0 rows excluded), hinted-state
+  capture at relative depths {0.40,0.50,0.60,0.67,0.75}, concept_replace
+  vs random_replace × 5 layers + baselines, k=8, single job (~80 min at
+  Qwen speed). Winner rule as pre-registered; G3 ladder follows at the
+  winning layer.
+- Item H closed earlier today (see 2026-07-05/06 entries): POLICY-FAILS
+  with the commitment verb/object mechanism readout; bibliography.md
+  started; Anthropic workspace paper folded into ledger/litreview/
+  skeleton; dashboard artifact archived (blueprint is the live artifact).
+
 ### 2026-07-05
 
 #### Afternoon: F(ii)-b, Item D, Novelty + Artifact Sweeps, W1 Executed

@@ -126,8 +126,11 @@ evidence, framed as adjudication rather than discovery)
   at 27B where CAA-style effects reportedly shrink (Ali) — but one task
   family, one model; scope stated.
 - **Cross-model generality.** Qwen raw-axis non-necessity replicates
-  (claim 11); the lever is untested elsewhere — item G pre-registered.
-  Until it runs, all §1 claims are Gemma-3-27B/property-task scoped.
+  (claim 11). Item G is RUNNING: G0 gate passed 2026-07-06 (baseline
+  0.359 vs 0.352 ref; hint lift +0.523 — the recognition-gap failure
+  mode exists in Qwen), G2 layer sweep in flight. Until G3 lands, the
+  §1 LEVER claims remain Gemma-3-27B/property scoped; the behavioral
+  precondition is now cross-model.
 
 ## 4. NOT CLAIMABLE (rejected wordings)
 
