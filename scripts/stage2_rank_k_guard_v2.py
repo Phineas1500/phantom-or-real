@@ -522,6 +522,9 @@ def main() -> int:
     parser.add_argument("--correct-seed", type=int, default=20260706)
     parser.add_argument("--position-policy", action="store_true")
     parser.add_argument("--percand-samples", type=int, default=4)
+    parser.add_argument("--g0-calibration", action="store_true",
+        help="Item G0: unhinted+hinted baselines only, rows loaded by --row-indices "
+        "directly from --jsonl with NO correctness filter.")
     parser.add_argument(
         "--row-indices",
         default=None,
@@ -546,7 +549,7 @@ def main() -> int:
     args = parser.parse_args()
     started = time.time()
 
-    if sum([args.specificity_controls, args.predicted_coefficients, args.class_mean, args.class_mean_b, args.class_mean_c, args.position_policy]) > 1:
+    if sum([args.specificity_controls, args.predicted_coefficients, args.class_mean, args.class_mean_b, args.class_mean_c, args.position_policy, args.g0_calibration]) > 1:
         raise ValueError("mode flags are mutually exclusive")
     if args.specificity_controls:
         stem = f"rank8_specificity_27b_property_shard{args.shard_index}of{args.shard_count}"
@@ -566,6 +569,9 @@ def main() -> int:
     elif args.position_policy:
         stem = f"position_policy_27b_property_shard{args.shard_index}of{args.shard_count}"
         method = "position_selection_policy"
+    elif args.g0_calibration:
+        stem = f"qwen_g0_calibration_shard{args.shard_index}of{args.shard_count}"
+        method = "qwen_g0_calibration"
     else:
         stem = f"rank_k_guard_v2_27b_property_shard{args.shard_index}of{args.shard_count}"
         method = "rank_k_guard_v2_fresh_rows"
@@ -577,10 +583,24 @@ def main() -> int:
     ranks = parse_int_list(args.rank_list)
     heights = parse_int_list(args.heights)
     exclude = {int(part) for part in args.exclude_rows.split(",") if part.strip()}
-    all_rows = select_fresh_rows(
-        args.jsonl, exclude=exclude, heights=heights, per_height=args.per_height, seed=args.selection_seed
-    )
-    selected_rows = shard_rows(all_rows, args.shard_index, args.shard_count)
+    if args.g0_calibration:
+        keep = {int(p) for p in (args.row_indices or "").split(",") if p.strip()}
+        assert keep, "--g0-calibration requires --row-indices"
+        all_rows = []
+        with args.jsonl.open() as f:
+            for row_index, line in enumerate(f):
+                if row_index in keep:
+                    row = json.loads(line)
+                    row["row_index"] = row_index
+                    all_rows.append(row)
+        assert len(all_rows) == len(keep)
+        selected_rows = all_rows
+        arms = [Arm("unhinted_baseline", "none", "none"), Arm("hinted_baseline", "hinted_prompt", "unhinted_baseline")]
+    else:
+        all_rows = select_fresh_rows(
+            args.jsonl, exclude=exclude, heights=heights, per_height=args.per_height, seed=args.selection_seed
+        )
+        selected_rows = shard_rows(all_rows, args.shard_index, args.shard_count)
     if args.row_indices:
         keep = {int(part) for part in args.row_indices.split(",") if part.strip()}
         missing = keep - {int(row["row_index"]) for row in selected_rows}
@@ -616,6 +636,8 @@ def main() -> int:
         if len(ranks) != 1:
             raise ValueError("--class-mean expects a single rank in --rank-list")
         arms = build_classmean_arms(args.layer, ranks[0])
+    elif args.g0_calibration:
+        arms = [Arm("unhinted_baseline", "none", "none"), Arm("hinted_baseline", "hinted_prompt", "unhinted_baseline")]
     else:
         arms = build_arms(ranks, args.layer)
 
