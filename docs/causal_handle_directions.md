@@ -1077,6 +1077,57 @@ stitchable — all comparisons are within-job or within-lane.
   one gorman job with staging overhead; G4/G5 a second job. Exploratory:
   no current-paper claim moves on any outcome.
 
+### G3′. Qwen rank-and-scale ladder at L43 (Scholar)
+
+Pre-registered 2026-07-06 evening, after G3's verdict (rank8 +0.083
+[−0.025,+0.217] — under-powered directional miss at 48% of the G2
+carrier anchor) and before any G3′ data. Question: is Qwen's channel
+the same mechanism at a different geometry — higher rank, or starved
+amplitude — or does the carrier resist low-rank compression entirely?
+
+Design: same 15 prepared rows, seeds, and machinery as G3 (job 458465);
+one Scholar bf16 job, L43, `scripts/stage2_qwen_g3prime_hf.py`. Arms
+(seed arm-indices fixed so the two replication arms regenerate G3
+verbatim):
+
+- `unhinted_baseline` (seed-ai 0) and `rank8_loo_add_L43` (seed-ai 2) —
+  determinism gates; must reproduce G3's 0.192 / 0.275 exactly.
+- `rank16_loo_add_L43`, `rank32_loo_add_L43`, `rank64_loo_add_L43`
+  (seed-ai 10/11/12) — LOO PCA reconstructions, the saturation curve.
+  151 pooled positions ⇒ rank 64 is well-posed under LOO; effective
+  ranks recorded.
+- `rank8_fixednorm_add_L43` (seed-ai 13) — rank-8 reconstruction
+  rescaled per position to the FULL delta's norm (the dilution-tax
+  test).
+- `rand_subspace64_add_L43_d1/d2` (seed-ai 14/15) — random orthonormal
+  rank-64 projections, norm-matched to the rank-64 reconstruction; by
+  energy monotonicity this dominates the k<64 random families, so it is
+  THE noise family for all rank arms.
+- `rand_normfull_add_L43_d1/d2` (seed-ai 16/17) — random directions at
+  full-delta per-position norm; the matched control for fixednorm.
+
+Decision rules (before unblinding):
+- Gate: both replication arms match G3 exactly; mismatch → debug, no
+  unblinding of new arms.
+- RANK BRANCH: winner = smallest k ∈ {8,16,32,64} whose dP CI (vs
+  in-job unhinted, row-cluster bootstrap 10k, seed 20260704) excludes
+  zero AND whose paired (rank_k − rand_subspace64 family) CI excludes
+  zero. Wording: "Qwen's channel rank is k* — the low-rank motif is
+  cross-model, its dimensionality model-specific"; report % of G2's
+  +0.175.
+- SCALE BRANCH: if no k qualifies but fixednorm-8 beats baseline AND
+  paired (fixednorm − rand_normfull family) excludes zero: "rank 8
+  suffices at full-delta amplitude — the miss was dilution, not rank."
+- Both → report both; rank statement takes precedence, scale informs
+  deployment.
+- Neither → "the Qwen carrier resists low-rank compression at L43
+  (k ≤ 64) and rescaled rank-8 — full-state only in this design"; the
+  landed two-tier wording stands unchanged.
+- Not licensed on any outcome: promotion of §1 lever claims beyond
+  Gemma; only the ledger §3 cross-model bullet moves.
+- Budget: 10 arms × 15 rows × 8 samples = 1,200 generations ≈ 65 min
+  on 2× A40. Exploratory.
+
 ### F(ii)-c. Deployment riders: position leak + collateral slice (Scholar)
 
 Pre-registered 2026-07-05 ~13:30, after F(ii)-b's LABEL-SPECIFIC verdict
