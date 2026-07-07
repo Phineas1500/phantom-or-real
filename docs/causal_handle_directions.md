@@ -1315,6 +1315,63 @@ control-unmatched flag. G6′ supplies exactly the missing controls.
   - Budget: 6 new arms + 1 regenerated gate arm... 7 arms × 24 rows
     × 8 + capture ≈ 1,450 gens ≈ 95 min, one job.
 
+### J1. J-aware F(i)-analog on Qwen 3.5 (consumption-readable staging test; Scholar)
+
+Pre-registered 2026-07-07 afternoon, before any J1 data. Design doc:
+`qwen_jspace_connection.md`. Question: is Qwen's natural-outcome
+information at L43 concept positions staged in CONSUMPTION-readable
+form — visible through the model's own downstream transformation —
+even though it is not linearly probe-readable there (G6 F(i)-analog:
+full-dim AUC 0.504)? Motivated by the workspace paper's Tuned-Lens ≪
+J-Lens gap and Nanda's Qwen-3.6 replication of the J-machinery.
+
+Method (no generation; fully deterministic; one short Scholar job,
+`scripts/stage2_qwen_j1_hf.py`):
+- Rows: the same 96 balanced sources as G6 (seed 20260708, identical
+  selection code path; 48/48 by stage-1 strong labels).
+- Base forward per row captures (fp32): h_L43 at concept positions
+  (row-mean — the G6 feature), h_L43 at the final prompt token,
+  h_L53 at the final prompt token (positive control: stage-1 probes
+  read ~0.94 in this region), h_pen (layer index 62 of 64) at the
+  final prompt token.
+- **Directional-response features (finite-ε J-analog)**: perturbed
+  forwards injecting ε·T at L43 concept positions (existing add-hook
+  machinery), ε = 0.1 relative to each position's state norm;
+  y = (h_pert − h_base)/ε read at the penultimate layer, final token
+  (primary) and at L53 final token (secondary). Tangents: T_real =
+  the row's own concept-position states ("10% more of what is already
+  staged"); T_null = 10 seeded random-Gaussian draws, norm-matched per
+  position (seeds 20260709+d). 12 forwards/row ≈ 1,150 total.
+- CPU battery (in-job, same 5-fold CV-AUC as the F(i)-analog):
+  raw_concept (gate), raw_L43_final, raw_L53_final (control),
+  response_real@pen, response_real@L53, response_null family (10),
+  plus 200 label-shuffle nulls for response_real.
+
+Decision rules (before unblinding):
+- Gate: raw_concept reproduces G6's 0.504 within ±0.02 (identical
+  states, deterministic battery).
+- Positive control: raw_L53_final ≥ 0.75 (expect ~0.9). Failure →
+  pipeline suspect, STOP, no unblinding of response features.
+- **PRIMARY**: response_real@pen AUC ≥ 0.70 AND above the
+  random-tangent family p95 AND above the label-shuffle p95 →
+  **CONSUMPTION-READABLE CONFIRMED**: the address was never empty;
+  wording "Qwen stages outcome information in a form its own
+  computation reads but a linear probe does not; the raw-write repair
+  (G6′) is in-language." Ledger §3 and the explainer's mystery
+  paragraph update; no §1 claim moves.
+- Partial branch: above both nulls but < 0.70 → "consumption-readable
+  signal present but weak" — descriptive only.
+- Null branch: at/below the random-tangent p95 → hypothesis rejected
+  AT THIS ADDRESS/READ; the mystery stands; next step is the Q1
+  layer × position map with a J-projected column (separate
+  registration). Random-tangent family ABOVE raw 0.504 by itself
+  (any-tangent separation) → "the transformation, not the content,
+  differs by class" — reported as its own finding, wording reserved.
+- Next-paper scope throughout; current-paper §6 may cite outcome in
+  one hypothesis-flagged sentence only. 3.6 bridge (Nanda's exact
+  checkpoint) registered as conditional follow-up on PRIMARY confirm.
+- Budget: ~1,150 forwards, no sampling ≈ 30–45 min on 2× A40.
+
 ### F(ii)-c. Deployment riders: position leak + collateral slice (Scholar)
 
 Pre-registered 2026-07-05 ~13:30, after F(ii)-b's LABEL-SPECIFIC verdict
