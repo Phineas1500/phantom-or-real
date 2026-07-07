@@ -149,13 +149,20 @@ evidence, framed as adjudication rather than discovery)
   INVERTS: raw class-mean +0.120 [+0.016,+0.224] CI>0, raw−proj16
   paired +0.099 CI>0, proj64 +0.104 CI>0 (control-unmatched flag),
   sign-flip −0.115 CI<0 (4th confirmed registered prediction), ×2
-  amplitude null. Landed wording: "Gemma concentrates (raw-null/
-  proj-potent), Qwen distributes (raw-potent/proj-diluted) — channel
-  energy, channel rank, and content placement are all model-specific
-  coordinates of the same motif." Raw label-specificity NOT yet
-  claimable (shuffled-RAW control doesn't exist; raw−rand misses CI) —
-  G6′ registered as the one-job nail-down. G5 remains off. §1 claims
-  unchanged.
+  amplitude null. **G6′ LANDED 2026-07-07 (job 458512, all THREE gates
+  verbatim 576/576): PRIMARY PASSES** — raw96 +0.120 [+0.016,+0.224]
+  AND paired real-vs-shuffled-raw +0.182 [+0.070,+0.299]; raw−rand
+  (3 draws) +0.106 CI>0; signflip-raw −0.094 CI<0 (5th confirmed
+  registered prediction); proj64's flag CLOSED (real−shuffled@64norms
+  +0.219 CI>0, shuffled@64 actively harmful). Landed wording
+  (registered): "answer-free, label-specific content transfer works in
+  Qwen through the FULL state — Gemma concentrates, Qwen distributes;
+  the recipe is cross-model, the compression is not." Every scrambled/
+  flipped variant across five Qwen content jobs is null-to-harmful;
+  only the true natural axis helps. G5 remains off. §1 claims remain
+  Gemma-scoped (no Qwen erasure battery); the paper's cross-model
+  section may cite G6/G6′ as the registered addendum (drafting
+  decision).
 
 ## 4. NOT CLAIMABLE (rejected wordings)
 

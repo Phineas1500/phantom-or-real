@@ -86,3 +86,15 @@ F(i)-analog rider (item 5) was the decisive diagnostic. Next: G6′
 (registered) — shuffled-raw battery to make the raw transfer
 claim-bearing; then the Q1 information map (layer × position
 decodability sweep) to find where Qwen DOES stage outcome information.
+
+## RESOLVED 2026-07-07 (G6′, job 458512)
+
+PRIMARY PASSES — see `qwen_g6prime_ladder_summary.md`. Raw96 +0.120
+[+0.016,+0.224]; real-vs-shuffled-raw +0.182 [+0.070,+0.299]; raw−rand
+(3 draws) +0.106 CI>0; signflip-raw −0.094 CI<0 (5th confirmed
+registered prediction); proj64 de-flagged (+0.219 vs shuffled@64norms,
+which is itself destructive). Registered wording landed: answer-free,
+label-specific content transfer works in Qwen through the FULL state —
+the recipe is cross-model, the compression is not. This doc's thread
+is closed; the successor question (where does Qwen stage its outcome
+information?) is the Q1 information map, next-paper scope.

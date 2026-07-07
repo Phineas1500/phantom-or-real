@@ -17,6 +17,29 @@ final report is easier to assemble.
 
 ### 2026-07-07
 
+#### Item G6′ LANDED — PRIMARY PASSES: answer-free, label-specific transfer works in Qwen (raw)
+
+- Verdict: `docs/qwen_g6prime_ladder_summary.md` (job 458512, overnight;
+  all THREE gates verbatim vs G6 — 576/576 token-identical).
+- **PRIMARY PASS (registered)**: raw96 `+0.120 [+0.016,+0.224]` AND
+  paired real-vs-shuffled-raw `+0.182 [+0.070,+0.299]`. Supporting:
+  raw−rand (3 pooled draws) `+0.106` CI>0 (G6's near-miss resolved);
+  signflip-raw `−0.094` CI<0 (**5th confirmed registered prediction**);
+  shuffled-raw d1 actively harmful (−0.099 CI<0); proj64's
+  control-unmatched flag CLOSED (real−shuffled@64norms `+0.219` CI>0;
+  shuffled@64 destructive −0.115).
+- Landed wording (registered in advance): **"answer-free,
+  label-specific content transfer works in Qwen through the FULL
+  state — Gemma concentrates, Qwen distributes; the recipe is
+  cross-model, the compression is not."** Across five Qwen content
+  jobs, every scrambled/flipped variant is null-to-harmful; only the
+  true natural correct-minus-incorrect axis helps.
+- Claim 13 upgraded; §1 claims remain Gemma-scoped (no Qwen erasure
+  battery); paper may cite G6/G6′ as the registered cross-model
+  addendum (drafting decision). Next-paper thread: Q1 information map
+  (where does Qwen stage outcome info, given repair works from an
+  address where nothing is linearly decodable?).
+
 #### Item G6 LANDED — PRIMARY null but EXPLAINED; the dissociation INVERTS in Qwen
 
 - Verdict: `docs/qwen_g6_ladder_summary.md` (job 458474; gates verbatim
