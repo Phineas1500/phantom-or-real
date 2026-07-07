@@ -131,13 +131,17 @@ evidence, framed as adjudication rather than discovery)
   exists in Qwen); G2 found the carrier at L43, rel depth 0.67 vs
   Gemma's 0.48 (concept-replace +0.175 [+0.100,+0.258], uniquely
   qualifying — depth is the non-transferable coordinate); G3 rank-8
-  ladder MISSED its pre-registered PASS (rank8 +0.083 [−0.025,+0.217],
-  48% of the carrier anchor; every control flat; MDE 0.12 —
-  under-powered directional miss, not a null). Two-tier wording: the
-  CARRIER is cross-model (2/2) at model-specific depth; the RANK-8
-  compression is Gemma-established, Qwen-directional-only. §1 LEVER
-  claims remain Gemma-3-27B/property scoped. G5 gated off; G4
-  descriptive-only per registration.
+  ladder missed (rank8 +0.083, 48% of anchor, MDE 0.12); G3′
+  rank-and-scale ladder RESOLVED it (job 458468, both replication
+  gates verbatim): **k\* = 16** — rank16 +0.117 [+0.017,+0.217], paired
+  vs random-64 family +0.154 [+0.062,+0.242]; the curve climbs to 95%
+  of the carrier at rank 64 while random 64-dim subspaces at matched
+  norm sit at/below baseline. Wording: "the low-rank channel motif is
+  cross-model (2/2 models); its coordinates — depth (0.48 vs 0.67),
+  rank (8 vs ~16), mean share (35% vs ≈0) — are model-specific." §1
+  LEVER claims remain Gemma-3-27B/property scoped (Qwen lacks the full
+  battery: no erasure, no label controls). G5/G4 gates keyed to G3
+  strictly; G4 stays descriptive-only unless freshly registered.
 
 ## 4. NOT CLAIMABLE (rejected wordings)
 
