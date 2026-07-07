@@ -1,0 +1,574 @@
+<title>Gauge, Not Lever — Phantom or Real? Dashboard</title>
+<style>
+  :root {
+    --paper: #f9f9f7;
+    --card: #fcfcfb;
+    --ink: #0b0b0b;
+    --ink-2: #52514e;
+    --muted: #898781;
+    --grid: #e1e0d9;
+    --axis: #c3c2b7;
+    --hairline: rgba(11, 11, 11, 0.10);
+    --series: #2a78d6;
+    --series-soft: rgba(42, 120, 214, 0.14);
+    --good: #0ca30c;
+    --good-text: #006300;
+    --warn: #fab219;
+    --warn-text: #7a5200;
+    --crit-text: #b02a2a;
+    --chip-bg: #f0efec;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #0d0d0d;
+      --card: #1a1a19;
+      --ink: #ffffff;
+      --ink-2: #c3c2b7;
+      --muted: #898781;
+      --grid: #2c2c2a;
+      --axis: #383835;
+      --hairline: rgba(255, 255, 255, 0.10);
+      --series: #3987e5;
+      --series-soft: rgba(57, 135, 229, 0.18);
+      --good: #0ca30c;
+      --good-text: #4fc24f;
+      --warn: #fab219;
+      --warn-text: #e8b45a;
+      --crit-text: #e66767;
+      --chip-bg: #232322;
+    }
+  }
+  :root[data-theme="light"] {
+    --paper: #f9f9f7; --card: #fcfcfb; --ink: #0b0b0b; --ink-2: #52514e;
+    --muted: #898781; --grid: #e1e0d9; --axis: #c3c2b7;
+    --hairline: rgba(11,11,11,0.10); --series: #2a78d6;
+    --series-soft: rgba(42,120,214,0.14);
+    --good: #0ca30c; --good-text: #006300; --warn: #fab219; --warn-text: #7a5200;
+    --crit-text: #b02a2a; --chip-bg: #f0efec;
+  }
+  :root[data-theme="dark"] {
+    --paper: #0d0d0d; --card: #1a1a19; --ink: #ffffff; --ink-2: #c3c2b7;
+    --muted: #898781; --grid: #2c2c2a; --axis: #383835;
+    --hairline: rgba(255,255,255,0.10); --series: #3987e5;
+    --series-soft: rgba(57,135,229,0.18);
+    --good: #0ca30c; --good-text: #4fc24f; --warn: #fab219; --warn-text: #e8b45a;
+    --crit-text: #e66767; --chip-bg: #232322;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    font-size: 15px;
+    line-height: 1.55;
+  }
+  .wrap { max-width: 1060px; margin: 0 auto; padding: 40px 24px 72px; }
+
+  .serif { font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif; }
+  .mono {
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    font-variant-numeric: tabular-nums;
+    font-size: 0.92em;
+  }
+
+  header.masthead { padding-bottom: 28px; border-bottom: 1px solid var(--hairline); }
+  .eyebrow {
+    text-transform: uppercase; letter-spacing: 0.14em; font-size: 11.5px;
+    color: var(--muted); font-weight: 600; margin-bottom: 14px;
+  }
+  h1 {
+    margin: 0 0 12px; font-size: clamp(30px, 5vw, 44px);
+    line-height: 1.1; font-weight: 600; letter-spacing: -0.01em; text-wrap: balance;
+  }
+  .thesis {
+    max-width: 62ch; font-size: 17px; color: var(--ink-2); margin: 0 0 20px;
+  }
+  .thesis b { color: var(--ink); font-weight: 600; }
+  .meta-row { display: flex; flex-wrap: wrap; gap: 8px; }
+  .meta-chip {
+    background: var(--chip-bg); border: 1px solid var(--hairline);
+    border-radius: 999px; padding: 3px 12px; font-size: 12.5px; color: var(--ink-2);
+  }
+
+  section { margin-top: 44px; }
+  h2 {
+    font-size: 21px; font-weight: 600; margin: 0 0 6px; letter-spacing: -0.005em;
+    text-wrap: balance;
+  }
+  .section-sub { color: var(--ink-2); margin: 0 0 20px; max-width: 72ch; }
+
+  .arc { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
+  @media (max-width: 900px) { .arc { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 520px) { .arc { grid-template-columns: 1fr; } }
+  .arc-step {
+    background: var(--card); border: 1px solid var(--hairline); border-radius: 6px;
+    padding: 16px 16px 14px; display: flex; flex-direction: column; gap: 4px;
+  }
+  .arc-num {
+    font-size: 11px; letter-spacing: 0.12em; color: var(--muted);
+    text-transform: uppercase; font-weight: 600;
+  }
+  .arc-stat { font-size: 27px; font-weight: 650; letter-spacing: -0.01em; line-height: 1.1; }
+  .arc-title { font-weight: 600; font-size: 14px; }
+  .arc-note { font-size: 12.5px; color: var(--ink-2); line-height: 1.45; }
+
+  .charts { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media (max-width: 900px) { .charts { grid-template-columns: 1fr; } }
+  .chart-card {
+    background: var(--card); border: 1px solid var(--hairline); border-radius: 6px;
+    padding: 18px 18px 12px; min-width: 0;
+  }
+  .chart-card.full { grid-column: 1 / -1; }
+  .chart-title { font-weight: 600; font-size: 15px; margin: 0 0 2px; }
+  .chart-sub { font-size: 12.5px; color: var(--ink-2); margin: 0 0 10px; }
+  .chart-verdict { font-size: 12.5px; color: var(--ink-2); margin: 8px 0 0; padding-top: 8px; border-top: 1px solid var(--grid); }
+  .chart-verdict b { color: var(--ink); }
+  .chart-box { overflow-x: auto; }
+  .chart-box svg { display: block; width: 100%; height: auto; }
+
+  #tooltip {
+    position: fixed; pointer-events: none; z-index: 50; display: none;
+    background: var(--ink); color: var(--paper); border-radius: 5px;
+    padding: 7px 10px; font-size: 12.5px; line-height: 1.4; max-width: 260px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.25);
+  }
+  #tooltip .tt-label { font-weight: 600; }
+
+  table.ledger {
+    width: 100%; border-collapse: collapse; background: var(--card);
+    border: 1px solid var(--hairline); border-radius: 6px; overflow: hidden;
+    font-size: 13.5px;
+  }
+  .ledger-box { overflow-x: auto; border-radius: 6px; }
+  table.ledger th {
+    text-align: left; font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em;
+    color: var(--muted); font-weight: 600; padding: 10px 14px;
+    border-bottom: 1px solid var(--grid); background: var(--card);
+  }
+  table.ledger td { padding: 11px 14px; border-bottom: 1px solid var(--grid); vertical-align: top; }
+  table.ledger tr:last-child td { border-bottom: none; }
+  td.claim-num { color: var(--muted); font-weight: 600; white-space: nowrap; }
+  td.claim-body b { font-weight: 600; }
+  td.claim-key { white-space: nowrap; color: var(--ink-2); }
+  .status {
+    display: inline-flex; align-items: center; gap: 6px; white-space: nowrap;
+    font-size: 12px; font-weight: 600; border-radius: 999px; padding: 2px 10px 2px 8px;
+    background: var(--chip-bg); border: 1px solid var(--hairline);
+  }
+  .status .dot { width: 7px; height: 7px; border-radius: 50%; flex: none; }
+  .status.landed { color: var(--good-text); } .status.landed .dot { background: var(--good); }
+  .status.caveat { color: var(--warn-text); } .status.caveat .dot { background: var(--warn); }
+  .status.running { color: var(--series); } .status.running .dot { background: var(--series); animation: pulse 1.8s ease-in-out infinite; }
+  @keyframes pulse { 50% { opacity: 0.3; } }
+
+  .lit-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  @media (max-width: 900px) { .lit-grid { grid-template-columns: 1fr; } }
+  .lit-card { background: var(--card); border: 1px solid var(--hairline); border-radius: 6px; padding: 16px 18px; }
+  .lit-card .arxiv { font-size: 11.5px; color: var(--muted); letter-spacing: 0.06em; }
+  .lit-card h3 { margin: 4px 0 6px; font-size: 14.5px; font-weight: 600; text-wrap: balance; }
+  .lit-card p { margin: 0; font-size: 13px; color: var(--ink-2); line-height: 1.5; }
+  .lit-card p b { color: var(--ink); font-weight: 600; }
+  .moat {
+    margin: 14px 0 0; padding: 12px 16px; background: var(--series-soft);
+    border-radius: 6px; font-size: 13.5px; color: var(--ink-2); max-width: none;
+  }
+  .moat b { color: var(--ink); }
+
+  .neg-strip { display: flex; flex-wrap: wrap; gap: 8px; }
+  .neg-chip {
+    background: var(--chip-bg); border: 1px solid var(--hairline); border-radius: 999px;
+    padding: 4px 13px; font-size: 12.5px; color: var(--ink-2);
+  }
+  .neg-chip s { text-decoration-color: var(--crit-text); text-decoration-thickness: 1.5px; }
+
+  .timeline { border-left: 2px solid var(--grid); margin-left: 6px; padding-left: 22px; display: flex; flex-direction: column; gap: 18px; }
+  .tl-item { position: relative; }
+  .tl-item::before {
+    content: ""; position: absolute; left: -28px; top: 6px; width: 9px; height: 9px;
+    border-radius: 50%; background: var(--series); border: 2px solid var(--card);
+  }
+  .tl-date { font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); font-weight: 600; }
+  .tl-body { font-size: 14px; color: var(--ink-2); max-width: 78ch; }
+  .tl-body b { color: var(--ink); font-weight: 600; }
+
+  .next-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 14px; }
+  @media (max-width: 800px) { .next-grid { grid-template-columns: 1fr; } }
+  .next-card { background: var(--card); border: 1px solid var(--hairline); border-radius: 6px; padding: 18px 20px; }
+  .next-card h3 { margin: 0 0 8px; font-size: 15px; font-weight: 600; }
+  .next-card ul { margin: 0; padding-left: 18px; color: var(--ink-2); font-size: 13.5px; display: flex; flex-direction: column; gap: 6px; }
+  .next-card li b { color: var(--ink); font-weight: 600; }
+
+  footer {
+    margin-top: 52px; padding-top: 18px; border-top: 1px solid var(--hairline);
+    font-size: 12px; color: var(--muted); line-height: 1.6;
+  }
+  a { color: var(--series); }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+</style>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <div class="eyebrow">Phantom or Real? &middot; Stage 2 — Causal Validation &middot; Status July 4, 2026</div>
+    <h1 class="serif">Gauge, not lever.</h1>
+    <p class="thesis">Correctness in ontology reasoning is <b>robustly readable</b> from activations
+      — and <b>causally epiphenomenal as a readout</b>. The variable that actually moves behavior is
+      <b>target-concept focus</b>: written at concept-mention tokens during prompt processing, repairable by
+      patching, carried by a compact low-rank core that lives <b>outside the readable subspace</b>.</p>
+    <div class="meta-row">
+      <span class="meta-chip">Gemma 3 27B-IT &middot; Qwen3.5 27B</span>
+      <span class="meta-chip">InAbHyD abduction &middot; property + subtype</span>
+      <span class="meta-chip">44k-row labeled dataset per model</span>
+      <span class="meta-chip">~40 pre-registered GPU jobs</span>
+      <span class="meta-chip">All 12 paper claims landed</span>
+      <span class="meta-chip">Scoop check: clear &middot; shield 1 passed &middot; shield 2 in flight &middot; hint-free thread opened</span>
+    </div>
+  </header>
+
+  <section>
+    <h2 class="serif">The causal arc in five steps</h2>
+    <p class="section-sub">Each step was pre-registered before unblinding; the order is the argument.</p>
+    <div class="arc">
+      <div class="arc-step">
+        <div class="arc-num">Step 1</div>
+        <div class="arc-stat mono">0.94</div>
+        <div class="arc-title">Readable everywhere</div>
+        <div class="arc-note">Linear probes read correctness from pre-generation activations across models, layers, and name-scrambling (AUC up to 0.94).</div>
+      </div>
+      <div class="arc-step">
+        <div class="arc-num">Step 2</div>
+        <div class="arc-stat mono">+0.03</div>
+        <div class="arc-title">Needed nowhere</div>
+        <div class="arc-note">Erasing the readout direction at every readable layer costs nothing (ΔP null); matched controls at the same norm are destructive.</div>
+      </div>
+      <div class="arc-step">
+        <div class="arc-num">Step 3</div>
+        <div class="arc-stat mono">+0.49</div>
+        <div class="arc-title">The real variable</div>
+        <div class="arc-note">Patching hint-conditioned states at concept-mention tokens repairs free-form generation — ~6× per-token potency vs. random positions.</div>
+      </div>
+      <div class="arc-step">
+        <div class="arc-num">Step 4</div>
+        <div class="arc-stat mono">91%</div>
+        <div class="arc-title">A compact core</div>
+        <div class="arc-note">A rank-8 PCA basis of the focus deltas carries 91% of the repair to 26 rows it never saw — and is invisible to the probes.</div>
+      </div>
+      <div class="arc-step">
+        <div class="arc-num">Step 5</div>
+        <div class="arc-stat mono">L35</div>
+        <div class="arc-title">Honest scope</div>
+        <div class="arc-note">The subtype task has the same variable, deeper (L35) and weaker; Qwen replicates non-necessity but not the destructive-control profile.</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="serif">Headline experiments</h2>
+    <p class="section-sub">Effect on P(strong-correct) versus each run's in-job baseline. Whiskers are 95% row-cluster
+      bootstrap intervals — rows, not generations, are the unit of evidence.</p>
+    <div class="charts">
+      <div class="chart-card">
+        <p class="chart-title">Erasure: the readout axis is not load-bearing</p>
+        <p class="chart-sub">Gemma property &middot; jobs 457207–457210 &middot; 16 rows &times; k=4 &middot; baseline P(strong) = 0.359</p>
+        <div class="chart-box" id="chart-erasure"></div>
+        <p class="chart-verdict"><b>Verdict:</b> raw-axis and height-direction erasure are null; matched orthogonal and
+          Gaussian erasure demolish accuracy. Caveat (pre-registered branch): harmlessness tracks the direction's low
+          within-run projection variance, so the claim is <b>non-necessity of the readout axis</b>, not that it is
+          specially inert among same-norm directions.</p>
+      </div>
+      <div class="chart-card">
+        <p class="chart-title">Subtype: same variable, different depth</p>
+        <p class="chart-sub">Gemma subtype &middot; jobs 458387/458388 &middot; 16 rows &times; k=16 &middot; baseline P(strong) = 0.191</p>
+        <div class="chart-box" id="chart-l35"></div>
+        <p class="chart-verdict"><b>Verdict:</b> the pre-registered positive branch fires — the subtype carrier is
+          reachable at L35, so three old-trio (L30/40/45) nulls were <b>layer mismatch, not absence</b>. Modest
+          (~&frac14; of property's repair) and row-sparse: 3 of 13 addressable rows carry it.</p>
+      </div>
+      <div class="chart-card full">
+        <p class="chart-title">Fresh-row guard: the compact core survives out-of-distribution</p>
+        <p class="chart-sub">Gemma property &middot; jobs 458374/458375 &middot; 26 fresh strong-incorrect rows &times; k=8, disjoint from the core's development set &middot; baseline P(strong) = 0.120</p>
+        <div class="chart-box" id="chart-guard"></div>
+        <p class="chart-verdict"><b>Verdict:</b> rank-8 leave-one-row-out CI excludes zero at <b>91% of the
+          concept-replace effect</b> — the pre-registered rule (≥70%) passes. Rank-4 under-transfers (57%): the
+          portable core is rank-8. Random-position control null; hint-validated slice concordant (89%).</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="serif">Claims ledger</h2>
+    <p class="section-sub">The paper's 12 claims, each frozen with landed evidence and pre-registered wording rules.</p>
+    <div class="ledger-box">
+    <table class="ledger">
+      <tr><th>#</th><th>Claim</th><th>Status</th><th>Key number</th></tr>
+      <tr><td class="claim-num">1</td><td class="claim-body"><b>Readable:</b> correctness is linearly decodable pre-generation, beyond metadata, across models and name-scrambling.</td><td><span class="status landed"><span class="dot"></span>landed</span></td><td class="claim-key mono">AUC ≤ 0.94</td></tr>
+      <tr><td class="claim-num">2</td><td class="claim-body"><b>Epiphenomenal readout:</b> the readable axis erases with no behavioral cost while matched controls are destructive — with the constant-offset caveat on why controls hurt.</td><td><span class="status caveat"><span class="dot"></span>landed &middot; caveat</span></td><td class="claim-key mono">ΔP +0.031 (null)</td></tr>
+      <tr><td class="claim-num">3</td><td class="claim-body"><b>Redundant, not load-bearing:</b> INLP barely decays — information everywhere, no single axis matters. Full readable-stack erasure now in flight (item D) to turn the future-work caveat into a result.</td><td><span class="status landed"><span class="dot"></span>landed</span></td><td class="claim-key mono">INLP flat</td></tr>
+      <tr><td class="claim-num">4</td><td class="claim-body"><b>Proposal failure:</b> the recognition–generation gap localizes to target-concept focus — the model recognizes gold it cannot propose.</td><td><span class="status landed"><span class="dot"></span>landed</span></td><td class="claim-key mono">14/14 vs ~⅓</td></tr>
+      <tr><td class="claim-num">5</td><td class="claim-body"><b>Causally accessible:</b> patching hint-conditioned context encodings repairs free-form generation against destructive matched noise.</td><td><span class="status landed"><span class="dot"></span>landed</span></td><td class="claim-key mono">+0.491 [+0.28,+0.71]</td></tr>
+      <tr><td class="claim-num">6</td><td class="claim-body"><b>Positionally localized:</b> the focus state lives at concept-mention tokens; random position sets are null.</td><td><span class="status landed"><span class="dot"></span>landed</span></td><td class="claim-key mono">~6&times; potency</td></tr>
+      <tr><td class="claim-num">7</td><td class="claim-body"><b>Token route dead:</b> hint-span masking costs nothing, KV transplants are insufficient with attention verifiably flowing — commitment is multiply realized.</td><td><span class="status landed"><span class="dot"></span>landed</span></td><td class="claim-key mono">combo 0.981</td></tr>
+      <tr><td class="claim-num">8</td><td class="claim-body"><b>Compact causal core:</b> low-rank PCA of focus deltas repairs at L30; the fresh-row guard passed with rank-8 as the portable basis. Specificity controls (item C) PASSED on the strongest branch: rank-8 +0.245 vs noise −0.088, random subspaces null — the specific directions are load-bearing, not their mean/norm/rank/position.</td><td><span class="status landed"><span class="dot"></span>landed</span></td><td class="claim-key mono">rank-8 = 91%</td></tr>
+      <tr><td class="claim-num">9</td><td class="claim-body"><b>Geometry:</b> the core is orthogonal to the readable subspace (below random-null overlap) and dictionary-visible but redundant in Gemma Scope.</td><td><span class="status landed"><span class="dot"></span>landed</span></td><td class="claim-key mono">overlap 10⁻⁴</td></tr>
+      <tr><td class="claim-num">10</td><td class="claim-body"><b>Unification:</b> each prompt format stores selection state where its candidates live — MCQ at options, hints at concept mentions.</td><td><span class="status landed"><span class="dot"></span>landed</span></td><td class="claim-key mono">joint reading</td></tr>
+      <tr><td class="claim-num">11</td><td class="claim-body"><b>Cross-model (Qwen):</b> raw-axis non-necessity replicates on property; the destructive-control separation stays Gemma-scoped.</td><td><span class="status caveat"><span class="dot"></span>landed &middot; scoped</span></td><td class="claim-key mono">ΔP +0.070 (null)</td></tr>
+      <tr><td class="claim-num">12</td><td class="claim-body"><b>Cross-task (subtype):</b> behavior replicates; the carrier sits deeper — reachable at L35 after three old-trio nulls proved layer mismatch, not absence.</td><td><span class="status landed"><span class="dot"></span>landed</span></td><td class="claim-key mono">+0.117 [+0.01,+0.25]</td></tr>
+    </table>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="serif">The graveyard that makes the story credible</h2>
+    <p class="section-sub">Every route that failed, each with matched controls — the methodological spine of the paper's
+      negative-results appendix. Months of steering nulls on a highly readable direction are <em>explained</em> by the
+      necessity test, not excused by it.</p>
+    <div class="neg-strip">
+      <span class="neg-chip"><s>CAA / raw-direction steering</s></span>
+      <span class="neg-chip"><s>optimized steering vectors</s></span>
+      <span class="neg-chip"><s>DAS interchange (L45/L50)</s></span>
+      <span class="neg-chip"><s>AtP / exact patching sites</s></span>
+      <span class="neg-chip"><s>raw-z decode gates</s></span>
+      <span class="neg-chip"><s>recognition-context patch</s></span>
+      <span class="neg-chip"><s>block-mean delta transplant</s></span>
+      <span class="neg-chip"><s>cross-row delta transplant</s></span>
+      <span class="neg-chip"><s>literal hint-token KV route</s></span>
+      <span class="neg-chip"><s>attractor-strength account</s></span>
+      <span class="neg-chip"><s>subtype old-trio patch (&times;3)</s></span>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="serif">The field is closing in — and stopping at the wall we climbed</h2>
+    <p class="section-sub">Deep literature sweep, July 4 (18 primary sources, every load-bearing claim verified 3-vote
+      against the papers). Verdict: <b>not scooped</b> — but three preprints from March–May 2026 independently publish
+      the readable-but-unsteerable half. All three stop at the null.</p>
+    <div class="lit-grid">
+      <div class="lit-card">
+        <div class="arxiv mono">arXiv 2605.05715 · May 2026</div>
+        <h3>Decodable but not corrected by fixed linear steering</h3>
+        <p>Medical failure regime decodable at 71.6%; 29 steering configs all null. Explains it as
+          <b>entanglement</b> — their LEACE erasure <em>damages</em> accuracy (−3.6pp), the opposite of our harmless
+          erasure. Our readable-stack job (in flight) discriminates the two accounts directly.</p>
+      </div>
+      <div class="lit-card">
+        <div class="arxiv mono">arXiv 2604.13068 · Apr 2026</div>
+        <h3>Detection without correction, 7/7 models</h3>
+        <p>Probes detect hallucination signals; steering along the probe direction corrects in <b>0 of 42</b>
+          model &times; magnitude configs, including Qwen-2.5. A self-described clean negative — which also means a
+          Qwen <em>null</em> replication adds nothing; only porting our positive carrier would.</p>
+      </div>
+      <div class="lit-card">
+        <div class="arxiv mono">arXiv 2605.23315 · May 2026</div>
+        <h3>Already coined "epiphenomenal correctness"</h3>
+        <p>Correctness decodable across 16 models; ablating top probe components flips only 1.5–5.5% of predictions.
+          A cross-model convergence result — <b>no localization, no repair</b>. Our title wording must cite and
+          differentiate at first use of "epiphenomenal."</p>
+      </div>
+    </div>
+    <p class="moat"><b>The moat:</b> none of the three localizes the causal variable or repairs behavior. The rank-8
+      concept-focus core with a fresh-row-validated +0.23 repair is the contribution nobody else has — so the paper
+      now leads with the carrier, not the gap, and the niche is crowding fast enough that drafting soon matters.</p>
+  </section>
+
+  <section>
+    <h2 class="serif">How it landed</h2>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-date">June 10–12</div>
+        <div class="tl-body"><b>The turn.</b> Erasure headline lands (readable axis null, controls destructive) and the first
+          positive activation-level repair: hint-state interchange lifts P(strong) +0.491.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">June 13–14</div>
+        <div class="tl-body"><b>The core.</b> Composite 9-arm job settles commitment-not-spotlight; KV finale kills the token
+          route; rank-k guard finds the compact L30 core (rank-4 LOO 77% held-out).</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">June 16–17</div>
+        <div class="tl-body"><b>The scope pass.</b> Qwen replicates raw-axis non-necessity; subtype capture ladder finds large
+          writes but no decisive repair; control-matching shards land — and sit unanalyzed.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">July 2</div>
+        <div class="tl-body"><b>The audit.</b> Orphaned control-matching run analyzed: the constant-offset branch fires and claim 2's
+          wording is softened. Two manuscript-hardening jobs pre-registered and launched.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">July 3</div>
+        <div class="tl-body"><b>Both slots fill.</b> Fresh-row guard passes (rank-8 = 91%); the L35 replication — after an sbatch
+          <span class="mono">--export</span> comma bug ate the first attempt — fires the positive branch (+0.117). Every claim is frozen.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">July 4</div>
+        <div class="tl-body"><b>The positioning pass.</b> Literature sweep clears the scoop check but finds three rivals at the wall;
+          related work restructured around them. Two submission-hardening jobs pre-registered and launched: the random-basis
+          specificity ladder for the rank-8 core, and the full readable-stack erasure that discriminates the entanglement account.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">July 4 · evening</div>
+        <div class="tl-body"><b>Shield 1 passes.</b> The specificity ladder lands on the strongest branch: the real rank-8 recipe
+          repairs (+0.245), matched random subspaces and noise don't (−0.041 / −0.088), and the mean alone recovers only a third.
+          The specific PCA directions are load-bearing. Readable-stack erasure now running.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">July 4 · late</div>
+        <div class="tl-body"><b>A door opens.</b> The rank-8 recipe's coefficients turn out to be decodable from the FAILING run's
+          own states: LOO ridge cosine +0.631 vs shuffled null +0.014 (0/50 permutations beat it). The hint surfaces information
+          the model already carries. Item E pre-registered and queued (jobs 458409/458410): does donor-free predicted-coefficient
+          steering repair behavior? Explicitly next-paper material — no current claim moves on any outcome.</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="serif">What happens next</h2>
+    <div class="next-grid">
+      <div class="next-card">
+        <h3><span class="status running"><span class="dot"></span>in flight</span> &nbsp;Hardening jobs: one landed, one running (July 4)</h3>
+        <ul>
+          <li><b>Rank-8 specificity controls — PASSED, strongest branch</b> (jobs 458401/458402, pooled over 26 rows):
+            rank-8 +0.245 [+0.111,+0.394]; mean alone 35%; matched random subspaces null (−0.041); matched-norm noise
+            slightly destructive (−0.088), paired gap +0.333 excluding zero. No draw of either random family repairs.
+            Claim 8 upgrades to <i>direction-specific on fresh rows</i>
+            (<span class="mono">rank8_specificity_27b_property_pooled_summary.md</span>).</li>
+          <li><b>Readable-stack erasure</b> (jobs 458403/458404, running) — the whole rank-9 INLP readable stack clamped at all
+            five layers vs matched-rank random stacks. Stack null → claim 3's caveat becomes a result and the rival's
+            entanglement account is excluded; stack destructive → first necessity positive. No null outcome exists.</li>
+          <li><b>Predicted-coefficient repair</b> (jobs 458409/458410, queued; item E, exploratory) — offline step 1 passed
+            (coefficients decodable from unhinted states, cos +0.631 vs null +0.014), so the closed-loop test runs overnight:
+            dev-basis ceiling/floor, ridge-predicted coefficients from the failing run itself, and a shuffled-ridge control.
+            Success = donor-free repair; the hint-free thread (<span class="mono">hint_free_repair_direction.md</span>)
+            upgrades from "askable" to "answered in-domain".</li>
+          <li>Decision rules recorded in <span class="mono">causal_handle_directions.md</span> items C/D/E before unblinding.</li>
+        </ul>
+      </div>
+      <div class="next-card">
+        <h3>Then: write the paper</h3>
+        <ul>
+          <li><b>Skeleton ready</b> — "Gauge, Not Lever," ICLR format, claims 1–12 mapped to sections 5.1–5.6; related
+            work restructured around the July 4 sweep.</li>
+          <li><b>Draft 5.2 with the softened claim-2 wording from the start</b>; cite the "epiphenomenal correctness"
+            collision at first use.</li>
+          <li><b>Re-run the scoop check</b> over the June–July arXiv window at submission.</li>
+          <li><b>Open directions</b> (next project): Qwen positive-carrier port — the null half is already
+            architecture-general, so only the repair is novel there — and the subtype rank ladder at L35.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    Sources of truth in the repo: <span class="mono">docs/next_paper_claims_table.md</span> &middot;
+    <span class="mono">docs/next_paper_causal_abstraction_dashboard.md</span> &middot;
+    <span class="mono">docs/causal_handle_directions.md</span> (pre-registrations) &middot;
+    <span class="mono">docs/causal_status_overview.html</span> (full narrative) &middot;
+    <span class="mono">docs/next_experiments_litreview_2026-07.md</span> (July 4 literature sweep) &middot;
+    per-experiment pooled summaries under <span class="mono">docs/</span>. All numbers from run artifacts,
+    jobs 456912–458402 (458403/458404, 458409/458410 in flight); sigma source is the row-cluster bootstrap throughout.
+  </footer>
+
+</div>
+
+<div id="tooltip"></div>
+
+<script>
+(function () {
+  var tooltip = document.getElementById('tooltip');
+
+  function fmt(v) { return (v > 0 ? '+' : v < 0 ? '−' : '+') + Math.abs(v).toFixed(3); }
+
+  function renderChart(mountId, rows, opts) {
+    var mount = document.getElementById(mountId);
+    var W = 640, rowH = 34, padTop = 8, padBottom = 26;
+    var labelW = opts.labelW, valueW = 118;
+    var H = padTop + rows.length * rowH + padBottom;
+    var x0 = labelW, x1 = W - valueW;
+    var lo = opts.domain[0], hi = opts.domain[1];
+    function X(v) { return x0 + (v - lo) / (hi - lo) * (x1 - x0); }
+
+    var svg = '<svg viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="' + opts.aria + '">';
+
+    var ticks = opts.ticks;
+    for (var t = 0; t < ticks.length; t++) {
+      var tx = X(ticks[t]);
+      var isZero = ticks[t] === 0;
+      svg += '<line x1="' + tx + '" y1="' + padTop + '" x2="' + tx + '" y2="' + (H - padBottom + 4) +
+        '" stroke="var(' + (isZero ? '--axis' : '--grid') + ')" stroke-width="' + (isZero ? 1.5 : 1) + '"/>';
+      svg += '<text x="' + tx + '" y="' + (H - padBottom + 17) + '" text-anchor="middle" font-size="11" fill="var(--muted)" font-family="ui-monospace,Menlo,monospace">' +
+        (ticks[t] === 0 ? '0' : fmt(ticks[t]).replace('.000', '.0').replace(/0$/, '')) + '</text>';
+    }
+
+    for (var i = 0; i < rows.length; i++) {
+      var r = rows[i];
+      var yMid = padTop + i * rowH + rowH / 2;
+      var barH = 16, y = yMid - barH / 2;
+      var vx = X(r.v), zx = X(0);
+      var bx = Math.min(zx, vx), bw = Math.max(Math.abs(vx - zx), 1.5);
+      var rad = Math.min(4, bw / 2);
+      var path;
+      if (r.v >= 0) {
+        path = 'M' + bx + ' ' + y + ' H' + (bx + bw - rad) + ' Q' + (bx + bw) + ' ' + y + ' ' + (bx + bw) + ' ' + (y + rad) +
+          ' V' + (y + barH - rad) + ' Q' + (bx + bw) + ' ' + (y + barH) + ' ' + (bx + bw - rad) + ' ' + (y + barH) +
+          ' H' + bx + ' Z';
+      } else {
+        path = 'M' + (bx + bw) + ' ' + y + ' H' + (bx + rad) + ' Q' + bx + ' ' + y + ' ' + bx + ' ' + (y + rad) +
+          ' V' + (y + barH - rad) + ' Q' + bx + ' ' + (y + barH) + ' ' + (bx + rad) + ' ' + (y + barH) +
+          ' H' + (bx + bw) + ' Z';
+      }
+      var dim = r.dim ? ' opacity="0.45"' : '';
+      svg += '<path d="' + path + '" fill="var(--series)"' + dim +
+        ' data-tt="' + r.label + '|' + fmt(r.v) + ' [' + fmt(r.lo) + ', ' + fmt(r.hi) + ']|' + (r.note || '') + '"/>';
+
+      var lx = X(r.lo), hx = X(r.hi);
+      svg += '<line x1="' + lx + '" y1="' + yMid + '" x2="' + hx + '" y2="' + yMid + '" stroke="var(--ink)" stroke-width="1.4" opacity="0.75"/>';
+      svg += '<line x1="' + lx + '" y1="' + (yMid - 4.5) + '" x2="' + lx + '" y2="' + (yMid + 4.5) + '" stroke="var(--ink)" stroke-width="1.4" opacity="0.75"/>';
+      svg += '<line x1="' + hx + '" y1="' + (yMid - 4.5) + '" x2="' + hx + '" y2="' + (yMid + 4.5) + '" stroke="var(--ink)" stroke-width="1.4" opacity="0.75"/>';
+
+      svg += '<text x="' + (labelW - 10) + '" y="' + (yMid + 4) + '" text-anchor="end" font-size="12.5" fill="var(--ink)">' + r.label + '</text>';
+      svg += '<text x="' + (W - valueW + 12) + '" y="' + (yMid + 4) + '" font-size="12" fill="var(--ink-2)" font-family="ui-monospace,Menlo,monospace">' +
+        fmt(r.v) + (r.tag ? '  ' + r.tag : '') + '</text>';
+    }
+    svg += '</svg>';
+    mount.innerHTML = svg;
+
+    mount.querySelectorAll('path[data-tt]').forEach(function (el) {
+      el.addEventListener('mousemove', function (e) {
+        var parts = el.getAttribute('data-tt').split('|');
+        tooltip.innerHTML = '<div class="tt-label">' + parts[0] + '</div>' +
+          '<div>ΔP(strong) ' + parts[1] + '</div>' + (parts[2] ? '<div>' + parts[2] + '</div>' : '');
+        tooltip.style.display = 'block';
+        var x = e.clientX + 14, y = e.clientY + 14;
+        var r = tooltip.getBoundingClientRect();
+        if (x + r.width > window.innerWidth - 8) x = e.clientX - r.width - 14;
+        if (y + r.height > window.innerHeight - 8) y = e.clientY - r.height - 14;
+        tooltip.style.left = x + 'px'; tooltip.style.top = y + 'px';
+      });
+      el.addEventListener('mouseleave', function () { tooltip.style.display = 'none'; });
+    });
+  }
+
+  renderChart('chart-erasure', [
+    { label: 'erase readout axis', v: 0.031, lo: -0.094, hi: 0.172, note: 'the probe direction — null' },
+    { label: 'erase height direction', v: -0.047, lo: -0.188, hi: 0.125, note: 'between-run control — also null' },
+    { label: 'erase matched orthogonal', v: -0.344, lo: -0.547, hi: -0.156, note: 'same norm, random orthogonal — destructive' },
+    { label: 'erase matched Gaussian', v: -0.234, lo: -0.438, hi: -0.016, note: 'same norm, random — destructive' }
+  ], { domain: [-0.62, 0.28], ticks: [-0.6, -0.4, -0.2, 0, 0.2], labelW: 178, aria: 'Erasure arms, change in P strong vs baseline' });
+
+  renderChart('chart-l35', [
+    { label: 'L35 concept replace', v: 0.117, lo: 0.008, hi: 0.254, note: 'pre-registered positive branch fires', tag: '✓' },
+    { label: 'L35 rank-4 LOO add', v: 0.047, lo: 0.000, hi: 0.109, note: 'marginal — no subtype compact core yet' },
+    { label: 'L35 random replace', v: 0.023, lo: -0.004, hi: 0.062, note: 'matched control — null' },
+    { label: 'old trio L30/40/45', v: 0.023, lo: -0.195, hi: 0.242, note: 'the wrong layers, three replicates of null', dim: true }
+  ], { domain: [-0.28, 0.34], ticks: [-0.2, -0.1, 0, 0.1, 0.2, 0.3], labelW: 178, aria: 'Subtype L35 arms, change in P strong vs baseline' });
+
+  renderChart('chart-guard', [
+    { label: 'hinted prompt (ceiling)', v: 0.750, lo: 0.601, hi: 0.885, note: 'behavioral ceiling on these rows', dim: true },
+    { label: 'L30 concept replace', v: 0.255, lo: 0.111, hi: 0.413, note: 'the in-job denominator (100%)' },
+    { label: 'rank-8 LOO add', v: 0.231, lo: 0.111, hi: 0.365, note: '91% of concept-replace — rule passes', tag: '91% ✓' },
+    { label: 'rank-4 LOO add', v: 0.144, lo: 0.038, hi: 0.264, note: '57% — under the 70% bar; under-transfers', tag: '57%' },
+    { label: 'random-position replace', v: 0.038, lo: -0.010, hi: 0.101, note: 'matched control — null' }
+  ], { domain: [-0.08, 1.0], ticks: [0, 0.25, 0.5, 0.75], labelW: 192, aria: 'Fresh-row guard arms, change in P strong vs baseline' });
+})();
+</script>

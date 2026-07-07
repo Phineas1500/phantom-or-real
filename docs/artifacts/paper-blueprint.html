@@ -1,0 +1,258 @@
+<title>Gauge, Not Lever — Paper Blueprint</title>
+<style>
+  :root {
+    --surface:#F6F7F9; --card:#FFFFFF; --line:#DFE4EB; --ink:#1C2430; --ink2:#4B5768;
+    --ink3:#7C8698; --gauge:#2a78d6; --lever:#eb6834; --lever-soft:#F6BBA0;
+    --control:#4a3aa7; --bad:#cf3b3a; --good:#008300; --grid:#E3E7ED;
+  }
+  @media (prefers-color-scheme: dark) { :root {
+    --surface:#101720; --card:#18202C; --line:#2A3441; --ink:#E8ECF2; --ink2:#A9B3C1;
+    --ink3:#78849A; --gauge:#3987e5; --lever:#d95926; --lever-soft:#7A3A20;
+    --control:#9085e9; --bad:#e66767; --good:#4fae4f; --grid:#263140; } }
+  :root[data-theme="dark"] {
+    --surface:#101720; --card:#18202C; --line:#2A3441; --ink:#E8ECF2; --ink2:#A9B3C1;
+    --ink3:#78849A; --gauge:#3987e5; --lever:#d95926; --lever-soft:#7A3A20;
+    --control:#9085e9; --bad:#e66767; --good:#4fae4f; --grid:#263140; }
+  :root[data-theme="light"] {
+    --surface:#F6F7F9; --card:#FFFFFF; --line:#DFE4EB; --ink:#1C2430; --ink2:#4B5768;
+    --ink3:#7C8698; --gauge:#2a78d6; --lever:#eb6834; --lever-soft:#F6BBA0;
+    --control:#4a3aa7; --bad:#cf3b3a; --good:#008300; --grid:#E3E7ED; }
+  * { box-sizing:border-box; }
+  html { background:var(--surface); }
+  body { margin:0; background:var(--surface); color:var(--ink); font-size:16.5px; line-height:1.6;
+    font-family:Charter,'Bitstream Charter','Iowan Old Style',Georgia,serif; -webkit-font-smoothing:antialiased; }
+  .mono { font-family:ui-monospace,'SF Mono',Menlo,monospace; font-variant-numeric:tabular-nums; }
+  main { max-width:60rem; margin:0 auto; padding:3rem 1.25rem 5rem; }
+  .eyebrow { font-family:ui-monospace,Menlo,monospace; font-size:.72rem; letter-spacing:.14em;
+    text-transform:uppercase; color:var(--ink3); display:block; margin-bottom:.6rem; }
+  h1 { font-size:clamp(1.8rem,4vw,2.5rem); font-weight:700; margin:.2rem 0 .8rem; line-height:1.15; text-wrap:balance; }
+  .thesis { max-width:46rem; font-size:1.05rem; color:var(--ink2); border-left:4px solid var(--lever);
+    padding:.8rem 1.1rem; background:var(--card); border-radius:0 12px 12px 0; margin:1.2rem 0; }
+  .chips { display:flex; flex-wrap:wrap; gap:.5rem; margin:.8rem 0 0; }
+  .chip { font-family:ui-monospace,Menlo,monospace; font-size:.7rem; letter-spacing:.06em;
+    padding:.2rem .6rem; border-radius:99px; border:1px solid var(--line); background:var(--card); color:var(--ink2); }
+  h2 { font-size:1.45rem; margin:3rem 0 .3rem; text-wrap:balance; }
+  h2 .sec { color:var(--lever); font-family:ui-monospace,Menlo,monospace; font-size:1rem; margin-right:.5rem; }
+  .sub { color:var(--ink3); font-size:.85rem; font-family:ui-monospace,Menlo,monospace; margin:0 0 1rem; }
+  p { max-width:46rem; }
+  .flow { display:grid; grid-template-columns:repeat(3,1fr); gap:.7rem; margin:1.2rem 0; counter-reset:step; }
+  @media (max-width:720px){ .flow{grid-template-columns:1fr;} }
+  .step { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:.85rem 1rem; font-size:.85rem;
+    line-height:1.5; color:var(--ink2); counter-increment:step; }
+  .step::before { content:"S" counter(step); display:block; font-family:ui-monospace,Menlo,monospace;
+    font-size:.68rem; letter-spacing:.1em; color:var(--lever); margin-bottom:.3rem; font-weight:700; }
+  .step b { color:var(--ink); }
+  .panel { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:1.1rem 1.25rem; margin:1rem 0; }
+  .panel h4 { margin:0 0 .2rem; font-size:.95rem; }
+  .panel .fig { font-family:ui-monospace,Menlo,monospace; font-size:.7rem; color:var(--lever);
+    letter-spacing:.08em; text-transform:uppercase; }
+  .panel svg { display:block; width:100%; height:auto; margin-top:.4rem; }
+  .panel figcaption, .cap { font-size:.83rem; color:var(--ink3); margin-top:.5rem; line-height:1.5; }
+  table { border-collapse:collapse; width:100%; background:var(--card); border:1px solid var(--line);
+    border-radius:12px; overflow:hidden; font-size:.85rem; }
+  .tblbox { overflow-x:auto; border-radius:12px; margin:1rem 0; }
+  th { text-align:left; font-family:ui-monospace,Menlo,monospace; font-size:.66rem; letter-spacing:.1em;
+    text-transform:uppercase; color:var(--ink3); padding:.55rem .8rem; border-bottom:1px solid var(--grid); }
+  td { padding:.55rem .8rem; border-bottom:1px solid var(--grid); vertical-align:top; }
+  tr:last-child td { border-bottom:none; }
+  td.k { font-family:ui-monospace,Menlo,monospace; white-space:nowrap; color:var(--ink); font-weight:700; font-size:.8rem; }
+  .ok { color:var(--good); font-weight:700; } .no { color:var(--bad); font-weight:700; }
+  ol.assembly { max-width:46rem; padding-left:1.3rem; }
+  ol.assembly li { margin:.45rem 0; color:var(--ink2); }
+  ol.assembly b { color:var(--ink); }
+  footer { margin-top:3.5rem; padding-top:1rem; border-top:1px solid var(--line);
+    font-family:ui-monospace,Menlo,monospace; font-size:.78rem; color:var(--ink3); }
+  :focus-visible { outline:2px solid var(--gauge); outline-offset:2px; }
+</style>
+
+<main>
+  <span class="eyebrow">Phantom or Real · paper blueprint · July 6, 2026</span>
+  <h1>Gauge, Not Lever: Dissociating Readable Correctness from its Causal Repair Channel</h1>
+  <p class="thesis">In a model that visibly predicts its own failures, the readable correctness
+    signal and the causal repair channel are <b>different objects</b>: the entire readable subspace
+    can be deleted without behavioral cost, while repair flows exclusively through a low-rank channel
+    that carries the label-specific content of natural success yet is itself no more decodable than
+    chance — gauge and lever, anatomically separated.</p>
+  <div class="chips">
+    <span class="chip">ICLR format · 4–6 pages</span>
+    <span class="chip">16 pre-registered verdicts</span>
+    <span class="chip">2 adversarial review rounds survived</span>
+    <span class="chip">every number below: pooled, cluster-bootstrapped</span>
+  </div>
+
+  <h2><span class="sec">Abstract</span>The argument in six steps</h2>
+  <div class="flow">
+    <div class="step"><b>The gauge.</b> Models linearly encode whether they will answer correctly
+      (AUC ≤ 0.94, two models, scramble-robust) — and the field just showed this readout resists steering.</div>
+    <div class="step"><b>The gauge is not necessary.</b> Deleting everything linearly readable —
+      rank-9 × 5 layers × every token — costs nothing (+0.05); matched random subspaces are
+      catastrophic (−0.38).</div>
+    <div class="step"><b>The lever.</b> Correctness is controlled at concept-mention tokens: a rank-8
+      channel repairs held-out failures (+0.25) and passes every specificity control.</div>
+    <div class="step"><b>The necessity dissociation.</b> A natural correct-minus-incorrect vector is
+      null at full dimension, potent (+0.34) only when concentrated into the channel — and only with
+      real labels (shuffled ≈ 0, sign-flipped harmful).</div>
+    <div class="step"><b>The inversion.</b> The channel that causally controls success is itself not
+      decodably privileged (probe inside the random-subspace null) — the mirror image of the readout.</div>
+    <div class="step"><b>Answer-free repair.</b> A fully donor-free variant reaches +0.40 on a 0.12
+      baseline (self-consistency: 0.000); firing it on already-correct puzzles helps (+0.27).</div>
+  </div>
+
+  <h2><span class="sec">§5.2</span>The gauge is not necessary</h2>
+  <p class="sub">Fig 1 · item D pooled, 16 balanced rows · erase_raw continuity gate passed</p>
+  <div class="panel">
+    <span class="fig">Figure 1 — erasure forest plot</span>
+    <svg id="fig1"></svg>
+    <p class="cap">Deleting the raw readout axis, then the entire readable stack: nothing. Deleting
+      matched-rank random stacks with the identical estimator: collapse, with correctness-among-parsed
+      falling to ~0.01 (content demolition, not formatting). Mechanism stated, not hidden: the readable
+      stack carries 10–1300× less within-run variance than the random stacks — we claim
+      <b>non-necessity</b>, never inertness. This directly discriminates the rival entanglement account,
+      whose erasure hurt.</p>
+  </div>
+
+  <h2><span class="sec">§5.3–5.4</span>The lever: localized, compact, specific</h2>
+  <p class="sub">Figs 2–3 · guard v2 + specificity ladder, 26 fresh rows</p>
+  <div class="panel">
+    <span class="fig">Figure 3 — the specificity ladder</span>
+    <svg id="fig3"></svg>
+    <p class="cap">The rank-8 recipe repairs held-out failures; its average alone recovers a third;
+      random subspaces matched in mean, norm, rank, and position do nothing; matched noise hurts.
+      Paired (rank-8 − noise): +0.333 [+0.186,+0.489]. The specific directions carry the repair.
+      (§5.3's headline is the fresh-row concept patch +0.255; the dev-row +0.491 is reported as the
+      labeled selected-row anchor.)</p>
+  </div>
+
+  <h2><span class="sec">§5.5</span>The F-series: what the channel carries</h2>
+  <p class="sub">Fig 4 — the signature figure · 26 rows · all CIs pre-registered</p>
+  <div class="panel">
+    <span class="fig">Figure 4 — necessity, labels, and answer-free repair in one ladder</span>
+    <svg id="fig4"></svg>
+    <p class="cap">One vector, five fates. Full-dimensional: null. Concentrated into the channel:
+      +0.341. Labels scrambled (geometry, norm, positions identical): nothing. Direction flipped:
+      actively harmful. Fully answer-free (direction from watching natural successes, amplitude from
+      pooled scale): the strongest arm in the program. Baselines that no rival reports: majority-vote
+      self-consistency scores 0.000 on these puzzles; even best-of-8 sampling caps at 0.192 — less
+      than half the steered result. Deployment profile: collateral firing on correct puzzles is
+      <b>beneficial</b> (+0.27); writing at all positions cancels (+0.03 n.s.) — addressing is the
+      one remaining answer-adjacent ingredient. Item H closed it: pre-named answer-free position
+      policies fail; the mechanism readout says the vector is a positional commitment <b>command</b> &mdash;
+      content is the verb, the marked concept is the object.</p>
+  </div>
+
+  <h2><span class="sec">§3.5</span>The control taxonomy (methods centerpiece)</h2>
+  <div class="tblbox"><table>
+    <tr><th>control</th><th>mundane account it kills</th><th>result</th></tr>
+    <tr><td class="k">random positions</td><td>"any location works"</td><td class="ok">null</td></tr>
+    <tr><td class="k">matched-norm noise</td><td>"any perturbation of this size helps"</td><td class="ok">destructive</td></tr>
+    <tr><td class="k">random subspaces (norm/mean/rank-matched)</td><td>"any 8 directions work"</td><td class="ok">null</td></tr>
+    <tr><td class="k">shuffled-label class-means</td><td>"any difference-shaped vector works"</td><td class="ok">null</td></tr>
+    <tr><td class="k">sign-flipped vector</td><td>"geometry, not content"</td><td class="ok">harmful</td></tr>
+    <tr><td class="k">shuffled-ridge coefficients</td><td>"prediction quality matters"</td><td class="ok">matched → informative fail</td></tr>
+    <tr><td class="k">random stacks, identical estimator</td><td>"erasure procedure is toothless"</td><td class="ok">catastrophic</td></tr>
+    <tr><td class="k">dose ladders ×1/×2/×4</td><td>"more amplitude = more repair"</td><td class="ok">monotone damage</td></tr>
+  </table></div>
+
+  <h2><span class="sec">§5.6</span>Scope, stated plainly</h2>
+  <div class="tblbox"><table>
+    <tr><th>result</th><th>Gemma · property</th><th>Gemma · subtype</th><th>Qwen · property</th></tr>
+    <tr><td>gauge readable</td><td class="ok">✓ 0.90</td><td class="ok">✓</td><td class="ok">✓ 0.94</td></tr>
+    <tr><td>readout-axis non-necessity</td><td class="ok">✓</td><td class="ok">✓</td><td class="ok">✓ (controls also null)</td></tr>
+    <tr><td>full-stack non-necessity</td><td class="ok">✓ Branch E</td><td>—</td><td>—</td></tr>
+    <tr><td>lever repair + specificity</td><td class="ok">✓ rank 8</td><td>suggestive (row-sparse)</td><td class="ok">✓ motif: carrier L43 (+0.175), channel rank k*=16</td></tr>
+    <tr><td>F-series dissociations</td><td class="ok">✓</td><td>—</td><td class="ok">✓ inverted: raw-potent / proj-diluted; label battery passes (G6&prime;)</td></tr>
+  </table></div>
+
+  <p style="max-width:46rem">Cross-model, in one line: the <b>motif transfers, the coordinates don&rsquo;t</b>.
+    Qwen3.5-27B has the same recognition-gap failure mode (hint lift +0.52), the same
+    concept-position carrier, and the same random-subspace-proof low-rank channel &mdash; but at
+    relative depth 0.67 instead of 0.48, rank &asymp;16 instead of 8 (recovery climbs 48&rarr;95% of
+    the carrier across ranks 8&rarr;64 while random 64-dim subspaces sit at baseline), and with zero
+    mean share instead of 35%. Every number pre-registered. The answer-free content thread resolved across three
+    registered jobs: G4&prime; null &rarr; G6 found the INVERSION (raw class-mean repairs +0.12
+    CI&gt;0 while projection into the compact channel dilutes it &mdash; the mirror of Gemma) &rarr;
+    G6&prime; made it claim-bearing (real-vs-shuffled-labels +0.18 CI&gt;0; sign-flip harmful,
+    fifth confirmed registered prediction; every scrambled variant null-to-harmful). And the
+    diagnostic that explains it: Qwen stages <b>no linearly-decodable outcome information</b> at
+    the channel&rsquo;s address (AUC 0.504 vs Gemma&rsquo;s 0.807) yet repairs from it.
+    <b>Gemma concentrates, Qwen distributes: the recipe is cross-model, the compression is
+    not.</b> Lever claims stay Gemma-scoped (no Qwen erasure battery).</p>
+
+  <h2><span class="sec">§6</span>Discussion commitments</h2>
+  <p>Information location ≠ causal control, in both directions — with consequences for probe-based
+    monitoring and a testable prediction for the steering lineage (the projection-headroom
+    hypothesis: published raw-vector methods pay a dilution tax and a damage ceiling that causal
+    filtering removes). Honesty ledger: endogeneity tested and null at this layer/rank; misdirection
+    asymmetry named as an open anomaly; "an identified sufficient channel," not the unique mechanism;
+    MDE statements on every null; brittleness and entropy telemetry listed as unrun.</p>
+
+  <h2><span class="sec">Plan</span>Assembly order</h2>
+  <ol class="assembly">
+    <li><b>§5.2 and §5.5 first</b> — the headline sections; every number frozen in pooled verdict docs.</li>
+    <li><b>§3 methods + control table</b> — transcription from pre-registrations.</li>
+    <li><b>§1 intro + abstract</b> — written after the results read cleanly.</li>
+    <li><b>§4 related work</b> — restructured twice already; near-verbatim from the skeleton.</li>
+    <li><b>§6 discussion, figures, appendix</b> (artifact checklist, negative-results catalog, provenance map).</li>
+    <li><b>Final pass</b> — forbidden-wordings audit, scoop re-check, one more adversarial review round on the draft itself.</li>
+  </ol>
+
+  <footer>
+    Companion to the status dashboard and plain-language explainer · sources:
+    docs/paper_outline_final.md · docs/contribution_ledger_2026-07-05.md · pooled verdict docs
+    (items C, D, E, F(i), F(ii), F(ii)-b, F(ii)-c, H, G0–G3&prime;) · 2026-07-06
+  </footer>
+</main>
+
+<script>
+(function () {
+  var NS = 'http://www.w3.org/2000/svg';
+  var MONO = 'ui-monospace,Menlo,Consolas,monospace';
+  function el(t, a, p) { var e = document.createElementNS(NS, t); for (var k in a) e.setAttribute(k, a[k]); if (p) p.appendChild(e); return e; }
+  function chart(id, rows, domain) {
+    var svg = document.getElementById(id);
+    var labelW = 300, W = 760, rowH = 36, padT = 16, padB = 28;
+    var H = padT + rows.length * rowH + padB;
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+    var plotW = W - labelW - 70;
+    function X(v) { return labelW + (v - domain[0]) / (domain[1] - domain[0]) * plotW; }
+    for (var v = Math.ceil(domain[0] / 0.1) * 0.1; v <= domain[1] + 1e-9; v += 0.1) {
+      var z = Math.abs(v) < 1e-9;
+      el('line', { x1: X(v), y1: padT - 5, x2: X(v), y2: H - padB + 3, stroke: z ? 'var(--ink3)' : 'var(--grid)', 'stroke-width': z ? 1.5 : 1 }, svg);
+      var t = el('text', { x: X(v), y: H - padB + 17, 'text-anchor': 'middle', 'font-family': MONO, 'font-size': 10.5, fill: 'var(--ink3)' }, svg);
+      t.textContent = (v > 1e-9 ? '+' : '') + v.toFixed(1);
+    }
+    rows.forEach(function (r, i) {
+      var y = padT + i * rowH + rowH / 2;
+      var lab = el('text', { x: labelW - 12, y: y + 4, 'text-anchor': 'end', 'font-family': MONO, 'font-size': 12, fill: 'var(--ink)' }, svg);
+      lab.textContent = r.l;
+      var x0 = X(0), x1 = X(r.v);
+      el('rect', { x: Math.min(x0, x1), y: y - 7, width: Math.max(Math.abs(x1 - x0), 1.5), height: 14, rx: 3, fill: r.c }, svg);
+      if (r.ci) {
+        el('line', { x1: X(r.ci[0]), y1: y, x2: X(r.ci[1]), y2: y, stroke: 'var(--ink)', 'stroke-width': 1.5 }, svg);
+        [r.ci[0], r.ci[1]].forEach(function (c) { el('line', { x1: X(c), y1: y - 4, x2: X(c), y2: y + 4, stroke: 'var(--ink)', 'stroke-width': 1.5 }, svg); });
+      }
+      var vx = Math.max(x1, x0, r.ci ? X(r.ci[1]) : x1) + 8;
+      var vt = el('text', { x: vx, y: y + 4, 'font-family': MONO, 'font-size': 12, 'font-weight': 700, fill: 'var(--ink)' }, svg);
+      vt.textContent = (r.v >= 0 ? '+' : '−') + Math.abs(r.v).toFixed(3);
+    });
+  }
+  chart('fig1', [
+    { l: 'erase raw readout axis', v: -0.016, ci: [-0.094, 0.070], c: 'var(--gauge)' },
+    { l: 'erase FULL readable stack', v: 0.047, ci: [-0.070, 0.203], c: 'var(--gauge)' },
+    { l: 'erase random stacks (3 draws)', v: -0.380, ci: [-0.586, -0.182], c: 'var(--bad)' }
+  ], [-0.65, 0.35]);
+  chart('fig3', [
+    { l: 'rank-8 recipe (held out)', v: 0.245, ci: [0.111, 0.394], c: 'var(--lever)' },
+    { l: 'mean component only', v: 0.087, ci: [0.019, 0.173], c: 'var(--lever-soft)' },
+    { l: 'random subspaces (pooled)', v: -0.041, ci: [-0.154, 0.055], c: 'var(--control)' },
+    { l: 'matched noise (pooled)', v: -0.088, ci: [-0.180, -0.017], c: 'var(--control)' }
+  ], [-0.25, 0.45]);
+  chart('fig4', [
+    { l: 'class-mean, full-dimensional', v: 0.043, ci: [-0.120, 0.207], c: 'var(--control)' },
+    { l: 'class-mean, into the channel', v: 0.341, ci: [0.202, 0.495], c: 'var(--lever)' },
+    { l: 'labels scrambled (4 draws)', v: -0.043, ci: [-0.103, 0.006], c: 'var(--control)' },
+    { l: 'direction flipped', v: -0.120, ci: [-0.245, -0.024], c: 'var(--bad)' },
+    { l: 'fully answer-free variant', v: 0.399, ci: [0.245, 0.558], c: 'var(--lever)' }
+  ], [-0.3, 0.6]);
+})();
+</script>

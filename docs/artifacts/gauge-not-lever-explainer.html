@@ -1,0 +1,902 @@
+<title>Gauge, Not Lever — a plain-language tour</title>
+<style>
+  :root {
+    --surface: #F6F7F9;
+    --card: #FFFFFF;
+    --card-line: #DFE4EB;
+    --ink: #1C2430;
+    --ink-2: #4B5768;
+    --ink-3: #7C8698;
+    --gauge: #2a78d6;
+    --gauge-soft: #B7D3F6;
+    --lever: #eb6834;
+    --lever-soft: #F6BBA0;
+    --control: #4a3aa7;
+    --bad: #cf3b3a;
+    --good: #008300;
+    --grid: #E3E7ED;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --surface: #101720;
+      --card: #18202C;
+      --card-line: #2A3441;
+      --ink: #E8ECF2;
+      --ink-2: #A9B3C1;
+      --ink-3: #78849A;
+      --gauge: #3987e5;
+      --gauge-soft: #2B4A73;
+      --lever: #d95926;
+      --lever-soft: #7A3A20;
+      --control: #9085e9;
+      --bad: #e66767;
+      --good: #4fae4f;
+      --grid: #263140;
+    }
+  }
+  :root[data-theme="dark"] {
+    --surface: #101720; --card: #18202C; --card-line: #2A3441;
+    --ink: #E8ECF2; --ink-2: #A9B3C1; --ink-3: #78849A;
+    --gauge: #3987e5; --gauge-soft: #2B4A73;
+    --lever: #d95926; --lever-soft: #7A3A20;
+    --control: #9085e9; --bad: #e66767; --good: #4fae4f; --grid: #263140;
+  }
+  :root[data-theme="light"] {
+    --surface: #F6F7F9; --card: #FFFFFF; --card-line: #DFE4EB;
+    --ink: #1C2430; --ink-2: #4B5768; --ink-3: #7C8698;
+    --gauge: #2a78d6; --gauge-soft: #B7D3F6;
+    --lever: #eb6834; --lever-soft: #F6BBA0;
+    --control: #4a3aa7; --bad: #cf3b3a; --good: #008300; --grid: #E3E7ED;
+  }
+
+  * { box-sizing: border-box; }
+  html { background: var(--surface); }
+  body {
+    margin: 0;
+    background: var(--surface);
+    color: var(--ink);
+    font-family: Charter, 'Bitstream Charter', 'Iowan Old Style', Georgia, 'Times New Roman', serif;
+    font-size: 17px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  .mono {
+    font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+    font-variant-numeric: tabular-nums;
+  }
+  article { max-width: 56rem; margin: 0 auto; padding: 0 1.25rem 5rem; }
+  article > p, article > h2, article > h3, article > ul, article > ol, .prose {
+    max-width: 42rem; margin-left: auto; margin-right: auto;
+  }
+  article > p, .prose p { margin: 0 auto 1.1rem; }
+  h1, h2, h3 { text-wrap: balance; line-height: 1.2; }
+  h2 { font-size: 1.7rem; margin: 3.2rem auto 0.9rem; }
+  h3 { font-size: 1.15rem; margin: 2rem auto 0.6rem; }
+  .eyebrow {
+    font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+    font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--ink-3); display: block; margin-bottom: 0.65rem;
+  }
+  .kicker {
+    display: inline-block; padding: 0.1rem 0.55rem; border-radius: 99px;
+    border: 1px solid var(--card-line); background: var(--card);
+    font-family: ui-monospace, Menlo, monospace; font-size: 0.72rem;
+    letter-spacing: 0.08em; color: var(--ink-2);
+  }
+  strong { font-weight: 700; }
+  em { font-style: italic; }
+  a { color: var(--gauge); }
+
+  /* ---------- hero ---------- */
+  header.hero { max-width: 56rem; margin: 0 auto; padding: 3.5rem 1.25rem 0; }
+  header.hero .inner { max-width: 42rem; margin: 0 auto; }
+  h1 {
+    font-size: clamp(1.9rem, 4.5vw, 2.7rem);
+    font-weight: 700; margin: 0.2rem 0 0.9rem; letter-spacing: -0.01em;
+  }
+  .dek { font-size: 1.12rem; color: var(--ink-2); margin: 0 0 1.5rem; }
+  .hero-fig {
+    max-width: 42rem; margin: 1.8rem auto 0.4rem; padding: 1.4rem 1rem 1rem;
+    background: var(--card); border: 1px solid var(--card-line); border-radius: 14px;
+  }
+  .hero-fig svg { width: 100%; height: auto; display: block; }
+  .fig-caption {
+    max-width: 42rem; margin: 0.55rem auto 0; font-size: 0.86rem; color: var(--ink-3);
+    line-height: 1.5;
+  }
+
+  /* ---------- figures & cards ---------- */
+  figure.viz {
+    max-width: 48rem; margin: 1.6rem auto; padding: 1.2rem 1.3rem 1rem;
+    background: var(--card); border: 1px solid var(--card-line); border-radius: 14px;
+    overflow-x: auto;
+  }
+  figure.viz h4 {
+    margin: 0 0 0.15rem; font-size: 0.98rem; font-weight: 700;
+  }
+  figure.viz .sub { font-size: 0.82rem; color: var(--ink-3); margin: 0 0 0.8rem;
+    font-family: ui-monospace, Menlo, monospace; }
+  figure.viz svg { display: block; width: 100%; height: auto; }
+  figcaption { font-size: 0.86rem; color: var(--ink-3); margin-top: 0.7rem; line-height: 1.5; }
+
+  .puzzle {
+    max-width: 44rem; margin: 1.5rem auto; display: grid; gap: 1px;
+    grid-template-columns: repeat(3, 1fr);
+    background: var(--card-line); border: 1px solid var(--card-line);
+    border-radius: 14px; overflow: hidden;
+  }
+  .puzzle section { background: var(--card); padding: 0.9rem 1rem 1rem; }
+  .puzzle h5 {
+    margin: 0 0 0.5rem; font-family: ui-monospace, Menlo, monospace;
+    font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-3);
+  }
+  .puzzle p { margin: 0; font-size: 0.92rem; line-height: 1.55; }
+  @media (max-width: 640px) { .puzzle { grid-template-columns: 1fr; } }
+
+  .tokens {
+    max-width: 44rem; margin: 1.4rem auto 0.4rem; padding: 1.1rem 1.2rem;
+    background: var(--card); border: 1px solid var(--card-line); border-radius: 14px;
+    display: flex; flex-wrap: wrap; gap: 0.35rem; align-items: center;
+  }
+  .tok {
+    font-family: ui-monospace, Menlo, monospace; font-size: 0.8rem;
+    padding: 0.22rem 0.5rem; border-radius: 6px;
+    background: var(--surface); border: 1px solid var(--card-line); color: var(--ink-2);
+  }
+  .tok.hot {
+    background: var(--lever); border-color: var(--lever); color: #fff; font-weight: 700;
+  }
+  .tok.dim { opacity: 0.55; }
+
+  .statrow {
+    max-width: 44rem; margin: 1.4rem auto; display: grid; gap: 0.8rem;
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .stat {
+    background: var(--card); border: 1px solid var(--card-line); border-radius: 14px;
+    padding: 0.95rem 1.05rem;
+  }
+  .stat .big {
+    font-family: ui-monospace, Menlo, monospace; font-variant-numeric: tabular-nums;
+    font-size: 1.55rem; font-weight: 700; line-height: 1.15;
+  }
+  .stat .lbl { font-size: 0.82rem; color: var(--ink-2); margin-top: 0.3rem; line-height: 1.4; }
+  @media (max-width: 640px) { .statrow { grid-template-columns: 1fr; } }
+
+  .rivals {
+    max-width: 48rem; margin: 1.5rem auto; display: grid; gap: 0.8rem;
+    grid-template-columns: repeat(3, 1fr);
+  }
+  @media (max-width: 720px) { .rivals { grid-template-columns: 1fr; } }
+  .rival {
+    background: var(--card); border: 1px solid var(--card-line); border-radius: 14px;
+    padding: 0.95rem 1.05rem; font-size: 0.88rem; line-height: 1.5;
+  }
+  .rival .id {
+    font-family: ui-monospace, Menlo, monospace; font-size: 0.7rem; color: var(--ink-3);
+    letter-spacing: 0.06em; display: block; margin-bottom: 0.35rem;
+  }
+  .rival strong { display: block; margin-bottom: 0.3rem; font-size: 0.94rem; }
+  .moat {
+    max-width: 44rem; margin: 1.2rem auto; padding: 1rem 1.2rem;
+    border-left: 4px solid var(--lever); background: var(--card);
+    border-radius: 0 14px 14px 0; border-top: 1px solid var(--card-line);
+    border-right: 1px solid var(--card-line); border-bottom: 1px solid var(--card-line);
+  }
+  .moat p { margin: 0; }
+
+  .jobcard {
+    max-width: 48rem; margin: 1.5rem auto; background: var(--card);
+    border: 1px solid var(--card-line); border-radius: 14px; padding: 1.2rem 1.3rem;
+  }
+  .jobcard h4 { margin: 0 0 0.4rem; font-size: 1.02rem; }
+  .jobcard p { font-size: 0.94rem; margin: 0.5rem 0; }
+  .chip {
+    display: inline-block; font-family: ui-monospace, Menlo, monospace;
+    font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 0.14rem 0.55rem; border-radius: 99px; margin-left: 0.4rem;
+    vertical-align: middle;
+  }
+  .chip.run { background: var(--lever-soft); color: var(--ink); }
+  .chip.run::before {
+    content: ''; display: inline-block; width: 7px; height: 7px; border-radius: 50%;
+    background: var(--lever); margin-right: 0.35rem;
+    animation: pulse 1.6s ease-in-out infinite;
+  }
+  .chip.pass { background: var(--good); color: #fff; }
+  .chip.wait { background: var(--surface); border: 1px solid var(--card-line); color: var(--ink-2); }
+  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.35; } }
+  @media (prefers-reduced-motion: reduce) { .chip.run::before { animation: none; } }
+
+  .branch { display: grid; gap: 0.7rem; grid-template-columns: 1fr 1fr; margin-top: 0.8rem; }
+  @media (max-width: 640px) { .branch { grid-template-columns: 1fr; } }
+  .branch div {
+    background: var(--surface); border: 1px solid var(--card-line); border-radius: 10px;
+    padding: 0.7rem 0.85rem; font-size: 0.86rem; line-height: 1.5;
+  }
+  .branch .lab {
+    font-family: ui-monospace, Menlo, monospace; font-size: 0.68rem;
+    letter-spacing: 0.1em; text-transform: uppercase; display: block; margin-bottom: 0.3rem;
+  }
+
+  .legend {
+    display: flex; flex-wrap: wrap; gap: 1rem; margin: 0.15rem 0 0.75rem;
+    font-family: ui-monospace, Menlo, monospace; font-size: 0.74rem; color: var(--ink-2);
+  }
+  .legend span::before {
+    content: ''; display: inline-block; width: 10px; height: 10px; border-radius: 3px;
+    margin-right: 0.4rem; vertical-align: -1px; background: var(--sw);
+  }
+
+  #tooltip {
+    position: fixed; pointer-events: none; z-index: 10; display: none;
+    background: var(--ink); color: var(--surface); font-family: ui-monospace, Menlo, monospace;
+    font-size: 0.74rem; line-height: 1.45; padding: 0.45rem 0.6rem; border-radius: 8px;
+    max-width: 260px;
+  }
+
+  footer {
+    max-width: 42rem; margin: 4rem auto 0; padding: 1.2rem 1.25rem 0;
+    border-top: 1px solid var(--card-line);
+    font-size: 0.82rem; color: var(--ink-3);
+    font-family: ui-monospace, Menlo, monospace;
+  }
+  :focus-visible { outline: 2px solid var(--gauge); outline-offset: 2px; border-radius: 4px; }
+</style>
+
+<header class="hero">
+  <div class="inner">
+    <span class="eyebrow">Phantom or Real · a plain-language tour · July 4–6, 2026</span>
+    <h1>The model knows when it&rsquo;s about to be wrong. That knowledge doesn&rsquo;t steer it.</h1>
+    <p class="dek">
+      What we found inside Gemma&nbsp;3 27B, why three other labs just validated
+      half of it, and the two experiments hardening the other half — the first
+      of which passed this afternoon.
+    </p>
+  </div>
+  <div class="hero-fig">
+    <svg viewBox="0 0 640 190" role="img" aria-label="A gauge that reads correctness accurately, a broken linkage, and a separate lever that actually changes the answer">
+      <!-- gauge -->
+      <g id="hero-gauge"></g>
+      <text x="120" y="150" text-anchor="middle" fill="var(--gauge)" font-family="ui-monospace,Menlo,monospace" font-size="12" font-weight="700">THE GAUGE</text>
+      <text x="120" y="168" text-anchor="middle" fill="var(--ink-3)" font-family="ui-monospace,Menlo,monospace" font-size="10.5">reads correctness · AUC 0.94</text>
+      <!-- broken linkage -->
+      <g stroke="var(--ink-3)" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="2 9">
+        <line x1="215" y1="95" x2="425" y2="95"/>
+      </g>
+      <g font-family="ui-monospace,Menlo,monospace" font-size="11" fill="var(--ink-3)">
+        <text x="320" y="78" text-anchor="middle">not connected</text>
+      </g>
+      <line x1="303" y1="88" x2="337" y2="104" stroke="var(--bad)" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="303" y1="104" x2="337" y2="88" stroke="var(--bad)" stroke-width="2.5" stroke-linecap="round"/>
+      <!-- lever -->
+      <g id="hero-lever"></g>
+      <text x="520" y="150" text-anchor="middle" fill="var(--lever)" font-family="ui-monospace,Menlo,monospace" font-size="12" font-weight="700">THE LEVER</text>
+      <text x="520" y="168" text-anchor="middle" fill="var(--ink-3)" font-family="ui-monospace,Menlo,monospace" font-size="10.5">8 directions · repairs wrong answers</text>
+    </svg>
+  </div>
+  <p class="fig-caption">
+    The one-picture version: the model carries an accurate internal &ldquo;am I getting this
+    right?&rdquo; signal (the gauge) and a separate internal variable that actually decides the
+    answer (the lever). They are physically different pieces of machinery, and only the second
+    one moves the output.
+  </p>
+</header>
+
+<article>
+
+  <h2>The experiment, in one card</h2>
+  <p>
+    We give Gemma&nbsp;3 27B small logic puzzles. Each puzzle lays out a tiny invented taxonomy of
+    made-up creatures, then shows a few observations, and asks the model to propose the rule
+    (&ldquo;hypothesis&rdquo;) that best explains what was observed:
+  </p>
+
+  <div class="puzzle">
+    <section>
+      <h5>Given</h5>
+      <p>Every <em>zumpus</em> is a <em>wumpus</em>.<br>
+         Every <em>wumpus</em> is a <em>yumpus</em>.<br>
+         Stella is a <em>zumpus</em>.</p>
+    </section>
+    <section>
+      <h5>Observed</h5>
+      <p>Stella is bright.<br>Stella is not dull.</p>
+    </section>
+    <section>
+      <h5>The model&rsquo;s job</h5>
+      <p>Propose the best explanation — e.g. <em>&ldquo;Every zumpus is bright.&rdquo;</em>
+         Picking the wrong creature-level (&ldquo;every yumpus&hellip;&rdquo;) is the classic failure.</p>
+    </section>
+  </div>
+
+  <p>
+    Sometimes the model nails these; often it doesn&rsquo;t. While it reads each puzzle we record
+    its internal activations — the millions of numbers flowing through its layers — and ask two
+    questions: <strong>does the model internally know whether it&rsquo;s about to succeed?</strong>
+    And if so, <strong>can we grab that internal signal and use it to fix mistakes?</strong>
+  </p>
+
+  <h2>Finding 1 — There&rsquo;s a gauge: the internals broadcast success in advance</h2>
+  <p>
+    A very simple detector (a &ldquo;linear probe&rdquo; — essentially a weighted sum of the
+    activations) can predict whether the answer will be correct <em>before the model writes a
+    single word</em>. And it&rsquo;s not a fluke of one spot: the signal is readable at many
+    layers, in two different models, and it survives scrambling all the creature names.
+  </p>
+
+  <figure class="viz">
+    <h4>How well the probe reads &ldquo;will this answer be correct?&rdquo;</h4>
+    <p class="sub">AUC · 0.50 = coin flip · 1.00 = perfect · pre-generation activations</p>
+    <svg id="dial" viewBox="0 0 640 210"></svg>
+    <figcaption>
+      AUC 0.94 means: hand the probe one future-correct and one future-wrong puzzle, and it ranks
+      them the right way around 94 times out of 100 — from the internal state alone, before any
+      answer text exists.
+    </figcaption>
+  </figure>
+
+  <h2>Finding 2 — But it&rsquo;s a gauge, not a lever</h2>
+  <p>
+    The obvious next move: if the model knows it&rsquo;s going wrong, push that internal signal
+    toward &ldquo;correct&rdquo; and fix the mistake from inside. <strong>We tried that for
+    months, roughly ten different ways. It never worked.</strong>
+  </p>
+  <p>
+    So we ran the decisive test in the other direction: instead of pushing the
+    signal, we <em>deleted</em> it — surgically removed the correctness-readout direction
+    from the activations. If the signal were part of the machinery, the model
+    should get worse. It didn&rsquo;t budge. Meanwhile, deleting a same-sized control
+    direction wrecked the model:
+  </p>
+
+  <figure class="viz">
+    <h4>What happens to accuracy when we delete internal directions</h4>
+    <p class="sub">change in P(correct) vs. baseline · whiskers = 95% CI · Gemma 3 27B</p>
+    <div class="legend">
+      <span style="--sw: var(--gauge)">correctness readout</span>
+      <span style="--sw: var(--bad)">size-matched control</span>
+    </div>
+    <svg id="erasure-chart"></svg>
+    <figcaption>
+      Deleting the actual correctness signal: no measurable change (+0.031, confidence interval
+      straddles zero). Deleting an equally-large arbitrary direction: catastrophic (&minus;0.344,
+      accuracy roughly cut to a twentieth on those rows). The deletion procedure has teeth — it
+      just finds nothing load-bearing when pointed at the readout.
+    </figcaption>
+  </figure>
+
+  <p>
+    That&rsquo;s the &ldquo;gauge&rdquo; result. A car&rsquo;s fuel gauge faithfully reports
+    what&rsquo;s in the tank, but bending the needle doesn&rsquo;t add gasoline — and removing
+    the gauge entirely doesn&rsquo;t stop the engine. The correctness signal is a downstream
+    <em>report</em> of how the computation is going, not a knob that controls it. The technical
+    word we use is <strong>epiphenomenal</strong>: readable, accurate, and causally inert.
+  </p>
+
+  <h2>Finding 3 — We found the actual lever</h2>
+  <p>
+    If the readout isn&rsquo;t the cause, what is? Behavioral detective work pointed at one
+    variable: <strong>which concept the model decides to build its hypothesis around</strong>.
+    It usually knows all the right ingredients — but it locks onto the wrong creature-level
+    early, while still reading the puzzle. Just telling it the right concept
+    (&ldquo;Hint: the hypothesis should be about zumpuses&rdquo;) sends accuracy from near-floor
+    to near-ceiling:
+  </p>
+
+  <figure class="viz">
+    <h4>Same puzzles, with and without a one-line concept hint</h4>
+    <p class="sub">P(correct) · fresh-row guard set, 13 rows × 8 samples</p>
+    <svg id="hint-chart"></svg>
+    <figcaption>
+      The model isn&rsquo;t missing knowledge or reasoning ability — it&rsquo;s making one bad
+      early decision about what the answer should be <em>about</em>. Fix that single decision
+      and almost everything else falls into place.
+    </figcaption>
+  </figure>
+
+  <p>
+    Then the causal step. We run the model twice on the same puzzle — once with the hint, once
+    without — and <strong>copy the hinted run&rsquo;s internal state into the unhinted run</strong>,
+    but only at the handful of token positions where the target concept is mentioned:
+  </p>
+
+  <div class="tokens" role="img" aria-label="A row of prompt tokens with the concept-mention tokens highlighted">
+    <span class="tok dim">Every</span><span class="tok hot">zumpus</span><span class="tok dim">is</span><span class="tok dim">a</span><span class="tok dim">wumpus</span><span class="tok dim">.</span>
+    <span class="tok dim">Every</span><span class="tok dim">wumpus</span><span class="tok dim">is</span><span class="tok dim">a</span><span class="tok dim">yumpus</span><span class="tok dim">.</span>
+    <span class="tok dim">Stella</span><span class="tok dim">is</span><span class="tok dim">a</span><span class="tok hot">zumpus</span><span class="tok dim">.</span>
+    <span class="tok dim">Stella</span><span class="tok dim">is</span><span class="tok dim">bright</span><span class="tok dim">.</span>
+  </div>
+  <p class="fig-caption" style="max-width:44rem">
+    The repair only works when the hinted state is written at the highlighted tokens — the
+    places where the concept itself appears. Writing it at random positions does nothing. The
+    &ldquo;which concept am I focused on&rdquo; variable physically lives there.
+  </p>
+
+  <figure class="viz">
+    <h4>Repairing wrong answers by editing the focus state</h4>
+    <p class="sub">change in P(correct) vs. no intervention · whiskers = 95% CI</p>
+    <div class="legend">
+      <span style="--sw: var(--lever)">the lever</span>
+      <span style="--sw: var(--lever-soft)">compressed lever</span>
+    </div>
+    <svg id="repair-chart"></svg>
+    <figcaption>
+      Top: copy the full hinted state at concept tokens (development rows). Bottom: instead of
+      the full state, add back only an 8-direction summary of the hint&rsquo;s effect — measured
+      on brand-new puzzles it was never tuned on, where it recovers 91% of what the full
+      state-copy achieves on the same rows.
+    </figcaption>
+  </figure>
+
+  <p>
+    That last bar is the headline. The entire &ldquo;focused on the right concept&rdquo; state
+    compresses into <strong>8 directions out of 5,376</strong> — and those 8 directions are
+    geometrically <em>unrelated</em> to the directions the correctness probe reads (overlap
+    &asymp; 0.0002, lower than random chance). The gauge and the lever are different machinery,
+    in different parts of the space.
+  </p>
+
+  <div class="statrow">
+    <div class="stat"><div class="big mono" style="color:var(--lever)">8 / 5,376</div>
+      <div class="lbl">dimensions needed to carry the repair</div></div>
+    <div class="stat"><div class="big mono" style="color:var(--lever)">+0.231</div>
+      <div class="lbl">repair on puzzles the recipe never saw (replicated at +0.245 today)</div></div>
+    <div class="stat"><div class="big mono" style="color:var(--gauge)">&asymp; 0.0002</div>
+      <div class="lbl">overlap with the gauge&rsquo;s subspace — they&rsquo;re separate machines</div></div>
+  </div>
+
+  <h2>Why now: three labs just published the gauge. Nobody has the lever.</h2>
+  <p>
+    A deep literature sweep on July&nbsp;4 (18 sources, every claim independently verified)
+    found that in the last three months, three groups published the first half of this story —
+    models that visibly know when they&rsquo;re wrong, and steering that fails to fix it:
+  </p>
+
+  <div class="rivals">
+    <div class="rival"><span class="id">arXiv 2605.05715</span>
+      <strong>&ldquo;Decodable but Not Corrected&rdquo;</strong>
+      Found the gauge; concluded the signal is <em>entangled</em> with computation because their
+      deletion hurt the model (&minus;3.6pp). Ours didn&rsquo;t — a directly testable disagreement.</div>
+    <div class="rival"><span class="id">arXiv 2604.13068</span>
+      <strong>Detection without correction</strong>
+      Same readable-but-unsteerable pattern in 7 different models. Breadth, no mechanism.</div>
+    <div class="rival"><span class="id">arXiv 2605.23315</span>
+      <strong>Coins &ldquo;epiphenomenal correctness&rdquo;</strong>
+      Names the phenomenon — the very term we use — but stops at the observation.</div>
+  </div>
+
+  <div class="moat">
+    <p>
+      All three walked up to the same wall — <em>the signal is there but you can&rsquo;t steer
+      it</em> — and stopped. None of them found the causal variable, the token positions where
+      it lives, or a compact recipe that repairs behavior. That&rsquo;s our unique contribution,
+      and it&rsquo;s why the current objective is: <strong>harden the two headline claims, then
+      write the paper fast.</strong>
+    </p>
+  </div>
+
+  <h2>The two shields: both passed</h2>
+  <p>
+    Both experiments had their pass/fail rules written down and committed <em>before</em> we
+    looked at any data, so we can&rsquo;t fool ourselves after the fact.
+  </p>
+
+  <div class="jobcard">
+    <h4>Shield 1 — Is the 8-direction recipe genuinely special?
+      <span class="chip pass">passed · strongest branch</span></h4>
+    <p>
+      A skeptical reviewer&rsquo;s best attack: <em>&ldquo;maybe adding any big vector at those
+      tokens fixes the model — your 8 directions are irrelevant.&rdquo;</em> So we built a
+      ladder that removes one ingredient at a time: the real recipe, then just its average
+      component, then random directions dressed up to match it in size, position, and rank,
+      then pure noise. Both halves of the data are in, pooled over 26 puzzles:
+    </p>
+    <figure class="viz" style="margin:1rem 0 0; padding:1rem 1.1rem 0.8rem; max-width:none">
+      <h4>The specificity ladder — final, both shards pooled</h4>
+      <p class="sub">change in P(correct) vs. baseline · 26 rows × 8 samples per arm · random families pooled over 4 draws · whiskers = 95% CI</p>
+      <div class="legend">
+        <span style="--sw: var(--lever)">the real recipe</span>
+        <span style="--sw: var(--lever-soft)">partial recipe</span>
+        <span style="--sw: var(--control)">imposters</span>
+      </div>
+      <svg id="ladder-chart"></svg>
+      <figcaption>
+        Verdict: the pre-registered rule <strong>passes</strong>, and on the strongest possible
+        branch. The real recipe repairs (+0.245); its average alone recovers only a third
+        (+0.087); random subspaces matched in size, position, and rank do nothing
+        (&minus;0.041); pure noise slightly hurts (&minus;0.088). Not one of the eight random
+        draws repairs. The paired gap between the real recipe and noise is +0.333 with a
+        confidence interval nowhere near zero — <strong>the specific 8 directions are what
+        matters, not their size or footprint.</strong>
+      </figcaption>
+    </figure>
+  </div>
+
+  <div class="jobcard">
+    <h4>Shield 2 — Delete the <em>entire</em> gauge at once
+      <span class="chip" style="background:var(--good); color:#fff">passed</span></h4>
+    <p>
+      Finding 2 deleted the readout one direction at a time. The rival paper&rsquo;s
+      &ldquo;entanglement&rdquo; story predicts that deleting <em>all</em> of it — nine
+      directions across all five readable layers simultaneously, at every token — should
+      finally hurt. Our story predicted it still wouldn&rsquo;t — and it didn&rsquo;t
+      (+0.047, CI straddling zero; matched random stacks: &minus;0.38). The branches we
+      registered in advance:
+    </p>
+    <div class="branch">
+      <div><span class="lab" style="color:var(--good)">If accuracy doesn&rsquo;t move</span>
+        The gauge is epiphenomenal at full strength — the strongest version of Finding 2, and
+        the rival&rsquo;s entanglement explanation is excluded in our setting.</div>
+      <div><span class="lab" style="color:var(--bad)">If it breaks (beyond matched random)</span>
+        Our first necessity result: the readable stack is load-bearing after all, and Findings
+        2&ndash;3 get carefully rescoped. Painful but publishable — and pre-registered.</div>
+    </div>
+  </div>
+
+  <h2>New this evening: a door opened — steering without the answer key</h2>
+  <p>
+    The compression result raised an obvious question: is this a general way to make models
+    more accurate on hard tasks? There&rsquo;s a catch in the recipe — the 8 directions are
+    shared across puzzles, but <em>how far to push along each one</em> is computed from the
+    puzzle&rsquo;s own hinted run. The repair still consumes the answer key. So we asked the
+    make-or-break question: is that per-puzzle information already present in the
+    <em>failing</em> run&rsquo;s own activations, before any hint exists?
+  </p>
+  <p><strong>It is.</strong> A simple linear readout, trained on 12 puzzles and tested on the
+    13th, predicts the 8 repair coordinates from the unhinted states alone:</p>
+
+  <div class="statrow">
+    <div class="stat"><div class="big mono" style="color:var(--lever)">+0.631</div>
+      <div class="lbl">predicted-vs-true agreement (cosine) on held-out puzzles</div></div>
+    <div class="stat"><div class="big mono" style="color:var(--lever)">0 / 50</div>
+      <div class="lbl">scrambled-data controls that matched it — none came close (+0.180 best)</div></div>
+    <div class="stat"><div class="big mono" style="color:var(--ink-2)">&asymp; 40%</div>
+      <div class="lbl">of the puzzle-specific repair information is linearly readable, no hint anywhere</div></div>
+  </div>
+
+  <p>
+    Translation: the hint doesn&rsquo;t <em>inject</em> the commitment information — it
+    surfaces information the failing model already carries but fails to act on. That is the
+    ingredient a real accuracy method would need.
+  </p>
+
+  <div class="jobcard">
+    <h4>The follow-up ran overnight — and failed in the most useful way
+      <span class="chip wait">landed · informative failure</span></h4>
+    <p>
+      The predicted-coefficient test came back a clean FAIL: the predictor worked (it read
+      the right coordinates from the failing run), but predicted coordinates repaired no
+      better than deliberately scrambled ones. The reason turned out to be the discovery:
+      the experiment&rsquo;s reference frame (built from development puzzles) transfers
+      weakly, and within it, <strong>which subspace you write into matters enormously —
+      the exact coordinates inside it barely matter.</strong> Every arm writing into the
+      true 8-direction subspace repaired; content in random subspaces (from the specificity
+      test) never did.
+    </p>
+  </div>
+
+  <h2>Overnight, the story kept turning</h2>
+  <p>
+    That reframing spawned two more pre-registered experiments the same night. First:
+    do the model&rsquo;s <em>natural</em> successes and failures — no hints anywhere —
+    differ along the lever&rsquo;s 8 directions? <strong>No</strong>: a probe reading only
+    those directions can&rsquo;t tell natural right-bound from wrong-bound runs any better
+    than random directions can (0.70&ndash;0.72 vs a random-slice bar of 0.72). But second:
+    take the <em>average difference</em> between natural successes and failures, squeeze it
+    into the lever subspace, amplify it, and write it into failing runs &mdash; and accuracy
+    jumps <strong>+0.341</strong>, the same size as our original recipe, from a direction
+    computed without a single hint. Two adversarial review rounds (verdicts upgraded to
+    Major Revision, twice) then demanded the decisive control: is it really the
+    <em>correct-vs-wrong structure</em> carrying that effect, or would any statistically
+    similar vector do? Both reviewers bet against the labels mattering.
+  </p>
+
+  <figure class="viz">
+    <h4>The answer, final and pooled — the label battery</h4>
+    <p class="sub">same rows, same subspace, same strength — only the information differs</p>
+    <div class="statrow" style="max-width:none; margin:0.4rem 0 0.6rem">
+      <div class="stat"><div class="big mono" style="color:var(--lever)">+0.399</div>
+        <div class="lbl">real class direction, fully answer-free (direction AND scale) — the program&rsquo;s strongest arm</div></div>
+      <div class="stat"><div class="big mono" style="color:var(--control)">&minus;0.043</div>
+        <div class="lbl">same recipe, correct/wrong labels scrambled (4 draws — nothing)</div></div>
+      <div class="stat"><div class="big mono" style="color:var(--bad)">&minus;0.120</div>
+        <div class="lbl">same line, opposite direction — actively harmful (CI below zero)</div></div>
+    </div>
+    <figcaption>
+      Destroy the labels and the repair vanishes; flip the direction and it hurts. The
+      information about what makes answers correct — not the geometry, not the amplitude —
+      carries the effect (paired real-vs-scrambled +0.385, CI well clear of zero). Both
+      reviewers&rsquo; predictions were wrong, in our favor. For scale: on these hardest
+      puzzles, majority-vote self-consistency scores 0.000 and even best-of-8 sampling caps
+      at 0.192 — half the steered result.
+    </figcaption>
+  </figure>
+
+  <h2>Both shields held — the program closed 8 for 8</h2>
+  <p>
+    The full-gauge erasure finished with the registered prediction intact: delete the
+    <em>entire</em> readable correctness signal — every layer, every position — and the model
+    doesn&rsquo;t blink (+0.047, CI straddling zero), while matched random deletions of the
+    same size are catastrophic (&minus;0.38). The deployment questions closed too: firing the
+    repair on puzzles the model was already getting right <em>helps</em> (+0.27), but the
+    method still needs to be told <em>where</em> to write — every answer-free position policy
+    we pre-named failed, and the mechanism readout explains why: the vector is a commitment
+    <b>command</b>. The content is the verb; the marked concept is the object.
+  </p>
+
+  <h2>New: a second brain has the same anatomy — with different measurements</h2>
+  <p>
+    Everything above happened inside one model, Gemma&nbsp;3&nbsp;27B. The obvious objection:
+    maybe this is one model&rsquo;s quirk. So we ported the whole pipeline — pre-registered,
+    decision rules written before each unblinding — to a different 27B model from a different
+    lab (Qwen3.5). The port landed in three moves. First, the same failure mode exists:
+    unhinted, Qwen solves 19% of the hard puzzles; merely <em>mentioning</em> the right concept
+    (not the answer) lifts it past 80%. Second, the same kind of carrier exists: a
+    concept-position state that repairs failing runs when transplanted — but it lives
+    <b>deeper</b> in the network (two-thirds of the way up, vs halfway in Gemma). Third, the
+    same low-rank channel exists — and here the first attempt missed. Eight directions,
+    Gemma&rsquo;s number, wasn&rsquo;t significant in Qwen. A registered follow-up swept the
+    rank and found why: <b>Qwen&rsquo;s channel is wider</b>. Sixteen directions clear every
+    bar (+0.117, and +0.154 against matched random-subspace controls); by 64 directions you
+    recover 95% of the full carrier while random 64-direction bundles at the same strength do
+    <em>nothing</em>. Same anatomy, different measurements: depth 0.67 vs 0.48, rank ~16 vs 8.
+    The <b>motif</b> is cross-model; the <b>coordinates</b> are model-specific. The answer-free repair question took three more registered
+    experiments to resolve, and the resolution is the best kind: <b>it works in Qwen too — but
+    inside out</b>. In Gemma, the raw natural-difference vector did nothing until projected into
+    the tiny channel (+0.04 &rarr; +0.34). In Qwen, the raw vector repairs (+0.12, CI clear of
+    zero) and projecting it <em>destroys</em> the effect — because Qwen smears both its channel
+    and its content across many directions instead of concentrating them. The full control
+    battery passed overnight: scramble the correct/wrong labels and the same-geometry vector
+    turns null-to-harmful (real-vs-scrambled +0.18); flip the direction and it reliably hurts
+    (the fifth pre-registered prediction confirmed in this program). One genuine mystery ships
+    to the next paper: Qwen&rsquo;s success/failure difference isn&rsquo;t even linearly
+    <em>readable</em> where the repair channel lives (a probe there scores 0.50 — coin-flip; in
+    Gemma, 0.81) — yet writing it there repairs. Where Qwen actually keeps its self-knowledge is
+    an open hunt.
+  </p>
+
+  <h2>Then what?</h2>
+  <p>
+    Every claim in the paper is now hardened or honestly rescoped, two adversarial review
+    rounds survived, twelve pre-registered verdicts on the books. The milestone left is the
+    paper itself — headline sections first, every number already frozen in pooled verdict
+    docs — with one final scoop re-check right before submission.
+  </p>
+
+  <footer>
+    Companion explainer to the Gauge-Not-Lever status dashboard · numbers from
+    docs/next_paper_claims_table.md, docs/erasure_control_matching_27b_property_k4_summary.md,
+    docs/rank8_specificity_27b_property_pooled_summary.md,
+    docs/classmean_repair_27b_property_pooled_summary.md,
+    docs/adversarial_review_round2_2026-07-05.md,
+    docs/qwen_g3prime_ladder_summary.md, and
+    docs/hint_free_repair_direction.md · jobs 458401&ndash;458468 ·
+    updated 2026-07-06 evening
+  </footer>
+</article>
+
+<div id="tooltip" role="status" aria-live="polite"></div>
+
+<script>
+(function () {
+  var NS = 'http://www.w3.org/2000/svg';
+  function el(tag, attrs, parent) {
+    var e = document.createElementNS(NS, tag);
+    for (var k in attrs) e.setAttribute(k, attrs[k]);
+    if (parent) parent.appendChild(e);
+    return e;
+  }
+  var MONO = 'ui-monospace,Menlo,Consolas,monospace';
+  var tooltip = document.getElementById('tooltip');
+  function bindTip(node, html) {
+    node.style.cursor = 'default';
+    node.addEventListener('mousemove', function (ev) {
+      tooltip.innerHTML = html;
+      tooltip.style.display = 'block';
+      var x = Math.min(ev.clientX + 14, window.innerWidth - 280);
+      tooltip.style.left = x + 'px';
+      tooltip.style.top = (ev.clientY + 14) + 'px';
+    });
+    node.addEventListener('mouseleave', function () { tooltip.style.display = 'none'; });
+  }
+
+  /* ---------- hero gauge + lever ---------- */
+  (function hero() {
+    var g = document.getElementById('hero-gauge');
+    var cx = 120, cy = 118, r = 78;
+    el('path', { d: describeArc(cx, cy, r, -180, 0), fill: 'none',
+      stroke: 'var(--grid)', 'stroke-width': 10, 'stroke-linecap': 'round' }, g);
+    el('path', { d: describeArc(cx, cy, r, -180, -180 + 0.88 * 180), fill: 'none',
+      stroke: 'var(--gauge)', 'stroke-width': 10, 'stroke-linecap': 'round' }, g);
+    for (var i = 0; i <= 5; i++) {
+      var a = (-180 + i * 36) * Math.PI / 180;
+      el('line', {
+        x1: cx + (r - 14) * Math.cos(a), y1: cy + (r - 14) * Math.sin(a),
+        x2: cx + (r - 22) * Math.cos(a), y2: cy + (r - 22) * Math.sin(a),
+        stroke: 'var(--ink-3)', 'stroke-width': 2 }, g);
+    }
+    var na = (-180 + 0.88 * 180) * Math.PI / 180;
+    el('line', { x1: cx, y1: cy, x2: cx + (r - 26) * Math.cos(na), y2: cy + (r - 26) * Math.sin(na),
+      stroke: 'var(--ink)', 'stroke-width': 3.5, 'stroke-linecap': 'round' }, g);
+    el('circle', { cx: cx, cy: cy, r: 6, fill: 'var(--ink)' }, g);
+
+    var lv = document.getElementById('hero-lever');
+    var px = 520, py = 122;
+    el('rect', { x: px - 42, y: py - 4, width: 84, height: 10, rx: 4, fill: 'var(--grid)' }, lv);
+    el('line', { x1: px, y1: py, x2: px + 46, y2: py - 74, stroke: 'var(--lever)',
+      'stroke-width': 7, 'stroke-linecap': 'round' }, lv);
+    el('circle', { cx: px + 46, cy: py - 74, r: 11, fill: 'var(--lever)' }, lv);
+    el('circle', { cx: px, cy: py, r: 7, fill: 'var(--ink)' }, lv);
+    el('path', { d: describeArc(px, py, 62, -115, -65), fill: 'none', stroke: 'var(--ink-3)',
+      'stroke-width': 1.6, 'stroke-dasharray': '3 4' }, lv);
+  })();
+
+  function describeArc(cx, cy, r, a0, a1) {
+    var s = polar(cx, cy, r, a0), e = polar(cx, cy, r, a1);
+    var large = Math.abs(a1 - a0) > 180 ? 1 : 0;
+    return 'M ' + s.x + ' ' + s.y + ' A ' + r + ' ' + r + ' 0 ' + large + ' 1 ' + e.x + ' ' + e.y;
+  }
+  function polar(cx, cy, r, deg) {
+    var a = deg * Math.PI / 180;
+    return { x: cx + r * Math.cos(a), y: cy + r * Math.sin(a) };
+  }
+
+  /* ---------- the AUC dial ---------- */
+  (function dial() {
+    var svg = document.getElementById('dial');
+    var cx = 320, cy = 190, r = 150;
+    el('path', { d: describeArc(cx, cy, r, -180, 0), fill: 'none', stroke: 'var(--grid)',
+      'stroke-width': 16, 'stroke-linecap': 'round' }, svg);
+    var frac = (0.94 - 0.5) / 0.5;
+    el('path', { d: describeArc(cx, cy, r, -180, -180 + frac * 180), fill: 'none',
+      stroke: 'var(--gauge)', 'stroke-width': 16, 'stroke-linecap': 'round' }, svg);
+    for (var v = 0.5; v <= 1.001; v += 0.1) {
+      var a = (-180 + ((v - 0.5) / 0.5) * 180) * Math.PI / 180;
+      var t = el('text', {
+        x: cx + (r + 24) * Math.cos(a), y: cy + (r + 24) * Math.sin(a) + 4,
+        'text-anchor': 'middle', 'font-family': MONO, 'font-size': 12, fill: 'var(--ink-3)' }, svg);
+      t.textContent = v.toFixed(1);
+    }
+    var na = (-180 + frac * 180) * Math.PI / 180;
+    el('line', { x1: cx, y1: cy, x2: cx + (r - 30) * Math.cos(na), y2: cy + (r - 30) * Math.sin(na),
+      stroke: 'var(--ink)', 'stroke-width': 4, 'stroke-linecap': 'round' }, svg);
+    el('circle', { cx: cx, cy: cy, r: 7, fill: 'var(--ink)' }, svg);
+    var big = el('text', { x: cx, y: cy - 44, 'text-anchor': 'middle', 'font-family': MONO,
+      'font-size': 40, 'font-weight': 700, fill: 'var(--gauge)' }, svg);
+    big.textContent = '0.94';
+    var lab = el('text', { x: cx, y: cy - 20, 'text-anchor': 'middle', 'font-family': MONO,
+      'font-size': 12, fill: 'var(--ink-3)' }, svg);
+    lab.textContent = 'chance = 0.50';
+  })();
+
+  /* ---------- generic horizontal delta-bar chart ---------- */
+  function deltaChart(id, rows, domain, opts) {
+    opts = opts || {};
+    var svg = document.getElementById(id);
+    var labelW = opts.labelW || 250, valueW = 8;
+    var W = 720, rowH = opts.rowH || 40, padTop = 18, padBot = 30;
+    var H = padTop + rows.length * rowH + padBot;
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+    var plotX = labelW, plotW = W - labelW - 66;
+    function X(v) { return plotX + (v - domain[0]) / (domain[1] - domain[0]) * plotW; }
+
+    var gv = opts.gridStep || 0.1;
+    for (var v = Math.ceil(domain[0] / gv) * gv; v <= domain[1] + 1e-9; v += gv) {
+      var xx = X(v), zero = Math.abs(v) < 1e-9;
+      el('line', { x1: xx, y1: padTop - 6, x2: xx, y2: H - padBot + 4,
+        stroke: zero ? 'var(--ink-3)' : 'var(--grid)', 'stroke-width': zero ? 1.6 : 1 }, svg);
+      var t = el('text', { x: xx, y: H - padBot + 20, 'text-anchor': 'middle',
+        'font-family': MONO, 'font-size': 11, fill: 'var(--ink-3)' }, svg);
+      t.textContent = (v > 1e-9 ? '+' : '') + v.toFixed(1).replace('-0.0', '0.0');
+    }
+
+    rows.forEach(function (r, i) {
+      var y = padTop + i * rowH + rowH / 2;
+      var lab = el('text', { x: labelW - 14, y: y + 4, 'text-anchor': 'end',
+        'font-family': MONO, 'font-size': 12.5, fill: 'var(--ink)' }, svg);
+      lab.textContent = r.label;
+
+      var x0 = X(0), x1 = X(r.v), bh = opts.barH || 16;
+      var left = Math.min(x0, x1), wdt = Math.max(Math.abs(x1 - x0), 1.5);
+      var rEnd = 4;
+      var d = r.v >= 0
+        ? 'M ' + left + ' ' + (y - bh / 2) + ' h ' + Math.max(wdt - rEnd, 0) +
+          ' a ' + rEnd + ' ' + rEnd + ' 0 0 1 ' + rEnd + ' ' + rEnd +
+          ' v ' + (bh - 2 * rEnd) +
+          ' a ' + rEnd + ' ' + rEnd + ' 0 0 1 ' + (-rEnd) + ' ' + rEnd +
+          ' h ' + (-Math.max(wdt - rEnd, 0)) + ' z'
+        : 'M ' + (left + wdt) + ' ' + (y - bh / 2) + ' h ' + (-Math.max(wdt - rEnd, 0)) +
+          ' a ' + rEnd + ' ' + rEnd + ' 0 0 0 ' + (-rEnd) + ' ' + rEnd +
+          ' v ' + (bh - 2 * rEnd) +
+          ' a ' + rEnd + ' ' + rEnd + ' 0 0 0 ' + rEnd + ' ' + rEnd +
+          ' h ' + Math.max(wdt - rEnd, 0) + ' z';
+      var bar = el('path', { d: d, fill: r.color }, svg);
+
+      if (r.ci) {
+        el('line', { x1: X(r.ci[0]), y1: y, x2: X(r.ci[1]), y2: y,
+          stroke: 'var(--ink)', 'stroke-width': 1.6 }, svg);
+        [r.ci[0], r.ci[1]].forEach(function (c) {
+          el('line', { x1: X(c), y1: y - 5, x2: X(c), y2: y + 5,
+            stroke: 'var(--ink)', 'stroke-width': 1.6 }, svg);
+        });
+      }
+
+      var vx = Math.max(x1, x0, r.ci ? X(r.ci[1]) : x1) + valueW;
+      var vt = el('text', { x: vx, y: y + 4, 'text-anchor': 'start',
+        'font-family': MONO, 'font-size': 12.5, 'font-weight': 700, fill: 'var(--ink)' }, svg);
+      vt.textContent = (r.v >= 0 ? '+' : '−') + Math.abs(r.v).toFixed(3);
+
+      var hit = el('rect', { x: 0, y: y - rowH / 2, width: W, height: rowH, fill: 'transparent' }, svg);
+      bindTip(hit, '<b>' + r.tip + '</b><br>Δ P(correct) = ' + (r.v >= 0 ? '+' : '−') +
+        Math.abs(r.v).toFixed(3) +
+        (r.ci ? '<br>95% CI [' + fmt(r.ci[0]) + ', ' + fmt(r.ci[1]) + ']' : '') +
+        (r.n ? '<br>' + r.n : ''));
+    });
+    function fmt(v) { return (v >= 0 ? '+' : '−') + Math.abs(v).toFixed(3); }
+  }
+
+  /* Finding 2 — erasure */
+  deltaChart('erasure-chart', [
+    { label: 'delete the correctness readout', v: 0.031, ci: [-0.094, 0.172], color: 'var(--gauge)',
+      tip: 'Erase the readout direction (all readable layers)', n: '512 generations · jobs 457207–457210' },
+    { label: 'delete a size-matched control', v: -0.344, ci: [-0.547, -0.156], color: 'var(--bad)',
+      tip: 'Erase an orthogonal direction of the same size', n: 'same rows, same procedure' }
+  ], [-0.6, 0.3], { labelW: 265 });
+
+  /* Finding 3a — hint effect (proportions, not deltas) */
+  (function hintChart() {
+    var svg = document.getElementById('hint-chart');
+    var rows = [
+      { label: 'no hint', v: 0.115, color: 'var(--lever-soft)', tip: 'Unhinted baseline' },
+      { label: 'one-line concept hint', v: 0.875, color: 'var(--lever)', tip: 'With “the hypothesis should be about X”' }
+    ];
+    var W = 720, rowH = 42, padTop = 14, padBot = 30, labelW = 210;
+    var H = padTop + rows.length * rowH + padBot;
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+    var plotW = W - labelW - 80;
+    function X(v) { return labelW + v * plotW; }
+    [0, 0.25, 0.5, 0.75, 1].forEach(function (v) {
+      el('line', { x1: X(v), y1: padTop - 4, x2: X(v), y2: H - padBot + 4,
+        stroke: v === 0 ? 'var(--ink-3)' : 'var(--grid)', 'stroke-width': v === 0 ? 1.6 : 1 }, svg);
+      var t = el('text', { x: X(v), y: H - padBot + 20, 'text-anchor': 'middle',
+        'font-family': MONO, 'font-size': 11, fill: 'var(--ink-3)' }, svg);
+      t.textContent = Math.round(v * 100) + '%';
+    });
+    rows.forEach(function (r, i) {
+      var y = padTop + i * rowH + rowH / 2;
+      var lab = el('text', { x: labelW - 14, y: y + 4, 'text-anchor': 'end',
+        'font-family': MONO, 'font-size': 12.5, fill: 'var(--ink)' }, svg);
+      lab.textContent = r.label;
+      el('rect', { x: X(0), y: y - 9, width: Math.max(r.v * plotW, 2), height: 18, rx: 4,
+        fill: r.color }, svg);
+      var vt = el('text', { x: X(r.v) + 8, y: y + 4, 'font-family': MONO,
+        'font-size': 12.5, 'font-weight': 700, fill: 'var(--ink)' }, svg);
+      vt.textContent = (r.v * 100).toFixed(1) + '%';
+      var hit = el('rect', { x: 0, y: y - rowH / 2, width: W, height: rowH, fill: 'transparent' }, svg);
+      bindTip(hit, '<b>' + r.tip + '</b><br>P(correct) = ' + (r.v * 100).toFixed(1) +
+        '%<br>13 rows × 8 samples');
+    });
+  })();
+
+  /* Finding 3b — repair chart */
+  deltaChart('repair-chart', [
+    { label: 'copy full hinted state', v: 0.491, ci: [0.28, 0.71], color: 'var(--lever)',
+      tip: 'Patch hint-conditioned states at concept tokens', n: 'development rows · job 456990' },
+    { label: 'add only 8 directions (new puzzles)', v: 0.231, ci: [0.111, 0.365], color: 'var(--lever-soft)',
+      tip: 'Rank-8 summary, held-out fresh rows', n: '26 fresh rows · = 91% of full effect on same rows' }
+  ], [-0.1, 0.8], { labelW: 300 });
+
+  /* Ladder — pooled specificity verdict (jobs 458401 + 458402) */
+  deltaChart('ladder-chart', [
+    { label: 'the real 8-direction recipe', v: 0.245, ci: [0.111, 0.394], color: 'var(--lever)',
+      tip: 'rank8_loo_add_L30 — the actual recipe (gate holds)' },
+    { label: 'its average component only', v: 0.087, ci: [0.019, 0.173], color: 'var(--lever-soft)',
+      tip: 'mean_only_add_L30 — 35% of the real recipe' },
+    { label: 'random subspace, size-matched', v: -0.041, ci: [-0.154, 0.055], color: 'var(--control)',
+      tip: 'rand_subspace family — random 8-dim basis, norm-matched, pooled over 4 draws · null' },
+    { label: 'pure noise, size-matched', v: -0.088, ci: [-0.180, -0.017], color: 'var(--control)',
+      tip: 'rand_norm family — per-row Gaussian, norm-matched, pooled over 4 draws · never repairs' }
+  ], [-0.25, 0.45], { labelW: 295 });
+})();
+</script>

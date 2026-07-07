@@ -76,3 +76,13 @@ one-line addendum (decision at drafting, per the G6 registration).
 Open next-paper thread: the Q1 information map — where DOES Qwen stage
 its outcome information, given it repairs from an address where nothing
 is linearly decodable?
+
+## Statistical hardening (2026-07-07 morning, per standing round-2 discipline)
+
+Both claim-bearing contrasts survive BCa + leave-one-row-out:
+raw96 vs baseline — BCa [+0.010, +0.219] (vs percentile [+0.016, +0.224]),
+LOO point-estimate range [+0.098, +0.141], per-row 13↑/4=/7↓;
+raw96 − shuffled family — BCa [+0.068, +0.297], LOO [+0.155, +0.209],
+per-row 14↑/7=/3↓. No single row carries either effect (contrast with
+claim 12's 3/13-row sensitivity). raw96's BCa lower bound (+0.010) is
+the number to quote when a conservative reader asks.
