@@ -78,3 +78,17 @@ in this model family and the recipe is published and cheap.
   open question, and may phrase the mystery as "consistent with
   staging in consumption-readable form (cf. J-Lens vs Tuned Lens gap)"
   — flagged as hypothesis, not finding.
+
+## OUTCOME 2026-07-07 (J1, job 458524) — hypothesis DEMOTED
+
+See `qwen_j1_probe_summary.md`. The registered consumption-readability
+test came back PARTIAL-AT-THRESHOLD (response@pen 0.663 vs
+random-tangent max 0.591 but label-shuffle p95 0.660 — inconclusive).
+The battery's descriptive Q1 cell found the simpler answer:
+**raw_L43_final = 0.806** — Qwen's outcome information is linearly
+decodable at the SAME layer at the FINAL TOKEN. Position separation,
+not nonlinear staging, is now the leading account; the J-reading
+survives only as a candidate explanation for the weak concept-position
+trace and the strong descriptive response at the gauge region (0.792).
+The ladder in this doc is superseded by J2 (confirm + routing test);
+the 3.6 bridge is de-prioritized accordingly.
