@@ -140,10 +140,14 @@ evidence, framed as adjudication rather than discovery)
   cross-model (2/2 models); its coordinates — depth (0.48 vs 0.67),
   rank (8 vs ~16), mean share (35% vs ≈0) — are model-specific." §1
   LEVER claims remain Gemma-3-27B/property scoped (Qwen lacks the full
-  battery: no erasure, no label controls). G4′ freshly registered
-  keyed to G3′ (claim-bearing: answer-free class-mean at L43/rank-16
-  with shuffled-label + sign-flip battery — the cross-model finale);
-  G5 remains off, deliberately.
+  battery: no erasure, no label controls). G4′ LANDED (job 458472,
+  gates verbatim): PRIMARY NULL — answer-free content transfer NOT
+  established at this power (proj16 +0.050 [−0.058,+0.167], MDE 0.12);
+  registered sign-flip prediction CONFIRMED (−0.083, CI < 0 — the
+  polarity of the natural-outcome axis is right in Qwen). Wording:
+  "channel cross-model (G3′); the answer-free content result is
+  Gemma-only at current power." G5 remains off, deliberately. The
+  G-series is closed.
 
 ## 4. NOT CLAIMABLE (rejected wordings)
 

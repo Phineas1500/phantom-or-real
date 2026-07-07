@@ -17,6 +17,21 @@ final report is easier to assemble.
 
 ### 2026-07-06
 
+#### Item G4′ LANDED — PRIMARY NULL; sign-flip prediction confirmed; G-series closed
+
+- Verdict (`docs/qwen_g4_classmean_summary.md`): proj16 `+0.050
+  [−0.058,+0.167]` and paired-vs-shuffled `+0.079 [−0.008,+0.167]` both
+  straddle zero → registered null branch: **"channel established (G3′),
+  content transfer not established at this power"** (MDE 0.12). No
+  claim moves; the answer-free repair result stays Gemma-only.
+- **Registered sign-flip prediction CONFIRMED**: −0.083, CI entirely
+  below zero — the natural-outcome axis has the right polarity in Qwen
+  (third confirmed registered prediction of the program). Descriptive
+  texture: the real direction is the only non-gate arm with a positive
+  point estimate; signflip and random directions lean harmful.
+- Experimental queue is now EMPTY: 13 pre-registered verdicts on the
+  books, G5 off. Next milestone: drafting (§5.2 + §5.5 first).
+
 #### Item G4′ LAUNCHED — Qwen answer-free class-mean at L43/rank-16 (job 458472, in flight)
 
 - Harness `scripts/stage2_qwen_g4_hf.py` per the G4′ registration
