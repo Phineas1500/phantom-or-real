@@ -1372,6 +1372,62 @@ Decision rules (before unblinding):
   checkpoint) registered as conditional follow-up on PRIMARY confirm.
 - Budget: ~1,150 forwards, no sampling ≈ 30–45 min on 2× A40.
 
+### J2. Position-separated staging: fresh-row confirmation + staging-site steering (Scholar)
+
+Pre-registered 2026-07-07 evening, after J1's verdict and before any J2
+data. J1's descriptive cell found raw_L43_final = 0.806 (outcome info
+at the final prompt token, same layer as the concept-position write
+port). That cell was unblinded once, descriptively; J2 makes it
+claim-bearing and runs the first causal test of the staging site.
+
+Design (one Scholar bf16 job, `scripts/stage2_qwen_j2_hf.py`):
+
+**Part A — fresh-row confirmation + position sweep (capture + CPU).**
+- 96 FRESH balanced sources (24/cell, stage-1 labels, seed 20260710,
+  excluding G0 ∪ all test rows ∪ the J1/G6 96 sources).
+- Capture per row (fp32): L43 & L53 at {concept-position mean, final
+  prompt token, random-position mean (8 seeded non-concept, non-final
+  prompt positions; 2 draws)}.
+- Battery: CV AUC per cell + 200 label-shuffles for the headline cell.
+- **A-PRIMARY (confirmation)**: fresh raw_L43_final AUC ≥ 0.70 AND
+  above its label-shuffle p95 → POSITION-SEPARATED STAGING CONFIRMED
+  (info at final token, chance at concept positions, same rows).
+  Expected companions (descriptive): concept-mean ≈ 0.5 on fresh rows;
+  random-position cells fill the map (is the info final-token-specific
+  or late-position-generic?).
+- Fail branch: fresh cell < 0.70 → J1's 0.806 was a one-shot
+  fluctuation; report both numbers, claim nothing, position sweep
+  still fills the Q1 map.
+
+**Part B — staging-site steering (generation; the gauge-not-lever
+question asked of Qwen's staging site).**
+- Class-mean from Part A's FINAL-TOKEN states (correct − incorrect;
+  sources disjoint from test rows, so donor-free by construction).
+- Test rows: the 24 G6 rows; `unhinted_baseline` gate (seed-ai 0, must
+  reproduce 0.177 verbatim).
+- Arms (seed-ai): `finaltok_classmean_050` (50) — vector rescaled to
+  0.5 × that row's final-token state norm, added at the final prompt
+  token during prefill; `finaltok_classmean_100` (51) — 1.0 × norm;
+  `finaltok_shuffled_100` (52) — label-shuffled vector (seed
+  20260710+1), 1.0 ×, the matched control. 8 samples/row.
+- **B-REGISTERED PREDICTION** (from Gemma's gauge-not-lever thesis):
+  writing the outcome class-mean AT THE STAGING SITE does NOT repair —
+  both dose arms' dP CIs include zero. Branches: (i) prediction holds
+  → "in Qwen too, the readable staging site is a gauge, not a lever —
+  the causal write-port is elsewhere (concept positions), completing
+  the cross-model symmetry"; (ii) either dose repairs (CI > 0) AND
+  beats shuffled paired (CI > 0) → MAJOR DIVERGENCE: Qwen's staging
+  site is causally potent — its gauge IS a lever — reported with equal
+  prominence, immediate follow-up battery required before any claim;
+  (iii) repairs but shuffled matches → geometry/norm artifact at this
+  site, no claim. Harmful outcomes reported descriptively.
+- Stats: row-cluster bootstrap (10k, seed 20260704) on the 24 rows;
+  parse-fail < 5% gate.
+- Scope: next-paper item; current paper's §6 line may add "confirmed
+  on fresh rows" if A-PRIMARY passes. No §1 movement on any branch.
+- Budget: 96 capture forwards + 4 arms × 24 rows × 8 = 768 gens
+  ≈ 55–70 min total.
+
 ### F(ii)-c. Deployment riders: position leak + collateral slice (Scholar)
 
 Pre-registered 2026-07-05 ~13:30, after F(ii)-b's LABEL-SPECIFIC verdict
