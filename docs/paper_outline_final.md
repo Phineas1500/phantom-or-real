@@ -117,10 +117,16 @@ Use skeleton §4 as-is (restructured 2026-07-04/05), four blocks:
   (collateral +0.266 beneficial; all-positions null; item H policy
   outcome). FIG 4: the F-series ladder — this is the paper's signature
   figure.
-- 5.6 Scope: Qwen raw-axis replication (with manipulation-check
-  telemetry); subtype suggestive-only (demoted, LOO-sensitivity shown);
-  geometry (core ⊥ readable subspace, 0.0002 < null).
+- 5.6 Scope & cross-model: Qwen raw-axis replication (with
+  manipulation-check telemetry); the G-series port — recognition gap
+  cross-model (G0 hint lift +0.523), carrier at L43 rel depth 0.67
+  (G2 +0.175), channel rank k*=16 (G3′; curve 48→95% of carrier at
+  ranks 8→64, random-64 controls at/below baseline) — the MOTIF
+  transfers, the coordinates (depth, rank, mean share) are
+  model-specific; subtype suggestive-only (demoted, LOO-sensitivity
+  shown); geometry (core ⊥ readable subspace, 0.0002 < null).
   TABLE: claims × (Gemma/Qwen) × (property/subtype) scope matrix.
+  FIG candidate: the two-model rank-recovery curve.
 
 ## 6. Discussion & Limitations (~1/2 page)
 
@@ -138,8 +144,8 @@ Use skeleton §4 as-is (restructured 2026-07-04/05), four blocks:
 - Limitations: one task family; n=16–26 rows (MDE statements for all
   nulls); brittleness/entropy-telemetry unrun; addressing gap per item H
   outcome; fp32/hardware scoping for any gorman-lane numbers.
-- Future: item G (Qwen lever port, pre-registered), projection-headroom
-  transplant, position policy v2.
+- Future: G4 (Qwen answer-free rider, registered), Qwen3.6 stretch,
+  projection-headroom transplant, position policy v2.
 
 ## Figures & Tables plan
 

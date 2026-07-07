@@ -17,6 +17,34 @@ final report is easier to assemble.
 
 ### 2026-07-06
 
+#### Item G LANDED — G2 carrier at L43; G3 misses at rank 8; G3′ resolves it: k\* = 16
+
+- **G2 (job 458463)**: layer-sweep winner L43 (rel depth 0.67 vs Gemma's
+  0.48): concept_replace `+0.175 [+0.100,+0.258]`, paired vs random
+  `+0.158 [+0.033,+0.292]` — uniquely qualifies under the registered
+  winner rule. Depth is a model-specific coordinate.
+- **G3 (job 458465)**: rank-8 ladder at L43 misses the registered PASS
+  (`+0.083 [−0.025,+0.217]`, 48% of the carrier anchor; every control
+  flat; mean_only ≈ 0 — no mean domination; MDE 0.12). Called as an
+  under-powered directional miss, verdict in
+  `docs/qwen_g3_ladder_summary.md`.
+- **G3′ (job 458468, registered before submission)**: rank-and-scale
+  ladder. Both replication gates reproduce G3 verbatim (240/240
+  token-identical). **RANK BRANCH PASSES at k\* = 16**: rank16
+  `+0.117 [+0.017,+0.217]`, paired vs pooled random-64 family
+  `+0.154 [+0.062,+0.242]`; curve climbs 48% → 67% → 71% → 95% of the
+  carrier at ranks 8/16/32/64 while random 64-dim subspaces at matched
+  norm sit at/below baseline. Scale branch moot; descriptively,
+  fixednorm-8 (+0.125, beats its noise family) supports the
+  projection-headroom account. Verdict in
+  `docs/qwen_g3prime_ladder_summary.md`.
+- **Landed wording** (ledger §3): the low-rank channel motif is
+  cross-model (2/2); its coordinates — depth (0.48 vs 0.67), rank
+  (8 vs ~16), mean share (35% vs ≈0) — are model-specific. §1 lever
+  claims stay Gemma-scoped (Qwen lacks erasure + label battery). G4
+  re-registered keyed to G3′ (see causal_handle_directions.md §G4′);
+  G5 (Qwen3.6) remains gated off.
+
 #### Item G (Qwen port) — G0 Gate PASSES on the HF Pathway
 
 - TL 3.0.0 lacks Qwen3.5 → item G rebuilt on the HF-hooks pathway used by

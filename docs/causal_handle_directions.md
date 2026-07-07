@@ -1128,6 +1128,82 @@ Decision rules (before unblinding):
 - Budget: 10 arms × 15 rows × 8 samples = 1,200 generations ≈ 65 min
   on 2× A40. Exploratory.
 
+### G4′. Qwen answer-free class-mean at L43/rank-16 (claim-bearing, keyed to G3′)
+
+Pre-registered 2026-07-06 late evening, after G3′'s k\*=16 verdict and
+before any G4′ data. Supersedes the original G4 rider (whose
+claim-bearing gate named a G3 PASS that did not occur; G3′ passed
+instead, so a fresh registration is required for this to move a claim).
+Question: does the ANSWER-FREE, label-specific content of natural
+success transfer cross-model — the F(ii)/F(ii)-b finale in Qwen, using
+Qwen's own coordinates (L43, rank 16)?
+
+Design (one Scholar bf16 job, `scripts/stage2_qwen_g4_hf.py`):
+
+- **Class-mean source rows**: screened pool of 32 naturally-correct +
+  32 naturally-incorrect candidates (stage-1 strong labels as the
+  screen), heights 3/4 balanced, seed 20260707, excluding G0_ROWS ∪ the
+  15 G3-ladder rows. In-job class label = majority of 4 unhinted
+  samples at temp 0.7 (ties dropped); target ≥ 20 confirmed per class,
+  take the first 20 per class in seeded order. States captured at L43
+  concept-mention positions on the unhinted prompt (one forward pass
+  per row); per-row position-mean; class-mean vector = mean(correct) −
+  mean(incorrect). Zero per-instance answer information reaches any
+  test row: direction from OTHER rows' natural outcomes, amplitude
+  from pooled scale.
+- **Test rows**: the 15 G3-ladder rows (disjoint from source rows by
+  construction). Basis: per-test-row LOO rank-16 PCA of the hint
+  deltas (identical to G3′'s rank16 arm — fresh-row discipline).
+- **Amplitude (donor-free pooled scale)**: the class-mean vector is
+  rescaled so its per-position add norm equals the pooled mean
+  per-position norm of the G3′ rank-16 reconstructions (one scalar,
+  computed over all 15 rows — no row-specific information). The raw
+  arm uses the same total norm.
+- **Arms** (8, seed formula as G3′ with seed-ai in parentheses):
+  `unhinted_baseline` (0) and `rank16_loo_add_L43` (10) — verbatim
+  replication gates vs G3′; `class_mean_raw_add_L43` (20) — full-dim,
+  matched norm; `class_mean_proj16_add_L43` (21) — projected into the
+  LOO rank-16 basis, matched norm; `shuffled_label_proj16_L43_d1/d2`
+  (22/23) — class labels shuffled within the 40 confirmed source rows
+  (seeded draws), mean recomputed, identical projection + norm;
+  `signflip_proj16_add_L43` (24) — negated proj vector;
+  `rand_norm16_add_L43_d1` (25) — random direction at the same pooled
+  norm.
+
+Decision rules (before unblinding):
+- Gates: both replication arms reproduce G3′ verbatim; mismatch →
+  debug, no unblinding.
+- **PRIMARY — cross-model answer-free repair**: `class_mean_proj16` dP
+  CI (vs in-job unhinted, row-cluster bootstrap 10k, seed 20260704)
+  excludes zero AND paired (proj16 − shuffled-label family) CI
+  excludes zero. PASS wording: "the answer-free, label-specific repair
+  transfers cross-model when expressed in each model's own coordinates
+  (layer, rank)"; ledger §1 claims 1–2 each gain a one-line Qwen scope
+  note (single job, 15 rows, no erasure battery); ledger §3
+  cross-model bullet upgrades.
+- **Dissociation rider** (reported either way, claim-bearing only if
+  PRIMARY passes): raw-vs-proj paired contrast; registered expectation
+  raw ≈ null (the F(ii) signature). If raw repairs as well as proj,
+  the necessity-dissociation claim stays Gemma-scoped and we say so.
+- **Sign-flip**: registered prediction ≤ 0 (null or harmful). A
+  positive sign-flip CI would impeach label-specificity — reported
+  with equal prominence.
+- **Shuffled matches real** (both reviewers' original prediction,
+  falsified in Gemma): if paired (real − shuffled) straddles zero
+  while proj16 beats baseline, the repair is geometry-generic in Qwen
+  — label-specificity does NOT transfer; reported with equal
+  prominence, no claim moves.
+- Null PRIMARY → MDE statement (expect ≈ 0.12 at n=15); wording:
+  "channel established (G3′), content transfer not established at this
+  power" — no claim moves.
+- Stats: row-cluster bootstrap only; shuffled family pooled across
+  draws; parse-integrity gate (parse-fail < 5% per arm) before any
+  verdict.
+- G5 (Qwen3.6) gate is NOT re-keyed: it remains off. Deliberate —
+  drafting outranks a third model.
+- Budget: screening ~256 gens + capture ~40 forwards + 8 arms × 15
+  rows × 8 samples = 960 gens; ≈ 80–90 min on 2× A40, one job.
+
 ### F(ii)-c. Deployment riders: position leak + collateral slice (Scholar)
 
 Pre-registered 2026-07-05 ~13:30, after F(ii)-b's LABEL-SPECIFIC verdict

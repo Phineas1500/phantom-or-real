@@ -59,9 +59,21 @@ recoverability.
 3. **Identification cost/transfer**: the causal subspace must be
    identifiable in the target setting (our pipeline: donor condition →
    delta capture → localization → rank compression → guards). Item G
-   tests whether this recipe transfers at all (Qwen, our task). If G
-   fails, the hypothesis is untestable cheaply and this doc's priority
-   drops.
+   tested this and it TRANSFERRED (2026-07-06): the full recipe found
+   Qwen's carrier at L43 and its channel rank k\*=16 (G2 + G3′). The
+   recipe's free parameters across models are depth, rank, and mean
+   share — the transplant must sweep them, not assume Gemma's values.
+   This failure mode is now retired.
+
+Update 2026-07-06 (G3′ scale rider — direct in-model evidence): in Qwen,
+rescaling the rank-8 reconstruction to the FULL delta's per-position
+norm lifts repair from +0.083 to +0.125 and beats matched full-norm
+random directions (+0.142 [+0.017,+0.275] paired), while the full-norm
+noise itself is inert (0.000/−0.033). Amplitude headroom on
+causally-filtered directions is real and direction-specific — the
+dilution-tax half of this hypothesis now has a second-model data point.
+(Direction identity still dominates: natural-norm rank-16 beats
+full-norm rank-8.)
 4. **Regime dependence**: prior raw vectors work at smaller scales /
    every-token application / other layers. The dissociation may be a
    large-model, sparse-position regime phenomenon. Either finding is
