@@ -121,12 +121,21 @@ Use skeleton §4 as-is (restructured 2026-07-04/05), four blocks:
   manipulation-check telemetry); the G-series port — recognition gap
   cross-model (G0 hint lift +0.523), carrier at L43 rel depth 0.67
   (G2 +0.175), channel rank k*=16 (G3′; curve 48→95% of carrier at
-  ranks 8→64, random-64 controls at/below baseline) — the MOTIF
-  transfers, the coordinates (depth, rank, mean share) are
-  model-specific; subtype suggestive-only (demoted, LOO-sensitivity
-  shown); geometry (core ⊥ readable subspace, 0.0002 < null).
+  ranks 8→64, random-64 controls at/below baseline); the CONTENT
+  finale (G4′→G6→G6′): answer-free label-specific transfer works in
+  Qwen too, but INVERTED — raw class-mean +0.120 [+0.016,+0.224]
+  (BCa/LOO survive), projection dilutes (raw−proj16 +0.099 CI>0),
+  real-vs-shuffled +0.182 [+0.070,+0.299], sign-flip harmful (5th
+  registered prediction), while NO outcome info is linearly decodable
+  at the channel address (AUC 0.504 vs Gemma 0.807). The sentence:
+  Gemma concentrates, Qwen distributes — the recipe is cross-model,
+  the compression is not; self-knowledge/channel co-location is a
+  model-specific design property. Subtype suggestive-only (demoted,
+  LOO-sensitivity shown); geometry (core ⊥ readable subspace,
+  0.0002 < null).
   TABLE: claims × (Gemma/Qwen) × (property/subtype) scope matrix.
-  FIG candidate: the two-model rank-recovery curve.
+  FIG candidates: two-model rank-recovery curve; the mirrored
+  raw-vs-projected bars (Gemma left, Qwen right).
 
 ## 6. Discussion & Limitations (~1/2 page)
 
@@ -144,8 +153,10 @@ Use skeleton §4 as-is (restructured 2026-07-04/05), four blocks:
 - Limitations: one task family; n=16–26 rows (MDE statements for all
   nulls); brittleness/entropy-telemetry unrun; addressing gap per item H
   outcome; fp32/hardware scoping for any gorman-lane numbers.
-- Future: G4 (Qwen answer-free rider, registered), Qwen3.6 stretch,
-  projection-headroom transplant, position policy v2.
+- Future: Q1 information map (where does Qwen stage outcome info,
+  given repair works from a chance-decodable address), Qwen3.6
+  stretch, projection-headroom transplant (now regime-scoped — see
+  projection_headroom_hypothesis.md update), position policy v2.
 
 ## Figures & Tables plan
 

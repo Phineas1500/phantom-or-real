@@ -48,3 +48,14 @@ within ±0.05).
   independence." The reviewers' "< ~5pp" wording is NOT beaten; claim 7
   wording (W1.3) should say "no cost detected; design cannot bound the
   cost tighter than the cluster-level rule of three".
+
+## 2026-07-07 addendum: G6′ claim-bearing contrasts (claim 13)
+
+Per the standing rule (BCa + LOO on any bound within 0.02 of zero),
+raw96-vs-baseline qualified (percentile lower bound +0.016). Both G6′
+contrasts SURVIVE: raw96 vs baseline BCa [+0.010,+0.219], LOO range
+[+0.098,+0.141], 13↑/4=/7↓ per-row; raw96 − shuffled-raw family BCa
+[+0.068,+0.297], LOO [+0.155,+0.209], 14↑/7=/3↓. Not row-sparse (the
+claim-12 failure mode does not recur). Conservative quote for the
+paper: BCa lower bound +0.010 on the main effect; the paired label
+contrast is the robust number (+0.182, BCa lower +0.068).

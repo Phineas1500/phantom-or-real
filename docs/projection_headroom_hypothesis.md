@@ -74,6 +74,25 @@ causally-filtered directions is real and direction-specific — the
 dilution-tax half of this hypothesis now has a second-model data point.
 (Direction identity still dominates: natural-norm rank-16 beats
 full-norm rank-8.)
+
+**SCOPE CORRECTION 2026-07-07 (G6/G6′ — the hypothesis is now
+regime-conditional).** Qwen's content transfer is a live counterexample
+to the unconditional form: projecting the natural class-mean into the
+causally-identified compact basis DILUTES it (raw +0.120 CI>0 →
+proj16 +0.021 null; raw−proj16 +0.099 CI>0), because Qwen distributes
+its content across the state instead of concentrating it. The corrected
+prediction: **projection beats raw exactly in concentrated-regime
+models** (Gemma-like: outcome info decodable at the channel address,
+low channel rank), and hurts in distributed-regime models (Qwen-like).
+Consequence for the decisive experiment (§below): it must FIRST run the
+cheap co-location diagnostic (the F(i)-analog: linear decodability of
+the class labels at the intervention address) to classify the target
+model's regime, and predicts headroom only when the diagnostic passes.
+This makes the hypothesis sharper, not weaker — it now predicts WHERE
+published raw-vector methods have headroom, and where they are already
+optimal. ALS's raw class-mean working at 7B is consistent with a
+distributed regime; the transplant should test both a concentrated and
+a distributed target.
 4. **Regime dependence**: prior raw vectors work at smaller scales /
    every-token application / other layers. The dissociation may be a
    large-model, sparse-position regime phenomenon. Either finding is
