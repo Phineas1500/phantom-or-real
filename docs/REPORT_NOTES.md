@@ -17,6 +17,28 @@ final report is easier to assemble.
 
 ### 2026-07-07
 
+#### Items J1 + J2 (evening) — the Qwen mystery localized, then correctly deflated; 6th registered prediction confirmed
+
+- **J1** (job 458524, 13 min, no generation): registered
+  consumption-reading test PARTIAL-AT-THRESHOLD (0.663 vs label-shuffle
+  p95 0.660 — inconclusive); descriptive cell found raw_L43_final =
+  0.806 (info at the final token, same layer as the write-port).
+  J-space hypothesis demoted; position separation promoted.
+  `qwen_j1_probe_summary.md`.
+- **J2** (job 458525, 49 min): fresh-row confirmation FAILED the
+  registered 0.70 bar (0.664) — J1's 0.806 was sampling luck; the
+  position PATTERN replicates (final > concept ≈ chance ≥ random, two
+  independent 96-row draws). Staging-site steering: **no-repair
+  prediction CONFIRMED (6th)** — both doses straddle zero, shuffled
+  matches real exactly (paired +0.005). Gauge-not-lever holds at
+  Qwen's staging site BY POSITION: readable at the final token where
+  writing does nothing label-specific; writable at concept positions
+  where nothing is readable. `qwen_j2_summary.md`.
+- Verdict count: 19 registered items landed; 6 registered predictions
+  confirmed. J-series closed for the current paper; §6 gets one
+  hypothesis-flagged sentence. Drafting is the milestone.
+
+
 #### Item G6′ LANDED — PRIMARY PASSES: answer-free, label-specific transfer works in Qwen (raw)
 
 - Verdict: `docs/qwen_g6prime_ladder_summary.md` (job 458512, overnight;

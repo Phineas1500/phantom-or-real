@@ -92,3 +92,15 @@ survives only as a candidate explanation for the weak concept-position
 trace and the strong descriptive response at the gauge region (0.792).
 The ladder in this doc is superseded by J2 (confirm + routing test);
 the 3.6 bridge is de-prioritized accordingly.
+
+## J2 UPDATE 2026-07-07 evening — position story softened; gauge-not-lever holds positionally
+
+`qwen_j2_summary.md`: fresh-row confirmation FAILED the 0.70 bar
+(final_L43 0.664 vs J1's 0.806 — sampling noise at n=96); the
+position-dependence PATTERN replicates (final > concept ≈ chance ≥
+random, both draws). Staging-site steering: registered no-repair
+prediction CONFIRMED with shuffled matching real exactly (paired
++0.005) — Qwen's readable site is a gauge, not a lever, mirroring
+Gemma by position instead of subspace. This doc's thread is closed for
+the current paper; next-paper ladder: powered probe → attention
+routing → Q1 map.
