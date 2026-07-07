@@ -17,6 +17,21 @@ final report is easier to assemble.
 
 ### 2026-07-06
 
+#### Item G4′ LAUNCHED — Qwen answer-free class-mean at L43/rank-16 (job 458472, in flight)
+
+- Harness `scripts/stage2_qwen_g4_hf.py` per the G4′ registration
+  (causal_handle_directions.md). Screening phase landed clean: **20
+  correct + 20 incorrect source rows confirmed** (majority-of-4 in-job
+  votes; disjoint from test/G0 rows, verified pre-launch); class-mean
+  norm 6.69 amplified to the pooled channel scale 23.81 (~3.6×, same
+  natural-difference-is-small pattern as Gemma); 15 test rows prepared.
+- **Both registered replication gates PASSED verbatim mid-run**:
+  unhinted_baseline and rank16_loo reproduce G3′ 240/240
+  token-identical (P 0.192 / 0.308 exactly) — three consecutive jobs
+  now agree token-for-token on shared arms; the six new arms unblind
+  cleanly. Verdict doc to follow tonight.
+- Branch merged to main through the G4′ launch (`7983ea8..27550ff`).
+
 #### Item G LANDED — G2 carrier at L43; G3 misses at rank 8; G3′ resolves it: k\* = 16
 
 - **G2 (job 458463)**: layer-sweep winner L43 (rel depth 0.67 vs Gemma's
