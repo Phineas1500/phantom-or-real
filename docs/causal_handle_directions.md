@@ -1204,6 +1204,78 @@ Decision rules (before unblinding):
 - Budget: screening ~256 gens + capture ~40 forwards + 8 arms × 15
   rows × 8 samples = 960 gens; ≈ 80–90 min on 2× A40, one job.
 
+### G6. Qwen content-transfer ladder (protocol-matched class-mean; Scholar)
+
+Pre-registered 2026-07-06 ~23:00, after the G4′ null and before any G6
+data. Motivation and audit in `qwen_content_transfer_followups.md`:
+three signals say G4′'s null is starvation, not absence (sign-flip
+CI < 0; proj responders a strict subset of rank-16 responders, per-row
+corr +0.73; only positive non-gate point estimate). Every protocol
+difference vs Gemma F(ii) gets its own arm.
+
+Design (one Scholar bf16 job, `scripts/stage2_qwen_g6_hf.py`):
+
+- **Class-mean sources (protocol-matched to Gemma)**: 96 rows — 24 per
+  (height ∈ {3,4} × class) cell, stage-1 strong labels, NO majority
+  screen (Gemma's exact selection), seed 20260708, excluding G0 ∪ all
+  test rows. Capture forwards-only at L43 gold-concept positions;
+  per-row position-mean; class-mean = mean(correct) − mean(incorrect).
+- **Test rows**: the 15 G3-ladder rows (gates verbatim) + ~9 fresh
+  failing rows (select_fresh_rows, seed 20260708, excluding G0 ∪
+  original 16) → ~24 rows, MDE ≈ 0.09. Per-row generation seeds are
+  row-keyed, so gate arms stay verbatim on the shared 15.
+- **Basis provenance**: ALL bases fit on the ORIGINAL 15 rows' hint
+  deltas only (LOO for those rows; the 9 new rows never contribute to
+  any basis — fresh-row discipline preserved, and the rank16 gate stays
+  verbatim).
+- **Norm convention (protocol-matched)**: per-position, per-row targets
+  = that row's rank-k reconstruction norms (Gemma F(ii) convention),
+  NOT a pooled scalar.
+- **Arms** (9, seed-ai in parens): `unhinted_baseline` (0) and
+  `rank16_loo_add_L43` (10) — verbatim gates on the shared 15;
+  `protomatched_proj16_add_L43` (30) — 96-row class-mean → LOO rank-16
+  projection → per-position norm match [PRIMARY];
+  `protomatched_proj64_add_L43` (31) — rank-64 projection, rank-64 norm
+  targets [named secondary: channel-coverage];
+  `protomatched_proj16_x2_L43` (32) — PRIMARY vector at ×2 [named
+  secondary: amplitude/dilution];
+  `class_mean_raw96_add_L43` (33) — unprojected, same norm targets
+  [dissociation rider];
+  `shuffled96_proj16_L43_d1` (34) — 96-label permutation, identical
+  projection/norms; `signflip96_proj16_L43` (35) — negated [registered
+  prediction: ≤ 0, again]; `rand_norm_perpos_add_L43_d1` (36) — random
+  direction at the same per-position norms.
+- **F(i)-analog rider (CPU, in-job, descriptive)**: from the 96
+  captured row-means — CV AUC of natural correct vs incorrect in the
+  rank-16 and rank-64 slices vs 200 random matched-rank slices vs
+  full-dim ceiling. Diagnoses whether natural-outcome information is
+  decodable at L43 concept positions at all.
+
+Decision rules (before unblinding):
+- Gates: unhinted + rank16 verbatim vs G3′ on the shared 15 rows;
+  parse-fail < 5% per arm.
+- **PRIMARY**: protomatched_proj16 dP CI (24 rows, row-cluster
+  bootstrap 10k, seed 20260704) excludes zero AND paired (proj16 −
+  shuffled96) CI excludes zero. PASS wording: "answer-free content
+  transfers cross-model under protocol-matched conditions"; claim 13
+  caveat upgrades; §1 claims still remain Gemma-scoped (no erasure/full
+  battery in Qwen).
+- **Named secondaries** (reported with CIs either way; localization
+  reading): proj64 and proj16_x2 each vs baseline and paired vs the
+  shuffled/rand family at ×1 (limitation acknowledged: no ×2 control —
+  a ×2-only pass is flagged amplitude-confounded and would need its own
+  control before any claim).
+- Sign-flip: registered prediction ≤ 0.
+- Dissociation rider: raw96 vs proj16 paired (descriptive).
+- All-null at MDE ≈ 0.09 → licensed sentence: "content transfer
+  genuinely differs across models at matched protocol" — a real
+  cross-model contrast, reported as such.
+- G4′'s verdict stands regardless; this is next-paper material unless
+  PRIMARY passes, in which case the current paper's cross-model section
+  MAY cite it as a one-line addendum (decision at drafting).
+- Budget: 96 capture forwards + 9 arms × ~24 rows × 8 ≈ 1,730 gens
+  ≈ 110 min on 2× A40, one job.
+
 ### F(ii)-c. Deployment riders: position leak + collateral slice (Scholar)
 
 Pre-registered 2026-07-05 ~13:30, after F(ii)-b's LABEL-SPECIFIC verdict
