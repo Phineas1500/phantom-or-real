@@ -15,6 +15,32 @@ final report is easier to assemble.
 
 ## Running Notes
 
+### 2026-07-07
+
+#### Item G6 LANDED — PRIMARY null but EXPLAINED; the dissociation INVERTS in Qwen
+
+- Verdict: `docs/qwen_g6_ladder_summary.md` (job 458474; gates verbatim
+  3rd consecutive job; 24 rows; 96 protocol-matched sources).
+- **The night's pivotal diagnostic** — F(i)-analog at L43 concept
+  positions: full-dim CV AUC **0.504 (chance)** vs Gemma's 0.807 at its
+  carrier layer. Qwen does not stage linearly-decodable outcome
+  information at the channel's address; G4′'s null is explained
+  (empty warehouse, not weak protocol).
+- **The inversion**: raw 96-row class-mean **+0.120 [+0.016,+0.224]**
+  CI>0; raw−proj16 paired **+0.099 CI>0**; proj64 +0.104 CI>0
+  (control-unmatched flag); proj16 PRIMARY null (+0.021, ≈ shuffled);
+  ×2 amplitude null; **sign-flip −0.115 CI<0** (4th confirmed
+  registered prediction; asymmetry: breaking easy, helping needs the
+  full vector). Mirror image of Gemma's raw-null/proj-potent.
+- Landed sentence: Gemma CONCENTRATES (channel rank 8, content in the
+  compact core, info decodable at the address), Qwen DISTRIBUTES
+  (rank ~16→64, content outside the compact core, info not linearly
+  decodable there). Same motif, opposite compression regime.
+- NOT yet claimable: raw label-specificity (no shuffled-RAW control;
+  raw−rand +0.089 just misses). **G6′ is the registered one-job
+  nail-down** (raw as PRIMARY + shuffled-raw ×2 + rand ×2 +
+  signflip-raw + shuffled-proj64-at-64-norms).
+
 ### 2026-07-06
 
 #### Item G4′ LANDED — PRIMARY NULL; sign-flip prediction confirmed; G-series closed

@@ -1276,6 +1276,45 @@ Decision rules (before unblinding):
 - Budget: 96 capture forwards + 9 arms × ~24 rows × 8 ≈ 1,730 gens
   ≈ 110 min on 2× A40, one job.
 
+### G6′. Raw-transfer control battery (the G6 nail-down; Scholar)
+
+Pre-registered 2026-07-07 ~01:15, after G6's verdict and before any G6′
+data. G6 landed the inversion descriptively (raw96 +0.120 CI>0,
+raw−proj16 +0.099 CI>0) but raw96 was a descriptive rider: no
+shuffled-RAW control exists, raw−rand missed its CI (+0.089
+[−0.010,+0.193], one draw), and proj64's pass carries the
+control-unmatched flag. G6′ supplies exactly the missing controls.
+
+- Rows/gates/norms/seeds: identical to G6 (24 test rows, 96-source
+  class-mean recomputed identically in-job, per-position rank-16 recon
+  norm targets; unhinted + rank16 verbatim gates; class_mean_raw96 arm
+  regenerated with G6's seed-ai 33 — must reproduce G6 verbatim as a
+  third gate).
+- New arms (seed-ai): `shuffled_raw96_d1/d2` (40/41) — label-permuted
+  class-means (draws seeded control_seed+10+d), UNPROJECTED, identical
+  norm targets [the label control for raw];
+  `signflip_raw96` (42) — negated raw [registered prediction: ≤ 0];
+  `rand_norm_perpos_d2/d3` (43/44) — two more amplitude-matched random
+  draws [pooled with G6's d1 → 3-draw family];
+  `shuffled96_proj64_at64norms_d1` (45) — shuffled-label vector
+  projected into rank-64 at rank-64 norms [closes proj64's flag].
+- Decision rules (before unblinding):
+  - Gates: all three replication arms verbatim; parse-fail < 5%.
+  - **PRIMARY**: raw96 (from gate arm, pooled 24 rows) CI excludes
+    zero AND paired (raw96 − shuffled-raw family) CI excludes zero.
+    PASS wording: "answer-free, label-specific content transfer works
+    in Qwen through the FULL state — Gemma concentrates, Qwen
+    distributes; the recipe is cross-model, the compression is not."
+    Claim 13 upgrades; §1 claims remain Gemma-scoped.
+  - Secondary: raw96 − rand family (3 draws pooled) CI; signflip-raw
+    ≤ 0; proj64 − shuffled-proj64 (both at 64-norms) CI [de-flags or
+    kills the proj64 pass].
+  - Shuffled-raw matches real → the raw effect is geometry/amplitude-
+    generic; reported with equal prominence, inversion wording demoted
+    to "raw acts, mechanism unresolved."
+  - Budget: 6 new arms + 1 regenerated gate arm... 7 arms × 24 rows
+    × 8 + capture ≈ 1,450 gens ≈ 95 min, one job.
+
 ### F(ii)-c. Deployment riders: position leak + collateral slice (Scholar)
 
 Pre-registered 2026-07-05 ~13:30, after F(ii)-b's LABEL-SPECIFIC verdict

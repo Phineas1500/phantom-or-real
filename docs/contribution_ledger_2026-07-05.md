@@ -140,14 +140,22 @@ evidence, framed as adjudication rather than discovery)
   cross-model (2/2 models); its coordinates — depth (0.48 vs 0.67),
   rank (8 vs ~16), mean share (35% vs ≈0) — are model-specific." §1
   LEVER claims remain Gemma-3-27B/property scoped (Qwen lacks the full
-  battery: no erasure, no label controls). G4′ LANDED (job 458472,
-  gates verbatim): PRIMARY NULL — answer-free content transfer NOT
-  established at this power (proj16 +0.050 [−0.058,+0.167], MDE 0.12);
-  registered sign-flip prediction CONFIRMED (−0.083, CI < 0 — the
-  polarity of the natural-outcome axis is right in Qwen). Wording:
-  "channel cross-model (G3′); the answer-free content result is
-  Gemma-only at current power." G5 remains off, deliberately. The
-  G-series is closed.
+  battery: no erasure, no label controls). G4′ LANDED null (proj16
+  +0.050, MDE 0.12; sign-flip −0.083 CI<0 confirmed). G6 LANDED
+  2026-07-07 (job 458474, gates verbatim, 24 rows, 96 protocol-matched
+  sources): PRIMARY (proj16) null AND EXPLAINED — the F(i)-analog shows
+  Qwen stages NO linearly-decodable outcome info at L43 concept
+  positions (full-dim AUC 0.504 vs Gemma's 0.807); but the dissociation
+  INVERTS: raw class-mean +0.120 [+0.016,+0.224] CI>0, raw−proj16
+  paired +0.099 CI>0, proj64 +0.104 CI>0 (control-unmatched flag),
+  sign-flip −0.115 CI<0 (4th confirmed registered prediction), ×2
+  amplitude null. Landed wording: "Gemma concentrates (raw-null/
+  proj-potent), Qwen distributes (raw-potent/proj-diluted) — channel
+  energy, channel rank, and content placement are all model-specific
+  coordinates of the same motif." Raw label-specificity NOT yet
+  claimable (shuffled-RAW control doesn't exist; raw−rand misses CI) —
+  G6′ registered as the one-job nail-down. G5 remains off. §1 claims
+  unchanged.
 
 ## 4. NOT CLAIMABLE (rejected wordings)
 

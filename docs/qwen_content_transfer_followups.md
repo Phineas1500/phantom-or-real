@@ -71,3 +71,18 @@ class_mean_raw (96-row, for the dissociation rider) · rand_norm d1 ·
   rules should mirror G4′ (PRIMARY on the protocol-matched arm vs
   baseline AND vs shuffled family) with the rank-64 and dose arms as
   named secondaries.
+
+## LANDED 2026-07-07 (G6, job 458474)
+
+The audit's ranking was wrong in an informative way: protocol matching
+was necessary but the bottleneck was neither sample count nor norms —
+it was WHERE the content lives. See `qwen_g6_ladder_summary.md`:
+no decodable outcome info at L43 concept positions (AUC 0.504), PRIMARY
+(proj16) null and explained, but raw96 +0.120 CI>0 and raw−proj16
++0.099 CI>0 — the Gemma dissociation INVERTS (concentrated vs
+distributed). Menu item 1 (protocol matching) mattered for the RAW arm;
+items 2–3 (rank-64, dose) resolved as directions-not-amplitude. The
+F(i)-analog rider (item 5) was the decisive diagnostic. Next: G6′
+(registered) — shuffled-raw battery to make the raw transfer
+claim-bearing; then the Q1 information map (layer × position
+decodability sweep) to find where Qwen DOES stage outcome information.
