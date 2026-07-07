@@ -93,8 +93,22 @@ sections; add new sources here FIRST, then cite.
   variance yet is causally dominant (59% vs 5% swaps; non-J → 0 under
   clamping); decodable-but-inert cases; "ignition" commitment at relative
   depth 0.38–0.92. Cite as convergence; differentiate on variable/repair/
-  controls. [WebFetch summary 2026-07-06; UNV — verify quotes against the
-  page before camera-ready]
+  controls. Also methodologically load-bearing for the Qwen mystery
+  (§6/next paper): Tuned Lens (linear regression on states) substantially
+  underperforms J-Lens — linear probes under-read consumption-staged
+  content (see qwen_jspace_connection.md). [WebFetch summary 2026-07-06;
+  UNV — verify quotes against the page before camera-ready]
+- **Nanda, "A review of Anthropic's Global Workspace paper"
+  (lesswrong.com/posts/zFJ3ZdQwrTWE9jT5S)** — independent skeptical
+  review endorsing the core claim ("overwhelming amount of evidence for
+  the existence of this cognitive space") with a **Qwen 3.6 27B
+  replication** (Jacobians to penultimate layer, 25 Pile prompts, 128
+  tokens; most probing/causal effects reproduce, weaker but positive;
+  poetry/arithmetic fail on capability grounds). Cite: (i) as
+  third-party validation of the workspace machinery in the Qwen family;
+  (ii) for the explicit probing-vs-Jacobian reading distinction; (iii)
+  for the cheap replication recipe our J-aware F(i)-analog would use.
+  [WebFetch summary 2026-07-07; UNV — verify quotes before camera-ready]
 
 ## F. Task, tooling, and infrastructure
 

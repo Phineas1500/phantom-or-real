@@ -52,7 +52,11 @@ Sources: L1/L2/L3 verified sweeps + WebFetch of the Anthropic paper.
    bidirectionally; our channel repairs but never misdirects (sign-flip
    harms; item H: commitment verb, address = object) — the lever may be
    a decision mechanism within (or beside) their content workspace.
-   Bridging test reserved for the next paper: J-lens ↔ rank-8 overlap.
+   Bridging test reserved for the next paper: J-lens ↔ channel overlap,
+   now Qwen-native and mechanistically motivated — the J-aware
+   F(i)-analog may explain the chance-decodable-yet-repairable address
+   (design: qwen_jspace_connection.md; Nanda's LessWrong review
+   replicates the J-machinery on Qwen 3.6 27B).
 
 ## One-line summary
 

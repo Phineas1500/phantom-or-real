@@ -104,7 +104,13 @@ adversarial search)
   0.48 sits inside). Cite as concurrent convergence, NOT as prior art on
   correctness: they have no gauge, no repair, no label battery, no
   accuracy claims. Their vocabulary (privileged subspace, routing) is
-  usable with citation.
+  usable with citation. Nanda's independent review (LessWrong,
+  2026) endorses the core claim and REPLICATES the machinery on Qwen
+  3.6 27B — cite as third-party validation in our second model's
+  family. Their Tuned-Lens-vs-J-Lens gap (linear probes under-read
+  consumption-staged content) is the leading candidate explanation for
+  our Qwen mystery (repairs from a chance-decodable address) — see
+  `qwen_jspace_connection.md`; hypothesis only, no current-paper claim.
 
 ## 3. SHARED TERRITORY (open questions where we contribute the strongest
 evidence, framed as adjudication rather than discovery)
