@@ -1752,3 +1752,123 @@ Decision rules (before unblinding):
   and shard 3 anchor-only (416 gens ≈ 1.1 h) — each inside the 4 h
   constraint-J wall with margin. A 2-shard split would breach the
   wall at this harness's measured rate and is registered out.
+
+### K′. Energy-matched necessity controls (content vs energy adjudication)
+
+Pre-registered 2026-08-09 evening, after item K's verdict and before
+any K′ data. Item K's registered telemetry revealed that the fitted
+rank-8 delta basis carries 97.7% of the state norm at gold positions
+(removal ≈ 30,452 of ‖state‖ ≈ 31,163), while the matched-RANK
+controls removed 1.3–3.3% — so K's landed wording was scoped to
+state-content necessity and the §6 endogeneity movement was DEFERRED.
+K′ supplies the missing adjudication: does the break track the deleted
+CONTENT or the deleted ENERGY? No registered prediction — the branches
+are the result either way. Claim scope inherits K's (site/protocol;
+never channel-identity).
+
+Design — three Scholar bf16 jobs (constraint J, gpu:2), SAME row
+machinery as item K: identical 48-row selection (seed 20260809, same
+exclusions), identical 3-shard split, `--necessity-prime` mode in
+`scripts/stage2_rank_k_guard_v2.py`. No anchor job: the verbatim gates
+ride in-shard.
+
+- **Frozen inputs (all from artifacts already on disk; nothing refit)**:
+  the K delta basis (458431 states npz, identical load path + pinned
+  norm check); the 458416 capture's 96 per-row position-mean unhinted
+  states, from which (a) `capture_mean` = the mean state vector and
+  (b) `statepca8` = the top-8 RIGHT SINGULAR VECTORS of the UNCENTERED
+  96 × d state matrix (the energy-optimal rank-8 subspace of natural
+  states — deterministic SVD, frozen).
+- **Arms** (k=8; explicit seed indices in parens; both gate arms keep
+  their item-K indices so seeds are identical):
+  `correct_unhinted_baseline` (0) and `correct_ablate_rank8_gold_L30`
+  (60) — VERBATIM GATES: must reproduce jobs 459836/459837/459838
+  token-for-token per shard;
+  `correct_meanablate_gold_L30` (70) — replace each gold-position
+  state with `capture_mean` (mean-ablation: destroys row- and
+  position-specific content, preserves a typical state; K′-PRIMARY);
+  `correct_statepca8_ablate_gold_L30` (71) — project out the
+  `statepca8` subspace (matched-ENERGY generic removal);
+  `correct_ablate_rank1_gold_L30` (72), `_rank2_` (73), `_rank4_`
+  (74) — project out the top-1/2/4 components of the frozen delta
+  basis (energy-vs-dimension ladder; per-rung removed-energy
+  telemetry);
+  `correct_ablate_dose012_gold_L30` (75) — partial removal h → h −
+  0.12·proj_delta8(h), the α that norm-matches the removal to the
+  item-K add family (0.12 × 30,452 ≈ 3,650 ≈ the pinned 3,708);
+  `correct_keeponly8_gold_L30` (76) — h → proj_delta8(h): DELETE the
+  5,368-dim complement (≈ 21% of norm), keep only the 8 delta
+  dimensions (sufficiency-at-site rider).
+- **Hook**: `make_position_project_out_hook` generalized with
+  `alpha` (partial removal) and `keep` (project-onto);
+  `correct_meanablate` uses the existing replace hook with the tiled
+  frozen mean. Formulas as written above, registered exactly.
+- **Telemetry (descriptive, no branch)**: per-arm removed/kept norm
+  fractions; per-row ‖h − capture_mean‖/‖h‖ for the mean-ablation
+  (the effective perturbation size); principal-angle cosines between
+  the delta basis and `statepca8`.
+
+Decision rules (before unblinding):
+
+- Gates: both gate arms verbatim vs the matching item-K shard
+  (mismatch → debug, no unblinding); parse per item K (5% flag with
+  P(strong|parsed) alongside, > 20% voids the arm; branches scored on
+  dP(strong), unparsed = not-strong); pooled baseline ≥ 0.55.
+- Stats: identical to item K (row-cluster bootstrap 10k, seed
+  20260704; paired within-row contrasts; MDE statement mandatory on
+  every branch resting on a straddling CI).
+- **Interpretability pre-rules (artifact-derived, computable before
+  launch; recorded at registration)**: (a) if the mean principal-angle
+  cosine between `statepca8` and the delta basis exceeds 0.9, the
+  statepca8 arm is labeled CONFOUNDED-BY-OVERLAP and carries no
+  adjudication weight (descriptive only); (b) if the median
+  ‖h − capture_mean‖/‖h‖ across rows exceeds 0.5, the mean-ablation
+  carries a MEAN-FAR flag — the frozen mean is not a "typical state"
+  for these positions and the CONTENT-NECESSITY wording weakens to
+  its hedged form (flag reported alongside, branch structure
+  unchanged). COMPUTED AT REGISTRATION from the frozen artifacts:
+  (a) principal-angle cosines delta8 vs statepca8 = [0.988, 0.846,
+  0.758, 0.421, 0.415, 0.235, 0.091, 0.022], mean 0.472 → statepca8
+  is INTERPRETABLE (the subspaces share the single giant-norm
+  direction, then diverge); its expected removed-norm fraction on the
+  archived K rows is 0.993 (≥ the delta basis's 0.977 — a true
+  matched-energy control). (b) median ‖h − capture_mean‖/‖h‖ = 0.175
+  on the 46 archived K rows → NO MEAN-FAR flag; mean-ablation is a
+  ≈ 0.18·‖h‖ perturbation that preserves the typical state.
+- **K′-PRIMARY branch partition over (meanablate sign × paired
+  (meanablate − ablate_rank8) sign)**:
+  1. CONTENT-NECESSITY: meanablate CI entirely < 0 AND paired CI < 0
+     or straddling (breaks as hard as zero-ablation) → row-specific
+     content at gold positions is load-bearing even at preserved
+     typical energy. Item K's DEFERRED §6 movement fires in the
+     hedged channel-in-use form ("row-specific content at concept
+     positions is necessary; carried within the delta-span state
+     content"); wording downgraded per the MEAN-FAR flag if set.
+  2. PARTIAL: meanablate CI entirely < 0 AND paired CI entirely > 0
+     (breaks, but less than zero-ablation) → both energy and content
+     contribute; content share = meanablate dP / ablate_rank8 dP
+     reported with CI; §6 movement fires only in the weaker
+     "substantial share" form if the share's CI floor ≥ 0.33,
+     otherwise stays deferred.
+  3. ENERGY-ACCOUNT: meanablate CI straddles zero (MDE mandatory) →
+     item K's break is a state-deletion artifact; K's state-level
+     wording is FINAL; thin-subspace necessity NOT established at
+     this site; the deferred §6 movement is CANCELLED (not deferred
+     again).
+  4. Catch-all: meanablate CI entirely > 0, or any arm CI > 0 outside
+     named branches → descriptive, wording reserved.
+- **Riders (descriptive labels, no claims)**: statepca8 vs
+  ablate_rank8 paired (subject to pre-rule (a)); keeponly8 labeled
+  SUFFICIENT-AT-SITE if its dP CI lower bound ≥ −0.15, else
+  INSUFFICIENT-AT-SITE; rank ladder reported as break-vs-rung with
+  removed-energy per rung (descriptive turn-on point: first rung with
+  CI < 0 and point ≤ 50% of ablate_rank8's); dose012 compared
+  descriptively (cross-job) to item K's rand_norm family (−0.351) and
+  signflip_100 (−0.696) at the matched ≈ 3,700 perturbation norm.
+- Scope: exploratory; no §1 claim moves on any branch; K′ only
+  resolves item K's deferred/pending wording as specified above.
+  Qwen analog remains deferred.
+- Budget: 9 arms × 48 rows × 8 = 3,456 gens as three 16-row shards
+  (1,152 gens ≈ 2.8–3.0 h each at the harness's measured 6.8
+  gens/min), all inside the 4 h wall; sequential under the 2-GPU QOS
+  cap ≈ 9 h wall-clock.
