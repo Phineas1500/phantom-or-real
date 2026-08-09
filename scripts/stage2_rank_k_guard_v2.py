@@ -41,6 +41,28 @@ from scripts.stage2_subtype_discriminator import (  # noqa: E402
 
 COMPOSITE_MANIFEST_ROWS = [3073, 3290, 3415, 4322, 4675, 6188, 6327, 8035, 8298, 8874, 9549, 10079, 10714]
 
+FIIC_CORRECT_ROWS = [3109, 3134, 3471, 3680, 3685, 3738, 4270, 5235, 6312, 6367, 6411, 7047, 7812, 8388, 9855, 10524]
+
+NECESSITY_PINNED_NORM = 3708.2628096560807
+
+
+def make_position_project_out_hook(components: Any, positions: list[int]):
+    """Project the residual at `positions` onto the orthogonal complement of the
+    row-space of `components` (k x d_model, orthonormal rows). Sibling of
+    make_position_add_hook; the same shape guard makes it prefill-only under a
+    KV cache (item K)."""
+
+    def hook_fn(act: Any, hook: Any) -> Any:  # noqa: ARG001
+        if not positions or act.shape[1] <= max(positions):
+            return act
+        comp = components.to(device=act.device, dtype=act.dtype)
+        for pos in positions:
+            state = act[:, pos, :]
+            act[:, pos, :] = state - (state @ comp.T) @ comp
+        return act
+
+    return hook_fn
+
 
 def select_fresh_rows(
     jsonl: Path,
@@ -200,6 +222,73 @@ def build_classmean_c_arms(layer: int, rank: int) -> list[Arm]:
         Arm("correct_unhinted_baseline", "none_correct", "none"),
         Arm(f"correct_fixednorm_add_L{layer}", "correct_fixednorm_add", "correct_unhinted_baseline", (layer,), rank, "class_mean_projected_full_basis_correct_rows"),
     ]
+
+
+def build_necessity_arms(layer: int) -> tuple[list[Arm], dict[str, int]]:
+    """Item K correct-side arms with explicit (registered) seed indices 0/60-68."""
+    rank = 8
+    arms = [
+        Arm("correct_unhinted_baseline", "none_correct", "none"),
+        Arm(f"correct_ablate_rank8_gold_L{layer}", "ablate_rank8", "correct_unhinted_baseline", (layer,), rank, "frozen_458431_full_basis_project_out"),
+        Arm(f"correct_ablate_rand8_gold_L{layer}_d1", "ablate_rand8", "correct_unhinted_baseline", (layer,), rank, "random_orthonormal_project_out"),
+        Arm(f"correct_ablate_rand8_gold_L{layer}_d2", "ablate_rand8", "correct_unhinted_baseline", (layer,), rank, "random_orthonormal_project_out"),
+        Arm(f"correct_ablate_perm8_gold_L{layer}", "ablate_perm8", "correct_unhinted_baseline", (layer,), rank, "coordinate_permuted_basis_project_out"),
+        Arm("correct_signflip_fixednorm_100", "signflip_fixednorm", "correct_unhinted_baseline", (layer,), rank, "negated_class_mean_full_basis_pinned_norm"),
+        Arm("correct_signflip_fixednorm_200", "signflip_fixednorm", "correct_unhinted_baseline", (layer,), rank, "negated_class_mean_full_basis_pinned_norm_x2"),
+        Arm("correct_rand_norm_gold_d1", "rand_norm_pinned", "correct_unhinted_baseline", (layer,), rank, "random_direction_pinned_norm"),
+        Arm("correct_rand_norm_gold_d2", "rand_norm_pinned", "correct_unhinted_baseline", (layer,), rank, "random_direction_pinned_norm"),
+        Arm("correct_fixednorm_100", "posflip_fixednorm", "correct_unhinted_baseline", (layer,), rank, "class_mean_full_basis_pinned_norm"),
+    ]
+    seed_index = {
+        "correct_unhinted_baseline": 0,
+        f"correct_ablate_rank8_gold_L{layer}": 60,
+        f"correct_ablate_rand8_gold_L{layer}_d1": 61,
+        f"correct_ablate_rand8_gold_L{layer}_d2": 62,
+        f"correct_ablate_perm8_gold_L{layer}": 63,
+        "correct_signflip_fixednorm_100": 64,
+        "correct_signflip_fixednorm_200": 65,
+        "correct_rand_norm_gold_d1": 66,
+        "correct_rand_norm_gold_d2": 67,
+        "correct_fixednorm_100": 68,
+    }
+    return arms, seed_index
+
+
+def build_necessity_anchor_arms(layer: int) -> list[Arm]:
+    """Item K anchor shard: F(ii)-c's first two arms at their 458431 positional
+    indices (0/1), so the enumerate-based seeds regenerate job 458431 verbatim."""
+    return [
+        Arm("unhinted_baseline", "none", "none"),
+        Arm(f"fixednorm_proj_add_L{layer}", "fixednorm_proj_add", "unhinted_baseline", (layer,), 8, "class_mean_projected_fixed_pooled_norm"),
+    ]
+
+
+def load_frozen_deltas(npz_path: Path, layer: int) -> dict[int, np.ndarray]:
+    """The guard-row concept deltas archived by job 458431 (item K frozen basis source)."""
+    import re
+
+    data = np.load(npz_path)
+    out: dict[int, np.ndarray] = {}
+    for key in data.files:
+        match = re.match(rf"L{layer}_row(\d+)_concept_delta$", key)
+        if match:
+            out[int(match.group(1))] = data[key].astype(np.float32)
+    if not out:
+        raise ValueError(f"no L{layer} concept deltas in {npz_path}")
+    return out
+
+
+def necessity_pinned_norm_recompute(frozen_deltas: dict[int, np.ndarray], rank: int) -> float:
+    """Reproduce 458431's correct-side fixed_norm_target from the frozen deltas:
+    mean over rows of the per-row LOO rank-k reconstruction norm mean."""
+    import torch
+
+    norms = []
+    for row in sorted(frozen_deltas):
+        basis = fit_pca_basis(frozen_deltas, rank, exclude_rows={row})
+        recon = rank_k_reconstruction(torch.from_numpy(frozen_deltas[row]), basis).numpy().astype(np.float64)
+        norms.append(float(np.linalg.norm(recon, axis=1).mean()))
+    return float(np.mean(norms))
 
 
 def select_correct_rows(
@@ -446,6 +535,8 @@ def write_markdown_summary(path: Path, report: dict[str, Any]) -> None:
     titles = {
         "rank8_specificity_controls_fresh_rows": "Rank-8 Specificity Controls (fresh rows)",
         "rank8_predicted_coefficients_fresh_rows": "Rank-8 Predicted-Coefficient Repair (fresh rows)",
+        "necessity_ablation_natural_successes": "Item K Necessity Ablation (naturally-correct rows)",
+        "necessity_anchor_replication": "Item K Anchor Replication (guard rows, verbatim gates)",
     }
     title = titles.get(report["method"], "Rank-k Guard v2 (fresh rows)")
     lines = [
@@ -522,6 +613,16 @@ def main() -> int:
     parser.add_argument("--correct-seed", type=int, default=20260706)
     parser.add_argument("--position-policy", action="store_true")
     parser.add_argument("--percand-samples", type=int, default=4)
+    parser.add_argument("--necessity", action="store_true",
+        help="Item K: necessity ablation on natural successes (correct-side shards).")
+    parser.add_argument("--necessity-anchor", action="store_true",
+        help="Item K anchor shard: regenerate 458431's unhinted+fixednorm arms verbatim.")
+    parser.add_argument(
+        "--frozen-deltas-npz",
+        type=Path,
+        default=Path("results/stage2/erasure/classmean_c_deployment_27b_property_shard0of1_states.npz"),
+    )
+    parser.add_argument("--pinned-fixed-norm", type=float, default=NECESSITY_PINNED_NORM)
     parser.add_argument("--g0-calibration", action="store_true",
         help="Item G0: unhinted+hinted baselines only, rows loaded by --row-indices "
         "directly from --jsonl with NO correctness filter.")
@@ -549,8 +650,10 @@ def main() -> int:
     args = parser.parse_args()
     started = time.time()
 
-    if sum([args.specificity_controls, args.predicted_coefficients, args.class_mean, args.class_mean_b, args.class_mean_c, args.position_policy, args.g0_calibration]) > 1:
+    if sum([args.specificity_controls, args.predicted_coefficients, args.class_mean, args.class_mean_b, args.class_mean_c, args.position_policy, args.g0_calibration, args.necessity]) > 1:
         raise ValueError("mode flags are mutually exclusive")
+    if args.necessity_anchor and not args.necessity:
+        raise ValueError("--necessity-anchor requires --necessity")
     if args.specificity_controls:
         stem = f"rank8_specificity_27b_property_shard{args.shard_index}of{args.shard_count}"
         method = "rank8_specificity_controls_fresh_rows"
@@ -569,6 +672,12 @@ def main() -> int:
     elif args.position_policy:
         stem = f"position_policy_27b_property_shard{args.shard_index}of{args.shard_count}"
         method = "position_selection_policy"
+    elif args.necessity and args.necessity_anchor:
+        stem = f"necessity_anchor_27b_property_shard{args.shard_index}of{args.shard_count}"
+        method = "necessity_anchor_replication"
+    elif args.necessity:
+        stem = f"necessity_27b_property_shard{args.shard_index}of{args.shard_count}"
+        method = "necessity_ablation_natural_successes"
     elif args.g0_calibration:
         stem = f"qwen_g0_calibration_shard{args.shard_index}of{args.shard_count}"
         method = "qwen_g0_calibration"
@@ -624,6 +733,41 @@ def main() -> int:
             row["row_class"] = "correct"
         print(f"correct-side rows: {[r['row_index'] for r in correct_rows]}", flush=True)
         selected_rows = selected_rows + correct_rows
+    necessity_correct_selection = None
+    if args.necessity:
+        if ranks != [8]:
+            raise ValueError("--necessity expects --rank-list 8 (registered item K)")
+        if args.necessity_anchor:
+            for row in selected_rows:
+                row["row_class"] = "failing"
+        else:
+            capture_row_ids = set()
+            with args.capture_manifest.open() as f:
+                for line in f:
+                    capture_row_ids.add(int(json.loads(line)["source_row_index"]))
+            correct_exclude = (
+                exclude
+                | {int(r["row_index"]) for r in all_rows}
+                | capture_row_ids
+                | set(FIIC_CORRECT_ROWS)
+            )
+            correct_rows_all = select_correct_rows(
+                args.jsonl, exclude=correct_exclude, heights=heights,
+                per_height=args.correct_per_height, seed=args.correct_seed,
+            )
+            correct_rows = shard_rows(correct_rows_all, args.shard_index, args.shard_count)
+            for row in correct_rows:
+                row["row_class"] = "correct"
+            necessity_correct_selection = {
+                "correct_seed": args.correct_seed,
+                "correct_per_height": args.correct_per_height,
+                "n_excluded": len(correct_exclude),
+                "fiic_correct_rows_excluded": FIIC_CORRECT_ROWS,
+                "all_correct_rows": [int(r["row_index"]) for r in correct_rows_all],
+                "shard_correct_rows": [int(r["row_index"]) for r in correct_rows],
+            }
+            print(f"necessity correct rows (shard {args.shard_index}/{args.shard_count}): {[r['row_index'] for r in correct_rows]}", flush=True)
+            selected_rows = correct_rows
     if args.specificity_controls:
         if len(ranks) != 1:
             raise ValueError("--specificity-controls expects a single rank in --rank-list")
@@ -672,6 +816,38 @@ def main() -> int:
         row_means, capture_labels = load_capture_row_means(args.capture_npz, args.capture_manifest, args.layer)
         class_vector = class_vector_from_labels(row_means, capture_labels)
         print(f"position_policy: |real|={np.linalg.norm(class_vector):.1f}", flush=True)
+
+    necessity_seed_index: dict[str, int] = {}
+    frozen_basis = None
+    perm_components = None
+    recomputed_pinned_norm = None
+    if args.necessity:
+        if args.necessity_anchor:
+            arms = build_necessity_anchor_arms(args.layer)
+        else:
+            arms, necessity_seed_index = build_necessity_arms(args.layer)
+        row_means, capture_labels = load_capture_row_means(args.capture_npz, args.capture_manifest, args.layer)
+        class_vector = class_vector_from_labels(row_means, capture_labels)
+        print(f"necessity: |real|={np.linalg.norm(class_vector):.1f} anchor={args.necessity_anchor}", flush=True)
+        if not args.necessity_anchor:
+            frozen_deltas = load_frozen_deltas(args.frozen_deltas_npz, args.layer)
+            recomputed_pinned_norm = necessity_pinned_norm_recompute(frozen_deltas, ranks[0])
+            if abs(recomputed_pinned_norm - args.pinned_fixed_norm) > 1e-3:
+                raise ValueError(
+                    f"frozen-deltas recomputation {recomputed_pinned_norm!r} does not match the "
+                    f"registered pinned norm {args.pinned_fixed_norm!r} — wrong artifact or code drift"
+                )
+            frozen_basis = fit_pca_basis(frozen_deltas, ranks[0])
+            perm_rng = np.random.default_rng(args.control_seed + 6363)
+            perm = perm_rng.permutation(frozen_basis["components"].shape[1])
+            perm_components = frozen_basis["components"][:, perm].copy()
+            print(
+                f"necessity frozen basis: rows={len(frozen_deltas)} "
+                f"evr={frozen_basis['explained_variance_ratio']:.3f} "
+                f"pinned_norm={args.pinned_fixed_norm:.4f} recomputed={recomputed_pinned_norm:.4f} "
+                f"perm_seed={args.control_seed + 6363}",
+                flush=True,
+            )
 
     dev_basis = None
     predictors: dict[str, dict[str, Any]] = {}
@@ -815,7 +991,7 @@ def main() -> int:
         return basis_cache[key]
 
     recon_norm_by_row: dict[int, float] = {}
-    if args.class_mean_b or args.class_mean_c or args.position_policy:
+    if args.class_mean_b or args.class_mean_c or args.position_policy or (args.necessity and args.necessity_anchor):
         for prep in prepared:
             if prep.get("row_class", "failing") != "failing":
                 continue
@@ -834,7 +1010,8 @@ def main() -> int:
             for prep_index, prep in enumerate(prepared):
                 if (prep.get("row_class", "failing") == "correct") != arm.label.startswith("correct_"):
                     continue
-                torch.manual_seed(args.sample_seed + prep["source_row_index"] * 10007 + arm_index * 101)
+                seed_arm_index = necessity_seed_index.get(arm.label, arm_index)
+                torch.manual_seed(args.sample_seed + prep["source_row_index"] * 10007 + seed_arm_index * 101)
                 if arm.kind == "percand_fire":
                     basis = basis_for(prep["source_row_index"], arm.rank_k)
                     components = basis["components"]
@@ -1050,6 +1227,109 @@ def main() -> int:
                         (hook_name, make_position_add_hook(torch.from_numpy(vec.astype(np.float32)), positions, 1.0))
                     )
                     basis_records.append(record)
+                elif arm.kind in {"ablate_rank8", "ablate_rand8", "ablate_perm8"}:
+                    assert frozen_basis is not None and arm.rank_k is not None
+                    d_model = frozen_basis["components"].shape[1]
+                    if arm.kind == "ablate_rank8":
+                        comp = frozen_basis["components"].astype(np.float32)
+                    elif arm.kind == "ablate_perm8":
+                        assert perm_components is not None
+                        comp = perm_components.astype(np.float32)
+                    else:
+                        draw = draw_index(arm.label)
+                        q = q_cache.get(draw)
+                        if q is None:
+                            rng = np.random.default_rng(args.control_seed + 7919 * draw + 104729 * args.shard_index)
+                            q, _ = np.linalg.qr(rng.standard_normal((d_model, arm.rank_k)))
+                            q = q.astype(np.float32)
+                            q_cache[draw] = q
+                        comp = q.T
+                    positions = [start + rel_pos for rel_pos in prep["rel"]]
+                    fwd_hooks.append((hook_name, make_position_project_out_hook(torch.from_numpy(comp.copy()), positions)))
+                    u_states = (
+                        prep["h_block"][prep["rel"]].numpy().astype(np.float64)
+                        - prep["concept_delta"].numpy().astype(np.float64)
+                    )
+                    removed = (u_states @ comp.T.astype(np.float64)) @ comp.astype(np.float64)
+                    state_norms = np.maximum(np.linalg.norm(u_states, axis=1), 1e-8)
+                    record = {
+                        "condition": arm.label,
+                        "source_row_index": prep["source_row_index"],
+                        "row_class": prep.get("row_class", "failing"),
+                        "layer": args.layer,
+                        "rank_k": arm.rank_k,
+                        "basis_mode": arm.basis_mode,
+                        "n_positions": len(prep["rel"]),
+                        "mean_state_norm": float(state_norms.mean()),
+                        "mean_removed_norm": float(np.linalg.norm(removed, axis=1).mean()),
+                        "removed_norm_fraction": float((np.linalg.norm(removed, axis=1) / state_norms).mean()),
+                    }
+                    if arm.kind == "ablate_rank8":
+                        assert class_vector is not None
+                        dots = u_states @ class_vector.astype(np.float64)
+                        cosines = dots / (state_norms * max(np.linalg.norm(class_vector), 1e-8))
+                        record.update(
+                            {
+                                "classmean_cosine_mean": float(cosines.mean()),
+                                "classmean_dot_positive_positions": int((dots > 0).sum()),
+                            }
+                        )
+                    elif arm.kind == "ablate_perm8":
+                        record["perm_seed"] = args.control_seed + 6363
+                    else:
+                        record["control_seed"] = args.control_seed
+                    basis_records.append(record)
+                elif arm.kind in {"signflip_fixednorm", "posflip_fixednorm"}:
+                    assert frozen_basis is not None and class_vector is not None
+                    components = frozen_basis["components"]
+                    direction = (class_vector @ components.T) @ components
+                    dose = 2.0 if arm.label.endswith("_200") else 1.0
+                    sign = -1.0 if arm.kind == "signflip_fixednorm" else 1.0
+                    tiled = np.tile(direction, (len(prep["rel"]), 1))
+                    current = np.maximum(np.linalg.norm(tiled, axis=1, keepdims=True), 1e-8)
+                    vec = (tiled * (args.pinned_fixed_norm / current) * (sign * dose)).astype(np.float32)
+                    positions = [start + rel_pos for rel_pos in prep["rel"]]
+                    fwd_hooks.append((hook_name, make_position_add_hook(torch.from_numpy(vec), positions, 1.0)))
+                    basis_records.append(
+                        {
+                            "condition": arm.label,
+                            "source_row_index": prep["source_row_index"],
+                            "row_class": prep.get("row_class", "failing"),
+                            "layer": args.layer,
+                            "rank_k": arm.rank_k,
+                            "basis_mode": arm.basis_mode,
+                            "fixed_norm_target": args.pinned_fixed_norm,
+                            "dose": dose,
+                            "sign": sign,
+                            "n_positions_written": len(prep["rel"]),
+                            "mean_add_vector_norm": float(np.linalg.norm(vec, axis=1).mean()),
+                        }
+                    )
+                elif arm.kind == "rand_norm_pinned":
+                    assert frozen_basis is not None
+                    d_model = frozen_basis["components"].shape[1]
+                    draw = draw_index(arm.label)
+                    rng = np.random.default_rng(
+                        args.control_seed + 7919 * draw + 104729 * args.shard_index + prep["source_row_index"]
+                    )
+                    noise = rng.standard_normal((len(prep["rel"]), d_model))
+                    current = np.maximum(np.linalg.norm(noise, axis=1, keepdims=True), 1e-8)
+                    vec = (noise * (args.pinned_fixed_norm / current)).astype(np.float32)
+                    positions = [start + rel_pos for rel_pos in prep["rel"]]
+                    fwd_hooks.append((hook_name, make_position_add_hook(torch.from_numpy(vec), positions, 1.0)))
+                    basis_records.append(
+                        {
+                            "condition": arm.label,
+                            "source_row_index": prep["source_row_index"],
+                            "row_class": prep.get("row_class", "failing"),
+                            "layer": args.layer,
+                            "rank_k": arm.rank_k,
+                            "basis_mode": arm.basis_mode,
+                            "control_seed": args.control_seed,
+                            "fixed_norm_target": args.pinned_fixed_norm,
+                            "mean_add_vector_norm": float(np.linalg.norm(vec, axis=1).mean()),
+                        }
+                    )
                 elif arm.kind in {"mean_add", "rand_subspace_add", "rand_norm_add"}:
                     assert arm.rank_k is not None
                     basis = basis_for(prep["source_row_index"], arm.rank_k)
@@ -1128,6 +1408,13 @@ def main() -> int:
                 torch.cuda.empty_cache()
 
     state_arrays = {f"L{args.layer}_row{row_id}_concept_delta": arr for row_id, arr in delta_by_row.items()}
+    if args.necessity and not args.necessity_anchor:
+        for prep in prepared:
+            u_states = (
+                prep["h_block"][prep["rel"]].numpy().astype(np.float64)
+                - prep["concept_delta"].numpy().astype(np.float64)
+            ).astype(np.float32)
+            state_arrays[f"L{args.layer}_row{prep['source_row_index']}_unhinted_concept_states"] = u_states
     if args.predicted_coefficients:
         state_arrays.update(
             {f"L{args.layer}_row{row_id}_unhinted_concept_states": arr for row_id, arr in unhinted_by_row.items()}
@@ -1168,6 +1455,21 @@ def main() -> int:
         "summary": summary,
         "hint_validated": hint_validated,
         "basis_records": basis_records,
+        "necessity_config": (
+            {
+                "anchor": args.necessity_anchor,
+                "frozen_deltas_npz": None if args.necessity_anchor else str(args.frozen_deltas_npz),
+                "frozen_basis_rows": None if frozen_basis is None else frozen_basis["source_rows"],
+                "frozen_basis_explained_variance_ratio": None if frozen_basis is None else frozen_basis["explained_variance_ratio"],
+                "pinned_fixed_norm": args.pinned_fixed_norm,
+                "recomputed_pinned_norm": recomputed_pinned_norm,
+                "perm_seed": args.control_seed + 6363,
+                "seed_index_map": necessity_seed_index,
+                "correct_selection": necessity_correct_selection,
+            }
+            if args.necessity
+            else None
+        ),
         "states_output": str(states_output),
         "out_jsonl": str(out_jsonl),
         "output": str(output),
@@ -1219,6 +1521,18 @@ def main() -> int:
                 "per-candidate firing with fired/targets telemetry (k=4 per candidate)",
             ]
             if args.position_policy
+            else [
+                "verbatim 458431 replication gates (unhinted + fixednorm anchor)",
+            ]
+            if args.necessity and args.necessity_anchor
+            else [
+                "in-job correct-side unhinted baseline (absorbs selection instability)",
+                "matched-rank random orthonormal projection-out family (2 draws/shard)",
+                "coordinate-permuted basis projection-out (structure-matched flag layer)",
+                "matched-norm random-direction adds at the pinned 1x scale (2 draws/shard)",
+                "positive class-mean arm (F(ii)-c collateral fresh-draw replication)",
+            ]
+            if args.necessity
             else [
                 "in-job unhinted baseline",
                 "hinted-prompt per-row validation arm",
@@ -1286,6 +1600,16 @@ def main() -> int:
                 "targets_fired_concept) reported regardless. Rules: item H. Exploratory."
             )
             if args.position_policy
+            else (
+                "Item K rules in docs/causal_handle_directions.md. Gates: anchor arms verbatim vs 458431; "
+                "pooled correct baseline >= 0.55; parse-fail < 5% per arm (>20% voids the arm). All "
+                "branches scored on dP(strong) with unparsed = not-strong. K-PRIMARY branch partition "
+                "(channel-in-use / write-only port / projection-damage / breaks-specificity-unresolved / "
+                "inverse-specificity / catch-all) over (ablate x paired x rand8) sign-status; perm8 is the "
+                "flag layer. Prediction (i), the item's ONLY registered prediction: signflip_100 CI < 0 AND "
+                "paired (signflip_100 - rand_norm family) CI < 0. Exploratory; no section-1 claim moves."
+            )
+            if args.necessity
             else (
                 "Claim 8 survives if pooled rank4_loo or rank8_loo CI excludes zero and reaches >=70% of "
                 "the pooled in-job L30_concept_replace effect. A null concept_replace on fresh rows scopes "
