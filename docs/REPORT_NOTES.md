@@ -15,6 +15,41 @@ final report is easier to assemble.
 
 ## Running Notes
 
+### 2026-08-09
+
+#### Item K LANDED — necessity ablation on natural successes; 7th registered prediction confirmed; energy-confound flag scopes the primary
+
+- Jobs 459836–459839 (4× Scholar bf16, 2× A40, sequential under the
+  2-GPU QOS cap). All gates pass: anchor 416/416 token-for-token vs
+  458431 (repair +0.447 verbatim); pooled baseline 0.764; parse flags
+  only (no voids), P(strong|parsed) preserves all orderings.
+- **K-PRIMARY**: ablating the frozen rank-8 basis at gold positions
+  destroys natural success (−0.666 [−0.769, −0.557]; per-shard −0.692 /
+  −0.664 / −0.642) while matched-rank random (−0.072) and permuted
+  (−0.038) controls are near-free. Branch CHANNEL-IN-USE (b) fires
+  mechanically — **but the registered telemetry shows the basis carries
+  97.7% of the state norm at those positions** (removal ≈ 30k vs
+  controls ≈ 400–1,000): the ablation is a near-deletion of the state,
+  not a thin-channel cut. Landed wording: state content at gold
+  concept positions is necessary; subspace-specificity at matched
+  energy NOT established; §6 endogeneity movement DEFERRED to an
+  energy-matched follow-up (ablate-to-row-mean / matched-energy
+  state-PCA removal — register before running).
+- **Prediction (i) CONFIRMED (7th; 4th sign-flip)**: signflip_100
+  −0.696 CI < 0 AND paired vs norm-matched random −0.345 CI < 0 —
+  clean, norm-matched by design. Noise floor finding: 3,708-norm random
+  breaks correct rows −0.351 (vs −0.088 on failing rows in item C) —
+  correct rows are fragile to matched-scale noise; the label doubles
+  the damage. Dose-monotone.
+- **Collateral replicates on its first fresh draw**: +0.160
+  [+0.062, +0.261] on 46 fresh rows (headroom fraction 0.68 vs
+  original 0.97 — attenuated from the near-ceiling 16-row draw).
+- Asymmetry (descriptive): break consumes 91% of down-room vs repair's
+  51% of up-room — attractor-compatible.
+- Verdict: `necessity_27b_property_pooled_summary.md`; battery
+  `necessity_27b_property_pooled.json`; pooling script
+  `scripts/stage2_necessity_pool.py`. Exploratory: no §1 claim moves.
+
 ### 2026-07-07
 
 #### Items J1 + J2 (evening) — the Qwen mystery localized, then correctly deflated; 6th registered prediction confirmed
