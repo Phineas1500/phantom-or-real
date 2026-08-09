@@ -1320,8 +1320,7 @@ def main() -> int:
                         "mean_removed_norm": float(np.linalg.norm(removed, axis=1).mean()),
                         "removed_norm_fraction": float((np.linalg.norm(removed, axis=1) / state_norms).mean()),
                     }
-                    if arm.kind == "ablate_rank8":
-                        assert class_vector is not None
+                    if arm.kind == "ablate_rank8" and class_vector is not None:
                         dots = u_states @ class_vector.astype(np.float64)
                         cosines = dots / (state_norms * max(np.linalg.norm(class_vector), 1e-8))
                         record.update(
