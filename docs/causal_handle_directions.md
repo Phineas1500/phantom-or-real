@@ -1520,3 +1520,235 @@ venue bookkeeping, not a design change. Phase gating unchanged: G0 must
 pass before G2 is submitted; G2's winner selection before G3. Row source:
 results/full/with_errortype/qwen35_27b_infer_property.jsonl (same schema
 as Gemma stage-1); G0 rows = the 16 balanced rows of jobs 457191-457194.
+
+## Pre-Registered Necessity Battery (2026-08-09)
+
+### K. Necessity ablation on natural successes (Gemma L30; is the lever a channel-in-use?)
+
+Pre-registered 2026-08-09, before any data. The program holds only
+SUFFICIENCY evidence for the lever: adding content in the rank-8
+subspace repairs failures (C, F-series), but nothing has ever been
+REMOVED from it. Item K asks whether the subspace is necessary for
+natural success — a channel the model itself uses when it gets rows
+right — or a write-only port (sufficient exogenous handle, not the
+endogenous carrier). This fills the causal quadrant the paper's framing
+implicitly promises (gauge necessity: null, item D; lever sufficiency:
+strong, item C; lever necessity: unmeasured) and supplies the missing
+"corrupt" cell for the break/repair asymmetry question. Claim scope
+throughout: SUBSPACE-necessity of the 8 fitted PCA directions at this
+site/protocol — never "the model's own decision variable" (F(i)'s null
+stands; endogeneity wording moves only as far as the branch below
+licenses).
+
+Design — Scholar bf16, constraint J, gpu:2; FOUR jobs: correct-side
+shards 0–2 (16 rows each) + an anchor-only shard 3. Harness: extend
+`scripts/stage2_rank_k_guard_v2.py` with a `--necessity` mode —
+`build_necessity_arms`, a `make_position_project_out_hook` sibling of
+the existing add hook (orthogonal-complement projection of a frozen
+basis at manifest positions during prefill), correct-row interleaved
+sharding, and an anchor-only shard mode. The sharding and hook are NEW
+code; "reused verbatim" applies to row selection, capture loading, add
+hooks, scoring, and bootstrap. Correct-row routing keeps the
+label-prefix convention (every correct-side arm carries the `correct_`
+prefix). Seeding: guard_v2's formula is kept (sample_seed +
+source_row_index·10007 + arm_index·101; one seed per (row, arm)
+k-batch); `--necessity` ports the Qwen-harness explicit arm-index
+tuples so indices are pinned, not positional. The anchor arms are
+pinned to F(ii)-c's positional indices 0/1, so the 458431
+token-for-token gates are well-defined; correct-side arms take
+explicit indices 0 and 60–68 (collision-free vs existing allocations
+0, 2, 10–17, 20–25, 30–36, 40–45, 50–52; guard_v2 positional indices
+never exceeded 11). Shard 3's row keys for the 26 guard rows reproduce
+458431's shard-count-1 formula exactly (verified pre-submission), so a
+gate failure is diagnostic of a code change, not keying drift.
+
+- **Correct-side rows**: 48 FRESH naturally-correct rows, 24 per height
+  (3/4), stage-1 strong labels, seed 20260809, `select_correct_rows`
+  code path; exclusions: composite 13, the guard-v2 selection's 32
+  rows (26 prepared + 6 skipped), the 458416 capture 96, and F(ii)-c's
+  16 correct rows pinned explicitly (3109, 3134, 3471, 3680, 3685,
+  3738, 4270, 5235, 6312, 6367, 6411, 7047, 7812, 8388, 9855, 10524 —
+  no existing code path excludes these; passed via `--exclude-rows`).
+  Expected in-job baseline ≈ 0.73 (single-sample stage-1 selection is
+  ~73% stable under k=8 resampling, F(ii)-c); all deltas are vs the
+  in-job `correct_unhinted_baseline`, so selection instability is
+  absorbed by design.
+- **Failing-side anchor (shard 3 only)**: the 26 guard rows;
+  `unhinted_baseline` and `fixednorm_proj_add_L30` regenerated at
+  F(ii)-c's arm indices — must reproduce job 458431 token-for-token
+  (two gates); the anchor dP (+0.447 by gate) is the in-job repair
+  reference for the asymmetry readout.
+- **Frozen inputs (nothing refit in-job)**: basis = rank-8 PCA of the
+  26 prepared guard rows' L30 concept hint-deltas, loaded frozen from
+  job 458431's archived states
+  (`results/stage2/erasure/classmean_c_deployment_27b_property_shard0of1_states.npz`,
+  26 `L30_row{r}_concept_delta` keys) — numerically identical to
+  F(ii)-c's in-job full-pool fit. (NOT
+  `hint_delta_27b_property_manifest_deltas.npz`, which holds only the
+  composite rows.) Class vector = the 458416 96-row natural capture
+  (`natural_state_capture_27b_property_L30.npz` + manifest). Amplitude
+  = F(ii)-c's correct-side constant `fixed_norm_target` = 3708.2628
+  (job 458431; verified single-valued across all 16 correct rows),
+  pinned as a registered constant for ALL shards (correct shards have
+  no failing rows to recompute from) — `correct_signflip_fixednorm_100`
+  is thereby the exact negation of F(ii)-c's
+  `correct_fixednorm_add_L30`. Positions = gold-concept mentions in
+  the PROMPT, applied at prefill; modified states persist through the
+  KV cache (mechanics identical to the add arms; output-token
+  positions out of scope — nulls are scoped "at this site/protocol").
+- **Correct-side arms** (k=8 each; explicit arm index in parens):
+  `correct_unhinted_baseline` (0);
+  `correct_ablate_rank8_gold_L30` (60) — project the L30 residual at
+  gold positions onto the orthogonal complement of the rank-8 basis
+  [K-PRIMARY];
+  `correct_ablate_rand8_gold_L30_d1/d2` (61/62) — matched-rank random
+  orthonormal 8-dim subspaces (seeded draws), same positions/layer —
+  the control family for generic rank-8 removal (2 draws for wall fit
+  vs item C's 4 and G6′'s 3 — flagged as a power limitation; per-draw
+  descriptive only);
+  `correct_ablate_perm8_gold_L30` (63) — the fitted basis under one
+  seeded permutation of its 5376 coordinates applied to all 8 vectors
+  (preserves spectrum and per-vector norms; destroys subspace
+  identity) — the structure-matched flag-layer control. Registered
+  note: a "row-shuffled deltas" basis is vacuous for PCA
+  (sample-permutation-invariant), hence coordinate permutation;
+  `correct_signflip_fixednorm_100/200` (64/65) — the F(ii)-c
+  correct-side vector NEGATED at 1×/2× the pinned constant [the
+  corrupt cell]. No 0.5× rung: at the registered MDE it could only
+  straddle, and its gens fund the perm8 control;
+  `correct_rand_norm_gold_d1/d2` (66/67) — random directions at the
+  1× pinned norm — the matched-norm control for signflip at 1×. The
+  2× dose has NO matched control: any 2×-only effect is flagged
+  control-unmatched/amplitude-confounded (G6 precedent);
+  `correct_fixednorm_100` (68) — the POSITIVE F(ii)-c correct-side arm
+  regenerated on the fresh 48 [collateral fresh-draw secondary].
+- **Telemetry rider (CPU, descriptive, no branch)**: per-row sign and
+  magnitude of ⟨class-mean, state⟩ at gold positions pre-intervention
+  (sign-stability diagnostic), and per-arm projection-variance
+  telemetry as in item D.
+
+Decision rules (before unblinding):
+
+- Gates: (i) both anchor arms verbatim vs 458431 — mismatch → debug,
+  no unblinding; (ii) pooled `correct_unhinted_baseline` ≥ 0.55 —
+  below → selection suspect, debug, no unblinding of correct-side
+  arms; (iii) parse-fail < 5% per arm.
+- **Scoring metric, pre-named**: every branch condition is evaluated
+  on dP(strong) with unparsed counted as not-strong. An arm breaching
+  the 5% parse gate is flagged and P(strong|parsed) is reported
+  alongside as the precision-vs-demolition split (erasure-battery
+  precedent); an arm above 20% parse-fail has its branches VOID →
+  debug. (Parse failure under ablation is itself evidence about
+  breaking; the not-strong convention keeps it inside the primary
+  metric rather than leaving a post-hoc metric choice.)
+- Stats: row-cluster bootstrap (10k, seed 20260704, percentile) per
+  side; paired contrasts within the correct side; random families
+  pooled across draws. MDE registered honestly: single-arm ≈ 0.11
+  floor (0.19/√3 from F(ii)-c's n=16 — an arm pinned near ceiling;
+  mid-range break arms plausibly 0.12–0.15 from per-row binomial
+  variance at p ≈ 0.5); paired-contrast MDE expected ≈ 0.09–0.13 (G3′
+  pairing precedent; correct-row covariance unknown). EVERY branch
+  resting on a straddling CI carries a mandatory MDE statement.
+- **K-PRIMARY (necessity) — NO registered prediction on direction;
+  genuine uncertainty is the point. Branch partition over (ablate
+  sign-status × paired (ablate − rand8 family) × rand8-family
+  sign-status)**:
+  1. CHANNEL-IN-USE: ablate CI entirely < 0 AND paired CI entirely
+     < 0. Sub-case (a), rand8 family straddles: wording "removing the
+     repair subspace at concept positions breaks natural successes
+     that matched-rank random removal leaves intact —
+     subspace-necessity at the lever's own site." Sub-case (b), rand8
+     family CI < 0: wording "breaks beyond generic rank-8 removal
+     damage — necessity supported with a generic-fragility
+     component"; §6 movement one notch weaker. Either sub-case: §6
+     endogeneity upgrades from "exogenous mediation" toward
+     channel-in-use (never identity); drafting MAY add a registered
+     addendum to §5.5/§6. FLAG LAYER: if the paired (ablate − perm8)
+     CI does not also exclude zero in the breaking direction, the
+     verdict carries a structure-generic-removal flag and the wording
+     is the hedged sub-case-(b) form regardless of rand8 status (G6
+     proj64-flag mechanics).
+  2. WRITE-ONLY PORT: ablate CI straddles (anchor positive by gate).
+     Wording: "the lever repairs but its removal costs nothing
+     detectable at this site/protocol (MDE stated) — an exogenous
+     write-port; consistent with multiple realization or redundant
+     carriage of the signal elsewhere, not established by this null"
+     (interpretive pointer to claim 7, not a finding). §6 keeps
+     "exogenous mediation" with direct support.
+  3. PROJECTION-DAMAGE CONFOUND: ablate CI < 0 AND rand8 family CI
+     < 0 AND paired straddles → generic rank-8 removal damage;
+     necessity UNRESOLVED at this design (paired MDE stated); no
+     wording movement; a lower-rank/dose follow-up requires its own
+     registration.
+  4. BREAKS-SPECIFICITY-UNRESOLVED: ablate CI < 0 AND paired
+     straddles AND rand8 family straddles → "breakage detected;
+     specificity over generic removal unresolved at paired MDE X" —
+     no wording movement, equal prominence. (The modal partial
+     outcome at this power; named so it cannot force a post-hoc
+     call.)
+  5. INVERSE-SPECIFICITY: ablate CI straddles AND rand8 family CI < 0
+     → "the lever subspace is specifically dispensable while generic
+     removal costs" — descriptive, wording reserved. PRECEDENCE: when
+     this and WRITE-ONLY PORT both fire, INVERSE-SPECIFICITY subsumes;
+     both are reported, and the WRITE-ONLY §6 sentence still applies
+     with the generic-fragility context noted.
+  6. Catch-all: any remaining cell (ablate CI entirely > 0; paired CI
+     entirely > 0, i.e. rank8 removal costs less than generic; rand8
+     family CI entirely > 0) → reported descriptively, wording
+     reserved, no movement.
+- **K-SECONDARY (the corrupt cell) — registered prediction (i), item
+  K's ONLY registered prediction** (the program's fourth sign-flip
+  prediction, after F(ii)-b, G4′, G6′): `correct_signflip_fixednorm_100`
+  dP CI entirely < 0 AND paired (signflip_100 − rand_norm family) CI
+  entirely < 0 → label-specific corruption of natural successes;
+  prediction CONFIRMED. Direction + specificity only — magnitude
+  unregistered (prior sign-flip effects were floor-censored on failing
+  rows: −0.120 at an absolute floor near 0; Qwen −0.094 likewise).
+  Failure modes, equal prominence:
+  - signflip_100 CI < 0, paired straddles, rand_norm family CI < 0 →
+    corruption is norm-generic at these positions (contrast with the
+    repair side, where labels carry the effect); prediction miss.
+  - signflip_100 CI < 0, paired straddles, rand_norm family straddles
+    → corruption detected, label-specificity unresolved at paired MDE
+    (stated); prediction miss, no corrupt-cell claim.
+  - signflip_100 straddles AND signflip_200 straddles → full-ladder
+    null → state-dependence ("the vector only acts on failing rows")
+    — its own finding, wording reserved.
+  - signflip_100 straddles, signflip_200 CI < 0 → dose-threshold
+    reading, flagged control-unmatched at 2× (no rand_norm at that
+    norm); no label-specificity claim; prediction miss.
+  - signflip_100 CI entirely > 0 → impeaches label-specificity of the
+    F-series vector — reported with equal prominence, immediate
+    follow-up required before any F-series claim is next cited (G4′
+    convention).
+  - Remaining cells → descriptive catch-all, wording reserved.
+- **Asymmetry readout (descriptive; no thresholds, no claims)**:
+  headroom fractions with CIs — break fraction B = |signflip_100 dP| /
+  baseline_correct (share of available down-room consumed) vs repair
+  fraction P = anchor dP / (1 − anchor baseline) (= 0.447/0.880 ≈ 0.51
+  by gate). B > P is noted as attractor-compatible asymmetry; B ≤ P
+  as symmetric-or-repair-favored. Cross-population caveat explicit
+  (different rows, different headrooms); VOID if signflip_100
+  straddles or the dose ladder is non-monotone.
+- **Collateral secondary (wording-only; NOT a registered
+  prediction)**: `correct_fixednorm_100`. REPLICATES = dP CI entirely
+  > 0 vs the fresh baseline (direction only). Effect-size consistency
+  is assessed descriptively on the headroom fraction dP /
+  (1 − baseline) vs F(ii)-c's 0.266/0.273 ≈ 0.97 (ceiling censoring
+  makes point-vs-point comparison confounded by where the fresh
+  baseline lands). CI straddles or < 0 → F(ii)-c's
+  collateral-beneficial wording gains a fresh-row caveat in ledger
+  §1.5 (MDE stated); equal prominence.
+- Scope: exploratory for the current paper; no §1 claim moves on any
+  branch; §6's endogeneity paragraph may cite the outcome in one
+  sentence either way; CHANNEL-IN-USE additionally licenses the
+  drafting decision named above. Qwen analog (raw-state necessity at
+  L43 — no compact basis exists there) deferred to its own
+  registration.
+- Budget (rates from THIS harness's logged jobs — 458401/458402 ≈ 6.8
+  gens/min on 2× A40; 458431 = 880 gens in 2.16 h): correct side 10
+  arms × 48 rows × 8 = 3,840 gens; anchor 2 × 26 × 8 = 416. Four
+  jobs: shards 0–2 = 16 correct rows each (1,280 gens ≈ 3.1–3.3 h)
+  and shard 3 anchor-only (416 gens ≈ 1.1 h) — each inside the 4 h
+  constraint-J wall with margin. A 2-shard split would breach the
+  wall at this harness's measured rate and is registered out.
