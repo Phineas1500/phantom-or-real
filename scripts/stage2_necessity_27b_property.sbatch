@@ -28,7 +28,15 @@ echo "Node: $(hostname)"; echo "Started: $(date)"; echo "Shard: ${NECESSITY_SHAR
 
 FIIC_EXCLUDE="3073,3290,3415,4322,4675,6188,6327,8035,8298,8874,9549,10079,10714,3109,3134,3471,3680,3685,3738,4270,5235,6312,6367,6411,7047,7812,8388,9855,10524"
 
-if [ "$NECESSITY_SHARD" = "3" ]; then
+if [ "${NECESSITY_PRIME:-0}" = "1" ]; then
+    python -u scripts/stage2_rank_k_guard_v2.py \
+        --necessity-prime \
+        --rank-list 8 \
+        --shard-index "$NECESSITY_SHARD" --shard-count 3 \
+        --correct-per-height 24 --correct-seed 20260809 \
+        --exclude-rows "$FIIC_EXCLUDE" \
+        --n-devices 2 --n-ctx 4096 --dtype bfloat16 --load-mode no-processing
+elif [ "$NECESSITY_SHARD" = "3" ]; then
     python -u scripts/stage2_rank_k_guard_v2.py \
         --necessity --necessity-anchor \
         --rank-list 8 \

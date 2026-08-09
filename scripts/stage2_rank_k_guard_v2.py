@@ -46,11 +46,11 @@ FIIC_CORRECT_ROWS = [3109, 3134, 3471, 3680, 3685, 3738, 4270, 5235, 6312, 6367,
 NECESSITY_PINNED_NORM = 3708.2628096560807
 
 
-def make_position_project_out_hook(components: Any, positions: list[int]):
-    """Project the residual at `positions` onto the orthogonal complement of the
-    row-space of `components` (k x d_model, orthonormal rows). Sibling of
+def make_position_project_out_hook(components: Any, positions: list[int], alpha: float = 1.0, keep: bool = False):
+    """At `positions`: h -> h - alpha*(h @ C^T) @ C for orthonormal rows C
+    (k x d_model), or h -> (h @ C^T) @ C when keep=True. Sibling of
     make_position_add_hook; the same shape guard makes it prefill-only under a
-    KV cache (item K)."""
+    KV cache (items K / K')."""
 
     def hook_fn(act: Any, hook: Any) -> Any:  # noqa: ARG001
         if not positions or act.shape[1] <= max(positions):
@@ -58,7 +58,8 @@ def make_position_project_out_hook(components: Any, positions: list[int]):
         comp = components.to(device=act.device, dtype=act.dtype)
         for pos in positions:
             state = act[:, pos, :]
-            act[:, pos, :] = state - (state @ comp.T) @ comp
+            proj = (state @ comp.T) @ comp
+            act[:, pos, :] = proj if keep else state - alpha * proj
         return act
 
     return hook_fn
@@ -250,6 +251,34 @@ def build_necessity_arms(layer: int) -> tuple[list[Arm], dict[str, int]]:
         "correct_rand_norm_gold_d1": 66,
         "correct_rand_norm_gold_d2": 67,
         "correct_fixednorm_100": 68,
+    }
+    return arms, seed_index
+
+
+def build_necessity_prime_arms(layer: int) -> tuple[list[Arm], dict[str, int]]:
+    """Item K' energy-matched controls; gate arms keep their item-K seed indices."""
+    rank = 8
+    arms = [
+        Arm("correct_unhinted_baseline", "none_correct", "none"),
+        Arm(f"correct_ablate_rank8_gold_L{layer}", "ablate_rank8", "correct_unhinted_baseline", (layer,), rank, "frozen_458431_full_basis_project_out"),
+        Arm(f"correct_meanablate_gold_L{layer}", "mean_replace", "correct_unhinted_baseline", (layer,), rank, "capture_mean_state_replacement"),
+        Arm(f"correct_statepca8_ablate_gold_L{layer}", "ablate_statepca8", "correct_unhinted_baseline", (layer,), rank, "uncentered_capture_state_svd_top8_project_out"),
+        Arm(f"correct_ablate_rank1_gold_L{layer}", "ablate_subrank", "correct_unhinted_baseline", (layer,), 1, "frozen_delta_basis_top1_project_out"),
+        Arm(f"correct_ablate_rank2_gold_L{layer}", "ablate_subrank", "correct_unhinted_baseline", (layer,), 2, "frozen_delta_basis_top2_project_out"),
+        Arm(f"correct_ablate_rank4_gold_L{layer}", "ablate_subrank", "correct_unhinted_baseline", (layer,), 4, "frozen_delta_basis_top4_project_out"),
+        Arm(f"correct_ablate_dose012_gold_L{layer}", "ablate_dose", "correct_unhinted_baseline", (layer,), rank, "frozen_delta_basis_alpha012_partial_removal"),
+        Arm(f"correct_keeponly8_gold_L{layer}", "keep_only", "correct_unhinted_baseline", (layer,), rank, "project_onto_frozen_delta_basis"),
+    ]
+    seed_index = {
+        "correct_unhinted_baseline": 0,
+        f"correct_ablate_rank8_gold_L{layer}": 60,
+        f"correct_meanablate_gold_L{layer}": 70,
+        f"correct_statepca8_ablate_gold_L{layer}": 71,
+        f"correct_ablate_rank1_gold_L{layer}": 72,
+        f"correct_ablate_rank2_gold_L{layer}": 73,
+        f"correct_ablate_rank4_gold_L{layer}": 74,
+        f"correct_ablate_dose012_gold_L{layer}": 75,
+        f"correct_keeponly8_gold_L{layer}": 76,
     }
     return arms, seed_index
 
@@ -537,6 +566,7 @@ def write_markdown_summary(path: Path, report: dict[str, Any]) -> None:
         "rank8_predicted_coefficients_fresh_rows": "Rank-8 Predicted-Coefficient Repair (fresh rows)",
         "necessity_ablation_natural_successes": "Item K Necessity Ablation (naturally-correct rows)",
         "necessity_anchor_replication": "Item K Anchor Replication (guard rows, verbatim gates)",
+        "necessity_prime_energy_controls": "Item K' Energy-Matched Necessity Controls",
     }
     title = titles.get(report["method"], "Rank-k Guard v2 (fresh rows)")
     lines = [
@@ -617,6 +647,8 @@ def main() -> int:
         help="Item K: necessity ablation on natural successes (correct-side shards).")
     parser.add_argument("--necessity-anchor", action="store_true",
         help="Item K anchor shard: regenerate 458431's unhinted+fixednorm arms verbatim.")
+    parser.add_argument("--necessity-prime", action="store_true",
+        help="Item K': energy-matched necessity controls on the item-K rows.")
     parser.add_argument(
         "--frozen-deltas-npz",
         type=Path,
@@ -650,7 +682,7 @@ def main() -> int:
     args = parser.parse_args()
     started = time.time()
 
-    if sum([args.specificity_controls, args.predicted_coefficients, args.class_mean, args.class_mean_b, args.class_mean_c, args.position_policy, args.g0_calibration, args.necessity]) > 1:
+    if sum([args.specificity_controls, args.predicted_coefficients, args.class_mean, args.class_mean_b, args.class_mean_c, args.position_policy, args.g0_calibration, args.necessity, args.necessity_prime]) > 1:
         raise ValueError("mode flags are mutually exclusive")
     if args.necessity_anchor and not args.necessity:
         raise ValueError("--necessity-anchor requires --necessity")
@@ -678,6 +710,9 @@ def main() -> int:
     elif args.necessity:
         stem = f"necessity_27b_property_shard{args.shard_index}of{args.shard_count}"
         method = "necessity_ablation_natural_successes"
+    elif args.necessity_prime:
+        stem = f"necessity_prime_27b_property_shard{args.shard_index}of{args.shard_count}"
+        method = "necessity_prime_energy_controls"
     elif args.g0_calibration:
         stem = f"qwen_g0_calibration_shard{args.shard_index}of{args.shard_count}"
         method = "qwen_g0_calibration"
@@ -734,9 +769,9 @@ def main() -> int:
         print(f"correct-side rows: {[r['row_index'] for r in correct_rows]}", flush=True)
         selected_rows = selected_rows + correct_rows
     necessity_correct_selection = None
-    if args.necessity:
+    if args.necessity or args.necessity_prime:
         if ranks != [8]:
-            raise ValueError("--necessity expects --rank-list 8 (registered item K)")
+            raise ValueError("--necessity/--necessity-prime expect --rank-list 8 (registered items K/K')")
         if args.necessity_anchor:
             for row in selected_rows:
                 row["row_class"] = "failing"
@@ -821,23 +856,29 @@ def main() -> int:
     frozen_basis = None
     perm_components = None
     recomputed_pinned_norm = None
-    if args.necessity:
+    capture_mean_state = None
+    statepca_components = None
+    statepca_angles = None
+    if args.necessity or args.necessity_prime:
         if args.necessity_anchor:
             arms = build_necessity_anchor_arms(args.layer)
-        else:
+        elif args.necessity:
             arms, necessity_seed_index = build_necessity_arms(args.layer)
-        row_means, capture_labels = load_capture_row_means(args.capture_npz, args.capture_manifest, args.layer)
-        class_vector = class_vector_from_labels(row_means, capture_labels)
-        print(f"necessity: |real|={np.linalg.norm(class_vector):.1f} anchor={args.necessity_anchor}", flush=True)
+        else:
+            arms, necessity_seed_index = build_necessity_prime_arms(args.layer)
+        if args.necessity:
+            row_means, capture_labels = load_capture_row_means(args.capture_npz, args.capture_manifest, args.layer)
+            class_vector = class_vector_from_labels(row_means, capture_labels)
+            print(f"necessity: |real|={np.linalg.norm(class_vector):.1f} anchor={args.necessity_anchor}", flush=True)
         if not args.necessity_anchor:
             frozen_deltas = load_frozen_deltas(args.frozen_deltas_npz, args.layer)
-            recomputed_pinned_norm = necessity_pinned_norm_recompute(frozen_deltas, ranks[0])
+            recomputed_pinned_norm = necessity_pinned_norm_recompute(frozen_deltas, 8)
             if abs(recomputed_pinned_norm - args.pinned_fixed_norm) > 1e-3:
                 raise ValueError(
                     f"frozen-deltas recomputation {recomputed_pinned_norm!r} does not match the "
                     f"registered pinned norm {args.pinned_fixed_norm!r} — wrong artifact or code drift"
                 )
-            frozen_basis = fit_pca_basis(frozen_deltas, ranks[0])
+            frozen_basis = fit_pca_basis(frozen_deltas, 8)
             perm_rng = np.random.default_rng(args.control_seed + 6363)
             perm = perm_rng.permutation(frozen_basis["components"].shape[1])
             perm_components = frozen_basis["components"][:, perm].copy()
@@ -846,6 +887,21 @@ def main() -> int:
                 f"evr={frozen_basis['explained_variance_ratio']:.3f} "
                 f"pinned_norm={args.pinned_fixed_norm:.4f} recomputed={recomputed_pinned_norm:.4f} "
                 f"perm_seed={args.control_seed + 6363}",
+                flush=True,
+            )
+        if args.necessity_prime:
+            row_means, _ = load_capture_row_means(args.capture_npz, args.capture_manifest, args.layer)
+            stacked = np.stack([row_means[r] for r in sorted(row_means)])
+            capture_mean_state = stacked.mean(axis=0)
+            _, singular, vt = np.linalg.svd(stacked, full_matrices=False)
+            statepca_components = vt[:8]
+            statepca_angles = np.linalg.svd(
+                frozen_basis["components"] @ statepca_components.T, compute_uv=False
+            ).tolist()
+            print(
+                f"necessity_prime: capture rows={stacked.shape[0]} |mean|={np.linalg.norm(capture_mean_state):.0f} "
+                f"statepca8 energy={float((singular[:8] ** 2).sum() / (singular ** 2).sum()):.4f} "
+                f"angles_vs_delta8={[round(a, 3) for a in statepca_angles]}",
                 flush=True,
             )
 
@@ -1305,6 +1361,56 @@ def main() -> int:
                             "mean_add_vector_norm": float(np.linalg.norm(vec, axis=1).mean()),
                         }
                     )
+                elif arm.kind in {"mean_replace", "ablate_statepca8", "ablate_subrank", "ablate_dose", "keep_only"}:
+                    assert frozen_basis is not None
+                    positions = [start + rel_pos for rel_pos in prep["rel"]]
+                    u_states = (
+                        prep["h_block"][prep["rel"]].numpy().astype(np.float64)
+                        - prep["concept_delta"].numpy().astype(np.float64)
+                    )
+                    state_norms = np.maximum(np.linalg.norm(u_states, axis=1), 1e-8)
+                    record = {
+                        "condition": arm.label,
+                        "source_row_index": prep["source_row_index"],
+                        "row_class": prep.get("row_class", "failing"),
+                        "layer": args.layer,
+                        "rank_k": arm.rank_k,
+                        "basis_mode": arm.basis_mode,
+                        "n_positions": len(prep["rel"]),
+                        "mean_state_norm": float(state_norms.mean()),
+                    }
+                    if arm.kind == "mean_replace":
+                        assert capture_mean_state is not None
+                        tiled = np.tile(capture_mean_state, (len(prep["rel"]), 1)).astype(np.float32)
+                        fwd_hooks.append((hook_name, make_replace_hook(torch.from_numpy(tiled), positions)))
+                        dist = np.linalg.norm(u_states - capture_mean_state[None, :], axis=1)
+                        record["mean_perturbation_norm"] = float(dist.mean())
+                        record["mean_dist_fraction"] = float((dist / state_norms).mean())
+                    else:
+                        if arm.kind == "ablate_statepca8":
+                            assert statepca_components is not None
+                            comp = statepca_components.astype(np.float32)
+                        elif arm.kind == "ablate_subrank":
+                            comp = frozen_basis["components"][: arm.rank_k].astype(np.float32)
+                        else:
+                            comp = frozen_basis["components"].astype(np.float32)
+                        alpha = 0.12 if arm.kind == "ablate_dose" else 1.0
+                        keep = arm.kind == "keep_only"
+                        fwd_hooks.append(
+                            (hook_name, make_position_project_out_hook(torch.from_numpy(comp.copy()), positions, alpha=alpha, keep=keep))
+                        )
+                        proj = (u_states @ comp.T.astype(np.float64)) @ comp.astype(np.float64)
+                        proj_fraction = float((np.linalg.norm(proj, axis=1) / state_norms).mean())
+                        record["proj_norm_fraction"] = proj_fraction
+                        record["alpha"] = alpha
+                        record["keep"] = keep
+                        if keep:
+                            record["removed_complement_fraction"] = float(
+                                (np.linalg.norm(u_states - proj, axis=1) / state_norms).mean()
+                            )
+                        else:
+                            record["mean_perturbation_norm"] = float(alpha * np.linalg.norm(proj, axis=1).mean())
+                    basis_records.append(record)
                 elif arm.kind == "rand_norm_pinned":
                     assert frozen_basis is not None
                     d_model = frozen_basis["components"].shape[1]
@@ -1408,7 +1514,7 @@ def main() -> int:
                 torch.cuda.empty_cache()
 
     state_arrays = {f"L{args.layer}_row{row_id}_concept_delta": arr for row_id, arr in delta_by_row.items()}
-    if args.necessity and not args.necessity_anchor:
+    if (args.necessity or args.necessity_prime) and not args.necessity_anchor:
         for prep in prepared:
             u_states = (
                 prep["h_block"][prep["rel"]].numpy().astype(np.float64)
@@ -1458,6 +1564,7 @@ def main() -> int:
         "necessity_config": (
             {
                 "anchor": args.necessity_anchor,
+                "prime": args.necessity_prime,
                 "frozen_deltas_npz": None if args.necessity_anchor else str(args.frozen_deltas_npz),
                 "frozen_basis_rows": None if frozen_basis is None else frozen_basis["source_rows"],
                 "frozen_basis_explained_variance_ratio": None if frozen_basis is None else frozen_basis["explained_variance_ratio"],
@@ -1466,8 +1573,10 @@ def main() -> int:
                 "perm_seed": args.control_seed + 6363,
                 "seed_index_map": necessity_seed_index,
                 "correct_selection": necessity_correct_selection,
+                "capture_mean_norm": None if capture_mean_state is None else float(np.linalg.norm(capture_mean_state)),
+                "statepca8_principal_angle_cosines_vs_delta8": statepca_angles,
             }
-            if args.necessity
+            if args.necessity or args.necessity_prime
             else None
         ),
         "states_output": str(states_output),
@@ -1533,6 +1642,14 @@ def main() -> int:
                 "positive class-mean arm (F(ii)-c collateral fresh-draw replication)",
             ]
             if args.necessity
+            else [
+                "verbatim item-K gates (baseline + ablate_rank8 at identical seeds)",
+                "capture-mean state replacement (content-removal at typical energy)",
+                "uncentered state-SVD top-8 projection (matched-energy generic removal)",
+                "delta-basis rank/dose ladder (energy-vs-dimension curve)",
+                "keep-only-8 complement deletion (sufficiency-at-site rider)",
+            ]
+            if args.necessity_prime
             else [
                 "in-job unhinted baseline",
                 "hinted-prompt per-row validation arm",
@@ -1610,6 +1727,15 @@ def main() -> int:
                 "paired (signflip_100 - rand_norm family) CI < 0. Exploratory; no section-1 claim moves."
             )
             if args.necessity
+            else (
+                "Item K' rules in docs/causal_handle_directions.md. Gates: baseline + ablate_rank8 verbatim "
+                "vs the matching item-K shard; parse and baseline gates per item K. K'-PRIMARY partition on "
+                "(meanablate sign x paired (meanablate - ablate_rank8) sign): content-necessity / partial / "
+                "energy-account / catch-all. statepca8, keep-only, ladder, dose012 are descriptive riders "
+                "(statepca8 interpretable per registered pre-rule, overlap 0.472; no MEAN-FAR flag, 0.175). "
+                "No registered prediction. Exploratory; resolves only item K's deferred wording."
+            )
+            if args.necessity_prime
             else (
                 "Claim 8 survives if pooled rank4_loo or rank8_loo CI excludes zero and reaches >=70% of "
                 "the pooled in-job L30_concept_replace effect. A null concept_replace on fresh rows scopes "
