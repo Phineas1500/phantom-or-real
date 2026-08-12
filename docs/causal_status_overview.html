@@ -72,7 +72,7 @@
     <h1>Phantom or Real — Where the Causality Hunt Stands</h1>
     <p>We could always <em>read</em> whether the model was about to be right. This week we learned why we
        could never <em>steer</em> it: the thing we were reading turns out to be a gauge, not a lever.</p>
-    <div class="date">Status: July 6, 2026 (evening) &nbsp;·&nbsp; Program complete (8/8 verdicts) and the cross-model port LANDED: G0 gate passed (hint lift +0.523 — the recognition gap is cross-model); G2 found Qwen's carrier at L43 (rel depth 0.67 vs Gemma's 0.48; concept-replace +0.175); G3 missed at rank 8 (+0.083, MDE 0.12); G3′ resolved it — Qwen's channel rank is k*=16 (+0.117 [+0.017,+0.217], paired vs random-64 family +0.154 [+0.062,+0.242]; recovery curve 48→95% of the carrier at ranks 8→64 while random 64-dim subspaces sit at/below baseline; both replication gates verbatim). The MOTIF is cross-model (2/2); the coordinates — depth, rank, mean share — are model-specific. The Qwen content thread RESOLVED overnight (G4′ null → G6 inversion → G6′ PASS, job 458512, all gates verbatim): <b>answer-free, label-specific content transfer works in Qwen through the FULL state</b> — raw class-mean +0.120 [+0.016,+0.224], real-vs-shuffled-raw +0.182 [+0.070,+0.299], raw−rand +0.106 CI&gt;0, signflip-raw −0.094 CI&lt;0 (5th confirmed registered prediction), proj64 de-flagged (+0.219 vs shuffled@64norms). Gemma concentrates (proj-potent/raw-null), Qwen distributes (raw-potent/proj-diluted): the recipe is cross-model, the compression is not. Qwen stages no decodable outcome info at the channel address (AUC 0.504 vs Gemma 0.807) yet repairs from it — the Q1 information map is the next-paper thread. The J-series (July 7 evening) localized and correctly deflated the Qwen mystery: outcome info is weakly-to-moderately decodable at the FINAL TOKEN (0.66–0.81 across two 96-row draws) and absent at concept positions — and writing the class-mean at that readable site does NOT repair (shuffled matches real, paired +0.005; the program's 6th confirmed registered prediction). Gauge-not-lever holds in Qwen BY POSITION where Gemma separates BY SUBSPACE. 19 pre-registered verdicts. Drafting begins from the outline + contribution ledger.</div>
+    <div class="date">Status: August 9, 2026 &nbsp;·&nbsp; NEW — the necessity quadrant closed (items K/K′, Part 10): deleting the state content at the lever's own positions abolishes natural success (−0.666 to −0.764; matched-rank random removal near-free) — but the necessity is the content <b>wholesale</b>, not the thin channel: mean-ablation at typical energy floors it, keeping ONLY the 8 repair dims floors it, and the sign-flipped class-mean at matched norm beats matched noise decisively (the program's <b>7th confirmed registered prediction</b>). Landed sentence: <b>the lever is write-compact; what it writes into is carried broadly</b>. 21 pre-registered verdicts; determinism gates verbatim 416/416 and 736/736. Earlier context: program complete (8/8 verdicts) and the cross-model port LANDED: G0 gate passed (hint lift +0.523 — the recognition gap is cross-model); G2 found Qwen's carrier at L43 (rel depth 0.67 vs Gemma's 0.48; concept-replace +0.175); G3 missed at rank 8 (+0.083, MDE 0.12); G3′ resolved it — Qwen's channel rank is k*=16 (+0.117 [+0.017,+0.217], paired vs random-64 family +0.154 [+0.062,+0.242]; recovery curve 48→95% of the carrier at ranks 8→64 while random 64-dim subspaces sit at/below baseline; both replication gates verbatim). The MOTIF is cross-model (2/2); the coordinates — depth, rank, mean share — are model-specific. The Qwen content thread RESOLVED overnight (G4′ null → G6 inversion → G6′ PASS, job 458512, all gates verbatim): <b>answer-free, label-specific content transfer works in Qwen through the FULL state</b> — raw class-mean +0.120 [+0.016,+0.224], real-vs-shuffled-raw +0.182 [+0.070,+0.299], raw−rand +0.106 CI&gt;0, signflip-raw −0.094 CI&lt;0 (5th confirmed registered prediction), proj64 de-flagged (+0.219 vs shuffled@64norms). Gemma concentrates (proj-potent/raw-null), Qwen distributes (raw-potent/proj-diluted): the recipe is cross-model, the compression is not. Qwen stages no decodable outcome info at the channel address (AUC 0.504 vs Gemma 0.807) yet repairs from it — the Q1 information map is the next-paper thread. The J-series (July 7 evening) localized and correctly deflated the Qwen mystery: outcome info is weakly-to-moderately decodable at the FINAL TOKEN (0.66–0.81 across two 96-row draws) and absent at concept positions — and writing the class-mean at that readable site does NOT repair (shuffled matches real, paired +0.005; the program's 6th confirmed registered prediction). Gauge-not-lever holds in Qwen BY POSITION where Gemma separates BY SUBSPACE. 19 pre-registered verdicts. Drafting begins from the outline + contribution ledger.</div>
   </div>
 </header>
 
@@ -744,9 +744,137 @@
   </div>
 </section>
 
-<!-- ============ 10. STATUS ============ -->
+<!-- ============ 10. NECESSITY QUADRANT (items K / K′) ============ -->
 <section>
-  <div class="kicker">Part 10 · What's running and what's next</div>
+  <div class="kicker">Part 10 · August 9 — the necessity quadrant closes</div>
+  <h2>Remove it and the model dies — but "it" is bigger than the channel</h2>
+  <div class="card">
+    <p>Every result so far showed <em>sufficiency</em>: adding content in the rank-8 subspace repairs
+       failures. Item K asked the missing question — is that subspace <em>necessary</em> for natural
+       success? On 46 fresh naturally-correct rows (baseline 0.764), projecting out the frozen rank-8
+       basis at gold concept-mention positions abolished success (−0.666), while matched-rank random
+       subspaces (−0.072) and a coordinate-permuted, structure-matched basis (−0.038) cost almost
+       nothing. The registered telemetry then caught the confound: the fitted basis carries
+       <b>97.7% of the state's norm</b> at those positions — the ablation is a near-deletion of the
+       state, ~8× larger than any control. So item K′ ran the energy-matched adjudication.</p>
+
+    <figure>
+      <svg viewBox="0 0 720 330" width="100%" role="img" aria-label="Item K and K-prime effects on naturally-correct rows">
+        <!-- zero line and grid; scale: 1.0 dP = 200px, zero at y=70 -->
+        <line x1="60" y1="70" x2="690" y2="70" stroke="#1a2433" stroke-width="1.5"/>
+        <text x="54" y="74" text-anchor="end" font-size="12" fill="#5b6b7f">0.0</text>
+        <line x1="60" y1="150" x2="690" y2="150" stroke="#eef2f7"/>
+        <text x="54" y="154" text-anchor="end" font-size="12" fill="#5b6b7f">−0.4</text>
+        <line x1="60" y1="230" x2="690" y2="230" stroke="#eef2f7"/>
+        <text x="54" y="234" text-anchor="end" font-size="12" fill="#5b6b7f">−0.8</text>
+        <line x1="60" y1="38" x2="690" y2="38" stroke="#eef2f7"/>
+        <text x="54" y="42" text-anchor="end" font-size="12" fill="#5b6b7f">+0.16</text>
+        <!-- group 1: removals -->
+        <g>
+          <rect x="85"  y="70" width="38" height="133.2" fill="#d23f3f" rx="2"/>
+          <rect x="137" y="70" width="38" height="14.4"  fill="#9aa7b6" rx="2"/>
+          <rect x="189" y="70" width="38" height="7.6"   fill="#9aa7b6" rx="2"/>
+          <rect x="241" y="70" width="38" height="152.8" fill="#d23f3f" rx="2"/>
+          <rect x="293" y="70" width="38" height="152.8" fill="#d23f3f" rx="2"/>
+          <rect x="345" y="70" width="38" height="152.8" fill="#d23f3f" rx="2"/>
+          <rect x="397" y="70" width="38" height="20.6"  fill="#d99114" rx="2"/>
+        </g>
+        <g font-size="12" text-anchor="middle">
+          <text x="104" y="216" fill="#d23f3f">−.666</text>
+          <text x="156" y="98"  fill="#5b6b7f">−.072</text>
+          <text x="208" y="91"  fill="#5b6b7f">−.038</text>
+          <text x="260" y="236" fill="#d23f3f">−.764</text>
+          <text x="312" y="236" fill="#d23f3f">−.764</text>
+          <text x="364" y="236" fill="#d23f3f">−.764</text>
+          <text x="416" y="104" fill="#a06c0c">−.103</text>
+        </g>
+        <g font-size="11" fill="#5b6b7f" text-anchor="middle">
+          <text x="104" y="292">rank-8</text>
+          <text x="156" y="292">rand-8</text>
+          <text x="208" y="292">perm-8</text>
+          <text x="260" y="292">mean</text>
+          <text x="312" y="292">statePCA</text>
+          <text x="364" y="292">keep-8</text>
+          <text x="416" y="292">α=0.12</text>
+        </g>
+        <text x="250" y="312" text-anchor="middle" font-size="13" fill="#1a2433">Remove / replace content at gold positions</text>
+        <!-- group 2: adds at pinned norm -->
+        <g>
+          <rect x="480" y="70" width="38" height="139.2" fill="#d23f3f" rx="2"/>
+          <rect x="532" y="70" width="38" height="152.8" fill="#d23f3f" rx="2"/>
+          <rect x="584" y="70" width="38" height="70.2"  fill="#d99114" rx="2"/>
+          <rect x="636" y="38" width="38" height="32"    fill="#0e9488" rx="2"/>
+        </g>
+        <g font-size="12" text-anchor="middle">
+          <text x="499" y="222" fill="#d23f3f">−.696</text>
+          <text x="551" y="236" fill="#d23f3f">−.764</text>
+          <text x="603" y="154" fill="#a06c0c">−.351</text>
+          <text x="655" y="32"  fill="#0e9488" font-weight="bold">+.160</text>
+        </g>
+        <g font-size="11" fill="#5b6b7f" text-anchor="middle">
+          <text x="499" y="292">−cm 1×</text>
+          <text x="551" y="292">−cm 2×</text>
+          <text x="603" y="292">noise</text>
+          <text x="655" y="292">+cm</text>
+        </g>
+        <text x="567" y="312" text-anchor="middle" font-size="13" fill="#1a2433">Add at matched norm (3,708)</text>
+      </svg>
+      <div class="legend">
+        <span style="background:#d23f3f"></span>content-destroying (floors success)
+        <span style="background:#9aa7b6"></span>matched-rank controls (near-free)
+        <span style="background:#d99114"></span>intermediate
+        <span style="background:#0e9488"></span>the class-mean, added (+)
+      </div>
+      <figcaption><b>ΔP(strong) vs in-job baseline (0.764), 46 naturally-correct rows pooled, k=8, row-cluster
+      bootstrap.</b> Left: removing the rank-8 delta basis (−0.666 [−0.769,−0.557]) vs matched-rank random
+      (−0.072) and coordinate-permuted (−0.038) controls; then K′ — replacing the state with the <em>typical</em>
+      capture mean (−0.764 [−0.851,−0.668], zero survivors), removing the energy-optimal state-PCA top-8
+      (−0.764), keeping ONLY the 8 repair dims while deleting the 5,368-dim complement (−0.764), and a
+      proportional 12% shrink (−0.103 [−0.158,−0.054]). Right: the sign-flipped class-mean at the pinned norm
+      (−0.696 / −0.764 at 1×/2×) vs matched-norm noise (−0.351) — the label carries half the damage
+      (paired −0.345 [−0.455,−0.243]; <b>7th confirmed registered prediction</b>) — and the positive class-mean,
+      which <em>helps</em> already-correct rows (+0.160 [+0.062,+0.261]; F(ii)-c's collateral finding surviving
+      its first fresh draw). All floor arms score 0.000 absolute; parse gates flagged but nowhere voided, and
+      P(strong&nbsp;|&nbsp;parsed) preserves every ordering.</figcaption>
+    </figure>
+
+    <div class="verdict">
+      <b>Verdict (K + K′ jointly): necessity at the lever's site is real, content-specific — and broad.</b>
+      Mean-ablation preserves typical energy and giant-norm infrastructure yet floors success, so
+      row-specific content is load-bearing (the registered CONTENT-NECESSITY branch). But keeping only the
+      8 repair dimensions also floors it, the energy-optimal generic removal is equally lethal, and rank-1
+      already costs −0.603. <b>The lever is write-compact; what it writes into is carried broadly.</b>
+      The thin-channel-necessity reading is closed — against.
+    </div>
+
+    <div class="caveat">
+      <b>How the confound was caught and resolved.</b> Item K's branch rules alone would have landed
+      "channel-in-use"; the pre-registered projection-variance telemetry (97.7% energy) forced the scoped
+      wording, and K′'s registered branches adjudicated it — with the two interpretability pre-rules
+      (subspace overlap 0.472 = interpretable; mean-distance 0.175 = typical) computed from frozen
+      artifacts and recorded at registration, before any behavioral data existed. Determinism: item K's
+      anchor regenerated job 458431 token-for-token (416/416); K′'s gate arms regenerated item K's shards
+      token-for-token (736/736).
+    </div>
+
+    <table>
+      <tr><th>Intervention at gold concept positions</th><th>ΔP (CI95)</th><th>Reading</th></tr>
+      <tr><td>Project out rank-8 delta basis (97.7% of norm)</td><td class="num bad">−0.666 [−0.769, −0.557]</td><td>K-PRIMARY: breaks</td></tr>
+      <tr><td>Matched-rank random / permuted basis</td><td class="num">−0.072 / −0.038</td><td>controls near-free</td></tr>
+      <tr><td>Replace with typical capture-mean state</td><td class="num bad">−0.764 [−0.851, −0.668]</td><td>K′-PRIMARY: content necessity</td></tr>
+      <tr><td>Remove energy-optimal state-PCA top-8</td><td class="num bad">−0.764 [−0.848, −0.671]</td><td>generic removal equally lethal</td></tr>
+      <tr><td>Keep only the 8 repair dims (delete complement)</td><td class="num bad">−0.764 [−0.851, −0.671]</td><td>8 dims insufficient alone</td></tr>
+      <tr><td>Proportional shrink, α = 0.12 (norm-matched to adds)</td><td class="num">−0.103 [−0.158, −0.054]</td><td>content-preserving ≈ cheap</td></tr>
+      <tr><td>Sign-flipped class-mean, 1× pinned norm</td><td class="num bad">−0.696 [−0.791, −0.598]</td><td>prediction (i) confirmed (7th)</td></tr>
+      <tr><td>Matched-norm random noise</td><td class="num bad">−0.351 [−0.444, −0.261]</td><td>norm-generic floor on correct rows</td></tr>
+      <tr><td>Positive class-mean (collateral fresh draw)</td><td class="num good">+0.160 [+0.062, +0.261]</td><td>beneficial, replicates F(ii)-c</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- ============ 11. STATUS ============ -->
+<section>
+  <div class="kicker">Part 11 · What's running and what's next</div>
   <h2>Current pipeline</h2>
   <div class="card">
     <table>
@@ -972,7 +1100,7 @@
         <td>Claim 8 upgrades to direction-specific on fresh rows</td>
       </tr>
       <tr>
-        <td><span class="chip run">running</span></td>
+        <td><span class="chip done">landed</span></td>
         <td><b>Readable-stack erasure (pre-registered item D; jobs 458403 + 458412–458414
             after a 4h wall timeout forced resharding):</b>
             rank-9 orthonormalized INLP stack mean-projection clamp at all five readable
@@ -988,7 +1116,8 @@
             vs baseline 0.500, random stacks 11/12 cells at 0.000, readable-stack projection
             variance 10–1300× below the random stacks' — both halves of the registered
             Branch-E prediction match so far</td>
-        <td>Verdict from the pooled 16 rows (~tomorrow morning)</td>
+        <td>Landed: Branch E — stack erasure +0.047 [−0.070,+0.203] vs matched-rank random
+            stacks −0.38; claim 3's caveat became a result</td>
       </tr>
       <tr>
         <td><span class="chip done">landed</span></td>
@@ -1018,7 +1147,7 @@
         <td>Label-specificity → F(ii)-b</td>
       </tr>
       <tr>
-        <td><span class="chip run">running</span></td>
+        <td><span class="chip done">landed</span></td>
         <td><b>Shuffled-label projected control (item F(ii)-b, jobs 458424/458425):</b>
             4 shuffled-label projected class-means, the sign-flipped real vector, and a fixed
             pooled-norm (fully donor-free) variant, identical rows/norms to F(ii). Shard-0
@@ -1026,7 +1155,44 @@
             donor-free variant +0.269 [+0.077,+0.481], baseline integrity exact</td>
         <td>Every arm breaks LABEL-SPECIFIC — against both reviewers' predicted GENERIC
             outcome. Pooled verdict decides claim 8's final wording in the W1 sweep</td>
-        <td>Pooled verdict ~13:40</td>
+        <td>Landed: shuffled family −0.043, sign-flip −0.120 (CI&lt;0), donor-free
+            fixednorm +0.399 — LABEL-SPECIFIC</td>
+      </tr>
+      <tr>
+        <td><span class="chip done">landed</span></td>
+        <td><b>July 5–7 finale (see header + verdict docs):</b> F(ii)-c deployment riders,
+            item H position policies, and the full Qwen G/J series
+            (G0/G2/G3/G3′/G4′/G6/G6′, J1/J2)</td>
+        <td>Collateral beneficial +0.266; position-free fails; policies fail (the vector is
+            a positional commitment command); Qwen — motif cross-model at model-specific
+            coordinates, raw-potent/proj-diluted inversion, gauge/lever separated BY POSITION;
+            registered predictions 4–6 confirmed</td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td><span class="chip done">landed</span></td>
+        <td><b>Item K — necessity ablation on natural successes (jobs 459836–459839,
+            Aug 9):</b> frozen-basis project-out at gold positions on 46 fresh correct rows;
+            sign-flip corrupt cell; collateral fresh draw; anchor verbatim vs 458431
+            (416/416)</td>
+        <td>Ablate −0.666 vs matched-rank controls near-free; energy telemetry (97.7% of
+            state norm) scoped the wording to state-content necessity and deferred the
+            channel-in-use upgrade; sign-flip beats matched noise —
+            <b>7th confirmed registered prediction</b>; collateral +0.160 replicates fresh</td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td><span class="chip done">landed</span></td>
+        <td><b>Item K′ — energy-matched adjudication (jobs 459847/459849/459850, Aug 9
+            evening):</b> capture-mean replacement, energy-optimal state-PCA removal,
+            rank/dose ladder, keep-only-8; gate arms verbatim vs item K (736/736)</td>
+        <td>CONTENT-NECESSITY fires (mean-ablation −0.764, zero survivors) but the riders
+            close the thin-channel reading (keep-only-8 −0.764; statePCA −0.764; ladder
+            saturates by rank 4; α=0.12 shrink only −0.103). Landed:
+            <b>write-compact lever, broadly-carried content</b>; K's deferred §6 wording
+            resolved</td>
+        <td>Next: drafting (§5.2/§5.5 first); optional K″ site-specificity control if the
+            draft needs it</td>
       </tr>
     </table>
     <p>The long pole is cluster queue policy (4h per job, one 2-GPU job at a time), not the
@@ -1051,8 +1217,11 @@
   docs/erasure_control_matching_27b_property_k4_summary.md ·
   docs/subtype_l35_replication_pooled_summary.md ·
   docs/next_experiments_litreview_2026-07.md ·
-  docs/causal_handle_directions.md · docs/next_paper_causal_abstraction_dashboard.md.
-  All numbers are from run artifacts (jobs 456912–456918, 456963–456966, 456968, 456990, 456999, 457002, 457005, 457009, 457012, 457170, 457191–457194, 457207–457210, 458374–458377, 458387/458388, 458401/458402; 458403 partial + 458409/458410/458412–458414 in flight) and the offline rank-core geometry and coefficient-predictability riders.
+  docs/causal_handle_directions.md · docs/next_paper_causal_abstraction_dashboard.md ·
+  docs/necessity_27b_property_pooled_summary.md ·
+  docs/necessity_prime_27b_property_pooled_summary.md ·
+  docs/future_directions_2026-08-09.md.
+  All numbers are from run artifacts (jobs 456912–456918, 456963–456966, 456968, 456990, 456999, 457002, 457005, 457009, 457012, 457170, 457191–457194, 457207–457210, 458374–458377, 458387/458388, 458401–458525 [the July hardening + G/J series], 459836–459839 [item K], 459847/459849/459850 [item K′]) and the offline rank-core geometry and coefficient-predictability riders.
 </footer>
 
 </body>

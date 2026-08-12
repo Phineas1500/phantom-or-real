@@ -66,7 +66,7 @@
 </style>
 
 <main>
-  <span class="eyebrow">Phantom or Real · paper blueprint · July 6, 2026</span>
+  <span class="eyebrow">Phantom or Real · paper blueprint · updated August 9, 2026</span>
   <h1>Gauge, Not Lever: Dissociating Readable Correctness from its Causal Repair Channel</h1>
   <p class="thesis">In a model that visibly predicts its own failures, the readable correctness
     signal and the causal repair channel are <b>different objects</b>: the entire readable subspace
@@ -75,7 +75,8 @@
     chance — gauge and lever, anatomically separated.</p>
   <div class="chips">
     <span class="chip">ICLR format · 4–6 pages</span>
-    <span class="chip">16 pre-registered verdicts</span>
+    <span class="chip">21 pre-registered verdicts</span>
+    <span class="chip">7 confirmed registered predictions</span>
     <span class="chip">2 adversarial review rounds survived</span>
     <span class="chip">every number below: pooled, cluster-bootstrapped</span>
   </div>
@@ -96,6 +97,12 @@
       decodably privileged (probe inside the random-subspace null) — the mirror image of the readout.</div>
     <div class="step"><b>Answer-free repair.</b> A fully donor-free variant reaches +0.40 on a 0.12
       baseline (self-consistency: 0.000); firing it on already-correct puzzles helps (+0.27).</div>
+    <div class="step"><b>The necessity coda (items K/K′, Aug 9).</b> Deleting the state content at the
+      lever's own positions abolishes natural success — replacing it with a <em>typical</em> state
+      (energy preserved) leaves zero survivors, matched-rank random removal is near-free, and the
+      sign-flipped class-mean beats matched noise (7th registered prediction). But keeping ONLY the
+      8 repair dims also kills it: <b>the lever is write-compact; what it writes into is carried
+      broadly</b>.</div>
   </div>
 
   <h2><span class="sec">§5.2</span>The gauge is not necessary</h2>
@@ -151,6 +158,9 @@
     <tr><td class="k">shuffled-ridge coefficients</td><td>"prediction quality matters"</td><td class="ok">matched → informative fail</td></tr>
     <tr><td class="k">random stacks, identical estimator</td><td>"erasure procedure is toothless"</td><td class="ok">catastrophic</td></tr>
     <tr><td class="k">dose ladders ×1/×2/×4</td><td>"more amplitude = more repair"</td><td class="ok">monotone damage</td></tr>
+    <tr><td class="k">coordinate-permuted basis (K)</td><td>"any spectrum-matched 8-dim removal breaks"</td><td class="ok">near-free (−0.04)</td></tr>
+    <tr><td class="k">capture-mean replacement (K′)</td><td>"the break is just deleted energy"</td><td class="ok">floors at typical energy</td></tr>
+    <tr><td class="k">keep-only-8 complement deletion (K′)</td><td>"the 8 repair dims carry the site"</td><td class="ok">floors — necessity is broad</td></tr>
   </table></div>
 
   <h2><span class="sec">§5.6</span>Scope, stated plainly</h2>
@@ -161,6 +171,7 @@
     <tr><td>full-stack non-necessity</td><td class="ok">✓ Branch E</td><td>—</td><td>—</td></tr>
     <tr><td>lever repair + specificity</td><td class="ok">✓ rank 8</td><td>suggestive (row-sparse)</td><td class="ok">✓ motif: carrier L43 (+0.175), channel rank k*=16</td></tr>
     <tr><td>F-series dissociations</td><td class="ok">✓</td><td>—</td><td class="ok">✓ inverted: raw-potent / proj-diluted; label battery passes (G6&prime;)</td></tr>
+    <tr><td>content necessity at the lever's site (K/K&prime;)</td><td class="ok">✓ broad, not thin</td><td>—</td><td>deferred (own registration)</td></tr>
   </table></div>
 
   <p style="max-width:46rem">Cross-model, in one line: the <b>motif transfers, the coordinates don&rsquo;t</b>.
@@ -184,7 +195,15 @@
     hypothesis: published raw-vector methods pay a dilution tax and a damage ceiling that causal
     filtering removes). Honesty ledger: endogeneity tested and null at this layer/rank; misdirection
     asymmetry named as an open anomaly; "an identified sufficient channel," not the unique mechanism;
-    MDE statements on every null; brittleness and entropy telemetry listed as unrun.</p>
+    MDE statements on every null; brittleness and entropy telemetry listed as unrun.
+    <b>New (K/K′, one registered addendum + one sentence):</b> necessity at the lever's site is real
+    and content-specific — mean-ablation at typical energy abolishes natural success while
+    content-preserving perturbations are an order cheaper — but it is <b>not compact</b>: the rank-8
+    basis that suffices to write repairs is neither necessary alone nor sufficient alone to carry the
+    site (keep-only-8 floors; energy-optimal generic removal equally lethal). The write-compact /
+    carry-broad asymmetry replaces the deferred "channel-in-use" upgrade; anatomical mirror of item D
+    stated with the energy caveat. The two-item sequence (branch rules + registered telemetry +
+    artifact-computed pre-rules) is itself a §3.6 methods exhibit.</p>
 
   <h2><span class="sec">Plan</span>Assembly order</h2>
   <ol class="assembly">
@@ -199,7 +218,8 @@
   <footer>
     Companion to the status dashboard and plain-language explainer · sources:
     docs/paper_outline_final.md · docs/contribution_ledger_2026-07-05.md · pooled verdict docs
-    (items C, D, E, F(i), F(ii), F(ii)-b, F(ii)-c, H, G0–G3&prime;) · 2026-07-06
+    (items C, D, E, F(i), F(ii), F(ii)-b, F(ii)-c, H, G0–G6&prime;, J1/J2, K, K&prime;) ·
+    docs/future_directions_2026-08-09.md · updated 2026-08-09
   </footer>
 </main>
 
