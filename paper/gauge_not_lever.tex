@@ -25,63 +25,248 @@ from its Causal Repair Channel in a 27B Reasoning Model}
 \maketitle
 
 \begin{abstract}
-% Six sentences per the outline; write AFTER results read cleanly (assembly
-% order step 3). Frozen skeleton:
-% 1. Setup: LLMs visibly encode whether they are about to answer correctly
-%    (probe AUC <= 0.94) and this readout resists steering — why, and what
-%    does causally control correctness?
-% 2. Erasure: deleting everything linearly readable costs nothing
-%    (+0.05 [-0.07,+0.20]) while matched-rank random subspaces are
-%    catastrophic (-0.38).
-% 3. Lever: rank-8 channel at concept tokens repairs held-out failures
-%    (+0.25), passing random-subspace/noise specificity.
-% 4. Necessity dissociation: class-mean null full-dim, +0.34 concentrated;
-%    labels carry it; answer-free variant +0.40 on 0.12 baseline
-%    (self-consistency 0.000).
-% 5. The channel is causally potent yet not decodably privileged.
-% 6. Scope: one model/task family for positives; raw-axis non-necessity
-%    replicates in a second model; pre-registered throughout.
-\fix{Abstract — assembly-order step 3, after \S5 reads cleanly.}
+Large language models linearly encode whether they are about to answer
+correctly (probe AUC up to $0.94$), and recent work shows this readout
+resists steering --- but why, and what \emph{does} causally control
+correctness? On depth-controlled ontology-reasoning tasks with
+Gemma~3~27B, we first show the readout is not necessary: deleting
+everything linearly readable about correctness --- the full rank-9 INLP
+subspace at all five readable layers, every token --- costs nothing
+($+0.05$ $[-0.07,+0.20]$), while matched-rank random subspaces are
+catastrophic ($-0.38$). Correctness is instead controlled through a
+compact channel at concept-mention tokens: a rank-8 basis repairs
+held-out failures ($+0.25$), passing random-subspace and matched-noise
+specificity controls. A natural correct-minus-incorrect class-mean
+vector is null at full dimension yet repairs strongly ($+0.34$) when
+concentrated into that channel; shuffled-label and sign-flip controls
+show the labels carry the effect, and a fully answer-free variant
+reaches $+0.40$ on a $0.12$ baseline where majority-vote
+self-consistency scores $0.000$. The channel is causally potent yet not
+decodably privileged (probe accuracy inside the random-subspace null)
+--- the inverse of the field's decodable-but-not-causal refrain --- and
+removal experiments show its site demands the state's content
+wholesale: the lever is write-compact, but what it writes into is
+carried broadly. Positive results are one model and task family, with
+the raw-axis non-necessity replicating in a second model; every causal
+experiment was pre-registered with branch-complete decision rules
+(21~verdicts, 7~confirmed directional predictions).
 \end{abstract}
 
 \section{Introduction}\label{sec:intro}
-% ~1 page. Hook: months of steering nulls on a highly readable correctness
-% direction; the field hit the same wall (three preprints, 2026).
-% Statistical framing: InAbHyD abduction; predict-then-intervene on
-% is_correct_strong; row-cluster bootstrap as the only sigma.
-% Thesis sentence (ledger section 5, verbatim):
-%   "In a model that visibly predicts its own failures, the readable
-%    correctness signal and the causal repair channel are different objects:
-%    the entire readable subspace can be deleted without behavioral cost,
-%    while repair flows exclusively through a low-rank channel that carries
-%    the label-specific content of natural success yet is itself no more
-%    decodable than chance — gauge and lever, anatomically separated."
-% Contributions (i)-(vii) per outline section 1.
-\fix{Introduction — assembly-order step 3.}
+
+A linear probe on a language model's residual stream can tell you,
+before generation begins, whether the answer about to be produced will
+be correct. This is by now a replicated fact
+\citep{decodable2026, detection2026, midreasoning2026}. It is also, on
+its face, an invitation: if the model internally represents ``I am
+about to get this wrong,'' surely writing the opposite into the
+residual stream should help. We spent months accepting that invitation
+--- raw-direction steering, optimized vectors, low-rank interchange
+over the probe subspace, decode-time gated injection --- and repaired
+nothing. Independently and concurrently, three groups hit the same
+wall: the failure signal is decodable but steering it is null
+\citep{decodable2026, detection2026}, a phenomenon one group names
+\emph{epiphenomenal correctness} \citep{epiphenomenal2026}. The field's
+diagnosis stops at the null. This paper asks the question the other way
+around: if the readable signal is not how correctness is controlled,
+what is --- and what, precisely, is the readable signal \emph{for}?
+
+We work on abductive ontology reasoning (InAbHyD), where task
+difficulty is controlled by proof depth and a strict string-level
+scoring of the proposed hypothesis (\emph{strong} correctness) gives a
+binary outcome to predict and intervene on. The statistical unit
+throughout is the task instance (row): every effect is a pooled
+difference in $P(\text{strong})$ against an in-job baseline with
+row-cluster bootstrap confidence intervals, and every causal experiment
+was pre-registered with branch-complete decision rules before
+unblinding. Our answer, compressed to a sentence: \emph{in a model that
+visibly predicts its own failures, the readable correctness signal and
+the causal repair channel are different objects --- the entire readable
+subspace can be deleted without behavioral cost, while repair flows
+exclusively through a low-rank channel that carries the label-specific
+content of natural success yet is itself no more decodable than chance
+--- gauge and lever, anatomically separated.}
+
+Concretely, we contribute:
+\textbf{(i)}~a readable-stack erasure result with destructive
+matched-rank controls and a stated variance mechanism: nothing linearly
+readable about correctness is necessary (Section~\ref{sec:erasure});
+\textbf{(ii)}~a localized, compact causal channel --- rank~8 at
+concept-mention tokens --- that survives fresh-row and specificity
+guards (Sections~\ref{sec:lever}--\ref{sec:specificity});
+\textbf{(iii)}~a necessity dissociation: the same natural class-mean
+vector is behaviorally null at full dimension and strongly reparative
+concentrated into the channel --- and, in the removal direction,
+content-necessity at the channel's site that is broad rather than thin
+(Section~\ref{sec:fseries});
+\textbf{(iv)}~a label-specificity battery (shuffled labels, sign-flips,
+matched noise, random subspaces) that no steering paper in the verified
+corpus runs, falsifying both external reviewers' predictions;
+\textbf{(v)}~causal control without decodable privilege --- the inverse
+dissociation of the readable-but-inert readout;
+\textbf{(vi)}~fully answer-free repair with a measured deployment
+profile: $+0.40$ where self-consistency scores $0.000$, beneficial when
+misfired on already-correct rows, with positional addressing isolated
+as the one remaining answer-adjacent ingredient; and
+\textbf{(vii)}~a pre-registration methodology --- branch-complete
+decision rules before unblinding across 21 registered verdicts, seven
+confirmed directional predictions, and token-level determinism gates
+--- that we propose as a working standard for intervention claims in
+interpretability.
 
 \section{Dataset and task}\label{sec:data}
-% ~1/4 page: InAbHyD generation, heights 1–4, property task primary
-% (subtype + Qwen as scope checks); strong/weak scoring; 44k rows/model;
-% row-selection conventions and provenance-disjoint sets (dev 13, guard
-% 26+6, capture 96, collateral 16) — one paragraph + appendix figure.
-\fix{Dataset — transcription from BEHAVIORAL\_DATA\_PLAN.md.}
+
+We generate InAbHyD abductive-reasoning instances: synthetic ontologies
+(taxonomic trees over invented concepts with inherited properties) in
+which the model must propose the hypothesis that best explains a set of
+observations. Tree height (1--4) controls proof depth; we run two task
+framings and use \emph{property} (which property does the target
+concept have?) as primary, with \emph{subtype} and a second model as
+scope checks. Each model answers 44{,}000 instances (1k/2k/3k/5k per
+height and task), scored two ways: \emph{strong} correctness requires
+the exact gold hypothesis after canonicalization; \emph{weak} accepts
+entailed variants. All causal work predicts and intervenes on strong
+correctness. Intervention experiments draw balanced height-3/4 rows
+from this pool under a strict provenance discipline: development rows
+(13), fresh-row guard sets ($26{+}6$), a 96-row natural-state capture
+set, and collateral sets of naturally-correct rows are pairwise
+disjoint, seeded, and frozen before use, so no basis, vector, or
+amplitude is ever fit on a row it is tested on
+(Appendix~\ref{app:prereg}).
 
 \section{Methods}\label{sec:methods}
-% 3.1 probes + INLP stack; 3.2 erasure family (mean-projection clamp,
-% matched-rank random-stack estimator, projection-variance telemetry,
-% P(strong|parsed) split); 3.3 interchange on the focus state; 3.4 the
-% class-mean family; 3.5 control-taxonomy TABLE; 3.6 protocol sidebar
-% (pre-registration, branch-complete rules, determinism-verified stitching,
-% cluster bootstrap / BCa / MDE).
-\fix{Methods — assembly-order step 2 (mostly transcription from
-pre-registrations and verdict docs).}
+
+\paragraph{Probes and the readable subspace.} Correctness probes are
+class-balanced logistic regressions on residual-stream activations at
+the final prompt token, trained on held-out splits of the stage-1
+dataset at five layers (L15--L53 in Gemma~3~27B). The \emph{readable
+subspace} is constructed by iterative nullspace projection: at each
+layer we run INLP until probe AUC collapses to chance, orthonormalize
+the accumulated directions across all five layers, and obtain a rank-9
+stack --- everything any linear probe in our battery can read.
+
+\paragraph{The erasure family.} Erasure is a mean-projection clamp: at
+every token position, through prompt processing and decoding, the
+projection of the residual onto each stack direction is clamped to that
+direction's global scalar train-projection mean. Controls apply the
+\emph{identical estimator and clamp} to matched-rank random stacks.
+Registered telemetry records within-forward-pass projection variance
+per direction (the mechanism check), and every arm reports
+$P(\text{strong}\,|\,\text{parsed})$ alongside $P(\text{strong})$ to
+separate content damage from format damage.
+
+\paragraph{Interchange on the focus state.} For a failing row, a
+\emph{hint-delta} is the difference between residual states under a
+concept-hinted prompt and the unhinted prompt, computed on the longest
+common token block and restricted to the gold concept's mention
+positions. Repair arms add rank-$k$ PCA reconstructions of these
+deltas at layer~30; bases are always fit leave-one-row-out (or on
+disjoint rows entirely), and additions are norm-matched per position to
+the reconstruction norms. Controls substitute random orthonormal
+subspaces, matched-norm Gaussian noise, random positions, or the delta
+mean alone at identical norms.
+
+\paragraph{The class-mean family.} Natural-state arms replace hints
+with observation: we capture unhinted concept-position states on 96
+provenance-disjoint rows (balanced correct/incorrect by strong label),
+take per-row position-means, and form the class-mean
+$\bar h_{\text{correct}} - \bar h_{\text{incorrect}}$. Variants apply
+it raw or projected into the rank-8 basis; the \emph{donor-free}
+variant fixes amplitude to a single pooled scalar so no per-instance
+information enters. Label controls recompute the mean under shuffled
+labels (identical geometry, norm, positions) or flip its sign; removal
+arms project states onto the orthogonal complement of a frozen basis,
+replace them with the dataset-typical mean state, or retain only the
+basis component.
+
+\paragraph{Control taxonomy.} Table~\ref{tab:controls} is the design's
+spine: each control is matched to the mundane account it eliminates.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{llc}
+\toprule
+\textbf{Control} & \textbf{Mundane account it kills} & \textbf{Result} \\
+\midrule
+Random positions & any location works & null \\
+Matched-norm noise & any perturbation this size helps & destructive \\
+Random subspaces (norm/rank-matched) & any $k$ directions work & null \\
+Shuffled-label class-means & any difference-shaped vector works & null \\
+Sign-flipped vector & geometry, not content & harmful \\
+Shuffled-ridge coefficients & predicted content is generic & informative fail \\
+Random stacks, identical estimator & erasure procedure is toothless & catastrophic \\
+Dose ladders ($\times\tfrac12,\times1,\times2$) & more amplitude, more repair & monotone damage \\
+Coordinate-permuted basis & spectrum-matched removal breaks & near-free \\
+Typical-state (mean) replacement & the break is deleted energy & floors \\
+Keep-only-basis complement deletion & the $8$ dims carry the site & floors \\
+\bottomrule
+\end{tabular}
+\caption{\textbf{Every positive result is bracketed by the control
+that would explain it away.} Sampling baselines (self-consistency,
+best-of-$n$) and collateral slices on naturally-correct rows complete
+the battery.}
+\label{tab:controls}
+\end{table}
+
+\paragraph{Protocol.} Every causal experiment was pre-registered with
+branch-complete decision rules --- a named branch for every reachable
+outcome pattern, wording included --- committed before unblinding;
+seven directional predictions were registered and all seven confirmed.
+Generation is seed-deterministic per (row, arm): replication-gate arms
+reproduce prior jobs token-for-token ($416/416$ and $736/736$
+generations across the necessity sequence alone), which converts
+job-stitching and cross-experiment anchoring from an assumption into a
+checked gate. Statistics: row-cluster bootstrap (10k draws, fixed
+seed, percentile CIs) against in-job baselines; claim-bearing
+contrasts near zero additionally get BCa and leave-one-row-out
+checks; every null is reported with its minimum detectable effect.
 
 \section{Related work}\label{sec:related}
-% Four blocks per skeleton section 4: readable-but-unsteerable trio;
-% diff-in-means-for-reasoning lineage (recipe family exists — we did not
-% invent it); methods bar; steering-rigor critiques as the checklist our
-% diagnostics answer.
-\fix{Related work — near-verbatim from next\_paper\_skeleton.md \S4.}
+
+\paragraph{Readable but unsteerable.} Our closest priors found the
+failure regime decodable ($71.6\%$) with 29 fixed-linear-steering
+configurations null, concluding \emph{entanglement} from a destructive
+LEACE erasure \citep{decodable2026}, and detection-without-correction
+across seven model families \citep{detection2026};
+\citet{epiphenomenal2026} coins ``epiphenomenal correctness'' from
+cross-model convergence with small ablation effects. All three stop
+where our contribution starts: none localizes the causal variable or
+demonstrates repair, and our harmless full-stack erasure with
+destructive matched-rank controls adjudicates the entanglement account
+directly (Section~\ref{sec:erasure}). Correlational correctness probing
+supplies the readable half as background
+\citep{midreasoning2026, intermediate2025, coral2026}.
+
+\paragraph{Steering reasoning with difference vectors.} The recipe
+family exists and we did not invent it: difference-in-means and related
+vectors can raise reasoning accuracy \citep{adaras2026, als2025,
+valentino2025}, trained steering vectors recover most of RL's reasoning
+gains \citep{steervec2025}, and probe-gated deployment is published
+\citep{adaras2026}. None of this work shows necessity,
+label-specificity, or decodability dissociations; SAE-RSV
+\citep{saersv2025} shows raw vectors are mostly noise and filtering
+helps --- we show a causally-identified filter is, in our setting,
+necessary, and what it retains is label-specific.
+
+\paragraph{The methods bar.} We adopt the state-encoding explicitness
+demanded by causal-abstraction critiques \citep{vacuity2025} (fixed
+linear PCA bases, no trained alignment maps), the
+harmless-versus-pernicious vocabulary of \citet{nullspace2026} for the
+probe readout, mean-projection over INLP for the erasure operation
+\citep{erasechoice2025}, and the subspace-illusion discipline of
+\citet{makelov2023} (with \citet{wu2024} as counterpoint) via fresh-row
+and basis-provenance guards. Steering-rigor critiques
+\citep{axbench2025, tan2024, pres2024, ali2025, brumley2024} function
+here as the checklist our controls answer (Table~\ref{tab:controls}).
+
+\paragraph{Concurrent convergence.} A concurrent frontier-lab result
+reports the same structural phenomenon on a different variable and
+model family: a small privileged subspace is causally dominant while
+decodable-but-inert content lives elsewhere \citep{workspace2026},
+independently replicated on a relative of our second model. We cite
+this as convergence on the anatomy --- not prior art on correctness,
+repair, or the label battery.
 
 \section{Results}\label{sec:results}
 
@@ -173,18 +358,47 @@ stacks, the registered mechanism for cheap erasure.}
 \end{figure}
 
 \subsection{The lever exists and is localized}\label{sec:lever}
-% Brief here; full numbers frozen. Recognition gap (behavioral);
-% concept-position patch repair fresh-row +0.255 [+0.111,+0.413] headline
-% (dev +0.491 as labeled selected-row anchor); ~6x positional potency;
-% KV/masking route nulls. FIG 2: repair arms.
-\fix{\S5.3 --- assembly-order step 1 continues; transcription from
-rank\_k\_guard\_v2 + kv\_hint\_span verdicts.}
+
+\paragraph{The failure is a proposal failure.} Behaviorally, the
+model's errors are not ignorance: given the gold hypothesis among
+candidates, accuracy jumps from $0.036$ to $0.839$; hinted with the
+target concept, to $0.955$--$1.000$; yet the gold hypothesis is absent
+from sixteen sampled proposals on roughly two-thirds of failing rows.
+The model recognizes the answer it cannot propose --- a
+\emph{recognition gap} localized to target-concept focus.
+
+\paragraph{Patching the focus state repairs generation.} Replacing
+residual states at the gold concept's mention positions (layer~30)
+with their hint-conditioned counterparts repairs free-form generation
+on fresh rows disjoint from all development: $+0.255$
+$[+0.111,+0.413]$ (the development-row anchor, reported as a labeled
+selected-row figure, is $+0.491$ $[+0.28,+0.71]$). Potency is
+positional: per-token, concept-mention patches are ${\sim}6\times$
+more effective than matched random positions, whose family is null.
+The token route is ruled out: masking the hint span costs nothing
+(natural decode attention to it is $0.5\%$), literal hint-token KV
+transplants are insufficient with attention verifiably flowing, and
+the masking$\times$reversion combination survives at $0.981$ --- the
+carrier is the unpatched layers' states at concept positions, not the
+hint tokens.
 
 \subsection{The lever is compact and specific}\label{sec:specificity}
-% rank-8 fresh-row guard (91%), specificity ladder: mean_only 35%, random
-% subspaces null (-0.041), matched noise destructive (-0.088), paired
-% +0.333 [+0.186,+0.489]. FIG 3: specificity ladder.
-\fix{\S5.4 --- transcription from rank8\_specificity pooled verdict.}
+
+A rank-8 leave-one-row-out PCA basis of the hint-deltas carries the
+repair to rows that contributed to neither the basis nor the row
+selection: $+0.231$ $[+0.111,+0.365]$, i.e.\ $91\%$ of the in-job
+patch effect (rank-4 under-transfers at $57\%$ --- rank~8 is the
+portable core). The pre-registered specificity ladder then separates
+the channel from its footprint: the rank-8 reconstruction repairs
+$+0.245$ $[+0.111,+0.394]$; its mean alone recovers $35\%$; random
+subspaces matched in mean, norm, rank, and position do nothing
+($-0.041$); matched-norm noise at the same positions is destructive
+($-0.088$ $[-0.180,-0.017]$); paired rank-8$-$noise is $+0.333$
+$[+0.186,+0.489]$. The specific directions carry the repair.
+Geometrically, the core is disjoint from the gauge: its projection
+onto the readable stack is $0.0002$, \emph{below} the random-subspace
+null ($0.0017$), and while sparse-dictionary decoders see it, they see
+it redundantly --- dictionary-visible, not sparse-small.
 
 \subsection{The necessity dissociation: what the channel
 carries}\label{sec:fseries}
@@ -219,8 +433,8 @@ Both external reviewers predicted the shuffled arm would match the real
 vector; it did not. The labels carry the effect.
 
 \paragraph{Against baselines nobody reports.} On these hardest rows
-(baseline $0.120$), majority-vote self-consistency over eight samples
-scores $0.000$ --- errors are correlated across rollouts, so resampling
+(baseline $0.120$), majority-vote self-consistency
+\citep{selfconsistency2022} over eight samples scores $0.000$ --- errors are correlated across rollouts, so resampling
 regenerates the same wrong commitment --- and a best-of-8 oracle
 ceiling reaches only $0.192$, under half the steered result. Per-row:
 16 improved, 10 unchanged, 0 worsened. Where prompting-side compute is
@@ -303,29 +517,105 @@ pre-registered; row-cluster bootstrap 95\% CIs.}
 \end{figure}
 
 \subsection{Scope and cross-model replication}\label{sec:scope}
-% Qwen raw-axis replication; G-series port (carrier L43 depth 0.67,
-% k*=16, recovery 48->95%); the content finale G4'->G6->G6': raw
-% +0.120 [+0.016,+0.224], real-vs-shuffled +0.182 [+0.070,+0.299],
-% sign-flip harmful (5th prediction); F(i)-analog AUC 0.504 vs 0.807;
-% J-series: gauge/lever separated BY POSITION in Qwen (J2: staging-site
-% write does not repair, shuffled==real, 6th prediction). Sentence:
-% "Gemma concentrates, Qwen distributes — the recipe is cross-model, the
-% compression is not." Subtype suggestive-only. TABLE: scope matrix.
-\fix{\S5.6 --- transcription from G/J verdict docs + scope matrix.}
+
+Positive lever claims are Gemma-3-27B, property task. The scope checks:
+\textbf{Subtype} replicates the behavioral story (recognition gap
+$33/48$; candidates $1.000$) but residual-state repair is only
+suggestive --- a weaker, row-sparse analogue at a different depth
+($+0.117$ $[+0.008,+0.254]$ at L35, carried by $3/13$ rows).
+\textbf{Qwen3.5-27B} replicates raw-axis non-necessity ($+0.070$
+$[-0.031,+0.188]$; its controls are also non-destructive, so this is
+support, not a replication of the destructive-control profile) --- and
+then the port becomes informative in its own right. The same
+recognition-gap failure mode exists (hint lift $+0.523$); a
+concept-position carrier exists at relative depth $0.67$ vs.\ Gemma's
+$0.48$ (concept-replace $+0.175$ $[+0.100,+0.258]$); the channel rank
+is ${\sim}16$ vs.\ $8$, with recovery climbing $48\%\!\to\!95\%$ of
+the carrier across ranks $8\!\to\!64$ while random 64-dim subspaces at
+matched norm sit at baseline. The content result \emph{inverts}: in
+Qwen the \emph{raw} class-mean repairs ($+0.120$ $[+0.016,+0.224]$;
+real-vs-shuffled paired $+0.182$ $[+0.070,+0.299]$; sign-flip harmful,
+a fifth confirmed registered prediction) and projection into the
+compact channel \emph{dilutes} it --- while no outcome information is
+linearly decodable at the channel's address at all (AUC $0.504$ vs.\
+Gemma's $0.807$). Instead, Qwen's outcome information is weakly
+decodable at the \emph{final prompt token} (0.66--0.81 across two
+independent 96-row draws), and writing the class-mean at that readable
+site does not repair (label-shuffled matches real exactly, paired
+$+0.005$; a sixth confirmed prediction). The anatomy is conserved,
+its coordinates are not: \textbf{Gemma separates gauge from lever by
+subspace at one position; Qwen separates them by position at one
+layer. Gemma concentrates, Qwen distributes --- the recipe is
+cross-model, the compression is not.}
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lccc}
+\toprule
+& \textbf{Gemma / property} & \textbf{Gemma / subtype} & \textbf{Qwen / property} \\
+\midrule
+Gauge readable & \checkmark\ $0.90$ & \checkmark & \checkmark\ $0.94$ \\
+Readout-axis non-necessity & \checkmark & \checkmark & \checkmark\ (controls also null) \\
+Full-stack non-necessity & \checkmark & --- & --- \\
+Lever repair $+$ specificity & \checkmark\ rank 8 & suggestive & \checkmark\ motif, $k^{*}{\approx}16$ \\
+F-series dissociations & \checkmark & --- & \checkmark\ inverted (raw-potent) \\
+Content necessity at lever site & \checkmark\ broad, not thin & --- & --- \\
+\bottomrule
+\end{tabular}
+\caption{\textbf{Scope matrix.} Checks are pre-registered pooled
+results; ``---'' means untested, not negative.}
+\label{tab:scope}
+\end{table}
 
 \section{Discussion and limitations}\label{sec:discussion}
-% Information location != causal control in both directions; endogeneity
-% honestly (F(i) null -> exogenous mediation wording; K/K' coda: content
-% necessity broad, write-compact/carry-broad, one registered sentence);
-% misdirection asymmetry open; "an identified sufficient channel";
-% projection-headroom as testable prediction; limitations with MDEs.
-\fix{\S6 --- assembly-order step 5.}
+
+\paragraph{Location is not control, in either direction.} The program's
+two dissociations bound what probe evidence can license. For
+monitoring: a high-AUC correctness probe can be a perfectly good gauge
+while reading a subspace the computation never consults --- deletable
+at zero cost. For steering: the potent content can live where no probe
+finds it, so steering nulls on readable directions are uninformative
+about controllability. The lineage's raw difference-in-means vectors
+plausibly pay a dilution tax and a damage ceiling that causal filtering
+removes --- a testable prediction (in Gemma, projection was necessary;
+in Qwen, where the state distributes, raw suffices and projection
+dilutes), which the concentrated-vs-distributed contrast turns into a
+measurable, model-level design property.
+
+\paragraph{Endogeneity, honestly.} The channel repairs without being
+decodably privileged, so we claim \emph{exogenous mediation}: the
+vector carries content \emph{about} natural success without being shown
+to be the model's own per-row decision variable (as far as linear tools
+see). The removal experiments sharpen this: at the lever's site,
+natural success requires the state's specific content wholesale ---
+replacing it with a typical state at preserved energy abolishes
+success, as does keeping only the 8 repair dimensions --- so the
+channel is a write-compact port into a broadly-carried state, not a
+thin wire that computation runs through. We say ``an identified
+sufficient channel,'' not the mechanism; sufficiency was searched for,
+and pre-registration is the mitigation we offer, not a proof of
+uniqueness.
+
+\paragraph{Open anomalies and limits.} Misdirection asymmetry remains
+open: repair transfers, misdirection does not, and the
+attractor-strength account we tested has the wrong sign. Positional
+addressing is the one answer-adjacent ingredient of the answer-free
+repair (every pre-named answer-free position policy fails).
+Quantitative claims rest on $n{=}16$--$46$ row sets with MDEs of
+$0.10$--$0.13$ on nulls; positive results are one task family, one
+model (with the stated Qwen and subtype scope); brittleness and
+entropy telemetry are unrun. Future work, in registered order: the
+layer$\times$position information map in Qwen; closing the addressing
+loop by firing the lever per-candidate and selecting with the gauge;
+and the site-specificity control for the necessity coda (is any
+position's content this necessary, or only the lever's site?).
 
 \bibliography{refs}
 \bibliographystyle{iclr2026_conference}
 
 \appendix
-\section{Pre-registration excerpts and control taxonomy}
+\section{Pre-registration excerpts and row provenance}\label{app:prereg}
 \fix{Appendix — artifact-checklist table, parse/baseline diagnostics,
 negative-results catalog, provenance figure, registration excerpts.}
 
