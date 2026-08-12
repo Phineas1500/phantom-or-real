@@ -1872,3 +1872,147 @@ Decision rules (before unblinding):
   (1,152 gens ≈ 2.8–3.0 h each at the harness's measured 6.8
   gens/min), all inside the 4 h wall; sequential under the 2-GPU QOS
   cap ≈ 9 h wall-clock.
+
+## Pre-Registered Self-Addressing Battery (2026-08-12)
+
+### L. Self-addressing the lever: gauge-selected candidate sweep (closing the addressing gap answer-free)
+
+Pre-registered 2026-08-12, before any data. F(ii)-c/H established that
+the donor-free repair is answer-free in CONTENT but not in ADDRESSING:
+gold-position writes repair (+0.447), all-position writes cancel
+(+0.029 n.s.), and every pre-named answer-free position policy failed
+(item H; the vector is a positional commitment command). Item L runs
+the composition item H's mechanism readout points at: enumerate the
+candidate concepts answer-free from the prompt (the taxonomy is IN the
+prompt), fire the lever at each candidate's mention positions in
+separate branches, and let the GAUGE — the stage-1 readable
+correctness signal, so far established as deletable and unsteerable —
+select the branch. If the gauge can rank its own steered futures, the
+loop is answer-free end-to-end and the gauge finally has a causal job
+(selector, not lever). NO registered prediction on the primary —
+genuine uncertainty is the point; branch-complete rules below. Venue:
+Scholar bf16, 2× A40, constraint J (lane-locked as always; the
+givemeanode H100 lane is explicitly NOT used for registered arms —
+different numerics break in-lane comparability).
+
+**Frozen inputs (nothing fit in-job).** Repair vector and protocol
+identical to item K's correct-side positive arm, now fired on failing
+rows: class-mean from the 458416 96-row capture, projected into the
+frozen 26-row delta basis (458431 states npz, pinned-norm check
+3708.2628 as in K), per-position norm = the pinned constant, dose 1×.
+Gauge direction = row 0 of `L53_inlp_stack` in
+`results/stage2/erasure/inlp_direction_stacks_27b_property_5layer.npz`
+(the stage-1 L53 probe direction; AUC 0.902); gauge score of a state =
+its dot product with that unit direction (ranking only — no bias or
+calibration needed; L0 characterizes the scale). Candidate set per row
+= `all_concept_names` (taxonomy concepts named in the prompt FOL —
+answer-free by construction; 7–10 per row on this dataset). Candidate
+positions via the existing `rel_by_concept` machinery. Per-candidate
+generation seeds use item H's inner formula (sample_seed +
+row·10007 + 555 + cand_index·13) — protocol-matched; no collision
+with H is possible (disjoint rows).
+
+**L0 — gauge-on-steered-states calibration (the gate job; runs first).**
+The three K-report vetters converged on this prerequisite: the stage-1
+probe was trained on natural states and may mis-score steered ones.
+One Scholar job, ~1.2 h:
+- (a) NATURAL SANITY: one forward per row of the 458416 capture set
+  (96 rows); capture L53 final-prompt-token states; CPU battery: gauge
+  AUC for natural strong-correct vs incorrect. GATE: AUC ≥ 0.75
+  (expect ≈ 0.90; below → artifact or pipeline suspect, STOP, no L1).
+- (b) STEERED-SHIFT (descriptive, no gate): on 12 seeded rows from the
+  26-row guard set (seed 20260812, first 12 in seeded order),
+  per-candidate fires with the frozen vector; capture the steered
+  pass's L53 final-token state per branch; report the score
+  distribution shift steered-vs-unsteered.
+- (c) SELECTION-SIGNAL GATE: on those 12 rows, row-paired contrast
+  (gauge score of the GOLD-candidate branch − mean score of non-gold
+  branches), row-cluster bootstrap CI. PASS (CI > 0) → L1 PRIMARY as
+  registered below. FAIL → L1 still runs, but gauge-select is DEMOTED
+  to exploratory and L1's registered outcome becomes the
+  oracle-transfer measurement + selector-texture report (stated in
+  advance; no re-registration needed).
+- (d) k=2 generations per L0 branch (~204 gens) — descriptive
+  (score-vs-outcome linkage preview only; no rule keys to them).
+
+**L1 — the sweep.** 64 FRESH failing rows (32 per height 3/4, stage-1
+strong labels, seed 20260812, `select_fresh_rows`, excluding: composite
+13, guard-v2 32, capture 96, F(ii)-c 16, K/K′ 48). Four 16-row shards.
+Arms (k per arm; explicit seed indices in parens):
+- `unhinted_baseline` (0), k=8.
+- `percand_fire_L30` (80): for EACH candidate concept, k=4 generations
+  with the frozen vector written at that candidate's mention positions;
+  the steered prefill's L53 final-token state is captured per branch
+  (one extra forward per branch). The GOLD-candidate branch doubles as
+  the ORACLE arm.
+- `matched_bestofN_unsteered` (81): n_cands(row)×4 unhinted samples —
+  the compute-matched sampling baseline (same generation count as the
+  row's full candidate sweep).
+Offline selection policies (pre-named; deterministic functions of the
+recorded data, evaluated with row-cluster bootstrap over rows):
+- GAUGE-SELECT [PRIMARY]: per row, pick the branch with the highest
+  gauge score; the row's outcome = that branch's P(strong) over its
+  k=4.
+- RANDOM-SELECT: uniform branch choice, pooled over 20 seeded draws
+  (seed 20260812+d) — the selector-null.
+- SELF-RATIFY: item H's P1 (pick the candidate whose fires most often
+  propose the fired concept) — the non-gauge comparison policy.
+- ORACLE: the gold branch (ceiling, not a policy).
+- BEST-OF-N: majority-vote and any-correct readouts of arm 81
+  (the sampling counterfactual at matched compute).
+
+Decision rules (before unblinding):
+- Gates: parse-fail per item-K conventions (< 5% pass; 5–20% flag with
+  P(strong|parsed) alongside; > 20% voids the arm; all scoring on
+  dP(strong), unparsed = not-strong); pinned-norm check in-job as in K.
+- **ORACLE GATE (evaluated first):** gold-branch dP vs in-job baseline,
+  CI > 0. FAIL → headline = "the frozen-basis donor-free protocol does
+  not transfer to fresh failing rows at pinned norm" (equal
+  prominence; the K-convention protocol has never been run on failing
+  rows — this is a genuine risk, not a formality); selectors reported
+  descriptively, no selector claims, and the addressing question
+  returns to the registry unresolved.
+- **L1-PRIMARY** (requires L0(c) PASS and the oracle gate):
+  GAUGE-SELECT dP vs baseline CI > 0 AND paired (gauge-select −
+  matched-bestofN) CI > 0. PASS wording: "the gauge selects the
+  lever's address with no answer information: the first gauge+lever
+  closed loop, answer-free in content, amplitude, and addressing;
+  latent repair beats compute-matched sampling." §5.5/§6 gain one
+  registered paragraph; no §1 claim moves.
+- Named branches (equal prominence):
+  1. Gauge-select beats baseline but NOT matched-bestofN (paired
+     straddles or < 0) → "answer-free selection works but does not
+     beat compute-matched sampling here" — no method claim; MDE
+     stated.
+  2. Gauge-select null while oracle positive → registered FINDING:
+     "the gauge does not rank its own steered futures" — the
+     gauge/lever separation extends to selection; report random-select
+     to separate selector-failure (random ≈ gauge) from
+     branch-degradation (random < gauge).
+  3. Random-select ≈ gauge-select, both CI > 0 → selection is
+     signal-free: firing at ANY candidate helps on average (consistent
+     with item H's ~50% pull) — the composition works but the gauge
+     contributes nothing; wording reserved.
+  4. Oracle positive at < 50% of the guard-row anchor scale
+     (descriptive comparison to +0.447; different protocol, so
+     descriptive only) → transfer-attenuation noted alongside any
+     other branch.
+  5. Catch-all: any arm CI > 0/< 0 pattern not named above →
+     descriptive, wording reserved.
+- Secondaries (reported with CIs, no claims): gauge-select as a
+  fraction of oracle; gauge vs self-ratify paired; gold-vs-non-gold
+  fire outcome rates (item-H mechanism texture under the frozen
+  protocol); per-branch score-vs-outcome AUC (the L0(d) linkage at
+  scale).
+- Stats: row-cluster bootstrap (10k, seed 20260704) on all contrasts;
+  MDE statement on every straddling CI (expect ≈ 0.11 single-arm at
+  n=64).
+- Scope: exploratory; no §1 claim moves on any branch; the paper's
+  §5.5 addressing caveat is REPLACED by this item's outcome sentence
+  (whichever branch fires — that is the point).
+- Budget (measured 6.8 gens/min): L0 ≈ 204 gens + ~200 forwards ≈
+  1.2 h, one job. L1: per row ≈ 8 + n_cands×4 + n_cands×4 ≈ 64–88
+  gens → ≈ 4,900 gens + ~550 capture forwards over 4 shards of 16
+  rows ≈ 3.0–3.3 h each, inside the wall; ≈ 13 h sequential under the
+  QOS cap. givemeanode credits ($500 confirmed) reserved for
+  lane-agnostic future items, not used here.
