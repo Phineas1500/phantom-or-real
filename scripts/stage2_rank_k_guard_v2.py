@@ -649,6 +649,18 @@ def main() -> int:
         help="Item K anchor shard: regenerate 458431's unhinted+fixednorm arms verbatim.")
     parser.add_argument("--necessity-prime", action="store_true",
         help="Item K': energy-matched necessity controls on the item-K rows.")
+    parser.add_argument("--selfaddress", action="store_true",
+        help="Item L1: gauge-selected candidate sweep on fresh failing rows.")
+    parser.add_argument("--selfaddress-calibration", action="store_true",
+        help="Item L0: gauge-on-steered-states calibration gates.")
+    parser.add_argument(
+        "--gauge-npz",
+        type=Path,
+        default=Path("results/stage2/erasure/inlp_direction_stacks_27b_property_5layer.npz"),
+    )
+    parser.add_argument("--gauge-layer", type=int, default=53)
+    parser.add_argument("--l0-rows", type=int, default=12)
+    parser.add_argument("--l0-seed", type=int, default=20260812)
     parser.add_argument(
         "--frozen-deltas-npz",
         type=Path,
@@ -682,10 +694,12 @@ def main() -> int:
     args = parser.parse_args()
     started = time.time()
 
-    if sum([args.specificity_controls, args.predicted_coefficients, args.class_mean, args.class_mean_b, args.class_mean_c, args.position_policy, args.g0_calibration, args.necessity, args.necessity_prime]) > 1:
+    if sum([args.specificity_controls, args.predicted_coefficients, args.class_mean, args.class_mean_b, args.class_mean_c, args.position_policy, args.g0_calibration, args.necessity, args.necessity_prime, args.selfaddress, args.selfaddress_calibration]) > 1:
         raise ValueError("mode flags are mutually exclusive")
     if args.necessity_anchor and not args.necessity:
         raise ValueError("--necessity-anchor requires --necessity")
+    if args.selfaddress_calibration and args.shard_count != 1:
+        raise ValueError("--selfaddress-calibration requires --shard-count 1 (full guard pool; registered item L0)")
     if args.specificity_controls:
         stem = f"rank8_specificity_27b_property_shard{args.shard_index}of{args.shard_count}"
         method = "rank8_specificity_controls_fresh_rows"
@@ -713,6 +727,12 @@ def main() -> int:
     elif args.necessity_prime:
         stem = f"necessity_prime_27b_property_shard{args.shard_index}of{args.shard_count}"
         method = "necessity_prime_energy_controls"
+    elif args.selfaddress_calibration:
+        stem = f"selfaddress_l0_27b_property_shard{args.shard_index}of{args.shard_count}"
+        method = "selfaddress_calibration"
+    elif args.selfaddress:
+        stem = f"selfaddress_27b_property_shard{args.shard_index}of{args.shard_count}"
+        method = "selfaddress_sweep"
     elif args.g0_calibration:
         stem = f"qwen_g0_calibration_shard{args.shard_index}of{args.shard_count}"
         method = "qwen_g0_calibration"
@@ -803,6 +823,30 @@ def main() -> int:
             }
             print(f"necessity correct rows (shard {args.shard_index}/{args.shard_count}): {[r['row_index'] for r in correct_rows]}", flush=True)
             selected_rows = correct_rows
+    if args.selfaddress:
+        if args.selection_seed != 20260812:
+            raise ValueError("--selfaddress requires --selection-seed 20260812 (registered item L)")
+        guard32 = {
+            int(r["row_index"])
+            for r in select_fresh_rows(
+                args.jsonl, exclude=set(COMPOSITE_MANIFEST_ROWS), heights=heights, per_height=16, seed=20260702
+            )
+        }
+        capture_row_ids = set()
+        with args.capture_manifest.open() as f:
+            for line in f:
+                capture_row_ids.add(int(json.loads(line)["source_row_index"]))
+        k48 = {int(idx) for _, idx in json.loads(Path("docs/necessity_27b_property_pooled.json").read_text())["rows"]}
+        l_exclude = exclude | guard32 | capture_row_ids | set(FIIC_CORRECT_ROWS) | k48
+        all_rows = select_fresh_rows(
+            args.jsonl, exclude=l_exclude, heights=heights, per_height=args.per_height, seed=args.selection_seed
+        )
+        selected_rows = shard_rows(all_rows, args.shard_index, args.shard_count)
+        print(
+            f"selfaddress fresh rows (shard {args.shard_index}/{args.shard_count}): "
+            f"{[r['row_index'] for r in selected_rows]} (excluded {len(l_exclude)} prior rows)",
+            flush=True,
+        )
     if args.specificity_controls:
         if len(ranks) != 1:
             raise ValueError("--specificity-controls expects a single rank in --rank-list")
@@ -859,17 +903,24 @@ def main() -> int:
     capture_mean_state = None
     statepca_components = None
     statepca_angles = None
-    if args.necessity or args.necessity_prime:
+    if args.selfaddress or args.selfaddress_calibration:
+        arms = [
+            Arm("unhinted_baseline", "none", "none"),
+            Arm(f"percand_fire_L{args.layer}", "percand_selfaddr", "unhinted_baseline", (args.layer,), 8, "frozen_donor_free_pinned_norm"),
+        ]
+        if args.selfaddress:
+            arms.append(Arm("matched_bestofN_unsteered", "bestofn_unsteered", "unhinted_baseline"))
+    if args.necessity or args.necessity_prime or args.selfaddress or args.selfaddress_calibration:
         if args.necessity_anchor:
             arms = build_necessity_anchor_arms(args.layer)
         elif args.necessity:
             arms, necessity_seed_index = build_necessity_arms(args.layer)
-        else:
+        elif args.necessity_prime:
             arms, necessity_seed_index = build_necessity_prime_arms(args.layer)
-        if args.necessity:
+        if args.necessity or args.selfaddress or args.selfaddress_calibration:
             row_means, capture_labels = load_capture_row_means(args.capture_npz, args.capture_manifest, args.layer)
             class_vector = class_vector_from_labels(row_means, capture_labels)
-            print(f"necessity: |real|={np.linalg.norm(class_vector):.1f} anchor={args.necessity_anchor}", flush=True)
+            print(f"necessity/selfaddress: |real|={np.linalg.norm(class_vector):.1f} anchor={args.necessity_anchor}", flush=True)
         if not args.necessity_anchor:
             frozen_deltas = load_frozen_deltas(args.frozen_deltas_npz, args.layer)
             recomputed_pinned_norm = necessity_pinned_norm_recompute(frozen_deltas, 8)
@@ -1004,7 +1055,7 @@ def main() -> int:
             unhinted_by_row[source_row_index] = unhinted_concept
         all_rel: list[int] = []
         rel_by_concept: dict[str, list[int]] = {}
-        if args.class_mean_c or args.position_policy:
+        if args.class_mean_c or args.position_policy or args.selfaddress or args.selfaddress_calibration:
             seen = set()
             for name in all_concept_names(stage1_row):
                 rels = sorted(pos - r_start for pos in concept_positions(tokenizer, receiver_text, name, r_start, block_len))
@@ -1056,6 +1107,205 @@ def main() -> int:
             recon = rank_k_reconstruction(prep["concept_delta"], basis).numpy().astype(np.float64)
             recon_norm_by_row[row_id] = float(np.linalg.norm(recon, axis=1).mean())
         print(f"recon norms per row: {sorted(recon_norm_by_row.values())[:3]}..", flush=True)
+
+    if args.selfaddress or args.selfaddress_calibration:
+        assert frozen_basis is not None and class_vector is not None
+        gauge_hook = validate_hooks(model, [args.gauge_layer])[0]
+        gauge_stack = np.load(args.gauge_npz)[f"L{args.gauge_layer}_inlp_stack"].astype(np.float64)
+        gauge_unit = gauge_stack[0] / max(np.linalg.norm(gauge_stack[0]), 1e-12)
+        components = frozen_basis["components"]
+        l_direction = (class_vector @ components.T) @ components
+        print(f"selfaddress: gauge_hook={gauge_hook} |proj_dir|={np.linalg.norm(l_direction):.1f} pinned={args.pinned_fixed_norm:.1f}", flush=True)
+
+        def branch_matrix(n_pos: int) -> np.ndarray:
+            tiled = np.tile(l_direction, (n_pos, 1))
+            current = np.maximum(np.linalg.norm(tiled, axis=1, keepdims=True), 1e-8)
+            return (tiled * (args.pinned_fixed_norm / current)).astype(np.float32)
+
+        def gauge_read(token_ids: list[int], fwd_hooks: list) -> tuple[float, np.ndarray]:
+            with model.hooks(fwd_hooks=fwd_hooks):
+                cache = prompt_cache(model, token_ids, [gauge_hook])
+            state = cache[gauge_hook][len(token_ids) - 1].numpy().astype(np.float64)
+            return float(state @ gauge_unit), state.astype(np.float32)
+
+        def emit(fout, rows_out, prep, arm_label, kind, batch, extra):
+            for sample_index, (new_ids, reply) in enumerate(batch):
+                score = score_reply(prep["row"], reply)
+                out = {
+                    "schema_version": 1,
+                    "source_row_index": prep["source_row_index"],
+                    "example_id": prep["row"].get("example_id"),
+                    "height": prep["row"].get("height"),
+                    "model": args.model, "task": args.task,
+                    "condition": arm_label, "arm_kind": kind,
+                    "reference": "unhinted_baseline" if arm_label != "unhinted_baseline" else "none",
+                    "rank_k": 8, "basis_mode": "frozen_donor_free_pinned_norm",
+                    "sample_index": sample_index, "method": method,
+                    "target_variable": "target_concept",
+                    "representation_type": "patched_residual_state",
+                    "gold_concept": prep["gold_concept"],
+                    "targets_gold_concept": canon(prep["gold_concept"]) in subjects_of(reply),
+                    "generated_token_count": len(new_ids),
+                    "model_output": reply,
+                    **extra, **score,
+                }
+                if "fired_concept" in extra:
+                    out["targets_fired_concept"] = canon(extra["fired_concept"]) in subjects_of(reply)
+                rows_out.append(out)
+                fout.write(json.dumps(out, ensure_ascii=False, default=json_default) + "\n")
+            fout.flush()
+
+        out_jsonl.parent.mkdir(parents=True, exist_ok=True)
+        rows_out = []
+        state_arrays: dict[str, np.ndarray] = {}
+        l0_natural = None
+        gold_scores: dict[int, float] = {}
+        nongold_scores: dict[int, list[float]] = {}
+        base_scores: dict[int, float] = {}
+        steered_deltas: list[float] = []
+
+        with out_jsonl.open("w", encoding="utf-8") as fout:
+            if args.selfaddress_calibration:
+                needed = set()
+                labels = {}
+                with args.capture_manifest.open() as f:
+                    for line in f:
+                        r = json.loads(line)
+                        needed.add(int(r["source_row_index"]))
+                        labels[int(r["source_row_index"])] = bool(r["is_correct_strong"])
+                natural_rows = {}
+                with args.jsonl.open() as f:
+                    for row_index, line in enumerate(f):
+                        if row_index in needed:
+                            natural_rows[row_index] = json.loads(line)
+                nat_scores, nat_labels = [], []
+                for row_index in sorted(natural_rows):
+                    srow = natural_rows[row_index]
+                    text = render_chat_text(tokenizer, system=srow["system_prompt"], user=srow["prompt_text"], model_name=args.model, add_generation_prompt=True)
+                    ids = tokenizer(text, add_special_tokens=False)["input_ids"]
+                    s, _ = gauge_read(ids, [])
+                    nat_scores.append(s)
+                    nat_labels.append(labels[row_index])
+                from sklearn.metrics import roc_auc_score
+                l0_natural = {
+                    "n": len(nat_scores),
+                    "auc": float(roc_auc_score(nat_labels, nat_scores)),
+                    "gate_a_pass": None,
+                }
+                l0_natural["gate_a_pass"] = l0_natural["auc"] >= 0.75
+                print(f"L0 natural gauge AUC = {l0_natural['auc']:.3f} (gate >= 0.75: {l0_natural['gate_a_pass']})", flush=True)
+
+                rng = random.Random(args.l0_seed)
+                chosen = set(rng.sample(sorted(p["source_row_index"] for p in prepared), min(args.l0_rows, len(prepared))))
+                print(f"L0 steered rows: {sorted(chosen)}", flush=True)
+
+            for prep_index, prep in enumerate(prepared):
+                row_id = prep["source_row_index"]
+                start = prep["r_start"]
+                if args.selfaddress_calibration and row_id not in chosen:
+                    continue
+                b_score, _ = gauge_read(prep["receiver_ids"], [])
+                base_scores[row_id] = b_score
+                if args.selfaddress:
+                    torch.manual_seed(args.sample_seed + row_id * 10007 + 0 * 101)
+                    batch = generate_sample_batch(model=model, token_ids=prep["receiver_ids"], n_samples=args.samples_per_row, max_new_tokens=args.max_new_tokens, temperature=args.temperature, stop_at_eos=True, cache_dtype=dtype)
+                    emit(fout, rows_out, prep, "unhinted_baseline", "none", batch, {"base_gauge_score": b_score})
+                k_branch = args.percand_samples if args.selfaddress else 2
+                cands = sorted(prep["rel_by_concept"].items())
+                for cand_index, (cand, rels) in enumerate(cands):
+                    positions = [start + rel_pos for rel_pos in rels]
+                    vec = branch_matrix(len(rels))
+                    hooks = [(hook_name, make_position_add_hook(torch.from_numpy(vec), positions, 1.0))]
+                    s_score, s_state = gauge_read(prep["receiver_ids"], hooks)
+                    state_arrays[f"L{args.gauge_layer}_row{row_id}_cand{cand_index}_final_state"] = s_state
+                    fired_is_gold = canon(cand) == canon(prep["gold_concept"])
+                    if fired_is_gold:
+                        gold_scores[row_id] = s_score
+                    else:
+                        nongold_scores.setdefault(row_id, []).append(s_score)
+                    steered_deltas.append(s_score - b_score)
+                    torch.manual_seed(args.sample_seed + row_id * 10007 + 555 + cand_index * 13)
+                    batch = generate_sample_batch(model=model, token_ids=prep["receiver_ids"], n_samples=k_branch, max_new_tokens=args.max_new_tokens, temperature=args.temperature, stop_at_eos=True, cache_dtype=dtype)
+                    label = f"percand_fire_L{args.layer}" if args.selfaddress else "l0_percand_fire"
+                    emit(fout, rows_out, prep, label, "percand_selfaddr", batch, {
+                        "fired_concept": cand, "fired_is_gold": fired_is_gold,
+                        "fired_candidate_index": cand_index, "n_fired_positions": len(rels),
+                        "gauge_score": s_score, "base_gauge_score": b_score,
+                    })
+                if args.selfaddress:
+                    n_total = len(cands) * args.percand_samples
+                    done = 0
+                    chunk_index = 0
+                    while done < n_total:
+                        n_chunk = min(8, n_total - done)
+                        torch.manual_seed(args.sample_seed + row_id * 10007 + 81 * 101 + chunk_index)
+                        batch = generate_sample_batch(model=model, token_ids=prep["receiver_ids"], n_samples=n_chunk, max_new_tokens=args.max_new_tokens, temperature=args.temperature, stop_at_eos=True, cache_dtype=dtype)
+                        emit(fout, rows_out, prep, "matched_bestofN_unsteered", "bestofn_unsteered", batch, {"bestofn_chunk": chunk_index, "bestofn_total": n_total})
+                        done += n_chunk
+                        chunk_index += 1
+                print(f"row {prep_index + 1}/{len(prepared)} ({row_id}): {len(cands)} candidates done, elapsed={time.time() - started:.0f}s", flush=True)
+                if torch.cuda.is_available():
+                    torch.cuda.empty_cache()
+
+        paired = np.array([gold_scores[r] - float(np.mean(nongold_scores[r])) for r in sorted(gold_scores) if r in nongold_scores])
+        rng_b = np.random.default_rng(args.control_seed)
+        sel_lo, sel_hi = row_bootstrap_ci(paired, rng_b) if paired.size else (float("nan"), float("nan"))
+        selection_signal = {
+            "n_rows": int(paired.size),
+            "paired_gold_minus_nongold_mean": float(paired.mean()) if paired.size else None,
+            "ci95": [sel_lo, sel_hi],
+            "gate_c_pass": bool(sel_lo > 0) if paired.size else None,
+        }
+        summary = summarize_generation_rows(rows_out, arms, args.sample_seed)
+        report = {
+            "schema_version": 1,
+            "created_at_utc": datetime.now(timezone.utc).isoformat(),
+            "elapsed_seconds": time.time() - started,
+            "slurm_job_id": os.environ.get("SLURM_JOB_ID"),
+            "script": "scripts/stage2_rank_k_guard_v2.py",
+            "model": args.model, "task": args.task, "method": method,
+            "shard": {"index": args.shard_index, "count": args.shard_count},
+            "selection": {
+                "selection_seed": args.selection_seed,
+                "shard_rows": [int(p["source_row_index"]) for p in prepared],
+            },
+            "prepared_rows": len(prepared),
+            "layer": args.layer,
+            "gauge": {
+                "npz": str(args.gauge_npz), "layer": args.gauge_layer, "hook": gauge_hook,
+                "direction_row": 0,
+            },
+            "pinned_fixed_norm": args.pinned_fixed_norm,
+            "l0_natural_gate": l0_natural,
+            "l0_steered_shift": {
+                "n_branches": len(steered_deltas),
+                "mean_score_delta_steered_minus_base": float(np.mean(steered_deltas)) if steered_deltas else None,
+                "sd": float(np.std(steered_deltas)) if steered_deltas else None,
+            },
+            "selection_signal_gate": selection_signal,
+            "base_gauge_scores": {str(k): v for k, v in base_scores.items()},
+            "gold_gauge_scores": {str(k): v for k, v in gold_scores.items()},
+            "summary": summary,
+            "out_jsonl": str(out_jsonl),
+            "n": len(rows_out),
+            "resolved_args": {key: str(value) if isinstance(value, Path) else value for key, value in vars(args).items()},
+            "pre_registered_decision_rule": (
+                "Item L rules in docs/causal_handle_directions.md. L0 gates: natural AUC >= 0.75; "
+                "selection-signal paired (gold - mean nongold) CI > 0. L1: oracle gate first "
+                "(gold-branch dP CI > 0), then PRIMARY = gauge-select beats baseline AND "
+                "matched-bestofN (paired CIs > 0), selectors evaluated offline at verdict time. "
+                "No registered prediction. Exploratory."
+            ),
+        }
+        states_output.parent.mkdir(parents=True, exist_ok=True)
+        np.savez_compressed(states_output, **state_arrays)
+        output.parent.mkdir(parents=True, exist_ok=True)
+        with output.open("w", encoding="utf-8") as f:
+            json.dump(report, f, indent=2, sort_keys=True, default=json_default)
+            f.write("\n")
+        write_markdown_summary(summary_md, {**report, "output": str(output), "selected_rows": len(prepared), "hint_validated": {"threshold": 0.5, "n_validated_rows": 0}, "summary": summary})
+        print(f"wrote {output}", flush=True)
+        return 0
 
     out_jsonl.parent.mkdir(parents=True, exist_ok=True)
     rows_out: list[dict[str, Any]] = []
