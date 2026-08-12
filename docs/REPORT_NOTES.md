@@ -15,6 +15,35 @@ final report is easier to assemble.
 
 ## Running Notes
 
+### 2026-08-09 (evening)
+
+#### Item K′ LANDED — CONTENT-NECESSITY fires; the necessity is broad, not thin; item K's deferred wording resolved
+
+- Jobs 459847/459849/459850 (459845/459846 died pre-generation on a
+  telemetry-only assert; fix touched no generation path — proven by the
+  gates). All gates pass: both gate arms verbatim vs item K 736/736;
+  baseline 0.764; meanablate parse 11.7% pooled = FLAG not void,
+  P(strong|parsed)=0.000 preserves.
+- **K′-PRIMARY → CONTENT-NECESSITY**: mean-ablation (typical state,
+  giant dims preserved; mean-far 0.175) floors natural success
+  (−0.764, zero survivors) — at least as hard as zero-ablation (paired
+  −0.098 CI < 0). Row-specific content is load-bearing at preserved
+  typical energy → item K's deferred §6 movement fires in the hedged
+  registered form.
+- **Riders close the thin-channel reading**: statepca8 (matched-energy,
+  interpretable) equally lethal (−0.764); keeponly8
+  INSUFFICIENT-AT-SITE (−0.764 — the 8 repair dims can't carry the
+  position alone); ladder saturates by rank 4 (rank1 −0.603); dose012
+  −0.103 — content-preserving shrink ~3.4× cheaper than foreign noise
+  at matched norm (K: −0.351) and ~7× cheaper than the sign-flip
+  (−0.696).
+- Landed sentence: necessity at the lever's site is real and
+  content-specific but NOT compact — **the lever is write-compact; what
+  it writes into is carried broadly**. Verdict:
+  `necessity_prime_27b_property_pooled_summary.md`. No new predictions
+  at stake; count stays 7. Natural K″ if drafting needs it:
+  non-concept-position content-necessity control (site-specificity).
+
 ### 2026-08-09
 
 #### Item K LANDED — necessity ablation on natural successes; 7th registered prediction confirmed; energy-confound flag scopes the primary
