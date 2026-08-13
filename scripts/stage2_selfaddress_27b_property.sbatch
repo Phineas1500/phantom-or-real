@@ -37,7 +37,7 @@ else
     python -u scripts/stage2_rank_k_guard_v2.py \
         --selfaddress \
         --rank-list 8 \
-        --shard-index "$SELFADDRESS_MODE" --shard-count 4 \
+        --shard-index "$SELFADDRESS_MODE" --shard-count "${SELFADDRESS_COUNT:-4}" \
         --per-height 32 --selection-seed 20260812 \
         --n-devices 2 --n-ctx 4096 --dtype bfloat16 --load-mode no-processing
 fi
