@@ -1,0 +1,183 @@
+{
+  "base_gauge_scores": {
+    "10153": 88.2736871639604,
+    "10733": 72.05758153573457,
+    "3189": 107.23132707011614,
+    "3710": 88.07097885934877,
+    "3822": 98.99204473993603,
+    "4870": 84.63844990192663,
+    "5232": 72.8400747551834,
+    "5515": 94.37763880337809,
+    "5873": 115.40878859155112,
+    "6404": 98.60113809082586,
+    "6823": 141.30372390207896,
+    "7835": 104.4500351768991,
+    "8418": 104.62373713358497,
+    "9132": 53.24728404505678,
+    "9777": 85.11824512912854
+  },
+  "created_at_utc": "2026-08-13T10:56:36.269582+00:00",
+  "elapsed_seconds": 14355.549986839294,
+  "gauge": {
+    "direction_row": 0,
+    "hook": "blocks.53.hook_resid_post",
+    "layer": 53,
+    "npz": "results/stage2/erasure/inlp_direction_stacks_27b_property_5layer.npz"
+  },
+  "gold_gauge_scores": {
+    "10153": 114.34677960470378,
+    "10733": 114.92821281359466,
+    "3189": 125.27981380958965,
+    "3710": 117.58187267537704,
+    "3822": 123.15729936697119,
+    "4870": 105.00722866056977,
+    "5232": 100.98457394364311,
+    "5515": 127.70639429531249,
+    "5873": 140.07024974233275,
+    "6404": 141.42048980909982,
+    "6823": 166.31877045613183,
+    "7835": 133.85131502957,
+    "8418": 136.0932911159433,
+    "9132": 84.72728295724109,
+    "9777": 118.25492337248028
+  },
+  "l0_natural_gate": null,
+  "l0_steered_shift": {
+    "mean_score_delta_steered_minus_base": 3.3121696060030428,
+    "n_branches": 129,
+    "sd": 11.296817453037686
+  },
+  "layer": 30,
+  "method": "selfaddress_sweep",
+  "model": "google/gemma-3-27b-it",
+  "n": 1152,
+  "out_jsonl": "results/stage2/erasure/selfaddress_27b_property_shard1of4.jsonl",
+  "pinned_fixed_norm": 3708.2628096560807,
+  "pre_registered_decision_rule": "Item L rules in docs/causal_handle_directions.md. L0 gates: natural AUC >= 0.75; selection-signal paired (gold - mean nongold) CI > 0. L1: oracle gate first (gold-branch dP CI > 0), then PRIMARY = gauge-select beats baseline AND matched-bestofN (paired CIs > 0), selectors evaluated offline at verdict time. No registered prediction. Exploratory.",
+  "prepared_rows": 15,
+  "resolved_args": {
+    "capture_manifest": "results/stage2/erasure/natural_state_capture_27b_property_L30.manifest.jsonl",
+    "capture_npz": "results/stage2/erasure/natural_state_capture_27b_property_L30.npz",
+    "class_mean": false,
+    "class_mean_b": false,
+    "class_mean_c": false,
+    "control_draws": 4,
+    "control_seed": 20260704,
+    "correct_per_height": 8,
+    "correct_seed": 20260706,
+    "dev_states_npz": "results/stage2/erasure/focus_state_composite_27b_property_states.npz",
+    "dry_run": false,
+    "dtype": "bfloat16",
+    "exclude_rows": "3073,3290,3415,4322,4675,6188,6327,8035,8298,8874,9549,10079,10714",
+    "frozen_deltas_npz": "results/stage2/erasure/classmean_c_deployment_27b_property_shard0of1_states.npz",
+    "g0_calibration": false,
+    "gauge_layer": 53,
+    "gauge_npz": "results/stage2/erasure/inlp_direction_stacks_27b_property_5layer.npz",
+    "heights": "3,4",
+    "jsonl": "results/full/with_errortype/gemma3_27b_infer_property.jsonl",
+    "l0_rows": 12,
+    "l0_seed": 20260812,
+    "layer": 30,
+    "load_mode": "no-processing",
+    "max_new_tokens": 96,
+    "min_block_tokens": 32,
+    "model": "google/gemma-3-27b-it",
+    "n_ctx": 4096,
+    "n_devices": 2,
+    "necessity": false,
+    "necessity_anchor": false,
+    "necessity_prime": false,
+    "out_jsonl": null,
+    "output": null,
+    "per_height": 32,
+    "percand_samples": 4,
+    "pinned_fixed_norm": 3708.2628096560807,
+    "position_policy": false,
+    "pred_shuffle_seed": 20260704,
+    "predicted_coefficients": false,
+    "rank_list": "8",
+    "ridge_alphas": "1e2,1e3,1e4,1e5,1e6",
+    "row_indices": null,
+    "sample_seed": 20260702,
+    "samples_per_row": 8,
+    "selection_seed": 20260812,
+    "selfaddress": true,
+    "selfaddress_calibration": false,
+    "shard_count": 4,
+    "shard_index": 1,
+    "shuffle_draws": 4,
+    "shuffle_label_seed": 20260705,
+    "specificity_controls": false,
+    "states_output": null,
+    "summary_md": null,
+    "task": "infer_property",
+    "temperature": 0.7
+  },
+  "schema_version": 1,
+  "script": "scripts/stage2_rank_k_guard_v2.py",
+  "selection": {
+    "selection_seed": 20260812,
+    "shard_rows": [
+      3189,
+      3710,
+      3822,
+      4870,
+      5232,
+      5515,
+      5873,
+      6404,
+      6823,
+      7835,
+      8418,
+      9132,
+      9777,
+      10153,
+      10733
+    ]
+  },
+  "selection_signal_gate": {
+    "ci95": [
+      26.51599981038089,
+      32.615582484020464
+    ],
+    "gate_c_pass": true,
+    "n_rows": 15,
+    "paired_gold_minus_nongold_mean": 29.504567257255918
+  },
+  "shard": {
+    "count": 4,
+    "index": 1
+  },
+  "slurm_job_id": "461629",
+  "summary": {
+    "matched_bestofN_unsteered": {
+      "n_rows": 15,
+      "n_samples": 516,
+      "paired_ci95": [
+        -0.02976190476190476,
+        0.014523809523809524
+      ],
+      "paired_delta_vs_reference": -0.006428571428571428,
+      "reference": "unhinted_baseline",
+      "strong_accuracy": 0.0562015503875969
+    },
+    "percand_fire_L30": {
+      "n_rows": 15,
+      "n_samples": 516,
+      "paired_ci95": [
+        -0.0007142857142857159,
+        0.06858928571428546
+      ],
+      "paired_delta_vs_reference": 0.027142857142857142,
+      "reference": "unhinted_baseline",
+      "strong_accuracy": 0.09108527131782945
+    },
+    "unhinted_baseline": {
+      "n_rows": 15,
+      "n_samples": 120,
+      "reference": "none",
+      "strong_accuracy": 0.058333333333333334
+    }
+  },
+  "task": "infer_property"
+}

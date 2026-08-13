@@ -15,6 +15,35 @@ final report is easier to assemble.
 
 ## Running Notes
 
+### 2026-08-13
+
+#### Item L LANDED — oracle gate FAILS: frozen-protocol repair does not transfer to fresh failing rows; the gauge-selector itself worked
+
+- L0 gates both PASSED (natural AUC 0.936; selection signal +31.8
+  [+23.8,+40.1]) — the gauge CAN rank steered futures. L1 (57 fresh
+  failing rows, ~8.7 candidates each, 5 jobs incl. the 3of8+7of8
+  wall-safety split): ORACLE GATE FAILS — gold-position fire with the
+  frozen K-convention vector at pinned norm: −0.004 [−0.022,+0.015]
+  on baseline 0.088. Registered FAIL branch fires verbatim: protocol
+  non-transfer headline, selectors descriptive, no selector claims,
+  addressing unresolved.
+- Descriptive gold: GAUGE-SELECT == ORACLE to three decimals — the
+  selector picked the gold-equivalent branch essentially always; the
+  composition failed downstream of selection, at the write. Protocol
+  transfer isolated as the variable (frozen-pooled basis/norm: +0.160
+  on correct rows, −0.004 on fresh failing rows; F(ii)-c LOO variant:
+  +0.447 on guard failing rows). Candidate L′: F(ii)-c protocol on
+  the same 57 rows.
+- Sampling texture replicates fresh: majority-vote −0.018,
+  any-correct ceiling 0.263 (~35 samples/row).
+- No prediction was at stake; count stays 7. Verdict:
+  `selfaddress_27b_property_pooled_summary.md`. Ops notes: assoc 4h
+  wall is hard (shards 0/1 at 3:58/3:59:42 → shard 3 split via
+  3of8+7of8 ≡ 3of4); cluster renamed accounts/partitions (scholar/gpu).
+- SJ census: moved to a givemeanode batch job after the H100
+  interactive queue degenerated (~20h wakes); v1 build failed on tar
+  format (zstd required), v2 staged pending a permission rule.
+
 ### 2026-08-09 (evening)
 
 #### Item K′ LANDED — CONTENT-NECESSITY fires; the necessity is broad, not thin; item K's deferred wording resolved
