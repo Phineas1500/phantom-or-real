@@ -33,23 +33,27 @@ Gemma~3~27B, we first show the readout is not necessary: deleting
 everything linearly readable about correctness --- the full rank-9 INLP
 subspace at all five readable layers, every token --- costs nothing
 ($+0.05$ $[-0.07,+0.20]$), while matched-rank random subspaces are
-catastrophic ($-0.38$). Correctness is instead controlled through a
+catastrophic ($-0.38$). Correctness can instead be repaired through a
 compact channel at concept-mention tokens: a rank-8 basis repairs
 held-out failures ($+0.25$), passing random-subspace and matched-noise
 specificity controls. A natural correct-minus-incorrect class-mean
-vector is null at full dimension yet repairs strongly ($+0.34$) when
-concentrated into that channel; shuffled-label and sign-flip controls
-show the labels carry the effect, and a fully answer-free variant
-reaches $+0.40$ on a $0.12$ baseline where majority-vote
+vector leaves no detected effect at full dimension yet repairs strongly
+($+0.34$; paired projected$-$raw $+0.30$) when concentrated into that
+channel; shuffled-label and sign-flip controls
+show the labels carry the effect, and a donor-free variant ---
+answer-free in content, though not yet in addressing --- reaches
+$+0.40$ on a $0.12$ baseline where majority-vote
 self-consistency scores $0.000$. The channel is causally potent yet not
-decodably privileged (probe accuracy inside the random-subspace null)
+decodably privileged (probe accuracy not distinguishable from matched
+random subspaces)
 --- the inverse of the field's decodable-but-not-causal refrain --- and
 removal experiments show its site demands the state's content
 wholesale: the lever is write-compact, but what it writes into is
 carried broadly. Positive results are one model and task family, with
 the raw-axis non-necessity replicating in a second model; every causal
-experiment was pre-registered with branch-complete decision rules
-(23~verdicts, 7~confirmed directional predictions).
+experiment was pre-registered before unblinding
+(23~verdicts, 7~confirmed directional predictions; branch-complete
+decision rules on all confirmatory items).
 \end{abstract}
 
 \section{Introduction}\label{sec:intro}
@@ -83,8 +87,9 @@ unblinding. Our answer, compressed to a sentence: \emph{in a model that
 visibly predicts its own failures, the readable correctness signal and
 the causal repair channel are different objects --- the entire readable
 subspace can be deleted without behavioral cost, while repair flows
-exclusively through a low-rank channel that carries the label-specific
-content of natural success yet is itself no more decodable than chance
+through an identified low-rank channel that carries the label-specific
+content of natural success yet is itself no more decodable than matched
+random subspaces
 --- gauge and lever, anatomically separated.}
 
 Concretely, we contribute:
@@ -104,14 +109,16 @@ matched noise, random subspaces) that no steering paper in the verified
 corpus runs, falsifying both external reviewers' predictions;
 \textbf{(v)}~causal control without decodable privilege --- the inverse
 dissociation of the readable-but-inert readout;
-\textbf{(vi)}~fully answer-free repair with a measured deployment
+\textbf{(vi)}~content-answer-free repair with a measured deployment
 profile: $+0.40$ where self-consistency scores $0.000$, replicated on
 a disjoint fresh draw ($+0.28$), beneficial when misfired on
-already-correct rows --- and with the addressing gap reduced to a
-protocol question, since the gauge itself selects the correct write
-address among steered candidate branches; and
-\textbf{(vii)}~a pre-registration methodology --- branch-complete
-decision rules before unblinding across 23 registered verdicts, seven
+already-correct rows at correct addressing --- and, descriptively, a
+gauge that ranks steered candidate branches well enough to match
+oracle address selection (the registered composition test is running
+at submission; Section~\ref{sec:fseries}); and
+\textbf{(vii)}~a pre-registration methodology --- decision rules
+committed before unblinding across 23 registered verdicts
+(branch-complete on confirmatory items), seven
 confirmed directional predictions, and token-level determinism gates
 --- that we propose as a working standard for intervention claims in
 interpretability.
@@ -212,18 +219,29 @@ the battery.}
 \end{table}
 
 \paragraph{Protocol.} Every causal experiment was pre-registered with
-branch-complete decision rules --- a named branch for every reachable
-outcome pattern, wording included --- committed before unblinding;
-seven directional predictions were registered and all seven confirmed.
-Generation is seed-deterministic per (row, arm): replication-gate arms
+decision rules committed before unblinding; confirmatory items are
+branch-complete --- a named branch for every reachable outcome
+pattern, wording included. One exploratory item (F(ii)) produced an
+outcome combination outside its enumerated branches; we flag it as
+such in Section~\ref{sec:fseries}, and its confirmatory battery
+(F(ii)-b/c) was registered and run afterwards. Seven registered
+directional predictions were confirmed.
+Generation is seed-deterministic per (row, arm, sample) --- seeds are
+row-keyed ($s_0 + \mathrm{row}\cdot 10007 + \mathrm{arm}\cdot 101 +
+\mathrm{sample}$, with lane variants adding layer or candidate terms;
+per-experiment $s_0$ and arm indices are pinned in the registration
+entries). Replication-gate arms
 reproduce prior jobs token-for-token ($416/416$, $736/736$, and
 $456/456$ generations across the necessity and addressing sequences
-alone), which converts
-job-stitching and cross-experiment anchoring from an assumption into a
-checked gate. Statistics: row-cluster bootstrap (10k draws, fixed
+alone); where a gate re-executes the identical (rows, seeds, arm) it
+is an integrity check on job-stitching rather than an independent
+replication, and we label the two cases. Statistics: row-cluster
+bootstrap (10k draws, fixed
 seed, percentile CIs) against in-job baselines; claim-bearing
 contrasts near zero additionally get BCa and leave-one-row-out
-checks; every null is reported with its minimum detectable effect.
+checks; every null is reported with its minimum detectable effect
+(computed from the observed interval width --- a post-hoc bound, not
+design power).
 
 \section{Related work}\label{sec:related}
 
@@ -276,8 +294,13 @@ repair, or the label battery.
 All effects are pooled differences in $P(\text{strong-correct})$ against
 in-job unhinted baselines, with row-cluster bootstrap 95\% confidence
 intervals (10{,}000 draws, fixed seed); rows, not generations, are the
-unit of analysis. Every causal experiment below was pre-registered with
-branch-complete decision rules before unblinding, and replication-gate
+unit of analysis, and unparsed generations score not-strong (so parse
+damage can only count against an intervention; arms with elevated
+parse failure additionally report
+$P(\text{strong}\,|\,\text{parsed})$). Every causal experiment below
+was pre-registered before unblinding (branch-complete on confirmatory
+items; the one registered-exploratory case is flagged where it
+appears), and replication-gate
 arms reproduce prior jobs token-for-token (Section~\ref{sec:methods}).
 
 \subsection{The gauge: correctness is linearly readable}\label{sec:gauge}
@@ -298,7 +321,9 @@ worth causally.
 
 \paragraph{Design.} If the readable correctness signal participates in
 producing correct answers, deleting it should hurt. We deleted it
-completely. From the five probe directions we constructed the full
+completely. By iterative nullspace projection at each of the five
+readable layers --- run to probe collapse, then orthonormalized across
+layers (Section~\ref{sec:methods}) --- we constructed the full
 rank-9 INLP-reachable correctness subspace --- every direction any
 linear probe in our battery can read, at all five readable layers ---
 and applied a mean-projection clamp at \emph{every} token position,
@@ -393,7 +418,7 @@ portable core). The pre-registered specificity ladder then separates
 the channel from its footprint: the rank-8 reconstruction repairs
 $+0.245$ $[+0.111,+0.394]$; its mean alone recovers $35\%$; random
 subspaces matched in mean, norm, rank, and position do nothing
-($-0.041$); matched-norm noise at the same positions is destructive
+($-0.041$ $[-0.154, +0.055]$); matched-norm noise at the same positions is destructive
 ($-0.088$ $[-0.180,-0.017]$); paired rank-8$-$noise is $+0.333$
 $[+0.186,+0.489]$. The specific directions carry the repair.
 Geometrically, the core is disjoint from the gauge: its projection
@@ -414,22 +439,31 @@ layer 30) on rows the model spontaneously gets right versus wrong ---
 96 capture rows, provenance-disjoint from every test row.
 
 \paragraph{The same vector, five fates.} At matched total norm on 26
-held-out failing rows:
-(i)~applied \emph{full-dimensional}, the class-mean is null: $+0.043$
-$[-0.120, +0.207]$;
+held-out failing rows (this run was registered exploratory, and its
+observed outcome combination fell outside the enumerated branches ---
+which is why the confirmatory battery below was then registered and
+run):
+(i)~applied \emph{full-dimensional}, the class-mean is undetermined:
+$+0.043$
+$[-0.120, +0.207]$ (MDE $0.159$ --- a null is not licensed at this
+design);
 (ii)~\emph{concentrated into the rank-8 channel} by projection, it
 repairs strongly: $+0.341$ $[+0.202, +0.495]$ (BCa-stable;
-leave-one-row-out point range $[+0.315, +0.355]$);
+leave-one-row-out point range $[+0.315, +0.355]$; the licensed
+dissociation is the \emph{paired} projected$-$raw contrast, $+0.298$
+$[+0.130, +0.471]$);
 (iii)~with \emph{labels shuffled} before the mean is taken --- identical
 geometry, norm, and positions --- it does nothing: $-0.043$
 $[-0.103, +0.006]$ pooled over four draws, paired real-vs-shuffled
 $+0.385$ $[+0.245, +0.534]$;
-(iv)~with its \emph{sign flipped}, it is actively harmful: $-0.120$,
-CI~$<0$;
+(iv)~with its \emph{sign flipped}, it is actively harmful: $-0.120$
+$[-0.245, -0.024]$;
 (v)~made \emph{fully donor-free} --- direction from natural outcomes
 only, amplitude a single pooled scalar, zero per-instance answer
-information --- it produces the strongest repair in the program:
-$+0.399$ $[+0.245, +0.558]$.
+information --- it produces the largest point estimate in the
+F-series battery: $+0.399$ $[+0.245, +0.558]$ (statistically
+indistinguishable from the projected arm: paired $+0.058$
+$[-0.005, +0.128]$).
 Both external reviewers predicted the shuffled arm would match the real
 vector; it did not. The labels carry the effect.
 
@@ -437,25 +471,31 @@ vector; it did not. The labels carry the effect.
 (baseline $0.120$), majority-vote self-consistency
 \citep{selfconsistency2022} over eight samples scores $0.000$ --- errors are correlated across rollouts, so resampling
 regenerates the same wrong commitment --- and a best-of-8 oracle
-ceiling reaches only $0.192$, under half the steered result. Per-row:
-16 improved, 10 unchanged, 0 worsened. Where prompting-side compute is
+ceiling reaches only $0.192$ (both baselines are per-row selection
+accuracies on the same 26 rows; the steered per-row analogue is
+16~improved, 10~unchanged, 0~worsened). Where prompting-side compute
+is
 the standard of comparison for steering claims \citep{axbench2025},
 this is the regime in which a causal write reaches states that
-sampling provably cannot.
+sampling at matched compute did not.
 
 \paragraph{The inversion.} Is the channel privileged \emph{readably}?
 A probe restricted to the rank-8 subspace decodes natural
-correct-vs-incorrect at $0.70$--$0.72$ AUC --- inside the
-random-subspace null (p95 $=0.721$; full-dimensional ceiling $0.807$).
-The subspace that exclusively carries the repair holds no privileged
-linearly-decodable information about natural outcomes. This is the
+correct-vs-incorrect at $0.70$--$0.72$ AUC --- not distinguishable
+from matched random subspaces of the same rank (registered null
+threshold p95 $=0.721$; full-dimensional ceiling $0.807$).
+The identified repair subspace does not exceed the pre-registered
+random-subspace threshold for decoding natural outcomes. This is the
 mirror image of the field's decodable-but-not-causal refrain
 \citep{decodable2026, epiphenomenal2026}, demonstrated within one
 experiment pair: the readable thing is deletable
-(Section~\ref{sec:erasure}); the causal thing is not readable. It also
+(Section~\ref{sec:erasure}); the causal thing is not detectably more
+readable than its random peers. It also
 sharpens a live methods debate: raw difference-in-means vectors are
 mostly noise and filtering helps \citep{saersv2025} --- here, causal
-filtering is \emph{necessary} (raw null, projected potent), and what
+filtering adds decisively (paired projected$-$raw $+0.298$
+$[+0.130, +0.471]$; the raw arm alone is undetermined at MDE
+$0.159$), and what
 the filter retains is label-specific content.
 
 \paragraph{Deployment profile, measured.} Firing the donor-free vector
@@ -472,7 +512,9 @@ telemetry explains why: the vector acts as a positional commitment
 marked concept is the object. Two registered follow-ups then close
 most of the remaining gap. The repair replicates on a second, fully
 disjoint draw of failing rows under its original protocol ($+0.279$
-$[+0.182, +0.377]$ on 57 rows; $62\%$ of the anchor), while a
+$[+0.182, +0.377]$ on 57 rows; $62\%$ of the $+0.447$
+$[+0.293, +0.611]$ selected-row guard anchor --- populations differ,
+so the ratio is descriptive), while a
 frozen-basis, pooled-amplitude variant of the same vector transfers to
 correct rows but does not repair failures ($-0.004$) --- so in-job
 leave-one-out basis fitting and per-row norm matching are part of the
@@ -481,8 +523,12 @@ selection stage: enumerating candidate concepts from the prompt,
 firing the lever at each candidate's positions in parallel branches,
 and letting the \emph{gauge} score the steered prefills selects the
 gold-equivalent branch essentially always (gauge-selected $=$ oracle
-to three decimals; registered selection-signal gate $+31.8$
-$[+23.8, +40.1]$). The one full composition run to date paired that
+to three decimals; the registered selection-signal gate --- gold-branch
+minus non-gold gauge score, in probe-score units on the 12 calibration
+rows --- passed at $+31.8$
+$[+23.8, +40.1]$). Selector results are descriptive under item L's
+registered rules; the claim-bearing composition test is running at
+submission time. The one full composition run to date paired that
 working selector with the non-transferring write variant and repaired
 nothing --- an instructive negative: what still separates us from a
 closed answer-free repair loop is protocol transfer at the write, not
@@ -523,10 +569,13 @@ Left: the natural class-mean at matched norm is null full-dimensional,
 potent concentrated into the channel, inert with shuffled labels,
 harmful sign-flipped, and strongest fully donor-free ($+0.399$ on a
 $0.120$ baseline; self-consistency $0.000$, best-of-8 $0.192$). Right:
-on naturally-correct rows, every content-destroying removal at the
-lever's site floors success regardless of target subspace, while
-content-preserving perturbations are an order cheaper. All arms
-pre-registered; row-cluster bootstrap 95\% CIs.}
+on naturally-correct rows, every energy-preserving content destruction
+at the lever's site floors success (the rank-8 projection, which
+removes $97.7\%$ of the norm, nearly floors at $-0.666$), while
+content-preserving perturbations are an order cheaper. All removal
+arms pre-registered confirmatory; left-panel arms (i)--(ii) are from
+the registered-exploratory F(ii) run whose confirmatory battery
+follows them; row-cluster bootstrap 95\% CIs.}
 \label{fig:fseries}
 \end{figure}
 
@@ -536,7 +585,10 @@ Positive lever claims are Gemma-3-27B, property task. The scope checks:
 \textbf{Subtype} replicates the behavioral story (recognition gap
 $33/48$; candidates $1.000$) but residual-state repair is only
 suggestive --- a weaker, row-sparse analogue at a different depth
-($+0.117$ $[+0.008,+0.254]$ at L35, carried by $3/13$ rows).
+($+0.117$ $[+0.008,+0.254]$ at L35, carried by $3/13$ rows; L35 was
+selected by a three-layer causal screen (L35/L50/L53) and this is its
+targeted two-seed replication, so the discovery step carries
+multiplicity the replication does not erase).
 \textbf{Qwen3.5-27B} replicates raw-axis non-necessity ($+0.070$
 $[-0.031,+0.188]$; its controls are also non-destructive, so this is
 support, not a replication of the destructive-control profile) --- and
@@ -546,12 +598,18 @@ concept-position carrier exists at relative depth $0.67$ vs.\ Gemma's
 $0.48$ (concept-replace $+0.175$ $[+0.100,+0.258]$); the channel rank
 is ${\sim}16$ vs.\ $8$, with recovery climbing $48\%\!\to\!95\%$ of
 the carrier across ranks $8\!\to\!64$ while random 64-dim subspaces at
-matched norm sit at baseline. The content result \emph{inverts}: in
+matched norm sit at baseline. The content result \emph{inverts} in
+the projection direction: in
 Qwen the \emph{raw} class-mean repairs ($+0.120$ $[+0.016,+0.224]$;
 real-vs-shuffled paired $+0.182$ $[+0.070,+0.299]$; sign-flip harmful,
 a fifth confirmed registered prediction) and projection into the
-compact channel \emph{dilutes} it --- while no outcome information is
-linearly decodable at the channel's address at all (AUC $0.504$ vs.\
+compact channel \emph{dilutes} it, where Gemma's projection added
+($+0.298$ paired). Gemma's raw arm, undetermined at MDE $0.159$,
+cannot exclude a Qwen-sized raw effect --- the licensed inversion is
+in the projection contrasts, and we state it that way. Meanwhile no
+outcome information was detectably
+decodable at the channel's address (AUC $0.504$/$0.483$ across two
+draws, SE ${\approx}0.06$ at $n{=}96$; vs.\
 Gemma's $0.807$). Instead, Qwen's outcome information is weakly
 decodable at the \emph{final prompt token} (0.66--0.81 across two
 independent 96-row draws), and writing the class-mean at that readable
@@ -592,7 +650,8 @@ at zero cost. For steering: the potent content can live where no probe
 finds it, so steering nulls on readable directions are uninformative
 about controllability. The lineage's raw difference-in-means vectors
 plausibly pay a dilution tax and a damage ceiling that causal filtering
-removes --- a testable prediction (in Gemma, projection was necessary;
+removes --- a testable prediction (in Gemma, projection added $+0.298$
+paired;
 in Qwen, where the state distributes, raw suffices and projection
 dilutes), which the concentrated-vs-distributed contrast turns into a
 measurable, model-level design property.
@@ -612,16 +671,25 @@ and pre-registration is the mitigation we offer, not a proof of
 uniqueness.
 
 \paragraph{The gauge is not the verbal channel --- and not useless.}
-Asked to judge its own replayed answers (a 2{,}000-row census), the
+Asked whether its own replayed answer was ``exactly correct'' (a
+2{,}000-row census on Gemma~3~27B), the
 model verbalizes ``no'' near-uniformly: on $85\%$ of answers it in
 fact got right, with $97.5\%$ unanimity across samples and a
-confident-wrong cell of $0.9\%$ --- while the linear gauge reads
-upcoming correctness at AUC $0.94$ on the same task. Whatever the
+confident-wrong cell of $0.9\%$ --- while its linear gauge reads
+upcoming correctness at AUC $0.90$ on the same task. The verbal
+surface is also extremely elicitation-fragile: an identical-rows
+census that drops the word ``exactly'' flips yes-rates from $8.2\%$
+to $50.2\%$ and becomes informative ($68\%$ yes on correct vs.\
+$32\%$ on wrong) --- so the knowing-saying gap is protocol-dependent
+at the verbal surface, while the internal readout is not. Either way,
+whatever the
 probe reads, it is not the model's verbal self-report channel. And
-the gauge, causally inert as a lever, turns out to do causal
-\emph{work} in the one role its nature permits: as a
+the gauge, causally inert as a lever, shows its first sign of a
+useful role --- descriptively, pending the registered composition
+test: as a
 \emph{selector}, ranking steered candidate futures well enough to
-pick the gold write-address (Section~\ref{sec:fseries}). Gauge and
+match oracle write-address selection (Section~\ref{sec:fseries}).
+Gauge and
 lever remain different objects; the gauge's job is reading --- and it
 reads steered states as well as natural ones.
 
@@ -630,8 +698,8 @@ open: repair transfers, misdirection does not, and the
 attractor-strength account we tested has the wrong sign. Positional
 addressing is the one answer-adjacent ingredient of the answer-free
 repair (every pre-named answer-free position policy fails).
-Quantitative claims rest on $n{=}16$--$46$ row sets with MDEs of
-$0.10$--$0.13$ on nulls; positive results are one task family, one
+Quantitative claims rest on $n{=}13$--$57$ row sets with MDEs of
+$0.10$--$0.16$ on nulls; positive results are one task family, one
 model (with the stated Qwen and subtype scope); brittleness and
 entropy telemetry are unrun. Future work, in registered order: the
 layer$\times$position information map in Qwen; closing the repair
@@ -649,8 +717,11 @@ position's content this necessary, or only the lever's site?).
 
 Every registered arm consumes only artifacts frozen before unblinding.
 Table~\ref{tab:artifacts} lists them. Interventions are deterministic by
-construction: sampling seeds are row-keyed
-($\mathrm{seed} = s_0 + \mathrm{row}\cdot 10007 + \mathrm{arm}\cdot 101$),
+construction: sampling seeds are row-keyed per sample
+($\mathrm{seed} = s_0 + \mathrm{row}\cdot 10007 + \mathrm{arm}\cdot
+101 + \mathrm{sample}$; lane variants add layer or candidate-index
+terms, and each experiment's $s_0$ and arm indices are pinned in its
+registration entry),
 so shard layout cannot change any generation, and every follow-up run
 re-executes its predecessor's baseline arms and requires token-level
 verbatim equality before its new arms are read (gate counts across the
@@ -661,7 +732,8 @@ arithmetic is bit-identical across GPUs of one architecture but summation
 order differs across architectures, which breaks verbatim gates.
 Statistical claims use row-cluster bootstrap (10{,}000 draws, seed
 20260704, percentile intervals); every null carries a minimum detectable
-effect computed from its own interval width.
+effect computed from its own interval width (a post-hoc bound, not
+design power).
 
 \begin{table}[h]
 \centering\small
@@ -699,7 +771,7 @@ finding (registered null / failure) & effect [CI] or MDE & resolution / status \
 erasing the raw readout axis: no cost & $-0.016$ $[-0.094,+0.070]$ & thesis-supporting null \\
 erasing the full readable stack: no cost & $+0.047$ $[-0.070,+0.203]$ & thesis-supporting null \\
 Qwen rank-8 transplant misses & $+0.083$, MDE $0.12$ & G3$'$: channel rank $k^{*}{=}16$ \\
-Qwen projected-64 content transfer null & --- & G6$'$: full-state raw transfer passes \\
+Qwen projected-16 content transfer null & --- & G6$'$: full-state raw transfer passes (proj-64 flagged, closed positive) \\
 writing at Qwen's readable site (final token) & paired $+0.005$; shuffled $=$ real & 6th confirmed prediction: position dissociation \\
 frozen-basis donor-free write on fresh rows (L) & $-0.004$; oracle gate fails & L$'$: in-job LOO refit repairs $+0.279$ \\
 misdirection toward specific wrong answers & attractor account: wrong sign & open anomaly \\
@@ -727,12 +799,12 @@ Table~\ref{tab:provenance} maps the paper's claims to that chain.
 claim (section) & item & verdict document (jobs) \\
 \midrule
 gauge readable (\S\ref{sec:gauge}) & --- & stage-1 probe suite \\
-erasure at zero cost (\S\ref{sec:erasure}) & C/D/E & subspace-erasure + control-matching summaries (456912--457210) \\
-lever localization, rank, specificity (\S\ref{sec:lever}--\ref{sec:specificity}) & F(i)/F(ii)/H & rank-$k$ guard v2 pooled (458374/458375) + F-series summaries \\
-content battery (\S\ref{sec:fseries}) & F(ii)-b/c & F-series pooled summaries \\
+erasure at zero cost (\S\ref{sec:erasure}) & C/D/E & subspace-erasure, control-matching, and readable-stack summaries (456912--457210; 458403--458414) \\
+lever localization, rank, specificity (\S\ref{sec:lever}--\ref{sec:specificity}) & A/C/E + guard v2 & rank-$k$ guard v2 pooled (458374/458375); rank-8 specificity pooled (458401/458402) \\
+content battery (\S\ref{sec:fseries}) & F(i)/F(ii)/F(ii)-b/c, H & F-series pooled summaries; position-policy summary \\
 necessity coda (\S\ref{sec:fseries}) & K/K$'$ & necessity pooled (459836--459838); prime pooled (459847/459849/459850) \\
-Qwen port (\S\ref{sec:scope}) & G0--G6$'$, J1/J2 & \texttt{qwen\_*} summaries (458401--458525 series) \\
-selector + fresh-draw repair (\S\ref{sec:discussion}) & L/L$'$ & self-address pooled (461624--461633); prime pooled (461648/461649) \\
+Qwen port (\S\ref{sec:scope}) & G0--G6$'$, J1/J2 & \texttt{qwen\_*} summaries (458461--458525) \\
+selector + fresh-draw repair (\S\ref{sec:fseries}) & L/L$'$ & self-address pooled (461624--461633); prime pooled (461648/461649) \\
 self-judgement census (\S\ref{sec:discussion}) & recon & census summary (H100 batch jobs) \\
 \bottomrule
 \end{tabular}
@@ -747,12 +819,20 @@ decision rules were committed before its jobs ran.}
 All arms are scored on $\Delta P(\text{strong})$ against the in-job
 unhinted baseline, with unparsed generations scored not-strong (so parse
 failure can only hurt, never help, an intervention). Registered parse
-gates: an arm with $<5\%$ parse failure passes; $5$--$20\%$ is flagged and
+gates for claim-bearing repair arms: $<5\%$ parse failure passes;
+$5$--$20\%$ is flagged and
 additionally reported as $P(\text{strong}\mid\text{parsed})$; $>20\%$
-voids the arm. No registered Gemma arm in the paper exceeded the flag
-threshold; the one systematic parse regime encountered
-(thinking-mode overrun in a day-one hybrid reconnaissance, outside this
-paper's claims) was a harness fact, not a capability fact.
+voids the arm. No claim-bearing repair arm exceeded the void bound;
+flagged arms exist (e.g.\ up to $11.7\%$ on K$'$ removal arms, $18.3\%$
+on the exploratory F(ii) projected arm) and in every case
+$P(\text{strong}\mid\text{parsed})$ preserves the reported ordering.
+\emph{Destructive} controls are a different regime by design: breaking
+the model breaks its formatting too, so their parse rates run as low
+as $0.66$ (random-stack erasure draws), and their claims rest jointly
+on $\Delta P(\text{strong})$ and on
+$P(\text{strong}\mid\text{parsed})$ collapsing ($0.008$--$0.017$ for
+the random stacks) --- content demolition confirmed among the outputs
+that still parse, not an artifact of format damage.
 
 \section{Registration excerpts}\label{app:prereg}
 
@@ -768,5 +848,17 @@ undoes it) and gold-instability (the gold address is not stable across
 candidate draws); a PASS obligates a fresh-draw replication (L$'''$)
 before any claim upgrade. The full registry, with per-item commit hashes,
 ships in the artifact bundle.
+
+\paragraph{Artifact bundle.} The bundle is the project repository:
+the registration registry, every pooled verdict document cited in
+Appendix~\ref{app:provenance}, the frozen \texttt{npz} artifacts of
+Table~\ref{tab:artifacts}, and the task-facing surfaces a
+reconstruction needs --- the system and user prompt templates
+(\texttt{src/config.py}), the hint-prompt constructors, the
+strong-correctness canonicalization rules
+(\texttt{src/gemma3\_parse.py} and the scoring module), and the probe
+training code for the readable stack. Per-experiment $s_0$ values, arm
+index maps, and INLP stopping criteria live in the registration
+entries and run manifests alongside the code that consumed them.
 
 \end{document}
