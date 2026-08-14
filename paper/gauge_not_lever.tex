@@ -49,7 +49,7 @@ wholesale: the lever is write-compact, but what it writes into is
 carried broadly. Positive results are one model and task family, with
 the raw-axis non-necessity replicating in a second model; every causal
 experiment was pre-registered with branch-complete decision rules
-(21~verdicts, 7~confirmed directional predictions).
+(23~verdicts, 7~confirmed directional predictions).
 \end{abstract}
 
 \section{Introduction}\label{sec:intro}
@@ -105,11 +105,13 @@ corpus runs, falsifying both external reviewers' predictions;
 \textbf{(v)}~causal control without decodable privilege --- the inverse
 dissociation of the readable-but-inert readout;
 \textbf{(vi)}~fully answer-free repair with a measured deployment
-profile: $+0.40$ where self-consistency scores $0.000$, beneficial when
-misfired on already-correct rows, with positional addressing isolated
-as the one remaining answer-adjacent ingredient; and
+profile: $+0.40$ where self-consistency scores $0.000$, replicated on
+a disjoint fresh draw ($+0.28$), beneficial when misfired on
+already-correct rows --- and with the addressing gap reduced to a
+protocol question, since the gauge itself selects the correct write
+address among steered candidate branches; and
 \textbf{(vii)}~a pre-registration methodology --- branch-complete
-decision rules before unblinding across 21 registered verdicts, seven
+decision rules before unblinding across 23 registered verdicts, seven
 confirmed directional predictions, and token-level determinism gates
 --- that we propose as a working standard for intervention claims in
 interpretability.
@@ -214,8 +216,9 @@ branch-complete decision rules --- a named branch for every reachable
 outcome pattern, wording included --- committed before unblinding;
 seven directional predictions were registered and all seven confirmed.
 Generation is seed-deterministic per (row, arm): replication-gate arms
-reproduce prior jobs token-for-token ($416/416$ and $736/736$
-generations across the necessity sequence alone), which converts
+reproduce prior jobs token-for-token ($416/416$, $736/736$, and
+$456/456$ generations across the necessity and addressing sequences
+alone), which converts
 job-stitching and cross-experiment anchoring from an assumption into a
 checked gate. Statistics: row-cluster bootstrap (10k draws, fixed
 seed, percentile CIs) against in-job baselines; claim-bearing
@@ -466,8 +469,24 @@ pre-named answer-free position policy fails. The mechanism readout
 explains why: the vector acts as a positional commitment
 \emph{command}, pulling proposals toward whichever concept is marked
 (${\sim}50\%$ regardless of correctness) --- content is the verb; the
-marked concept is the object. The method is answer-free in content,
-not yet in addressing, and we state both.
+marked concept is the object. Two registered follow-ups then close
+most of the remaining gap. The repair replicates on a second, fully
+disjoint draw of failing rows under its original protocol ($+0.279$
+$[+0.182, +0.377]$ on 57 rows; $62\%$ of the anchor), while a
+frozen-basis, pooled-amplitude variant of the same vector transfers to
+correct rows but does not repair failures ($-0.004$) --- so in-job
+leave-one-out basis fitting and per-row norm matching are part of the
+recipe, and we say so. And the addressing loop itself works at the
+selection stage: enumerating candidate concepts from the prompt,
+firing the lever at each candidate's positions in parallel branches,
+and letting the \emph{gauge} score the steered prefills selects the
+gold-equivalent branch essentially always (gauge-selected $=$ oracle
+to three decimals; registered selection-signal gate $+31.8$
+$[+23.8, +40.1]$). The one full composition run to date paired that
+working selector with the non-transferring write variant and repaired
+nothing --- an instructive negative: what still separates us from a
+closed answer-free repair loop is protocol transfer at the write, not
+answer-adjacent knowledge in the addressing.
 
 \paragraph{The necessity coda: what removal reveals.} Sufficiency
 established, we ran the removal direction on 46 fresh naturally-correct
@@ -592,6 +611,20 @@ sufficient channel,'' not the mechanism; sufficiency was searched for,
 and pre-registration is the mitigation we offer, not a proof of
 uniqueness.
 
+\paragraph{The gauge is not the verbal channel --- and not useless.}
+Asked to judge its own replayed answers (a 2{,}000-row census), the
+model verbalizes ``no'' near-uniformly: on $85\%$ of answers it in
+fact got right, with $97.5\%$ unanimity across samples and a
+confident-wrong cell of $0.9\%$ --- while the linear gauge reads
+upcoming correctness at AUC $0.94$ on the same task. Whatever the
+probe reads, it is not the model's verbal self-report channel. And
+the gauge, causally inert as a lever, turns out to do causal
+\emph{work} in the one role its nature permits: as a
+\emph{selector}, ranking steered candidate futures well enough to
+pick the gold write-address (Section~\ref{sec:fseries}). Gauge and
+lever remain different objects; the gauge's job is reading --- and it
+reads steered states as well as natural ones.
+
 \paragraph{Open anomalies and limits.} Misdirection asymmetry remains
 open: repair transfers, misdirection does not, and the
 attractor-strength account we tested has the wrong sign. Positional
@@ -601,8 +634,9 @@ Quantitative claims rest on $n{=}16$--$46$ row sets with MDEs of
 $0.10$--$0.13$ on nulls; positive results are one task family, one
 model (with the stated Qwen and subtype scope); brittleness and
 entropy telemetry are unrun. Future work, in registered order: the
-layer$\times$position information map in Qwen; closing the addressing
-loop by firing the lever per-candidate and selecting with the gauge;
+layer$\times$position information map in Qwen; closing the repair
+loop by composing the gauge-selector with the transferring write
+protocol;
 and the site-specificity control for the necessity coda (is any
 position's content this necessary, or only the lever's site?).
 
