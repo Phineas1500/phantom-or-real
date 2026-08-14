@@ -2016,3 +2016,69 @@ Decision rules (before unblinding):
   rows ≈ 3.0–3.3 h each, inside the wall; ≈ 13 h sequential under the
   QOS cap. givemeanode credits ($500 confirmed) reserved for
   lane-agnostic future items, not used here.
+
+### L′. Protocol-transfer adjudication (F(ii)-c protocol on the item-L rows)
+
+Pre-registered 2026-08-13 evening, after item L's oracle-gate FAIL and
+before any L′ data. Item L found the frozen K-convention protocol
+(pooled 26-row basis, pinned norm 3708.2628) produces nothing at gold
+positions on 57 fresh failing rows (−0.004 [−0.022, +0.015]), while
+the F(ii)-c protocol (per-row LOO bases, in-job pooled-others norm)
+repaired the guard rows at +0.447. Two live explanations with very
+different consequences: (1) PROTOCOL — in-job LOO fitting/norms are
+load-bearing; the paper's §5.5 claims stand with a protocol-scope
+sentence; (2) FRESH-DRAW FRAGILITY — the repair itself is
+guard-draw-specific; §5.5 must rescope before anything posts. L′
+separates them with one arm on the same rows. NO registered
+prediction — the adjudication is the point. Venue: Scholar bf16,
+2× A40, constraint J.
+
+Design — two shards (0of2/1of2, interleaved) over the identical
+64-row item-L selection (seed 20260812, identical exclusions;
+row-keyed generation seeds are layout-independent, so the baseline
+arm must reproduce item L's baselines token-for-token regardless of
+the different shard layout). `--selfaddress-prime` mode in
+`scripts/stage2_rank_k_guard_v2.py`; the arm rides the EXISTING
+`fixednorm_proj_add` machinery — no new intervention code.
+
+- **Arms** (k=8; explicit seed indices): `unhinted_baseline` (0) —
+  VERBATIM GATE vs the item-L1 recorded baselines on all shared rows;
+  `fixednorm_proj_add_L30` (90) — the F(ii)-c construction,
+  protocol-matched: class vector from the 458416 capture (frozen),
+  projected into the per-row LOO rank-8 PCA basis of the shard's
+  in-job hint-deltas (LOO within shard, matching the F(ii) in-job
+  convention; ~31 contributing rows per basis vs F(ii)'s 12), scaled
+  to the in-job pooled-others recon norm, written at gold concept
+  positions. In-job norms and basis EVRs recorded per row.
+- Gates: (i) baseline verbatim vs L1 (mismatch → debug, no
+  unblinding); (ii) parse per item-K conventions (5% flag with
+  P(strong|parsed); >20% voids; scoring on dP(strong), unparsed =
+  not-strong).
+- **L′-PRIMARY** (pooled ~57 prepared rows, row-cluster bootstrap
+  10k, seed 20260704), branch-complete:
+  1. TRANSFERS: fixednorm_proj dP CI > 0 → "the F(ii)-c protocol
+     repairs fresh failing rows — item L's null is attributed to the
+     frozen-pooled protocol (basis provenance / norm convention), not
+     fresh-draw fragility." Consequences: §5.5 keeps its claims plus
+     one protocol-scope sentence (in-job LOO fitting is part of the
+     recipe); this arm doubles as the donor-free repair's first
+     fresh-draw replication (report % of +0.447 descriptively);
+     item L's headline is refined accordingly.
+  2. NULL: CI straddles (MDE statement mandatory; expect ≈ 0.09 at
+     n=57) → "the repair does not transfer to this fresh draw under
+     either protocol — fresh-draw fragility." Consequences: §5.5
+     gains a mandatory scoping caveat (guard-draw-specific until
+     resolved); the rescue-set map becomes top priority; equal
+     prominence.
+  3. NEGATIVE: CI < 0 → descriptive, wording reserved.
+- **Secondary (within-row protocol contrast, descriptive unless
+  PRIMARY fires branch 1)**: paired (L′ fixednorm_proj − item-L1
+  recorded gold-branch fire) per shared row, row-cluster bootstrap;
+  k asymmetry (8 vs 4) recorded as a limitation. CI > 0 under branch
+  1 → the protocol difference is confirmed within-row.
+- Scope: exploratory; no §1 claim moves; §5.5 wording moves ONLY per
+  the branch consequences named above. Registered-prediction count
+  unaffected (none made).
+- Budget: 64 rows × 2 arms × 8 = 1,024 gens + ~64 hinted-capture
+  forwards per shard → 2 shards ≈ 1.3–1.5 h each at the measured
+  rate, inside the wall; ≈ 3 h sequential.
