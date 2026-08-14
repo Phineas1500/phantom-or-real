@@ -418,21 +418,24 @@
     hinted 0.834; the hint repairs 81% of failing rows). The gauge is there too — a probe ladder
     over all 65 depths shows the familiar profile, rising smoothly to a peak at layers 51–54 (~82%
     depth) — and it reads <b>identically from attention-layer and DeltaNet-layer residual streams
-    (0.667 vs 0.667)</b>. One number is new, and open: the tuned peak is <b>AUC 0.741</b>, well
-    below the 0.90/0.94 of the pure-attention models. A greedy-label control (matching the other
-    models' label protocol) is queued; it decides whether that gap is label noise or the first
-    <b>architecture-sensitivity result</b> for the gauge.</p>
+    (0.753 vs 0.752)</b>. The strength question resolved the same evening: the first-pass peak of
+    0.741 was label noise (our quick labels came from single temperature-0.7 samples, which agree
+    with deterministic greedy answers on only 78% of rows — a state cannot predict sampling luck);
+    against greedy labels, matching the other models' protocol, the peak is <b>AUC 0.860</b> —
+    near Gemma's 0.90, with less probe-training data than either registered gauge. No
+    architecture-sensitivity claim survives.</p>
   <div class="plain">
     Why this matters: every gauge we have measured so far lived in a model whose every layer can
     look back at the whole prompt (ordinary attention). Qwen3.8 mostly <i>can't</i> — three
     quarters of its layers carry a compressed running summary instead (that is what "linear
     attention / DeltaNet" means: cheaper, but no going back to re-read). If the
     know-your-own-failure signal were a product of full attention, it should weaken or move here.
-    So far: same failure mode, same hint response, same signal at the same relative depth, spread
-    evenly across both layer types — but possibly <i>weaker</i>, which would be the first time the
-    gauge's strength depended on architecture. The pending control run settles it. Either way this
-    model is the natural subject for the next paper's bridge experiments, and it cost about $6 to
-    find out on day one.
+    The verdict: same failure mode, same hint response, same signal at the same relative depth at
+    <b>essentially full strength</b>, spread evenly across both layer types. Along the way we
+    caught our own confound — sloppy quick labels made the gauge look weaker for a few hours, and
+    fixing the label protocol recovered it — itself a portable methods lesson: compare gauges only
+    under matched labels. This model is now the natural subject for the next paper's bridge
+    experiments, both entry gates pre-cleared, and it cost about $6 to find out on day one.
   </div>
 
   <h2><span class="sec">§6</span>Discussion commitments</h2>
