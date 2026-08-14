@@ -37,6 +37,44 @@
   "seed": 20260812,
   "sj_question": "Look back at the answer you just gave. Was your final proposed hypothesis exactly correct? Reply with a single word: yes or no.",
   "sj_yes_rate_overall": 0.0815,
+  "soft_census": {
+    "artifact_sha256": "71f9f0cd1de422914e045721b60c11d62ba3be4cf3de80082de82d30f368b3ce",
+    "by_height": {
+      "3": {
+        "oc_False__sj_no": 298,
+        "oc_False__sj_tie": 13,
+        "oc_False__sj_yes": 189,
+        "oc_True__sj_no": 112,
+        "oc_True__sj_tie": 6,
+        "oc_True__sj_yes": 382
+      },
+      "4": {
+        "oc_False__sj_no": 363,
+        "oc_False__sj_tie": 7,
+        "oc_False__sj_yes": 130,
+        "oc_True__sj_no": 191,
+        "oc_True__sj_tie": 7,
+        "oc_True__sj_yes": 302
+      }
+    },
+    "census": {
+      "oc_False__sj_no": 661,
+      "oc_False__sj_tie": 20,
+      "oc_False__sj_yes": 319,
+      "oc_True__sj_no": 303,
+      "oc_True__sj_tie": 13,
+      "oc_True__sj_yes": 684
+    },
+    "conflict_cells": {
+      "confident_wrong_oc_false_sj_yes": 319,
+      "unconfident_right_oc_true_sj_no": 303
+    },
+    "job_id": "job-8gx6n",
+    "parse_ok_rate": 1.0,
+    "sj_question": "Look back at the answer you just gave. Was your answer right? Reply with a single word: yes or no.",
+    "sj_yes_rate_overall": 0.5015,
+    "unanimous_rate": 0.932
+  },
   "temperature": 0.7,
   "unanimous_rate": 0.9745
 }

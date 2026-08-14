@@ -65,11 +65,43 @@ Scholar).
    the registration must pin whichever protocol it uses and cite
    both counts).
 
-## Consequences
+## The soft-elicitation census (job-8gx6n, 2026-08-14, ≈$1.15)
 
-- SJ/OC registration (when written): probe-SJ fallback as the default
-  design; optionally preceded by one softer-elicitation census
-  (report both). Elicitation protocol, answer slot, and scoring to be
-  pinned in the registration per 2605.27752.
+Identical rows, seed, and protocol; the one change is the question —
+"Was your answer right? Reply with a single word: yes or no."
+(dropping "exactly correct"). Row-level:
+`results/sj_census/sj_census_2k_soft.jsonl`. The picture inverts:
+
+| | SJ = yes | SJ = no | tie |
+|---|---:|---:|---:|
+| **OC = correct** (1,000) | **684** | 303 | 13 |
+| **OC = wrong** (1,000) | 319 | 661 | 20 |
+
+- Overall SJ-yes 50.2% (vs 8.2% under "exactly"); unanimity 93.2%;
+  parse 100%.
+- **Both conflict cells are now well-populated**: confident-wrong
+  319 (was 18), unconfident-right 303 (was 850-as-uniform-no).
+- Verbal SJ discriminates under this phrasing: yes-rate 68% on
+  correct vs 32% on wrong (≈67% agreement with OC).
+
+**Reading, jointly.** One word ("exactly") moves the model's verbal
+self-assessment from near-degenerate self-denial (8% yes) to an
+informative, roughly calibrated signal (50% yes, 68/32 split) — the
+sharpest possible local confirmation of protocol sensitivity
+(2605.27752). Both facts matter: the verbal channel exists but is
+extremely elicitation-fragile, while the internal gauge reads 0.94
+regardless of how anyone phrases the question.
+
+## Consequences (updated after both censuses)
+
+- SJ/OC registration: the SOFT protocol supports the verbalized-label
+  design after all — both conflict cells populated at n≈300. The
+  registration pins the soft question verbatim, cites BOTH censuses
+  (no protocol shopping: the "exactly" census is reported alongside as
+  the sensitivity bound), and may retain a probe-SJ arm as a
+  complement rather than a fallback.
+- The knowing-saying gap sentence for §6 stands, sharpened: the gap
+  itself is protocol-dependent at the verbal surface while the
+  readable signal is not.
 - No claims move anywhere (reconnaissance; registration-free by
   design).
