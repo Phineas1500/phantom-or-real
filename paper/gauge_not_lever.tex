@@ -644,8 +644,129 @@ position's content this necessary, or only the lever's site?).
 \bibliographystyle{iclr2026_conference}
 
 \appendix
-\section{Pre-registration excerpts and row provenance}\label{app:prereg}
-\fix{Appendix — artifact-checklist table, parse/baseline diagnostics,
-negative-results catalog, provenance figure, registration excerpts.}
+
+\section{Frozen artifacts, seeds, and determinism gates}\label{app:artifacts}
+
+Every registered arm consumes only artifacts frozen before unblinding.
+Table~\ref{tab:artifacts} lists them. Interventions are deterministic by
+construction: sampling seeds are row-keyed
+($\mathrm{seed} = s_0 + \mathrm{row}\cdot 10007 + \mathrm{arm}\cdot 101$),
+so shard layout cannot change any generation, and every follow-up run
+re-executes its predecessor's baseline arms and requires token-level
+verbatim equality before its new arms are read (gate counts across the
+program: $416/416$, $736/736$, and $456/456$ verbatim replays across the
+K/K$'$ and L/L$'$ sequences; earlier series gated identically). Registered
+lanes are pinned to one venue (bf16 on $2\times$A40) because bf16
+arithmetic is bit-identical across GPUs of one architecture but summation
+order differs across architectures, which breaks verbatim gates.
+Statistical claims use row-cluster bootstrap (10{,}000 draws, seed
+20260704, percentile intervals); every null carries a minimum detectable
+effect computed from its own interval width.
+
+\begin{table}[h]
+\centering\small
+\begin{tabular}{@{}lll@{}}
+\toprule
+artifact & frozen from & role \\
+\midrule
+class-mean vector & 96-row capture (job 458416) & repair content source \\
+rank-8 basis & states \texttt{npz}, 26 \texttt{concept\_delta} keys (job 458431) & write subspace \\
+pinned write norm & $3708.2628$ (recomputed, hard-fail on drift) & energy control \\
+gauge direction & row 0 of \texttt{L53\_inlp\_stack} (INLP stack \texttt{npz}) & readable axis \\
+donor row set & 16 correct rows, F(ii)-c registration & LOO donor pool \\
+row selections & seeded draws (e.g.\ 20260812 for the L-series) & sampling frames \\
+\bottomrule
+\end{tabular}
+\caption{Frozen artifacts consumed by registered arms. Each is stored with
+its producing job id; registrations name them before any outcome is
+observed.}
+\label{tab:artifacts}
+\end{table}
+
+\section{Negative-results catalog}\label{app:negatives}
+
+Pre-registration makes negative results reportable rather than
+discardable. Table~\ref{tab:negatives} catalogs every registered null or
+failed branch, with its resolution where a follow-up resolved it. None
+were dropped silently; each fired a pre-named branch of its registration.
+
+\begin{table}[h]
+\centering\small
+\begin{tabular}{@{}p{5.6cm}p{3.2cm}p{4.4cm}@{}}
+\toprule
+finding (registered null / failure) & effect [CI] or MDE & resolution / status \\
+\midrule
+erasing the raw readout axis: no cost & $-0.016$ $[-0.094,+0.070]$ & thesis-supporting null \\
+erasing the full readable stack: no cost & $+0.047$ $[-0.070,+0.203]$ & thesis-supporting null \\
+Qwen rank-8 transplant misses & $+0.083$, MDE $0.12$ & G3$'$: channel rank $k^{*}{=}16$ \\
+Qwen projected-64 content transfer null & --- & G6$'$: full-state raw transfer passes \\
+writing at Qwen's readable site (final token) & paired $+0.005$; shuffled $=$ real & 6th confirmed prediction: position dissociation \\
+frozen-basis donor-free write on fresh rows (L) & $-0.004$; oracle gate fails & L$'$: in-job LOO refit repairs $+0.279$ \\
+misdirection toward specific wrong answers & attractor account: wrong sign & open anomaly \\
+answer-free position policies (all pre-named) & all fail & positional addressing remains answer-adjacent \\
+endogeneity (channel as the model's own decision variable) & not shown at this layer/rank & claim limited to exogenous mediation \\
+mean-component-only repair & $+0.087$ $[+0.019,+0.173]$ & partial; full recipe needed \\
+\bottomrule
+\end{tabular}
+\caption{Registered negatives. MDEs state the effect size the sample
+could have detected; ``null'' therefore means ``smaller than MDE,'' never
+``exactly zero.''}
+\label{tab:negatives}
+\end{table}
+
+\section{Provenance map}\label{app:provenance}
+
+Every number in the paper traces to a pooled verdict document in the
+repository, which names its jobs, gates, and registration item.
+Table~\ref{tab:provenance} maps the paper's claims to that chain.
+
+\begin{table}[h]
+\centering\small
+\begin{tabular}{@{}p{4.2cm}lp{5.2cm}@{}}
+\toprule
+claim (section) & item & verdict document (jobs) \\
+\midrule
+gauge readable (\S\ref{sec:gauge}) & --- & stage-1 probe suite \\
+erasure at zero cost (\S\ref{sec:erasure}) & C/D/E & subspace-erasure + control-matching summaries (456912--457210) \\
+lever localization, rank, specificity (\S\ref{sec:lever}--\ref{sec:specificity}) & F(i)/F(ii)/H & rank-$k$ guard v2 pooled (458374/458375) + F-series summaries \\
+content battery (\S\ref{sec:fseries}) & F(ii)-b/c & F-series pooled summaries \\
+necessity coda (\S\ref{sec:fseries}) & K/K$'$ & necessity pooled (459836--459838); prime pooled (459847/459849/459850) \\
+Qwen port (\S\ref{sec:scope}) & G0--G6$'$, J1/J2 & \texttt{qwen\_*} summaries (458401--458525 series) \\
+selector + fresh-draw repair (\S\ref{sec:discussion}) & L/L$'$ & self-address pooled (461624--461633); prime pooled (461648/461649) \\
+self-judgement census (\S\ref{sec:discussion}) & recon & census summary (H100 batch jobs) \\
+\bottomrule
+\end{tabular}
+\caption{Claim-to-artifact provenance. The registration registry
+(\texttt{causal\_handle\_directions.md}) is version-controlled; each item's
+decision rules were committed before its jobs ran.}
+\label{tab:provenance}
+\end{table}
+
+\section{Parsing and scoring diagnostics}\label{app:parse}
+
+All arms are scored on $\Delta P(\text{strong})$ against the in-job
+unhinted baseline, with unparsed generations scored not-strong (so parse
+failure can only hurt, never help, an intervention). Registered parse
+gates: an arm with $<5\%$ parse failure passes; $5$--$20\%$ is flagged and
+additionally reported as $P(\text{strong}\mid\text{parsed})$; $>20\%$
+voids the arm. No registered Gemma arm in the paper exceeded the flag
+threshold; the one systematic parse regime encountered
+(thinking-mode overrun in a day-one hybrid reconnaissance, outside this
+paper's claims) was a harness fact, not a capability fact.
+
+\section{Registration excerpts}\label{app:prereg}
+
+Registrations are appended to the registry before any outcome is
+observed, and are branch-complete: every observable outcome maps to a
+pre-named verdict sentence. As an exemplar, the composition item running
+at submission time (L$''$) registers: PRIMARY PASS iff the
+gauge-selected branch's pooled $\Delta P(\text{strong})$ CI excludes zero
+AND the paired contrast against the recorded best-of-$N$ majority-vote
+comparator excludes zero; pre-named failure branches include
+selector-write interference (selector ranks gold correctly but the write
+undoes it) and gold-instability (the gold address is not stable across
+candidate draws); a PASS obligates a fresh-draw replication (L$'''$)
+before any claim upgrade. The full registry, with per-item commit hashes,
+ships in the artifact bundle.
 
 \end{document}
