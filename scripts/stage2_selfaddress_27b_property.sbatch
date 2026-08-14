@@ -33,6 +33,13 @@ if [ "$SELFADDRESS_MODE" = "L0" ]; then
         --rank-list 8 \
         --shard-index 0 --shard-count 1 \
         --n-devices 2 --n-ctx 4096 --dtype bfloat16 --load-mode no-processing
+elif [ "${SELFADDRESS_MODE#C}" != "$SELFADDRESS_MODE" ]; then
+    python -u scripts/stage2_rank_k_guard_v2.py \
+        --selfaddress-loo \
+        --rank-list 8 \
+        --shard-index "${SELFADDRESS_MODE#C}" --shard-count 4 \
+        --per-height 32 --selection-seed 20260812 \
+        --n-devices 2 --n-ctx 4096 --dtype bfloat16 --load-mode no-processing
 elif [ "$SELFADDRESS_MODE" = "P0" ] || [ "$SELFADDRESS_MODE" = "P1" ]; then
     python -u scripts/stage2_rank_k_guard_v2.py \
         --selfaddress-prime \

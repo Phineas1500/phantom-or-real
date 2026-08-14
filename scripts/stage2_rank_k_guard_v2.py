@@ -651,6 +651,8 @@ def main() -> int:
         help="Item K': energy-matched necessity controls on the item-K rows.")
     parser.add_argument("--selfaddress", action="store_true",
         help="Item L1: gauge-selected candidate sweep on fresh failing rows.")
+    parser.add_argument("--selfaddress-loo", action="store_true",
+        help="Item L'': gauge-selected candidate sweep with the F(ii)-c LOO write.")
     parser.add_argument("--selfaddress-prime", action="store_true",
         help="Item L': F(ii)-c LOO protocol on the item-L rows (protocol-transfer adjudication).")
     parser.add_argument("--selfaddress-calibration", action="store_true",
@@ -696,7 +698,7 @@ def main() -> int:
     args = parser.parse_args()
     started = time.time()
 
-    if sum([args.specificity_controls, args.predicted_coefficients, args.class_mean, args.class_mean_b, args.class_mean_c, args.position_policy, args.g0_calibration, args.necessity, args.necessity_prime, args.selfaddress, args.selfaddress_calibration, args.selfaddress_prime]) > 1:
+    if sum([args.specificity_controls, args.predicted_coefficients, args.class_mean, args.class_mean_b, args.class_mean_c, args.position_policy, args.g0_calibration, args.necessity, args.necessity_prime, args.selfaddress, args.selfaddress_calibration, args.selfaddress_prime, args.selfaddress_loo]) > 1:
         raise ValueError("mode flags are mutually exclusive")
     if args.necessity_anchor and not args.necessity:
         raise ValueError("--necessity-anchor requires --necessity")
@@ -729,6 +731,9 @@ def main() -> int:
     elif args.necessity_prime:
         stem = f"necessity_prime_27b_property_shard{args.shard_index}of{args.shard_count}"
         method = "necessity_prime_energy_controls"
+    elif args.selfaddress_loo:
+        stem = f"selfaddress_loo_27b_property_shard{args.shard_index}of{args.shard_count}"
+        method = "selfaddress_loo_composition"
     elif args.selfaddress_prime:
         stem = f"selfaddress_prime_27b_property_shard{args.shard_index}of{args.shard_count}"
         method = "selfaddress_prime_protocol_transfer"
@@ -828,7 +833,7 @@ def main() -> int:
             }
             print(f"necessity correct rows (shard {args.shard_index}/{args.shard_count}): {[r['row_index'] for r in correct_rows]}", flush=True)
             selected_rows = correct_rows
-    if args.selfaddress or args.selfaddress_prime:
+    if args.selfaddress or args.selfaddress_prime or args.selfaddress_loo:
         if args.selection_seed != 20260812:
             raise ValueError("--selfaddress requires --selection-seed 20260812 (registered item L)")
         guard32 = {
@@ -908,6 +913,12 @@ def main() -> int:
     capture_mean_state = None
     statepca_components = None
     statepca_angles = None
+    if args.selfaddress_loo:
+        arms = [
+            Arm("unhinted_baseline", "none", "none"),
+            Arm(f"percand_loo_fire_L{args.layer}", "percand_selfaddr", "unhinted_baseline", (args.layer,), 8, "loo_class_mean_projected_pooled_norm"),
+        ]
+        necessity_seed_index = {"unhinted_baseline": 0, f"percand_loo_fire_L{args.layer}": 95}
     if args.selfaddress_prime:
         arms = [
             Arm("unhinted_baseline", "none", "none"),
@@ -921,14 +932,14 @@ def main() -> int:
         ]
         if args.selfaddress:
             arms.append(Arm("matched_bestofN_unsteered", "bestofn_unsteered", "unhinted_baseline"))
-    if args.necessity or args.necessity_prime or args.selfaddress or args.selfaddress_calibration or args.selfaddress_prime:
+    if args.necessity or args.necessity_prime or args.selfaddress or args.selfaddress_calibration or args.selfaddress_prime or args.selfaddress_loo:
         if args.necessity_anchor:
             arms = build_necessity_anchor_arms(args.layer)
         elif args.necessity:
             arms, necessity_seed_index = build_necessity_arms(args.layer)
         elif args.necessity_prime:
             arms, necessity_seed_index = build_necessity_prime_arms(args.layer)
-        if args.necessity or args.selfaddress or args.selfaddress_calibration or args.selfaddress_prime:
+        if args.necessity or args.selfaddress or args.selfaddress_calibration or args.selfaddress_prime or args.selfaddress_loo:
             row_means, capture_labels = load_capture_row_means(args.capture_npz, args.capture_manifest, args.layer)
             class_vector = class_vector_from_labels(row_means, capture_labels)
             print(f"necessity/selfaddress: |real|={np.linalg.norm(class_vector):.1f} anchor={args.necessity_anchor}", flush=True)
@@ -1066,7 +1077,7 @@ def main() -> int:
             unhinted_by_row[source_row_index] = unhinted_concept
         all_rel: list[int] = []
         rel_by_concept: dict[str, list[int]] = {}
-        if args.class_mean_c or args.position_policy or args.selfaddress or args.selfaddress_calibration:
+        if args.class_mean_c or args.position_policy or args.selfaddress or args.selfaddress_calibration or args.selfaddress_loo:
             seen = set()
             for name in all_concept_names(stage1_row):
                 rels = sorted(pos - r_start for pos in concept_positions(tokenizer, receiver_text, name, r_start, block_len))
@@ -1109,7 +1120,7 @@ def main() -> int:
         return basis_cache[key]
 
     recon_norm_by_row: dict[int, float] = {}
-    if args.class_mean_b or args.class_mean_c or args.position_policy or (args.necessity and args.necessity_anchor) or args.selfaddress_prime:
+    if args.class_mean_b or args.class_mean_c or args.position_policy or (args.necessity and args.necessity_anchor) or args.selfaddress_prime or args.selfaddress_loo:
         for prep in prepared:
             if prep.get("row_class", "failing") != "failing":
                 continue
@@ -1119,7 +1130,7 @@ def main() -> int:
             recon_norm_by_row[row_id] = float(np.linalg.norm(recon, axis=1).mean())
         print(f"recon norms per row: {sorted(recon_norm_by_row.values())[:3]}..", flush=True)
 
-    if args.selfaddress or args.selfaddress_calibration:
+    if args.selfaddress or args.selfaddress_calibration or args.selfaddress_loo:
         assert frozen_basis is not None and class_vector is not None
         gauge_hook = validate_hooks(model, [args.gauge_layer])[0]
         gauge_stack = np.load(args.gauge_npz)[f"L{args.gauge_layer}_inlp_stack"].astype(np.float64)
@@ -1217,15 +1228,25 @@ def main() -> int:
                     continue
                 b_score, _ = gauge_read(prep["receiver_ids"], [])
                 base_scores[row_id] = b_score
-                if args.selfaddress:
+                if args.selfaddress or args.selfaddress_loo:
                     torch.manual_seed(args.sample_seed + row_id * 10007 + 0 * 101)
                     batch = generate_sample_batch(model=model, token_ids=prep["receiver_ids"], n_samples=args.samples_per_row, max_new_tokens=args.max_new_tokens, temperature=args.temperature, stop_at_eos=True, cache_dtype=dtype)
                     emit(fout, rows_out, prep, "unhinted_baseline", "none", batch, {"base_gauge_score": b_score})
-                k_branch = args.percand_samples if args.selfaddress else 2
+                k_branch = args.percand_samples if (args.selfaddress or args.selfaddress_loo) else 2
+                if args.selfaddress_loo:
+                    loo_basis = basis_for(row_id, 8)
+                    loo_comps = loo_basis["components"]
+                    loo_dir = (class_vector @ loo_comps.T) @ loo_comps
+                    loo_target = float(np.mean([v for r2, v in recon_norm_by_row.items() if r2 != row_id]))
                 cands = sorted(prep["rel_by_concept"].items())
                 for cand_index, (cand, rels) in enumerate(cands):
                     positions = [start + rel_pos for rel_pos in rels]
-                    vec = branch_matrix(len(rels))
+                    if args.selfaddress_loo:
+                        tiled = np.tile(loo_dir, (len(rels), 1))
+                        cur = np.maximum(np.linalg.norm(tiled, axis=1, keepdims=True), 1e-8)
+                        vec = (tiled * (loo_target / cur)).astype(np.float32)
+                    else:
+                        vec = branch_matrix(len(rels))
                     hooks = [(hook_name, make_position_add_hook(torch.from_numpy(vec), positions, 1.0))]
                     s_score, s_state = gauge_read(prep["receiver_ids"], hooks)
                     state_arrays[f"L{args.gauge_layer}_row{row_id}_cand{cand_index}_final_state"] = s_state
@@ -1235,9 +1256,10 @@ def main() -> int:
                     else:
                         nongold_scores.setdefault(row_id, []).append(s_score)
                     steered_deltas.append(s_score - b_score)
-                    torch.manual_seed(args.sample_seed + row_id * 10007 + 555 + cand_index * 13)
+                    branch_seed_base = 95 * 101 if args.selfaddress_loo else 555
+                    torch.manual_seed(args.sample_seed + row_id * 10007 + branch_seed_base + cand_index * 13)
                     batch = generate_sample_batch(model=model, token_ids=prep["receiver_ids"], n_samples=k_branch, max_new_tokens=args.max_new_tokens, temperature=args.temperature, stop_at_eos=True, cache_dtype=dtype)
-                    label = f"percand_fire_L{args.layer}" if args.selfaddress else "l0_percand_fire"
+                    label = f"percand_loo_fire_L{args.layer}" if args.selfaddress_loo else (f"percand_fire_L{args.layer}" if args.selfaddress else "l0_percand_fire")
                     emit(fout, rows_out, prep, label, "percand_selfaddr", batch, {
                         "fired_concept": cand, "fired_is_gold": fired_is_gold,
                         "fired_candidate_index": cand_index, "n_fired_positions": len(rels),
