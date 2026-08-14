@@ -33,11 +33,20 @@ def main():
         tok.pad_token = tok.eos_token
     tok.padding_side = "left"
 
+    no_think = os.environ.get("SMOKE_NO_THINK", "1") == "1"
+    max_new = int(os.environ.get("SMOKE_MAX_NEW", "640"))
+
     def build(row, arm):
         user = row["prompt_text"] if arm == "unhinted" else row["hinted_prompt"]
         msgs = [{"role": "system", "content": row["system_prompt"]},
                 {"role": "user", "content": user}]
-        return tok.apply_chat_template(msgs, tokenize=False, add_generation_prompt=True)
+        kwargs = dict(tokenize=False, add_generation_prompt=True)
+        if no_think:
+            try:
+                return tok.apply_chat_template(msgs, enable_thinking=False, **kwargs)
+            except TypeError:
+                pass
+        return tok.apply_chat_template(msgs, **kwargs)
 
     outdir = os.environ.get("GMN_OUTPUT_DIR", "/tmp")
     n_out = 0
@@ -52,7 +61,7 @@ def main():
                 with torch.inference_mode():
                     gen = model.generate(
                         **enc, do_sample=True, temperature=0.7, num_return_sequences=4,
-                        max_new_tokens=96, pad_token_id=tok.pad_token_id,
+                        max_new_tokens=max_new, pad_token_id=tok.pad_token_id,
                     )
                 new = gen[:, enc["input_ids"].shape[1]:]
                 texts = tok.batch_decode(new, skip_special_tokens=True)
@@ -69,7 +78,7 @@ def main():
 
     summary = {"n_generations": n_out, "model": model_id,
                "model_class": model.__class__.__name__,
-               "load_seconds": round(t1 - t0), "gen_seconds": round(time.time() - t1)}
+               "load_seconds": round(t1 - t0), "gen_seconds": round(time.time() - t1), "no_think": no_think, "max_new_tokens": max_new}
     rp = os.environ.get("GMN_RESULT_PATH")
     if rp:
         with open(rp, "w") as f:
