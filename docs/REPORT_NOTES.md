@@ -15,6 +15,24 @@ final report is easier to assemble.
 
 ## Running Notes
 
+### 2026-08-13 (night)
+
+#### Item L′ LANDED — TRANSFERS: the F(ii)-c protocol repairs the fresh rows (+0.279 [+0.182,+0.377]); item L's null was the frozen protocol
+
+- Jobs 461648/461649. Baseline verbatim gate 456/456 across a
+  different shard layout (row-keyed seeds layout-independent, again).
+- PRIMARY branch 1 fires: 0.088 → 0.366 on the 57 item-L rows — the
+  donor-free repair's FIRST fresh-draw replication (62% of the +0.447
+  guard anchor). Within-row protocol contrast (LOO-protocol − frozen
+  gold fire, identical rows): +0.283 [+0.189,+0.384] CI > 0.
+- Registered consequences applied: §5.5 keeps its claims + a
+  protocol-scope sentence (in-job LOO fitting/norms are part of the
+  recipe); item L refined to "working selector × non-transferring
+  write"; L″ (gauge-select composed with the F(ii)-c write) is the
+  natural next registration — the addressing loop is back in play.
+- 23 registered verdicts; prediction count stays 7. Verdict:
+  `selfaddress_prime_27b_property_pooled_summary.md`.
+
 ### 2026-08-13
 
 #### Item L LANDED — oracle gate FAILS: frozen-protocol repair does not transfer to fresh failing rows; the gauge-selector itself worked

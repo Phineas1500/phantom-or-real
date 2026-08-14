@@ -1,0 +1,42 @@
+{
+  "gate_baseline_verbatim": {
+    "n_prime_baseline_generations": 456,
+    "n_shared_generations": 456,
+    "pass": true,
+    "text_mismatches": 0
+  },
+  "parse": {
+    "fixednorm_proj_add_L30": {
+      "n": 456,
+      "parse_fail": 0.04824561403508772,
+      "status": "pass"
+    },
+    "unhinted_baseline": {
+      "n": 456,
+      "parse_fail": 0.08333333333333333,
+      "status": "flag"
+    }
+  },
+  "primary": {
+    "baseline_p_strong": 0.08771929824561403,
+    "branch": "TRANSFERS",
+    "ci95": [
+      0.18201754385964913,
+      0.37719298245614036
+    ],
+    "dp": 0.27850877192982454,
+    "fixednorm_p_strong": 0.36622807017543857,
+    "n_rows": 57,
+    "pct_of_guard_anchor_0447": 0.6230621295969229
+  },
+  "within_row_protocol_contrast": {
+    "ci95": [
+      0.18859649122807018,
+      0.38377192982456143
+    ],
+    "delta": 0.28289473684210525,
+    "n_rows": 57,
+    "note": "L' fixednorm (k=8) minus L1 recorded gold-branch fire (k=4), per-row means",
+    "sign": "pos"
+  }
+}
