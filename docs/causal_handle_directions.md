@@ -2082,3 +2082,82 @@ the different shard layout). `--selfaddress-prime` mode in
 - Budget: 64 rows × 2 arms × 8 = 1,024 gens + ~64 hinted-capture
   forwards per shard → 2 shards ≈ 1.3–1.5 h each at the measured
   rate, inside the wall; ≈ 3 h sequential.
+
+### L″. The composition, with both halves proven (gauge-selected addressing × the transferring write)
+
+Pre-registered 2026-08-14, after L′'s TRANSFERS verdict and before any
+L″ data. Item L established the selector (gauge-select == oracle over
+steered branches); item L′ established the write (F(ii)-c LOO
+protocol: +0.279 on the fresh rows). L″ runs their composition: fire
+the LOO-protocol vector at EACH candidate concept's positions in
+parallel branches, gauge-select the branch — answer-free in content,
+amplitude, and addressing. NO registered prediction (the halves work
+separately; composition can still interfere — that is the question).
+Venue: Scholar bf16, 2× A40, constraint J.
+
+**Row-reuse statement (deliberate, stated openly).** Same 64-row
+item-L selection (seed 20260812). These rows have unblinded twice
+(L1, L′); L″'s question — does gauge addressing recover the
+demonstrated per-row repair? — is anchored to their recorded arms, and
+within-row anchoring is the point. A PASS earns a fresh-draw
+confirmation (L‴) before any wording stronger than "closed on the
+adjudication rows"; registered now to prevent drift.
+
+Design — four 16-row shards, `--selfaddress-loo` mode: item L's
+per-candidate sweep with the write swapped from the frozen vector to
+the F(ii)-c construction (class vector from the 458416 capture,
+projected into the row's LOO rank-8 basis of in-shard hint-deltas,
+scaled to the in-job pooled-others recon norm — identical to item H's
+per-candidate write machinery), k=4 per branch, L53 gauge score
+captured per steered prefill (item-L machinery).
+
+- **Arms**: `unhinted_baseline` (seed index 0) — VERBATIM GATE vs
+  L1/L′ (third regeneration); `percand_loo_fire_L30` (95) — the new
+  arm. The compute-matched sampling baseline is NOT re-run: item L1's
+  recorded `matched_bestofN_unsteered` (same rows, same n_cands×4
+  count, row-keyed seeds, baseline-verbatim-anchored jobs) is the
+  registered comparator, reused cross-job with that justification.
+  L′'s recorded gold-addressed fire (+0.279) is the oracle anchor;
+  the new arm's own gold branch is its k=4 internal replication
+  (descriptive consistency check, F(ii)-c-bonus style).
+- Gates: baseline verbatim vs L1 (mismatch → debug, no unblinding);
+  parse per item-K conventions (dP(strong), unparsed = not-strong;
+  5% flag / 20% void).
+- **Selector suite** (offline at verdict, as item L): GAUGE-SELECT
+  [PRIMARY] (argmax gauge score; row outcome = that branch's k=4
+  mean); RANDOM-SELECT (20 seeded draws, 20260812+d); SELF-RATIFY;
+  GOLD branch (oracle).
+- **L″-PRIMARY**: GAUGE-SELECT dP vs in-job baseline CI > 0 AND
+  paired (gauge-select − L1-recorded bestofN MAJORITY-VOTE) CI > 0.
+  Majority-vote is the comparator because it is the answer-free
+  sampling policy at matched compute; the verifier-assisted
+  any-correct ceiling (0.263 on these rows) is reported for
+  calibration, not as a pass condition. PASS wording: "the
+  answer-free loop closes on the adjudication rows: gauge-selected
+  addressing with the transferring write repairs fresh failures and
+  beats the compute-matched sampling policy — the first closed
+  gauge+lever composition." §5.5/§6 gain one registered paragraph;
+  no §1 claim moves; L‴ fresh-draw confirmation required before any
+  generalization language.
+- Named branches (equal prominence):
+  1. Gauge-select CI > 0 but paired vs bestofN-majority straddles →
+     repairs but sampling-parity unresolved; MDE stated.
+  2. Gauge-select null while the arm's own GOLD branch CI > 0 →
+     SELECTOR–WRITE INTERFERENCE: the LOO write disrupts the gauge's
+     ranking (compare gauge-vs-random-select to separate
+     selector-failure from branch-degradation); its own finding,
+     wording reserved.
+  3. The arm's own gold branch null (fails to reproduce L′'s +0.279
+     at k=4 within arm structure) → protocol instability across arm
+     structure; verdict is confined to reporting this; flag for the
+     rescue-set analysis.
+  4. Wrong-address collateral: non-gold branches pooled CI < 0
+     (misaddressed LOO fires actively harm) reported alongside any
+     branch — the deployment-relevant texture.
+  5. Catch-all: descriptive, wording reserved.
+- Stats: row-cluster bootstrap (10k, seed 20260704); MDE on every
+  straddling CI (expect ≈ 0.11 single-arm at n=57).
+- Scope: exploratory; no §1 claim moves on any branch.
+- Budget: per shard ≈ 16 rows × (8 baseline + ~8.7×4 branch gens) ≈
+  685 gens + ~140 gauge forwards ≈ 1.9–2.2 h → four shards inside the
+  wall, ≈ 8.5 h sequential under the QOS cap.
