@@ -8,9 +8,10 @@ import json
 import os
 from collections import Counter
 
-SJ_QUESTION = (
+SJ_QUESTION = os.environ.get(
+    "SJ_QUESTION",
     "Look back at the answer you just gave. Was your final proposed hypothesis "
-    "exactly correct? Reply with a single word: yes or no."
+    "exactly correct? Reply with a single word: yes or no.",
 )
 
 
