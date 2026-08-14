@@ -651,6 +651,8 @@ def main() -> int:
         help="Item K': energy-matched necessity controls on the item-K rows.")
     parser.add_argument("--selfaddress", action="store_true",
         help="Item L1: gauge-selected candidate sweep on fresh failing rows.")
+    parser.add_argument("--selfaddress-prime", action="store_true",
+        help="Item L': F(ii)-c LOO protocol on the item-L rows (protocol-transfer adjudication).")
     parser.add_argument("--selfaddress-calibration", action="store_true",
         help="Item L0: gauge-on-steered-states calibration gates.")
     parser.add_argument(
@@ -694,7 +696,7 @@ def main() -> int:
     args = parser.parse_args()
     started = time.time()
 
-    if sum([args.specificity_controls, args.predicted_coefficients, args.class_mean, args.class_mean_b, args.class_mean_c, args.position_policy, args.g0_calibration, args.necessity, args.necessity_prime, args.selfaddress, args.selfaddress_calibration]) > 1:
+    if sum([args.specificity_controls, args.predicted_coefficients, args.class_mean, args.class_mean_b, args.class_mean_c, args.position_policy, args.g0_calibration, args.necessity, args.necessity_prime, args.selfaddress, args.selfaddress_calibration, args.selfaddress_prime]) > 1:
         raise ValueError("mode flags are mutually exclusive")
     if args.necessity_anchor and not args.necessity:
         raise ValueError("--necessity-anchor requires --necessity")
@@ -727,6 +729,9 @@ def main() -> int:
     elif args.necessity_prime:
         stem = f"necessity_prime_27b_property_shard{args.shard_index}of{args.shard_count}"
         method = "necessity_prime_energy_controls"
+    elif args.selfaddress_prime:
+        stem = f"selfaddress_prime_27b_property_shard{args.shard_index}of{args.shard_count}"
+        method = "selfaddress_prime_protocol_transfer"
     elif args.selfaddress_calibration:
         stem = f"selfaddress_l0_27b_property_shard{args.shard_index}of{args.shard_count}"
         method = "selfaddress_calibration"
@@ -823,7 +828,7 @@ def main() -> int:
             }
             print(f"necessity correct rows (shard {args.shard_index}/{args.shard_count}): {[r['row_index'] for r in correct_rows]}", flush=True)
             selected_rows = correct_rows
-    if args.selfaddress:
+    if args.selfaddress or args.selfaddress_prime:
         if args.selection_seed != 20260812:
             raise ValueError("--selfaddress requires --selection-seed 20260812 (registered item L)")
         guard32 = {
@@ -903,6 +908,12 @@ def main() -> int:
     capture_mean_state = None
     statepca_components = None
     statepca_angles = None
+    if args.selfaddress_prime:
+        arms = [
+            Arm("unhinted_baseline", "none", "none"),
+            Arm(f"fixednorm_proj_add_L{args.layer}", "fixednorm_proj_add", "unhinted_baseline", (args.layer,), 8, "class_mean_projected_fixed_pooled_norm"),
+        ]
+        necessity_seed_index = {"unhinted_baseline": 0, f"fixednorm_proj_add_L{args.layer}": 90}
     if args.selfaddress or args.selfaddress_calibration:
         arms = [
             Arm("unhinted_baseline", "none", "none"),
@@ -910,14 +921,14 @@ def main() -> int:
         ]
         if args.selfaddress:
             arms.append(Arm("matched_bestofN_unsteered", "bestofn_unsteered", "unhinted_baseline"))
-    if args.necessity or args.necessity_prime or args.selfaddress or args.selfaddress_calibration:
+    if args.necessity or args.necessity_prime or args.selfaddress or args.selfaddress_calibration or args.selfaddress_prime:
         if args.necessity_anchor:
             arms = build_necessity_anchor_arms(args.layer)
         elif args.necessity:
             arms, necessity_seed_index = build_necessity_arms(args.layer)
         elif args.necessity_prime:
             arms, necessity_seed_index = build_necessity_prime_arms(args.layer)
-        if args.necessity or args.selfaddress or args.selfaddress_calibration:
+        if args.necessity or args.selfaddress or args.selfaddress_calibration or args.selfaddress_prime:
             row_means, capture_labels = load_capture_row_means(args.capture_npz, args.capture_manifest, args.layer)
             class_vector = class_vector_from_labels(row_means, capture_labels)
             print(f"necessity/selfaddress: |real|={np.linalg.norm(class_vector):.1f} anchor={args.necessity_anchor}", flush=True)
@@ -1098,7 +1109,7 @@ def main() -> int:
         return basis_cache[key]
 
     recon_norm_by_row: dict[int, float] = {}
-    if args.class_mean_b or args.class_mean_c or args.position_policy or (args.necessity and args.necessity_anchor):
+    if args.class_mean_b or args.class_mean_c or args.position_policy or (args.necessity and args.necessity_anchor) or args.selfaddress_prime:
         for prep in prepared:
             if prep.get("row_class", "failing") != "failing":
                 continue
