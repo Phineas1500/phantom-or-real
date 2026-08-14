@@ -2161,3 +2161,93 @@ captured per steered prefill (item-L machinery).
 - Budget: per shard ≈ 16 rows × (8 baseline + ~8.7×4 branch gens) ≈
   685 gens + ~140 gauge forwards ≈ 1.9–2.2 h → four shards inside the
   wall, ≈ 8.5 h sequential under the QOS cap.
+
+## Pre-Registered SJ/OC Factorization (2026-08-14)
+
+### M. Self-judgement vs objective correctness: what does the gauge read, and does the lever care?
+
+Pre-registered 2026-08-14, before any capture or intervention data.
+Motivation: 2607.16799 (probe-side only) reports that correctness
+probes track the model's self-judgement (SJ), not objective correctness
+(OC), on conflict rows — and explicitly invites the causal follow-up
+that requires a validated lever. Both SJ censuses are in hand
+(docs/sj_census_2k_summary.md): under the STRICT question the verbal
+channel is ~degenerate (8.2% yes; the pre-named confidence-blindness
+case), under the SOFT question ("Was your answer right? Reply with a
+single word: yes or no.") it discriminates (50.2% yes; 68/32 split;
+conflict cells populated at n=319/303). The registration pins the SOFT
+protocol's labels and cites BOTH censuses — the strict census is the
+sensitivity bound, not a discarded pilot. Venue: Scholar bf16, 2× A40,
+constraint J (hooked lane); SJ labels are recorded properties of the
+census rows (black-box, lane-agnostic per the census docs) — no new
+elicitation.
+
+**Frozen inputs.** SJ label of a row = its k=4 majority under the soft
+question, read from `results/sj_census/sj_census_2k_soft.jsonl`
+(ties excluded). OC label = stage-1 `is_correct_strong`. Row frame:
+seeded balanced factorial draw, 32 rows per cell from the four
+(OC × SJ) cells, seed 20260816, drawn from the census's 2,000-row
+frame — 128 rows total; the M2 intervention row sets are the OC=0
+cells of this same frame (first 24 per cell in seeded order). Gauge
+direction = row 0 of `L53_inlp_stack` (as item L). Repair protocol =
+L′'s in-job LOO fit (the lesson of L/L′: in-job fitting is part of the
+recipe), pinned norm 3708.2628, dose 1×, generation constants
+identical to L′'s prime arms (k, token budget, parse gates, in-job
+unhinted baselines).
+
+**M0 — capture + factorial battery (one job, ~2 h).** One forward per
+frame row (original stage-1 prompt; no interventions); capture
+final-prompt-token states at the stage-1 5-layer stack (L53 primary).
+Offline CPU battery, 4-fold CV stratified by cell:
+- (a) NATURAL SANITY GATE: gauge AUC for OC on the frame ≥ 0.75
+  (expect ≈ 0.90; below → STOP, pipeline suspect).
+- (b) Direction estimation: dir_SJ = (mean SJ=yes − mean SJ=no)
+  averaged within OC levels (factorially balanced); dir_OC symmetric,
+  averaged within SJ levels. Held-out decodability of each (AUC).
+- (c) T1, THE IDENTITY TEST (no registered prediction — genuine
+  uncertainty): on held-out CONFLICT rows only, sign-agreement of the
+  frozen gauge score with SJ vs with OC; row-cluster bootstrap on the
+  agreement difference. Branches: GAUGE~SJ iff agreement(SJ) ≥ 0.70
+  AND difference CI > 0 (upgrades the paper's deletable-gauge reading
+  to 2607.16799's semantic identity, causally grounded); GAUGE~OC iff
+  the mirror rule fires (sharpens AGAINST 2607.16799 — the gauge reads
+  upcoming correctness even where verbal self-report disagrees);
+  GAUGE-MIXED otherwise (report both agreements + MDE; no upgrade).
+- (d) Differential rank-1 erasure (descriptive support, not gating):
+  projecting out dir_SJ should drop held-out SJ decodability ≥ 0.10
+  AUC while moving OC decodability ≤ 0.03 if the directions factor;
+  symmetric check for dir_OC. Failure of factorization is reported as
+  SJ/OC-ENTANGLED-AT-SITE and demotes T1 branches to descriptive.
+- (e) SJ-READABILITY GATE for T1: held-out AUC(dir_SJ) ≥ 0.60; below
+  → SJ-NOT-LINEARLY-READABLE-AT-SITE fires (itself a publishable
+  contrast with the verbal channel's census fragility) and T1 is
+  descriptive only.
+
+**M1 — (reserved; no arm).** The strict-question replication of M0's
+battery is explicitly NOT registered — protocol shopping in reverse.
+The strict census stays a sensitivity citation.
+
+**M2 — does the lever care about self-judgement? (one to two jobs,
+~4 h each).** Rank-8 LOO repair (protocol frozen above) on two 24-row
+sets: CONFIDENT-WRONG (OC=0, SJ=yes) and ORDINARY-WRONG (OC=0,
+SJ=no). REGISTERED PREDICTION (the program's 8th): the lever ignores
+SJ — both sets repair with dP(strong) CI > 0 and the across-set
+paired difference CI contains 0 (MDE stated; expect ≈ 0.18 at n=24).
+Branches: LEVER-IGNORES-SJ (prediction confirmed — the lever is
+OC-side machinery, completing the gauge~SJ / lever~OC factorization
+whichever way T1 lands); SJ-GATED-LEVER iff difference CI < 0
+(confident-wrong repairs worse — self-judgement modulates
+repairability; genuinely new object); SJ-BOOSTED-LEVER iff CI > 0;
+REPAIR-FAILS-ON-FRAME iff either set's repair CI includes 0 — then
+the L‴-style fresh-fit diagnostics run before any interpretation, and
+the verdict is stated against L′'s +0.279 anchor with MDE.
+Determinism: M2 baselines are fresh in-job unhinted arms (no verbatim
+gate against prior jobs is possible on this frame — stated now, not
+discovered later); seeds row-keyed by the house formula with arm base
+120.
+
+**Order and timing.** M0 launches when the Scholar queue drains after
+the L-series (L″ now; L‴ if obligated). M2 launches only after M0's
+gates are read (its row sets do not depend on M0's outcomes — the
+dependency is the sanity gate, not the science). Analysis scripts
+follow the L-series pool pattern and land in scripts/ before launch.
