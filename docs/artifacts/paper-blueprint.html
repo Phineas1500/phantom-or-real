@@ -78,7 +78,7 @@
 </style>
 
 <main>
-  <span class="eyebrow">Phantom or Real · paper blueprint, reader's edition · updated August 11, 2026</span>
+  <span class="eyebrow">Phantom or Real · paper blueprint, reader's edition · updated August 14, 2026</span>
   <h1>Gauge, Not Lever: Dissociating Readable Correctness from its Causal Repair Channel</h1>
 
   <p class="thesis">In a model that visibly predicts its own failures, the readable correctness
@@ -100,8 +100,8 @@
   </div>
 
   <div class="chips">
-    <span class="chip">ICLR format · 4–6 pages</span>
-    <span class="chip">21 pre-registered verdicts</span>
+    <span class="chip">ICLR format · 10 pages drafted</span>
+    <span class="chip">23 pre-registered verdicts</span>
     <span class="chip">7 confirmed registered predictions</span>
     <span class="chip">2 adversarial review rounds survived</span>
     <span class="chip">every number below: pooled, cluster-bootstrapped</span>
@@ -340,6 +340,7 @@
     <tr><td>lever repair + specificity</td><td class="ok">✓ rank 8</td><td>suggestive (row-sparse)</td><td class="ok">✓ motif: carrier L43 (+0.175), channel rank k*=16</td></tr>
     <tr><td>F-series dissociations</td><td class="ok">✓</td><td>—</td><td class="ok">✓ inverted: raw-potent / proj-diluted; label battery passes (G6&prime;)</td></tr>
     <tr><td>content necessity at the lever's site (K/K&prime;)</td><td class="ok">✓ broad, not thin</td><td>—</td><td>deferred (own registration)</td></tr>
+    <tr><td>gauge-as-selector + fresh-draw repair (L/L&prime;)</td><td class="ok">✓ selector==oracle; +0.279</td><td>—</td><td>—</td></tr>
   </table></div>
 
   <div class="plain">
@@ -358,6 +359,82 @@
     pre-registered bet.
   </div>
 
+  <h2><span class="sec">§5.5</span>New — the addressing arc: the gauge turns out to be a working selector</h2>
+  <p class="sub">items L / L′ landed Aug 12–13 · L″ running now · folded into §5.5 and §6 of the draft</p>
+  <p>The paper's sharpest deflation was that the gauge is causally useless as a lever. The
+    addressing arc adds the rehabilitation: used the way an instrument should be used — to
+    <i>score options</i> rather than to <i>push</i> — the gauge works. On 64 fresh rows we generated
+    ten steered candidate continuations per row and let the gauge rank them: <b>gauge-selection
+    matched oracle selection essentially always</b> (selection-signal gate +31.8). The companion
+    result repairs the write half: the original frozen repair vector did nothing on these fresh rows
+    (−0.004), but re-fitting the same recipe in-job on the same rows repairs
+    <b>+0.279 [+0.182, +0.377]</b> — the first fresh-draw replication of the donor-free repair, at
+    62% of the guard anchor, within-row contrast +0.283 with CI above zero.</p>
+  <div class="panel">
+    <span class="fig">Addressing arc · dP(strong), row-cluster bootstrap</span>
+    <svg id="fig5" role="img" aria-label="Frozen write repairs nothing; freshly fitted write repairs +0.279"></svg>
+    <p class="cap">Same rows, same rank-8 recipe — the only difference is whether the write vector
+      was frozen from a July run or re-fitted in-job. Protocol transfer, not fresh-row fragility,
+      explains the null.</p>
+  </div>
+  <div class="plain">
+    Think of the model's internal fuel gauge again. We already knew you can't drive the car by
+    yanking the gauge needle. The new question was: is the gauge at least a good <b>judge</b>?
+    Answer: yes — shown ten possible continuations, the signal the gauge reads picks the best one
+    about as well as an all-knowing referee would. And the "repair vector" (the nudge that fixes
+    wrong answers) does still work on brand-new problems — but only if you <b>mix it fresh</b> from
+    the model's own activity on those problems ("in-job, leave-one-out" = fitted on the spot, never
+    using the row being repaired). The July batch of the vector, kept in the fridge, does nothing.
+    Item L″ — running tonight — asks the obvious next question: can we close the loop, using the
+    gauge to pick <i>which candidate</i> gets the freshly-mixed repair, with no answer key anywhere
+    in the pipeline?
+  </div>
+
+  <h2><span class="sec">SJ</span>New — can the model <i>say</i> what its gauge knows? Two censuses</h2>
+  <p class="sub">registration-free reconnaissance · givemeanode H100 · ≈$2.50 total · Aug 14</p>
+  <p>We replayed 2,000 of the model's own stage-1 answers and asked it, verbatim: <i>"Was your final
+    proposed hypothesis exactly correct? yes or no."</i> It says <b>"no" to 85% of the answers it
+    actually got right</b> (8.2% yes overall, 97.5% unanimity across samples). Drop the word
+    <i>"exactly"</i> and the picture inverts: 50.2% yes, discriminating 68% yes on correct vs 32% on
+    wrong. One word flips verbal self-assessment from degenerate self-denial to a roughly calibrated
+    signal — while the internal gauge reads AUC 0.94 under either phrasing.</p>
+  <div class="plain">
+    The gauge is readable by a probe — but can the model read it out loud? Barely, and only if you
+    ask exactly right. Asked "were you <i>exactly</i> correct?", the model reflexively says no to
+    almost everything, including its successes — like a student who answers "probably wrong" to
+    every "are you sure?" regardless. Soften the question and real self-knowledge appears (it says
+    yes twice as often when it actually was right). Two lessons: the <b>verbal channel is
+    extremely fragile to phrasing</b> while the internal signal is not — so the probe is not just
+    reading the model's inner speech; and any experiment that uses the model's own verbal
+    self-judgement must pin the exact question wording in advance (ours will cite both censuses, no
+    cherry-picking).
+  </div>
+
+  <h2><span class="sec">Q3.8</span>New — day one with Qwen3.8-27B: the gap and the gauge in a hybrid</h2>
+  <p class="sub">released the morning of Aug 14 · smoke + gauge hunt ≈$6 · reconnaissance, NOT in the paper</p>
+  <p>Qwen3.8-27B is a <b>hybrid architecture</b>: only every 4th layer is ordinary attention; the
+    other 48 of 64 layers use DeltaNet-style linear attention. Within hours of release we had it
+    running our task. The recognition gap is there at full strength (unhinted 0.309 at n=2,000;
+    hinted 0.834; the hint repairs 81% of failing rows). The gauge is there too — a probe ladder
+    over all 65 depths shows the familiar profile, rising smoothly to a peak at layers 51–54 (~82%
+    depth) — and it reads <b>identically from attention-layer and DeltaNet-layer residual streams
+    (0.667 vs 0.667)</b>. One number is new, and open: the tuned peak is <b>AUC 0.741</b>, well
+    below the 0.90/0.94 of the pure-attention models. A greedy-label control (matching the other
+    models' label protocol) is queued; it decides whether that gap is label noise or the first
+    <b>architecture-sensitivity result</b> for the gauge.</p>
+  <div class="plain">
+    Why this matters: every gauge we have measured so far lived in a model whose every layer can
+    look back at the whole prompt (ordinary attention). Qwen3.8 mostly <i>can't</i> — three
+    quarters of its layers carry a compressed running summary instead (that is what "linear
+    attention / DeltaNet" means: cheaper, but no going back to re-read). If the
+    know-your-own-failure signal were a product of full attention, it should weaken or move here.
+    So far: same failure mode, same hint response, same signal at the same relative depth, spread
+    evenly across both layer types — but possibly <i>weaker</i>, which would be the first time the
+    gauge's strength depended on architecture. The pending control run settles it. Either way this
+    model is the natural subject for the next paper's bridge experiments, and it cost about $6 to
+    find out on day one.
+  </div>
+
   <h2><span class="sec">§6</span>Discussion commitments</h2>
   <p>Information location ≠ causal control, in both directions — with consequences for probe-based
     monitoring and a testable prediction for the steering lineage (the projection-headroom
@@ -367,7 +444,11 @@
     MDE statements on every null; brittleness and entropy telemetry listed as unrun.
     <b>New (K/K′):</b> necessity at the lever's site is real and content-specific but <b>not
     compact</b> — the write-compact / carry-broad asymmetry replaces the deferred "channel-in-use"
-    upgrade; the anatomical mirror of item D is stated with the energy caveat.</p>
+    upgrade; the anatomical mirror of item D is stated with the energy caveat.
+    <b>New (L/L′/censuses):</b> §6 now carries "the gauge is not the verbal channel — and not
+    useless": deletable-without-cost and degenerate in the model's own mouth, yet a
+    near-oracle <i>selector</i> over candidate branches; and the repair recipe replicates on fresh
+    draws when re-fitted in-job, making protocol transfer (not fragility) the named residual gap.</p>
 
   <div class="plain">
     Decoding the commitments: <b>“probe-based monitoring”</b> — if you deploy a probe to watch for
@@ -393,7 +474,8 @@
     <li><b>§3 methods + control table</b> — transcription from pre-registrations. <i>(done)</i></li>
     <li><b>§1 intro + abstract</b> — written after the results read cleanly. <i>(done)</i></li>
     <li><b>§4 related work</b> — restructured twice already; near-verbatim from the skeleton. <i>(done)</i></li>
-    <li><b>§6 discussion, figures, appendix</b> (artifact checklist, negative-results catalog, provenance map). <i>(§6 + Figs 1/4 done; appendix pending)</i></li>
+    <li><b>§6 discussion, figures, appendix</b> (artifact checklist, negative-results catalog, provenance map). <i>(§6 + Figs 1/4 done; L/L′/census folded into §5.5/§6 Aug 14; appendix pending)</i></li>
+    <li><b>L″ verdict fold-in</b> — the composition (gauge-selector × fresh-fitted write) is running; its verdict lands in §5.5/§6 either way, being branch-complete. <i>(tonight)</i></li>
     <li><b>Final pass</b> — forbidden-wordings audit, scoop re-check, one more adversarial review round on the draft itself.</li>
   </ol>
 
@@ -401,8 +483,9 @@
     Companion to the status overview (docs/causal_status_overview.html) · draft lives at
     paper/gauge_not_lever.tex · sources: docs/paper_outline_final.md ·
     docs/contribution_ledger_2026-07-05.md · pooled verdict docs
-    (items C, D, E, F(i), F(ii), F(ii)-b, F(ii)-c, H, G0–G6&prime;, J1/J2, K, K&prime;) ·
-    docs/future_directions_2026-08-09.md · reader's edition 2026-08-11
+    (items C, D, E, F(i), F(ii), F(ii)-b, F(ii)-c, H, G0–G6&prime;, J1/J2, K, K&prime;, L, L&prime;) ·
+    docs/sj_census_2k_summary.md · docs/qwen38_smoke_summary.md ·
+    docs/future_directions_2026-08-09.md · reader's edition 2026-08-11, updated 2026-08-14
   </footer>
 </main>
 
@@ -450,6 +533,11 @@
     { l: 'random subspaces (pooled)', v: -0.041, ci: [-0.154, 0.055], c: 'var(--control)' },
     { l: 'matched noise (pooled)', v: -0.088, ci: [-0.180, -0.017], c: 'var(--control)' }
   ], [-0.25, 0.45]);
+  chart('fig5', [
+    { l: 'frozen July write (item L)', v: -0.004, c: 'var(--control)' },
+    { l: 'same recipe, fitted in-job (L′)', v: 0.279, ci: [0.182, 0.377], c: 'var(--lever)' },
+    { l: 'within-row protocol contrast', v: 0.283, c: 'var(--lever-soft)' }
+  ], [-0.15, 0.45]);
   chart('fig4', [
     { l: 'class-mean, full-dimensional', v: 0.043, ci: [-0.120, 0.207], c: 'var(--control)' },
     { l: 'class-mean, into the channel', v: 0.341, ci: [0.202, 0.495], c: 'var(--lever)' },
