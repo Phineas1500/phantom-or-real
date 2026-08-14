@@ -1,0 +1,42 @@
+{
+  "artifact_sha256": "4992328dac9ddbc3b509adecc3e10aac3d8e67522e5842e6d7bccd77d26620b8",
+  "by_height": {
+    "3": {
+      "oc_False__sj_no": 486,
+      "oc_False__sj_tie": 1,
+      "oc_False__sj_yes": 13,
+      "oc_True__sj_no": 413,
+      "oc_True__sj_tie": 3,
+      "oc_True__sj_yes": 84
+    },
+    "4": {
+      "oc_False__sj_no": 495,
+      "oc_False__sj_yes": 5,
+      "oc_True__sj_no": 437,
+      "oc_True__sj_tie": 2,
+      "oc_True__sj_yes": 61
+    }
+  },
+  "census": {
+    "oc_False__sj_no": 981,
+    "oc_False__sj_tie": 1,
+    "oc_False__sj_yes": 18,
+    "oc_True__sj_no": 850,
+    "oc_True__sj_tie": 5,
+    "oc_True__sj_yes": 145
+  },
+  "conflict_cells": {
+    "confident_wrong_oc_false_sj_yes": 18,
+    "unconfident_right_oc_true_sj_no": 850
+  },
+  "job_id": "job-rt39f",
+  "n_rows": 2000,
+  "parse_ok_rate": 1.0,
+  "protocol": "offline_vllm_batch_h100",
+  "samples_per_row": 4,
+  "seed": 20260812,
+  "sj_question": "Look back at the answer you just gave. Was your final proposed hypothesis exactly correct? Reply with a single word: yes or no.",
+  "sj_yes_rate_overall": 0.0815,
+  "temperature": 0.7,
+  "unanimous_rate": 0.9745
+}
