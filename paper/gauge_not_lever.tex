@@ -113,9 +113,9 @@ dissociation of the readable-but-inert readout;
 profile: $+0.40$ where self-consistency scores $0.000$, replicated on
 a disjoint fresh draw ($+0.28$), beneficial when misfired on
 already-correct rows at correct addressing --- and, descriptively, a
-gauge that ranks steered candidate branches well enough to match
-oracle address selection (the registered composition test is running
-at submission; Section~\ref{sec:fseries}); and
+gauge whose scores over steered candidate states pick the gold
+write-address on $54/57$ rows (the corrected composition test is
+running at submission; Section~\ref{sec:fseries}); and
 \textbf{(vii)}~a pre-registration methodology --- decision rules
 committed before unblinding across 23 registered verdicts
 (branch-complete on confirmatory items), seven
@@ -509,30 +509,34 @@ pre-named answer-free position policy fails. The intervention
 telemetry explains why: the vector acts as a positional commitment
 \emph{command}, pulling proposals toward whichever concept is marked
 (${\sim}50\%$ regardless of correctness) --- content is the verb; the
-marked concept is the object. Two registered follow-ups then close
-most of the remaining gap. The repair replicates on a second, fully
-disjoint draw of failing rows under its original protocol ($+0.279$
+marked concept is the object. A registered follow-up replicates the
+repair on a second, fully
+disjoint draw of failing rows under its original in-job protocol
+($+0.279$
 $[+0.182, +0.377]$ on 57 rows; $62\%$ of the $+0.447$
 $[+0.293, +0.611]$ selected-row guard anchor --- populations differ,
-so the ratio is descriptive), while a
-frozen-basis, pooled-amplitude variant of the same vector transfers to
-correct rows but does not repair failures ($-0.004$) --- so in-job
-leave-one-out basis fitting and per-row norm matching are part of the
-recipe, and we say so. And the addressing loop itself works at the
-selection stage: enumerating candidate concepts from the prompt,
+so the ratio is descriptive). And the addressing loop works at the
+selection stage, at the level linear reading can certify: enumerating
+candidate concepts from the prompt,
 firing the lever at each candidate's positions in parallel branches,
-and letting the \emph{gauge} score the steered prefills selects the
-gold-equivalent branch essentially always (gauge-selected $=$ oracle
-to three decimals; the registered selection-signal gate --- gold-branch
+and scoring each branch's steered state with the \emph{gauge} picks
+the gold write-address on $54/57$ rows under the frozen write and
+$43/57$ under the stronger in-job write (the registered
+selection-signal gate --- gold-branch
 minus non-gold gauge score, in probe-score units on the 12 calibration
 rows --- passed at $+31.8$
-$[+23.8, +40.1]$). Selector results are descriptive under item L's
-registered rules; the claim-bearing composition test is running at
-submission time. The one full composition run to date paired that
-working selector with the non-transferring write variant and repaired
-nothing --- an instructive negative: what still separates us from a
-closed answer-free repair loop is protocol transfer at the write, not
-answer-adjacent knowledge in the addressing.
+$[+23.8, +40.1]$ and replicated in the composition run). Selector
+results are state-level and descriptive under item L's
+registered rules. We disclose a correction: the first two runs of
+this addressing family carried an execution defect --- the branch
+\emph{generations} ran without the steering hooks (only the
+gauge-scoring forward was steered), caught by a registered-telemetry
+audit (no positional-commitment signature in the branch outputs) ---
+so their behavioral branch outcomes, including a previously recorded
+frozen-write null on failing rows, are void rather than negative:
+frozen-protocol transfer is untested, and the corrected composition
+run (plus a gold-only frozen-transfer arm, both pre-registered with a
+steering-signature hard gate) is executing at submission time.
 
 \paragraph{The necessity coda: what removal reveals.} Sufficiency
 established, we ran the removal direction on 46 fresh naturally-correct
@@ -685,10 +689,11 @@ at the verbal surface, while the internal readout is not. Either way,
 whatever the
 probe reads, it is not the model's verbal self-report channel. And
 the gauge, causally inert as a lever, shows its first sign of a
-useful role --- descriptively, pending the registered composition
-test: as a
-\emph{selector}, ranking steered candidate futures well enough to
-match oracle write-address selection (Section~\ref{sec:fseries}).
+useful role --- descriptively, pending the corrected registered
+composition test: as a
+\emph{selector}, scoring steered candidate states well enough to
+pick the gold write-address on $54/57$ rows
+(Section~\ref{sec:fseries}).
 Gauge and
 lever remain different objects; the gauge's job is reading --- and it
 reads steered states as well as natural ones.
@@ -773,7 +778,7 @@ erasing the full readable stack: no cost & $+0.047$ $[-0.070,+0.203]$ & thesis-s
 Qwen rank-8 transplant misses & $+0.083$, MDE $0.12$ & G3$'$: channel rank $k^{*}{=}16$ \\
 Qwen projected-16 content transfer null & --- & G6$'$: full-state raw transfer passes (proj-64 flagged, closed positive) \\
 writing at Qwen's readable site (final token) & paired $+0.005$; shuffled $=$ real & 6th confirmed prediction: position dissociation \\
-frozen-basis donor-free write on fresh rows (L) & $-0.004$; oracle gate fails & L$'$: in-job LOO refit repairs $+0.279$ \\
+frozen-basis write on fresh rows (L) & void, not null & execution defect (unhooked branch generation); corrected rerun + gold-only arm in flight \\
 misdirection toward specific wrong answers & attractor account: wrong sign & open anomaly \\
 answer-free position policies (all pre-named) & all fail & positional addressing remains answer-adjacent \\
 endogeneity (channel as the model's own decision variable) & not shown at this layer/rank & claim limited to exogenous mediation \\
@@ -846,7 +851,12 @@ comparator excludes zero; pre-named failure branches include
 selector-write interference (selector ranks gold correctly but the write
 undoes it) and gold-instability (the gold address is not stable across
 candidate draws); a PASS obligates a fresh-draw replication (L$'''$)
-before any claim upgrade. The full registry, with per-item commit hashes,
+before any claim upgrade. After the execution-defect correction
+(Section~\ref{sec:fseries}), the rerun adds a hard delivery gate:
+fired arms must show a targets-fired lift over baseline (CI $>0$) or
+the run is execution-invalid by rule --- a steering-signature positive
+control we now consider mandatory for any intervention lane. The full
+registry, with per-item commit hashes,
 ships in the artifact bundle.
 
 \paragraph{Artifact bundle.} The bundle is the project repository:
