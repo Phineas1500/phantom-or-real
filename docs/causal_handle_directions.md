@@ -2251,3 +2251,78 @@ the L-series (L″ now; L‴ if obligated). M2 launches only after M0's
 gates are read (its row sets do not depend on M0's outcomes — the
 dependency is the sanity gate, not the science). Analysis scripts
 follow the L-series pool pattern and land in scripts/ before launch.
+
+### CORRECTION (2026-08-14, late) — items L (write-side) and L″: EXECUTION-INVALID; corrected rerun registered as L″-r
+
+**The defect.** In `scripts/stage2_rank_k_guard_v2.py`, the
+selfaddress/selfaddress-loo branch loop applied the intervention hooks
+to the gauge-scoring forward pass (`gauge_read`) but NOT to the branch
+generation call: `generate_sample_batch` at the per-candidate fire was
+never wrapped in `with model.hooks(...)` (every other intervention
+lane wraps generation; the L′ arms loop does, which is why L′ is
+unaffected). Every "steered branch" generation in items L (L1) and L″
+was therefore an ordinary unhinted sample. Discovered during the L″
+pooled analysis when the oracle branch read −0.009 against L′'s
++0.279 on the same rows with a byte-identical write construction;
+confirmed at the data level: branch generations show NO item-H
+steering signature (gold-branch targets-fired 0.40--0.41 ≈ the 0.395
+natural rate, in both L1 and L″), and the L″ baseline verbatim gate
+passed 456/456 (pipeline integrity; the defect is hook scope, not
+stitching). Fixed in the same commit as this entry (generation now
+wrapped in the branch hooks; baseline and matched-bestofN arms remain
+intentionally unsteered).
+
+**What is withdrawn.**
+- L1's ORACLE-GATE-FAILS verdict as a test of frozen-protocol
+  transfer: the write never touched the generations, so
+  frozen-transfer-to-fresh-rows is UNTESTED, not refuted.
+- Every behavioral selector equivalence from L1/L″ (gauge-select ==
+  oracle == random at the outcome level was trivially guaranteed when
+  all branches are baseline draws).
+- L′'s "within-row protocol contrast" INTERPRETATION (fresh-fit beats
+  frozen): its comparator was the invalid L1 gold branch, so it
+  reduces to fresh-fit vs baseline — which is exactly L′'s primary
+  (+0.279) and stands.
+- L″'s primary outcome (composition FAIL) — void, not a null.
+
+**What stands.**
+- L0 gates: natural-state gauge AUC 0.936; selection-signal
+  (gold − non-gold steered-state score) +31.8 [+23.8, +40.1].
+- L″ per-shard selection-signal replication (e.g. +21.8
+  [+15.7, +28.3], shard C0).
+- STATE-LEVEL selector evidence: gauge argmax over steered-state
+  branch scores picks the gold branch 54/57 rows (0.947) under the
+  frozen write (L1) and 43/57 (0.754) under the LOO write (L″) —
+  the gauge reads steered states and separates the gold address.
+- L′ in full: +0.279 [+0.182, +0.377] fresh-draw repair under the
+  in-job LOO protocol (arms-loop execution, hooks verified in code).
+- All determinism/verbatim gates (they measure stitching, which was
+  never at fault).
+
+**L″-r — the corrected composition (registered now, before any
+corrected data exists).** Identical to L″ in every registered
+respect — same 64-row frame (selection seed 20260812), same LOO write
+construction, same pinned norm, same candidate enumeration, same
+row-keyed seeds (baselines therefore verbatim-gate against L1 again),
+same shard layout C0..C3, same venue (Scholar bf16 2×A40 constraint
+J) — with the single code correction that branch generations now run
+under the branch hooks. Decision rules, comparators, and branches are
+those of the L″ registration verbatim (PRIMARY: gauge-select dP CI>0
+AND paired gauge-vs-bestofN-majority CI>0; selector-write
+interference and gold-instability branches as named there; L‴
+obligation on PASS unchanged). Additionally registered rider, C4
+(one job, ~1.5 h): the ORIGINAL item-L frozen-write oracle-gate test,
+executed correctly — gold-address fires only, frozen donor-free
+vector at pinned norm, k=8, on the same 64 rows — so the
+frozen-transfer question L1 failed to test gets its answer;
+branches: FROZEN-TRANSFERS (dP CI>0), FROZEN-DOES-NOT-TRANSFER
+(CI<0 or straddle-with-MDE), stated against L′'s +0.279 anchor.
+
+**Process lesson (recorded for the paper's honesty ledger).** The
+defect was catchable in advance by a steering-signature positive
+control (does the fired arm move targets-fired above baseline?) — a
+gate the position-policy lane (item H) effectively had and the
+selfaddress lane lacked. L″-r's analysis adds it as a hard gate:
+percand arms must show targets-fired lift over baseline (CI>0) for
+the write to count as delivered; a rerun failing that gate is
+execution-invalid by pre-registered rule, not by post-hoc audit.

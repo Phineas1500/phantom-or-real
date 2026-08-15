@@ -1258,7 +1258,8 @@ def main() -> int:
                     steered_deltas.append(s_score - b_score)
                     branch_seed_base = 95 * 101 if args.selfaddress_loo else 555
                     torch.manual_seed(args.sample_seed + row_id * 10007 + branch_seed_base + cand_index * 13)
-                    batch = generate_sample_batch(model=model, token_ids=prep["receiver_ids"], n_samples=k_branch, max_new_tokens=args.max_new_tokens, temperature=args.temperature, stop_at_eos=True, cache_dtype=dtype)
+                    with model.hooks(fwd_hooks=hooks):
+                        batch = generate_sample_batch(model=model, token_ids=prep["receiver_ids"], n_samples=k_branch, max_new_tokens=args.max_new_tokens, temperature=args.temperature, stop_at_eos=True, cache_dtype=dtype)
                     label = f"percand_loo_fire_L{args.layer}" if args.selfaddress_loo else (f"percand_fire_L{args.layer}" if args.selfaddress else "l0_percand_fire")
                     emit(fout, rows_out, prep, label, "percand_selfaddr", batch, {
                         "fired_concept": cand, "fired_is_gold": fired_is_gold,
