@@ -359,43 +359,40 @@
     pre-registered bet.
   </div>
 
-  <h2><span class="sec">§5.5</span>New — the addressing arc: the gauge turns out to be a working selector</h2>
-  <p class="sub">items L / L′ landed Aug 12–13 · L″ running now · folded into §5.5 and §6 of the draft</p>
+  <h2><span class="sec">§5.5</span>New — the addressing arc: a working selector, a caught bug, and a rerun in flight</h2>
+  <p class="sub">L′ stands · L1/L″ write-side voided by a same-night audit · corrected rerun L″-r + frozen-transfer rider running</p>
   <p>The paper's sharpest deflation was that the gauge is causally useless as a lever. The
-    addressing arc adds the rehabilitation: used the way an instrument should be used — to
-    <i>score options</i> rather than to <i>push</i> — the gauge works. On 64 fresh rows we generated
-    ten steered candidate continuations per row and let the gauge rank them: <b>gauge-selection
-    matched oracle selection essentially always</b> (selection-signal gate +31.8). The companion
-    result repairs the write half: the original frozen repair vector did nothing on these fresh rows
-    (−0.004), but re-fitting the same recipe in-job on the same rows repairs
+    addressing arc adds the rehabilitation, now stated at the level the evidence actually
+    certifies: scoring ten steered candidate branches per row by their internal states, the gauge's
+    top pick <b>is the gold write-address on 54/57 rows</b> (94.7%; 43/57 under the stronger
+    in-job write), with the registered score-separation gate at +31.8 and replicated. The write
+    half has one solid result: re-fitting the repair recipe in-job repairs fresh rows at
     <b>+0.279 [+0.182, +0.377]</b> — the first fresh-draw replication of the donor-free repair, at
-    62% of the guard anchor, within-row contrast +0.283 with CI above zero.</p>
+    62% of the guard anchor.</p>
   <div class="panel">
     <span class="fig">Addressing arc · dP(strong), row-cluster bootstrap</span>
-    <svg id="fig5" role="img" aria-label="Frozen write repairs nothing; freshly fitted write repairs +0.279"></svg>
-    <p class="cap">Same rows, same rank-8 recipe — the only difference is whether the write vector
-      was frozen from a July run or re-fitted in-job. Protocol transfer, not fresh-row fragility,
-      explains the null.</p>
+    <svg id="fig5" role="img" aria-label="In-job fitted write repairs +0.279; the branch-machinery runs never delivered their writes"></svg>
+    <p class="cap">The one write result that counts: the in-job fitted repair on fresh rows. The
+      flat bar is the L1/L″ branch machinery — audited as <b>void</b>: those generations ran with
+      the write unplugged, so they measure baseline, not the write.</p>
   </div>
   <div class="plain">
-    Think of the model's internal fuel gauge again. We already knew you can't drive the car by
-    yanking the gauge needle. The new question was: is the gauge at least a good <b>judge</b>?
-    Answer: yes — shown ten possible continuations, the signal the gauge reads picks the best one
-    about as well as an all-knowing referee would. And the "repair vector" (the nudge that fixes
-    wrong answers) does still work on brand-new problems — but only if you <b>mix it fresh</b> from
-    the model's own activity on those problems ("in-job, leave-one-out" = fitted on the spot, never
-    using the row being repaired). The July batch of the vector, kept in the fridge, does nothing.
-    <b>Update, late Aug 14 — item L″ landed on its most deflationary pre-named branch.</b> The
-    composition ran (all four shards, integrity gate perfect), and the surprise was not the
-    selector: the gauge still picked the right address 75% of the time. It was the <b>write</b>:
-    the same freshly-mixed repair vector that worked in L′ did <i>nothing</i> when fired inside
-    the candidate-branch machinery — even at the gold address (−0.009 vs L′'s +0.279). So the
-    loop is not closed, and the lesson sharpens: the repair's potency depends not just on mixing
-    the vector fresh but on the <i>entire surrounding protocol</i> (how many donor rows fed the
-    mix, and what kind of generation it fires inside — the two are confounded, and a cheap
-    offline diagnostic is queued to separate them). Item L″ had asked: can we close the loop, using the
-    gauge to pick <i>which candidate</i> gets the freshly-mixed repair, with no answer key anywhere
-    in the pipeline?
+    Think of the model's internal fuel gauge again. You can't drive the car by yanking the needle
+    — but shown ten possible steered futures, the gauge picks the genuinely-best one 19 times in
+    20. And the repair nudge works on brand-new problems if you <b>mix it fresh</b> from the
+    model's own activity ("in-job, leave-one-out" = fitted on the spot, never using the row being
+    repaired). Then came the night's real lesson. The composition run — gauge picks the branch,
+    fresh-mixed nudge fires — came back all-null, and for a few hours the story looked like
+    "the write is protocol-fragile." The truth was better and worse: <b>a bug audit showed the
+    branch generations never had the nudge plugged in at all</b> — the code steered the
+    measurement pass but not the answer-writing pass. (The giveaway: steered writes leave a
+    fingerprint — they pull answers toward the marked concept — and these outputs had no
+    fingerprint.) So the "the frozen vector does nothing" result from two days ago is also void:
+    that test simply never ran. Everything was fixed, re-registered, and relaunched the same
+    night — including a new automatic tripwire that voids any future run whose outputs lack the
+    steering fingerprint, and a rider that finally runs the frozen-vector test for real. The
+    original question — can the loop close answer-free? — is running now, correctly, for the
+    first time.
   </div>
 
   <h2><span class="sec">SJ</span>New — can the model <i>say</i> what its gauge knows? Two censuses</h2>
@@ -458,8 +455,10 @@
     upgrade; the anatomical mirror of item D is stated with the energy caveat.
     <b>New (L/L′/censuses):</b> §6 now carries "the gauge is not the verbal channel — and not
     useless": deletable-without-cost and degenerate in the model's own mouth, yet a
-    near-oracle <i>selector</i> over candidate branches; and the repair recipe replicates on fresh
-    draws when re-fitted in-job, making protocol transfer (not fragility) the named residual gap.</p>
+    state-level <i>selector</i> over candidate branches (gold address by score, 54/57); the repair
+    recipe replicates on fresh draws when re-fitted in-job; and §5.5 discloses the caught
+    execution defect — the earlier "frozen write fails / protocol transfer is the gap" reading is
+    withdrawn as void, with the corrected composition and frozen-transfer tests running.</p>
 
   <div class="plain">
     Decoding the commitments: <b>“probe-based monitoring”</b> — if you deploy a probe to watch for
@@ -486,7 +485,7 @@
     <li><b>§1 intro + abstract</b> — written after the results read cleanly. <i>(done)</i></li>
     <li><b>§4 related work</b> — restructured twice already; near-verbatim from the skeleton. <i>(done)</i></li>
     <li><b>§6 discussion, figures, appendix</b> (artifact checklist, negative-results catalog, provenance map). <i>(§6 + Figs 1/4 done; L/L′/census folded into §5.5/§6 Aug 14; appendix pending)</i></li>
-    <li><b>L″ verdict fold-in</b> — landed on branch 3 (protocol instability: the write nulls inside the branch machinery, selector intact at 75%); the branch-3 sentence goes into §5.5/§6 wherever L′'s +0.279 is quoted. <i>(verdict landed; paper sentence pending)</i></li>
+    <li><b>L″ correction fold-in</b> — the branch-3 "protocol instability" verdict was superseded the same night by the execution-defect audit (write never delivered in branch generations); paper corrected (defect disclosed, frozen-write null voided, selector restated state-level); L″-r + frozen rider verdicts land next. <i>(correction folded; rerun running)</i></li>
     <li><b>Final pass</b> — forbidden-wordings audit, scoop re-check, one more adversarial review round on the draft itself.</li>
   </ol>
 
@@ -545,9 +544,8 @@
     { l: 'matched noise (pooled)', v: -0.088, ci: [-0.180, -0.017], c: 'var(--control)' }
   ], [-0.25, 0.45]);
   chart('fig5', [
-    { l: 'frozen July write (item L)', v: -0.004, c: 'var(--control)' },
-    { l: 'same recipe, fitted in-job (L′)', v: 0.279, ci: [0.182, 0.377], c: 'var(--lever)' },
-    { l: 'within-row protocol contrast', v: 0.283, c: 'var(--lever-soft)' }
+    { l: 'in-job fitted write (L′)', v: 0.279, ci: [0.182, 0.377], c: 'var(--lever)' },
+    { l: 'branch-machinery runs (VOID: write unplugged)', v: -0.004, c: 'var(--control)' }
   ], [-0.15, 0.45]);
   chart('fig4', [
     { l: 'class-mean, full-dimensional', v: 0.043, ci: [-0.120, 0.207], c: 'var(--control)' },
