@@ -649,6 +649,8 @@ def main() -> int:
         help="Item K anchor shard: regenerate 458431's unhinted+fixednorm arms verbatim.")
     parser.add_argument("--necessity-prime", action="store_true",
         help="Item K': energy-matched necessity controls on the item-K rows.")
+    parser.add_argument("--gold-only", action="store_true",
+                        help="selfaddress: fire only the gold candidate branch (C4 frozen-transfer rider)")
     parser.add_argument("--selfaddress", action="store_true",
         help="Item L1: gauge-selected candidate sweep on fresh failing rows.")
     parser.add_argument("--selfaddress-loo", action="store_true",
@@ -1240,6 +1242,8 @@ def main() -> int:
                     loo_target = float(np.mean([v for r2, v in recon_norm_by_row.items() if r2 != row_id]))
                 cands = sorted(prep["rel_by_concept"].items())
                 for cand_index, (cand, rels) in enumerate(cands):
+                    if args.gold_only and canon(cand) != canon(prep["gold_concept"]):
+                        continue
                     positions = [start + rel_pos for rel_pos in rels]
                     if args.selfaddress_loo:
                         tiled = np.tile(loo_dir, (len(rels), 1))
@@ -1266,7 +1270,7 @@ def main() -> int:
                         "fired_candidate_index": cand_index, "n_fired_positions": len(rels),
                         "gauge_score": s_score, "base_gauge_score": b_score,
                     })
-                if args.selfaddress:
+                if args.selfaddress and not args.gold_only:
                     n_total = len(cands) * args.percand_samples
                     done = 0
                     chunk_index = 0

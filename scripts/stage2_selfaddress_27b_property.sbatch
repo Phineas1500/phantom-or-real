@@ -6,7 +6,7 @@
 #SBATCH --gres=gpu:2
 #SBATCH --cpus-per-task=8
 #SBATCH --mem=180G
-#SBATCH --time=4:00:00
+#SBATCH --time=3:00:00
 #SBATCH --job-name=selfaddress_l
 #SBATCH --output=slurm_logs/selfaddress_l_%j.out
 #SBATCH --error=slurm_logs/selfaddress_l_%j.err
@@ -38,6 +38,14 @@ elif [ "${SELFADDRESS_MODE#C}" != "$SELFADDRESS_MODE" ]; then
         --selfaddress-loo \
         --rank-list 8 \
         --shard-index "${SELFADDRESS_MODE#C}" --shard-count 4 \
+        --per-height 32 --selection-seed 20260812 \
+        --n-devices 2 --n-ctx 4096 --dtype bfloat16 --load-mode no-processing
+elif [ "$SELFADDRESS_MODE" = "G" ]; then
+    python -u scripts/stage2_rank_k_guard_v2.py \
+        --selfaddress --gold-only \
+        --rank-list 8 \
+        --percand-samples 8 \
+        --shard-index 0 --shard-count 1 \
         --per-height 32 --selection-seed 20260812 \
         --n-devices 2 --n-ctx 4096 --dtype bfloat16 --load-mode no-processing
 elif [ "$SELFADDRESS_MODE" = "P0" ] || [ "$SELFADDRESS_MODE" = "P1" ]; then
