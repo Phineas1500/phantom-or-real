@@ -836,8 +836,8 @@ def main() -> int:
             print(f"necessity correct rows (shard {args.shard_index}/{args.shard_count}): {[r['row_index'] for r in correct_rows]}", flush=True)
             selected_rows = correct_rows
     if args.selfaddress or args.selfaddress_prime or args.selfaddress_loo:
-        if args.selection_seed != 20260812:
-            raise ValueError("--selfaddress requires --selection-seed 20260812 (registered item L)")
+        if args.selection_seed not in (20260812, 20260817):
+            raise ValueError("--selfaddress requires a registered selection seed (20260812 = item L; 20260817 = L''' fresh draw)")
         guard32 = {
             int(r["row_index"])
             for r in select_fresh_rows(
