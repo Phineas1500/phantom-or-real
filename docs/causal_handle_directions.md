@@ -2326,3 +2326,38 @@ selfaddress lane lacked. L″-r's analysis adds it as a hard gate:
 percand arms must show targets-fired lift over baseline (CI>0) for
 the write to count as delivered; a rerun failing that gate is
 execution-invalid by pre-registered rule, not by post-hoc audit.
+
+### L‴ — fresh-draw replication of the closed loop (registered 2026-08-17, before any data; obligated by L″-r PASS)
+
+L″-r PASSED its registered primary (gauge-select dP +0.241
+[+0.147,+0.342]; paired vs bestofN-majority +0.259 [+0.167,+0.364];
+oracle gate +0.263; delivery gate +0.180 CI>0; verbatim 456/456), and
+the C4 rider landed FROZEN-TRANSFERS (+0.498 [+0.386,+0.607] at gold,
+delivery lift +0.259). Per the L″ registration, the PASS obligates a
+fresh-draw replication before any claim upgrade. L‴ is that
+replication, protocol-identical to L″-r + C4:
+
+- **Fresh frame:** per-height 32, selection seed 20260817, excluding
+  the 57 L-series data rows (docs/l3_exclude_rows.txt, committed) on
+  top of the standing composite-manifest exclusions. (7 rows of the
+  original L selection produced no data — position-skips — and cannot
+  contaminate; a fresh draw that re-selects them re-skips them.)
+- **Arms:** R0–R3 = the L″-r composition shards (LOO write, candidate
+  branches, gauge scores; same seeds formula, same pinned norm); RG =
+  the gold-only frozen-write rider (k=8).
+- **Gates:** delivery gate (gold-branch targets-fired lift over
+  baseline CI>0 — hard, execution-invalid on failure); natural parse
+  gates. No verbatim gate exists for the new rows (no prior jobs
+  touched them — stated now); the frozen-artifact pinned-norm
+  recomputation gate applies as always.
+- **Decision rules:** identical to L″ (PRIMARY: gauge-select dP CI>0
+  AND paired gauge-vs-bestofN-majority CI>0; oracle gate first;
+  selector-write-interference and gold-instability branches as
+  registered). Rider branches: FROZEN-TRANSFERS / does-not, against
+  the +0.498 and +0.279 anchors.
+- **On PASS:** the closed-loop claim upgrades to
+  replicated-on-two-disjoint-draws; no further replication obligation
+  is registered. On FAIL: the L″-r result stands as
+  single-draw-with-gates and the paper says exactly that.
+- Venue: Scholar bf16 2×A40 constraint J; 3:00:00 walls (submit-filter
+  constraint).
