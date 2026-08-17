@@ -1,79 +1,76 @@
-# Item L″ (composition) — EXECUTION-INVALID, and the invalidity reaches back into item L: branch generations were never steered. Corrected rerun (L″-r) + frozen-transfer rider launched same night.
+# Item L″-r — THE COMPOSITION PASSES: the answer-free repair loop closes (gauge-select +0.241, == oracle behaviorally), and the C4 rider lands FROZEN-TRANSFERS (+0.498) — the frozen artifact generalizes to fresh rows after all
 
-Jobs 461663/461664/461665/461666 (shards C0–C3, Aug 14; 2:16–2:44 each,
-all COMPLETED). Pooled by `scripts/stage2_selfaddress_loo_pool.py`;
-report and row-level data preserved under `docs/invalid_20260814/` and
-`results/stage2/erasure/invalid_20260814/`. Registry correction entry:
-`docs/causal_handle_directions.md` (2026-08-14, late), commit 03b0eae.
+Corrected rerun, jobs 461886–461889 (C0–C3) + 461890 (C4 gold-only
+rider), Aug 14–16 (queue-stretched), all COMPLETED under 3:00:00
+walls. Pooled by `scripts/stage2_selfaddress_loo_pool.py`
+(`docs/loo_r_20260816/` holds the archived row-level record; the
+first, execution-invalid run is `docs/invalid_20260814/` + the
+registry CORRECTION entry — its history is summarized at the end).
 
-## What the pooled analysis showed, and how the defect surfaced
+## Gates, in registered order — all PASS
 
-- Baseline verbatim gate **456/456 PASS** (job-stitching integrity: the
-  fresh in-job baselines reproduce L1's token-for-token).
-- ORACLE GATE FAILS: gold-branch dP −0.009 [−0.035, +0.018] — on the
-  same 57 rows where L′ repaired +0.279 with a byte-identical write
-  construction the day before. Non-overlapping CIs on identical
-  protocol constants → not sampling noise → code diff.
-- The diff: in the selfaddress/selfaddress-loo branch loop, the
-  intervention hooks wrapped only the gauge-scoring forward
-  (`gauge_read`); the branch `generate_sample_batch` call was never
-  inside `with model.hooks(...)`. (The L′ arms loop wraps generation
-  correctly — L′ is unaffected.)
-- Data-level confirmation (both L1 and L″): branch generations carry
-  NO item-H steering signature — gold-branch targets-fired 0.412/0.399
-  ≈ the 0.395 natural baseline rate; item H's delivered writes pull
-  ~0.50. The "steered branches" were unhinted samples.
+| gate | value | status |
+|---|---|---|
+| baseline verbatim vs L1 | 456/456 token-identical | PASS |
+| delivery (NEW hard gate): gold-branch targets-fired lift over baseline, row-paired | +0.180 [+0.088, +0.276]; rate 0.575 vs 0.395 natural | PASS |
+| oracle gate: gold-branch dP | **+0.263 [+0.169, +0.362]** (0.088 → 0.351) | PASS |
+| parse | percand 7.3% / baseline 8.3% | flag (same regime as L′; orderings unaffected) |
 
-## Withdrawn
+## The registered PRIMARY — PASS on both conditions
 
-1. **L1's "ORACLE GATE FAILS / frozen protocol does not transfer"** —
-   the write never touched the generations; frozen transfer is
-   UNTESTED, not refuted.
-2. **All behavioral selector equivalences** from L1/L″ ("gauge-select
-   == oracle to three decimals" was trivially guaranteed when every
-   branch is a baseline draw).
-3. **L′'s within-row protocol contrast as a frozen-vs-fresh claim** —
-   its frozen comparator was the invalid L1 gold branch; the contrast
-   collapses to fresh-fit vs baseline, which is L′'s primary and
-   stands.
-4. **L″'s primary outcome** — void, not a null.
+| policy (57 rows) | P(strong) | dP vs baseline [CI95] |
+|---|---:|---|
+| **gauge_select** | 0.329 | **+0.241 [+0.147, +0.342]** |
+| oracle (gold branch) | 0.351 | +0.263 [+0.169, +0.362] |
+| random_select (20 draws) | 0.106 | +0.019 [−0.025, +0.061] |
+| self_ratify | 0.202 | +0.114 [+0.037, +0.204] |
+| bestofN majority (L1-recorded, matched compute) | 0.070 | −0.018 [−0.042, +0.007] |
+| bestofN any-correct (oracle sampling ceiling) | 0.263 | +0.175 [+0.088, +0.270] |
 
-## Stands
+Paired contrasts: gauge − bestofN-majority **+0.259 [+0.167, +0.364]**
+(the primary's second condition); gauge − random +0.223 CI>0; gauge −
+self-ratify +0.127 CI>0; gauge − oracle **−0.022 [−0.066, +0.018]**
+(statistically indistinguishable from oracle selection); gauge −
+bestofN-any-correct +0.066 straddle (matches the any-correct sampling
+ceiling). Selector texture: argmax picks gold on 43/57 rows (0.754).
+Fire texture: non-gold branches sit at baseline (0.076) while gold
+hits 0.351 — addressing specificity inside one run.
 
-- L0 gates (natural gauge AUC 0.936; selection signal +31.8
-  [+23.8, +40.1]) and the L″ per-shard selection-signal replications
-  (C0: +21.8 [+15.7, +28.3]) — steered-STATE scores, real.
-- **State-level selector evidence**: gauge argmax over steered-state
-  branch scores picks the gold address **54/57 (0.947)** under the
-  frozen write and **43/57 (0.754)** under the stronger LOO write.
-- L′ in full: +0.279 [+0.182, +0.377].
-- All verbatim/determinism gates.
+**The loop is closed on this row set**: candidates enumerated from the
+prompt (answer-free), donor-free LOO write at each candidate's
+positions (answer-free content), gauge scores over the steered states
+select the branch (answer-free selection) → +0.241 repair with no
+answer key anywhere in the pipeline, beating matched-compute majority
+sampling by +0.259.
 
-## Corrective actions (all same-night, pre-registered before any new data)
+## C4 rider — FROZEN-TRANSFERS (the question item L never actually tested)
 
-1. Fix: branch generation wrapped in the branch hooks
-   (stage2_rank_k_guard_v2.py; commit 03b0eae).
-2. **L″-r** relaunched: jobs 461886–461889 (C0–C3), identical rows,
-   seeds, write construction, decision rules; baselines verbatim-gate
-   against L1 again.
-3. **C4 rider** (job 461890, `--gold-only`): the original item-L
-   frozen-write oracle-gate test executed correctly — gold-address
-   frozen fires, k=8, same 64 rows; FROZEN-TRANSFERS vs
-   FROZEN-DOES-NOT-TRANSFER branches against L′'s +0.279 anchor.
-4. **New hard gate** (registered): fired arms must show targets-fired
-   lift over baseline (CI>0) or the run is execution-invalid by rule.
-   The defect was catchable in advance by exactly this
-   steering-signature positive control; it is now mandatory.
-5. Venue note: the cluster's new Lua submit filter rejects 2-GPU jobs
-   above 3h wall (bisected: 3:00 passes, 3:30 crashes the filter);
-   rerun shards run at 3:00:00 against observed 2:16–2:45 runtimes,
-   with the interleave-split precedent (3of8 ∪ 7of8 ≡ 3of4) as the
-   overrun remedy.
+Gold-address fires of the FROZEN donor-free vector at pinned norm,
+k=8, same 57 rows: **+0.498 [+0.386, +0.607]** (0.088 → 0.586);
+delivery lift +0.259 [+0.147, +0.373] (rate 0.654). The frozen
+artifact not only transfers to fresh rows — it exceeds L′'s in-job
+refit (+0.279) and matches the +0.447 selected-row anchor. The
+"in-job fitting is part of the recipe" reading (drawn from the
+invalid L1) is dead: both protocols work; the frozen one is stronger
+at the gold address. (Composition-vs-rider gap: the composition's
+gold branch used the LOO write at k=4; the rider used the frozen
+write at k=8 — protocol difference, flagged descriptively, not a
+contradiction.)
 
-## Paper impact
+## Obligation discharged next
 
-§5.5/§6/intro-(vi)/appendix corrected in commit 12ef30d: the
-execution defect is disclosed in-text, the frozen-write null restated
-as void, the selector claims restated at state level (54/57, 43/57),
-and the composition marked as re-executing at submission time. No
-other section touches the invalidated arms.
+Per the L″ registration, the PASS obligates L‴ — a protocol-identical
+fresh-draw replication (seed 20260817, the 57 L-series data rows
+excluded via committed list; R0–R3 + RG rider, jobs 462037–462041,
+launched Aug 17 after the L‴ registration was committed). On PASS the
+closed-loop claim upgrades to replicated-on-two-disjoint-draws.
+
+## Provenance note — the first run and the bug
+
+The first L″ execution (461663–461666) and item L's L1 write-side
+were EXECUTION-INVALID: branch generations ran without the steering
+hooks (registry CORRECTION entry, commit 03b0eae; data archived under
+`invalid_20260814/`). The delivery gate that now leads this table was
+registered in that correction and is mandatory for all future
+intervention lanes. All L″-r numbers above come from the corrected
+code with delivery verified.

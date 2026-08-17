@@ -16,8 +16,8 @@
     "9029": 67.39550691148173,
     "9536": 68.82151397838264
   },
-  "created_at_utc": "2026-08-14T16:48:57.805073+00:00",
-  "elapsed_seconds": 9840.080651521683,
+  "created_at_utc": "2026-08-15T03:24:56.424471+00:00",
+  "elapsed_seconds": 9819.49504327774,
   "gauge": {
     "direction_row": 0,
     "hook": "blocks.53.hook_resid_post",
@@ -73,6 +73,7 @@
     "g0_calibration": false,
     "gauge_layer": 53,
     "gauge_npz": "results/stage2/erasure/inlp_direction_stacks_27b_property_5layer.npz",
+    "gold_only": false,
     "heights": "3,4",
     "jsonl": "results/full/with_errortype/gemma3_27b_infer_property.jsonl",
     "l0_rows": 12,
@@ -150,18 +151,18 @@
     "count": 4,
     "index": 0
   },
-  "slurm_job_id": "461663",
+  "slurm_job_id": "461886",
   "summary": {
     "percand_loo_fire_L30": {
       "n_rows": 15,
       "n_samples": 516,
       "paired_ci95": [
-        -0.0407142857142857,
-        0.02261904761904762
+        -0.097625,
+        0.021434523809523726
       ],
-      "paired_delta_vs_reference": -0.007380952380952379,
+      "paired_delta_vs_reference": -0.0311904761904762,
       "reference": "unhinted_baseline",
-      "strong_accuracy": 0.16279069767441862
+      "strong_accuracy": 0.1434108527131783
     },
     "unhinted_baseline": {
       "n_rows": 15,

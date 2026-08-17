@@ -1,4 +1,4 @@
-# Rank-k Guard v2 (fresh rows) - Job 461663 - shard 0 of 4
+# Rank-k Guard v2 (fresh rows) - Job 461886 - shard 0 of 4
 
 Output JSON: `docs/selfaddress_loo_27b_property_shard0of4.json`
 Rows: 15 prepared from 15 fresh-selection rows.
@@ -7,7 +7,7 @@ Rows: 15 prepared from 15 fresh-selection rows.
 
 | arm | P(strong) | dP vs reference (CI95) | reference |
 | --- | ---: | ---: | --- |
-| percand_loo_fire_L30 | 0.163 | -0.007 [-0.041, +0.023] | unhinted_baseline |
+| percand_loo_fire_L30 | 0.143 | -0.031 [-0.098, +0.021] | unhinted_baseline |
 | unhinted_baseline | 0.167 | - | none |
 
 Hint-validated rows (hinted P(strong) >= 0.5): 0.

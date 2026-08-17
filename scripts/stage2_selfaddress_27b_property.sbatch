@@ -40,6 +40,23 @@ elif [ "${SELFADDRESS_MODE#C}" != "$SELFADDRESS_MODE" ]; then
         --shard-index "${SELFADDRESS_MODE#C}" --shard-count 4 \
         --per-height 32 --selection-seed 20260812 \
         --n-devices 2 --n-ctx 4096 --dtype bfloat16 --load-mode no-processing
+elif [ "${SELFADDRESS_MODE#R}" != "$SELFADDRESS_MODE" ] && [ "$SELFADDRESS_MODE" != "RG" ]; then
+    python -u scripts/stage2_rank_k_guard_v2.py \
+        --selfaddress-loo \
+        --rank-list 8 \
+        --shard-index "${SELFADDRESS_MODE#R}" --shard-count 4 \
+        --per-height 32 --selection-seed 20260817 \
+        --exclude-rows "3073,3290,3415,4322,4675,6188,6327,8035,8298,8874,9549,10079,10714,$(cat docs/l3_exclude_rows.txt)" \
+        --n-devices 2 --n-ctx 4096 --dtype bfloat16 --load-mode no-processing
+elif [ "$SELFADDRESS_MODE" = "RG" ]; then
+    python -u scripts/stage2_rank_k_guard_v2.py \
+        --selfaddress --gold-only \
+        --rank-list 8 \
+        --percand-samples 8 \
+        --shard-index 0 --shard-count 1 \
+        --per-height 32 --selection-seed 20260817 \
+        --exclude-rows "3073,3290,3415,4322,4675,6188,6327,8035,8298,8874,9549,10079,10714,$(cat docs/l3_exclude_rows.txt)" \
+        --n-devices 2 --n-ctx 4096 --dtype bfloat16 --load-mode no-processing
 elif [ "$SELFADDRESS_MODE" = "G" ]; then
     python -u scripts/stage2_rank_k_guard_v2.py \
         --selfaddress --gold-only \
