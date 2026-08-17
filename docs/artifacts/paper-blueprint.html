@@ -83,9 +83,12 @@
 
   <p class="thesis">In a model that visibly predicts its own failures, the readable correctness
     signal and the causal repair channel are <b>different objects</b>: the entire readable subspace
-    can be deleted without behavioral cost, while repair flows exclusively through a low-rank channel
+    can be deleted without behavioral cost, while repair flows through an identified low-rank channel
     that carries the label-specific content of natural success yet is itself no more decodable than
-    chance — gauge and lever, anatomically separated.</p>
+    random subspaces of the same size — gauge and lever, anatomically separated. And the ending the
+    program earned this weekend: used in the one role its nature permits — as a <b>judge</b> over
+    steered candidate futures rather than a lever — the gauge closes an answer-free self-repair
+    loop.</p>
 
   <div class="plain">
     That paragraph is the paper's thesis, and here is what it means. Inside the model there is a
@@ -96,14 +99,16 @@
     exactly as before; and the lever that really steers the car turns out to be invisible to the
     instruments that read the gauge. ``Readable'' means a simple detector can find the signal;
     ``causal'' means changing it changes behavior. The whole paper is evidence that readable and
-    causal come apart, in both directions.
+    causal come apart, in both directions. The story now has its ending, too: the gauge is useless
+    to <i>push</i> on, but as a <b>judge</b> — scoring possible futures and picking one — it works
+    as well as an answer key would, and that closes a repair loop that never sees an answer key.
   </div>
 
   <div class="chips">
-    <span class="chip">ICLR format · 10 pages drafted</span>
+    <span class="chip">ICLR format · 13 pages drafted</span>
     <span class="chip">25 pre-registered verdicts</span>
     <span class="chip">7 confirmed registered predictions</span>
-    <span class="chip">2 adversarial review rounds survived</span>
+    <span class="chip">3 adversarial review rounds survived</span>
     <span class="chip">every number below: pooled, cluster-bootstrapped</span>
   </div>
 
@@ -148,7 +153,7 @@
       directional bet in advance; all seven came true.</div>
   </div>
 
-  <h2><span class="sec">Abstract</span>The argument in seven steps</h2>
+  <h2><span class="sec">Abstract</span>The argument in eight steps</h2>
   <div class="flow">
     <div class="step"><b>The gauge.</b> Models linearly encode whether they will answer correctly
       (probe AUC ≤ 0.94, two models) — and the field just showed this readout resists steering.
@@ -174,6 +179,11 @@
       content at the lever’s positions abolishes success entirely — but so does keeping ONLY the 8
       repair axes. <i>Plainly: the lever is a compact way to write; what it writes into is spread
       across the whole state.</i></div>
+    <div class="step"><b>The loop closes (L-series).</b> List the candidate concepts from the
+      prompt, fire the answer-free write at each in parallel, let the gauge score the results and
+      pick one: +0.24 repair, indistinguishable from oracle selection — no answer key anywhere.
+      <i>Plainly: the dashboard can’t steer, but it can judge — and judging is enough to close a
+      self-repair loop.</i></div>
   </div>
 
   <h2><span class="sec">§5.2</span>The gauge is not necessary</h2>
@@ -490,7 +500,7 @@
     <li><b>§3 methods + control table</b> — transcription from pre-registrations. <i>(done)</i></li>
     <li><b>§1 intro + abstract</b> — written after the results read cleanly. <i>(done)</i></li>
     <li><b>§4 related work</b> — restructured twice already; near-verbatim from the skeleton. <i>(done)</i></li>
-    <li><b>§6 discussion, figures, appendix</b> (artifact checklist, negative-results catalog, provenance map). <i>(§6 + Figs 1/4 done; L/L′/census folded into §5.5/§6 Aug 14; appendix pending)</i></li>
+    <li><b>§6 discussion, figures, appendix</b> (artifact checklist, negative-results catalog, provenance map). <i>(all done — appendix landed Aug 14: artifact checklist, negatives catalog with MDEs, provenance map, registration excerpts)</i></li>
     <li><b>L″ correction fold-in</b> — the branch-3 "protocol instability" verdict was superseded the same night by the execution-defect audit (write never delivered in branch generations); paper corrected (defect disclosed, frozen-write null voided, selector restated state-level); the corrected L″-r then PASSED and the rider landed FROZEN-TRANSFERS; both folded into §5.5/§6. <i>(done; L‴ replication running)</i></li>
     <li><b>Final pass</b> — forbidden-wordings audit, scoop re-check, one more adversarial review round on the draft itself.</li>
   </ol>
