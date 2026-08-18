@@ -34,7 +34,7 @@ from src.stage2_steering import score_reply  # noqa: E402
 from src.bd_path import ensure_on_path  # noqa: E402
 from src.env_loader import load_env  # noqa: E402
 
-GAUGE_NPZ = Path("results/stage2/erasure/qwen_loop_gauge_L43final.npz")
+GAUGE_NPZ = Path("results/stage2/erasure/qwen_loop_gauge_L53final.npz")
 
 
 def main() -> int:
@@ -42,6 +42,7 @@ def main() -> int:
     p.add_argument("--jsonl", type=Path, default=Path("results/full/with_errortype/qwen35_27b_infer_property.jsonl"))
     p.add_argument("--model", default="Qwen/Qwen3.5-27B")
     p.add_argument("--layer", type=int, default=43)
+    p.add_argument("--gauge-layer", type=int, default=53)
     p.add_argument("--calibration", action="store_true")
     p.add_argument("--shard-index", type=int, default=0)
     p.add_argument("--shard-count", type=int, default=6)
@@ -69,7 +70,8 @@ def main() -> int:
     ct = {"enable_thinking": False}
     model, tokenizer = load_hf_model(args.model, dtype=torch_dtype(args.dtype),
         device_map="auto", device=None, attn_implementation="sdpa", trust_remote_code=True)
-    validate_hf_layers(model, [L])
+    G = args.gauge_layer
+    validate_hf_layers(model, [L, G])
     dev = next(model.parameters()).device
 
     def unhinted_ids(row):
@@ -77,28 +79,33 @@ def main() -> int:
                               model_name=args.model, add_generation_prompt=True, chat_template_kwargs=ct)
         return rt, tokenizer(rt, add_special_tokens=False)["input_ids"]
 
-    def capture_states(ids, positions, inject=None):
-        """inject: (positions, matrix) added at L during the same prefill."""
+    def capture_states(ids, positions, layer, inject=None):
+        """Capture at `layer`; inject: (positions, matrix) added at write layer L."""
         store = {}
         def cap_fn(_m, _i, out):
             h = hidden_from_output(out)
             if h.shape[1] >= len(ids):
-                if inject is not None:
-                    ipos, mat = inject
-                    for j, pp in enumerate(ipos):
-                        if pp < h.shape[1]:
-                            h[0, pp, :] += torch.from_numpy(mat[j]).to(h.device, h.dtype)
                 for pp in positions:
                     store[pp] = h[0, pp, :].detach().cpu().float()
-                if inject is not None:
-                    return replace_hidden_in_output(out, h)
             return out
-        hd = model.model.layers[L].register_forward_hook(cap_fn)
+        def inj_fn(_m, _i, out):
+            h = hidden_from_output(out)
+            if h.shape[1] >= len(ids) and inject is not None:
+                ipos, mat = inject
+                for j, pp in enumerate(ipos):
+                    if pp < h.shape[1]:
+                        h[0, pp, :] += torch.from_numpy(mat[j]).to(h.device, h.dtype)
+                return replace_hidden_in_output(out, h)
+            return out
+        handles = [model.model.layers[layer].register_forward_hook(cap_fn)]
+        if inject is not None:
+            handles.insert(0, model.model.layers[L].register_forward_hook(inj_fn))
         try:
             with torch.inference_mode():
                 model(input_ids=torch.tensor([ids], device=dev), use_cache=False)
         finally:
-            hd.remove()
+            for hd in handles:
+                hd.remove()
         return store
 
     source_rows = select_balanced_rows(args.jsonl, exclude=set(G0_ROWS), heights=[3, 4],
@@ -111,7 +118,7 @@ def main() -> int:
         pos = concept_positions(tokenizer, rt, gold, 0, len(rids))
         if not pos:
             continue
-        st = capture_states(rids, pos)
+        st = capture_states(rids, pos, L)
         row_means[row["row_index"]] = np.stack([st[q].numpy() for q in pos]).astype(np.float64).mean(axis=0)
         labels[row["row_index"]] = bool(row["is_correct_strong"])
     class_vector = class_vector_from_labels(row_means, labels)
@@ -145,8 +152,8 @@ def main() -> int:
             if not pos_r:
                 return None
             rel = [q - r0 for q in pos_r]
-            hs = capture_states(hids, [h0 + q for q in rel])
-            us = capture_states(rids, [r0 + q for q in rel])
+            hs = capture_states(hids, [h0 + q for q in rel], L)
+            us = capture_states(rids, [r0 + q for q in rel], L)
             prep["delta"] = np.stack([(hs[h0 + q] - us[r0 + q]).numpy() for q in rel]).astype(np.float32)
         return prep
 
@@ -182,7 +189,7 @@ def main() -> int:
         return o
 
     def run_branches(fout, prep, gauge, norm_target, base_seed_row):
-        b_state = capture_states(prep["rids"], [len(prep["rids"]) - 1])
+        b_state = capture_states(prep["rids"], [len(prep["rids"]) - 1], G)
         b_score = float(gauge["w"] @ (b_state[len(prep["rids"]) - 1].numpy() - gauge["mean"]) + gauge["b"])
         for s in range(args.samples_per_row):
             torch.manual_seed(base_seed_row + 0 * 101 + s)
@@ -192,7 +199,7 @@ def main() -> int:
             emit(fout, prep, "unhinted_baseline", s, reply, new_ids, {"base_gauge_score": b_score})
         for ci, (cand, cpos) in enumerate(prep["cands"].items()):
             mat = write_matrix(cpos, norm_target)
-            s_state = capture_states(prep["rids"], [len(prep["rids"]) - 1], inject=(cpos, mat))
+            s_state = capture_states(prep["rids"], [len(prep["rids"]) - 1], G, inject=(cpos, mat))
             s_score = float(gauge["w"] @ (s_state[len(prep["rids"]) - 1].numpy() - gauge["mean"]) + gauge["b"])
             fired_is_gold = canon(cand) == canon(prep["gold"])
             handles = [model.model.layers[L].register_forward_hook(add_hook(mat, cpos))]
@@ -223,7 +230,7 @@ def main() -> int:
         X, y = [], []
         for row in cal_rows:
             _, rids = unhinted_ids(row)
-            st = capture_states(rids, [len(rids) - 1])
+            st = capture_states(rids, [len(rids) - 1], G)
             X.append(st[len(rids) - 1].numpy())
             y.append(int(bool(row["is_correct_strong"])))
         X = np.stack(X).astype(np.float64); y = np.array(y)

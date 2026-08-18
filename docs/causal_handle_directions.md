@@ -2498,3 +2498,21 @@ to bf16 quantization scale). Complements the standing application
 evidence: identical-estimator destructive controls (same code path,
 different matrix) and the in-run projection-variance telemetry (read
 off the live hook).
+
+**Amendment 2 to item N (2026-08-18 evening, from the N0 gate outcomes,
+before any composition data).** N0 did its job and caught two design
+errors. (1) GAUGE SITE: the registered L43_final read is structurally
+blind to the L43 write — a same-layer injection at concept positions
+cannot reach the same layer's final-token state; the selection signal
+came back identically zero on all 12 rows (a wiring fact, not a
+finding). The gauge site moves to L53_final (J1: 0.808, ten layers
+downstream of the write); the gauge is refit at L53 and the N0 gates
+re-executed. (2) DELIVERY METRIC: the Gemma-style gold-targeting lift
+is ceiling-broken in Qwen — failing rows already target the gold
+concept ≈0.9 at baseline (Qwen fails on the hypothesis, not the
+concept). The hard delivery gate becomes the NONGOLD fingerprint:
+non-gold-branch targets-fired lift over each concept's own baseline
+rate, CI>0 (on the existing N0 data: +0.069 [+0.028, +0.111], PASS),
+with gold-branch behavioral repair reported alongside (N0 gate rows:
+0.167 → 0.354). Natural gate stands as passed (CV AUC 0.741 ≥ 0.65,
+noted below J1's 0.806). All other rules unchanged.
