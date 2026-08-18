@@ -229,8 +229,13 @@ branch-complete --- a named branch for every reachable outcome
 pattern, wording included. One exploratory item (F(ii)) produced an
 outcome combination outside its enumerated branches; we flag it as
 such in Section~\ref{sec:fseries}, and its confirmatory battery
-(F(ii)-b/c) was registered and run afterwards. Seven registered
-directional predictions were confirmed.
+(F(ii)-b/c) was registered and run afterwards. Nine registered
+directional predictions were confirmed. Amendment policy, stated as
+rule rather than practice: a registered result may be voided or
+amended only on evidence from an independent telemetry channel ---
+a missing delivery fingerprint, an identically-zero degeneracy, a
+deviation audit --- never on effect size or surprise; every amendment
+in the registry cites its channel.
 Generation is seed-deterministic per (row, arm, sample) --- seeds are
 row-keyed ($s_0 + \mathrm{row}\cdot 10007 + \mathrm{arm}\cdot 101 +
 \mathrm{sample}$, with lane variants adding layer or candidate terms;
@@ -360,14 +365,20 @@ same discipline, the null is bounded, not proven zero: the minimum
 detectable effect at $n{=}16$ rows is $\approx 0.13$. Two further
 honesty notes. \emph{Application is verified, not assumed}: an
 erasure no-op would produce exactly this null, so we point to three
-independent proofs the clamp ran --- the destructive random-stack
-arms execute the identical estimator and code path with a different
-matrix (a no-op would have to spare only the readable stack); the
-registered variance telemetry is read off the live hook during the
-erased forwards; and a direct application audit re-runs the clamp
-with a post-hook recorder, reporting projection deviations from the
-clamp targets under baseline and erased forwards
-(Appendix~\ref{app:artifacts}). \emph{Predictability in retrospect}:
+independent checks --- the destructive random-stack arms execute the
+identical estimator and code path with a different matrix (this
+verifies the shared machinery, though not the readable branch
+specifically: a branch-selective no-op would spare it, which is why
+the direct audit exists); the registered variance telemetry is read
+off the live hook during the erased forwards; and a direct
+application audit re-runs the clamp with a post-hook recorder,
+reporting projection deviations from the clamp targets under baseline
+and erased forwards, from which within-stack readability after the
+clamp is chance by construction once deviations vanish
+(Appendix~\ref{app:artifacts}). The comparative claim is robust at
+this power regardless: the random-stack effect ($-0.38$) is roughly
+$3\times$ the MDE, so readable~$\ll$~random stands even where
+readable~$=$~zero is only bounded. \emph{Predictability in retrospect}:
 given the variance telemetry, the null follows from the readable
 stack's low within-run variance --- the experiment discriminates the
 load-bearing-readout account (and the rival entanglement account,
@@ -502,8 +513,11 @@ sampling at matched compute did not.
 \paragraph{The inversion.} Is the channel privileged \emph{readably}?
 A probe restricted to the rank-8 subspace decodes natural
 correct-vs-incorrect at $0.70$--$0.72$ AUC --- not distinguishable
-from matched random subspaces of the same rank (registered null
-threshold p95 $=0.721$; full-dimensional ceiling $0.807$).
+from matched random subspaces of the same rank (200-draw null:
+median $0.623$, p95 $0.721$; full-dimensional ceiling $0.807$) ---
+i.e.\ the signal is diffuse enough that any 8 directions read well
+above chance, and the causal 8 read no better than their random
+peers.
 The identified repair subspace does not exceed the pre-registered
 random-subspace threshold for decoding natural outcomes. This is the
 mirror image of the field's decodable-but-not-causal refrain
@@ -544,12 +558,20 @@ contrast outright ($+0.219$ $[+0.127, +0.316]$), which we read as
 estimator noise in the $n{\approx}26$-donor leave-one-out refit
 rather than a freshness effect, and as evidence the vector's content
 is \emph{stationary}: label-specific (shuffles null, sign-flips
-harm), stable across a month, and behaviorally expressed as
+harm), stable across a month of the same generator (untested under
+distribution shift; and a donor-count ladder separating
+refit-estimator noise from genuine stationarity is registered), and
+behaviorally expressed as
 commitment at whatever address it is written to; wrong-address
 branches confirm the command reading --- they shift proposals toward
 the fired concept ($+0.056$ $[+0.026, +0.086]$ over that concept's
 baseline rate) while leaving strong-correctness at baseline, since
-committing to a wrong concept cannot mint the gold hypothesis. The arc then closes with its registered composition: given
+committing to a wrong concept cannot mint the gold hypothesis. The
+command lands $\sim 3\times$ harder where the prompt's evidence
+supports it (gold-address targeting lift $+0.18$ on both draws vs.\
+$+0.056$ at wrong addresses) --- the write interacts with
+prompt-consistency rather than acting as an address-agnostic push, a
+fact we file beside the open interference puzzle. The arc then closes with its registered composition: given
 only the prompt, candidate concepts are enumerated (answer-free), the
 donor-free write fires at each candidate's positions in parallel
 branches (answer-free content), and the \emph{gauge}'s score over each
@@ -562,7 +584,13 @@ our power ($-0.022$ $[-0.066, +0.018]$; the replication's contrast is
 $-0.056$ $[-0.121, -0.004]$, slightly below oracle), capturing
 $87$--$92\%$ of the oracle effect; at the branch level the gauge's
 scores predict branch outcomes off-distribution at AUC $0.68$/$0.80$
-across the two draws,
+across the two draws (a moderate ranker achieves near-oracle
+selection because top-1 regret depends on score separation at the
+top, not global AUC, and rows often contain several repairing
+branches; the spread across draws is variance, and the retained
+signal itself is a small new fact --- a probe trained on natural
+states keeps usable, degraded signal on steered off-distribution
+ones, $0.90 \to 0.68$--$0.80$),
 picks the gold address on $43/57$ rows ($54/57$ under the milder
 frozen write), and beats random selection ($+0.223$) and a
 self-ratification heuristic ($+0.127$); non-gold branches sit at
@@ -695,7 +723,16 @@ $+0.005$; a sixth confirmed prediction). The anatomy is conserved,
 its coordinates are not: \textbf{Gemma separates gauge from lever by
 subspace at one position; Qwen separates them by position at one
 layer. Gemma concentrates, Qwen distributes --- the recipe is
-cross-model, the compression is not.}
+cross-model, the compression is not.} A calibration-stage observation
+promotes a further caveat: the two models' \emph{failure modes}
+differ in kind. Failing Gemma rows usually never name the gold
+concept (baseline targeting ${\sim}0.4$) --- a commitment failure;
+failing Qwen rows name it ${\sim}0.9$ of the time and still build
+the wrong hypothesis --- a construction failure downstream of concept
+selection. Whatever the write repairs in Qwen, it is not
+concept-selection, so the cross-model story should be read as ``one
+intervention, possibly two mechanisms'' until a hypothesis-level
+delivery diagnostic (registered for the port's analysis) adjudicates.
 
 \begin{table}[t]
 \centering

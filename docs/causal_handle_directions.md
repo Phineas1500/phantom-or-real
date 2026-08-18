@@ -2516,3 +2516,39 @@ rate, CI>0 (on the existing N0 data: +0.069 [+0.028, +0.111], PASS),
 with gold-branch behavioral repair reported alongside (N0 gate rows:
 0.167 → 0.354). Natural gate stands as passed (CV AUC 0.741 ≥ 0.65,
 noted below J1's 0.806). All other rules unchanged.
+
+### Policy note + registered riders (2026-08-18, late — external review round 2)
+
+**Amendment policy (now explicit, retroactively describing every
+amendment made):** a registered result may be voided or amended only
+on evidence from an INDEPENDENT TELEMETRY CHANNEL (missing delivery
+fingerprint; identically-zero degeneracy; deviation audit) — never on
+effect size or surprise. Each amendment cites its channel: L/L″ void
+(fingerprint absence + code diff), L″ comparator (structural
+impossibility), N amendment 2 (identically-zero selection signal +
+targeting ceiling).
+
+**Rider F-R1 — rank-6 remainder write (one job, ~2 h, Gemma lane):**
+the rank-8 recipe with the two outlier-aligned components
+(participation ratios 2 and 4) removed, at matched norm, on the
+26-row F-series guard set, k=8, fresh in-job baselines + delivery
+telemetry. Branches: REPAIR-SURVIVES (CI>0 at ≥50% of the rank-8
+anchor — the channel is not the broadcast dims), REPAIR-COLLAPSES
+(CI straddles/negative — the channel is partly the model's
+high-bandwidth broadcast dims; label controls still bound the
+interpretation), PARTIAL otherwise. No prediction.
+
+**Rider L-R2 — donor-count ladder (one job, ~2.5 h, Gemma lane):**
+the L′ in-job LOO refit re-run with donor pools of 5/10/20/40 rows
+(seeded nested subsets of the L′ donor set) on 16 seeded L′ rows,
+k=8. Adjudicates frozen-beats-fresh: CONVERGES-TO-FROZEN (monotone
+approach within CI at 40) → estimator-n explanation; PLATEAUS-BELOW →
+stationarity is real and claimable. No prediction.
+
+Both riders queue AFTER the N-series (access-contingent: if Scholar
+access ends first, they are reported as registered-but-unrun).
+
+**N1 analysis addition:** a Qwen-native hypothesis-level delivery
+diagnostic (does the fired branch's proposed hypothesis change
+relative to baseline, scored on parsed hypothesis identity rather
+than concept naming) — descriptive, defined before N1 unblinding.
