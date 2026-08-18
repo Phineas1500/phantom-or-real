@@ -78,7 +78,7 @@
 </style>
 
 <main>
-  <span class="eyebrow">Phantom or Real · paper blueprint, reader's edition · updated August 17, 2026</span>
+  <span class="eyebrow">Phantom or Real · paper blueprint, reader's edition · updated August 18, 2026</span>
   <h1>Gauge, Not Lever: Dissociating Readable Correctness from its Causal Repair Channel</h1>
 
   <p class="thesis">In a model that visibly predicts its own failures, the readable correctness
@@ -106,7 +106,7 @@
 
   <div class="chips">
     <span class="chip">ICLR format · 13 pages drafted</span>
-    <span class="chip">25 pre-registered verdicts</span>
+    <span class="chip">27 pre-registered verdicts</span>
     <span class="chip">7 confirmed registered predictions</span>
     <span class="chip">3 adversarial review rounds survived</span>
     <span class="chip">every number below: pooled, cluster-bootstrapped</span>
@@ -350,7 +350,7 @@
     <tr><td>lever repair + specificity</td><td class="ok">✓ rank 8</td><td>suggestive (row-sparse)</td><td class="ok">✓ motif: carrier L43 (+0.175), channel rank k*=16</td></tr>
     <tr><td>F-series dissociations</td><td class="ok">✓</td><td>—</td><td class="ok">✓ inverted: raw-potent / proj-diluted; label battery passes (G6&prime;)</td></tr>
     <tr><td>content necessity at the lever's site (K/K&prime;)</td><td class="ok">✓ broad, not thin</td><td>—</td><td>deferred (own registration)</td></tr>
-    <tr><td>closed answer-free loop (L-series)</td><td class="ok">✓ +0.241; frozen +0.498; replication running</td><td>—</td><td>—</td></tr>
+    <tr><td>closed answer-free loop (L-series)</td><td class="ok">✓ +0.241/+0.390 two draws; frozen +0.498/+0.513</td><td>—</td><td>—</td></tr>
   </table></div>
 
   <div class="plain">
@@ -370,7 +370,7 @@
   </div>
 
   <h2><span class="sec">§5.5</span>New — the addressing arc: the loop CLOSES</h2>
-  <p class="sub">L″-r composition PASSED Aug 16 · frozen write transfers (+0.498) · L‴ fresh-draw replication running now</p>
+  <p class="sub">composition PASSED · replicated on a 2nd disjoint draw (+0.241 → +0.390) · frozen transfer +0.498 / +0.513</p>
   <p>The paper's sharpest deflation was that the gauge is causally useless as a lever. The
     addressing arc ends with its rehabilitation, now behavioral and registered: in the corrected
     composition, the gauge scored ten steered candidate branches per row and <b>its choices
@@ -385,8 +385,8 @@
     <span class="fig">Addressing arc · dP(strong), row-cluster bootstrap</span>
     <svg id="fig5" role="img" aria-label="Closed loop: gauge-selected branches +0.241, oracle +0.263, frozen write at gold +0.498"></svg>
     <p class="cap">The closed loop and its anchors. Delivery verified this time (targets-fired
-      lift +0.180, CI&gt;0 — the new tripwire). Fresh-draw replication (L‴) is running; on a pass
-      the claim upgrades to replicated-on-two-disjoint-draws.</p>
+      lift +0.180, CI&gt;0 — the new tripwire). The fresh-draw replication landed: every result repeated on a disjoint 58-row frame,
+      larger — the claim now stands on two draws.</p>
   </div>
   <div class="plain">
     Think of the model's internal fuel gauge again. You can't drive the car by yanking the needle
@@ -407,8 +407,9 @@
     landed: <b>yes</b>. The gauge's picks repair as well as a referee-with-the-answer-key's picks
     would, the fresh-mixed nudge works, and — the rider's bonus — even the year-old-style
     <b>frozen</b> vector from the July fridge works on brand-new problems, better than the
-    fresh-mixed one (+0.498 vs +0.279). One replication on a fully new set of problems is
-    running before the paper calls it settled.
+    fresh-mixed one (+0.498 vs +0.279). And the replication on a fully new set of problems came back even stronger (+0.39, with the
+    loop beating every sampling baseline outright) — the paper now calls it settled: two draws,
+    all gates green.
   </div>
 
   <h2><span class="sec">SJ</span>New — can the model <i>say</i> what its gauge knows? Two censuses</h2>
@@ -560,10 +561,12 @@
     { l: 'matched noise (pooled)', v: -0.088, ci: [-0.180, -0.017], c: 'var(--control)' }
   ], [-0.25, 0.45]);
   chart('fig5', [
-    { l: 'gauge-selected branch (closed loop)', v: 0.241, ci: [0.147, 0.342], c: 'var(--gauge)' },
+    { l: 'gauge-selected branch, draw 1', v: 0.241, ci: [0.147, 0.342], c: 'var(--gauge)' },
+    { l: 'gauge-selected branch, draw 2', v: 0.390, ci: [0.265, 0.515], c: 'var(--gauge)' },
     { l: 'oracle-selected branch', v: 0.263, ci: [0.169, 0.362], c: 'var(--lever-soft)' },
     { l: 'in-job fitted write at gold (L′)', v: 0.279, ci: [0.182, 0.377], c: 'var(--lever)' },
-    { l: 'FROZEN write at gold (rider)', v: 0.498, ci: [0.386, 0.607], c: 'var(--lever)' },
+    { l: 'FROZEN write at gold, draw 1', v: 0.498, ci: [0.386, 0.607], c: 'var(--lever)' },
+    { l: 'FROZEN write at gold, draw 2', v: 0.513, ci: [0.399, 0.627], c: 'var(--lever)' },
     { l: 'random-selected branch', v: 0.019, ci: [-0.025, 0.061], c: 'var(--control)' },
     { l: 'bestofN majority (matched compute)', v: -0.018, ci: [-0.042, 0.007], c: 'var(--control)' }
   ], [-0.15, 0.65]);
