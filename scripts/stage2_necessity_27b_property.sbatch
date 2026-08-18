@@ -1,5 +1,6 @@
 #!/bin/bash
-#SBATCH -A gpu
+#SBATCH -A scholar
+#SBATCH -p gpu
 #SBATCH --nodes=1
 #SBATCH --constraint=J
 #SBATCH --gres=gpu:2
