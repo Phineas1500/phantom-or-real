@@ -2361,3 +2361,47 @@ replication, protocol-identical to L″-r + C4:
   single-draw-with-gates and the paper says exactly that.
 - Venue: Scholar bf16 2×A40 constraint J; 3:00:00 walls (submit-filter
   constraint).
+
+### K″ — site-specificity of the necessity coda (registered 2026-08-18, before any data)
+
+K/K′ established that at the LEVER'S site (gold concept-mention
+positions, L30), destroying the state's content at preserved energy
+floors natural success (mean-replacement −0.764, zero survivors). The
+paper's limitations name the open control: is any position's content
+this necessary, or only the lever's site? K″ answers it with the K′
+machinery re-aimed at control position sets, on the identical 46-row
+correct frame (same correct_seed/per-height/exclusions → same rows;
+baselines re-executed and verbatim-gated against item K).
+
+**Arms** (per row, k=8, arm seed indices 130/131; capture-mean state
+and all constants identical to K′'s meanablate):
+- correct_unhinted_baseline (seed index 0 — the verbatim gate arm);
+- meanablate at RANDOM positions: the prep loop's row-keyed
+  matched-count random position set (`random_rel`, sample_seed+row);
+- meanablate at NON-GOLD CONCEPT positions: the union of other
+  taxonomy concepts' mention positions minus gold overlap,
+  subsampled to the gold count with seed sample_seed+row+7777
+  (pool shortfalls recorded per row).
+
+**Gates.** Baseline verbatim vs item K on shared (row, sample);
+parse gates; per-row ablated-position counts recorded (matched-count
+telemetry — the removal-side delivery check).
+
+**PRIMARY — the program's 9th registered directional prediction:
+necessity is SITE-SPECIFIC.** Row-paired contrast
+Δ = P(strong | random-site meanablate) − P(strong | K′-recorded
+gold-site meanablate), same rows, cross-job reuse justified by the
+verbatim-gated shared baseline (K′ jobs 459847/459849/459850).
+Prediction: Δ > 0 (random-site replacement is cheaper). Branches:
+SITE-SPECIFIC iff CI > 0 (prediction confirmed); SITE-GENERAL iff CI
+contains 0 (MDE stated — the coda's sentence gains "content at any
+matched-count position set is comparably necessary"); SITE-INVERTED
+iff CI < 0.
+**Secondary (no prediction):** the same contrast for the non-gold
+concept arm — NONGOLD-CHEAP / NONGOLD-COSTLY-TOO / NONGOLD-WORSE as
+the three branches; adjudicates whether concept mentions in general,
+rather than the gold concept's site, carry the load.
+Absolute dP vs the in-job baseline is reported for every arm.
+
+**Venue/plan.** Scholar bf16 2×A40 constraint J; 3 shards of 16 rows
+(matching the K sharding), 3:00:00 walls; pooled analysis offline.
