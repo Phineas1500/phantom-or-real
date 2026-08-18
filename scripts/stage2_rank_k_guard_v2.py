@@ -649,6 +649,8 @@ def main() -> int:
         help="Item K anchor shard: regenerate 458431's unhinted+fixednorm arms verbatim.")
     parser.add_argument("--necessity-prime", action="store_true",
         help="Item K': energy-matched necessity controls on the item-K rows.")
+    parser.add_argument("--necessity-site", action="store_true",
+                    help="item K-double-prime: meanablate at matched-count control position sets")
     parser.add_argument("--sjoc-m2", action="store_true",
                     help="item M2: rank-8 LOO repair on the pinned confident-wrong vs ordinary-wrong sets")
     parser.add_argument("--gold-only", action="store_true",
@@ -702,7 +704,7 @@ def main() -> int:
     args = parser.parse_args()
     started = time.time()
 
-    if sum([args.specificity_controls, args.predicted_coefficients, args.class_mean, args.class_mean_b, args.class_mean_c, args.position_policy, args.g0_calibration, args.necessity, args.necessity_prime, args.selfaddress, args.selfaddress_calibration, args.selfaddress_prime, args.selfaddress_loo, args.sjoc_m2]) > 1:
+    if sum([args.specificity_controls, args.predicted_coefficients, args.class_mean, args.class_mean_b, args.class_mean_c, args.position_policy, args.g0_calibration, args.necessity, args.necessity_prime, args.selfaddress, args.selfaddress_calibration, args.selfaddress_prime, args.selfaddress_loo, args.sjoc_m2, args.necessity_site]) > 1:
         raise ValueError("mode flags are mutually exclusive")
     if args.necessity_anchor and not args.necessity:
         raise ValueError("--necessity-anchor requires --necessity")
@@ -738,6 +740,9 @@ def main() -> int:
     elif args.selfaddress_loo:
         stem = f"selfaddress_loo_27b_property_shard{args.shard_index}of{args.shard_count}"
         method = "selfaddress_loo_composition"
+    elif args.necessity_site:
+        stem = f"necessity_site_27b_property_shard{args.shard_index}of{args.shard_count}"
+        method = "necessity_site_control"
     elif args.sjoc_m2:
         stem = f"sjoc_m2_27b_property_shard{args.shard_index}of{args.shard_count}"
         method = "sjoc_m2_repair"
@@ -820,9 +825,9 @@ def main() -> int:
         print(f"correct-side rows: {[r['row_index'] for r in correct_rows]}", flush=True)
         selected_rows = selected_rows + correct_rows
     necessity_correct_selection = None
-    if args.necessity or args.necessity_prime:
+    if args.necessity or args.necessity_prime or args.necessity_site:
         if ranks != [8]:
-            raise ValueError("--necessity/--necessity-prime expect --rank-list 8 (registered items K/K')")
+            raise ValueError("--necessity family expects --rank-list 8 (registered items K/K'/K'')")
         if args.necessity_anchor:
             for row in selected_rows:
                 row["row_class"] = "failing"
@@ -946,6 +951,16 @@ def main() -> int:
             Arm(f"fixednorm_proj_add_L{args.layer}", "fixednorm_proj_add", "unhinted_baseline", (args.layer,), 8, "class_mean_projected_fixed_pooled_norm"),
         ]
         necessity_seed_index = {"unhinted_baseline": 0, f"fixednorm_proj_add_L{args.layer}": 90}
+    if args.necessity_site:
+        L = args.layer
+        arms = [
+            Arm("correct_unhinted_baseline", "none_correct", "none"),
+            Arm(f"correct_meanablate_random_L{L}", "mean_replace_random", "correct_unhinted_baseline", (L,), 8, "capture_mean_state_replacement_random_positions"),
+            Arm(f"correct_meanablate_nongold_L{L}", "mean_replace_nongold", "correct_unhinted_baseline", (L,), 8, "capture_mean_state_replacement_nongold_concept_positions"),
+        ]
+        necessity_seed_index = {"correct_unhinted_baseline": 0,
+                                f"correct_meanablate_random_L{L}": 130,
+                                f"correct_meanablate_nongold_L{L}": 131}
     if args.sjoc_m2:
         arms = [
             Arm("unhinted_baseline", "none", "none"),
@@ -959,14 +974,14 @@ def main() -> int:
         ]
         if args.selfaddress:
             arms.append(Arm("matched_bestofN_unsteered", "bestofn_unsteered", "unhinted_baseline"))
-    if args.necessity or args.necessity_prime or args.selfaddress or args.selfaddress_calibration or args.selfaddress_prime or args.selfaddress_loo or args.sjoc_m2:
+    if args.necessity or args.necessity_prime or args.necessity_site or args.selfaddress or args.selfaddress_calibration or args.selfaddress_prime or args.selfaddress_loo or args.sjoc_m2:
         if args.necessity_anchor:
             arms = build_necessity_anchor_arms(args.layer)
         elif args.necessity:
             arms, necessity_seed_index = build_necessity_arms(args.layer)
         elif args.necessity_prime:
             arms, necessity_seed_index = build_necessity_prime_arms(args.layer)
-        if args.necessity or args.selfaddress or args.selfaddress_calibration or args.selfaddress_prime or args.selfaddress_loo or args.sjoc_m2:
+        if args.necessity or args.necessity_site or args.selfaddress or args.selfaddress_calibration or args.selfaddress_prime or args.selfaddress_loo or args.sjoc_m2:
             row_means, capture_labels = load_capture_row_means(args.capture_npz, args.capture_manifest, args.layer)
             class_vector = class_vector_from_labels(row_means, capture_labels)
             print(f"necessity/selfaddress: |real|={np.linalg.norm(class_vector):.1f} anchor={args.necessity_anchor}", flush=True)
@@ -989,7 +1004,7 @@ def main() -> int:
                 f"perm_seed={args.control_seed + 6363}",
                 flush=True,
             )
-        if args.necessity_prime:
+        if args.necessity_prime or args.necessity_site:
             row_means, _ = load_capture_row_means(args.capture_npz, args.capture_manifest, args.layer)
             stacked = np.stack([row_means[r] for r in sorted(row_means)])
             capture_mean_state = stacked.mean(axis=0)
@@ -1104,7 +1119,7 @@ def main() -> int:
             unhinted_by_row[source_row_index] = unhinted_concept
         all_rel: list[int] = []
         rel_by_concept: dict[str, list[int]] = {}
-        if args.class_mean_c or args.position_policy or args.selfaddress or args.selfaddress_calibration or args.selfaddress_loo:
+        if args.class_mean_c or args.position_policy or args.selfaddress or args.selfaddress_calibration or args.selfaddress_loo or args.necessity_site:
             seen = set()
             for name in all_concept_names(stage1_row):
                 rels = sorted(pos - r_start for pos in concept_positions(tokenizer, receiver_text, name, r_start, block_len))
@@ -1673,9 +1688,24 @@ def main() -> int:
                             "mean_add_vector_norm": float(np.linalg.norm(vec, axis=1).mean()),
                         }
                     )
-                elif arm.kind in {"mean_replace", "ablate_statepca8", "ablate_subrank", "ablate_dose", "keep_only"}:
+                elif arm.kind in {"mean_replace", "mean_replace_random", "mean_replace_nongold", "ablate_statepca8", "ablate_subrank", "ablate_dose", "keep_only"}:
                     assert frozen_basis is not None
-                    positions = [start + rel_pos for rel_pos in prep["rel"]]
+                    if arm.kind == "mean_replace_random":
+                        site_rel = prep["random_rel"]
+                    elif arm.kind == "mean_replace_nongold":
+                        gold_set = set(prep["rel"])
+                        pool = sorted({rp for name, rels in prep["rel_by_concept"].items()
+                                       if canon(name) != canon(prep["gold_concept"])
+                                       for rp in rels} - gold_set)
+                        want = len(prep["rel"])
+                        if len(pool) > want:
+                            site_rng = random.Random(args.sample_seed + prep["source_row_index"] + 7777)
+                            site_rel = sorted(site_rng.sample(pool, want))
+                        else:
+                            site_rel = pool
+                    else:
+                        site_rel = prep["rel"]
+                    positions = [start + rel_pos for rel_pos in site_rel]
                     u_states = (
                         prep["h_block"][prep["rel"]].numpy().astype(np.float64)
                         - prep["concept_delta"].numpy().astype(np.float64)
@@ -1691,9 +1721,10 @@ def main() -> int:
                         "n_positions": len(prep["rel"]),
                         "mean_state_norm": float(state_norms.mean()),
                     }
-                    if arm.kind == "mean_replace":
+                    if arm.kind in {"mean_replace", "mean_replace_random", "mean_replace_nongold"}:
                         assert capture_mean_state is not None
-                        tiled = np.tile(capture_mean_state, (len(prep["rel"]), 1)).astype(np.float32)
+                        record["n_site_positions"] = len(site_rel)
+                        tiled = np.tile(capture_mean_state, (len(site_rel), 1)).astype(np.float32)
                         fwd_hooks.append((hook_name, make_replace_hook(torch.from_numpy(tiled), positions)))
                         dist = np.linalg.norm(u_states - capture_mean_state[None, :], axis=1)
                         record["mean_perturbation_norm"] = float(dist.mean())
