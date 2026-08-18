@@ -2405,3 +2405,67 @@ Absolute dP vs the in-job baseline is reported for every arm.
 
 **Venue/plan.** Scholar bf16 2×A40 constraint J; 3 shards of 16 rows
 (matching the K sharding), 3:00:00 walls; pooled analysis offline.
+
+## Pre-Registered Qwen Closed-Loop Port (2026-08-18)
+
+### N. The closed answer-free loop in Qwen3.5-27B: does the recipe survive the position-anatomy inversion?
+
+Registered 2026-08-18, before any data. Gemma's closed loop
+(L″-r/L‴: gauge-selected steered branches repair +0.241/+0.390,
+== oracle) composes a subspace-separated gauge and lever. Qwen
+separates gauge from lever BY POSITION (J1/J2): outcome info is
+readable at the FINAL TOKEN (0.66–0.81 across draws; 0.806 at
+L43_final on the J1 draw) and absent at concept positions, while the
+working write is the RAW class-mean at concept positions, L43
+(G6′: +0.120 [+0.016,+0.224]; real-vs-shuffled +0.182; signflip
+harmful). The port asks whether the loop closes across that
+inversion: candidates enumerated from the prompt, the raw class-mean
+fired at each candidate's positions, the final-token gauge scoring
+each steered branch. NO registered prediction — the gauge is weaker
+(0.81 vs 0.90) and the write smaller (+0.12 vs +0.40); genuine
+uncertainty in both directions. Venue: Scholar bf16 2×A40 constraint
+J (the Qwen lane); 3:00:00 walls.
+
+**Frozen protocol constants (G6′'s, unchanged):** write = raw 96-row
+capture class-mean, per-position norm-matched
+(classmean96_raw_perpos_norm), L43, dose 1×; candidate set =
+all_concept_names from the prompt FOL; candidate positions via
+concept_positions; house scoring; row-keyed seeds
+(sample_seed + row·10007 + arm·101 + offsets), branch seed base
+95·101 + cand·13 (the L-series convention); k=8 baselines, k=4 per
+branch.
+
+**N0 — gauge fit + gates (one job, ~1.5–2 h).** Calibration draw: 64
+balanced rows (32 natural-correct / 32 incorrect, heights 3–4, seed
+20260819, excluded from all N1 selection). (a) Capture final-token
+states at L43 and L53; fit class-balanced logistic gauges; the
+PRIMARY gauge site is pinned NOW as L43_final (the carrier layer);
+L53_final is recorded descriptively. Freeze the fitted L43_final
+direction+bias as the port's gauge artifact (committed before N1
+launches). NATURAL GATE: 5-fold CV AUC ≥ 0.65 (expect ≈0.8; below →
+STOP). (b) On 12 seeded failing rows (seed 20260819, disjoint):
+per-candidate steered fires; SELECTION-SIGNAL GATE: row-paired
+gold-branch minus mean non-gold gauge score, CI > 0 → N1 primary as
+registered; FAIL → selector demoted to descriptive, N1's registered
+outcome becomes the oracle-transfer measurement (stated now).
+(c) DELIVERY HARD GATE on the same 12 rows: gold-branch
+targets-fired lift over baseline CI > 0, else execution-invalid by
+rule (mandatory since the L-series correction).
+**N1 — the composition (96 fresh failing rows, seed 20260820, six
+16-row shards).** Arms: unhinted_baseline (k=8) + percand raw fire
+(k=4/branch). Gates first: delivery (targets-fired lift CI>0, hard);
+parse. ORACLE GATE: gold-branch dP CI > 0 (a scaled G6′ replication;
+its FAIL branch = WRITE-DOES-NOT-COMPOSE, stated against the +0.120
+anchor with MDE, and selector analyses become descriptive). PRIMARY
+(if oracle passes): gauge-select dP CI > 0 AND paired
+gauge-minus-self-consistency@8 CI > 0 (the comparator is majority
+vote over the row's own k=8 in-job baseline samples — registered
+directly this time; no cross-job object). Pre-named branches:
+SELECTOR-FAILS (oracle passes, gauge-select straddles → the
+position-anatomy inversion breaks the loop at the reading step — a
+publishable contrast with Gemma); selector-write interference and
+gold-instability as in the L-series. On PASS: fresh-draw replication
+obligation, CONTINGENT on cluster access ("if Scholar access ends
+before the replication can run, the claim is reported as
+single-draw-with-gates and marked unreplicated" — stated now, not
+after).
