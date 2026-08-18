@@ -36,7 +36,7 @@ def main() -> int:
         model_key="gemma3_27b",
         task="infer_property",
         splits_path=Path("results/stage2/splits.jsonl"),
-        source_file="gemma3_27b_infer_property.jsonl",
+        source_file="results/full/with_errortype/gemma3_27b_infer_property.jsonl",
         split_family="s1",
         random_draws=0,
         random_seed=0,
