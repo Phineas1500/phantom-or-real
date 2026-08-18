@@ -2552,3 +2552,16 @@ access ends first, they are reported as registered-but-unrun).
 diagnostic (does the fired branch's proposed hypothesis change
 relative to baseline, scored on parsed hypothesis identity rather
 than concept naming) — descriptive, defined before N1 unblinding.
+
+**N0 (corrected, job 462097) gate outcomes — recorded before N1
+unblinding:** natural gate PASS (L53_final CV AUC 0.773); delivery
+gate PASS (nongold fingerprint +0.069 [+0.029, +0.113]); SELECTION-
+SIGNAL GATE FAIL (+0.392 [−0.178, +0.949], n=12; argmax-gold 4/12).
+The pre-named FAIL branch applies: gauge-selection is DEMOTED TO
+DESCRIPTIVE for N1, whose registered outcome is the oracle-transfer
+measurement (gold-branch dP vs the +0.120 anchor) plus selector
+texture. Interpretive note, pre-data: Qwen's baseline gold-targeting
+is ~0.9, so steered branches differ less from one another than in
+Gemma — the selection stage targets a commitment failure Qwen may
+not have; this is the SELECTOR-FAILS contrast the registration
+pre-named, now partially visible at calibration.
