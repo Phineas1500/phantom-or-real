@@ -2469,3 +2469,18 @@ obligation, CONTINGENT on cluster access ("if Scholar access ends
 before the replication can run, the claim is reported as
 single-draw-with-gates and marked unreplicated" — stated now, not
 after).
+
+**Amendment to item N (2026-08-18, same evening, BEFORE any N data
+exists):** the write amplitude. G6′'s classmean96_raw_perpos_norm
+takes per-position norm targets from the test row's OWN hint-delta
+reconstruction — answer-adjacent scale that would contaminate the
+loop's answer-free claim. N instead pins the port's analog of Gemma's
+frozen 3708.26 constant: the amplitude is a SCALAR per-position norm
+target, frozen in N0 as the mean rank-16 reconstruction norm over the
+12 N0 gate rows' hint-deltas (recorded in the N0 artifact; N1
+consumes the frozen number — answer-free for every test row and
+identical across shards). Consequence disclosed in advance: the
+oracle gate is now measured under this pooled-amplitude adaptation,
+so its FAIL branch reads "the write does not compose under the
+answer-free amplitude" against the +0.120 per-row-norm anchor, not
+as a G6′ contradiction.
