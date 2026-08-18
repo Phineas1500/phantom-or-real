@@ -2565,3 +2565,9 @@ is ~0.9, so steered branches differ less from one another than in
 Gemma — the selection stage targets a commitment failure Qwen may
 not have; this is the SELECTOR-FAILS contrast the registration
 pre-named, now partially visible at calibration.
+
+**Erasure application audit — LANDED (job 462099, 2026-08-18):**
+suppression 18–57× at every layer (baseline mean |proj−target| 2.8/30.6/60.9/64.7/112.4
+at L15/30/40/45/53 vs post-clamp max 0.05/0.91/2.30/3.52/5.94 — bf16
+quantization scale); moved mass equals baseline deviation. The clamp
+applied. Review concern 1 closed with data.

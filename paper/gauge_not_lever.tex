@@ -372,11 +372,13 @@ verifies the shared machinery, though not the readable branch
 specifically: a branch-selective no-op would spare it, which is why
 the direct audit exists); the registered variance telemetry is read
 off the live hook during the erased forwards; and a direct
-application audit re-runs the clamp with a post-hook recorder,
-reporting projection deviations from the clamp targets under baseline
-and erased forwards, from which within-stack readability after the
-clamp is chance by construction once deviations vanish
-(Appendix~\ref{app:artifacts}). The comparative claim is robust at
+application audit re-ran the clamp with a post-hook recorder:
+baseline projections deviate from their clamp targets by $2.8$--$112$
+(mean absolute, by layer) while post-clamp deviations max out at
+$0.05$--$5.9$ --- bf16 quantization scale, an $18$--$57\times$
+suppression at every layer --- so the clamp demonstrably applied and
+moved the full deviation, and within-stack readability after it is
+chance by construction (Appendix~\ref{app:artifacts}). The comparative claim is robust at
 this power regardless: the random-stack effect ($-0.38$) is roughly
 $3\times$ the MDE, so readable~$\ll$~random stands even where
 readable~$=$~zero is only bounded. \emph{Predictability in retrospect}:
@@ -992,8 +994,14 @@ comparator excludes zero; pre-named failure branches include
 selector-write interference (selector ranks gold correctly but the write
 undoes it) and gold-instability (the gold address is not stable across
 candidate draws); a PASS obligates a fresh-draw replication (L$'''$)
-before any claim upgrade. After the execution-defect correction
-(Section~\ref{sec:fseries}), the rerun adds a hard delivery gate:
+before any claim upgrade. The erasure application audit reports, per layer, baseline mean
+absolute projection deviation from clamp targets vs.\ post-clamp
+maximum deviation (L15: $2.83$ vs $0.050$; L30: $30.6$ vs $0.91$;
+L40: $60.9$ vs $2.30$; L45: $64.7$ vs $3.52$; L53: $112.4$ vs
+$5.94$) on four item-D rows --- suppression $18$--$57\times$, with
+the moved mass equal to the baseline deviation. After the
+execution-defect correction
+(Section~\ref{sec:loop}), the rerun adds a hard delivery gate:
 fired arms must show a targets-fired lift over baseline (CI $>0$) or
 the run is execution-invalid by rule --- a steering-signature positive
 control we now consider mandatory for any intervention lane. The full
