@@ -31,8 +31,8 @@ resists steering --- but why, and what \emph{does} causally control
 correctness? On depth-controlled ontology-reasoning tasks with
 Gemma~3~27B, we first show the readout is not necessary: deleting
 everything linearly readable about correctness --- the full rank-9 INLP
-subspace at all five readable layers, every token --- costs nothing
-($+0.05$ $[-0.07,+0.20]$), while matched-rank random subspaces are
+subspace at all five readable layers, every token --- has no
+detectable cost ($+0.05$ $[-0.07,+0.20]$; MDE $\approx 0.13$), while matched-rank random subspaces are
 catastrophic ($-0.38$). Correctness can instead be repaired through a
 compact channel at concept-mention tokens: a rank-8 basis repairs
 held-out failures ($+0.25$), passing random-subspace and matched-noise
@@ -357,7 +357,22 @@ nothing where the readout lives. We therefore claim
 controls prove the erasure family has behavioral teeth at matched rank
 and norm, and the low-variance mechanism explains the asymmetry. By the
 same discipline, the null is bounded, not proven zero: the minimum
-detectable effect at $n{=}16$ rows is $\approx 0.13$.
+detectable effect at $n{=}16$ rows is $\approx 0.13$. Two further
+honesty notes. \emph{Application is verified, not assumed}: an
+erasure no-op would produce exactly this null, so we point to three
+independent proofs the clamp ran --- the destructive random-stack
+arms execute the identical estimator and code path with a different
+matrix (a no-op would have to spare only the readable stack); the
+registered variance telemetry is read off the live hook during the
+erased forwards; and a direct application audit re-runs the clamp
+with a post-hook recorder, reporting projection deviations from the
+clamp targets under baseline and erased forwards
+(Appendix~\ref{app:artifacts}). \emph{Predictability in retrospect}:
+given the variance telemetry, the null follows from the readable
+stack's low within-run variance --- the experiment discriminates the
+load-bearing-readout account (and the rival entanglement account,
+which predicted damage) rather than surprising an informed reader who
+has already seen the telemetry; we state it as such.
 
 \paragraph{What this adjudicates.} The nearest rival account holds that
 readable correctness is \emph{entangled} with task computation ---
@@ -523,8 +538,18 @@ $[+0.293, +0.611]$ selected-row guard anchor --- populations differ,
 so the ratio is descriptive), and a gold-only arm shows the
 \emph{frozen} artifact also transfers --- $+0.498$ $[+0.386, +0.607]$
 on the same 57 rows at $k{=}8$, exceeding the in-job refit --- so
-neither in-job fitting nor per-row amplitude is required at the gold
-address. The arc then closes with its registered composition: given
+neither in-job fitting nor per-row amplitude is required at the
+gold address --- indeed the frozen artifact wins the row-paired
+contrast outright ($+0.219$ $[+0.127, +0.316]$), which we read as
+estimator noise in the $n{\approx}26$-donor leave-one-out refit
+rather than a freshness effect, and as evidence the vector's content
+is \emph{stationary}: label-specific (shuffles null, sign-flips
+harm), stable across a month, and behaviorally expressed as
+commitment at whatever address it is written to; wrong-address
+branches confirm the command reading --- they shift proposals toward
+the fired concept ($+0.056$ $[+0.026, +0.086]$ over that concept's
+baseline rate) while leaving strong-correctness at baseline, since
+committing to a wrong concept cannot mint the gold hypothesis. The arc then closes with its registered composition: given
 only the prompt, candidate concepts are enumerated (answer-free), the
 donor-free write fires at each candidate's positions in parallel
 branches (answer-free content), and the \emph{gauge}'s score over each
@@ -532,14 +557,21 @@ steered state selects the branch (answer-free selection). The
 composition passes its pre-registered primary: gauge-selected branches
 repair $+0.241$ $[+0.147, +0.342]$ over the in-job baseline and beat
 the matched-compute best-of-$N$ majority comparator by $+0.259$
-$[+0.167, +0.364]$; gauge selection is statistically
-indistinguishable from oracle selection ($-0.022$ $[-0.066, +0.018]$),
+$[+0.167, +0.364]$; gauge selection could not be distinguished from oracle selection at
+our power ($-0.022$ $[-0.066, +0.018]$; the replication's contrast is
+$-0.056$ $[-0.121, -0.004]$, slightly below oracle), capturing
+$87$--$92\%$ of the oracle effect; at the branch level the gauge's
+scores predict branch outcomes off-distribution at AUC $0.68$/$0.80$
+across the two draws,
 picks the gold address on $43/57$ rows ($54/57$ under the milder
 frozen write), and beats random selection ($+0.223$) and a
 self-ratification heuristic ($+0.127$); non-gold branches sit at
 baseline ($0.076$ vs.\ gold $0.351$), reproducing addressing
-specificity inside a single run. \textbf{The repair loop closes with
-no answer key anywhere in the pipeline.} A protocol-identical
+specificity inside a single run. \textbf{The repair loop closes with no per-row answer information
+about the test problem at inference time}: candidates and addressing
+come from the prompt, and every supervised component --- the gauge
+probe, the class-mean, the basis, the pinned amplitude --- is fit on
+disjoint rows' correctness labels, never on the row being repaired. A protocol-identical
 fresh-draw replication (obligated by the registration) landed on a
 disjoint 58-row frame with every gate green: gauge-selected repair
 $+0.390$ $[+0.265, +0.515]$ --- larger than the first draw --- picking
@@ -593,7 +625,17 @@ reading is scoped and, we believe, more interesting than the
 thin-channel necessity it replaces: at the lever's site, natural
 success requires the state's specific content \emph{wholesale} ---
 \textbf{the lever is write-compact, but what it writes into is carried
-broadly}.
+broadly}. A reviewer-prompted overlap analysis sharpens the energy
+accounting: the basis's first two components are nearly axis-aligned
+with the model's outlier dimensions (participation ratios $2$ and
+$4$; the top-8 outlier coordinates hold $98\%$ of state energy, and
+the basis captures $95.5\%$ against their $97.8\%$), so the
+removal-side results are stated as energy-bound --- which the
+controls already enforce (the energy-optimal state-PCA-8 removal
+also floors; the coordinate-permuted spectrum-matched basis, whose
+mass lands off the outlier coordinates, is near-free). Write-side
+specificity is not outlier-explained: shuffled-label vectors share
+the outlier profile exactly and repair nothing.
 
 % FIG 4 anchor: the F-series signature ladder + necessity coda.
 \begin{figure}[t]
@@ -741,15 +783,27 @@ Gauge and
 lever remain different objects; the gauge's job is reading --- and it
 reads steered states as well as natural ones.
 
-\paragraph{Open anomalies and limits.} Misdirection asymmetry remains
-open: repair transfers, misdirection does not, and the
-attractor-strength account we tested has the wrong sign. Positional
+\paragraph{Open anomalies and limits.} Misdirection asymmetry is
+partly an estimand artifact --- wrong-address writes do shift
+proposal distributions toward their targets ($+0.056$, CI $>0$)
+while $\Delta P(\text{strong})$ cannot register success for a wrong
+target by construction --- but the residual anomaly stands: no
+tested write produces specific wrong \emph{strong-scored} answers,
+and the attractor-strength account has the wrong sign. The
+all-positions cancellation ($+0.03$) beside wrong-address-neutral
+and gold-address-positive implies interference between simultaneous
+writes that naive superposition does not predict; open. Positional
 addressing is the one answer-adjacent ingredient of the answer-free
 repair (every pre-named answer-free position policy fails).
 Quantitative claims rest on $n{=}13$--$57$ row sets with MDEs of
 $0.10$--$0.16$ on nulls; positive results are one task family, one
 model (with the stated Qwen and subtype scope); brittleness and
-entropy telemetry are unrun. Future work, in registered order: the
+entropy telemetry are unrun. The closed loop is an existence proof,
+not a method: it closes because candidate addresses are enumerable
+from the prompt, a property most tasks lack. Rows are independently
+generated ontologies (no shared templates beyond the generation
+grammar), so row-cluster bootstrap is the natural unit. Future work,
+in registered order: the
 layer$\times$position information map in Qwen; the closed loop's
 closed loop's port to the second model;
 and porting the necessity coda to the second model.
