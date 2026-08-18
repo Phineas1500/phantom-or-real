@@ -2484,3 +2484,17 @@ oracle gate is now measured under this pooled-amplitude adaptation,
 so its FAIL branch reads "the write does not compose under the
 answer-free amplitude" against the +0.120 per-row-norm anchor, not
 as a G6′ contradiction.
+
+### Verification addendum (2026-08-18): erasure application audit
+
+Prompted by external review concern 1 (an erasure no-op is behaviorally
+indistinguishable from the §5.2 null). Non-claim-bearing audit, 4 item-D
+rows: clean forward records projections onto the registered rank-9
+stacks at all five layers; erased forward runs the registered clamp
+hooks with an audit hook appended at the same hook points. Deliverable:
+per-layer baseline deviation-from-target vs post-hook max deviation
+(a no-op leaves them identical; correct application drives the second
+to bf16 quantization scale). Complements the standing application
+evidence: identical-estimator destructive controls (same code path,
+different matrix) and the in-run projection-variance telemetry (read
+off the live hook).
