@@ -649,6 +649,8 @@ def main() -> int:
         help="Item K anchor shard: regenerate 458431's unhinted+fixednorm arms verbatim.")
     parser.add_argument("--necessity-prime", action="store_true",
         help="Item K': energy-matched necessity controls on the item-K rows.")
+    parser.add_argument("--sjoc-m2", action="store_true",
+                    help="item M2: rank-8 LOO repair on the pinned confident-wrong vs ordinary-wrong sets")
     parser.add_argument("--gold-only", action="store_true",
                         help="selfaddress: fire only the gold candidate branch (C4 frozen-transfer rider)")
     parser.add_argument("--selfaddress", action="store_true",
@@ -700,7 +702,7 @@ def main() -> int:
     args = parser.parse_args()
     started = time.time()
 
-    if sum([args.specificity_controls, args.predicted_coefficients, args.class_mean, args.class_mean_b, args.class_mean_c, args.position_policy, args.g0_calibration, args.necessity, args.necessity_prime, args.selfaddress, args.selfaddress_calibration, args.selfaddress_prime, args.selfaddress_loo]) > 1:
+    if sum([args.specificity_controls, args.predicted_coefficients, args.class_mean, args.class_mean_b, args.class_mean_c, args.position_policy, args.g0_calibration, args.necessity, args.necessity_prime, args.selfaddress, args.selfaddress_calibration, args.selfaddress_prime, args.selfaddress_loo, args.sjoc_m2]) > 1:
         raise ValueError("mode flags are mutually exclusive")
     if args.necessity_anchor and not args.necessity:
         raise ValueError("--necessity-anchor requires --necessity")
@@ -736,6 +738,9 @@ def main() -> int:
     elif args.selfaddress_loo:
         stem = f"selfaddress_loo_27b_property_shard{args.shard_index}of{args.shard_count}"
         method = "selfaddress_loo_composition"
+    elif args.sjoc_m2:
+        stem = f"sjoc_m2_27b_property_shard{args.shard_index}of{args.shard_count}"
+        method = "sjoc_m2_repair"
     elif args.selfaddress_prime:
         stem = f"selfaddress_prime_27b_property_shard{args.shard_index}of{args.shard_count}"
         method = "selfaddress_prime_protocol_transfer"
@@ -772,6 +777,20 @@ def main() -> int:
         assert len(all_rows) == len(keep)
         selected_rows = all_rows
         arms = [Arm("unhinted_baseline", "none", "none"), Arm("hinted_baseline", "hinted_prompt", "unhinted_baseline")]
+    elif args.sjoc_m2:
+        frame = json.loads(Path("docs/sjoc_m0_frame.json").read_text())
+        m2_ids = [int(r) for r in frame["m2_sets"]["confident_wrong"] + frame["m2_sets"]["ordinary_wrong"]]
+        by_id = {}
+        with args.jsonl.open() as f:
+            for row_index, line in enumerate(f):
+                if row_index in set(m2_ids):
+                    row = json.loads(line)
+                    row["row_index"] = row_index
+                    by_id[row_index] = row
+        all_rows = [by_id[i] for i in m2_ids]
+        assert len(all_rows) == 48
+        selected_rows = shard_rows(all_rows, args.shard_index, args.shard_count)
+        print(f"sjoc m2 rows (shard {args.shard_index}/{args.shard_count}): {[r['row_index'] for r in selected_rows]}", flush=True)
     else:
         all_rows = select_fresh_rows(
             args.jsonl, exclude=exclude, heights=heights, per_height=args.per_height, seed=args.selection_seed
@@ -927,6 +946,12 @@ def main() -> int:
             Arm(f"fixednorm_proj_add_L{args.layer}", "fixednorm_proj_add", "unhinted_baseline", (args.layer,), 8, "class_mean_projected_fixed_pooled_norm"),
         ]
         necessity_seed_index = {"unhinted_baseline": 0, f"fixednorm_proj_add_L{args.layer}": 90}
+    if args.sjoc_m2:
+        arms = [
+            Arm("unhinted_baseline", "none", "none"),
+            Arm(f"fixednorm_proj_add_L{args.layer}", "fixednorm_proj_add", "unhinted_baseline", (args.layer,), 8, "class_mean_projected_fixed_pooled_norm"),
+        ]
+        necessity_seed_index = {"unhinted_baseline": 0, f"fixednorm_proj_add_L{args.layer}": 120}
     if args.selfaddress or args.selfaddress_calibration:
         arms = [
             Arm("unhinted_baseline", "none", "none"),
@@ -934,14 +959,14 @@ def main() -> int:
         ]
         if args.selfaddress:
             arms.append(Arm("matched_bestofN_unsteered", "bestofn_unsteered", "unhinted_baseline"))
-    if args.necessity or args.necessity_prime or args.selfaddress or args.selfaddress_calibration or args.selfaddress_prime or args.selfaddress_loo:
+    if args.necessity or args.necessity_prime or args.selfaddress or args.selfaddress_calibration or args.selfaddress_prime or args.selfaddress_loo or args.sjoc_m2:
         if args.necessity_anchor:
             arms = build_necessity_anchor_arms(args.layer)
         elif args.necessity:
             arms, necessity_seed_index = build_necessity_arms(args.layer)
         elif args.necessity_prime:
             arms, necessity_seed_index = build_necessity_prime_arms(args.layer)
-        if args.necessity or args.selfaddress or args.selfaddress_calibration or args.selfaddress_prime or args.selfaddress_loo:
+        if args.necessity or args.selfaddress or args.selfaddress_calibration or args.selfaddress_prime or args.selfaddress_loo or args.sjoc_m2:
             row_means, capture_labels = load_capture_row_means(args.capture_npz, args.capture_manifest, args.layer)
             class_vector = class_vector_from_labels(row_means, capture_labels)
             print(f"necessity/selfaddress: |real|={np.linalg.norm(class_vector):.1f} anchor={args.necessity_anchor}", flush=True)
@@ -1122,7 +1147,7 @@ def main() -> int:
         return basis_cache[key]
 
     recon_norm_by_row: dict[int, float] = {}
-    if args.class_mean_b or args.class_mean_c or args.position_policy or (args.necessity and args.necessity_anchor) or args.selfaddress_prime or args.selfaddress_loo:
+    if args.class_mean_b or args.class_mean_c or args.position_policy or (args.necessity and args.necessity_anchor) or args.selfaddress_prime or args.selfaddress_loo or args.sjoc_m2:
         for prep in prepared:
             if prep.get("row_class", "failing") != "failing":
                 continue

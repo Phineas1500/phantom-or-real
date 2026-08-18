@@ -1,0 +1,36 @@
+{
+ "n": 128,
+ "cells": {
+  "00": 32,
+  "01": 32,
+  "10": 32,
+  "11": 32
+ },
+ "gate_a_natural_sanity": {
+  "gauge_auc_for_oc": 0.9597,
+  "pass": true
+ },
+ "gate_e_sj_readability": {
+  "heldout_auc_dir_sj": 0.8115,
+  "pass": true
+ },
+ "dir_oc_heldout_auc": 0.6367,
+ "t1_identity": {
+  "n_conflict_rows": 64,
+  "agreement_with_sj": 0.1562,
+  "agreement_with_oc": 0.8438,
+  "diff_sj_minus_oc": -0.6875,
+  "ci95": [
+   -0.8438,
+   -0.5
+  ]
+ },
+ "t1_branch": "GAUGE~OC",
+ "d_differential_erasure": {
+  "sj_drop_on_sj": 0.3311,
+  "sj_move_on_oc": 0.0068,
+  "oc_drop_on_oc": 0.1768,
+  "oc_move_on_sj": 0.002
+ },
+ "d_factorization_ok": true
+}
