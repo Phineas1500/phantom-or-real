@@ -1,23 +1,24 @@
 {
   "base_gauge_scores": {
-    "10153": 88.2736871639604,
-    "10733": 72.05758153573457,
-    "3189": 107.23132707011614,
-    "3710": 88.07097885934877,
-    "3822": 98.99204473993603,
-    "4870": 84.63844990192663,
-    "5232": 72.8400747551834,
-    "5515": 94.37763880337809,
-    "5873": 115.40878859155112,
-    "6404": 98.60113809082586,
-    "6823": 141.30372390207896,
-    "7835": 104.4500351768991,
-    "8418": 104.62373713358497,
-    "9132": 53.24728404505678,
-    "9777": 85.11824512912854
+    "10043": 73.91366727555982,
+    "3144": 109.21204853967205,
+    "3322": 107.7070583959606,
+    "3575": 110.87022549152178,
+    "3804": 96.73392921429824,
+    "4835": 95.0841151495063,
+    "5097": 101.93703548213911,
+    "5474": 110.36588861144745,
+    "5682": 90.38178663959101,
+    "6375": 111.85939208610189,
+    "6567": 121.88417814957862,
+    "6970": 138.22529973695654,
+    "7348": 95.52428850635638,
+    "7908": 69.41695962680967,
+    "8973": 93.62092704697673,
+    "9464": 75.21574886777631
   },
-  "created_at_utc": "2026-08-16T20:22:47.874158+00:00",
-  "elapsed_seconds": 9952.953667640686,
+  "created_at_utc": "2026-08-18T01:04:06.300262+00:00",
+  "elapsed_seconds": 10250.703409910202,
   "gauge": {
     "direction_row": 0,
     "hook": "blocks.53.hook_resid_post",
@@ -25,36 +26,37 @@
     "npz": "results/stage2/erasure/inlp_direction_stacks_27b_property_5layer.npz"
   },
   "gold_gauge_scores": {
-    "10153": 114.42425808501167,
-    "10733": 104.6525008116052,
-    "3189": 131.25453900933184,
-    "3710": 106.52917638928015,
-    "3822": 111.60049100324994,
-    "4870": 92.57304688592333,
-    "5232": 93.07986708516464,
-    "5515": 125.89179285190839,
-    "5873": 138.26333288242955,
-    "6404": 133.54158669334885,
-    "6823": 160.39356334184498,
-    "7835": 133.79535750601846,
-    "8418": 130.0638451845889,
-    "9132": 79.54655087103734,
-    "9777": 107.8232267512317
+    "10043": 93.01970394958079,
+    "3144": 140.2863654712404,
+    "3322": 157.6724933967704,
+    "3575": 130.88558147692964,
+    "3804": 120.53219565889627,
+    "4835": 96.7161164567884,
+    "5097": 145.58107705464568,
+    "5474": 118.86827412760236,
+    "5682": 91.30230122711976,
+    "6375": 124.36855409130662,
+    "6567": 147.49415374910382,
+    "6970": 150.17867357496692,
+    "7348": 121.84800904838855,
+    "7908": 92.4563194044463,
+    "8973": 152.65464391822664,
+    "9464": 86.84778193117504
   },
   "l0_natural_gate": null,
   "l0_steered_shift": {
-    "mean_score_delta_steered_minus_base": 3.241194184896466,
-    "n_branches": 129,
-    "sd": 9.054775478501968
+    "mean_score_delta_steered_minus_base": 1.008738034181065,
+    "n_branches": 136,
+    "sd": 12.282904595948699
   },
   "layer": 30,
   "method": "selfaddress_loo_composition",
   "model": "google/gemma-3-27b-it",
-  "n": 636,
+  "n": 672,
   "out_jsonl": "results/stage2/erasure/selfaddress_loo_27b_property_shard1of4.jsonl",
   "pinned_fixed_norm": 3708.2628096560807,
   "pre_registered_decision_rule": "Item L rules in docs/causal_handle_directions.md. L0 gates: natural AUC >= 0.75; selection-signal paired (gold - mean nongold) CI > 0. L1: oracle gate first (gold-branch dP CI > 0), then PRIMARY = gauge-select beats baseline AND matched-bestofN (paired CIs > 0), selectors evaluated offline at verdict time. No registered prediction. Exploratory.",
-  "prepared_rows": 15,
+  "prepared_rows": 16,
   "resolved_args": {
     "capture_manifest": "results/stage2/erasure/natural_state_capture_27b_property_L30.manifest.jsonl",
     "capture_npz": "results/stage2/erasure/natural_state_capture_27b_property_L30.npz",
@@ -68,7 +70,7 @@
     "dev_states_npz": "results/stage2/erasure/focus_state_composite_27b_property_states.npz",
     "dry_run": false,
     "dtype": "bfloat16",
-    "exclude_rows": "3073,3290,3415,4322,4675,6188,6327,8035,8298,8874,9549,10079,10714",
+    "exclude_rows": "3073,3290,3415,4322,4675,6188,6327,8035,8298,8874,9549,10079,10714,3167,3189,3644,3710,3729,3822,4075,4199,4239,4471,4711,4870,4877,4886,4933,5232,5416,5459,5515,5606,5777,5843,5873,5883,5892,6092,6404,6421,6485,6731,6823,6992,7202,7522,7835,8172,8229,8364,8418,8716,9022,9029,9132,9269,9458,9536,9777,9891,9926,10042,10153,10403,10523,10591,10733,10771,10809",
     "frozen_deltas_npz": "results/stage2/erasure/classmean_c_deployment_27b_property_shard0of1_states.npz",
     "g0_calibration": false,
     "gauge_layer": 53,
@@ -101,7 +103,7 @@
     "row_indices": null,
     "sample_seed": 20260702,
     "samples_per_row": 8,
-    "selection_seed": 20260812,
+    "selection_seed": 20260817,
     "selfaddress": false,
     "selfaddress_calibration": false,
     "selfaddress_loo": true,
@@ -119,56 +121,57 @@
   "schema_version": 1,
   "script": "scripts/stage2_rank_k_guard_v2.py",
   "selection": {
-    "selection_seed": 20260812,
+    "selection_seed": 20260817,
     "shard_rows": [
-      3189,
-      3710,
-      3822,
-      4870,
-      5232,
-      5515,
-      5873,
-      6404,
-      6823,
-      7835,
-      8418,
-      9132,
-      9777,
-      10153,
-      10733
+      3144,
+      3322,
+      3575,
+      3804,
+      4835,
+      5097,
+      5474,
+      5682,
+      6375,
+      6567,
+      6970,
+      7348,
+      7908,
+      8973,
+      9464,
+      10043
     ]
   },
   "selection_signal_gate": {
     "ci95": [
-      19.57579208156269,
-      26.02176864658995
+      17.62552694945488,
+      33.14813594266544
     ],
     "gate_c_pass": true,
-    "n_rows": 15,
-    "paired_gold_minus_nongold_mean": 23.02610172382246
+    "n_rows": 16,
+    "paired_gold_minus_nongold_mean": 25.0861588514567
   },
   "shard": {
     "count": 4,
     "index": 1
   },
-  "slurm_job_id": "461887",
+  "slurm_job_id": "462043",
   "summary": {
     "percand_loo_fire_L30": {
-      "n_rows": 15,
-      "n_samples": 516,
+      "n_rows": 16,
+      "n_samples": 544,
       "paired_ci95": [
-        0.0009523809523809472,
-        0.08785714285714286
+        -0.1515625,
+        0.06473214285714286
       ],
-      "paired_delta_vs_reference": 0.04619047619047619,
+      "paired_delta_vs_reference": -0.024776785714285716,
       "reference": "unhinted_baseline",
-      "strong_accuracy": 0.1124031007751938
+      "strong_accuracy": 0.11580882352941177
     },
     "unhinted_baseline": {
-      "n_rows": 15,
-      "n_samples": 120,
+      "n_rows": 16,
+      "n_samples": 128,
       "reference": "none",
-      "strong_accuracy": 0.058333333333333334
+      "strong_accuracy": 0.140625
     }
   },
   "task": "infer_property"

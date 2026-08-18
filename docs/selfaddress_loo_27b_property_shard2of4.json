@@ -1,20 +1,24 @@
 {
   "base_gauge_scores": {
-    "10403": 83.37891224404146,
-    "10771": 71.99511581929774,
-    "4239": 86.54365274725025,
-    "4877": 78.2712303452436,
-    "5606": 67.3473459003491,
-    "5883": 114.24953877850923,
-    "6421": 84.55550051398532,
-    "6992": 50.78772728925212,
-    "8172": 64.9422025144737,
-    "8716": 81.18733498904473,
-    "9269": 99.91911466584239,
-    "9891": 87.39934052512223
+    "10677": 109.896732214541,
+    "3194": 55.65918812547885,
+    "3408": 97.1860623930737,
+    "3617": 80.77096229290447,
+    "4166": 84.07355027580411,
+    "4913": 87.95687951306675,
+    "5132": 116.50410655275178,
+    "5651": 139.4866194119956,
+    "5849": 119.06387837221563,
+    "6439": 73.96116197441864,
+    "6581": 100.22357843734865,
+    "7048": 62.70539958313759,
+    "7511": 81.12743228446688,
+    "8467": 82.52984039033798,
+    "9200": 74.04239081839029,
+    "9505": 69.91539362448664
   },
-  "created_at_utc": "2026-08-16T22:39:21.574811+00:00",
-  "elapsed_seconds": 8180.539808034897,
+  "created_at_utc": "2026-08-18T03:55:21.914535+00:00",
+  "elapsed_seconds": 10261.445654392242,
   "gauge": {
     "direction_row": 0,
     "hook": "blocks.53.hook_resid_post",
@@ -22,33 +26,37 @@
     "npz": "results/stage2/erasure/inlp_direction_stacks_27b_property_5layer.npz"
   },
   "gold_gauge_scores": {
-    "10403": 88.93561414635757,
-    "10771": 73.16991218677063,
-    "4239": 111.98759829897074,
-    "4877": 78.22134368176495,
-    "5606": 91.46473124509163,
-    "5883": 120.837425414148,
-    "6421": 95.32293149380594,
-    "6992": 60.62314419632004,
-    "8172": 72.94602961942877,
-    "8716": 69.93575943560046,
-    "9269": 100.2669012927873,
-    "9891": 105.16905158654154
+    "10677": 135.90265397899907,
+    "3194": 76.56176296155064,
+    "3408": 120.06561689909455,
+    "3617": 76.69524838335954,
+    "4166": 112.1306547739139,
+    "4913": 123.22371272319121,
+    "5132": 120.48480764497889,
+    "5651": 140.30190549410372,
+    "5849": 140.4205254707215,
+    "6439": 95.12067240590915,
+    "6581": 133.85170686697072,
+    "7048": 89.06072089855175,
+    "7511": 95.07818278354229,
+    "8467": 84.72731281864438,
+    "9200": 95.08633794251824,
+    "9505": 89.49243163503397
   },
   "l0_natural_gate": null,
   "l0_steered_shift": {
-    "mean_score_delta_steered_minus_base": 1.8758123109210056,
-    "n_branches": 108,
-    "sd": 6.378320609223698
+    "mean_score_delta_steered_minus_base": 1.2986866869199034,
+    "n_branches": 136,
+    "sd": 9.73653495799648
   },
   "layer": 30,
   "method": "selfaddress_loo_composition",
   "model": "google/gemma-3-27b-it",
-  "n": 528,
+  "n": 672,
   "out_jsonl": "results/stage2/erasure/selfaddress_loo_27b_property_shard2of4.jsonl",
   "pinned_fixed_norm": 3708.2628096560807,
   "pre_registered_decision_rule": "Item L rules in docs/causal_handle_directions.md. L0 gates: natural AUC >= 0.75; selection-signal paired (gold - mean nongold) CI > 0. L1: oracle gate first (gold-branch dP CI > 0), then PRIMARY = gauge-select beats baseline AND matched-bestofN (paired CIs > 0), selectors evaluated offline at verdict time. No registered prediction. Exploratory.",
-  "prepared_rows": 12,
+  "prepared_rows": 16,
   "resolved_args": {
     "capture_manifest": "results/stage2/erasure/natural_state_capture_27b_property_L30.manifest.jsonl",
     "capture_npz": "results/stage2/erasure/natural_state_capture_27b_property_L30.npz",
@@ -62,7 +70,7 @@
     "dev_states_npz": "results/stage2/erasure/focus_state_composite_27b_property_states.npz",
     "dry_run": false,
     "dtype": "bfloat16",
-    "exclude_rows": "3073,3290,3415,4322,4675,6188,6327,8035,8298,8874,9549,10079,10714",
+    "exclude_rows": "3073,3290,3415,4322,4675,6188,6327,8035,8298,8874,9549,10079,10714,3167,3189,3644,3710,3729,3822,4075,4199,4239,4471,4711,4870,4877,4886,4933,5232,5416,5459,5515,5606,5777,5843,5873,5883,5892,6092,6404,6421,6485,6731,6823,6992,7202,7522,7835,8172,8229,8364,8418,8716,9022,9029,9132,9269,9458,9536,9777,9891,9926,10042,10153,10403,10523,10591,10733,10771,10809",
     "frozen_deltas_npz": "results/stage2/erasure/classmean_c_deployment_27b_property_shard0of1_states.npz",
     "g0_calibration": false,
     "gauge_layer": 53,
@@ -95,7 +103,7 @@
     "row_indices": null,
     "sample_seed": 20260702,
     "samples_per_row": 8,
-    "selection_seed": 20260812,
+    "selection_seed": 20260817,
     "selfaddress": false,
     "selfaddress_calibration": false,
     "selfaddress_loo": true,
@@ -113,53 +121,57 @@
   "schema_version": 1,
   "script": "scripts/stage2_rank_k_guard_v2.py",
   "selection": {
-    "selection_seed": 20260812,
+    "selection_seed": 20260817,
     "shard_rows": [
-      4239,
-      4877,
-      5606,
-      5883,
-      6421,
-      6992,
-      8172,
-      8716,
-      9269,
-      9891,
-      10403,
-      10771
+      3194,
+      3408,
+      3617,
+      4166,
+      4913,
+      5132,
+      5651,
+      5849,
+      6439,
+      6581,
+      7048,
+      7511,
+      8467,
+      9200,
+      9505,
+      10677
     ]
   },
   "selection_signal_gate": {
     "ci95": [
-      1.5133764987537937,
-      12.618714216045696
+      13.800898357346089,
+      25.050539063512073
     ],
     "gate_c_pass": true,
-    "n_rows": 12,
-    "paired_gold_minus_nongold_mean": 7.0284431819884645
+    "n_rows": 16,
+    "paired_gold_minus_nongold_mean": 19.51617318583923
   },
   "shard": {
     "count": 4,
     "index": 2
   },
-  "slurm_job_id": "461888",
+  "slurm_job_id": "462044",
   "summary": {
     "percand_loo_fire_L30": {
-      "n_rows": 12,
-      "n_samples": 432,
+      "n_rows": 16,
+      "n_samples": 544,
       "paired_ci95": [
-        0.012499999999999999,
-        0.1949404761904762
+        -0.004017857142857141,
+        0.08080915178571421
       ],
-      "paired_delta_vs_reference": 0.08244047619047619,
+      "paired_delta_vs_reference": 0.041741071428571426,
       "reference": "unhinted_baseline",
-      "strong_accuracy": 0.1087962962962963
+      "strong_accuracy": 0.1323529411764706
     },
     "unhinted_baseline": {
-      "n_rows": 12,
-      "n_samples": 96,
+      "n_rows": 16,
+      "n_samples": 128,
       "reference": "none",
-      "strong_accuracy": 0.020833333333333332
+      "strong_accuracy": 0.1015625
     }
   },
   "task": "infer_property"

@@ -1,0 +1,151 @@
+{
+  "baseline_p_strong": 0.09267241379310345,
+  "baseline_verbatim_gate": {
+    "note": "no shared rows with prior jobs by design (fresh draw)",
+    "pass": null,
+    "shared_generations": 0,
+    "verbatim": 0
+  },
+  "fire_texture": {
+    "gold_branch_mean_p_strong": 0.5387931034482759,
+    "nongold_branch_mean_p_strong": 0.04954954954954955
+  },
+  "mean_candidates_per_row": 8.655172413793103,
+  "n_rows": 58,
+  "n_rows_with_gold_branch": 58,
+  "oracle_gate": {
+    "ci95": [
+      0.3275862068965517,
+      0.5646551724137931
+    ],
+    "dp": 0.44612068965517243,
+    "n_rows": 58,
+    "p_strong": 0.5387931034482759,
+    "pass": true,
+    "sign": "pos"
+  },
+  "paired": {
+    "gauge_minus_bestofn_anycorrect": {
+      "ci95": [
+        0.1336206896551724,
+        0.41379310344827586
+      ],
+      "delta": 0.27586206896551724,
+      "sign": "pos"
+    },
+    "gauge_minus_bestofn_majority": {
+      "ci95": [
+        0.2974137931034483,
+        0.5603448275862069
+      ],
+      "delta": 0.43103448275862066,
+      "sign": "pos"
+    },
+    "gauge_minus_oracle": {
+      "ci95": [
+        -0.1206896551724138,
+        -0.004310344827586207
+      ],
+      "delta": -0.05603448275862069,
+      "sign": "neg"
+    },
+    "gauge_minus_random": {
+      "ci95": [
+        0.2657273706896552,
+        0.4821120689655172
+      ],
+      "delta": 0.3739224137931034,
+      "sign": "pos"
+    },
+    "gauge_minus_selfratify": {
+      "ci95": [
+        0.17672413793103448,
+        0.4396551724137931
+      ],
+      "delta": 0.3103448275862069,
+      "sign": "pos"
+    }
+  },
+  "parse": {
+    "percand_loo_fire_L30": {
+      "n": 2008,
+      "parse_fail": 0.06673306772908366,
+      "status": "flag"
+    },
+    "unhinted_baseline": {
+      "n": 464,
+      "parse_fail": 0.04741379310344827,
+      "status": "pass"
+    }
+  },
+  "policies": {
+    "bestofn_anycorrect": {
+      "ci95": [
+        0.05172413793103448,
+        0.1853448275862069
+      ],
+      "dp": 0.11422413793103449,
+      "n_rows": 58,
+      "p_strong": 0.20689655172413793,
+      "sign": "pos"
+    },
+    "bestofn_majority": {
+      "ci95": [
+        -0.07543103448275862,
+        -0.010775862068965518
+      ],
+      "dp": -0.040948275862068964,
+      "n_rows": 58,
+      "p_strong": 0.05172413793103448,
+      "sign": "neg"
+    },
+    "gauge_select": {
+      "ci95": [
+        0.2650862068965517,
+        0.5150862068965517
+      ],
+      "dp": 0.3900862068965517,
+      "n_rows": 58,
+      "p_strong": 0.4827586206896552,
+      "sign": "pos"
+    },
+    "oracle": {
+      "ci95": [
+        0.3275862068965517,
+        0.5646551724137931
+      ],
+      "dp": 0.44612068965517243,
+      "n_rows": 58,
+      "p_strong": 0.5387931034482759,
+      "sign": "pos"
+    },
+    "random_select": {
+      "ci95": [
+        -0.023275862068965522,
+        0.049353448275862064
+      ],
+      "dp": 0.016163793103448273,
+      "n_rows": 58,
+      "p_strong": 0.10883620689655173,
+      "sign": "straddle"
+    },
+    "self_ratify": {
+      "ci95": [
+        0.004310344827586207,
+        0.15732758620689655
+      ],
+      "dp": 0.07974137931034483,
+      "n_rows": 58,
+      "p_strong": 0.1724137931034483,
+      "sign": "pos"
+    }
+  },
+  "primary": {
+    "conditions": "gauge_select dP CI > 0 AND paired (gauge - bestofn_majority) CI > 0",
+    "pass": true
+  },
+  "selector_texture": {
+    "gauge_picks_gold_rate": 0.8448275862068966,
+    "selector_write_interference_branch": false
+  }
+}
