@@ -101,13 +101,14 @@
     ``causal'' means changing it changes behavior. The whole paper is evidence that readable and
     causal come apart, in both directions. The story now has its ending, too: the gauge is useless
     to <i>push</i> on, but as a <b>judge</b> — scoring possible futures and picking one — it works
-    as well as an answer key would, and that closes a repair loop that never sees an answer key.
+    as well as an answer key would — closing a repair loop into which no information about the
+    problem being solved enters at test time (every learned part comes from other problems).
   </div>
 
   <div class="chips">
     <span class="chip">ICLR format · 13 pages drafted</span>
     <span class="chip">31 pre-registered verdicts</span>
-    <span class="chip">7 confirmed registered predictions</span>
+    <span class="chip">9 confirmed registered predictions</span>
     <span class="chip">4 adversarial review rounds survived</span>
     <span class="chip">every number below: pooled, cluster-bootstrapped</span>
   </div>
@@ -337,7 +338,7 @@
     <tr><td class="k">sign-flipped vector</td><td>“geometry, not content”</td><td class="ok">harmful</td></tr>
     <tr><td class="k">shuffled-ridge coefficients</td><td>“prediction quality matters”</td><td class="ok">matched → informative fail</td></tr>
     <tr><td class="k">random stacks, identical estimator</td><td>“erasure procedure is toothless”</td><td class="ok">catastrophic</td></tr>
-    <tr><td class="k">dose ladders ×1/×2/×4</td><td>“more amplitude = more repair”</td><td class="ok">monotone damage</td></tr>
+    <tr><td class="k">dose ladder ×1/×2 (executed arms)</td><td>“more amplitude = more repair”</td><td class="ok">monotone damage</td></tr>
     <tr><td class="k">coordinate-permuted basis (K)</td><td>“any spectrum-matched 8-dim removal breaks”</td><td class="ok">near-free (−0.04)</td></tr>
     <tr><td class="k">capture-mean replacement (K′)</td><td>“the break is just deleted energy”</td><td class="ok">floors at typical energy</td></tr>
     <tr><td class="k">keep-only-8 complement deletion (K′)</td><td>“the 8 repair dims carry the site”</td><td class="ok">floors — necessity is broad</td></tr>
@@ -380,8 +381,8 @@
     composition, the gauge scored ten steered candidate branches per row and <b>its choices
     repaired +0.241 [+0.147, +0.342]</b> — statistically indistinguishable from an all-knowing
     oracle's choices (−0.022, straddling zero), +0.259 better than matched-compute majority
-    sampling, with wrong-address branches sitting exactly at baseline. No answer key appears
-    anywhere in the pipeline: candidates come from the prompt, the write's content from watching
+    sampling, with wrong-address branches sitting exactly at baseline. No information about the problem
+    being solved enters at test time: candidates come from the prompt, the write's content from watching
     natural successes, the selection from the gauge. And the rider settled the frozen-vector
     question the buggy run had faked: <b>the July-frozen vector transfers to fresh rows at
     +0.498</b> — stronger than the in-job refit (+0.279).</p>

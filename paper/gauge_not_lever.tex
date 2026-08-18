@@ -12,7 +12,7 @@
 % none may be retyped from memory at revision time.
 
 \title{Gauge, Not Lever: Dissociating Readable Correctness\\
-from its Causal Repair Channel in a 27B Reasoning Model}
+from its Causal Repair Channel in a 27B Language Model}
 
 % Anonymized for submission.
 \author{Anonymous authors}
@@ -20,7 +20,7 @@ from its Causal Repair Channel in a 27B Reasoning Model}
 \newcommand{\fix}[1]{\textcolor{red}{[TODO: #1]}}
 \usepackage{xcolor}
 
-\iclrfinalcopy % TODO: comment out for anonymous submission
+% \iclrfinalcopy  % enable only for the de-anonymized final copy
 \begin{document}
 \maketitle
 
@@ -44,8 +44,8 @@ show the labels carry the effect, and a donor-free variant ---
 answer-free in content, though not yet in addressing --- reaches
 $+0.40$ on a $0.12$ baseline where majority-vote
 self-consistency scores $0.000$. The channel is causally potent yet not
-decodably privileged (probe accuracy not distinguishable from matched
-random subspaces)
+decodably privileged (probe accuracy within the random-subspace
+null's upper tail, under its pre-registered threshold)
 --- the inverse of the field's decodable-but-not-causal refrain --- and
 removal experiments show its site demands the state's content
 wholesale: the lever is write-compact, what it writes into is
@@ -89,8 +89,8 @@ visibly predicts its own failures, the readable correctness signal and
 the causal repair channel are different objects --- the entire readable
 subspace can be deleted without behavioral cost, while repair flows
 through an identified low-rank channel that carries the label-specific
-content of natural success yet is itself no more decodable than matched
-random subspaces
+content of natural success yet is itself not decodably privileged
+relative to random subspaces of its rank
 --- gauge and lever, anatomically separated.}
 
 Concretely, we contribute:
@@ -115,12 +115,13 @@ profile: $+0.40$ where self-consistency scores $0.000$, replicated on
 a disjoint fresh draw ($+0.28$), beneficial when misfired on
 already-correct rows at correct addressing --- culminating in a
 \emph{closed} answer-free repair loop: the gauge's scores over steered
-candidate states select the write-address (gauge $=$ oracle
-behaviorally; gold address on $43$--$54$ of $57$ rows) and the
+candidate states select the write-address ($87$--$92\%$ of the
+oracle effect --- indistinguishable from oracle on draw 1, slightly
+below on draw 2; gold address on $43$--$54$ of $57$ rows) and the
 selected branch repairs $+0.24$ where matched-compute majority
-sampling scores $0.000$, replicated on a second disjoint draw
-($+0.39$;
-Section~\ref{sec:fseries}); and
+sampling sits at baseline ($-0.02$), replicated on a second disjoint
+draw ($+0.39$;
+Section~\ref{sec:loop}); and
 \textbf{(vii)}~a pre-registration methodology --- decision rules
 committed before unblinding across 31 registered verdicts
 (branch-complete on confirmatory items), nine
@@ -136,7 +137,7 @@ which the model must propose the hypothesis that best explains a set of
 observations. Tree height (1--4) controls proof depth; we run two task
 framings and use \emph{property} (which property does the target
 concept have?) as primary, with \emph{subtype} and a second model as
-scope checks. Each model answers 44{,}000 instances (1k/2k/3k/5k per
+scope checks. Each model answers 22{,}000 instances (1k/2k/3k/5k per
 height and task), scored two ways: \emph{strong} correctness requires
 the exact gold hypothesis after canonicalization; \emph{weak} accepts
 entailed variants. All causal work predicts and intervenes on strong
@@ -210,7 +211,7 @@ Shuffled-label class-means & any difference-shaped vector works & null \\
 Sign-flipped vector & geometry, not content & harmful \\
 Shuffled-ridge coefficients & predicted content is generic & informative fail \\
 Random stacks, identical estimator & erasure procedure is toothless & catastrophic \\
-Dose ladders ($\times\tfrac12,\times1,\times2$) & more amplitude, more repair & monotone damage \\
+Dose ladder ($\times1,\times2$, executed arms) & more amplitude, more repair & monotone damage \\
 Coordinate-permuted basis & spectrum-matched removal breaks & near-free \\
 Typical-state (mean) replacement & the break is deleted energy & floors \\
 Keep-only-basis complement deletion & the $8$ dims carry the site & floors \\
@@ -571,7 +572,13 @@ command lands $\sim 3\times$ harder where the prompt's evidence
 supports it (gold-address targeting lift $+0.18$ on both draws vs.\
 $+0.056$ at wrong addresses) --- the write interacts with
 prompt-consistency rather than acting as an address-agnostic push, a
-fact we file beside the open interference puzzle. The arc then closes with its registered composition: given
+fact we file beside the open interference puzzle.
+
+\subsection{The loop closes}\label{sec:loop}
+
+The program's final registered experiment composes its two working
+parts into a self-repair loop with no test-time answer information:
+given
 only the prompt, candidate concepts are enumerated (answer-free), the
 donor-free write fires at each candidate's positions in parallel
 branches (answer-free content), and the \emph{gauge}'s score over each
@@ -592,8 +599,8 @@ signal itself is a small new fact --- a probe trained on natural
 states keeps usable, degraded signal on steered off-distribution
 ones, $0.90 \to 0.68$--$0.80$),
 picks the gold address on $43/57$ rows ($54/57$ under the milder
-frozen write), and beats random selection ($+0.223$) and a
-self-ratification heuristic ($+0.127$); non-gold branches sit at
+frozen write), and beats random selection (by $+0.223$) and a
+self-ratification heuristic (by $+0.127$); non-gold branches sit at
 baseline ($0.076$ vs.\ gold $0.351$), reproducing addressing
 specificity inside a single run. \textbf{The repair loop closes with no per-row answer information
 about the test problem at inference time}: candidates and addressing
@@ -812,13 +819,14 @@ objective-correctness side; the self-report channel is causally
 bypassed by both. And
 the gauge, causally inert as a lever, has a real causal \emph{job}
 in the one role its nature permits: as the
-\emph{selector} in the closed answer-free repair loop, scoring
-steered candidate states well enough to match oracle write-address
-selection behaviorally ($+0.241$ and $+0.390$ repair through its choices on two disjoint
-draws; Section~\ref{sec:fseries}).
+\emph{selector} in the closed answer-free repair loop, capturing
+$87$--$92\%$ of the oracle effect ($+0.241$ and $+0.390$ repair
+through its choices on two disjoint draws;
+Section~\ref{sec:loop}).
 Gauge and
 lever remain different objects; the gauge's job is reading --- and it
-reads steered states as well as natural ones.
+reads steered states well enough to do causal work there, though
+degraded ($0.90 \to 0.68$--$0.80$).
 
 \paragraph{Open anomalies and limits.} Misdirection asymmetry is
 partly an estimand artifact --- wrong-address writes do shift
@@ -842,7 +850,7 @@ generated ontologies (no shared templates beyond the generation
 grammar), so row-cluster bootstrap is the natural unit. Future work,
 in registered order: the
 layer$\times$position information map in Qwen; the closed loop's
-closed loop's port to the second model;
+port to the second model;
 and porting the necessity coda to the second model.
 
 \bibliography{refs}
@@ -976,7 +984,7 @@ that still parse, not an artifact of format damage.
 Registrations are appended to the registry before any outcome is
 observed, and are branch-complete: every observable outcome maps to a
 pre-named verdict sentence. As an exemplar, the composition item
-(L$''$, passed; its fresh-draw replication runs at submission time)
+(L$''$, passed; replicated on a disjoint fresh draw)
 registers: PRIMARY PASS iff the
 gauge-selected branch's pooled $\Delta P(\text{strong})$ CI excludes zero
 AND the paired contrast against the recorded best-of-$N$ majority-vote
