@@ -2580,3 +2580,70 @@ cluster's 3-hour submit-filter wall — the donor POOL remains the full
 64-row L-frame preparation; donor subsets are seed-20260818 nested
 prefixes; seed indices 150–153; MDE correspondingly wider, stated at
 verdict.
+
+## Pre-Registered WikiHop Loop Port (2026-08-19)
+
+### W. The closed answer-free loop on natural data (WikiHop): does the recipe leave the synthetic sandbox?
+
+Registered 2026-08-19, before any port data. Screening (job-6t87z,
+docs/loop_screen_summary.md) qualified WikiHop: baseline 0.523,
+failing 47.7%, any-correct@8 on failures 0.035 (more committed than
+InAbHyD), hint gap +0.158 (modest — power accordingly), closed-book
+0.483 (contamination — the doc-dependent filter below is mandatory).
+Venue: givemeanode H100 lane, Gemma-3-27B bf16 HF pathway — a NEW
+lane (no legacy verbatim constraints; seeds row-keyed throughout).
+Lessons baked in from the L/N series: gauge strictly downstream of
+the write layer; the delivery fingerprint is validated against an
+in-frame positive control at W1 BEFORE becoming a hard gate for W2;
+amendment policy (independent-channel rule) applies.
+
+**Frame.** 800 fresh WikiHop dev rows, seed 20260821, docs ≤ 14,000
+chars, excluding the 300 screening rows. Prompts identical to the
+screening's std/closed constructions (scripts/loop_screen_job.py).
+Labels: strong = normalized exact match to the gold candidate.
+FAILING row: std any-correct@8 = 0. DOC-DEPENDENT failing row:
+failing AND closed any-correct@8 = 0 (memory cannot rescue). All
+intervention claims are scoped to the doc-dependent frame; both
+contamination numbers are always reported.
+
+**W0 — grading + capture (two jobs, ~$3).** (a) vLLM: std k=8 +
+closed k=8 on all 800 (seed 20260821). (b) HF capture, one forward
+per row on the std prompt: final-token states at layers
+{38, 43, 48, 53} plus per-candidate mention-mean states and position
+counts at L30. Offline fits, pinned in the W0 artifact before W1:
+GAUGE = logistic on final-token states vs std-majority labels;
+primary layer = argmax 5-fold CV among {38,43,48,53}; NATURAL GATE
+CV ≥ 0.65. WRITE = class-mean of candidate-mention L30 states,
+correct-majority minus incorrect-majority donor rows (donors =
+graded rows OUTSIDE the doc-dependent failing pool, balanced).
+AMPLITUDE base = mean per-position L30 state norm (measured); W1
+ladder {0.25, 0.5, 1.0} × base.
+
+**W1 — calibration (one job).** 12 seeded doc-dependent failing rows
+(seed 20260822): gold-only fires across the amplitude ladder (k=4)
+plus one full per-candidate pass at the middle rung; k=8 baselines.
+Gates: (a) natural gauge gate from W0; (b) POSITIVE CONTROL — some
+rung shows gold-address repair direction AND the in-frame delivery
+fingerprint (answers-fired rate: normalized output == fired
+candidate, lift over that candidate's baseline rate, CI > 0 at
+nongold); the rung is pinned for W2; (c) selection signal
+(gold-branch minus non-gold gauge score, CI > 0) — FAIL demotes the
+selector to descriptive for W2 (stated now, as in N). If NO rung
+passes (b): pre-named fallback — one mini layer sweep {20, 25, 35,
+40} at the middle rung, re-registered before W2; if that also fails,
+W-WRITE-DOES-NOT-TRANSFER is the landed verdict (the InAbHyD lever
+does not leave the sandbox at these sites/doses; MDE stated).
+
+**W2 — the composition (≥150 doc-dependent failing rows, ~3 jobs).**
+Baseline k=8 + per-candidate fires k=4 at the pinned rung/layer.
+Delivery hard gate = the W1-validated fingerprint. ORACLE GATE —
+**the program's 10th registered directional prediction: the
+gold-address write repairs doc-dependent WikiHop failures (dP CI >
+0)** — the lever-site-transfers-across-tasks bet. PRIMARY (if oracle
+passes and selector not demoted): gauge-select dP CI > 0 AND paired
+gauge-minus-self-consistency@8 CI > 0. Branch-complete: WRITE-FAILS
+(oracle straddles/negative — 10th prediction refuted, MDE stated,
+scope sentence lands); SELECTOR-FAILS/WEAK; selector-write
+interference; gold-instability. On PRIMARY PASS: fresh-draw
+replication obligation on a disjoint dev draw (access-independent —
+this lane survives Scholar).
