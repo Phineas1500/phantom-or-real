@@ -739,9 +739,18 @@ concept (baseline targeting ${\sim}0.4$) --- a commitment failure;
 failing Qwen rows name it ${\sim}0.9$ of the time and still build
 the wrong hypothesis --- a construction failure downstream of concept
 selection. Whatever the write repairs in Qwen, it is not
-concept-selection, so the cross-model story should be read as ``one
-intervention, possibly two mechanisms'' until a hypothesis-level
-delivery diagnostic (registered for the port's analysis) adjudicates.
+concept-selection. The port's registered composition adjudicated
+this: the raw write composes at scale (gold-branch $+0.199$
+$[+0.139, +0.259]$ on 96 rows, above the $+0.120$ anchor) --- but it
+exerts \emph{no} wrong-concept proposal drag ($+0.007$, n.s., vs.\
+Gemma's $+0.056$) while $47.7\%$ of its gold-branch generations
+propose hypothesis sets unseen in the row's baselines, and the
+selector is weak rather than oracle-like ($+0.082$
+$[+0.027, +0.141]$, $41\%$ of the oracle effect; branch AUC $0.615$).
+\textbf{One intervention, two mechanisms}: a positional commitment
+command in Gemma, a construction-level aid in Qwen --- and the closed
+loop, whose selection stage exploits a commitment failure and a
+strong gauge, is accordingly Gemma's.
 
 \begin{table}[t]
 \centering
@@ -756,7 +765,7 @@ Full-stack non-necessity & \checkmark & --- & --- \\
 Lever repair $+$ specificity & \checkmark\ rank 8 & suggestive & \checkmark\ motif, $k^{*}{\approx}16$ \\
 F-series dissociations & \checkmark & --- & \checkmark\ inverted (raw-potent) \\
 Content necessity at lever site & \checkmark\ broad, not thin & --- & --- \\
-Closed answer-free loop (gauge-select $\times$ write) & \checkmark\ $+0.241$ / $+0.390$ (two disjoint draws) & --- & --- \\
+Closed answer-free loop (gauge-select $\times$ write) & \checkmark\ $+0.241$ / $+0.390$ (two disjoint draws) & --- & write composes ($+0.199$); selector weak \\
 \bottomrule
 \end{tabular}
 \caption{\textbf{Scope matrix.} Checks are pre-registered pooled
@@ -851,8 +860,7 @@ from the prompt, a property most tasks lack. Rows are independently
 generated ontologies (no shared templates beyond the generation
 grammar), so row-cluster bootstrap is the natural unit. Future work,
 in registered order: the
-layer$\times$position information map in Qwen; the closed loop's
-port to the second model;
+layer$\times$position information map in Qwen;
 and porting the necessity coda to the second model.
 
 \bibliography{refs}
