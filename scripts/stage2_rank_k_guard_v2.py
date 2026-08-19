@@ -649,6 +649,10 @@ def main() -> int:
         help="Item K anchor shard: regenerate 458431's unhinted+fixednorm arms verbatim.")
     parser.add_argument("--necessity-prime", action="store_true",
         help="Item K': energy-matched necessity controls on the item-K rows.")
+    parser.add_argument("--fr1", action="store_true",
+                        help="rider F-R1: anchor write + rank-6 remainder (outlier-aligned pair removed)")
+    parser.add_argument("--donor-ladder", action="store_true",
+                        help="rider L-R2: L-prime refit at donor pools of 5/10/20/40")
     parser.add_argument("--necessity-site", action="store_true",
                     help="item K-double-prime: meanablate at matched-count control position sets")
     parser.add_argument("--sjoc-m2", action="store_true",
@@ -704,7 +708,7 @@ def main() -> int:
     args = parser.parse_args()
     started = time.time()
 
-    if sum([args.specificity_controls, args.predicted_coefficients, args.class_mean, args.class_mean_b, args.class_mean_c, args.position_policy, args.g0_calibration, args.necessity, args.necessity_prime, args.selfaddress, args.selfaddress_calibration, args.selfaddress_prime, args.selfaddress_loo, args.sjoc_m2, args.necessity_site]) > 1:
+    if sum([args.specificity_controls, args.predicted_coefficients, args.class_mean, args.class_mean_b, args.class_mean_c, args.position_policy, args.g0_calibration, args.necessity, args.necessity_prime, args.selfaddress, args.selfaddress_calibration, args.selfaddress_prime, args.selfaddress_loo, args.sjoc_m2, args.necessity_site, args.fr1, args.donor_ladder]) > 1:
         raise ValueError("mode flags are mutually exclusive")
     if args.necessity_anchor and not args.necessity:
         raise ValueError("--necessity-anchor requires --necessity")
@@ -740,6 +744,12 @@ def main() -> int:
     elif args.selfaddress_loo:
         stem = f"selfaddress_loo_27b_property_shard{args.shard_index}of{args.shard_count}"
         method = "selfaddress_loo_composition"
+    elif args.fr1:
+        stem = f"fr1_rank6rem_27b_property_shard{args.shard_index}of{args.shard_count}"
+        method = "fr1_rank6_remainder"
+    elif args.donor_ladder:
+        stem = f"donor_ladder_27b_property_shard{args.shard_index}of{args.shard_count}"
+        method = "lr2_donor_ladder"
     elif args.necessity_site:
         stem = f"necessity_site_27b_property_shard{args.shard_index}of{args.shard_count}"
         method = "necessity_site_control"
@@ -951,6 +961,22 @@ def main() -> int:
             Arm(f"fixednorm_proj_add_L{args.layer}", "fixednorm_proj_add", "unhinted_baseline", (args.layer,), 8, "class_mean_projected_fixed_pooled_norm"),
         ]
         necessity_seed_index = {"unhinted_baseline": 0, f"fixednorm_proj_add_L{args.layer}": 90}
+    if args.fr1:
+        L = args.layer
+        arms = [
+            Arm("unhinted_baseline", "none", "none"),
+            Arm(f"fixednorm_proj_add_L{L}", "fixednorm_proj_add", "unhinted_baseline", (L,), 8, "class_mean_projected_fixed_pooled_norm"),
+            Arm(f"fixednorm_rank6rem_L{L}", "fixednorm_rank6rem", "unhinted_baseline", (L,), 8, "class_mean_projected_rank6_remainder_fixed_pooled_norm"),
+        ]
+        necessity_seed_index = {"unhinted_baseline": 0, f"fixednorm_proj_add_L{L}": 1, f"fixednorm_rank6rem_L{L}": 140}
+    if args.donor_ladder:
+        L = args.layer
+        arms = [Arm("unhinted_baseline", "none", "none")] + [
+            Arm(f"fixednorm_donor{n}_L{L}", f"fixednorm_donor{n}", "unhinted_baseline", (L,), 8, f"class_mean_projected_donor{n}_fixed_pooled_norm")
+            for n in (5, 10, 20, 40)
+        ]
+        necessity_seed_index = {"unhinted_baseline": 0}
+        necessity_seed_index.update({f"fixednorm_donor{n}_L{L}": 150 + i for i, n in enumerate((5, 10, 20, 40))})
     if args.necessity_site:
         L = args.layer
         arms = [
@@ -974,14 +1000,14 @@ def main() -> int:
         ]
         if args.selfaddress:
             arms.append(Arm("matched_bestofN_unsteered", "bestofn_unsteered", "unhinted_baseline"))
-    if args.necessity or args.necessity_prime or args.necessity_site or args.selfaddress or args.selfaddress_calibration or args.selfaddress_prime or args.selfaddress_loo or args.sjoc_m2:
+    if args.necessity or args.necessity_prime or args.necessity_site or args.fr1 or args.donor_ladder or args.selfaddress or args.selfaddress_calibration or args.selfaddress_prime or args.selfaddress_loo or args.sjoc_m2:
         if args.necessity_anchor:
             arms = build_necessity_anchor_arms(args.layer)
         elif args.necessity:
             arms, necessity_seed_index = build_necessity_arms(args.layer)
         elif args.necessity_prime:
             arms, necessity_seed_index = build_necessity_prime_arms(args.layer)
-        if args.necessity or args.necessity_site or args.selfaddress or args.selfaddress_calibration or args.selfaddress_prime or args.selfaddress_loo or args.sjoc_m2:
+        if args.necessity or args.necessity_site or args.fr1 or args.donor_ladder or args.selfaddress or args.selfaddress_calibration or args.selfaddress_prime or args.selfaddress_loo or args.sjoc_m2:
             row_means, capture_labels = load_capture_row_means(args.capture_npz, args.capture_manifest, args.layer)
             class_vector = class_vector_from_labels(row_means, capture_labels)
             print(f"necessity/selfaddress: |real|={np.linalg.norm(class_vector):.1f} anchor={args.necessity_anchor}", flush=True)
@@ -1162,7 +1188,7 @@ def main() -> int:
         return basis_cache[key]
 
     recon_norm_by_row: dict[int, float] = {}
-    if args.class_mean_b or args.class_mean_c or args.position_policy or (args.necessity and args.necessity_anchor) or args.selfaddress_prime or args.selfaddress_loo or args.sjoc_m2:
+    if args.class_mean_b or args.class_mean_c or args.position_policy or (args.necessity and args.necessity_anchor) or args.selfaddress_prime or args.selfaddress_loo or args.sjoc_m2 or args.fr1 or args.donor_ladder:
         for prep in prepared:
             if prep.get("row_class", "failing") != "failing":
                 continue
@@ -1394,6 +1420,8 @@ def main() -> int:
             for prep_index, prep in enumerate(prepared):
                 if (prep.get("row_class", "failing") == "correct") != arm.label.startswith("correct_"):
                     continue
+                if args.donor_ladder and prep_index >= 12:
+                    continue
                 seed_arm_index = necessity_seed_index.get(arm.label, arm_index)
                 torch.manual_seed(args.sample_seed + prep["source_row_index"] * 10007 + seed_arm_index * 101)
                 if arm.kind == "percand_fire":
@@ -1483,8 +1511,17 @@ def main() -> int:
                     )
                 elif arm.kind in {"fixednorm_allpos_add", "correct_fixednorm_add"}:
                     assert arm.rank_k is not None and class_vector is not None
-                    basis = basis_for(prep["source_row_index"], arm.rank_k)
+                    if arm.kind.startswith("fixednorm_donor"):
+                        n_donor = int(arm.kind.replace("fixednorm_donor", ""))
+                        pool = [r2 for r2 in sorted(delta_by_row) if r2 != prep["source_row_index"]]
+                        order = random.Random(20260818).sample(pool, len(pool))
+                        subset = {r2: delta_by_row[r2] for r2 in order[:n_donor]}
+                        basis = fit_pca_basis(subset, arm.rank_k)
+                    else:
+                        basis = basis_for(prep["source_row_index"], arm.rank_k)
                     components = basis["components"]
+                    if arm.kind == "fixednorm_rank6rem":
+                        components = components[2:]
                     direction = (class_vector @ components.T) @ components
                     rel_positions = prep["all_rel"] if arm.kind == "fixednorm_allpos_add" else prep["rel"]
                     tiled = np.tile(direction, (len(rel_positions), 1))
@@ -1508,10 +1545,19 @@ def main() -> int:
                             "mean_add_vector_norm": float(np.linalg.norm(vec, axis=1).mean()),
                         }
                     )
-                elif arm.kind in {"shuflabel_proj_add", "signflip_proj_add", "fixednorm_proj_add"}:
+                elif arm.kind in {"shuflabel_proj_add", "signflip_proj_add", "fixednorm_proj_add", "fixednorm_rank6rem"} or arm.kind.startswith("fixednorm_donor"):
                     assert arm.rank_k is not None and class_vector is not None
-                    basis = basis_for(prep["source_row_index"], arm.rank_k)
+                    if arm.kind.startswith("fixednorm_donor"):
+                        n_donor = int(arm.kind.replace("fixednorm_donor", ""))
+                        pool = [r2 for r2 in sorted(delta_by_row) if r2 != prep["source_row_index"]]
+                        order = random.Random(20260818).sample(pool, len(pool))
+                        subset = {r2: delta_by_row[r2] for r2 in order[:n_donor]}
+                        basis = fit_pca_basis(subset, arm.rank_k)
+                    else:
+                        basis = basis_for(prep["source_row_index"], arm.rank_k)
                     components = basis["components"]
+                    if arm.kind == "fixednorm_rank6rem":
+                        components = components[2:]
                     recon_pca = rank_k_reconstruction(prep["concept_delta"], basis).numpy().astype(np.float64)
                     if arm.kind == "shuflabel_proj_add":
                         source_vec = shuf_vectors[draw_index(arm.label) - 1]

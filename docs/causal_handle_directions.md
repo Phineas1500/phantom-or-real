@@ -2571,3 +2571,12 @@ suppression 18–57× at every layer (baseline mean |proj−target| 2.8/30.6/60.
 at L15/30/40/45/53 vs post-clamp max 0.05/0.91/2.30/3.52/5.94 — bf16
 quantization scale); moved mass equals baseline deviation. The clamp
 applied. Review concern 1 closed with data.
+
+**Riders launched (2026-08-18, late; pre-data notes):** F-R1 as
+registered (guard frame, anchor arm + rank-6 remainder at matched
+others-mean norm, seed indices 0/1/140). L-R2 amendment before any
+data: TEST rows capped at 12 (of the registered 16) to fit the
+cluster's 3-hour submit-filter wall — the donor POOL remains the full
+64-row L-frame preparation; donor subsets are seed-20260818 nested
+prefixes; seed indices 150–153; MDE correspondingly wider, stated at
+verdict.
