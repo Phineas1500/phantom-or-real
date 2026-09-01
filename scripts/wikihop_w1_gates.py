@@ -27,10 +27,10 @@ def boot_ci(values, seed=20260822, draws=4000):
 
 def main() -> int:
     p = argparse.ArgumentParser(description=__doc__)
-    p.add_argument("--jsonl", type=Path, default=Path("results/loop_screen/wikihop_w1.jsonl"))
+    p.add_argument("--jsonl", type=Path, nargs="+", default=[Path("results/loop_screen/wikihop_w1.jsonl")])
     p.add_argument("--out", type=Path, default=Path("docs/wikihop_w1_gates.json"))
     args = p.parse_args()
-    all_recs = [json.loads(l) for l in open(args.jsonl)]
+    all_recs = [json.loads(l) for f in args.jsonl for l in open(f)]
     layers = sorted({r["write_layer"] for r in all_recs})
     if len(layers) > 1:
         per_layer = {}
