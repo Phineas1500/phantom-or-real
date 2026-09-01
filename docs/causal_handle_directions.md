@@ -2690,7 +2690,7 @@ run in the same job as descriptive extras. Positive-control reading is on the pi
 a pass only on a literal rung is reported as the literal-ladder branch
 and re-registered before W2.
 
-**W1 job spec (launched only after this note is committed):** 12 rows
+**W1 job spec (launched after this note was committed at 2258f4e: job-yp5er, context ctx-13603f41, 2026-09-01 21:42 UTC):** 12 rows
 (seed 20260822: WH_dev_1021, 1499, 17, 1854, 1931, 194, 2623, 2892, 3676,
 4895, 583, 893); in-job k=8 baselines; gold fires k=4 at every rung
 (3 pinned + 3 literal); full per-candidate pass k=4 at the middle
