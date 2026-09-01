@@ -2789,7 +2789,10 @@ seeded non-gold candidates k=4 per row per layer, fresh k=8 baselines
 per layer; L30 at 0.5× re-run in the same job as a within-job anchor
 (descriptive). Requires one capture job (candidate-mention states +
 per-dim mean squares at the four layers; W0_WRITE_LAYERS) and one
-sweep job. Gauge: L38 for writes at 20/25/35 (downstream); for the L40
+sweep job. [Launched after the pins committed at ee933f9: capture
+job-pepj4 (pins: |v| 212/474/792/1129, bases 1,421/2,494/6,965/11,004
+at L20/25/35/40); sweep split into job-32zfc (L20/25/35 + L30 anchor,
+L38 gauge) and job-zjr7q (L40, L48 gauge), 2026-09-01 22:49 UTC.] Gauge: L38 for writes at 20/25/35 (downstream); for the L40
 write the W0-fitted **L48** gauge (CV 0.757) is read instead —
 descriptive only; the sweep's gate is the positive control (repair
 direction AND non-gold fingerprint CI > 0), which needs no gauge.
