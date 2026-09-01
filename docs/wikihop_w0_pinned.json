@@ -328,7 +328,72 @@
   ],
   "donor_vector": "gold-candidate mention-mean L30 state (case-insensitive span match, offset-mapping addressing)"
  },
- "sweep_layers": {},
+ "sweep_layers": {
+  "L20": {
+   "n_donors_per_class": [
+    127,
+    127
+   ],
+   "class_vector_norm": 212.0130278859942,
+   "massive_dims_excluded": [
+    2733,
+    104
+   ],
+   "massive_share_of_norm_sq": 0.987739095896909,
+   "base_norm_pinned": 1421.104793555676,
+   "literal_base_rms": 12793.5865024819,
+   "middle_rung_0.5x": 710.552396777838,
+   "cos_with_L30_class_vector": 0.5102956752806344
+  },
+  "L25": {
+   "n_donors_per_class": [
+    127,
+    127
+   ],
+   "class_vector_norm": 474.3439515852432,
+   "massive_dims_excluded": [
+    104,
+    2733
+   ],
+   "massive_share_of_norm_sq": 0.994199127675059,
+   "base_norm_pinned": 2493.777700229794,
+   "literal_base_rms": 32708.053851941684,
+   "middle_rung_0.5x": 1246.888850114897,
+   "cos_with_L30_class_vector": 0.6108127650406643
+  },
+  "L35": {
+   "n_donors_per_class": [
+    127,
+    127
+   ],
+   "class_vector_norm": 791.6061761619378,
+   "massive_dims_excluded": [
+    104,
+    2733
+   ],
+   "massive_share_of_norm_sq": 0.9714441267208679,
+   "base_norm_pinned": 6965.488375703825,
+   "literal_base_rms": 41176.539974509564,
+   "middle_rung_0.5x": 3482.7441878519126,
+   "cos_with_L30_class_vector": 0.7265261230675649
+  },
+  "L40": {
+   "n_donors_per_class": [
+    127,
+    127
+   ],
+   "class_vector_norm": 1128.9030079375916,
+   "massive_dims_excluded": [
+    104,
+    2733
+   ],
+   "massive_share_of_norm_sq": 0.9383948290281993,
+   "base_norm_pinned": 11003.876887305623,
+   "literal_base_rms": 44271.374244990846,
+   "middle_rung_0.5x": 5501.938443652812,
+   "cos_with_L30_class_vector": 0.6142090427775054
+  }
+ },
  "pools": {
   "failing_zero_of_8": [
    "WH_dev_755",
