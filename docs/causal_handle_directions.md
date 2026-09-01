@@ -2734,7 +2734,7 @@ states, per-position norms and per-dim mean squares at L20/25/35/40
 (ii) per-layer pins by scripts/wikihop_sweep_fit.py — class-mean from
 the SAME 127/127 donor sets W0 pinned, amplitude base = massive-dim-
 excluded per-position norm at that layer (W0's rule), middle rung =
-0.5 × base_L; (iii) one sweep job on the 12 W1 rows: for each write
+0.5 × base_L; (iii) one sweep job (job-erwpa, 2026-09-01 22:46 UTC) on the 12 W1 rows: for each write
 layer in {20, 25, 35, 40} plus L30 as a within-job anchor, fresh k=8
 baselines, gold fires k=4 and the same 3 seeded non-gold candidates
 k=4 (row seeds identical to W1, so the non-gold fingerprint is paired
