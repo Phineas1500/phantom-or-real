@@ -2712,3 +2712,41 @@ at the per-candidate rung (gold-branch − mean non-gold gauge score, CI
 sweep {20, 25, 35, 40} at the middle rung only if no pinned or literal
 rung passes (b) — re-registered before W2 (would need a fresh capture
 at those layers).
+
+### W1 gate outcomes + fallback layer sweep re-registered (2026-09-01, late — before any sweep data)
+
+**W1 (job-yp5er) outcomes, recorded before the fallback runs.** Delivery
+audit VALID on three channels (hook counters inside generate on all
+1,860 fired records; gauge shift under the write +0.8 to +1.5 for gold
+branches; output-channel perturbation with a negative fingerprint at
+the literal doses). **(b) POSITIVE CONTROL: FAIL at all six rungs** —
+gold repair 1/288 samples (dP +0.021 [0, +0.062] at 0.25×, 0 elsewhere);
+non-gold fingerprint lift 0.000 / +0.002 / −0.056 at the pinned rungs
+and −0.111 [−0.194, −0.028] at every literal rung. Outputs remain the
+baseline modal answer in 85–94% of samples at every dose. **(c)
+SELECTION SIGNAL: PASS** — +0.87 [+0.19, +1.60], n=12; argmax-gold
+3/12. Selector not demoted. Full readings: docs/wikihop_w1_summary.md.
+
+**Fallback (pre-named in the W registration) — layer sweep, now
+pinned:** (i) capture v6 on the 800-row frame: candidate mention-mean
+states, per-position norms and per-dim mean squares at L20/25/35/40
+(same forward, whole-word addressing, float32; no final-token capture);
+(ii) per-layer pins by scripts/wikihop_sweep_fit.py — class-mean from
+the SAME 127/127 donor sets W0 pinned, amplitude base = massive-dim-
+excluded per-position norm at that layer (W0's rule), middle rung =
+0.5 × base_L; (iii) one sweep job on the 12 W1 rows: for each write
+layer in {20, 25, 35, 40} plus L30 as a within-job anchor, fresh k=8
+baselines, gold fires k=4 and the same 3 seeded non-gold candidates
+k=4 (row seeds identical to W1, so the non-gold fingerprint is paired
+with W1's), no per-candidate pass; gauge read at **L43** (CV 0.775,
+downstream of every write layer including L40) — descriptive only.
+Gate per layer = positive control as registered (gold repair direction
+AND non-gold fingerprint lift CI > 0). A passing layer is pinned and
+W2 re-registered at that site (with a per-candidate selection pass at
+that site added to W2's first shard, since (c) was measured only at
+L30). If no layer passes: **W-WRITE-DOES-NOT-TRANSFER** lands as the
+verdict on the 10th prediction's lever-site bet; MDE from the sweep's
+CIs (fingerprint: 144 non-gold samples per layer, CI half-width ≈ 0.08
+at W1; repair: 48 gold samples per layer) stated at verdict.
+Descriptive additions declared now: L30 anchor re-run; gauge scores at
+L43 for every branch.

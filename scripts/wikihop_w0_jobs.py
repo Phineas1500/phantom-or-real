@@ -21,8 +21,9 @@ import re
 import time
 
 SYSTEM = "You are a careful reading assistant. Answer concisely."
-CAP_LAYERS = [38, 43, 48, 53]
-WRITE_LAYER = 30
+CAP_LAYERS = [int(x) for x in os.environ.get("W0_CAP_LAYERS", "38,43,48,53").split(",") if x.strip()]
+WRITE_LAYERS = [int(x) for x in os.environ.get("W0_WRITE_LAYERS", "30").split(",") if x.strip()]
+WRITE_LAYER = WRITE_LAYERS[0]
 
 
 def std_closed_prompts(r):
@@ -71,8 +72,10 @@ def main():
         print(f"model loaded ({time.time()-t0:.0f}s); n_layers={len(layers_mod)}", flush=True)
 
         final_states = {L: [] for L in CAP_LAYERS}
-        cand_vectors, manifest = [], []
-        sq_mean_all, sq_mean_cand = [], []
+        cand_vectors = {L: [] for L in WRITE_LAYERS}
+        manifest = []
+        sq_mean_all = {L: [] for L in WRITE_LAYERS}
+        sq_mean_cand = {L: [] for L in WRITE_LAYERS}
         for n_done, r in enumerate(rows):
             prompt = SYSTEM + "\n\n" + std_closed_prompts(r)["std"]
             msgs = [{"role": "user", "content": prompt}]
@@ -95,7 +98,7 @@ def main():
                     return out
                 return fn
             handles = [layers_mod[L].register_forward_hook(hook_for(L))
-                       for L in set(CAP_LAYERS + [WRITE_LAYER])]
+                       for L in set(CAP_LAYERS + WRITE_LAYERS)]
             try:
                 with torch.inference_mode():
                     model(input_ids=torch.tensor([ids], device=next(model.parameters()).device),
@@ -105,33 +108,37 @@ def main():
                     h.remove()
             for L in CAP_LAYERS:
                 final_states[L].append(store[L][-1].numpy().astype(np.float32))
-            pos_norms = store[WRITE_LAYER].norm(dim=-1).numpy()
             all_pos = sorted({p for ps in cand_positions.values() for p in ps})
-            sq_mean_all.append((store[WRITE_LAYER][1:] ** 2).mean(dim=0).numpy().astype(np.float32))
-            sq_mean_cand.append((store[WRITE_LAYER][all_pos] ** 2).mean(dim=0).numpy().astype(np.float32))
+            pos_norms = {L: store[L].norm(dim=-1).numpy() for L in WRITE_LAYERS}
+            for L in WRITE_LAYERS:
+                sq_mean_all[L].append((store[L][1:] ** 2).mean(dim=0).numpy().astype(np.float32))
+                sq_mean_cand[L].append((store[L][all_pos] ** 2).mean(dim=0).numpy().astype(np.float32))
             row_cands = []
             for cand, pos in cand_positions.items():
-                vec = store[WRITE_LAYER][pos].mean(dim=0).numpy().astype(np.float32)
-                row_cands.append({"candidate": cand, "n_positions": len(pos),
-                                  "vec_index": len(cand_vectors),
-                                  "mean_position_norm": float(pos_norms[pos].mean())})
-                cand_vectors.append(vec)
+                entry = {"candidate": cand, "n_positions": len(pos),
+                         "vec_index": len(cand_vectors[WRITE_LAYER]),
+                         "mean_position_norm": float(pos_norms[WRITE_LAYER][pos].mean()),
+                         "mean_position_norm_by_layer": {str(L): float(pos_norms[L][pos].mean()) for L in WRITE_LAYERS}}
+                for L in WRITE_LAYERS:
+                    cand_vectors[L].append(store[L][pos].mean(dim=0).numpy().astype(np.float32))
+                row_cands.append(entry)
             manifest.append({"id": r["id"], "answer": r["answer"], "n_tokens": len(ids),
-                             "mean_position_norm_excl_bos": float(pos_norms[1:].mean()),
+                             "mean_position_norm_excl_bos": float(pos_norms[WRITE_LAYER][1:].mean()),
                              "candidates": row_cands})
             if n_done % 50 == 0:
                 print(f"{n_done + 1}/{len(rows)} rows ({time.time()-t0:.0f}s)", flush=True)
         arrays = {f"L{L}_final": np.stack(final_states[L]) for L in CAP_LAYERS}
-        arrays["cand_L30"] = np.stack(cand_vectors)
-        arrays["L30_sq_mean_all"] = np.stack(sq_mean_all)
-        arrays["L30_sq_mean_cand"] = np.stack(sq_mean_cand)
+        for L in WRITE_LAYERS:
+            arrays[f"cand_L{L}"] = np.stack(cand_vectors[L])
+            arrays[f"L{L}_sq_mean_all"] = np.stack(sq_mean_all[L])
+            arrays[f"L{L}_sq_mean_cand"] = np.stack(sq_mean_cand[L])
         np.savez(os.path.join(outdir, "wikihop_w0_capture.npz"), **arrays)
         with open(os.path.join(outdir, "wikihop_w0_capture_manifest.json"), "w") as f:
             json.dump({"rows": manifest, "cap_layers": CAP_LAYERS,
-                       "write_layer": WRITE_LAYER, "dtype": "float32",
+                       "write_layer": WRITE_LAYER, "write_layers": WRITE_LAYERS, "dtype": "float32",
                        "addressing": "case-insensitive whole-word (no \\w on either side) span match via offset mapping"}, f)
-        summary = {"mode": mode, "n_rows": len(manifest),
-                   "n_cand_vectors": len(cand_vectors), "seconds": round(time.time() - t0)}
+        summary = {"mode": mode, "n_rows": len(manifest), "write_layers": WRITE_LAYERS,
+                   "n_cand_vectors": len(cand_vectors[WRITE_LAYER]), "seconds": round(time.time() - t0)}
 
     rp = os.environ.get("GMN_RESULT_PATH")
     if rp:

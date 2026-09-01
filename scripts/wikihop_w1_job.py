@@ -88,7 +88,8 @@ def main():
     t0 = time.time()
     outdir = os.environ.get("GMN_OUTPUT_DIR", "/tmp")
     seed0 = int(os.environ.get("W1_SEED", "20260822"))
-    write_layer = int(os.environ.get("W1_WRITE_LAYER", "30"))
+    write_layers = [int(x) for x in os.environ.get("W1_WRITE_LAYERS", os.environ.get("W1_WRITE_LAYER", "30")).split(",") if x.strip()]
+    run_percand = os.environ.get("W1_PERCAND", "1") == "1"
     rungs = env_float_list("W1_RUNGS", "0.25,0.5,1.0")
     percand_rung = float(os.environ.get("W1_PERCAND_RUNG", "0.5"))
     n_nongold_extra = int(os.environ.get("W1_NONGOLD_PER_RUNG", "3"))
@@ -100,20 +101,32 @@ def main():
 
     pinned = json.load(open(os.path.join(APP, "wikihop_w0_pinned.json")))
     z = np.load(os.path.join(APP, "wikihop_w0_pinned.npz"))
-    gauge_layer = int(z["gauge_layer"][0])
-    gw, gb, gmean = z["gauge_w"].astype(np.float64), float(z["gauge_b"][0]), z["gauge_mean"].astype(np.float64)
-    class_vec = z["class_vector"].astype(np.float64)
-    base_norm = float(z["base_norm"][0])
-    unit = class_vec / max(np.linalg.norm(class_vec), 1e-8)
-    assert gauge_layer > write_layer, "gauge must be strictly downstream of the write"
+    gauge_layer = int(os.environ.get("W1_GAUGE_LAYER", int(z["gauge_layer"][0])))
+    if f"gauge_w_L{gauge_layer}" in z:
+        gw, gb, gmean = z[f"gauge_w_L{gauge_layer}"].astype(np.float64), float(z[f"gauge_b_L{gauge_layer}"][0]), z[f"gauge_mean_L{gauge_layer}"].astype(np.float64)
+    else:
+        assert gauge_layer == int(z["gauge_layer"][0]), "no gauge stored for the requested layer"
+        gw, gb, gmean = z["gauge_w"].astype(np.float64), float(z["gauge_b"][0]), z["gauge_mean"].astype(np.float64)
+
+    def write_pins(L):
+        cv = z[f"class_vector_L{L}"] if f"class_vector_L{L}" in z else z["class_vector"]
+        bn = z[f"base_norm_L{L}"] if f"base_norm_L{L}" in z else z["base_norm"]
+        cv = cv.astype(np.float64)
+        return cv, cv / max(np.linalg.norm(cv), 1e-8), float(bn[0])
+    write_layer = write_layers[0]
+    class_vec, unit, base_norm = write_pins(write_layer)
+    gauge_downstream = all(gauge_layer > L for L in write_layers)
     frame = {}
     for line in gzip.open(os.path.join(APP, "wikihop_port_input.jsonl.gz"), "rt"):
         r = json.loads(line)
         frame[r["id"]] = r
     shard_index, shard_count = int(os.environ.get("W1_SHARD_INDEX", "0")), int(os.environ.get("W1_SHARD_COUNT", "1"))
     row_ids = pinned["pools"][rows_key][: int(os.environ.get("W1_MAX_ROWS", "10000"))][shard_index::shard_count]
-    print(f"rows={len(row_ids)} ({rows_key} shard {shard_index}/{shard_count}) write_layer=L{write_layer} gauge=L{gauge_layer} base_norm={base_norm:.3f} "
-          f"rungs={rungs} percand_rung={percand_rung} |class_vec|={np.linalg.norm(class_vec):.3f}", flush=True)
+    print(f"rows={len(row_ids)} ({rows_key} shard {shard_index}/{shard_count}) write_layers={write_layers} gauge=L{gauge_layer} "
+          f"(downstream of all writes: {gauge_downstream}) rungs={rungs} percand_rung={percand_rung} percand={run_percand}", flush=True)
+    for L in write_layers:
+        cv, _, bn = write_pins(L)
+        print(f"  L{L}: base_norm={bn:.3f} |class_vec|={np.linalg.norm(cv):.3f}", flush=True)
 
     from transformers import AutoTokenizer
     tok = AutoTokenizer.from_pretrained(MODEL)
@@ -174,84 +187,87 @@ def main():
     fout = open(os.path.join(outdir, "wikihop_w1.jsonl"), "w")
     row_summaries = []
     n_fired_branches = 0
-    for ri, rid in enumerate(row_ids):
-        r = frame[rid]
-        gold = r["answer"]
-        text = tok.apply_chat_template([{"role": "user", "content": SYSTEM + "\n\n" + std_closed_prompts(r)["std"]}],
-                                       tokenize=False, add_generation_prompt=True)
-        enc = tok(text, return_offsets_mapping=True, add_special_tokens=False)
-        ids, offsets = enc["input_ids"], enc["offset_mapping"]
-        cpos = candidate_positions(tok, text, offsets, r["candidates"])
-        assert gold in cpos, f"{rid}: gold candidate has no mention positions"
-        cands = sorted(cpos)
-        row_seed = seed0 + (ri * shard_count + shard_index) * 10007
-        b_state, b_norms = forward_capture(ids)
-        b_score = gauge_score(b_state)
-        all_pos = sorted({p for ps in cpos.values() for p in ps})
-        measured = {"mean_norm_all_positions": float(b_norms[1:].mean()),
-                    "mean_norm_candidate_positions": float(b_norms[all_pos].mean()),
-                    "mean_norm_gold_positions": float(b_norms[cpos[gold]].mean())}
+    for write_layer in write_layers:
+        class_vec, unit, base_norm = write_pins(write_layer)
+        for ri, rid in enumerate(row_ids):
+            r = frame[rid]
+            gold = r["answer"]
+            text = tok.apply_chat_template([{"role": "user", "content": SYSTEM + "\n\n" + std_closed_prompts(r)["std"]}],
+                                           tokenize=False, add_generation_prompt=True)
+            enc = tok(text, return_offsets_mapping=True, add_special_tokens=False)
+            ids, offsets = enc["input_ids"], enc["offset_mapping"]
+            cpos = candidate_positions(tok, text, offsets, r["candidates"])
+            assert gold in cpos, f"{rid}: gold candidate has no mention positions"
+            cands = sorted(cpos)
+            row_seed = seed0 + (ri * shard_count + shard_index) * 10007
+            b_state, b_norms = forward_capture(ids)
+            b_score = gauge_score(b_state)
+            all_pos = sorted({p for ps in cpos.values() for p in ps})
+            measured = {"mean_norm_all_positions": float(b_norms[1:].mean()),
+                        "mean_norm_candidate_positions": float(b_norms[all_pos].mean()),
+                        "mean_norm_gold_positions": float(b_norms[cpos[gold]].mean())}
 
-        def emit(condition, rung, fired, outputs, gscore, writer, sample_offset=0, gauge_writer=None):
-            nonlocal n_fired_branches
-            recs = []
-            for s, o in enumerate(outputs):
-                rec = {"id": rid, "row_ordinal": ri, "condition": condition, "rung": rung,
-                       "amplitude": None if rung is None else rung * base_norm,
-                       "fired_candidate": fired, "fired_is_gold": None if fired is None else fired == gold,
-                       "sample_index": sample_offset + s, "model_output": o,
-                       "normalized_output": normalize_answer(o),
-                       "correct": normalize_answer(o) == normalize_answer(gold),
-                       "answers_fired": None if fired is None else normalize_answer(o) == normalize_answer(fired),
-                       "gauge_score": gscore, "base_gauge_score": b_score,
-                       "n_fired_positions": None if fired is None else len(cpos[fired]),
-                       "hook_prefill_calls": None if writer is None else writer.prefill_calls,
-                       "hook_positions_written": None if writer is None else writer.positions_written,
-                       "gauge_forward_hook_calls": None if gauge_writer is None else gauge_writer.prefill_calls,
-                       "write_layer": write_layer, "gauge_layer": gauge_layer}
-                fout.write(json.dumps(rec, ensure_ascii=False) + "\n")
-                recs.append(rec)
-            if writer is not None:
-                n_fired_branches += 1
-                if writer.prefill_calls < 1 or writer.positions_written < 1:
-                    raise RuntimeError(f"{rid}/{condition}/{fired}: write hook did not fire inside generate "
-                                       f"(prefill_calls={writer.prefill_calls}) — execution-invalid")
-            return recs
+            def emit(condition, rung, fired, outputs, gscore, writer, sample_offset=0, gauge_writer=None):
+                nonlocal n_fired_branches
+                recs = []
+                for s, o in enumerate(outputs):
+                    rec = {"id": rid, "row_ordinal": ri, "condition": condition, "rung": rung,
+                           "amplitude": None if rung is None else rung * base_norm,
+                           "fired_candidate": fired, "fired_is_gold": None if fired is None else fired == gold,
+                           "sample_index": sample_offset + s, "model_output": o,
+                           "normalized_output": normalize_answer(o),
+                           "correct": normalize_answer(o) == normalize_answer(gold),
+                           "answers_fired": None if fired is None else normalize_answer(o) == normalize_answer(fired),
+                           "gauge_score": gscore, "base_gauge_score": b_score,
+                           "n_fired_positions": None if fired is None else len(cpos[fired]),
+                           "hook_prefill_calls": None if writer is None else writer.prefill_calls,
+                           "hook_positions_written": None if writer is None else writer.positions_written,
+                           "gauge_forward_hook_calls": None if gauge_writer is None else gauge_writer.prefill_calls,
+                           "write_layer": write_layer, "gauge_layer": gauge_layer}
+                    fout.write(json.dumps(rec, ensure_ascii=False) + "\n")
+                    recs.append(rec)
+                if writer is not None:
+                    n_fired_branches += 1
+                    if writer.prefill_calls < 1 or writer.positions_written < 1:
+                        raise RuntimeError(f"{rid}/{condition}/{fired}: write hook did not fire inside generate "
+                                           f"(prefill_calls={writer.prefill_calls}) — execution-invalid")
+                return recs
 
-        base_out = []
-        for chunk in range(0, k_base, k_fire):
-            base_out += generate(ids, min(k_fire, k_base - chunk), row_seed + chunk)
-        emit("baseline", None, None, base_out, b_score, None)
+            base_out = []
+            for chunk in range(0, k_base, k_fire):
+                base_out += generate(ids, min(k_fire, k_base - chunk), row_seed + chunk)
+            emit("baseline", None, None, base_out, b_score, None)
 
-        def fire(condition, rung, cand, seed):
-            vec = torch.from_numpy((unit * rung * base_norm).astype(np.float32))
-            w_g = Writer(vec, cpos[cand])
-            s_state, _ = forward_capture(ids, writer=w_g)
-            w = Writer(vec, cpos[cand])
-            outs = generate(ids, k_fire, seed, writer=w)
-            return emit(condition, rung, cand, outs, gauge_score(s_state), w, gauge_writer=w_g)
+            def fire(condition, rung, cand, seed):
+                vec = torch.from_numpy((unit * rung * base_norm).astype(np.float32))
+                w_g = Writer(vec, cpos[cand])
+                s_state, _ = forward_capture(ids, writer=w_g)
+                w = Writer(vec, cpos[cand])
+                outs = generate(ids, k_fire, seed, writer=w)
+                return emit(condition, rung, cand, outs, gauge_score(s_state), w, gauge_writer=w_g)
 
-        rng = np.random.default_rng(row_seed)
-        nongold = [c for c in cands if c != gold]
-        extra = [nongold[i] for i in rng.choice(len(nongold), size=min(n_nongold_extra, len(nongold)), replace=False)] if nongold else []
-        for gi, rung in enumerate(rungs):
-            fire("gold_ladder", rung, gold, row_seed + 1000 + gi)
-            if rung != percand_rung:
-                for ei, c in enumerate(extra):
-                    fire("nongold_ladder", rung, c, row_seed + 2000 + gi * 50 + ei)
-        for ci, c in enumerate(cands):
-            fire("percand", percand_rung, c, row_seed + 5000 + ci)
-        fout.flush()
-        row_summaries.append({"id": rid, "n_tokens": len(ids), "n_candidates": len(cands),
-                              "n_candidates_in_list": len(r["candidates"]), "gold_positions": len(cpos[gold]),
-                              "base_gauge_score": b_score, **measured})
-        print(f"row {ri+1}/{len(row_ids)} {rid}: {len(cands)} cands, {len(ids)} tokens, gold pos {len(cpos[gold])} "
-              f"({time.time()-t0:.0f}s)", flush=True)
+            rng = np.random.default_rng(row_seed)
+            nongold = [c for c in cands if c != gold]
+            extra = [nongold[i] for i in rng.choice(len(nongold), size=min(n_nongold_extra, len(nongold)), replace=False)] if nongold else []
+            for gi, rung in enumerate(rungs):
+                fire("gold_ladder", rung, gold, row_seed + 1000 + gi)
+                if rung != percand_rung:
+                    for ei, c in enumerate(extra):
+                        fire("nongold_ladder", rung, c, row_seed + 2000 + gi * 50 + ei)
+            if run_percand:
+                for ci, c in enumerate(cands):
+                    fire("percand", percand_rung, c, row_seed + 5000 + ci)
+            fout.flush()
+            row_summaries.append({"id": rid, "write_layer": write_layer, "n_tokens": len(ids), "n_candidates": len(cands),
+                                  "n_candidates_in_list": len(r["candidates"]), "gold_positions": len(cpos[gold]),
+                                  "base_gauge_score": b_score, **measured})
+            print(f"L{write_layer} row {ri+1}/{len(row_ids)} {rid}: {len(cands)} cands, {len(ids)} tokens, gold pos {len(cpos[gold])} "
+                  f"({time.time()-t0:.0f}s)", flush=True)
     fout.close()
 
     summary = {"n_rows": len(row_ids), "rows_key": rows_key, "shard_index": shard_index, "shard_count": shard_count,
-               "n_fired_branches": n_fired_branches, "write_layer": write_layer,
-               "gauge_layer": gauge_layer, "base_norm_pinned": base_norm, "rungs": rungs,
+               "n_fired_branches": n_fired_branches, "write_layers": write_layers, "gauge_downstream_of_all_writes": gauge_downstream,
+               "gauge_layer": gauge_layer, "base_norm_by_layer": {str(L): write_pins(L)[2] for L in write_layers}, "rungs": rungs,
                "percand_rung": percand_rung, "seed": seed0, "rows": row_summaries,
                "seconds": round(time.time() - t0)}
     with open(os.path.join(outdir, "wikihop_w1_summary.json"), "w") as f:
