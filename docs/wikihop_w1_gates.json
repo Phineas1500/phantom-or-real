@@ -1,0 +1,159 @@
+{
+ "n_rows": 12,
+ "delivery_audit": {
+  "n_fired_records": 1860,
+  "n_zero_prefill_hook_calls": 0,
+  "n_zero_positions_written": 0,
+  "n_gauge_forward_unhooked": 0,
+  "valid": true
+ },
+ "per_rung": {
+  "0.25": {
+   "n_rows_gold": 12,
+   "gold_correct_rate": 0.020833333333333332,
+   "baseline_correct_rate": 0.0,
+   "dP_gold": 0.020833333333333332,
+   "dP_gold_ci": [
+    0.0,
+    0.0625
+   ],
+   "repair_direction": true,
+   "n_rows_nongold": 12,
+   "n_nongold_fires": 36,
+   "nongold_answers_fired_rate": 0.1111111111111111,
+   "fingerprint_lift": 0.0,
+   "fingerprint_lift_ci": [
+    0.0,
+    0.0
+   ],
+   "fingerprint_pass": false,
+   "positive_control_pass": false
+  },
+  "0.5": {
+   "n_rows_gold": 12,
+   "gold_correct_rate": 0.0,
+   "baseline_correct_rate": 0.0,
+   "dP_gold": 0.0,
+   "dP_gold_ci": [
+    0.0,
+    0.0
+   ],
+   "repair_direction": false,
+   "n_rows_nongold": 12,
+   "n_nongold_fires": 201,
+   "nongold_answers_fired_rate": 0.04975124378109453,
+   "fingerprint_lift": 0.0015432098765432098,
+   "fingerprint_lift_ci": [
+    0.0,
+    0.004629629629629629
+   ],
+   "fingerprint_pass": false,
+   "positive_control_pass": false
+  },
+  "1.0": {
+   "n_rows_gold": 12,
+   "gold_correct_rate": 0.0,
+   "baseline_correct_rate": 0.0,
+   "dP_gold": 0.0,
+   "dP_gold_ci": [
+    0.0,
+    0.0
+   ],
+   "repair_direction": false,
+   "n_rows_nongold": 12,
+   "n_nongold_fires": 36,
+   "nongold_answers_fired_rate": 0.05555555555555555,
+   "fingerprint_lift": -0.05555555555555555,
+   "fingerprint_lift_ci": [
+    -0.13888888888888887,
+    0.0
+   ],
+   "fingerprint_pass": false,
+   "positive_control_pass": false
+  },
+  "1.7221": {
+   "n_rows_gold": 12,
+   "gold_correct_rate": 0.0,
+   "baseline_correct_rate": 0.0,
+   "dP_gold": 0.0,
+   "dP_gold_ci": [
+    0.0,
+    0.0
+   ],
+   "repair_direction": false,
+   "n_rows_nongold": 12,
+   "n_nongold_fires": 36,
+   "nongold_answers_fired_rate": 0.0,
+   "fingerprint_lift": -0.1111111111111111,
+   "fingerprint_lift_ci": [
+    -0.19444444444444445,
+    -0.027777777777777776
+   ],
+   "fingerprint_pass": false,
+   "positive_control_pass": false
+  },
+  "3.4443": {
+   "n_rows_gold": 12,
+   "gold_correct_rate": 0.0,
+   "baseline_correct_rate": 0.0,
+   "dP_gold": 0.0,
+   "dP_gold_ci": [
+    0.0,
+    0.0
+   ],
+   "repair_direction": false,
+   "n_rows_nongold": 12,
+   "n_nongold_fires": 36,
+   "nongold_answers_fired_rate": 0.0,
+   "fingerprint_lift": -0.1111111111111111,
+   "fingerprint_lift_ci": [
+    -0.19444444444444445,
+    -0.027777777777777776
+   ],
+   "fingerprint_pass": false,
+   "positive_control_pass": false
+  },
+  "6.8886": {
+   "n_rows_gold": 12,
+   "gold_correct_rate": 0.0,
+   "baseline_correct_rate": 0.0,
+   "dP_gold": 0.0,
+   "dP_gold_ci": [
+    0.0,
+    0.0
+   ],
+   "repair_direction": false,
+   "n_rows_nongold": 12,
+   "n_nongold_fires": 36,
+   "nongold_answers_fired_rate": 0.0,
+   "fingerprint_lift": -0.1111111111111111,
+   "fingerprint_lift_ci": [
+    -0.19444444444444445,
+    -0.027777777777777776
+   ],
+   "fingerprint_pass": false,
+   "positive_control_pass": false
+  }
+ },
+ "selection_signal": {
+  "rung": 0.5,
+  "n_rows": 12,
+  "gold_minus_nongold_gauge": 0.8690771845332104,
+  "ci": [
+   0.18978357287646241,
+   1.5990379786839408
+  ],
+  "argmax_is_gold": 3,
+  "pass": true
+ },
+ "gauge_select_dP_descriptive": {
+  "mean": 0.0,
+  "ci": [
+   0.0,
+   0.0
+  ]
+ },
+ "rungs_passing_positive_control": [],
+ "pinned_rung_for_w2": null,
+ "selector_demoted_to_descriptive": false
+}
