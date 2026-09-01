@@ -69,6 +69,9 @@ def main() -> int:
     p.add_argument("--out-npz", type=Path, default=Path("results/loop_screen/wikihop_w0_pinned.npz"))
     p.add_argument("--out-json", type=Path, default=Path("docs/wikihop_w0_pinned.json"))
     p.add_argument("--w1-rows", type=int, default=12)
+    p.add_argument("--sweep-capture", type=Path, default=None,
+                   help="multi-layer candidate capture npz (W0_WRITE_LAYERS job); adds class_vector_L*/base_norm_L* pins")
+    p.add_argument("--sweep-manifest", type=Path, default=None)
     args = p.parse_args()
 
     frame = {}
@@ -208,9 +211,42 @@ def main() -> int:
     with args.out_rows.open("w") as f:
         for r in rows:
             f.write(json.dumps(r, ensure_ascii=False) + "\n")
+    extra = {}
+    for L in CAP_LAYERS:
+        wL, bL, mL = fit_full(cap[f"L{L}_final"][sel].astype(np.float64), y)
+        extra[f"gauge_w_L{L}"], extra[f"gauge_b_L{L}"], extra[f"gauge_mean_L{L}"] = wL, np.array([bL]), mL
+    sweep = {}
+    if args.sweep_capture is not None:
+        scap = np.load(args.sweep_capture)
+        sman = json.load(open(args.sweep_manifest))
+        assert [m["id"] for m in sman["rows"]] == order, "sweep manifest order != frame order"
+        for L in sman["write_layers"]:
+            vecs = scap[f"cand_L{L}"].astype(np.float64)
+            fin = np.isfinite(vecs).all(axis=1)
+            gv = {}
+            for m in sman["rows"]:
+                for c in m["candidates"]:
+                    if c["candidate"] == frame[m["id"]]["answer"] and fin[c["vec_index"]]:
+                        gv[m["id"]] = vecs[c["vec_index"]]
+            pos_b = [i for i in donors_pos_b if i in gv]
+            neg_b = [i for i in donors_neg_b if i in gv]
+            cvL = np.stack([gv[i] for i in pos_b]).mean(0) - np.stack([gv[i] for i in neg_b]).mean(0)
+            sqL = scap[f"L{L}_sq_mean_cand"].astype(np.float64)
+            pooledL = sqL.mean(axis=0)
+            massiveL = [int(d) for d in np.argsort(-pooledL)[:16] if pooledL[d] / pooledL.sum() > 0.05]
+            keepL = np.ones(sqL.shape[1], dtype=bool)
+            keepL[massiveL] = False
+            baseL = float(np.sqrt(sqL[:, keepL].sum(axis=1)).mean())
+            litL = float(np.sqrt(sqL.sum(axis=1)).mean())
+            extra[f"class_vector_L{L}"], extra[f"base_norm_L{L}"] = cvL, np.array([baseL])
+            sweep[f"L{L}"] = {"n_donors_per_class": [len(pos_b), len(neg_b)], "class_vector_norm": float(np.linalg.norm(cvL)),
+                              "massive_dims_excluded": massiveL, "massive_share_of_norm_sq": float(1 - pooledL[keepL].sum() / pooledL.sum()),
+                              "base_norm_pinned": baseL, "literal_base_rms": litL, "middle_rung_0.5x": 0.5 * baseL,
+                              "cos_with_L30_class_vector": float(cvL @ class_vec / (np.linalg.norm(cvL) * np.linalg.norm(class_vec) + 1e-12))}
+            print(f"sweep L{L}: |cv|={np.linalg.norm(cvL):.1f} base={baseL:.1f} (literal {litL:.1f}, massive {massiveL})", flush=True)
     np.savez(args.out_npz, gauge_w=w, gauge_b=np.array([b]), gauge_mean=mean, gauge_layer=np.array([primary]),
              gauge_cv_auc=np.array([gauge[L] for L in CAP_LAYERS]), cap_layers=np.array(CAP_LAYERS),
-             class_vector=class_vec, base_norm=np.array([base_norm]), write_layer=np.array([man["write_layer"]]))
+             class_vector=class_vec, base_norm=np.array([base_norm]), write_layer=np.array([man["write_layer"]]), **extra)
     pinned = {"registered": "docs/causal_handle_directions.md item W (2026-08-19)",
               "frame_seed": SEED_FRAME, "w1_seed": SEED_W1,
               "behavior": behavior,
@@ -221,6 +257,7 @@ def main() -> int:
                         "recipe": "center + liblinear logistic C=1.0, StratifiedKFold(5, shuffle, seed 20260821); ties (4/8) excluded"},
               "write": {**write, "donors_correct": donors_pos_b, "donors_incorrect": donors_neg_b,
                         "donor_vector": "gold-candidate mention-mean L30 state (case-insensitive span match, offset-mapping addressing)"},
+              "sweep_layers": sweep,
               "pools": {"failing_zero_of_8": failing, "doc_dependent_failing": doc_dep,
                         "w1_rows": w1_rows, "w2_pool": w2_pool, "n_w2_pool": len(w2_pool)},
               "artifacts": {"rows": str(args.out_rows), "npz": str(args.out_npz)}}
