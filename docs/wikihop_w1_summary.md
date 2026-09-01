@@ -1,62 +1,64 @@
-# Item W1 — calibration landed: the L30 write does not move WikiHop answers at any dose; the gauge still separates the gold branch (2026-09-01)
+# Item W1 — WikiHop calibration: the write does not steer, the gauge still reads (2026-09-01)
 
-Registered: docs/causal_handle_directions.md item W + the W1 pre-launch note.
-Job **job-yp5er** (mission wikihop-loop-port, H100, 931 s). 12 seeded
-doc-dependent failing rows (seed 20260822), in-job k=8 baselines, gold fires
-k=4 at six rungs (pinned {0.25, 0.5, 1.0} × 4,737 and literal {1.72, 3.44,
-6.89} × 4,737 = {8.2k, 16.3k, 32.6k}), 3 seeded non-gold fires k=4 at every
-non-middle rung, full per-candidate pass k=4 at the middle rung (0.5× =
-2,368; 213 candidates). Write at L30 on every whole-word mention position
-of the fired candidate; gauge read at L38 under the write. Row-level:
-`results/loop_screen/wikihop_w1.jsonl` (1,860 fired records + 96 baseline);
-gates: `docs/wikihop_w1_gates.json` (`scripts/wikihop_w1_gates.py`).
+Registered: docs/causal_handle_directions.md item W + the W0/W1 pre-launch
+note. Job **job-yp5er** (mission wikihop-loop-port, H100, 931 s). 12 seeded
+doc-dependent failing rows (seed 20260822), Gemma-3-27B bf16 HF pathway,
+write = gold-mention L30 class-mean direction (|v| 558) added at every
+whole-word mention position of the fired candidate, gauge = W0's L38
+logistic read at the final prompt token under the write. Row-level:
+`results/loop_screen/wikihop_w1.jsonl` (1,956 records); reader
+`scripts/wikihop_w1_gates.py` → `docs/wikihop_w1_gates.json`.
 
-## Delivery audit (independent channels)
+## Delivery audit (three independent channels)
+1. **Hook counters inside `generate`:** all 1,860 fired records show ≥1
+   prefill application with the expected number of positions written
+   (the L-series bug class is excluded by construction — a zero aborts
+   the job).
+2. **Gauge channel:** the L38 final-token gauge moves under the write —
+   gold-branch score minus baseline +0.78 / +1.36 / +1.52 at 0.25 / 0.5 /
+   1.0× base; non-gold +0.19 / +0.21 / +0.77.
+3. **Output channel:** at the literal top rung (32.6k per position) the
+   output distribution shifts away from baseline (fingerprint lift −0.11,
+   CI excludes 0) — the write reaches generation.
 
-| channel | reading |
-|---|---|
-| hook counters inside `generate` | 1,860/1,860 fired records: ≥1 prefill application, positions written = mention positions; gauge forward hooked on every branch |
-| gauge shift under the write (L38, final token) | gold branch +0.78 / +1.36 / +1.52 / +0.77 / +1.21 / −0.29 vs baseline across the six rungs; non-gold +0.19 … +1.38 |
-| output channel | outputs differ from the baseline modal answer in 6–15% of samples; at the literal rungs the fingerprint lift is −0.111 [−0.194, −0.028] (the fired non-gold candidate is answered *less* than at baseline) |
+## Gates
+| rung (× base 4,737) | per-position norm | gold correct (k=4×12) | baseline | non-gold answers-fired | fingerprint lift [CI] | positive control |
+|---|---|---|---|---|---|---|
+| 0.25 | 1,184 | 0.021 | 0.000 | 0.111 | 0.000 [0, 0] | fail |
+| 0.5 (per-candidate pass) | 2,368 | 0.000 | 0.000 | 0.050 | +0.002 [0, +0.005] | fail |
+| 1.0 | 4,737 | 0.000 | 0.000 | 0.056 | −0.056 [−0.139, 0] | fail |
+| 1.72 (literal 0.25×) | 8,158 | 0.000 | 0.000 | 0.000 | −0.111 [−0.194, −0.028] | fail |
+| 3.44 (literal 0.5×) | 16,315 | 0.000 | 0.000 | 0.000 | −0.111 [−0.194, −0.028] | fail |
+| 6.89 (literal 1.0×) | 32,630 | 0.000 | 0.000 | 0.000 | −0.111 [−0.194, −0.028] | fail |
 
-The write reaches the late layers and perturbs generation; the null below is
-not a hook-scope failure.
+**(b) POSITIVE CONTROL: FAIL at every rung.** One gold sample in 288 is
+correct. The non-gold "answers-fired" hits are all candidates the model
+already answers at baseline (lift 0); at the literal doses even those
+disappear. Outputs remain the baseline modal answer 85–94% of the time at
+every dose — no degeneration, no steering.
 
-## Gate (b) — POSITIVE CONTROL: FAIL at every rung
+**(c) SELECTION SIGNAL: PASS.** At 0.5×, gold-branch gauge minus mean
+non-gold gauge = **+0.87 [+0.19, +1.60]** (row bootstrap, n = 12);
+argmax-gold 3/12 (chance ≈ 1/18); gold gauge rank ≤ 2 in 6/12 rows.
+Descriptive gauge-select dP = 0 (nothing to select among: no branch
+answers differently).
 
-| rung (norm) | gold correct (k=4) | baseline | dP gold [CI] | non-gold answers-fired | fingerprint lift [CI] |
-|---|---|---|---|---|---|
-| 0.25× (1,184) | 0.021 | 0.000 | +0.021 [0, +0.062] | 0.111 | 0.000 [0, 0] |
-| 0.5× (2,368) | 0.000 | 0.000 | 0 | 0.050 | +0.002 [0, +0.005] |
-| 1.0× (4,737) | 0.000 | 0.000 | 0 | 0.056 | −0.056 [−0.139, 0] |
-| 1.72× (8.2k) literal | 0.000 | 0.000 | 0 | 0.000 | −0.111 [−0.194, −0.028] |
-| 3.44× (16.3k) literal | 0.000 | 0.000 | 0 | 0.000 | −0.111 [−0.194, −0.028] |
-| 6.89× (32.6k) literal | 0.000 | 0.000 | 0 | 0.000 | −0.111 [−0.194, −0.028] |
+## Reading
+The InAbHyD lever site is **readable but not steerable** on WikiHop: the
+class-mean write at candidate mentions changes what the L38 gauge sees
+(gold more than non-gold — the read half of the loop transfers), but the
+sampled answer is pinned to the model's baseline commitment across a
+28× range of doses (2× the natural class-mean difference up to 7× the
+full state norm). The baseline is extremely committed (95.8% of baseline
+samples equal the modal answer; the modal answer is never gold on these
+rows), which is the regime the screening selected for and the regime where
+the InAbHyD write worked — so the null is not a power artifact of the
+baseline (MDE for gold repair ≈ 0.10 at n = 12 × k = 4; observed 0.021).
 
-One gold hit in 288 gold-fire samples. The non-gold "answers-fired" rate at
-the low rungs is entirely the candidates the model already answers at
-baseline (lift = 0): firing a candidate never makes the model say it.
-Baseline texture: the modal answer carries 95.8% of baseline samples, is a
-listed candidate in 9/12 rows, and is never gold; under the write the
-output stays that modal answer in 85–94% of samples at every rung, including
-32.6k. Gemma-3-27B's WikiHop commitment is not addressable by the
-mention-position class-mean write at this site, at doses from 2× the natural
-class-mean difference up to the full state norm.
-
-## Gate (c) — SELECTION SIGNAL: PASS
-
-Gold-branch minus mean non-gold gauge score at the middle rung: **+0.87
-[+0.19, +1.60]** (n = 12); argmax-gold 3/12 (candidate lists average 18);
-gold gauge rank ≤ 2 in 6/12 rows. The gauge reads the addressed candidate's
-correctness from the steered state even though the sampled answer does not
-change — the readable half transfers, the steerable half does not.
-Descriptive gauge-select dP = 0 (no branch of any row is ever correct).
-
-## Registered consequence
-
-No rung passes (b) → the pre-named fallback applies: one mini layer sweep
-{20, 25, 35, 40} at the middle rung, re-registered before W2 (registry note
-of 2026-09-01, late). If that also fails, **W-WRITE-DOES-NOT-TRANSFER** is
-the landed verdict for the 10th prediction's lever-site bet, with the MDE
-stated. The selector is NOT demoted (c passed), which matters only if a
-write site is found.
+## Consequence (pre-named)
+No rung can be pinned for W2. The registered fallback runs next: a mini
+layer sweep at write layers {20, 25, 35, 40} at the middle rung (0.5× that
+layer's massive-dim-excluded per-position norm), same rows, same donor
+recipe per layer, L30 re-run as a within-job anchor. If no layer passes the
+positive control, the landed verdict is **W-WRITE-DOES-NOT-TRANSFER** and
+W2 does not launch. Registry: the W1 gate-outcome note.
