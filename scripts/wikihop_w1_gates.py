@@ -30,7 +30,22 @@ def main() -> int:
     p.add_argument("--jsonl", type=Path, default=Path("results/loop_screen/wikihop_w1.jsonl"))
     p.add_argument("--out", type=Path, default=Path("docs/wikihop_w1_gates.json"))
     args = p.parse_args()
-    recs = [json.loads(l) for l in open(args.jsonl)]
+    all_recs = [json.loads(l) for l in open(args.jsonl)]
+    layers = sorted({r["write_layer"] for r in all_recs})
+    if len(layers) > 1:
+        per_layer = {}
+        for L in layers:
+            per_layer[str(L)] = gates_for([r for r in all_recs if r["write_layer"] == L])
+        out = {"write_layers": layers, "per_layer": per_layer,
+               "layers_passing_positive_control": [L for L in per_layer if per_layer[L]["rungs_passing_positive_control"]]}
+    else:
+        out = gates_for(all_recs)
+    args.out.write_text(json.dumps(out, indent=1) + "\n")
+    print(json.dumps(out, indent=1))
+    return 0
+
+
+def gates_for(recs):
     rows = sorted({r["id"] for r in recs})
     base = defaultdict(list)
     for r in recs:
@@ -121,9 +136,7 @@ def main() -> int:
            "pinned_rung_for_w2": (percand[0]["rung"] if (percand and str(percand[0]["rung"]) in passing)
                                   else (float(passing[0]) if passing else None)),
            "selector_demoted_to_descriptive": not selection["pass"]}
-    args.out.write_text(json.dumps(out, indent=1) + "\n")
-    print(json.dumps(out, indent=1))
-    return 0
+    return out
 
 
 def r_norm(s):

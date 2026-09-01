@@ -2728,7 +2728,7 @@ SELECTION SIGNAL: PASS** — +0.87 [+0.19, +1.60], n=12; argmax-gold
 3/12. Selector not demoted. Full readings: docs/wikihop_w1_summary.md.
 
 **Fallback (pre-named in the W registration) — layer sweep, now
-pinned:** (i) capture v6 on the 800-row frame: candidate mention-mean
+pinned:** (i) capture v6 (job-jj4fc) on the 800-row frame: candidate mention-mean
 states, per-position norms and per-dim mean squares at L20/25/35/40
 (same forward, whole-word addressing, float32; no final-token capture);
 (ii) per-layer pins by scripts/wikihop_sweep_fit.py — class-mean from
