@@ -2647,3 +2647,68 @@ scope sentence lands); SELECTOR-FAILS/WEAK; selector-write
 interference; gold-instability. On PRIMARY PASS: fresh-draw
 replication obligation on a disjoint dev draw (access-independent —
 this lane survives Scholar).
+
+### W0 landed + W1 pre-launch pins (2026-09-01, before any W1 data)
+
+**W0 jobs:** grade job-73kjw (v3 resubmission; the 2026-08-19 launch
+job-uch77/job-s3afv failed on a gated-repo 401, fixed via the org
+`hf-token` secret in the job env). Capture: job-a2zut (v5, THE PIN).
+Two capture corrections were made before any fit was pinned, each on an
+independent execution-quality channel: (1) v3 (job-ren8t) stored float16
+and the run log carried an overflow warning — the artifact had non-finite
+entries and finite maxima at the float16 ceiling (Gemma's residual
+stream has entries to 6×10⁴); v4/v5 store float32. (2) The v3/v4
+substring mention regex matched sub-word spans ('hawaii' in 'hawaiian')
+for 104/800 gold candidates (manifest position counts); v5 addresses
+whole-word matches. No fit result was voided; the pins are v5's.
+Full numbers: docs/wikihop_w0_summary.md.
+
+**Behavior (final):** std 0.463 / closed 0.457 (exact match; containment
+0.467 / 0.464) — contamination heavier than the screening's 0.483:
+memory answers ~46% of the frame. FAILING (0/8) = 415 rows;
+DOC-DEPENDENT FAILING = **299 rows (≥150 ✓)**. Labels bimodal (415 at
+0/8, 350 at 8/8, 35 between).
+
+**Natural gate (final): PASS** — 5-fold CV AUC L38 0.776 / L43 0.775 /
+L48 0.757 / L53 0.750; primary = **L38** (argmax), strictly downstream of
+the L30 write.
+
+**Write pin:** gold-candidate mention-mean L30 class-mean, 127 vs 127
+balanced donors outside the doc-dependent pool (seed 20260821);
+|class vector| 558.
+
+**Amplitude base — operationalization pinned pre-data.** The registered
+base ("mean per-position L30 state norm") measures 32,630 at mention
+positions, but 98.0% of that norm² is two massive-activation dims
+(104, 2733) that the write direction does not use. The massive-dim-
+excluded per-position RMS norm is **4,737**, within 1.3× of the closed
+loop's Gemma-L30 anchor dose (fixed_norm_target 3,708), which the ladder
+brackets. PINNED base = 4,737; registered ladder {0.25, 0.5, 1.0}× =
+{1,184, 2,368, 4,737}. The literal reading is NOT discarded: rungs at the
+literal {0.25, 0.5, 1.0} × 32,630 (= 1.72 / 3.44 / 6.89 × pinned base)
+run in the same job as descriptive extras. Positive-control reading is on the pinned ladder;
+a pass only on a literal rung is reported as the literal-ladder branch
+and re-registered before W2.
+
+**W1 job spec (launched only after this note is committed):** 12 rows
+(seed 20260822: WH_dev_1021, 1499, 17, 1854, 1931, 194, 2623, 2892, 3676,
+4895, 583, 893); in-job k=8 baselines; gold fires k=4 at every rung
+(3 pinned + 3 literal); full per-candidate pass k=4 at the middle
+pinned rung (0.5× = 2,368); extra telemetry beyond the registration:
+3 seeded non-gold candidates fired (k=4) at every non-middle rung so the
+delivery fingerprint is readable per rung. Write = class-vector
+direction × rung norm added at every whole-word mention position of the
+fired candidate (all batch rows, prefill only); gauge read at L38 final
+token under the write. Delivery is verified per branch by hook counters
+inside `generate` (prefill applications and positions written); a
+branch with zero applications aborts the job (the L-series bug class,
+now a hard execution check). Reader: scripts/wikihop_w1_gates.py.
+Gates as registered: (b) positive control per rung = gold repair
+direction (gold k=4 correct rate − in-job baseline rate > 0) AND the
+in-frame fingerprint at non-gold fires (answers-fired rate minus that
+candidate's baseline rate, row-bootstrap CI > 0); (c) selection signal
+at the per-candidate rung (gold-branch − mean non-gold gauge score, CI
+> 0; FAIL demotes the selector to descriptive for W2). Fallback layer
+sweep {20, 25, 35, 40} at the middle rung only if no pinned or literal
+rung passes (b) — re-registered before W2 (would need a fresh capture
+at those layers).
