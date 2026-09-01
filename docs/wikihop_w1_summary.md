@@ -107,3 +107,21 @@ its gauge/selection half transfers (natural gate 0.776, selection signal
 result was voided; the capture corrections (float16 → float32, substring →
 whole-word addressing) and the amplitude-base operationalization were made
 before the corresponding data, on independent channels, and are recorded.
+
+## Independent replicate of the sweep (job-32zfc + job-zjr7q, capture job-pepj4)
+
+A second session ran the same pre-named sweep from an independent capture
+(pins identical to rounding) with W1's seeded non-gold candidates and the
+L38 gauge (L48 for the L40 write). Same reading at every layer:
+
+| write layer | amplitude (0.5× base) | gold correct (k=4×12) | non-gold fingerprint lift [CI] | outputs == baseline modal | gauge shift gold / non-gold |
+|---|---|---|---|---|---|
+| L20 | 711 | 0/48 | −0.021 [−0.062, 0] | 0.922 | +0.29 / +0.12 |
+| L25 | 1,247 | 0/48 | 0.000 [0, 0] | 0.938 | +0.26 / +0.15 |
+| L30 | 2,368 | 0/48 | 0.000 [0, 0] | 0.917 | +1.36 / +0.40 |
+| L35 | 3,483 | 0/48 | −0.028 [−0.083, 0] | 0.917 | +1.46 / +0.50 |
+| L40 | 5,502 | 0/48 | −0.042 [−0.111, 0] | 0.911 | +0.11 / +0.30 (L48 gauge) |
+
+Delivery audit valid on all 240 branches. The verdict above stands
+unchanged; this is a within-day replication of the null with independent
+seeds and a different gauge read (`docs/wikihop_sweep_gates.json`).

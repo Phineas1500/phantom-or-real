@@ -2824,3 +2824,23 @@ NOT RUN, as registered. What transfers: the gauge (natural gate 0.776 at
 L38; selection signal +0.87 [+0.19, +1.60]) — the readable half. Cost of
 item W: ~$9 across 9 H100 jobs. Any selector-only study on the 287-row
 W2 pool would be a new registration.
+
+**Independent replicate of the sweep (2026-09-01, 22:49–23:12 UTC;
+recorded after the verdict above, pre-named design, no amendment).** A
+second session ran the same pre-named sweep from its own capture
+(job-pepj4; per-layer pins identical to job-jj4fc's to rounding: |v|
+212/474/792/1129, bases 1,421/2,494/6,965/11,004) as two jobs —
+job-32zfc (L20/25/35 + L30 anchor, L38 gauge) and job-zjr7q (L40, L48
+gauge) — with W1's three seeded non-gold candidates per row (unpaired
+seeds). Same verdict on every layer: gold repair 0/48 per layer (0/240
+pooled); non-gold fingerprint lift −0.021 [−0.062, 0] / 0.000 / 0.000 /
+−0.028 [−0.083, 0] / −0.042 [−0.111, 0] at L20/25/30/35/40; delivery
+audit valid on all 240 branches; fired outputs equal the baseline modal
+answer 91–94%; gauge shift under the write gold/non-gold +0.29/+0.12
+(L20), +0.26/+0.15 (L25), +1.36/+0.40 (L30), +1.46/+0.50 (L35; L38
+gauge), +0.11/+0.30 (L40; L48 gauge). Row-level:
+results/loop_screen/wikihop_sweep_{a,b}.jsonl; reader output
+docs/wikihop_sweep_gates.json. The duplication (two sessions, ~$1 extra)
+is disclosed here; it adds a within-day replication of the null with a
+different gauge read and independent seeds, and changes nothing in the
+verdict.
