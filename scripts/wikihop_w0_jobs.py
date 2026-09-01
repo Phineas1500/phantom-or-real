@@ -5,7 +5,9 @@ Mode via W0_MODE env:
             prompts identical to the screening's constructions.
   capture : HF transformers — one forward per row on the std prompt; captures
             final-token states at layers {38,43,48,53} and per-candidate
-            mention-mean states (+ position counts) at L30.
+            mention-mean states (+ position counts + mean per-position norm)
+            at L30. Stored float32 (v4): the v3 float16 store overflowed on
+            Gemma's large-magnitude residual dimensions.
 Registered: docs/causal_handle_directions.md item W.
 """
 import gzip
@@ -97,14 +99,17 @@ def main():
                 for h in handles:
                     h.remove()
             for L in CAP_LAYERS:
-                final_states[L].append(store[L][-1].numpy().astype(np.float16))
+                final_states[L].append(store[L][-1].numpy().astype(np.float32))
+            pos_norms = store[WRITE_LAYER].norm(dim=-1).numpy()
             row_cands = []
             for cand, pos in cand_positions.items():
-                vec = store[WRITE_LAYER][pos].mean(dim=0).numpy().astype(np.float16)
+                vec = store[WRITE_LAYER][pos].mean(dim=0).numpy().astype(np.float32)
                 row_cands.append({"candidate": cand, "n_positions": len(pos),
-                                  "vec_index": len(cand_vectors)})
+                                  "vec_index": len(cand_vectors),
+                                  "mean_position_norm": float(pos_norms[pos].mean())})
                 cand_vectors.append(vec)
             manifest.append({"id": r["id"], "answer": r["answer"], "n_tokens": len(ids),
+                             "mean_position_norm_excl_bos": float(pos_norms[1:].mean()),
                              "candidates": row_cands})
             if n_done % 50 == 0:
                 print(f"{n_done + 1}/{len(rows)} rows ({time.time()-t0:.0f}s)", flush=True)
@@ -113,7 +118,7 @@ def main():
         np.savez(os.path.join(outdir, "wikihop_w0_capture.npz"), **arrays)
         with open(os.path.join(outdir, "wikihop_w0_capture_manifest.json"), "w") as f:
             json.dump({"rows": manifest, "cap_layers": CAP_LAYERS,
-                       "write_layer": WRITE_LAYER}, f)
+                       "write_layer": WRITE_LAYER, "dtype": "float32"}, f)
         summary = {"mode": mode, "n_rows": len(manifest),
                    "n_cand_vectors": len(cand_vectors), "seconds": round(time.time() - t0)}
 
