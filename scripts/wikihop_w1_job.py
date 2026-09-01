@@ -10,7 +10,10 @@ On the 12 seeded doc-dependent failing rows (seed 20260822, pinned by W0):
     non-middle rungs so the delivery fingerprint is readable at every rung.
 Delivery is verified per branch: the L30 hook counts its prefill applications
 INSIDE generate (the L-series bug class) and a branch with zero applications
-aborts the job. Registered: docs/causal_handle_directions.md item W.
+aborts the job. W2 reuses this entrypoint: W1_ROWS_KEY=w2_pool, a single rung
+(the W1-pinned one) as both W1_RUNGS and W1_PERCAND_RUNG, W1_NONGOLD_PER_RUNG=0,
+and W1_SHARD_INDEX/W1_SHARD_COUNT over the pool. Registered:
+docs/causal_handle_directions.md item W.
 """
 import gzip
 import json
@@ -107,8 +110,9 @@ def main():
     for line in gzip.open(os.path.join(APP, "wikihop_port_input.jsonl.gz"), "rt"):
         r = json.loads(line)
         frame[r["id"]] = r
-    row_ids = pinned["pools"][rows_key][: int(os.environ.get("W1_MAX_ROWS", "10000"))]
-    print(f"rows={len(row_ids)} write_layer=L{write_layer} gauge=L{gauge_layer} base_norm={base_norm:.3f} "
+    shard_index, shard_count = int(os.environ.get("W1_SHARD_INDEX", "0")), int(os.environ.get("W1_SHARD_COUNT", "1"))
+    row_ids = pinned["pools"][rows_key][: int(os.environ.get("W1_MAX_ROWS", "10000"))][shard_index::shard_count]
+    print(f"rows={len(row_ids)} ({rows_key} shard {shard_index}/{shard_count}) write_layer=L{write_layer} gauge=L{gauge_layer} base_norm={base_norm:.3f} "
           f"rungs={rungs} percand_rung={percand_rung} |class_vec|={np.linalg.norm(class_vec):.3f}", flush=True)
 
     from transformers import AutoTokenizer
@@ -180,7 +184,7 @@ def main():
         cpos = candidate_positions(tok, text, offsets, r["candidates"])
         assert gold in cpos, f"{rid}: gold candidate has no mention positions"
         cands = sorted(cpos)
-        row_seed = seed0 + ri * 10007
+        row_seed = seed0 + (ri * shard_count + shard_index) * 10007
         b_state, b_norms = forward_capture(ids)
         b_score = gauge_score(b_state)
         all_pos = sorted({p for ps in cpos.values() for p in ps})
@@ -245,7 +249,8 @@ def main():
               f"({time.time()-t0:.0f}s)", flush=True)
     fout.close()
 
-    summary = {"n_rows": len(row_ids), "n_fired_branches": n_fired_branches, "write_layer": write_layer,
+    summary = {"n_rows": len(row_ids), "rows_key": rows_key, "shard_index": shard_index, "shard_count": shard_count,
+               "n_fired_branches": n_fired_branches, "write_layer": write_layer,
                "gauge_layer": gauge_layer, "base_norm_pinned": base_norm, "rungs": rungs,
                "percand_rung": percand_rung, "seed": seed0, "rows": row_summaries,
                "seconds": round(time.time() - t0)}
