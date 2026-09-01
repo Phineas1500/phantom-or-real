@@ -2804,3 +2804,23 @@ is ≈ 0.10; the non-gold fingerprint MDE ≈ 0.06), W2 does not launch,
 and the 10th prediction is recorded as UNTESTED-AT-COMPOSITION /
 lever-site-does-not-transfer (the read half transfers: selection
 signal PASS).
+
+### W — LANDED: W-WRITE-DOES-NOT-TRANSFER (2026-09-01, late)
+
+Fallback layer sweep (job-erwpa; docs/wikihop_w1_summary.md) FAILS the
+positive control at L20/25/30/35/40 at the middle rung: gold repair 0/48
+per layer (0/240 pooled; 1/528 pooled with W1's six L30 rungs), non-gold
+fingerprint lift 0.000 / 0.000 / 0.000 / −0.028 / −0.042 (no CI above
+zero), delivery audit valid on all 240 branches, gauge (L43) shifted
+under every write, seeded baselines reproduced exactly across passes
+and against W1. Pre-named consequence: **W-WRITE-DOES-NOT-TRANSFER**
+is the landed verdict — the InAbHyD lever does not leave the sandbox at
+these sites/doses. MDE: repair ≥ 0.0125 per sample (sweep pooled) or
+fingerprint lift ≥ 0.06 would have been detected; the InAbHyD oracle
+(+0.24 to +0.39) and fingerprint (+0.07) lie above both. The 10th
+registered directional prediction (lever-site transfer) is therefore
+refuted at its positive control; W2 (oracle/PRIMARY on ≥150 rows) is
+NOT RUN, as registered. What transfers: the gauge (natural gate 0.776 at
+L38; selection signal +0.87 [+0.19, +1.60]) — the readable half. Cost of
+item W: ~$9 across 9 H100 jobs. Any selector-only study on the 287-row
+W2 pool would be a new registration.

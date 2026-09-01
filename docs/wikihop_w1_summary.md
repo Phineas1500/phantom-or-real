@@ -62,3 +62,48 @@ layer's massive-dim-excluded per-position norm), same rows, same donor
 recipe per layer, L30 re-run as a within-job anchor. If no layer passes the
 positive control, the landed verdict is **W-WRITE-DOES-NOT-TRANSFER** and
 W2 does not launch. Registry: the W1 gate-outcome note.
+
+## Fallback layer sweep (job-erwpa) — FAIL at every layer; verdict lands
+
+Pre-named in the W registration, re-registered 2026-09-01 (late) before any
+sweep data. Same 12 rows, write at the middle rung 0.5 × base_L of each
+layer's massive-dim-excluded per-position norm, class-mean from the same
+127/127 donors, gold k=4 + the same 3 seeded non-gold candidates k=4 (paired
+with W1), fresh k=8 baselines per pass, gauge at L43 (downstream of every
+write). Row-level: `results/loop_screen/wikihop_w1_sweep.jsonl`; gates:
+`docs/wikihop_w1_sweep_gates.json`.
+
+| write layer | dose (norm) | gold correct (k=4×12) | baseline | non-gold answers-fired | fingerprint lift [CI] | gauge Δ gold / non-gold | output = baseline modal (gold / non-gold fires) |
+|---|---|---|---|---|---|---|---|
+| L20 | 711 | 0/48 | 0/96 | 0.090 | −0.021 [−0.062, 0] | +0.39 / +0.23 | 0.94 / 0.92 |
+| L25 | 1,247 | 0/48 | 0/96 | 0.111 | 0.000 [0, 0] | +0.56 / +0.27 | 0.94 / 0.94 |
+| L30 (anchor) | 2,368 | 0/48 | 0/96 | 0.111 | 0.000 [0, 0] | +1.69 / +0.77 | 0.94 / 0.91 |
+| L35 | 3,483 | 0/48 | 0/96 | 0.083 | −0.028 [−0.083, 0] | +1.20 / +0.49 | 0.94 / 0.91 |
+| L40 | 5,502 | 0/48 | 0/96 | 0.069 | −0.042 [−0.111, 0] | +0.24 / +0.10 | 0.94 / 0.90 |
+
+Delivery audit valid at every layer (240/240 fired branches hooked inside
+`generate`; gauge moves under every write). Determinism check: the five
+fresh k=8 baselines are identical across passes and identical to W1's
+(12/12 rows) — the seeded HF sampler reproduces exactly, so every steered
+branch is a paired comparison against the same baseline draw.
+
+## Landed verdict — W-WRITE-DOES-NOT-TRANSFER
+
+Across 5 write layers (L20–L40) and, at L30, six doses from 2× the natural
+class-mean difference to the full residual norm, the mention-position
+class-mean write repaired **1 of 528 gold-fire samples** (W1 288 + sweep
+240; the one hit at L30 0.25×) on doc-dependent WikiHop failures, and never
+lifted a fired non-gold candidate's answer rate above baseline. **MDE:** a
+per-sample repair rate ≥ 0.0125 (rule-of-three bound on 0/240 in the sweep;
+≥ 0.061 per layer on 0/48) and a non-gold fingerprint lift ≥ 0.06 (the
+widest CI half-width) would have been detected; the InAbHyD lever's oracle
+effects (+0.24 to +0.39) and fingerprint (+0.07) lie far above both bounds.
+The 10th registered prediction (the L30 lever site transfers to natural
+data) does not survive its positive control; **W2 is not run** (its oracle
+gate presupposes a passing write site). Scope sentence for the paper: the
+closed loop's write half is sandbox-specific at the tested sites and doses;
+its gauge/selection half transfers (natural gate 0.776, selection signal
++0.87 CI > 0). The registration's amendment policy was not invoked: no
+result was voided; the capture corrections (float16 → float32, substring →
+whole-word addressing) and the amplitude-base operationalization were made
+before the corresponding data, on independent channels, and are recorded.
