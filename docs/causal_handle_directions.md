@@ -2750,3 +2750,54 @@ CIs (fingerprint: 144 non-gold samples per layer, CI half-width ≈ 0.08
 at W1; repair: 48 gold samples per layer) stated at verdict.
 Descriptive additions declared now: L30 anchor re-run; gauge scores at
 L43 for every branch.
+
+### W1 gate outcomes (job-yp5er, landed 2026-09-01) + fallback layer sweep re-registered before any sweep data
+
+**Delivery audit (independent channels):** all 1,860 fired records
+carry ≥1 prefill hook application inside `generate` with the expected
+positions written; the L38 gauge moves under the write (gold-branch
+gauge − baseline +0.78 / +1.36 / +1.52 at 0.25 / 0.5 / 1.0× base;
+non-gold +0.19 / +0.21 / +0.77); at the literal top rung (32.6k) outputs
+still change relative to baseline (fingerprint lift −0.11). The write
+is delivered. Row-level: results/loop_screen/wikihop_w1.jsonl; reader
+output docs/wikihop_w1_gates.json.
+
+**(a) Natural gate:** PASS (W0, L38 0.776).
+**(b) POSITIVE CONTROL: FAIL at every rung** — pinned {0.25, 0.5, 1.0}
+× 4,737 and literal {1.72, 3.44, 6.89}×. Gold-fire correct rate 0.021 /
+0 / 0 / 0 / 0 / 0 (1 of 288 gold samples; in-job baseline 0/96).
+Non-gold answers-fired rate 0.111 / 0.050 / 0.056 / 0 / 0 / 0, but the
+lift over each candidate's baseline rate is 0.000 [0, 0] / +0.002
+[0, +0.005] / −0.056 [−0.139, 0] / −0.111 [−0.194, −0.028] ×3: the
+answers that "match the fired candidate" are the ones the model
+already gives at baseline. Outputs stay at the baseline modal answer
+85–94% of the time at EVERY dose including 32.6k; no degeneration.
+**(c) SELECTION SIGNAL: PASS** — gold-branch minus mean non-gold gauge
+score at 0.5× = +0.87 [+0.19, +1.60] (row bootstrap, n=12); argmax-gold
+3/12 (chance ≈ 1/18); gold gauge rank ≤ 2 in 6/12 rows.
+Reading: on WikiHop the InAbHyD lever site is READABLE (the write moves
+the gauge, gold more than non-gold) but NOT STEERABLE (the sampled
+answer does not move) at doses from 2× the natural class-mean
+difference to 7× the state norm. No W2 rung can be pinned.
+
+**Pre-named fallback, now re-registered (before any sweep data):** one
+mini layer sweep at write layers **{20, 25, 35, 40}** at the middle
+rung (0.5× that layer's massive-dim-excluded per-position norm), same
+12 rows, same class-mean recipe per layer (gold-mention mean, the same
+127 vs 127 donor rows, whole-word addressing), gold k=4 + the same 3
+seeded non-gold candidates k=4 per row per layer, fresh k=8 baselines
+per layer; L30 at 0.5× re-run in the same job as a within-job anchor
+(descriptive). Requires one capture job (candidate-mention states +
+per-dim mean squares at the four layers; W0_WRITE_LAYERS) and one
+sweep job. Gauge: L38 for writes at 20/25/35 (downstream); for the L40
+write the W0-fitted **L48** gauge (CV 0.757) is read instead —
+descriptive only; the sweep's gate is the positive control (repair
+direction AND non-gold fingerprint CI > 0), which needs no gauge.
+Outcome branches: a layer passes (b) → it is pinned for W2, re-
+registered with the selector status from W1 (not demoted); no layer
+passes → **W-WRITE-DOES-NOT-TRANSFER** is the landed verdict for item
+W (MDE: with 12 rows × k=4 the gold-repair rate detectable at CI > 0
+is ≈ 0.10; the non-gold fingerprint MDE ≈ 0.06), W2 does not launch,
+and the 10th prediction is recorded as UNTESTED-AT-COMPOSITION /
+lever-site-does-not-transfer (the read half transfers: selection
+signal PASS).
