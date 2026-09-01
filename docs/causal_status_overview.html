@@ -874,11 +874,98 @@
 
 <!-- ============ 11. STATUS ============ -->
 <section>
+  <div class="kicker">Part 12 · The natural-data port (item W — WikiHop, givemeanode H100 lane, 2026-09-01)</div>
+  <h2>Does the closed loop leave the sandbox? The gauge does; the write does not</h2>
+  <div class="card">
+    <p>Item W ports the closed answer-free loop (class-mean write at L30 on candidate mentions,
+       late-layer gauge selecting the branch) from InAbHyD to WikiHop: 800 fresh dev rows, Gemma-3-27B,
+       std and closed-book arms at k=8. Contamination is heavy — closing the book barely moves accuracy —
+       so every intervention claim is scoped to the <b>299 doc-dependent failures</b> (0/8 with documents
+       <em>and</em> 0/8 without).</p>
+    <table>
+      <tr><th>W0 quantity (exact match)</th><th>Value</th><th>Reads as</th></tr>
+      <tr><td>std accuracy / closed-book accuracy</td><td class="num">0.463 / 0.457</td><td>memory answers ~46% of the frame outright</td></tr>
+      <tr><td>rows at 0/8 std → doc-dependent (∧ 0/8 closed)</td><td class="num">415 → 299</td><td>pool ≥ 150 ✓; labels bimodal (415 at 0/8, 350 at 8/8, 35 between)</td></tr>
+      <tr><td>gauge 5-fold CV AUC, final token, L38 / L43 / L48 / L53</td><td class="num">0.776 / 0.775 / 0.757 / 0.750</td><td class="good">natural gate PASS — primary L38, strictly downstream of the L30 write</td></tr>
+      <tr><td>L30 per-position norm: literal vs massive-dim-excluded</td><td class="num">32,630 vs 4,737</td><td>98% of the norm² is two dims (104, 2733); the pinned base is the content-scale 4,737 — within 1.3× the InAbHyD anchor dose (3,708)</td></tr>
+    </table>
+
+    <figure>
+      <svg viewBox="0 0 640 230" width="100%" role="img" aria-label="W1 gold-fire repair and non-gold fingerprint by dose">
+        <text x="20" y="18" font-size="13" fill="#5b6b7f" font-weight="600">W1 (12 doc-dependent rows): what a gold-address write does, by dose (write norm at each mention position)</text>
+        <line x1="70" y1="180" x2="620" y2="180" stroke="#c9d3df"/>
+        <line x1="70" y1="60"  x2="620" y2="60"  stroke="#eef2f7"/>
+        <text x="64" y="184" text-anchor="end" font-size="12" fill="#5b6b7f">0.0</text>
+        <text x="64" y="64"  text-anchor="end" font-size="12" fill="#5b6b7f">1.0</text>
+        <!-- 6 rungs; each: gold repair (teal) and output-unchanged share (gray); bar = value*120px -->
+        <g>
+          <rect x="85"  y="177.5" width="26" height="2.5" fill="#0e9488" rx="1"/><rect x="113" y="70"   width="26" height="110" fill="#9aa7b6" rx="2"/>
+          <rect x="175" y="180"   width="26" height="0"   fill="#0e9488"/>          <rect x="203" y="67.4" width="26" height="112.6" fill="#9aa7b6" rx="2"/>
+          <rect x="265" y="180"   width="26" height="0"   fill="#0e9488"/>          <rect x="293" y="77.5" width="26" height="102.5" fill="#9aa7b6" rx="2"/>
+          <rect x="355" y="180"   width="26" height="0"   fill="#0e9488"/>          <rect x="383" y="72.5" width="26" height="107.5" fill="#9aa7b6" rx="2"/>
+          <rect x="445" y="180"   width="26" height="0"   fill="#0e9488"/>          <rect x="473" y="67.4" width="26" height="112.6" fill="#9aa7b6" rx="2"/>
+          <rect x="535" y="180"   width="26" height="0"   fill="#0e9488"/>          <rect x="563" y="67.4" width="26" height="112.6" fill="#9aa7b6" rx="2"/>
+        </g>
+        <g font-size="12" text-anchor="middle" fill="#1a2433" font-weight="bold">
+          <text x="98"  y="172">0.02</text><text x="188" y="172">0</text><text x="278" y="172">0</text><text x="368" y="172">0</text><text x="458" y="172">0</text><text x="548" y="172">0</text>
+          <text x="126" y="64">0.92</text><text x="216" y="61">0.94</text><text x="306" y="71">0.85</text><text x="396" y="66">0.90</text><text x="486" y="61">0.94</text><text x="576" y="61">0.94</text>
+        </g>
+        <g font-size="12" text-anchor="middle" fill="#5b6b7f">
+          <text x="112" y="198">1,184</text><text x="202" y="198">2,368</text><text x="292" y="198">4,737</text><text x="382" y="198">8.2k</text><text x="472" y="198">16.3k</text><text x="562" y="198">32.6k</text>
+          <text x="112" y="213">0.25×</text><text x="202" y="213">0.5×</text><text x="292" y="213">1.0×</text><text x="382" y="213">literal 0.25×</text><text x="472" y="213">literal 0.5×</text><text x="562" y="213">literal 1.0×</text>
+        </g>
+      </svg>
+      <div class="legend"><span style="background:#0e9488"></span> gold-fire P(correct), k=4 &nbsp; <span style="background:#9aa7b6"></span> share of steered outputs that are still the baseline's modal answer</div>
+      <figcaption>Six doses from 2× the natural class-mean difference up to the full state norm. One gold hit in 288 samples; the
+        model keeps answering what it answered before at every dose. Delivery is verified on three channels: hook counters
+        inside <code>generate</code> (1,860/1,860 branches), the L38 gauge moving under the write (+0.8 to +1.5 for gold
+        branches), and a <em>negative</em> non-gold fingerprint at the literal doses (the write perturbs generation — just
+        never toward the fired candidate).</figcaption>
+    </figure>
+
+    <div class="verdict">
+      <b>W1 positive control: FAIL at all six rungs. W1 selection signal: PASS</b> — gold-branch minus non-gold gauge
+      score +0.87 [+0.19, +1.60] at the middle rung; the gold branch ranks 1st or 2nd of ~18 candidates in 6 of 12 rows.
+      The readable half of the loop transfers to natural data; the steerable half, at the L30 site, does not.
+    </div>
+    <div class="caveat">
+      <b>Fallback layer sweep (registered): FAIL at L20, L25, L30, L35 and L40</b> at the middle dose of each layer's own
+      content-scale norm — 0 of 240 gold-fire samples correct, no fired non-gold candidate ever answered above its baseline
+      rate, delivery valid on every branch, seeded baselines reproduced exactly across all five passes. <b>Landed verdict:
+      W-WRITE-DOES-NOT-TRANSFER.</b> The 10th registered prediction (the L30 lever site transfers to natural data) fails
+      its positive control; W2 is not run. MDE: a per-sample repair rate ≥ 0.0125 or a fingerprint lift ≥ 0.06 would have
+      shown; the InAbHyD lever's effects (+0.24 to +0.39; fingerprint +0.07) sit far above both. Cost of the whole item: ~$9.
+    </div>
+  </div>
+</section>
+
+<section>
   <div class="kicker">Part 11 · What's running and what's next</div>
   <h2>Current pipeline</h2>
   <div class="card">
     <table>
       <tr><th>Status</th><th>Work</th><th>Why</th><th>ETA</th></tr>
+      <tr>
+        <td><span class="chip done">done</span></td>
+        <td>Item W — WikiHop port, W0 grading + capture (givemeanode H100, 5 jobs)</td>
+        <td>Doc-dependent failing pool 299; gauge natural gate PASS (L38 CV AUC 0.776); write + amplitude pinned pre-data
+            (content-scale norm 4,737 after excluding the two massive-activation dims)</td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td><span class="chip done">done</span></td>
+        <td>Item W1 — calibration ladder + per-candidate pass (12 rows, 6 doses)</td>
+        <td><b>Write fails its positive control at every dose</b> (1/288 gold repairs, no fingerprint) while the
+            <b>selection signal passes</b> (+0.87 CI &gt; 0): readable, not steerable</td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td><span class="chip done">done</span></td>
+        <td>Item W fallback — layer sweep L20/25/35/40 (+L30 anchor)</td>
+        <td><b>W-WRITE-DOES-NOT-TRANSFER</b> lands: 0/240 repairs at any layer; W2 not run as registered;
+            the gauge half of the loop transfers, the write half is sandbox-specific at the tested sites/doses</td>
+        <td>—</td>
+      </tr>
       <tr>
         <td><span class="chip done">done</span></td>
         <td>Erasure necessity test, k=8, property (512 gens)</td>
