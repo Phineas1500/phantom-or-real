@@ -48,7 +48,7 @@ def with_hidden(out, h):
 def candidate_positions(tok, text, offsets, candidates):
     found = {}
     for cand in candidates:
-        spans = [m.span() for m in re.finditer(re.escape(cand), text, re.IGNORECASE)]
+        spans = [m.span() for m in re.finditer(r"(?<!\w)" + re.escape(cand) + r"(?!\w)", text, re.IGNORECASE)]
         pos = sorted({i for (a, b) in spans for i, (s0, s1) in enumerate(offsets)
                       if s0 < b and s1 > a and s1 > s0})
         if pos:

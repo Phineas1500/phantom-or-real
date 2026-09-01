@@ -6,8 +6,12 @@ Mode via W0_MODE env:
   capture : HF transformers — one forward per row on the std prompt; captures
             final-token states at layers {38,43,48,53} and per-candidate
             mention-mean states (+ position counts + mean per-position norm)
-            at L30. Stored float32 (v4): the v3 float16 store overflowed on
-            Gemma's large-magnitude residual dimensions.
+            at L30, plus per-row per-dim mean squares of the L30 states (all
+            positions excl. BOS / candidate positions) so massive-dim-excluded
+            norms are computable offline. Stored float32 (v4+): the v3 float16
+            store overflowed on Gemma's large-magnitude residual dimensions.
+            v5: candidate mentions are whole-word matches (v3/v4 substring
+            matching hit 'hawaii' inside 'hawaiian', 'ship' in 'relationship').
 Registered: docs/causal_handle_directions.md item W.
 """
 import gzip
@@ -68,6 +72,7 @@ def main():
 
         final_states = {L: [] for L in CAP_LAYERS}
         cand_vectors, manifest = [], []
+        sq_mean_all, sq_mean_cand = [], []
         for n_done, r in enumerate(rows):
             prompt = SYSTEM + "\n\n" + std_closed_prompts(r)["std"]
             msgs = [{"role": "user", "content": prompt}]
@@ -77,7 +82,7 @@ def main():
             offsets = enc["offset_mapping"]
             cand_positions = {}
             for cand in r["candidates"]:
-                spans = [m.span() for m in re.finditer(re.escape(cand), text, re.IGNORECASE)]
+                spans = [m.span() for m in re.finditer(r"(?<!\w)" + re.escape(cand) + r"(?!\w)", text, re.IGNORECASE)]
                 pos = sorted({i for (a, b) in spans for i, (s0, s1) in enumerate(offsets)
                               if s0 < b and s1 > a and s1 > s0})
                 if pos:
@@ -101,6 +106,9 @@ def main():
             for L in CAP_LAYERS:
                 final_states[L].append(store[L][-1].numpy().astype(np.float32))
             pos_norms = store[WRITE_LAYER].norm(dim=-1).numpy()
+            all_pos = sorted({p for ps in cand_positions.values() for p in ps})
+            sq_mean_all.append((store[WRITE_LAYER][1:] ** 2).mean(dim=0).numpy().astype(np.float32))
+            sq_mean_cand.append((store[WRITE_LAYER][all_pos] ** 2).mean(dim=0).numpy().astype(np.float32))
             row_cands = []
             for cand, pos in cand_positions.items():
                 vec = store[WRITE_LAYER][pos].mean(dim=0).numpy().astype(np.float32)
@@ -115,10 +123,13 @@ def main():
                 print(f"{n_done + 1}/{len(rows)} rows ({time.time()-t0:.0f}s)", flush=True)
         arrays = {f"L{L}_final": np.stack(final_states[L]) for L in CAP_LAYERS}
         arrays["cand_L30"] = np.stack(cand_vectors)
+        arrays["L30_sq_mean_all"] = np.stack(sq_mean_all)
+        arrays["L30_sq_mean_cand"] = np.stack(sq_mean_cand)
         np.savez(os.path.join(outdir, "wikihop_w0_capture.npz"), **arrays)
         with open(os.path.join(outdir, "wikihop_w0_capture_manifest.json"), "w") as f:
             json.dump({"rows": manifest, "cap_layers": CAP_LAYERS,
-                       "write_layer": WRITE_LAYER, "dtype": "float32"}, f)
+                       "write_layer": WRITE_LAYER, "dtype": "float32",
+                       "addressing": "case-insensitive whole-word (no \\w on either side) span match via offset mapping"}, f)
         summary = {"mode": mode, "n_rows": len(manifest),
                    "n_cand_vectors": len(cand_vectors), "seconds": round(time.time() - t0)}
 

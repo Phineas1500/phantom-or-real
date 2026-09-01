@@ -122,7 +122,11 @@ def main() -> int:
     man_rows = man["rows"]
     assert [m["id"] for m in man_rows] == order, "capture manifest order != frame order"
     idx = {i: k for k, i in enumerate(order)}
-    lab_ids = [r["id"] for r in rows if r["std_majority"] is not None]
+    finite_final = np.ones(len(order), dtype=bool)
+    for L in CAP_LAYERS:
+        finite_final &= np.isfinite(cap[f"L{L}_final"].astype(np.float32)).all(axis=1)
+    n_nonfinite_final = int((~finite_final).sum())
+    lab_ids = [r["id"] for r in rows if r["std_majority"] is not None and finite_final[idx[r["id"]]]]
     y = np.array([rows[idx[i]]["std_majority"] for i in lab_ids], dtype=int)
     sel = np.array([idx[i] for i in lab_ids])
     gauge = {}
@@ -146,10 +150,12 @@ def main() -> int:
           f"OOF AUC doc-dependent-vs-correct-majority {auc_dd_vs_correct:.4f}", flush=True)
 
     cand_vecs = cap["cand_L30"].astype(np.float64)
+    finite_cand = np.isfinite(cand_vecs).all(axis=1)
+    n_nonfinite_cand = int((~finite_cand).sum())
     gold_vec = {}
     for m in man_rows:
         for c in m["candidates"]:
-            if c["candidate"] == frame[m["id"]]["answer"]:
+            if c["candidate"] == frame[m["id"]]["answer"] and finite_cand[c["vec_index"]]:
                 gold_vec[m["id"]] = cand_vecs[c["vec_index"]]
     donors_pos = sorted(r["id"] for r in rows if r["std_majority"] == 1 and not r["doc_dependent_failing"] and r["id"] in gold_vec)
     donors_neg = sorted(r["id"] for r in rows if r["std_majority"] == 0 and not r["doc_dependent_failing"] and r["id"] in gold_vec)
@@ -158,13 +164,38 @@ def main() -> int:
     donors_pos_b = sorted(rng.sample(donors_pos, n_bal))
     donors_neg_b = sorted(rng.sample(donors_neg, n_bal))
     class_vec = np.stack([gold_vec[i] for i in donors_pos_b]).mean(0) - np.stack([gold_vec[i] for i in donors_neg_b]).mean(0)
-    all_norms = np.linalg.norm(cand_vecs, axis=1)
-    single_pos = np.array([c["n_positions"] == 1 for m in man_rows for c in m["candidates"]])
-    base_norm = float(all_norms.mean())
-    write = {"n_donors_correct_available": len(donors_pos), "n_donors_incorrect_available": len(donors_neg),
+    all_norms = np.linalg.norm(cand_vecs[finite_cand], axis=1)
+    single_pos = np.array([c["n_positions"] == 1 for m in man_rows for c in m["candidates"]])[finite_cand]
+    measured = [c["mean_position_norm"] for m in man_rows for c in m["candidates"] if "mean_position_norm" in c]
+    literal_base = float(np.mean(measured)) if measured else float(all_norms.mean())
+    if "L30_sq_mean_cand" in cap:
+        sq = cap["L30_sq_mean_cand"].astype(np.float64)
+        pooled = sq.mean(axis=0)
+        massive = [int(d) for d in np.argsort(-pooled)[:16] if pooled[d] / pooled.sum() > 0.05]
+        keep = np.ones(sq.shape[1], dtype=bool)
+        keep[massive] = False
+        base_norm = float(np.sqrt(sq[:, keep].sum(axis=1)).mean())
+        literal_rms = float(np.sqrt(sq.sum(axis=1)).mean())
+    else:
+        sq2 = (cand_vecs[finite_cand] ** 2).mean(axis=0)
+        massive = [int(d) for d in np.argsort(-sq2)[:16] if sq2[d] / sq2.sum() > 0.05]
+        keep = np.ones(len(sq2), dtype=bool)
+        keep[massive] = False
+        base_norm = float(np.linalg.norm(cand_vecs[finite_cand][:, keep], axis=1).mean())
+        literal_rms = None
+    write = {"capture_dtype": str(cap["cand_L30"].dtype), "n_nonfinite_final_rows_dropped": n_nonfinite_final,
+             "n_nonfinite_candidate_vectors_dropped": n_nonfinite_cand,
+             "amplitude_base_source": ("mean per-position L30 RMS norm at candidate-mention positions EXCLUDING the massive-activation dims"
+                                       if "L30_sq_mean_cand" in cap else "norm of mention-mean vectors excluding massive dims (fallback)"),
+             "massive_dims_excluded": massive,
+             "massive_dims_share_of_norm_sq": float(1 - (cap["L30_sq_mean_cand"].astype(np.float64).mean(0)[keep].sum() / cap["L30_sq_mean_cand"].astype(np.float64).mean(0).sum())) if "L30_sq_mean_cand" in cap else None,
+             "literal_base_mean_position_norm": literal_base, "literal_base_rms": literal_rms,
+             "literal_rung_multiples_of_base": [round(m * literal_base / base_norm, 4) for m in (0.25, 0.5, 1.0)],
+             "mean_norm_of_mention_mean_vectors": float(all_norms.mean()),
+             "n_donors_correct_available": len(donors_pos), "n_donors_incorrect_available": len(donors_neg),
              "n_per_class_balanced": n_bal, "class_vector_norm": float(np.linalg.norm(class_vec)),
              "class_vector_cos_with_gauge_w": float(class_vec @ w / (np.linalg.norm(class_vec) * np.linalg.norm(w) + 1e-12)),
-             "amplitude_base_mean_candidate_state_norm": base_norm,
+             "amplitude_base_pinned": base_norm,
              "amplitude_base_single_position_subset_mean_norm": float(all_norms[single_pos].mean()) if single_pos.any() else None,
              "n_candidate_vectors": int(len(all_norms)), "n_single_position_vectors": int(single_pos.sum()),
              "class_vector_norm_over_base": float(np.linalg.norm(class_vec) / base_norm),
