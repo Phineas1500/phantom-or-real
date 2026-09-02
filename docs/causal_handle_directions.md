@@ -3519,3 +3519,11 @@ scripts/wikihop_wo_gates.py (--tie-key second_L38, the registered
 selector).
 [Stage 1 launched after registration commit 9dab0ac: job-dp3e2, context
 ctx-89dcecbb, 2026-09-02 23:26 UTC.]
+
+**Stage 1 landed (job-dp3e2, 12,168 generations).** Contamination check
+PASS: closed-book **0.113** (WA 0.127; real 0.45). std 0.361, hint-first
+0.478; DOC-DEPENDENT 293; hint-repairable ∧ doc-dependent **47 (16.0%;
+WA 23.6%)**, 43 reading-driven + 4 memory-driven; all 47 pinned (no cap
+needed; ≥ 20 → not underpowered) in docs/wikihop_wo_pinned.json,
+cross-fit shards 24 + 23 in docs/wikihop_wo_frozen_pinned.json. MDE at
+n = 47 ≈ 0.08 (paired). Stage 2 launches.
