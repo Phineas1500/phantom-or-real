@@ -3291,4 +3291,6 @@ frames 27.5% / 21.4%)**, 50 reading-driven + 10 memory-driven among the
 60 drawn (the memory-driven share falls from 34–46% to 17%, as
 anonymization should make it). WA rows = 60 (seeded cap, seed
 20260833), pinned in docs/wikihop_wa_pinned.json (two shards, 30 + 30).
-Stage 2 launches on them with every W0 pin frozen.
+Stage 2 launches on them with every W0 pin frozen. [Stage 2 launched
+after pins commit 341030a: shard 0 job-b5etu, shard 1 job-zcis4, context
+ctx-4dfc962f, seed 20260835, 2026-09-02 18:21 UTC.]
