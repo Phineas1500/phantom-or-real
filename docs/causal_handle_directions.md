@@ -3373,3 +3373,6 @@ comparison; the real-gauge loop must reproduce the rider's 0.254 (a
 consistency check on identical branches). MDE (n = 60, paired): ≈
 0.07. Readers: scripts/wikihop_wl_gates.py (per gauge key) +
 scripts/wikihop_wg_compare.py.
+[Stage 1 launched after registration commit 40521b6 / tooling abb8041:
+capture job-xjpm3 (context ctx-7e88dcf3 reused — byte-identical files,
+mode by env), 2026-09-02 20:43 UTC; queued at submit.]
