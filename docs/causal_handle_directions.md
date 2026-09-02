@@ -3388,3 +3388,23 @@ the real-text L38 gauge as the second npz. [Stage 2 launched after pins
 commit abb70e0: job A job-n3i7u (test WA shard 1), job B job-yv7ym
 (shard 0), context ctx-09bd2965, seed 20260836 (= the rider's),
 2026-09-02 20:57 UTC.]
+
+### WG — LANDED: SELECTOR-LIMIT-IS-NOT-DISTRIBUTION (13th prediction NOT confirmed) (job-n3i7u + job-yv7ym, 2026-09-02)
+
+Stage 1: anonymized-fit gauge CV AUC 0.821/0.820/0.827/0.814 (L38/43/48/
+53; primary L48; 60 test rows held out) — natural gate PASS. Stage 2:
+identical branches (5,834/5,844 outputs byte-identical to the rider;
+gold-address write reproduces +0.650); the real-text gauge reproduces
+the rider's 0.254. Anonymized-fit L48 loop **0.308** (44% of the 0.700
+oracle; gold argmax 0.350) vs real-text L38 loop 0.254 (36%; 0.233):
+row-paired **+0.054 [−0.075, +0.192]** — CI includes 0 → the 13th
+prediction is NOT confirmed; verdict as pre-named. All anonymized-fit
+gauges beat baseline and random branch (CIs > 0); L53 0.317 (45%).
+Reading: the selector's shortfall on steered branches is not a
+distribution mismatch of the gauge; non-gold writes also produce
+confident-looking final states (selector-write interference). Implied
+next registration (not launched): a branch gauge fit on steered
+branches. Delivery audit valid on all 4,884 fired records; ~$3.5. Full
+numbers: docs/wikihop_wg_summary.md. Program tally: 13 registered
+directional predictions, 12 confirmed, 1 refuted (this one), plus the
+10th refuted at its positive control for the class-mean direction.

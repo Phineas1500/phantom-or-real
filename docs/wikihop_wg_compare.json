@@ -1,0 +1,115 @@
+{
+ "n_rows": 60,
+ "per_gauge": {
+  "primary": {
+   "gauge_select": 0.30833333333333335,
+   "baseline": 0.05,
+   "random": 0.11738202284471949,
+   "oracle": 0.7,
+   "dP_vs_baseline_ci": [
+    0.14166666666666666,
+    0.3875
+   ],
+   "dP_vs_random_ci": [
+    0.08737597830917886,
+    0.3069036454211866
+   ],
+   "argmax_gold_rate": 0.35,
+   "oracle_recovered": 0.4404761904761905
+  },
+  "primary_L38": {
+   "gauge_select": 0.23333333333333334,
+   "baseline": 0.05,
+   "random": 0.11738202284471949,
+   "oracle": 0.7,
+   "dP_vs_baseline_ci": [
+    0.07916666666666666,
+    0.3
+   ],
+   "dP_vs_random_ci": [
+    0.02635990510370091,
+    0.21901598171400638
+   ],
+   "argmax_gold_rate": 0.23333333333333334,
+   "oracle_recovered": 0.33333333333333337
+  },
+  "primary_L43": {
+   "gauge_select": 0.22083333333333333,
+   "baseline": 0.05,
+   "random": 0.11738202284471949,
+   "oracle": 0.7,
+   "dP_vs_baseline_ci": [
+    0.0625,
+    0.29375
+   ],
+   "dP_vs_random_ci": [
+    0.010844215829539254,
+    0.20843648137778717
+   ],
+   "argmax_gold_rate": 0.21666666666666667,
+   "oracle_recovered": 0.31547619047619047
+  },
+  "primary_L48": {
+   "gauge_select": 0.30833333333333335,
+   "baseline": 0.05,
+   "random": 0.11738202284471949,
+   "oracle": 0.7,
+   "dP_vs_baseline_ci": [
+    0.14166666666666666,
+    0.3875
+   ],
+   "dP_vs_random_ci": [
+    0.08737597830917886,
+    0.3069036454211866
+   ],
+   "argmax_gold_rate": 0.35,
+   "oracle_recovered": 0.4404761904761905
+  },
+  "primary_L53": {
+   "gauge_select": 0.31666666666666665,
+   "baseline": 0.05,
+   "random": 0.11738202284471949,
+   "oracle": 0.7,
+   "dP_vs_baseline_ci": [
+    0.15,
+    0.39791666666666664
+   ],
+   "dP_vs_random_ci": [
+    0.09447601302709861,
+    0.3170874711540065
+   ],
+   "argmax_gold_rate": 0.36666666666666664,
+   "oracle_recovered": 0.4523809523809524
+  },
+  "second_L38": {
+   "gauge_select": 0.25416666666666665,
+   "baseline": 0.05,
+   "random": 0.11738202284471949,
+   "oracle": 0.7,
+   "dP_vs_baseline_ci": [
+    0.10208333333333333,
+    0.31666666666666665
+   ],
+   "dP_vs_random_ci": [
+    0.033831511201548786,
+    0.24533546781422946
+   ],
+   "argmax_gold_rate": 0.23333333333333334,
+   "oracle_recovered": 0.3630952380952381
+  }
+ },
+ "prediction_13": {
+  "paired_primary_minus_real": 0.05416666666666667,
+  "ci": [
+   -0.075,
+   0.19166666666666668
+  ],
+  "pass": false
+ },
+ "generation_identity_vs_rider": {
+  "n_common": 5844,
+  "n_identical_outputs": 5834,
+  "fraction": 0.9982888432580425
+ },
+ "verdict": "SELECTOR-LIMIT-IS-NOT-DISTRIBUTION"
+}
