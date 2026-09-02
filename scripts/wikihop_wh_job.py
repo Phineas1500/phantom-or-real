@@ -164,6 +164,7 @@ def main():
         states = {gauge_layer: store["g"], **{L: store[f"x{L}"] for L in extra_layers}}
         store["extra_scores"] = {k: float(w @ (states[L] - m) + b) for k, (L, w, b, m) in extra_gauges.items()}
         last_extra["scores"] = store["extra_scores"]
+        last_extra["states"] = {L: states[L].astype(np.float32) for L in sorted(states)}
         return store["g"], store["w"]
 
     last_extra = {"scores": {}}
@@ -212,6 +213,46 @@ def main():
                   "mean_position_norm": float(np.mean(norms))}
         print(f"frozen write from {n_donors} donors / {n_pos} positions: |mean δ| {frozen['mean_delta_norm']:.1f}, "
               f"norm target (donor mean per-position |δ|) {frozen['norm_target']:.1f} ({time.time()-t0:.0f}s)", flush=True)
+
+    if os.environ.get("WH_CAPTURE_ONLY", "0") == "1":
+        assert frozen is not None, "capture-only mode is defined for the frozen-write (WX) design"
+        cap_layers = sorted({gauge_layer, *extra_layers})
+        branch_states, manifest, base_states = [], [], []
+        for ri, rid in enumerate(row_ids):
+            r = frame[rid]
+            gold = r["answer"]
+            text_s, ids_s, off_s = render(std_closed_prompts(r)["std"])
+            cands_pos = {c: mention_positions(text_s, off_s, c) for c in r["candidates"]}
+            cands_pos = {c: p for c, p in cands_pos.items() if p}
+            assert gold in cands_pos
+            g_state, _ = forward(ids_s)
+            base_states.append(np.stack([last_extra["states"][L] for L in cap_layers]))
+            base_scores = dict(last_extra["scores"])
+            for cand in sorted(cands_pos):
+                pos_s = cands_pos[cand]
+                mat = torch.from_numpy(np.tile(frozen["unit"].astype(np.float32) * frozen["norm_target"] * loop_rung, (len(pos_s), 1)))
+                w_g = PerPositionWriter(mat, pos_s)
+                forward(ids_s, writer=w_g)
+                if w_g.prefill_calls < 1 or w_g.positions_written < 1:
+                    raise RuntimeError(f"{rid}/{cand}: write hook did not fire in the capture forward")
+                branch_states.append(np.stack([last_extra["states"][L] for L in cap_layers]))
+                manifest.append({"id": rid, "row_ordinal": ri, "fired_candidate": cand, "fired_is_gold": cand == gold, "rung": loop_rung,
+                                 "n_fired_positions": len(pos_s), "gauge_scores": dict(last_extra["scores"]), "base_gauge_scores": base_scores,
+                                 "hook_prefill_calls": w_g.prefill_calls, "hook_positions_written": w_g.positions_written})
+            print(f"capture row {ri+1}/{len(row_ids)} {rid}: {len(cands_pos)} branches ({time.time()-t0:.0f}s)", flush=True)
+        np.savez(os.path.join(outdir, "wikihop_branch_states.npz"), branch_states=np.stack(branch_states),
+                 base_states=np.stack(base_states), cap_layers=np.array(cap_layers))
+        with open(os.path.join(outdir, "wikihop_branch_manifest.json"), "w") as f:
+            json.dump({"rows": row_ids, "branches": manifest, "cap_layers": cap_layers, "loop_rung": loop_rung,
+                       "frozen": {k: v for k, v in frozen.items() if k != "unit"}, "wx_job": frozen_job, "seed": seed0}, f)
+        summary = {"mode": "capture_only", "n_rows": len(row_ids), "n_branches": len(manifest), "cap_layers": cap_layers,
+                   "wx_job": frozen_job, "frozen": {k: v for k, v in frozen.items() if k != "unit"}, "seconds": round(time.time() - t0)}
+        rp = os.environ.get("GMN_RESULT_PATH")
+        if rp:
+            with open(rp, "w") as f:
+                json.dump(summary, f)
+        print(json.dumps(summary), flush=True)
+        return
 
     fout = open(os.path.join(outdir, "wikihop_wh.jsonl"), "w")
     row_summaries, n_fired, skipped = [], 0, []
