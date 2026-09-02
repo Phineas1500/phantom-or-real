@@ -3124,3 +3124,5 @@ suggestive). No amendments except on independent-telemetry evidence.
 MDE at the expected n ≈ 60–80: repair ≥ ~0.05; loop repair ≥ ~0.06.
 Readers: scripts/wikihop_wf_pins.py (stage 1), scripts/wikihop_wl_gates.py
 (stage 2).
+[Stage 1 launched after registration commit 53d19ba: job-954p4, context
+ctx-8d9a2c7b, 2026-09-02 13:58 UTC.]
