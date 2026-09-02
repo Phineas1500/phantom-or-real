@@ -3408,3 +3408,47 @@ branches. Delivery audit valid on all 4,884 fired records; ~$3.5. Full
 numbers: docs/wikihop_wg_summary.md. Program tally: 13 registered
 directional predictions, 12 confirmed, 1 refuted (this one), plus the
 10th refuted at its positive control for the class-mean direction.
+
+### WB. The branch gauge: fit the selector on steered branches (registered 2026-09-02, before any data)
+
+**Why.** WG showed the selector's shortfall is not distribution: a gauge
+fit on unsteered anonymized states (CV 0.83) still ranks steered
+branches poorly (44% of the 0.700 oracle), because a wrong-candidate
+write also yields a confident-looking final state. WB fits the probe on
+the selection task itself: steered branch states from donor rows,
+labeled by each branch's own correctness. **Registered directional
+prediction (the program's 14th): on the 60 WA rows, the branch gauge
+selects correct branches more often than the real-text W0 gauge (the
+rider's selector), row-paired difference in gauge-select correct rate
+CI > 0, on identical branches.** Secondary (descriptive): vs the
+anonymized-fit unsteered gauge (WG, 0.308).
+
+**Branches.** Exactly the WA-rider / WG branches: the 60 WA rows, cross-
+fit frozen direction (shard 1 written with shard 0's donor vector and
+vice versa), every candidate at 2×, seed 20260836. Branch OUTPUTS and
+correctness come from the WG records (results/loop_screen/wikihop_wg_
+{a,b}.jsonl; 99.8% byte-identical to the rider). Branch STATES come
+from a capture-only re-run of the same jobs (WH_CAPTURE_ONLY=1): one
+forward per branch under the identical write, final-token states at
+L38/43/48/53 (float32) + per-row baseline states; no generation.
+Consistency check (pre-named, hard): the real-text L38 gauge score
+recomputed from each captured state must match WG's recorded
+`second_L38` score to float tolerance — else EXECUTION-INVALID.
+
+**Fit (offline, scripts/wikihop_wb_fit.py).** Cross-fit by shard: the
+gauge that scores shard-1 branches is fit on shard-0 branches and vice
+versa. Label = branch correct rate ≥ 0.5 (k=4). Recipe as every gauge
+in the program: centered logistic, liblinear C=1.0; layer = argmax
+5-fold CV AUC on the donor shard among {38,43,48,53} (pre-named);
+BRANCH NATURAL GATE: donor-shard CV AUC ≥ 0.65 (FAIL → reported, the
+selection still read). Descriptive: leave-one-row-out fit over all 60
+rows (more training branches), and per-layer readings.
+
+**Gates.** (a) consistency (above). (b) BRANCH NATURAL GATE. (c) 14th
+prediction: paired (branch-gauge loop − real-text-gauge loop) CI > 0 →
+**BRANCH-GAUGE-CLOSES-THE-GAP** (with the fraction of the 0.700 oracle
+recovered reported); else **SELECTOR-CEILING** (linear final-token
+probes cannot rank steered branches; the loop's limit is
+representational). Also reported: loop vs baseline / random branch /
+SC@8 under the branch gauge; gold-argmax rate. MDE (paired, n = 60) ≈
+0.07. Cost ~$1 (two capture jobs). Readers: scripts/wikihop_wb_fit.py.
