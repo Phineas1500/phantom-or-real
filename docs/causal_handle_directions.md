@@ -3309,4 +3309,7 @@ text (+0.26 to +0.35). (c) LOOP PASS: gauge-select 0.237 vs baseline
 real-text gauge is weaker on pseudonym text; selection signal +1.12
 [−0.14, +2.44]); gold argmax 0.233 (chance 0.119). Frozen-direction
 rider launches (registered conditional on (b)). Full numbers:
-docs/wikihop_wa_summary.md.
+docs/wikihop_wa_summary.md. [Rider launched: job A job-qmt3y (test WA
+shard 1, donors shard 0), job B job-y2rmz (reverse), context
+ctx-73d0e500, seed 20260836, 2026-09-02 18:55 UTC; pins
+docs/wikihop_wa_frozen_pinned.json; reader --frozen.]
