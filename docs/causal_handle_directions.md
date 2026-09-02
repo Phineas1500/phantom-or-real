@@ -2989,3 +2989,25 @@ Stage-2 draw (seed 20260825, WH rows excluded): 24 rows pinned in
 docs/wikihop_wr_pinned.json; not underpowered. Stage 2 launches on
 these 24 with rungs {1, 2, 4}× as registered. [Stage 2 launched after
 pins commit 3d151aa: job-q8nzz, context ctx-18fff412, 2026-09-02 02:41 UTC.]
+
+### WR — LANDED: registered verdict HINT-DELTA-DOES-NOT-TRANSFER-WHERE-TEXT-DOES (gate (b) conjunction fails on the fingerprint conjunct); gold conjunct PASSES (job-q8nzz, 2026-09-02)
+
+(a) TEXT CEILING PASS: 0.964 vs 0 [+0.891, +1.000]. (b) gold-δ write dP
+**+0.250 [+0.104, +0.417] at 1×, +0.302 [+0.156, +0.458] at 2×**, 0.021
+at 4× (over-dose collapse); non-gold fingerprint lift +0.017 [0.000,
++0.049] / +0.056 [−0.028, +0.153] / −0.045 — never CI > 0, so the
+registered conjunction fails at every rung and the verdict is recorded
+as written. Delivery: audit valid on all 1,128 fired records; the
+SPECIFICITY control (gold accuracy under non-gold writes 0.014 / 0.029
+vs 0.250 / 0.302 under gold writes; non-gold outputs stay at the
+baseline modal answer 81–88%) shows the repair is candidate-specific.
+The fingerprint conjunct was mis-powered for this slice (its own text
+ceiling is +0.094; expected write lift ~+0.03 < MDE 0.05) — recorded
+as a design fault of the registration, not amended post hoc.
+Descriptive: gauge-select over the 4 fired branches at 2× = 0.167
+[+0.052, +0.302] from a 0 baseline (oracle 0.302); gold argmax 9/24.
+Implied next registration (not launched): fresh-draw replication on
+the remaining 53 hint-repairable rows with the specificity control as
+the pre-named delivery gate, plus the answer-free loop over all
+candidates (the W2 composition on the slice where the write works).
+Full numbers: docs/wikihop_wr_summary.md.

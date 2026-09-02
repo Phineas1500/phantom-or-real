@@ -1,0 +1,124 @@
+{
+ "n_rows": 24,
+ "delivery_audit": {
+  "n_fired_records": 1128,
+  "n_zero_prefill_hook_calls": 0,
+  "n_zero_positions_written": 0,
+  "n_gauge_forward_unhooked": 0,
+  "valid": true
+ },
+ "text_ceiling_gold": {
+  "n_rows": 24,
+  "rate": 0.9635416666666666,
+  "baseline": 0.0,
+  "dP": 0.9635416666666666,
+  "ci": [
+   0.890625,
+   1.0
+  ],
+  "pass": true
+ },
+ "text_nongold_fingerprint_ceiling": {
+  "n_rows": 24,
+  "n_fires": 70,
+  "answers_fired_rate": 0.18571428571428572,
+  "lift": 0.09375,
+  "ci": [
+   0.020833333333333332,
+   0.17708333333333334
+  ],
+  "pass": true
+ },
+ "per_rung": {
+  "1.0": {
+   "gold": {
+    "n_rows": 24,
+    "rate": 0.25,
+    "baseline": 0.0,
+    "dP": 0.25,
+    "ci": [
+     0.10416666666666667,
+     0.4166666666666667
+    ],
+    "pass": true
+   },
+   "nongold": {
+    "n_rows": 24,
+    "n_fires": 70,
+    "answers_fired_rate": 0.10714285714285714,
+    "lift": 0.01736111111111111,
+    "ci": [
+     0.0,
+     0.048611111111111105
+    ],
+    "pass": false
+   },
+   "positive_control_pass": false,
+   "recovered_fraction": 0.2594594594594595,
+   "gauge_shift_gold": 0.846458796742405,
+   "gauge_shift_nongold": 0.08147677776591179
+  },
+  "2.0": {
+   "gold": {
+    "n_rows": 24,
+    "rate": 0.3020833333333333,
+    "baseline": 0.0,
+    "dP": 0.3020833333333333,
+    "ci": [
+     0.15625,
+     0.4583333333333333
+    ],
+    "pass": true
+   },
+   "nongold": {
+    "n_rows": 24,
+    "n_fires": 70,
+    "answers_fired_rate": 0.15357142857142858,
+    "lift": 0.05555555555555555,
+    "ci": [
+     -0.02777777777777778,
+     0.15277777777777776
+    ],
+    "pass": false
+   },
+   "positive_control_pass": false,
+   "recovered_fraction": 0.31351351351351353,
+   "gauge_shift_gold": 0.6315336057037405,
+   "gauge_shift_nongold": 0.06816976312504715
+  },
+  "4.0": {
+   "gold": {
+    "n_rows": 24,
+    "rate": 0.020833333333333332,
+    "baseline": 0.0,
+    "dP": 0.020833333333333332,
+    "ci": [
+     0.0,
+     0.0625
+    ],
+    "pass": false
+   },
+   "nongold": {
+    "n_rows": 24,
+    "n_fires": 70,
+    "answers_fired_rate": 0.05714285714285714,
+    "lift": -0.04513888888888889,
+    "ci": [
+     -0.13888888888888887,
+     0.048697916666666986
+    ],
+    "pass": false
+   },
+   "positive_control_pass": false,
+   "recovered_fraction": 0.021621621621621623,
+   "gauge_shift_gold": -0.0980028336327085,
+   "gauge_shift_nongold": -0.12201317380598797
+  }
+ },
+ "gold_delta_mean_position_norm": {
+  "mean": 3690.258987426758,
+  "n": 24
+ },
+ "rungs_passing": [],
+ "verdict": "HINT-DELTA-DOES-NOT-TRANSFER"
+}
