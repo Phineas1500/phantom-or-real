@@ -1,0 +1,98 @@
+{
+ "n_rows": 59,
+ "delivery_audit": {
+  "n_fired_records": 6932,
+  "n_zero_prefill_hook_calls": 0,
+  "n_zero_positions_written": 0,
+  "n_gauge_forward_unhooked": 0,
+  "valid": true
+ },
+ "text_ceiling": {
+  "n_rows": 59,
+  "rate": 0.9385593220338984,
+  "dP": 0.9216101694915254,
+  "ci": [
+   0.8580508474576272,
+   0.9745762711864406
+  ],
+  "pass": true
+ },
+ "per_rung": {
+  "1.0": {
+   "n_rows_gold": 59,
+   "gold_rate": 0.326271186440678,
+   "dP": 0.3093220338983051,
+   "dP_ci": [
+    0.19915254237288135,
+    0.423728813559322
+   ],
+   "dP_pass": true,
+   "n_rows_spec": 59,
+   "nongold_write_gold_rate": 0.018361581920903952,
+   "specificity": 0.30790960451977395,
+   "specificity_ci": [
+    0.19774011299435026,
+    0.4223163841807909
+   ],
+   "specificity_pass": true,
+   "n_nongold_fires": 177,
+   "nongold_answers_fired_rate": 0.0903954802259887,
+   "replication_pass": true
+  },
+  "2.0": {
+   "n_rows_gold": 59,
+   "gold_rate": 0.3644067796610169,
+   "dP": 0.3474576271186441,
+   "dP_ci": [
+    0.22033898305084745,
+    0.4788135593220339
+   ],
+   "dP_pass": true,
+   "n_rows_spec": 59,
+   "nongold_write_gold_rate": 0.023117880082628543,
+   "specificity": 0.34128889957838837,
+   "specificity_ci": [
+    0.2161672879492627,
+    0.47142682112012785
+   ],
+   "specificity_pass": true,
+   "n_nongold_fires": 1438,
+   "nongold_answers_fired_rate": 0.048852573018080665,
+   "replication_pass": true
+  }
+ },
+ "rungs_passing_replication": [
+  "1.0",
+  "2.0"
+ ],
+ "pinned_rung": "2.0",
+ "loop": {
+  "rung": 2.0,
+  "n_rows": 59,
+  "gauge_select_rate": 0.2288135593220339,
+  "oracle_rate": 0.3644067796610169,
+  "baseline_rate": 0.01694915254237288,
+  "sc8_rate": 0.01694915254237288,
+  "dP_vs_baseline": 0.211864406779661,
+  "dP_vs_baseline_ci": [
+   0.11864406779661017,
+   0.3135593220338983
+  ],
+  "dP_vs_sc8": 0.211864406779661,
+  "dP_vs_sc8_ci": [
+   0.11864406779661017,
+   0.3135593220338983
+  ],
+  "argmax_gold_rate": 0.23728813559322035,
+  "chance_rate": 0.06975143348324848,
+  "selection_signal": 0.8547122881551718,
+  "selection_signal_ci": [
+   0.08482691946249135,
+   1.6405739155636008
+  ],
+  "mean_n_branches": 25.372881355932204,
+  "pass_i": true,
+  "pass_ii": true
+ },
+ "verdict": "HINT-DELTA-TRANSFERS (pinned rung 2.0x) + LOOP-CLOSES-ON-NATURAL-DATA"
+}

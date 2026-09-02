@@ -3138,3 +3138,22 @@ launches on them with every pin frozen. [Stage 2 launched after pins
 commit 545b645: shard 0 job-87kjh (30 rows), shard 1 job-jgeug (29 rows),
 context ctx-299ba896 (W0 pinned npz sha256 d3b7c9ab…, frozen), seed
 20260829, 2026-09-02 14:25 UTC.]
+
+### WF — LANDED: HINT-DELTA-TRANSFERS (both rungs) + LOOP-CLOSES-ON-NATURAL-DATA, REPLICATED (job-87kjh + job-jgeug, 2026-09-02)
+
+Fresh frame (seed 20260827; disjoint from W0 and the screening), 59
+doc-dependent ∧ hint-repairable rows (21.4% of the 276-row doc-dependent
+pool), every pin frozen from W0. (a) TEXT CEILING PASS 0.939 [+0.858,
++0.975]. (b) REPLICATION PASS at both rungs: gold-δ dP **+0.309 [+0.199,
++0.424] at 1×, +0.347 [+0.220, +0.479] at 2×**; specificity +0.308 /
++0.341 (gold under non-gold writes 0.018 / 0.023); delivery audit valid
+on all 6,932 fired records; pinned rung 2× on this draw (WL: 1× — no
+dose difference on either). (c) LOOP PASS on both readings: gauge-select
+over all candidates (25.4/row) at 2× = **0.229** vs baseline 0.017 and
+SC@8 0.017 (+0.212 [+0.119, +0.314] on both); oracle 0.364 (63%
+recovered; WL 93%); gold argmax 14/59 (chance 0.070); selection signal
++0.86 [+0.09, +1.64]; gauge picks gold on 10 of the 22 rows where the
+gold branch repairs. The 11th prediction is confirmed on two disjoint
+draws with a frozen recipe; the loop closes on both. The fresh-draw
+obligation is DISCHARGED — no further WikiHop replication is owed. Scope
+stands: compatible-answer failures. Full numbers: docs/wikihop_wf_summary.md.
