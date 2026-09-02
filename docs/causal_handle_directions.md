@@ -3066,3 +3066,6 @@ non-gold gauge), oracle-vs-loop ratio, per-row table, dose (1× vs 2×).
 MDE: 53 rows × k=4 = 212 gold samples per rung → repair ≥ ~0.05;
 specificity ≥ ~0.05; loop repair ≥ ~0.06 (row bootstrap, n=53).
 Reader: scripts/wikihop_wl_gates.py.
+[Launched after registration commit 561c60c / tooling 2fb37fe: shard 0
+job-g74tz (27 rows), shard 1 job-wq2vj (26 rows), context ctx-4a0a1a50,
+seed 20260826, 2026-09-02 12:29 UTC.]
