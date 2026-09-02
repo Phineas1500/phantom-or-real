@@ -3473,3 +3473,47 @@ different selection signal (answer log-probability under each write, or
 a mention-position probe) would be a new design. State files
 sha256 90495ad32920… / 292b23638c6b… recorded in docs/wikihop_wb_summary.md; manifests
 committed. Tally: 14 predictions, 12 confirmed, 2 not (13th, 14th).
+
+### WO. The output-level selector: does the model's own acceptance of a write pick the branch? (registered 2026-09-02, before any data)
+
+**Why.** Three linear final-token probes cap the selector at 0.18–0.31
+against a 0.70 oracle (WG, WB). The branches' own OUTPUTS carry a
+different signal: a right-address write makes the model answer that
+candidate (WA rider: gold-address correct 0.70), a wrong-address write
+mostly leaves the baseline answer (answers-fired 0.05–0.15). Post-hoc on
+the existing branches (recorded in docs/wikihop_wb_summary.md, NOT
+registered): selecting by answers-fired first, real-text gauge second,
+gave 0.350 vs the real-text gauge's 0.254 on the rider (paired +0.096
+[+0.013, +0.183]) and 0.271 vs 0.174 on WX (+0.097 [+0.025, +0.182]); the
+output signal alone decides 14/60 rows, and on the rest it restricts
+the gauge to branches the model accepted at least once. **Registered
+directional prediction (the program's 15th): on a fresh anonymized
+draw, the OUTPUT-FIRST selector (argmax over branches of the k=4
+answers-fired rate, ties broken by the real-text L38 gauge) selects
+correct branches more often than the real-text L38 gauge alone — the
+chain's registered selector — row-paired CI > 0, on identical
+branches.** Secondary (descriptive, no prediction): vs the anonymized-
+fit L48 gauge (post-hoc +0.042 [−0.083, +0.167]); coverage (rows decided
+by the output signal alone); output selector vs baseline / random
+branch / SC@8; fraction of the oracle recovered.
+
+**Frame.** A new 800-row real draw (seed 20260838; disjoint from every
+prior frame), anonymized (seed 20260839) → **507 rows** (no leaks).
+Stage 1 (vLLM, ~$1.5): std / closed / hint-first k=8, seed 20260840;
+contamination check as WA (closed-book ≤ 0.15); WO rows = doc-dependent
+∧ hint-repairable, capped at 60 (seed 20260841); UNDERPOWERED if < 20.
+Stage 2 (~$2.5): the WA-rider design unchanged — cross-fit frozen
+direction (donors = the other shard), gold at 1×/2×, 3 seeded non-gold
+at 1× (specificity), every candidate at 2× with k=4 (the branches), W0's
+gauges scored per branch (anonymized-fit L48 primary npz; real-text L38
+as second), seed 20260842; hook counters (a zero aborts).
+
+**Gates.** (a) contamination + text ceiling + write consistency
+(gold-address dP CI > 0 and specificity CI > 0 at 2× — expected from
+WA/rider; a FAIL here is EXECUTION-INVALID for the selector reading).
+(b) 15th prediction: paired (output-first − real-text gauge) CI > 0 →
+**OUTPUT-SELECTOR-BEATS-GAUGE** (the loop on natural text closes with
+one frozen vector and no probe as the primary selector); else
+**OUTPUT-SELECTOR-NOT-BETTER**. MDE (paired, n = 60) ≈ 0.07. Reader:
+scripts/wikihop_wo_gates.py (--tie-key second_L38, the registered
+selector).
