@@ -1,0 +1,96 @@
+{
+ "consistency": {
+  "A": {
+   "n": 555,
+   "max_abs_diff": 0.0,
+   "median_abs_diff": 0.0,
+   "rel_max": 0.0,
+   "n_unmatched": 0
+  },
+  "B": {
+   "n": 434,
+   "max_abs_diff": 0.0,
+   "median_abs_diff": 0.0,
+   "rel_max": 0.0,
+   "n_unmatched": 0
+  }
+ },
+ "consistency_ok": true,
+ "fit": {
+  "A": {
+   "donor_cv_auc": {
+    "38": 0.8042194092827005,
+    "43": 0.8048685491723465,
+    "48": 0.8324569944823109,
+    "53": 0.8081142486205777
+   },
+   "layer": 48,
+   "n_donor_branches": 434,
+   "n_donor_pos": 39,
+   "branch_natural_gate_pass": true
+  },
+  "B": {
+   "donor_cv_auc": {
+    "38": 0.7067199775533108,
+    "43": 0.8129910213243545,
+    "48": 0.823793490460157,
+    "53": 0.8355078563411896
+   },
+   "layer": 53,
+   "n_donor_branches": 555,
+   "n_donor_pos": 27,
+   "branch_natural_gate_pass": true
+  }
+ },
+ "branch_natural_gate": {
+  "A": true,
+  "B": true
+ },
+ "readings": {
+  "n_rows": 60,
+  "branch_gauge": {
+   "gauge_select": 0.18333333333333332,
+   "argmax_gold": 0.23333333333333334,
+   "oracle": 0.7,
+   "oracle_recovered": 0.2619047619047619,
+   "vs_baseline_ci": [
+    0.027083333333333334,
+    0.24791666666666667
+   ],
+   "vs_random_ci": [
+    -0.017251411487841234,
+    0.1599435684560862
+   ],
+   "vs_sc8_ci": [
+    0.0,
+    0.2417708333333337
+   ]
+  },
+  "real_text_gauge": {
+   "gauge_select": 0.25416666666666665,
+   "argmax_gold": 0.23333333333333334
+  },
+  "anonymized_fit_gauge": {
+   "gauge_select": 0.30833333333333335,
+   "argmax_gold": 0.35
+  },
+  "paired_branch_minus_real": {
+   "mean": -0.07083333333333333,
+   "ci": [
+    -0.2,
+    0.05416666666666667
+   ],
+   "pass": false
+  },
+  "paired_branch_minus_anon": {
+   "mean": -0.125,
+   "ci": [
+    -0.2708333333333333,
+    0.016666666666666666
+   ],
+   "pass": false
+  }
+ },
+ "loo_by_layer_descriptive": {},
+ "verdict": "SELECTOR-CEILING"
+}

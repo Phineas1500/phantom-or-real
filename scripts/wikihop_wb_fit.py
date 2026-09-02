@@ -44,6 +44,7 @@ def main() -> int:
     p.add_argument("--real-pins", type=Path, default=Path("results/loop_screen/wikihop_w0_pinned.npz"))
     p.add_argument("--out", type=Path, default=Path("docs/wikihop_wb_gates.json"))
     p.add_argument("--loop-rung", type=float, default=2.0)
+    p.add_argument("--loo", action="store_true", help="also run the leave-one-row-out variant (slow)")
     args = p.parse_args()
     # --- branches from WG records: outputs, correctness, recorded scores
     recs = [json.loads(l) for f in args.wg_jsonl for l in open(f)]
@@ -140,7 +141,7 @@ def main() -> int:
         ally.extend(S["y"].tolist())
     allX, ally = np.stack(allX), np.array(ally)
     loo = {}
-    for li, L in enumerate(layers):
+    for li, L in (enumerate(layers) if args.loo else []):
         scores = {}
         for i in rows:
             tr = np.array([kk for kk, (rid, _) in enumerate(allkeys) if rid != i])

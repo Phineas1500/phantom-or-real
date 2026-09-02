@@ -3456,3 +3456,20 @@ SC@8 under the branch gauge; gold-argmax rate. MDE (paired, n = 60) ≈
 capture job A job-rm433 (WA shard 1 under shard 0's donor vector), job B
 job-cydwg (reverse), context ctx-d1034ab3, seed 20260836, 2026-09-02
 22:44 UTC.]
+
+### WB — LANDED: SELECTOR-CEILING (14th prediction NOT confirmed) (job-rm433 + job-cydwg, 2026-09-02)
+
+Consistency hard gate PASS (max |diff| 0.0 on 989 branches). BRANCH
+NATURAL GATE PASS (donor CV AUC 0.832 at L48 for test A, 0.836 at L53
+for test B; 39 / 27 positive branches). Branch-gauge loop **0.183** (26%
+of the 0.700 oracle; gold argmax 0.233) vs real-text unsteered 0.254 vs
+anonymized-fit unsteered 0.308: paired branch − real **−0.071 [−0.200,
++0.054]**; branch − anon −0.125 [−0.271, +0.017]. Beats baseline (+0.133
+[+0.027, +0.248]) but not random branch ([−0.017, +0.160]). Verdict as
+pre-named. Reading: three linear final-token probes land at 0.18–0.31
+against a 0.70 oracle on identical branches — the selector's ceiling
+for this probe family is representational, not a fitting problem; a
+different selection signal (answer log-probability under each write, or
+a mention-position probe) would be a new design. State files
+sha256 90495ad32920… / 292b23638c6b… recorded in docs/wikihop_wb_summary.md; manifests
+committed. Tally: 14 predictions, 12 confirmed, 2 not (13th, 14th).
