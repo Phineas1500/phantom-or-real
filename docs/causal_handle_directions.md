@@ -2977,3 +2977,14 @@ detectable against a 0 baseline; fingerprint ≥ ~0.05. Reader:
 scripts/wikihop_wh_gates.py (unchanged).
 [Stage 1 launched after registration commit 18c6339 / tooling cab0b51:
 job-iimvi, context ctx-1697ef9c, 2026-09-02 02:16 UTC.]
+
+**Stage 1 landed (job-iimvi, 2,296 generations).** Hint-repairable
+(≥4/8): **79/287 = 27.5%** of the W2 pool — sharply bimodal (196 rows at
+0/8, 75 at 8/8, 16 between); above the screening prior (16%, hint-
+after). Split: 42 of 165 reading-driven (25%) and 37 of 122 memory-
+driven (30%) — the memory/reading filter does not predict text-hint
+repairability, so hint-repairability is the selector. WH rows re-
+measured consistently (3277 and 933 at 8/8, the other ten at 0/8).
+Stage-2 draw (seed 20260825, WH rows excluded): 24 rows pinned in
+docs/wikihop_wr_pinned.json; not underpowered. Stage 2 launches on
+these 24 with rungs {1, 2, 4}× as registered.
