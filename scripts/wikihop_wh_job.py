@@ -85,6 +85,16 @@ def main():
     gauge_layer = int(os.environ.get("WH_GAUGE_LAYER", int(z["gauge_layer"][0])))
     gw, gb, gmean = (z[f"gauge_w_L{gauge_layer}"].astype(np.float64), float(z[f"gauge_b_L{gauge_layer}"][0]),
                      z[f"gauge_mean_L{gauge_layer}"].astype(np.float64))
+    extra_gauges = {}  # key -> (layer, w, b, mean); scored alongside the primary in the same forward
+    for L in [int(x) for x in os.environ.get("WH_GAUGE_LAYERS", "").split(",") if x.strip()]:
+        if f"gauge_w_L{L}" in z:
+            extra_gauges[f"primary_L{L}"] = (L, z[f"gauge_w_L{L}"].astype(np.float64), float(z[f"gauge_b_L{L}"][0]), z[f"gauge_mean_L{L}"].astype(np.float64))
+    g2 = os.environ.get("WH_GAUGE2_NPZ")
+    if g2:
+        z2 = np.load(os.path.join(APP, g2))
+        for L in [int(x) for x in os.environ.get("WH_GAUGE2_LAYERS", "38").split(",") if x.strip()]:
+            extra_gauges[f"second_L{L}"] = (L, z2[f"gauge_w_L{L}"].astype(np.float64), float(z2[f"gauge_b_L{L}"][0]), z2[f"gauge_mean_L{L}"].astype(np.float64))
+    extra_layers = sorted({v[0] for v in extra_gauges.values()} - {gauge_layer})
     base_norm = float(z["base_norm"][0])
     assert gauge_layer > write_layer
     frame = {}
@@ -97,6 +107,7 @@ def main():
     else:
         row_ids = pins[rows_key][:max_rows][shard_index::shard_count]
         donor_ids = []
+    print(f"extra gauges: {sorted(extra_gauges)}", flush=True)
     print(f"rows={len(row_ids)} ({rows_key} shard {shard_index}/{shard_count}) write=L{write_layer} gauge=L{gauge_layer} rungs={rungs} "
           f"loop={loop} loop_rung={loop_rung} text_nongold={text_nongold} base_norm(W0)={base_norm:.1f}", flush=True)
 
@@ -128,6 +139,11 @@ def main():
         def cap_gauge(_m, _i, out):
             store["g"] = hidden_of(out)[0, -1].detach().float().cpu().numpy().astype(np.float64)
             return out
+        def cap_extra(L):
+            def fn(_m, _i, out):
+                store[f"x{L}"] = hidden_of(out)[0, -1].detach().float().cpu().numpy().astype(np.float64)
+                return out
+            return fn
         def cap_write(_m, _i, out):
             h = hidden_of(out)[0].detach().float().cpu()
             store["w"] = h if keep_positions is None else h[keep_positions]
@@ -137,13 +153,20 @@ def main():
             handles.append(layers[write_layer].register_forward_hook(writer))
         handles.append(layers[write_layer].register_forward_hook(cap_write))
         handles.append(layers[gauge_layer].register_forward_hook(cap_gauge))
+        for L in extra_layers:
+            handles.append(layers[L].register_forward_hook(cap_extra(L)))
         try:
             with torch.inference_mode():
                 model(input_ids=torch.tensor([ids], device=dev), use_cache=False)
         finally:
             for h in handles:
                 h.remove()
+        states = {gauge_layer: store["g"], **{L: store[f"x{L}"] for L in extra_layers}}
+        store["extra_scores"] = {k: float(w @ (states[L] - m) + b) for k, (L, w, b, m) in extra_gauges.items()}
+        last_extra["scores"] = store["extra_scores"]
         return store["g"], store["w"]
+
+    last_extra = {"scores": {}}
 
     def gauge_score(x):
         return float(gw @ (x - gmean) + gb)
@@ -199,6 +222,7 @@ def main():
         row_seed = seed0 + (ri * shard_count + shard_index) * 10007
         g_state, h_std_all = forward(ids_s)
         b_score = gauge_score(g_state)
+        b_extra = dict(last_extra["scores"])
         cands_pos = {c: mention_positions(text_s, off_s, c) for c in r["candidates"]}
         cands_pos = {c: p for c, p in cands_pos.items() if p}
         assert gold in cands_pos, f"{rid}: gold has no mentions"
@@ -206,7 +230,7 @@ def main():
         nongold_all = sorted(c for c in cands_pos if c != gold)
         nongold = [nongold_all[i] for i in rng.choice(len(nongold_all), size=min(n_nongold, len(nongold_all)), replace=False)]
 
-        def emit(condition, rung, fired, outputs, gscore, writer=None, gauge_writer=None, delta_norm=None, npos=None, sample_offset=0):
+        def emit(condition, rung, fired, outputs, gscore, writer=None, gauge_writer=None, delta_norm=None, npos=None, sample_offset=0, extra_scores=None):
             nonlocal n_fired
             for s, o in enumerate(outputs):
                 rec = {"id": rid, "row_ordinal": ri, "condition": condition, "rung": rung, "fired_candidate": fired,
@@ -215,6 +239,7 @@ def main():
                        "correct": normalize_answer(o) == normalize_answer(gold),
                        "answers_fired": None if fired is None else normalize_answer(o) == normalize_answer(fired),
                        "gauge_score": gscore, "base_gauge_score": b_score, "n_fired_positions": npos,
+                       "gauge_scores": extra_scores, "base_gauge_scores": b_extra,
                        "delta_mean_position_norm": delta_norm, "write_kind": "frozen" if frozen is not None else "per_candidate",
                        "hook_prefill_calls": None if writer is None else writer.prefill_calls,
                        "hook_positions_written": None if writer is None else writer.positions_written,
@@ -279,10 +304,11 @@ def main():
                 mat = torch.from_numpy(delta * rung)
                 w_g = PerPositionWriter(mat, pos_s)
                 s_state, _ = forward(ids_s, writer=w_g)
+                s_extra = dict(last_extra["scores"])
                 w = PerPositionWriter(mat, pos_s)
                 outs = generate(ids_s, k_write, row_seed + 1000 + ci * 100 + gi * 10, writer=w)
                 emit("delta_write", rung, cand, outs, gauge_score(s_state), writer=w, gauge_writer=w_g,
-                     delta_norm=dnorm * rung, npos=len(pos_s))
+                     delta_norm=dnorm * rung, npos=len(pos_s), extra_scores=s_extra)
         fout.flush()
         row_summaries.append({"id": rid, "n_tokens": len(ids_s), "n_candidates": len(cands_pos), "gold_positions": len(cands_pos[gold]),
                               "nongold_fired": nongold, "base_gauge_score": b_score, "deltas": row_deltas})

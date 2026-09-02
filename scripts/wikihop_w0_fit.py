@@ -72,7 +72,13 @@ def main() -> int:
     p.add_argument("--sweep-capture", type=Path, default=None,
                    help="multi-layer candidate capture npz (W0_WRITE_LAYERS job); adds class_vector_L*/base_norm_L* pins")
     p.add_argument("--sweep-manifest", type=Path, default=None)
+    p.add_argument("--exclude-ids-file", type=Path, default=None,
+                   help="JSON with a list under 'wf_rows' (or a bare list): rows excluded from the gauge fit and the donors")
     args = p.parse_args()
+    excluded = set()
+    if args.exclude_ids_file is not None:
+        ex = json.load(open(args.exclude_ids_file))
+        excluded = set(ex["wf_rows"] if isinstance(ex, dict) else ex)
 
     frame = {}
     for line in gzip.open(args.frame, "rt"):
@@ -129,7 +135,7 @@ def main() -> int:
     for L in CAP_LAYERS:
         finite_final &= np.isfinite(cap[f"L{L}_final"].astype(np.float32)).all(axis=1)
     n_nonfinite_final = int((~finite_final).sum())
-    lab_ids = [r["id"] for r in rows if r["std_majority"] is not None and finite_final[idx[r["id"]]]]
+    lab_ids = [r["id"] for r in rows if r["std_majority"] is not None and finite_final[idx[r["id"]]] and r["id"] not in excluded]
     y = np.array([rows[idx[i]]["std_majority"] for i in lab_ids], dtype=int)
     sel = np.array([idx[i] for i in lab_ids])
     gauge = {}
@@ -160,8 +166,8 @@ def main() -> int:
         for c in m["candidates"]:
             if c["candidate"] == frame[m["id"]]["answer"] and finite_cand[c["vec_index"]]:
                 gold_vec[m["id"]] = cand_vecs[c["vec_index"]]
-    donors_pos = sorted(r["id"] for r in rows if r["std_majority"] == 1 and not r["doc_dependent_failing"] and r["id"] in gold_vec)
-    donors_neg = sorted(r["id"] for r in rows if r["std_majority"] == 0 and not r["doc_dependent_failing"] and r["id"] in gold_vec)
+    donors_pos = sorted(r["id"] for r in rows if r["std_majority"] == 1 and not r["doc_dependent_failing"] and r["id"] in gold_vec and r["id"] not in excluded)
+    donors_neg = sorted(r["id"] for r in rows if r["std_majority"] == 0 and not r["doc_dependent_failing"] and r["id"] in gold_vec and r["id"] not in excluded)
     rng = random.Random(SEED_FRAME)
     n_bal = min(len(donors_pos), len(donors_neg))
     donors_pos_b = sorted(rng.sample(donors_pos, n_bal))
@@ -247,7 +253,7 @@ def main() -> int:
     np.savez(args.out_npz, gauge_w=w, gauge_b=np.array([b]), gauge_mean=mean, gauge_layer=np.array([primary]),
              gauge_cv_auc=np.array([gauge[L] for L in CAP_LAYERS]), cap_layers=np.array(CAP_LAYERS),
              class_vector=class_vec, base_norm=np.array([base_norm]), write_layer=np.array([man["write_layer"]]), **extra)
-    pinned = {"registered": "docs/causal_handle_directions.md item W (2026-08-19)",
+    pinned = {"registered": "docs/causal_handle_directions.md item W (2026-08-19)", "n_excluded_from_fit": len(excluded),
               "frame_seed": SEED_FRAME, "w1_seed": SEED_W1,
               "behavior": behavior,
               "gauge": {"cv_auc_by_layer": {f"L{L}": gauge[L] for L in CAP_LAYERS}, "primary_layer": primary,
