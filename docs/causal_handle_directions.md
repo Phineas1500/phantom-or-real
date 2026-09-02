@@ -3313,3 +3313,19 @@ docs/wikihop_wa_summary.md. [Rider launched: job A job-qmt3y (test WA
 shard 1, donors shard 0), job B job-y2rmz (reverse), context
 ctx-73d0e500, seed 20260836, 2026-09-02 18:55 UTC; pins
 docs/wikihop_wa_frozen_pinned.json; reader --frozen.]
+
+### WA rider — LANDED: FROZEN-WRITE-TRANSFERS (pinned 2×) + FROZEN-LOOP-CLOSES on anonymized rows (job-qmt3y + job-y2rmz, 2026-09-02)
+
+Cross-fit on the 60 WA rows. Frozen donor-mean hint-delta direction,
+cosine **0.88** (median 0.92) with test rows' own deltas (real text:
+0.68). Gold-ADDRESS write dP **+0.367 [+0.263, +0.481] at 1×, +0.650
+[+0.535, +0.756] at 2×** (gold correct 0.700 from a 0.050 in-job
+baseline); specificity +0.375 / +0.652 (gold under non-gold addresses
+0.042 / 0.048); delivery audit valid on all 4,884 fired records. Above
+the per-candidate deltas on the same rows (+0.365 / +0.502) and above
+the sandbox oracle repairs (+0.24 to +0.39): the largest repair in the
+program. Frozen loop: gauge-select 0.254 vs baseline 0.050 (+0.204
+[+0.102, +0.317]) and vs random branch 0.117 (+0.137 [+0.034, +0.245]);
+oracle 0.700 (36% recovered; the real-text L38 gauge is the limiting
+half on pseudonym text). Descriptive rider; no prediction registered.
+Full numbers: docs/wikihop_wa_summary.md (rider section).

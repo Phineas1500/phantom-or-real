@@ -67,3 +67,32 @@ conditional on (b)) launches now, cross-fit within the 60 WA rows.
 | WF (real, fresh frame) | 59 | +0.347 | +0.212 | replicated |
 | WX (real, frozen direction) | 59 | +0.360 | +0.157 | frozen write transfers |
 | WA (anonymized) | 60 | **+0.502** | +0.185 | transfers without memory (12th prediction) |
+
+## Rider (registered, conditional on (b)): the frozen direction within anonymized rows — FROZEN-WRITE-TRANSFERS + FROZEN-LOOP-CLOSES
+Jobs **job-qmt3y** (A: test WA shard 1, donors shard 0) and **job-y2rmz** (B:
+reverse), ~$2.2, cross-fit on the 60 WA rows, seed 20260836. Frozen
+direction = donor mean gold hint-delta at L30, norm target = donor mean
+per-position |δ| (4,035 / 4,649); |mean δ| retains 46% / 59% of the
+per-position norm. Delivery audit valid on all 4,884 fired records.
+Row-level: `results/loop_screen/wikihop_wa_frozen_{a,b}.jsonl`; reader
+`--frozen` → `docs/wikihop_wa_frozen_gates.json`.
+
+| reading | frozen (rider) | per-candidate (WA, same rows) |
+|---|---|---|
+| text ceiling | 0.915 | 0.921 |
+| gold-ADDRESS write, 1× / 2× | 0.417 / **0.700** | 0.417 / 0.554 |
+| dP, 1× / 2× | +0.367 [+0.263, +0.481] / **+0.650 [+0.535, +0.756]** | +0.365 / +0.502 |
+| gold under non-gold addresses, 1× / 2× | 0.042 / 0.048 | 0.024 / 0.036 |
+| specificity, 1× / 2× | +0.375 / **+0.652 [+0.537, +0.759]** | +0.393 / +0.518 |
+| cosine(frozen direction, row's own gold δ) | **0.88 (median 0.92)** | — (real text WX: 0.68 / 0.76) |
+| loop: gauge-select at 2× vs baseline / random | 0.254 vs 0.050 / 0.117 (+0.204 [+0.102, +0.317] / +0.137 [+0.034, +0.245]) | 0.237 vs 0.052 / 0.109 |
+| oracle → fraction recovered | 0.700 → 36% | 0.554 → 43% |
+| gold branch is argmax (chance 0.119) | 0.233 | 0.233 |
+
+Reading: without memory the hint-delta is almost one universal direction
+(cosine 0.88), and that direction, written at the gold address at 2× the
+donors' per-position norm, repairs **70% of samples** on rows the model
+got wrong 8/8 times — the largest repair in the whole program, above the
+sandbox's oracle (+0.24 to +0.39). The same vector at a non-gold address
+repairs 4.8%: the identity is the address. The selector remains the weak
+half (36% of the oracle; the real-text gauge on pseudonym text).
