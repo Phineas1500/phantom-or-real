@@ -18,6 +18,7 @@ def main() -> int:
     p.add_argument("--jsonl", type=Path, nargs="+", required=True)
     p.add_argument("--out", type=Path, default=Path("docs/wikihop_wl_gates.json"))
     p.add_argument("--loop-rung", type=float, default=2.0)
+    p.add_argument("--frozen", action="store_true", help="item WX verdict strings")
     args = p.parse_args()
     recs = [json.loads(l) for f in args.jsonl for l in open(f)]
     rows = sorted({r["id"] for r in recs})
@@ -76,7 +77,7 @@ def main() -> int:
     pinned = max(passing, key=lambda k: per_rung[k]["dP"]) if passing else None
 
     lr = args.loop_rung
-    loop_rows, loop_c, oracle_c, argmax_gold, chance, sel = [], [], [], [], [], []
+    loop_rows, loop_c, oracle_c, argmax_gold, chance, sel, rand_c = [], [], [], [], [], [], []
     for i in rows:
         br = defaultdict(list)
         for r in writes:
@@ -89,6 +90,7 @@ def main() -> int:
         loop_c.append(float(np.mean([x["correct"] for x in br[best]])))
         gold_c = [c for c in br if br[c][0]["fired_is_gold"]][0]
         oracle_c.append(float(np.mean([x["correct"] for x in br[gold_c]])))
+        rand_c.append(float(np.mean([np.mean([x["correct"] for x in v]) for v in br.values()])))
         argmax_gold.append(best == gold_c)
         chance.append(1 / len(br))
         gs = br[gold_c][0]["gauge_score"]
@@ -96,6 +98,7 @@ def main() -> int:
         sel.append(gs - float(np.mean(ns)))
     d_base = [loop_c[k] - base_rate[i] for k, i in enumerate(loop_rows)]
     d_sc = [loop_c[k] - sc8[i] for k, i in enumerate(loop_rows)]
+    d_rand = [loop_c[k] - rand_c[k] for k in range(len(loop_rows))]
     loop = {"rung": lr, "n_rows": len(loop_rows), "gauge_select_rate": float(np.mean(loop_c)) if loop_c else None,
             "oracle_rate": float(np.mean(oracle_c)) if oracle_c else None,
             "baseline_rate": float(np.mean([base_rate[i] for i in loop_rows])) if loop_rows else None,
@@ -104,11 +107,25 @@ def main() -> int:
             "dP_vs_sc8": float(np.mean(d_sc)) if d_sc else None, "dP_vs_sc8_ci": boot_ci(d_sc),
             "argmax_gold_rate": float(np.mean(argmax_gold)) if argmax_gold else None, "chance_rate": float(np.mean(chance)) if chance else None,
             "selection_signal": float(np.mean(sel)) if sel else None, "selection_signal_ci": boot_ci(sel),
-            "mean_n_branches": float(np.mean([1 / c for c in chance])) if chance else None}
+            "mean_n_branches": float(np.mean([1 / c for c in chance])) if chance else None,
+            "random_branch_rate": float(np.mean(rand_c)) if rand_c else None,
+            "dP_vs_random_branch": float(np.mean(d_rand)) if d_rand else None, "dP_vs_random_branch_ci": boot_ci(d_rand)}
     loop["pass_i"] = bool(d_base and boot_ci(d_base)[0] > 0)
     loop["pass_ii"] = bool(d_sc and boot_ci(d_sc)[0] > 0)
+    loop["pass_random"] = bool(d_rand and boot_ci(d_rand)[0] > 0)
 
-    if not audit["valid"]:
+    if args.frozen:
+        if not audit["valid"]:
+            verdict = "EXECUTION-INVALID (delivery audit)"
+        elif not text["pass"]:
+            verdict = "NO-CEILING"
+        elif not passing:
+            verdict = "FROZEN-WRITE-FAILS (per-candidate content is essential)"
+        elif loop["pass_i"] and loop["pass_random"]:
+            verdict = f"FROZEN-WRITE-TRANSFERS (pinned rung {pinned}x) + FROZEN-LOOP-CLOSES"
+        else:
+            verdict = f"FROZEN-WRITE-TRANSFERS (pinned rung {pinned}x) + FROZEN-LOOP-FAILS"
+    elif not audit["valid"]:
         verdict = "EXECUTION-INVALID (delivery audit)"
     elif not text["pass"]:
         verdict = "NO-CEILING"

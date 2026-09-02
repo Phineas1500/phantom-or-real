@@ -73,10 +73,11 @@ def main():
     max_new = int(os.environ.get("WH_MAX_NEW_TOKENS", "32"))
     fake = os.environ.get("WH_FAKE_MODEL") == "1"
     max_rows = int(os.environ.get("WH_MAX_ROWS", "10000"))
-    loop = os.environ.get("WH_LOOP", "0") == "1"
+    loop = os.environ.get("WH_LOOP", "0") == "1" or os.environ.get("WH_WX_JOB") is not None
     loop_rung = float(os.environ.get("WH_LOOP_RUNG", "2.0"))
     text_nongold = os.environ.get("WH_TEXT_NONGOLD", "0" if loop else "1") == "1"
     shard_index, shard_count = int(os.environ.get("WH_SHARD_INDEX", "0")), int(os.environ.get("WH_SHARD_COUNT", "1"))
+    frozen_job = os.environ.get("WH_WX_JOB")  # "A"/"B": frozen-write mode (item WX); test/donor rows from pins["jobs"]
 
     pins = json.load(open(os.path.join(APP, os.environ.get("WH_PINS_FILE", "wikihop_wh_pinned.json"))))
     rows_key = os.environ.get("WH_ROWS_KEY", "wh_rows")
@@ -90,7 +91,12 @@ def main():
     for line in gzip.open(os.path.join(APP, "wikihop_port_input.jsonl.gz"), "rt"):
         r = json.loads(line)
         frame[r["id"]] = r
-    row_ids = pins[rows_key][:max_rows][shard_index::shard_count]
+    if frozen_job:
+        row_ids = pins["jobs"][frozen_job]["test_rows"][:max_rows]
+        donor_ids = pins["jobs"][frozen_job]["donor_rows"][:max_rows]
+    else:
+        row_ids = pins[rows_key][:max_rows][shard_index::shard_count]
+        donor_ids = []
     print(f"rows={len(row_ids)} ({rows_key} shard {shard_index}/{shard_count}) write=L{write_layer} gauge=L{gauge_layer} rungs={rungs} "
           f"loop={loop} loop_rung={loop_rung} text_nongold={text_nongold} base_norm(W0)={base_norm:.1f}", flush=True)
 
@@ -156,6 +162,34 @@ def main():
                 h.remove()
         return [tok.decode(seq, skip_special_tokens=True).strip() for seq in out[:, len(ids):].detach().cpu().tolist()]
 
+    frozen = None
+    if frozen_job:
+        acc, n_pos, norms, n_donors = None, 0, [], 0
+        for did in donor_ids:
+            r = frame[did]
+            gold = r["answer"]
+            text_s, ids_s, off_s = render(std_closed_prompts(r)["std"])
+            pos_s = mention_positions(text_s, off_s, gold)
+            text_h, ids_h, off_h = render(hint_first_prompt(r, gold))
+            pos_h_all = mention_positions(text_h, off_h, gold)
+            pos_h = pos_h_all[len(pos_h_all) - len(pos_s):] if len(pos_h_all) > len(pos_s) else None
+            if not pos_s or pos_h is None or len(pos_h) != len(pos_s) or any(ids_h[a] != ids_s[b] for a, b in zip(pos_h, pos_s)):
+                print(f"  donor skip {did}", flush=True)
+                continue
+            _, h_std = forward(ids_s, keep_positions=pos_s)
+            _, h_hint = forward(ids_h, keep_positions=pos_h)
+            d = (h_hint - h_std).numpy().astype(np.float64)
+            acc = d.sum(axis=0) if acc is None else acc + d.sum(axis=0)
+            n_pos += len(pos_s)
+            norms.extend(np.linalg.norm(d, axis=1).tolist())
+            n_donors += 1
+        mean_delta = acc / n_pos
+        frozen = {"unit": mean_delta / max(np.linalg.norm(mean_delta), 1e-8), "norm_target": float(np.mean(norms)),
+                  "n_donors": n_donors, "n_positions": n_pos, "mean_delta_norm": float(np.linalg.norm(mean_delta)),
+                  "mean_position_norm": float(np.mean(norms))}
+        print(f"frozen write from {n_donors} donors / {n_pos} positions: |mean δ| {frozen['mean_delta_norm']:.1f}, "
+              f"norm target (donor mean per-position |δ|) {frozen['norm_target']:.1f} ({time.time()-t0:.0f}s)", flush=True)
+
     fout = open(os.path.join(outdir, "wikihop_wh.jsonl"), "w")
     row_summaries, n_fired, skipped = [], 0, []
     for ri, rid in enumerate(row_ids):
@@ -181,7 +215,7 @@ def main():
                        "correct": normalize_answer(o) == normalize_answer(gold),
                        "answers_fired": None if fired is None else normalize_answer(o) == normalize_answer(fired),
                        "gauge_score": gscore, "base_gauge_score": b_score, "n_fired_positions": npos,
-                       "delta_mean_position_norm": delta_norm,
+                       "delta_mean_position_norm": delta_norm, "write_kind": "frozen" if frozen is not None else "per_candidate",
                        "hook_prefill_calls": None if writer is None else writer.prefill_calls,
                        "hook_positions_written": None if writer is None else writer.positions_written,
                        "gauge_forward_hook_calls": None if gauge_writer is None else gauge_writer.prefill_calls,
@@ -213,11 +247,26 @@ def main():
                 skipped.append({"id": rid, "candidate": cand, "n_std": len(pos_s), "n_hint": len(pos_h_all)})
                 print(f"  skip {rid}/{cand!r}: mention pairing failed (std {len(pos_s)}, hint {len(pos_h_all)})", flush=True)
                 continue
-            _, h_hint = forward(ids_h, keep_positions=pos_h)
-            delta = (h_hint - h_std_all[pos_s]).numpy().astype(np.float32)
-            dnorm = float(np.linalg.norm(delta, axis=1).mean())
-            row_deltas[cand] = {"n_positions": len(pos_s), "mean_position_norm": dnorm,
-                                "norm_over_w0_base": dnorm / base_norm}
+            if frozen is not None and not is_gold:
+                delta = np.tile(frozen["unit"].astype(np.float32) * frozen["norm_target"], (len(pos_s), 1))
+                dnorm = frozen["norm_target"]
+                row_deltas[cand] = {"n_positions": len(pos_s), "mean_position_norm": dnorm, "write_kind": "frozen"}
+            else:
+                _, h_hint = forward(ids_h, keep_positions=pos_h)
+                own = (h_hint - h_std_all[pos_s]).numpy().astype(np.float32)
+                if frozen is not None:
+                    own_mean = own.astype(np.float64).mean(axis=0)
+                    cos = float(own_mean @ frozen["unit"] / max(np.linalg.norm(own_mean), 1e-8))
+                    delta = np.tile(frozen["unit"].astype(np.float32) * frozen["norm_target"], (len(pos_s), 1))
+                    dnorm = frozen["norm_target"]
+                    row_deltas[cand] = {"n_positions": len(pos_s), "mean_position_norm": dnorm, "write_kind": "frozen",
+                                        "own_delta_mean_position_norm": float(np.linalg.norm(own, axis=1).mean()),
+                                        "cos_frozen_vs_own_gold_delta": cos}
+                else:
+                    delta = own
+                    dnorm = float(np.linalg.norm(delta, axis=1).mean())
+                    row_deltas[cand] = {"n_positions": len(pos_s), "mean_position_norm": dnorm,
+                                        "norm_over_w0_base": dnorm / base_norm}
             k_text = k_text_gold if is_gold else (k_text_non if (text_nongold and seeded) else 0)
             text_out = []
             for chunk in range(0, k_text, k_write):
@@ -242,7 +291,8 @@ def main():
     fout.close()
     summary = {"n_rows": len(row_ids), "rows_key": rows_key, "shard_index": shard_index, "shard_count": shard_count,
                "loop": loop, "loop_rung": loop_rung, "n_fired_branches": n_fired, "write_layer": write_layer, "gauge_layer": gauge_layer,
-               "rungs": rungs, "seed": seed0, "w0_base_norm": base_norm, "skipped": skipped, "rows": row_summaries,
+               "rungs": rungs, "seed": seed0, "frozen": ({k: v for k, v in frozen.items() if k != "unit"} if frozen else None),
+               "wx_job": frozen_job, "w0_base_norm": base_norm, "skipped": skipped, "rows": row_summaries,
                "seconds": round(time.time() - t0)}
     with open(os.path.join(outdir, "wikihop_wh_summary.json"), "w") as f:
         json.dump(summary, f, indent=1)
