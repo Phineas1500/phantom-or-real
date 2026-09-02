@@ -2928,3 +2928,50 @@ is the sandbox analog and was never sampled on purpose. Implied next
 registration (not launched): hint-first text screening of the 287-row
 W2 pool to find hint-repairable rows, then the WH design on 12–24 of
 them with rungs {1, 2, 4}×. Full numbers: docs/wikihop_wh_summary.md.
+
+### WR. Hint-delta oracle write on the HINT-REPAIRABLE slice (registered 2026-09-02, before any data)
+
+Exploratory follow-up to WH's NO-CEILING. WH showed the "reading-
+driven" filter does not isolate commitment failures (the gold hint as
+text fails on 10/12 such rows), while on the 2 rows it does repair, the
+2× δ write fully repaired one. WR selects the rows where the text hint
+works — the sandbox analog of a commitment failure — so that the
+ceiling gate holds by construction and the oracle-write gate is
+powered. No new directional prediction is registered (the WH lead is
+n=2); the expectation stated for the record is that the write repairs
+a minority of hint-repairable rows at the higher rungs.
+
+**Stage 1 — text screen (one vLLM job, ~$1).** Hint-first text prompt
+(gold named, hint before the documents) k=8, temperature 0.7, seed
+20260824, on ALL 287 rows of the W2 pool (docs/wikihop_w0_pinned.json;
+the 12 WH rows included for consistency but excluded from the draw).
+HINT-REPAIRABLE row := ≥ 4/8 hint-first samples exact-match the gold
+(baseline is 0/8 by pool construction). Reported: the hint-repairable
+rate of the pool (screening prior ≈ 16% of failing rows), split by
+memory-driven vs reading-driven (descriptive).
+
+**Stage 2 — the write test (one H100 job, ~$1.5).** Up to 24 rows drawn
+with seed 20260825 from the hint-repairable set minus the WH rows
+(pinned in docs/wikihop_wr_pinned.json before launch; if fewer than 12
+exist the stage is reported as UNDERPOWERED and not run). The WH
+design unchanged except rungs **{1, 2, 4}× raw δ** (WH: nothing at
+0.5/1, traction at 2): std baseline k=8; hint-first TEXT arms gold k=8
+and 3 seeded non-gold k=4 (fresh seeds — the in-job text rate is the
+regression-to-the-mean check on the screen); per-position L30 δ writes
+at paired whole-word mentions, gold k=4 and the 3 non-gold k=4 per
+rung; W0's L38 gauge under every write; hook counters (a zero aborts).
+
+**Gates.** (a) TEXT CEILING (re-measured in-job): hint-first gold text
+rate − baseline, CI > 0 — expected to hold by selection; FAIL →
+NO-CEILING (selection artifact; reported). (b) ORACLE WRITE: some rung
+with gold-δ write dP CI > 0 AND non-gold fingerprint lift CI > 0 →
+**HINT-DELTA-TRANSFERS** (oracle, hint-repairable scope; rung pinned;
+the answer-free version and a fresh-draw replication become the next
+registrations). Otherwise **HINT-DELTA-DOES-NOT-TRANSFER-WHERE-TEXT-
+DOES**: the original lever direction fails even on rows the same hint
+repairs as text — item W closes for good on the write side. (c)
+Descriptive: recovered fraction per rung; dose-response; |δ| norms;
+per-row table; the WH rows' stage-1 re-measurement vs their WH text
+arm. MDE: 24 rows × k=4 = 96 gold samples per rung → repair ≥ ~0.08
+detectable against a 0 baseline; fingerprint ≥ ~0.05. Reader:
+scripts/wikihop_wh_gates.py (unchanged).
