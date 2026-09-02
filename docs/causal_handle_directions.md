@@ -3011,3 +3011,58 @@ the remaining 53 hint-repairable rows with the specificity control as
 the pre-named delivery gate, plus the answer-free loop over all
 candidates (the W2 composition on the slice where the write works).
 Full numbers: docs/wikihop_wr_summary.md.
+
+## Pre-Registered WikiHop Closed Loop on the Hint-Repairable Slice (2026-09-02)
+
+### WL. Specificity-gated replication of the hint-delta write + the answer-free loop over all candidates: does the closed loop have a home on natural data?
+
+Registered 2026-09-02, before any data. Obligated by WR: the gold
+hint-delta write repaired +0.25/+0.30 (CI > 0) at 1×/2× on 24
+hint-repairable rows, but WR's registered conjunction failed on a
+mis-powered fingerprint conjunct and the delivery evidence that
+mattered (specificity) was not pre-named. WL fixes both and adds the
+composition. **Registered directional prediction (the program's 11th):
+the gold hint-delta write at L30 repairs hint-repairable WikiHop
+failures (dP CI > 0 at 1× or 2×) with candidate specificity.** The
+loop reading carries NO prediction (WR's 4-branch gauge-select was
++0.167 [+0.05, +0.30] with a weak selection signal).
+
+**Frame.** ALL 53 hint-repairable rows of the W2 pool not used by WR
+stage 2 or WH (79 − 24 − 2; no sampling; pinned in
+docs/wikihop_wl_pinned.json, two seeded shards). Baseline 0/8 std and
+0/8 closed by pool construction; ≥4/8 under the hint-first text prompt
+by the stage-1 screen.
+
+**Arms per row (two shard jobs, ~$4 total).** std baseline k=8;
+hint-first TEXT gold k=8 (ceiling re-measure, fresh seeds; the
+non-gold text arm is dropped — its ceiling is too low to gate on).
+For EVERY candidate X in the list: hint-first forward naming X →
+per-position δ_X at X's whole-word mentions (paired, token-id
+verified); δ_X written at L30 at **2×** with k=4 (the loop pass; gold
+included). Gold additionally at **1×** k=4, and the 3 seeded non-gold
+(seed 20260826 + row) additionally at 1× k=4 (specificity at 1×). W0's
+L38 gauge read under every write; hook counters inside `generate` (a
+zero aborts). 4× dropped (WR: collapse).
+
+**Gates.** (a) TEXT CEILING: in-job hint-first gold rate − baseline CI
+> 0 (holds by selection; FAIL → NO-CEILING, reported). (b) REPLICATION
+(the 11th prediction): at 1× or 2×, gold-δ write dP CI > 0 AND
+SPECIFICITY = per-row (gold-write correct rate − mean non-gold-write
+correct rate) CI > 0. Non-gold fingerprint (answers-fired lift) is
+DESCRIPTIVE only. PASS → HINT-DELTA-TRANSFERS (replicated, oracle,
+hint-repairable scope), rung pinned as the better of the two. FAIL →
+WR was a fluctuation; WRITE-SIDE-CLOSED. (c) LOOP (only read if (b)
+passes; the composition, answer-free in the loop sense — δ_X comes
+from a prompt naming X, for every X, no gold used): gauge-select over
+ALL candidate branches at 2×: (i) gauge-select correct rate −
+baseline CI > 0 AND (ii) gauge-select − self-consistency@8 (majority
+of the 8 baseline samples, correct or not) CI > 0 → **LOOP-CLOSES-ON-
+NATURAL-DATA** (scoped: compatible-answer failures; fresh-draw
+obligation on a new WikiHop frame follows). (i) passes, (ii) fails →
+LOOP-BEATS-BASELINE-NOT-SC. Neither → SELECTOR-FAILS (write transfers,
+gauge cannot pick among ~20 branches; item-N pattern). Descriptive:
+argmax-gold rate vs 1/n_candidates, selection signal (gold − mean
+non-gold gauge), oracle-vs-loop ratio, per-row table, dose (1× vs 2×).
+MDE: 53 rows × k=4 = 212 gold samples per rung → repair ≥ ~0.05;
+specificity ≥ ~0.05; loop repair ≥ ~0.06 (row bootstrap, n=53).
+Reader: scripts/wikihop_wl_gates.py.
