@@ -2987,4 +2987,5 @@ repairability, so hint-repairability is the selector. WH rows re-
 measured consistently (3277 and 933 at 8/8, the other ten at 0/8).
 Stage-2 draw (seed 20260825, WH rows excluded): 24 rows pinned in
 docs/wikihop_wr_pinned.json; not underpowered. Stage 2 launches on
-these 24 with rungs {1, 2, 4}× as registered.
+these 24 with rungs {1, 2, 4}× as registered. [Stage 2 launched after
+pins commit 3d151aa: job-q8nzz, context ctx-18fff412, 2026-09-02 02:41 UTC.]
