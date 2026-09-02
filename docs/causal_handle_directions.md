@@ -3517,3 +3517,5 @@ one frozen vector and no probe as the primary selector); else
 **OUTPUT-SELECTOR-NOT-BETTER**. MDE (paired, n = 60) ≈ 0.07. Reader:
 scripts/wikihop_wo_gates.py (--tie-key second_L38, the registered
 selector).
+[Stage 1 launched after registration commit 9dab0ac: job-dp3e2, context
+ctx-89dcecbb, 2026-09-02 23:26 UTC.]
