@@ -3126,3 +3126,12 @@ Readers: scripts/wikihop_wf_pins.py (stage 1), scripts/wikihop_wl_gates.py
 (stage 2).
 [Stage 1 launched after registration commit 53d19ba: job-954p4, context
 ctx-8d9a2c7b, 2026-09-02 13:58 UTC.]
+
+**Stage 1 landed (job-954p4, 19,200 generations).** Fresh frame: std
+0.466 / closed 0.445 / hint-first 0.621; 409 rows at 0/8 std;
+DOC-DEPENDENT failing **276**; hint-first on the doc-dependent pool
+bimodal (211 at 0/8, 50 at 8/8, 15 between); HINT-REPAIRABLE ∧
+doc-dependent = **59 rows (21.4% of the pool; W0/WR 27.5%)**, 39
+reading-driven + 20 memory-driven. Not underpowered. WF rows = all 59,
+pinned in docs/wikihop_wf_pinned.json (two shards, 30 + 29). Stage 2
+launches on them with every pin frozen.
