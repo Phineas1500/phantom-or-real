@@ -3452,3 +3452,7 @@ probes cannot rank steered branches; the loop's limit is
 representational). Also reported: loop vs baseline / random branch /
 SC@8 under the branch gauge; gold-argmax rate. MDE (paired, n = 60) ≈
 0.07. Cost ~$1 (two capture jobs). Readers: scripts/wikihop_wb_fit.py.
+[Launched after registration commit be72ffa / tooling d3e8649 + f5b0557:
+capture job A job-rm433 (WA shard 1 under shard 0's donor vector), job B
+job-cydwg (reverse), context ctx-d1034ab3, seed 20260836, 2026-09-02
+22:44 UTC.]
