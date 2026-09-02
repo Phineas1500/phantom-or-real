@@ -73,6 +73,10 @@ def main():
     max_new = int(os.environ.get("WH_MAX_NEW_TOKENS", "32"))
     fake = os.environ.get("WH_FAKE_MODEL") == "1"
     max_rows = int(os.environ.get("WH_MAX_ROWS", "10000"))
+    loop = os.environ.get("WH_LOOP", "0") == "1"
+    loop_rung = float(os.environ.get("WH_LOOP_RUNG", "2.0"))
+    text_nongold = os.environ.get("WH_TEXT_NONGOLD", "0" if loop else "1") == "1"
+    shard_index, shard_count = int(os.environ.get("WH_SHARD_INDEX", "0")), int(os.environ.get("WH_SHARD_COUNT", "1"))
 
     pins = json.load(open(os.path.join(APP, os.environ.get("WH_PINS_FILE", "wikihop_wh_pinned.json"))))
     rows_key = os.environ.get("WH_ROWS_KEY", "wh_rows")
@@ -86,8 +90,9 @@ def main():
     for line in gzip.open(os.path.join(APP, "wikihop_port_input.jsonl.gz"), "rt"):
         r = json.loads(line)
         frame[r["id"]] = r
-    row_ids = pins[rows_key][:max_rows]
-    print(f"rows={len(row_ids)} ({rows_key}) write=L{write_layer} gauge=L{gauge_layer} rungs={rungs} base_norm(W0)={base_norm:.1f}", flush=True)
+    row_ids = pins[rows_key][:max_rows][shard_index::shard_count]
+    print(f"rows={len(row_ids)} ({rows_key} shard {shard_index}/{shard_count}) write=L{write_layer} gauge=L{gauge_layer} rungs={rungs} "
+          f"loop={loop} loop_rung={loop_rung} text_nongold={text_nongold} base_norm(W0)={base_norm:.1f}", flush=True)
 
     from transformers import AutoTokenizer
     tok = AutoTokenizer.from_pretrained(MODEL)
@@ -157,7 +162,7 @@ def main():
         r = frame[rid]
         gold = r["answer"]
         text_s, ids_s, off_s = render(std_closed_prompts(r)["std"])
-        row_seed = seed0 + ri * 10007
+        row_seed = seed0 + (ri * shard_count + shard_index) * 10007
         g_state, h_std_all = forward(ids_s)
         b_score = gauge_score(g_state)
         cands_pos = {c: mention_positions(text_s, off_s, c) for c in r["candidates"]}
@@ -193,8 +198,13 @@ def main():
         emit("baseline", None, None, base_out, b_score)
 
         row_deltas = {}
-        for ci, cand in enumerate([gold] + nongold):
+        fired_list = [gold] + (sorted(c for c in cands_pos if c != gold) if loop else nongold)
+        for ci, cand in enumerate(fired_list):
             is_gold = cand == gold
+            seeded = cand in nongold
+            cand_rungs = rungs if (is_gold or seeded) else []
+            if loop and loop_rung not in cand_rungs:
+                cand_rungs = cand_rungs + [loop_rung]
             text_h, ids_h, off_h = render(hint_first_prompt(r, cand))
             pos_h_all = mention_positions(text_h, off_h, cand)
             pos_s = cands_pos[cand]
@@ -208,12 +218,15 @@ def main():
             dnorm = float(np.linalg.norm(delta, axis=1).mean())
             row_deltas[cand] = {"n_positions": len(pos_s), "mean_position_norm": dnorm,
                                 "norm_over_w0_base": dnorm / base_norm}
-            k_text = k_text_gold if is_gold else k_text_non
+            k_text = k_text_gold if is_gold else (k_text_non if (text_nongold and seeded) else 0)
             text_out = []
             for chunk in range(0, k_text, k_write):
                 text_out += generate(ids_h, min(k_write, k_text - chunk), row_seed + 500 + ci * 50 + chunk)
-            emit("text_hint", None, cand, text_out, None, delta_norm=dnorm, npos=len(pos_s))
-            for gi, rung in enumerate(rungs):
+            if text_out:
+                emit("text_hint", None, cand, text_out, None, delta_norm=dnorm, npos=len(pos_s))
+            else:
+                row_deltas[cand]["text_arm"] = False
+            for gi, rung in enumerate(cand_rungs):
                 mat = torch.from_numpy(delta * rung)
                 w_g = PerPositionWriter(mat, pos_s)
                 s_state, _ = forward(ids_s, writer=w_g)
@@ -227,7 +240,8 @@ def main():
         print(f"row {ri+1}/{len(row_ids)} {rid}: {len(cands_pos)} cands, {len(ids_s)} tokens, gold pos {len(cands_pos[gold])}, "
               f"|δ_gold| {row_deltas.get(gold, {}).get('mean_position_norm', float('nan')):.0f} ({time.time()-t0:.0f}s)", flush=True)
     fout.close()
-    summary = {"n_rows": len(row_ids), "n_fired_branches": n_fired, "write_layer": write_layer, "gauge_layer": gauge_layer,
+    summary = {"n_rows": len(row_ids), "rows_key": rows_key, "shard_index": shard_index, "shard_count": shard_count,
+               "loop": loop, "loop_rung": loop_rung, "n_fired_branches": n_fired, "write_layer": write_layer, "gauge_layer": gauge_layer,
                "rungs": rungs, "seed": seed0, "w0_base_norm": base_norm, "skipped": skipped, "rows": row_summaries,
                "seconds": round(time.time() - t0)}
     with open(os.path.join(outdir, "wikihop_wh_summary.json"), "w") as f:
