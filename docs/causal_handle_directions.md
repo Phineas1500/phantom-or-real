@@ -3376,3 +3376,12 @@ scripts/wikihop_wg_compare.py.
 [Stage 1 launched after registration commit 40521b6 / tooling abb8041:
 capture job-xjpm3 (context ctx-7e88dcf3 reused — byte-identical files,
 mode by env), 2026-09-02 20:43 UTC; queued at submit.]
+
+**Stage 1 landed (job-xjpm3, 536 rows, 207 s).** Anonymized-text gauge,
+fit on 474 rows with the 60 WA test rows held out (202 correct-majority):
+5-fold CV AUC **L38 0.821 / L43 0.820 / L48 0.827 / L53 0.814**; primary
+= **L48** (argmax); NATURAL GATE PASS (real-text W0 gauge: 0.776 at L38).
+Pinned in results/loop_screen/wikihop_wg_pinned.npz (all four layers) +
+docs/wikihop_wg_pinned.json. Stage 2 launches: the WA rider re-run with
+WH_GAUGE_LAYERS=38,43,48,53 from the anonymized pins (primary L48) and
+the real-text L38 gauge as the second npz.

@@ -89,6 +89,8 @@ def main() -> int:
     n_gen = 0
     for line in open(args.grades):
         g = json.loads(line)
+        if g["arm"] not in ("std", "closed"):
+            continue
         gold = frame[g["id"]]["answer"]
         per[g["id"]][g["arm"]].append(bool(exact_match(g["model_output"], gold)))
         per[g["id"]][g["arm"] + "_c"].append(bool(contains_match(g["model_output"], gold)))
