@@ -27,6 +27,8 @@ def fit_gauge(X, y, C=1.0):
 def cv_auc(X, y, seed=20260837, folds=5):
     from sklearn.metrics import roc_auc_score
     from sklearn.model_selection import StratifiedKFold
+    if len(np.unique(y)) < 2 or min(np.bincount(y)) < folds:
+        return float("nan")
     oof = np.zeros(len(y))
     for tr, te in StratifiedKFold(n_splits=folds, shuffle=True, random_state=seed).split(X, y):
         w, b, m = fit_gauge(X[tr], y[tr])
@@ -91,11 +93,15 @@ def main() -> int:
         for li, L in enumerate(D["layers"]):
             Xd = D["X"][[k for _, _, k in D["keys"]], li]
             cvs[L] = cv_auc(Xd, D["y"])
-        Lstar = max(cvs, key=cvs.get)
+        usable = {L: v for L, v in cvs.items() if not np.isnan(v)}
+        Lstar = max(usable, key=usable.get) if usable else 38
         li = D["layers"].index(Lstar)
-        w, b, m = fit_gauge(D["X"][[k for _, _, k in D["keys"]], li], D["y"])
+        if len(np.unique(D["y"])) >= 2:
+            w, b, m = fit_gauge(D["X"][[k for _, _, k in D["keys"]], li], D["y"])
+        else:
+            w, b, m = np.zeros(D["X"].shape[-1]), 0.0, np.zeros(D["X"].shape[-1])
         per_layer[test_job] = {"donor_cv_auc": cvs, "layer": Lstar, "n_donor_branches": int(len(D["y"])), "n_donor_pos": int(D["y"].sum()),
-                               "branch_natural_gate_pass": bool(cvs[Lstar] >= 0.65)}
+                               "branch_natural_gate_pass": bool(usable and usable[Lstar] >= 0.65)}
         for (rid, cand, k) in T["keys"]:
             sel.setdefault(rid, {})[cand] = float((T["X"][k, T["layers"].index(Lstar)] - m) @ w + b)
     def loop_with(score_of):
@@ -138,7 +144,10 @@ def main() -> int:
         scores = {}
         for i in rows:
             tr = np.array([kk for kk, (rid, _) in enumerate(allkeys) if rid != i])
-            w, b, m = fit_gauge(allX[tr, li], ally[tr])
+            if len(np.unique(ally[tr])) < 2:
+                w, b, m = np.zeros(allX.shape[-1]), 0.0, np.zeros(allX.shape[-1])
+            else:
+                w, b, m = fit_gauge(allX[tr, li], ally[tr])
             for kk, (rid, cand) in enumerate(allkeys):
                 if rid == i:
                     scores.setdefault(i, {})[cand] = float((allX[kk, li] - m) @ w + b)
