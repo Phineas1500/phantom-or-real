@@ -3278,3 +3278,5 @@ direction, cross-fit within the WA rows — does the shared direction
 survive anonymization? (descriptive, ~$2). MDE at n ≈ 40–60: repair ≥
 ~0.06. Readers: scripts/wikihop_wf_pins.py (stage 1, --label "item WA",
 --max-rows 60), scripts/wikihop_wl_gates.py (stage 2).
+[Stage 1 launched after registration commit 5c09028: job-agh5n, context
+ctx-7e88dcf3, 2026-09-02 17:56 UTC.]
