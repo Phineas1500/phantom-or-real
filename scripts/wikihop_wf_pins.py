@@ -17,6 +17,9 @@ def main() -> int:
     p.add_argument("--frame", type=Path, default=Path("results/loop_screen/wikihop_fresh_input.jsonl.gz"))
     p.add_argument("--out", type=Path, default=Path("docs/wikihop_wf_pinned.json"))
     p.add_argument("--out-rows", type=Path, default=Path("results/loop_screen/wikihop_wf_rows.jsonl"))
+    p.add_argument("--max-rows", type=int, default=0, help="cap the pinned rows with a seeded draw (0 = all)")
+    p.add_argument("--draw-seed", type=int, default=20260833)
+    p.add_argument("--label", default="item WF")
     args = p.parse_args()
     frame = {}
     for line in gzip.open(args.frame, "rt"):
@@ -40,11 +43,14 @@ def main() -> int:
         for r in rows:
             f.write(json.dumps(r, ensure_ascii=False) + "\n")
     dd = [r["id"] for r in rows if r["doc_dependent_failing"]]
-    wf = [r["id"] for r in rows if r["doc_dependent_failing"] and r["hint_repairable"]]
+    wf_all = [r["id"] for r in rows if r["doc_dependent_failing"] and r["hint_repairable"]]
+    import random
+    wf = sorted(random.Random(args.draw_seed).sample(wf_all, args.max_rows)) if 0 < args.max_rows < len(wf_all) else wf_all
     def modal(o): return collections.Counter(normalize_answer(x) for x in o).most_common(1)[0][0]
     reading = [i for i in wf if modal(outs[i]["std"]) != modal(outs[i]["closed"])]
     hist = collections.Counter(r["hint_first_n_correct"] for r in rows if r["doc_dependent_failing"])
-    out = {"registered": "docs/causal_handle_directions.md item WF", "frame": str(args.frame), "frame_seed": 20260827, "grade_seed": 20260828,
+    out = {"registered": f"docs/causal_handle_directions.md {args.label}", "frame": str(args.frame),
+           "n_hint_repairable_doc_dependent_all": len(wf_all), "max_rows": args.max_rows, "draw_seed": args.draw_seed,
            "n_rows": len(rows), "std_accuracy": sum(r["std_n_correct"] for r in rows) / (8 * len(rows)),
            "closed_accuracy": sum(r["closed_n_correct"] for r in rows) / (8 * len(rows)),
            "hint_first_accuracy": sum(r["hint_first_n_correct"] for r in rows) / (8 * len(rows)),

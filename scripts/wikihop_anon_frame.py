@@ -27,7 +27,7 @@ def pseudonym(rng: random.Random, n_words: int) -> str:
 
 
 def is_name(entity: str, docs: str) -> bool:
-    if re.fullmatch(r"[\d\s.,'/-]+", entity):
+    if not entity.strip() or re.fullmatch(r"[\d\s.,'/-]+", entity):
         return False
     occ = re.findall(r"(?<!\w)" + re.escape(entity) + r"(?!\w)", docs, re.IGNORECASE)
     if not occ:
@@ -61,6 +61,8 @@ def anonymize(row: dict, seed: int) -> dict | None:
     out["candidates"] = [amap.get(c, c).lower() if c in amap else c for c in row["candidates"]]
     out["answer"] = amap[row["answer"]].lower()
     out["subject"] = amap.get(row["subject"], row["subject"]).lower() if row["subject"] in amap else row["subject"]
+    if not re.search(r"(?<!\w)" + re.escape(out["answer"]) + r"(?!\w)", out["docs"], re.IGNORECASE):
+        return None  # gold only occurred inside a longer renamed entity
     out["anon_map"] = amap
     out["n_renamed"] = len(names)
     out["id"] = row["id"] + "_anon"

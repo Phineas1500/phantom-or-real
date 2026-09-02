@@ -3225,3 +3225,56 @@ stated expectation (frozen fails) was wrong; exploratory, no
 prediction registered; a fresh-draw replication would be owed before
 claiming it at WL/WF level. Cost ~$2.2. Full numbers:
 docs/wikihop_wx_summary.md.
+
+## Pre-Registered Contamination-Free Bridge (2026-09-02)
+
+### WA. Anonymized-entity WikiHop: does the lever work when memory cannot answer — the sandbox's novel-name regime on natural text?
+
+Registered 2026-09-02, before any data. Motivation: on real WikiHop ~45%
+of answers come from parametric memory (closed-book ≈ std), and the
+lever's scope was defined behaviorally (hint-repairable). The sandbox
+used novel names. WA removes memory by construction and asks whether the
+write and the loop still work — the straight line from InAbHyD to real
+text. **Registered directional prediction (the program's 12th): on
+anonymized WikiHop, the hint-delta write at L30 repairs hint-repairable
+failures with candidate specificity (gold-δ dP CI > 0 AND specificity
+CI > 0 at 1× or 2×).** The loop and the frozen rider carry no prediction.
+
+**Frame.** 800 new real-entity rows (seed 20260832; disjoint from W0,
+screening and WF frames; builder scripts/wikihop_frame.py), anonymized
+by scripts/wikihop_anon_frame.py (seed 20260831): every proper-noun
+candidate and the query subject (numbers and common-noun candidates
+untouched) is renamed consistently across documents / candidate list /
+answer / subject with a seeded pseudonym; rows kept only when the gold
+is a renamed name and still mentioned in the documents → **536 rows**
+(mean 11.9 entities renamed, 15.7 candidates; no original name leaks;
+98.4% of candidates mentioned in the documents).
+File results/loop_screen/wikihop_anon_input.jsonl.gz.
+
+**Stage 1 — one vLLM job (~$1.5).** std / closed / hint-first, k=8, seed
+20260834, on all 536 rows. CONTAMINATION CHECK (reported, pre-named
+expectation): closed-book accuracy should collapse toward chance (real
+frames: 0.445–0.457) — if it stays above 0.15 the anonymization leaked
+and the item is reported as INVALID-FRAME. Pools as before: DOC-DEPENDENT
+(0/8 std ∧ 0/8 closed), HINT-REPAIRABLE (≥ 4/8 hint-first); WA rows = all
+doc-dependent ∧ hint-repairable rows, capped at 60 by a seeded draw (seed
+20260833) if more; UNDERPOWERED if < 20. Reported: std accuracy and the
+hint-repairable share on anonymized rows vs real (27.5% / 21.4%).
+
+**Stage 2 — the WL job unchanged (two shards, ~$5), every W0 pin frozen**
+(the L38 gauge was fit on real-entity text; whether it still reads
+correctness on pseudonym text is part of the test). Gold δ at 1×/2× k=4,
+3 seeded non-gold at 1×, every candidate's δ at 2× (the loop), std
+baseline k=8, hint-first gold text k=8; hook counters. Seed 20260835.
+
+**Gates.** (a) TEXT CEILING CI > 0. (b) ORACLE (the 12th prediction) →
+**HINT-DELTA-TRANSFERS-WITHOUT-MEMORY** / else **WRITE-NEEDS-FAMILIAR-
+ENTITIES** (the lever depends on parametric familiarity with the
+candidates — a real scope limit). (c) LOOP at 2×: gauge-select −
+baseline CI > 0 AND − random branch CI > 0 → LOOP-CLOSES-WITHOUT-MEMORY;
+else SELECTOR-FAILS-WITHOUT-MEMORY (the real-text gauge does not read
+pseudonym text). **Rider (launched only if (b) passes):** the WX frozen
+direction, cross-fit within the WA rows — does the shared direction
+survive anonymization? (descriptive, ~$2). MDE at n ≈ 40–60: repair ≥
+~0.06. Readers: scripts/wikihop_wf_pins.py (stage 1, --label "item WA",
+--max-rows 60), scripts/wikihop_wl_gates.py (stage 2).
