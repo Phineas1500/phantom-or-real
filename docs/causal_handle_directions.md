@@ -3134,4 +3134,7 @@ bimodal (211 at 0/8, 50 at 8/8, 15 between); HINT-REPAIRABLE ∧
 doc-dependent = **59 rows (21.4% of the pool; W0/WR 27.5%)**, 39
 reading-driven + 20 memory-driven. Not underpowered. WF rows = all 59,
 pinned in docs/wikihop_wf_pinned.json (two shards, 30 + 29). Stage 2
-launches on them with every pin frozen.
+launches on them with every pin frozen. [Stage 2 launched after pins
+commit 545b645: shard 0 job-87kjh (30 rows), shard 1 job-jgeug (29 rows),
+context ctx-299ba896 (W0 pinned npz sha256 d3b7c9ab…, frozen), seed
+20260829, 2026-09-02 14:25 UTC.]
