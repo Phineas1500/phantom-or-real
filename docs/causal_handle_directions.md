@@ -2844,3 +2844,68 @@ docs/wikihop_sweep_gates.json. The duplication (two sessions, ~$1 extra)
 is disclosed here; it adds a within-day replication of the null with a
 different gauge read and independent seeds, and changes nothing in the
 verdict.
+
+## Pre-Registered Item-W Follow-up (2026-09-01, late)
+
+### WH. Hint-delta oracle write on the reading-driven slice: does the ORIGINAL lever direction transfer where document-side writes have traction?
+
+Registered 2026-09-01 (late), before any data. Exploratory follow-up
+to the landed W verdict; the 10th prediction stays refuted; NO new
+directional prediction is registered here.
+
+**Why.** W1 and the sweep tested a SUBSTITUTE direction (the class-mean)
+on a sample where 7 of 12 rows were memory-driven (the std modal answer
+equals the closed-book modal answer: the documents were not being
+read, so no document-side write can help). The InAbHyD lever was
+hint-delta-derived. And the W1 residue points at the slice: under gold
+writes at the pinned rungs, outputs left the baseline modal answer on
+15/80 samples over the 5 reading-driven rows vs 1/112 over the 7
+memory-driven rows — traction only where the documents matter, but
+the class-mean direction did not point at the gold.
+
+**Frame.** READING-DRIVEN slice = doc-dependent failing rows (0/8 std ∧
+0/8 closed) whose normalized std modal answer ≠ normalized closed modal
+answer, within the W2 pool (W1 rows excluded): **165 rows** (122
+memory-driven excluded). Calibration draw: 12 rows, seed 20260823,
+pinned in docs/wikihop_wh_pinned.json (WH_dev_1480, 2061, 2136, 305,
+3277, 330, 3988, 4678, 4766, 793, 802, 933).
+
+**Prompts.** std (unchanged). HINT-FIRST: "Hint: pay close attention
+to {X}." placed BEFORE the documents (the screening's hint-after
+construction cannot produce a mention-position delta under causal
+attention — the mentions precede the hint). The hint-first text arm is
+therefore also a fresh behavioral measurement (its gap is not the
+screening's +0.158).
+
+**Write (oracle in content).** Per-position hint-delta at L30 for the
+fired candidate X: δ_j = h_hint-first(X)[p^h_j] − h_std[p^s_j] at the
+j-th whole-word mention of X, mentions paired by order (the hint line's
+own mention excluded; mention counts and token ids at paired positions
+must match, else the candidate is skipped and logged). Rungs {0.5, 1.0,
+2.0} × raw δ (per-position, no norm matching); measured per-position
+|δ| reported against the W0 base 4,737. Framed as ORACLE TRANSFER (as
+item N's oracle measurement); an answer-free version (rank-k basis from
+other rows' deltas, L-series style) is a separate registration only
+on a pass.
+
+**Arms per row (one job, ~$1).** std baseline k=8; TEXT hint-first
+arms: gold k=8, the 3 seeded non-gold candidates (seed 20260823 + row)
+k=4 (the text ceilings); DELTA writes at L30: gold k=4 and the same 3
+non-gold k=4 at each rung; W0's L38 gauge read under every write;
+delivery counters inside `generate` (a zero aborts the job).
+
+**Gates.** (a) TEXT CEILING: hint-first gold text correct rate − in-job
+baseline, row-bootstrap CI > 0. FAIL → NO-CEILING: the hint does not
+repair these rows even as text; the write test is uninformative;
+reported, no further arms. (b) ORACLE WRITE (the test): some rung with
+gold-δ write dP (vs baseline) CI > 0 AND the non-gold fingerprint
+(answers-fired rate − that candidate's baseline rate) CI > 0 →
+**HINT-DELTA-TRANSFERS** (oracle, reading-driven scope; rung pinned;
+next step registered separately). Otherwise **HINT-DELTA-DOES-NOT-
+TRANSFER**: the direction that built the InAbHyD loop fails on natural
+data at the most favorable slice; item W closes with no escape hatch.
+(c) Descriptive: recovered fraction = write dP / text dP per rung;
+non-gold text answers-fired lift (fingerprint ceiling); |δ| norms;
+gauge shifts; per-row texture (memory- vs reading-driven is fixed by
+construction here). MDE: 48 gold samples per rung → repair rate ≥ 0.10
+detectable; fingerprint lift ≥ 0.06. Reader: scripts/wikihop_wh_gates.py.
