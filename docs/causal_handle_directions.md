@@ -3294,3 +3294,19 @@ anonymization should make it). WA rows = 60 (seeded cap, seed
 Stage 2 launches on them with every W0 pin frozen. [Stage 2 launched
 after pins commit 341030a: shard 0 job-b5etu, shard 1 job-zcis4, context
 ctx-4dfc962f, seed 20260835, 2026-09-02 18:21 UTC.]
+
+### WA — LANDED: HINT-DELTA-TRANSFERS-WITHOUT-MEMORY (pinned 2×) + LOOP-CLOSES-WITHOUT-MEMORY (job-b5etu + job-zcis4, 2026-09-02)
+
+Contamination check PASS (closed-book 0.127). (a) TEXT CEILING PASS
+0.921 [+0.794, +0.935]. (b) ORACLE PASS at both rungs — **12th
+directional prediction CONFIRMED**: gold-δ dP **+0.365 [+0.256, +0.477]
+at 1×, +0.502 [+0.377, +0.625] at 2×**; specificity +0.393 / +0.518
+(gold under non-gold writes 0.024 / 0.036); 32/60 rows at 4/4 at 2×;
+delivery audit valid on all 4,884 fired records. Larger than on real
+text (+0.26 to +0.35). (c) LOOP PASS: gauge-select 0.237 vs baseline
+0.052 (+0.185 [+0.094, +0.287]), vs random branch 0.109 (+0.128
+[+0.041, +0.226]), vs SC@8 0.067; oracle 0.554 (43% recovered — the
+real-text gauge is weaker on pseudonym text; selection signal +1.12
+[−0.14, +2.44]); gold argmax 0.233 (chance 0.119). Frozen-direction
+rider launches (registered conditional on (b)). Full numbers:
+docs/wikihop_wa_summary.md.
