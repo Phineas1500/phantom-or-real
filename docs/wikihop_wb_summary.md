@@ -59,3 +59,22 @@ side of the natural-data loop is closed: one frozen direction, identity
 from the address, +0.35 on real text and +0.65 without memory,
 replicated, delivery-audited throughout. WikiHop chain cost ≈ $27
 across 35 H100 jobs.
+
+## Post-hoc, descriptive (2026-09-02, after WB landed; NOT registered): an output-level selector
+Select the branch whose k=4 outputs most often equal its own fired
+candidate (ties broken by the gauge) — no probe, no extra forwards, the
+model's own acceptance of the write as the signal. On the existing
+branches:
+
+| setting | gauge-select | answers-fired select | oracle | af − gauge (paired) |
+|---|---|---|---|---|
+| WL real, per-candidate (53) | 0.255 | 0.264 | 0.274 | +0.009 [−0.052, +0.075] |
+| WF real, per-candidate (59) | 0.229 | 0.271 | 0.364 | +0.042 [−0.047, +0.136] |
+| WX real, frozen (59) | 0.174 | 0.271 | 0.377 | **+0.097 [+0.025, +0.182]** |
+| WA anonymized, per-candidate (60) | 0.237 | 0.304 | 0.554 | +0.067 [−0.025, +0.167] |
+| WA rider anonymized, frozen (60) | 0.254 | **0.350** | 0.700 | **+0.096 [+0.013, +0.183]** |
+
+Never worse than the gauge; significantly better on both frozen-write
+settings; 50% of the 0.700 oracle on the rider's branches. This is the
+selector signal the registry's next item should test on a fresh draw
+(registration before launch; the numbers above are post-hoc).
