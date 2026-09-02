@@ -3384,4 +3384,7 @@ fit on 474 rows with the 60 WA test rows held out (202 correct-majority):
 Pinned in results/loop_screen/wikihop_wg_pinned.npz (all four layers) +
 docs/wikihop_wg_pinned.json. Stage 2 launches: the WA rider re-run with
 WH_GAUGE_LAYERS=38,43,48,53 from the anonymized pins (primary L48) and
-the real-text L38 gauge as the second npz.
+the real-text L38 gauge as the second npz. [Stage 2 launched after pins
+commit abb70e0: job A job-n3i7u (test WA shard 1), job B job-yv7ym
+(shard 0), context ctx-09bd2965, seed 20260836 (= the rider's),
+2026-09-02 20:57 UTC.]
