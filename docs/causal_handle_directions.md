@@ -3069,3 +3069,21 @@ Reader: scripts/wikihop_wl_gates.py.
 [Launched after registration commit 561c60c / tooling 2fb37fe: shard 0
 job-g74tz (27 rows), shard 1 job-wq2vj (26 rows), context ctx-4a0a1a50,
 seed 20260826, 2026-09-02 12:29 UTC.]
+
+### WL — LANDED: HINT-DELTA-TRANSFERS (pinned 1×) + LOOP-CLOSES-ON-NATURAL-DATA (job-g74tz + job-wq2vj, 2026-09-02)
+
+(a) TEXT CEILING PASS 0.962 [+0.903, +0.991]. (b) REPLICATION PASS at
+both rungs — **11th directional prediction CONFIRMED**: gold-δ dP
++0.297 [+0.189, +0.420] at 1× and +0.264 [+0.151, +0.387] at 2×;
+specificity +0.277 [+0.173, +0.388] / +0.244 [+0.135, +0.361] (gold
+under non-gold writes 0.030 / 0.029); delivery audit valid on all 6,688
+fired records; 1× pinned (larger dP; per-row 1×−2× +0.033 [−0.05,
++0.13]). (c) LOOP PASS on both readings: gauge-select over all
+candidates (27.6 branches/row) at 2× = **0.255** vs baseline 0.009
+(+0.245 [+0.142, +0.363]) and vs SC@8 0.000 (+0.255 [+0.146, +0.377]);
+oracle 0.274 (93% recovered); gold argmax 20/53 (chance 0.071);
+selection signal +1.56 [+0.65, +2.56]; the gauge picks gold on 10 of the
+14 rows where the gold branch repairs. Scope: compatible-answer
+(hint-repairable) failures, 27.5% of the doc-dependent pool. Obligation
+opened: fresh-draw replication on a new WikiHop frame (to be registered
+before launch). Full numbers: docs/wikihop_wl_summary.md.

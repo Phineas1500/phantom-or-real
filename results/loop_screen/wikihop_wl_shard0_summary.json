@@ -1,0 +1,5094 @@
+{
+ "n_rows": 27,
+ "rows_key": "wl_rows",
+ "shard_index": 0,
+ "shard_count": 2,
+ "loop": true,
+ "loop_rung": 2.0,
+ "n_fired_branches": 895,
+ "write_layer": 30,
+ "gauge_layer": 38,
+ "rungs": [
+  1.0,
+  2.0
+ ],
+ "seed": 20260826,
+ "w0_base_norm": 4736.823490844226,
+ "skipped": [],
+ "rows": [
+  {
+   "id": "WH_dev_1092",
+   "n_tokens": 773,
+   "n_candidates": 46,
+   "gold_positions": 3,
+   "nongold_fired": [
+    "songs",
+    "two",
+    "alice"
+   ],
+   "base_gauge_score": -10.345075595260754,
+   "deltas": {
+    "seeds": {
+     "n_positions": 3,
+     "mean_position_norm": 4053.9453125,
+     "norm_over_w0_base": 0.8558362624944423
+    },
+    "# 1": {
+     "n_positions": 3,
+     "mean_position_norm": 4552.2490234375,
+     "norm_over_w0_base": 0.9610341259784138,
+     "text_arm": false
+    },
+    "12": {
+     "n_positions": 4,
+     "mean_position_norm": 4181.44091796875,
+     "norm_over_w0_base": 0.882752107198216,
+     "text_arm": false
+    },
+    "1964": {
+     "n_positions": 8,
+     "mean_position_norm": 4128.4560546875,
+     "norm_over_w0_base": 0.8715663698821298,
+     "text_arm": false
+    },
+    "1995": {
+     "n_positions": 12,
+     "mean_position_norm": 3066.291748046875,
+     "norm_over_w0_base": 0.6473308017437612,
+     "text_arm": false
+    },
+    "20": {
+     "n_positions": 6,
+     "mean_position_norm": 4052.732666015625,
+     "norm_over_w0_base": 0.8555802583417187,
+     "text_arm": false
+    },
+    "5": {
+     "n_positions": 2,
+     "mean_position_norm": 6863.8447265625,
+     "norm_over_w0_base": 1.4490395810250432,
+     "text_arm": false
+    },
+    "a song": {
+     "n_positions": 4,
+     "mean_position_norm": 2215.8349609375,
+     "norm_over_w0_base": 0.4677892189186429,
+     "text_arm": false
+    },
+    "alice": {
+     "n_positions": 2,
+     "mean_position_norm": 4889.078125,
+     "norm_over_w0_base": 1.0321427713002322,
+     "text_arm": false
+    },
+    "as": {
+     "n_positions": 6,
+     "mean_position_norm": 1280.73388671875,
+     "norm_over_w0_base": 0.27037821637100723,
+     "text_arm": false
+    },
+    "bed": {
+     "n_positions": 2,
+     "mean_position_norm": 3959.7216796875,
+     "norm_over_w0_base": 0.8359445285097109,
+     "text_arm": false
+    },
+    "best": {
+     "n_positions": 2,
+     "mean_position_norm": 4189.251953125,
+     "norm_over_w0_base": 0.8844011099890837,
+     "text_arm": false
+    },
+    "brother": {
+     "n_positions": 11,
+     "mean_position_norm": 3130.054443359375,
+     "norm_over_w0_base": 0.6607918680967183,
+     "text_arm": false
+    },
+    "country music": {
+     "n_positions": 4,
+     "mean_position_norm": 3418.836669921875,
+     "norm_over_w0_base": 0.7217572443917577,
+     "text_arm": false
+    },
+    "faith": {
+     "n_positions": 2,
+     "mean_position_norm": 4845.51904296875,
+     "norm_over_w0_base": 1.0229469289566353,
+     "text_arm": false
+    },
+    "hard": {
+     "n_positions": 3,
+     "mean_position_norm": 4595.40478515625,
+     "norm_over_w0_base": 0.9701448225881071,
+     "text_arm": false
+    },
+    "he is": {
+     "n_positions": 4,
+     "mean_position_norm": 4799.57470703125,
+     "norm_over_w0_base": 1.0132475310317801,
+     "text_arm": false
+    },
+    "i": {
+     "n_positions": 3,
+     "mean_position_norm": 1077.1793212890625,
+     "norm_over_w0_base": 0.2274054170207387,
+     "text_arm": false
+    },
+    "is": {
+     "n_positions": 10,
+     "mean_position_norm": 2386.85546875,
+     "norm_over_w0_base": 0.5038936902258521,
+     "text_arm": false
+    },
+    "july": {
+     "n_positions": 3,
+     "mean_position_norm": 5387.8759765625,
+     "norm_over_w0_base": 1.137444953770536,
+     "text_arm": false
+    },
+    "july 13": {
+     "n_positions": 8,
+     "mean_position_norm": 5760.33837890625,
+     "norm_over_w0_base": 1.216076214374542,
+     "text_arm": false
+    },
+    "mainstream": {
+     "n_positions": 4,
+     "mean_position_norm": 3918.304443359375,
+     "norm_over_w0_base": 0.8272008553692234,
+     "text_arm": false
+    },
+    "new": {
+     "n_positions": 2,
+     "mean_position_norm": 8617.8515625,
+     "norm_over_w0_base": 1.8193313681958776,
+     "text_arm": false
+    },
+    "one": {
+     "n_positions": 3,
+     "mean_position_norm": 1172.308349609375,
+     "norm_over_w0_base": 0.2474882908082435,
+     "text_arm": false
+    },
+    "other songs": {
+     "n_positions": 4,
+     "mean_position_norm": 2035.4393310546875,
+     "norm_over_w0_base": 0.4297055473966835,
+     "text_arm": false
+    },
+    "release": {
+     "n_positions": 3,
+     "mean_position_norm": 4049.325927734375,
+     "norm_over_w0_base": 0.854861055211639,
+     "text_arm": false
+    },
+    "released": {
+     "n_positions": 7,
+     "mean_position_norm": 3743.821044921875,
+     "norm_over_w0_base": 0.7903653265016696,
+     "text_arm": false
+    },
+    "remains": {
+     "n_positions": 2,
+     "mean_position_norm": 4224.318359375,
+     "norm_over_w0_base": 0.8918040470665956,
+     "text_arm": false
+    },
+    "rock": {
+     "n_positions": 9,
+     "mean_position_norm": 2349.42626953125,
+     "norm_over_w0_base": 0.49599193933918795,
+     "text_arm": false
+    },
+    "roman": {
+     "n_positions": 3,
+     "mean_position_norm": 4826.95458984375,
+     "norm_over_w0_base": 1.0190277512290118,
+     "text_arm": false
+    },
+    "rope": {
+     "n_positions": 2,
+     "mean_position_norm": 4766.27392578125,
+     "norm_over_w0_base": 1.0062173384746018,
+     "text_arm": false
+    },
+    "s": {
+     "n_positions": 3,
+     "mean_position_norm": 2433.30712890625,
+     "norm_over_w0_base": 0.5137001903511019,
+     "text_arm": false
+    },
+    "santana": {
+     "n_positions": 3,
+     "mean_position_norm": 4437.97021484375,
+     "norm_over_w0_base": 0.9369085049130229,
+     "text_arm": false
+    },
+    "shine": {
+     "n_positions": 3,
+     "mean_position_norm": 2910.374755859375,
+     "norm_over_w0_base": 0.61441486293184,
+     "text_arm": false
+    },
+    "single": {
+     "n_positions": 3,
+     "mean_position_norm": 3071.936767578125,
+     "norm_over_w0_base": 0.6485225327724055,
+     "text_arm": false
+    },
+    "solo": {
+     "n_positions": 3,
+     "mean_position_norm": 4196.24658203125,
+     "norm_over_w0_base": 0.885877759672098,
+     "text_arm": false
+    },
+    "song": {
+     "n_positions": 6,
+     "mean_position_norm": 1466.17529296875,
+     "norm_over_w0_base": 0.3095271115342825,
+     "text_arm": false
+    },
+    "songs": {
+     "n_positions": 4,
+     "mean_position_norm": 1473.49658203125,
+     "norm_over_w0_base": 0.3110727230768386,
+     "text_arm": false
+    },
+    "songwriter": {
+     "n_positions": 2,
+     "mean_position_norm": 3855.43212890625,
+     "norm_over_w0_base": 0.813927759047469,
+     "text_arm": false
+    },
+    "soon": {
+     "n_positions": 2,
+     "mean_position_norm": 6283.41455078125,
+     "norm_over_w0_base": 1.3265038401634384,
+     "text_arm": false
+    },
+    "star": {
+     "n_positions": 2,
+     "mean_position_norm": 4266.189453125,
+     "norm_over_w0_base": 0.9006435349282252,
+     "text_arm": false
+    },
+    "the band": {
+     "n_positions": 6,
+     "mean_position_norm": 1366.45361328125,
+     "norm_over_w0_base": 0.2884746742036005,
+     "text_arm": false
+    },
+    "the departure": {
+     "n_positions": 4,
+     "mean_position_norm": 2935.91357421875,
+     "norm_over_w0_base": 0.6198064124393821,
+     "text_arm": false
+    },
+    "third": {
+     "n_positions": 2,
+     "mean_position_norm": 5192.1259765625,
+     "norm_over_w0_base": 1.0961197913746046,
+     "text_arm": false
+    },
+    "three": {
+     "n_positions": 3,
+     "mean_position_norm": 3891.037841796875,
+     "norm_over_w0_base": 0.8214445501965263,
+     "text_arm": false
+    },
+    "two": {
+     "n_positions": 2,
+     "mean_position_norm": 5338.2841796875,
+     "norm_over_w0_base": 1.126975533288465,
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_1356",
+   "n_tokens": 1497,
+   "n_candidates": 32,
+   "gold_positions": 12,
+   "nongold_fired": [
+    "east",
+    "chongqing",
+    "republic of china"
+   ],
+   "base_gauge_score": -8.972242468118182,
+   "deltas": {
+    "niigata prefecture": {
+     "n_positions": 12,
+     "mean_position_norm": 2930.6728515625,
+     "norm_over_w0_base": 0.6187000333086461
+    },
+    "antarctica": {
+     "n_positions": 3,
+     "mean_position_norm": 5833.13623046875,
+     "norm_over_w0_base": 1.2314447100981447,
+     "text_arm": false
+    },
+    "australia": {
+     "n_positions": 2,
+     "mean_position_norm": 5208.9560546875,
+     "norm_over_w0_base": 1.0996728218300418,
+     "text_arm": false
+    },
+    "central": {
+     "n_positions": 3,
+     "mean_position_norm": 3704.818359375,
+     "norm_over_w0_base": 0.7821313938625786,
+     "text_arm": false
+    },
+    "china": {
+     "n_positions": 12,
+     "mean_position_norm": 2512.57568359375,
+     "norm_over_w0_base": 0.5304347287692459,
+     "text_arm": false
+    },
+    "chongqing": {
+     "n_positions": 5,
+     "mean_position_norm": 5819.111328125,
+     "norm_over_w0_base": 1.2284838857459477,
+     "text_arm": false
+    },
+    "earth": {
+     "n_positions": 6,
+     "mean_position_norm": 5100.19287109375,
+     "norm_over_w0_base": 1.0767116150626845,
+     "text_arm": false
+    },
+    "east": {
+     "n_positions": 11,
+     "mean_position_norm": 3098.464111328125,
+     "norm_over_w0_base": 0.6541227717936133,
+     "text_arm": false
+    },
+    "guangzhou": {
+     "n_positions": 4,
+     "mean_position_norm": 5879.197265625,
+     "norm_over_w0_base": 1.2411687446215507,
+     "text_arm": false
+    },
+    "gulf": {
+     "n_positions": 2,
+     "mean_position_norm": 5601.740234375,
+     "norm_over_w0_base": 1.1825942522879658,
+     "text_arm": false
+    },
+    "japan": {
+     "n_positions": 11,
+     "mean_position_norm": 2755.1669921875,
+     "norm_over_w0_base": 0.5816486507282662,
+     "text_arm": false
+    },
+    "kamchatka peninsula": {
+     "n_positions": 8,
+     "mean_position_norm": 4511.94677734375,
+     "norm_over_w0_base": 0.952525840590189,
+     "text_arm": false
+    },
+    "kuril islands": {
+     "n_positions": 6,
+     "mean_position_norm": 5199.92529296875,
+     "norm_over_w0_base": 1.097766320197417,
+     "text_arm": false
+    },
+    "moscow": {
+     "n_positions": 3,
+     "mean_position_norm": 6378.931640625,
+     "norm_over_w0_base": 1.3466686383722748,
+     "text_arm": false
+    },
+    "most": {
+     "n_positions": 6,
+     "mean_position_norm": 3480.94921875,
+     "norm_over_w0_base": 0.7348699451179261,
+     "text_arm": false
+    },
+    "niigata": {
+     "n_positions": 16,
+     "mean_position_norm": 3303.408203125,
+     "norm_over_w0_base": 0.6973889167519404,
+     "text_arm": false
+    },
+    "north": {
+     "n_positions": 7,
+     "mean_position_norm": 2527.80908203125,
+     "norm_over_w0_base": 0.5336506810771469,
+     "text_arm": false
+    },
+    "northwest": {
+     "n_positions": 2,
+     "mean_position_norm": 5248.8935546875,
+     "norm_over_w0_base": 1.108104104962545,
+     "text_arm": false
+    },
+    "of": {
+     "n_positions": 49,
+     "mean_position_norm": 1964.035400390625,
+     "norm_over_w0_base": 0.4146313250191601,
+     "text_arm": false
+    },
+    "pacific ocean": {
+     "n_positions": 14,
+     "mean_position_norm": 3789.640869140625,
+     "norm_over_w0_base": 0.800038438515937,
+     "text_arm": false
+    },
+    "petersburg": {
+     "n_positions": 4,
+     "mean_position_norm": 5947.26025390625,
+     "norm_over_w0_base": 1.255537654168805,
+     "text_arm": false
+    },
+    "philippines": {
+     "n_positions": 2,
+     "mean_position_norm": 6141.302734375,
+     "norm_over_w0_base": 1.2965023388026768,
+     "text_arm": false
+    },
+    "republic of china": {
+     "n_positions": 12,
+     "mean_position_norm": 4201.1826171875,
+     "norm_over_w0_base": 0.8869198156333958,
+     "text_arm": false
+    },
+    "russia": {
+     "n_positions": 8,
+     "mean_position_norm": 3611.170654296875,
+     "norm_over_w0_base": 0.7623612450995656,
+     "text_arm": false
+    },
+    "sado": {
+     "n_positions": 6,
+     "mean_position_norm": 3438.928955078125,
+     "norm_over_w0_base": 0.7259989657045923,
+     "text_arm": false
+    },
+    "shibata": {
+     "n_positions": 7,
+     "mean_position_norm": 4086.364013671875,
+     "norm_over_w0_base": 0.8626802374144572,
+     "text_arm": false
+    },
+    "south": {
+     "n_positions": 8,
+     "mean_position_norm": 3514.98681640625,
+     "norm_over_w0_base": 0.7420556884165821,
+     "text_arm": false
+    },
+    "south korea": {
+     "n_positions": 6,
+     "mean_position_norm": 3279.537353515625,
+     "norm_over_w0_base": 0.692349495364271,
+     "text_arm": false
+    },
+    "southwest": {
+     "n_positions": 2,
+     "mean_position_norm": 5664.29150390625,
+     "norm_over_w0_base": 1.195799572193205,
+     "text_arm": false
+    },
+    "taiwan": {
+     "n_positions": 5,
+     "mean_position_norm": 3338.678955078125,
+     "norm_over_w0_base": 0.7048349936474168,
+     "text_arm": false
+    },
+    "west": {
+     "n_positions": 5,
+     "mean_position_norm": 3057.577392578125,
+     "norm_over_w0_base": 0.6454910972486299,
+     "text_arm": false
+    },
+    "yekaterinburg": {
+     "n_positions": 9,
+     "mean_position_norm": 6058.51416015625,
+     "norm_over_w0_base": 1.2790246822299185,
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_1445",
+   "n_tokens": 1113,
+   "n_candidates": 34,
+   "gold_positions": 5,
+   "nongold_fired": [
+    "field",
+    "geography",
+    "system"
+   ],
+   "base_gauge_score": -9.699378035165484,
+   "deltas": {
+    "feminism": {
+     "n_positions": 5,
+     "mean_position_norm": 2634.86767578125,
+     "norm_over_w0_base": 0.5562520285744588
+    },
+    "application": {
+     "n_positions": 2,
+     "mean_position_norm": 4839.515625,
+     "norm_over_w0_base": 1.0216795357382995,
+     "text_arm": false
+    },
+    "argument": {
+     "n_positions": 2,
+     "mean_position_norm": 3752.40478515625,
+     "norm_over_w0_base": 0.7921774565611844,
+     "text_arm": false
+    },
+    "belief": {
+     "n_positions": 2,
+     "mean_position_norm": 5829.85205078125,
+     "norm_over_w0_base": 1.2307513805506436,
+     "text_arm": false
+    },
+    "competition": {
+     "n_positions": 2,
+     "mean_position_norm": 4408.47705078125,
+     "norm_over_w0_base": 0.9306821458098165,
+     "text_arm": false
+    },
+    "constant": {
+     "n_positions": 2,
+     "mean_position_norm": 5049.5,
+     "norm_over_w0_base": 1.0660097446654164,
+     "text_arm": false
+    },
+    "construction": {
+     "n_positions": 2,
+     "mean_position_norm": 3717.99609375,
+     "norm_over_w0_base": 0.7849133709407768,
+     "text_arm": false
+    },
+    "culture": {
+     "n_positions": 3,
+     "mean_position_norm": 1960.9613037109375,
+     "norm_over_w0_base": 0.4139823465031505,
+     "text_arm": false
+    },
+    "ecosystem": {
+     "n_positions": 3,
+     "mean_position_norm": 3634.625,
+     "norm_over_w0_base": 0.767312737539269,
+     "text_arm": false
+    },
+    "environment": {
+     "n_positions": 10,
+     "mean_position_norm": 2749.682861328125,
+     "norm_over_w0_base": 0.5804908852193813,
+     "text_arm": false
+    },
+    "field": {
+     "n_positions": 3,
+     "mean_position_norm": 3347.427001953125,
+     "norm_over_w0_base": 0.7066818108007072,
+     "text_arm": false
+    },
+    "four": {
+     "n_positions": 2,
+     "mean_position_norm": 5673.3115234375,
+     "norm_over_w0_base": 1.197703806021779,
+     "text_arm": false
+    },
+    "geography": {
+     "n_positions": 14,
+     "mean_position_norm": 1681.8052978515625,
+     "norm_over_w0_base": 0.3550491803425465,
+     "text_arm": false
+    },
+    "history": {
+     "n_positions": 2,
+     "mean_position_norm": 3868.25634765625,
+     "norm_over_w0_base": 0.8166351047559987,
+     "text_arm": false
+    },
+    "house": {
+     "n_positions": 2,
+     "mean_position_norm": 4995.79931640625,
+     "norm_over_w0_base": 1.0546728891339514,
+     "text_arm": false
+    },
+    "human": {
+     "n_positions": 16,
+     "mean_position_norm": 1361.08154296875,
+     "norm_over_w0_base": 0.2873405660142446,
+     "text_arm": false
+    },
+    "label": {
+     "n_positions": 2,
+     "mean_position_norm": 2939.56298828125,
+     "norm_over_w0_base": 0.6205768473246072,
+     "text_arm": false
+    },
+    "may": {
+     "n_positions": 2,
+     "mean_position_norm": 7910.435546875,
+     "norm_over_w0_base": 1.6699874002409054,
+     "text_arm": false
+    },
+    "methodology": {
+     "n_positions": 2,
+     "mean_position_norm": 5143.232421875,
+     "norm_over_w0_base": 1.0857977781558292,
+     "text_arm": false
+    },
+    "number": {
+     "n_positions": 2,
+     "mean_position_norm": 5744.5078125,
+     "norm_over_w0_base": 1.2127341927778224,
+     "text_arm": false
+    },
+    "person": {
+     "n_positions": 2,
+     "mean_position_norm": 5896.99560546875,
+     "norm_over_w0_base": 1.244926186687558,
+     "text_arm": false
+    },
+    "research": {
+     "n_positions": 3,
+     "mean_position_norm": 3644.280029296875,
+     "norm_over_w0_base": 0.7693510295118403,
+     "text_arm": false
+    },
+    "science": {
+     "n_positions": 3,
+     "mean_position_norm": 2407.702880859375,
+     "norm_over_w0_base": 0.5082948278552509,
+     "text_arm": false
+    },
+    "series": {
+     "n_positions": 2,
+     "mean_position_norm": 8260.572265625,
+     "norm_over_w0_base": 1.7439054424535352,
+     "text_arm": false
+    },
+    "social organization": {
+     "n_positions": 4,
+     "mean_position_norm": 3959.408203125,
+     "norm_over_w0_base": 0.8358783498642314,
+     "text_arm": false
+    },
+    "sociology": {
+     "n_positions": 2,
+     "mean_position_norm": 3664.71337890625,
+     "norm_over_w0_base": 0.7736647536032848,
+     "text_arm": false
+    },
+    "space": {
+     "n_positions": 3,
+     "mean_position_norm": 2388.26171875,
+     "norm_over_w0_base": 0.5041905663924895,
+     "text_arm": false
+    },
+    "species": {
+     "n_positions": 2,
+     "mean_position_norm": 4802.91455078125,
+     "norm_over_w0_base": 1.013952611927544,
+     "text_arm": false
+    },
+    "structure": {
+     "n_positions": 3,
+     "mean_position_norm": 666.4657592773438,
+     "norm_over_w0_base": 0.14069887986443888,
+     "text_arm": false
+    },
+    "study": {
+     "n_positions": 10,
+     "mean_position_norm": 2504.498291015625,
+     "norm_over_w0_base": 0.528729494746121,
+     "text_arm": false
+    },
+    "system": {
+     "n_positions": 3,
+     "mean_position_norm": 1444.9342041015625,
+     "norm_over_w0_base": 0.30504286404052544,
+     "text_arm": false
+    },
+    "two": {
+     "n_positions": 2,
+     "mean_position_norm": 4094.569580078125,
+     "norm_over_w0_base": 0.8644125304631871,
+     "text_arm": false
+    },
+    "variety": {
+     "n_positions": 2,
+     "mean_position_norm": 4481.7861328125,
+     "norm_over_w0_base": 0.946158568389832,
+     "text_arm": false
+    },
+    "word": {
+     "n_positions": 2,
+     "mean_position_norm": 2728.486572265625,
+     "norm_over_w0_base": 0.5760160954993357,
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_1892",
+   "n_tokens": 1694,
+   "n_candidates": 51,
+   "gold_positions": 3,
+   "nongold_fired": [
+    "germany",
+    "aerostat",
+    "general"
+   ],
+   "base_gauge_score": -9.199067309067983,
+   "deltas": {
+    "aircraft": {
+     "n_positions": 3,
+     "mean_position_norm": 3321.36328125,
+     "norm_over_w0_base": 0.7011794481406876
+    },
+    "action": {
+     "n_positions": 3,
+     "mean_position_norm": 2829.595947265625,
+     "norm_over_w0_base": 0.5973614918805675,
+     "text_arm": false
+    },
+    "aerostat": {
+     "n_positions": 4,
+     "mean_position_norm": 3566.393798828125,
+     "norm_over_w0_base": 0.7529083162422208,
+     "text_arm": false
+    },
+    "airship": {
+     "n_positions": 28,
+     "mean_position_norm": 1765.218994140625,
+     "norm_over_w0_base": 0.3726588076487555,
+     "text_arm": false
+    },
+    "army": {
+     "n_positions": 2,
+     "mean_position_norm": 4750.4853515625,
+     "norm_over_w0_base": 1.0028841819300804,
+     "text_arm": false
+    },
+    "being": {
+     "n_positions": 3,
+     "mean_position_norm": 5323.36181640625,
+     "norm_over_w0_base": 1.123825244216032,
+     "text_arm": false
+    },
+    "blimp": {
+     "n_positions": 6,
+     "mean_position_norm": 3955.850341796875,
+     "norm_over_w0_base": 0.8351272428544384,
+     "text_arm": false
+    },
+    "bombing": {
+     "n_positions": 2,
+     "mean_position_norm": 4571.04248046875,
+     "norm_over_w0_base": 0.9650016491651181,
+     "text_arm": false
+    },
+    "clothing": {
+     "n_positions": 2,
+     "mean_position_norm": 4058.75146484375,
+     "norm_over_w0_base": 0.8568508986431271,
+     "text_arm": false
+    },
+    "combination": {
+     "n_positions": 2,
+     "mean_position_norm": 4218.494140625,
+     "norm_over_w0_base": 0.8905744849431055,
+     "text_arm": false
+    },
+    "count": {
+     "n_positions": 2,
+     "mean_position_norm": 2502.17431640625,
+     "norm_over_w0_base": 0.5282388759561519,
+     "text_arm": false
+    },
+    "craft": {
+     "n_positions": 2,
+     "mean_position_norm": 1632.724609375,
+     "norm_over_w0_base": 0.34468766094638786,
+     "text_arm": false
+    },
+    "department": {
+     "n_positions": 2,
+     "mean_position_norm": 4572.830078125,
+     "norm_over_w0_base": 0.9653790323755554,
+     "text_arm": false
+    },
+    "envelope": {
+     "n_positions": 7,
+     "mean_position_norm": 2923.150390625,
+     "norm_over_w0_base": 0.6171119519811403,
+     "text_arm": false
+    },
+    "fire": {
+     "n_positions": 3,
+     "mean_position_norm": 3234.510498046875,
+     "norm_over_w0_base": 0.6828437885217463,
+     "text_arm": false
+    },
+    "flight": {
+     "n_positions": 2,
+     "mean_position_norm": 4809.205078125,
+     "norm_over_w0_base": 1.015280617363235,
+     "text_arm": false
+    },
+    "force": {
+     "n_positions": 3,
+     "mean_position_norm": 2423.728271484375,
+     "norm_over_w0_base": 0.5116779791708901,
+     "text_arm": false
+    },
+    "gas": {
+     "n_positions": 9,
+     "mean_position_norm": 3086.7861328125,
+     "norm_over_w0_base": 0.6516574110854938,
+     "text_arm": false
+    },
+    "general": {
+     "n_positions": 2,
+     "mean_position_norm": 5728.92724609375,
+     "norm_over_w0_base": 1.2094449491662829,
+     "text_arm": false
+    },
+    "german": {
+     "n_positions": 3,
+     "mean_position_norm": 3065.844970703125,
+     "norm_over_w0_base": 0.6472364817116525,
+     "text_arm": false
+    },
+    "germany": {
+     "n_positions": 2,
+     "mean_position_norm": 4745.353515625,
+     "norm_over_w0_base": 1.0018007900858585,
+     "text_arm": false
+    },
+    "greek": {
+     "n_positions": 2,
+     "mean_position_norm": 3492.313232421875,
+     "norm_over_w0_base": 0.7372690240985638,
+     "text_arm": false
+    },
+    "group": {
+     "n_positions": 3,
+     "mean_position_norm": 3894.014404296875,
+     "norm_over_w0_base": 0.8220729380825755,
+     "text_arm": false
+    },
+    "history": {
+     "n_positions": 3,
+     "mean_position_norm": 1751.2669677734375,
+     "norm_over_w0_base": 0.3697133682854025,
+     "text_arm": false
+    },
+    "law": {
+     "n_positions": 3,
+     "mean_position_norm": 4881.02099609375,
+     "norm_over_w0_base": 1.0304418151802028,
+     "text_arm": false
+    },
+    "member": {
+     "n_positions": 2,
+     "mean_position_norm": 5241.1201171875,
+     "norm_over_w0_base": 1.1064630394858548,
+     "text_arm": false
+    },
+    "military personnel": {
+     "n_positions": 10,
+     "mean_position_norm": 2835.786865234375,
+     "norm_over_w0_base": 0.5986684685877884,
+     "text_arm": false
+    },
+    "military police": {
+     "n_positions": 4,
+     "mean_position_norm": 4295.4853515625,
+     "norm_over_w0_base": 0.9068282489025006,
+     "text_arm": false
+    },
+    "navy": {
+     "n_positions": 2,
+     "mean_position_norm": 5331.26708984375,
+     "norm_over_w0_base": 1.1254941418333446,
+     "text_arm": false
+    },
+    "number": {
+     "n_positions": 2,
+     "mean_position_norm": 3855.62939453125,
+     "norm_over_w0_base": 0.8139694041764,
+     "text_arm": false
+    },
+    "out": {
+     "n_positions": 2,
+     "mean_position_norm": 4600.46142578125,
+     "norm_over_w0_base": 0.9712123398039741,
+     "text_arm": false
+    },
+    "own": {
+     "n_positions": 2,
+     "mean_position_norm": 6875.0380859375,
+     "norm_over_w0_base": 1.4514026328458753,
+     "text_arm": false
+    },
+    "person": {
+     "n_positions": 2,
+     "mean_position_norm": 2665.3212890625,
+     "norm_over_w0_base": 0.5626811499761984,
+     "text_arm": false
+    },
+    "police": {
+     "n_positions": 4,
+     "mean_position_norm": 3237.59375,
+     "norm_over_w0_base": 0.6834946998252991,
+     "text_arm": false
+    },
+    "population": {
+     "n_positions": 2,
+     "mean_position_norm": 4440.04248046875,
+     "norm_over_w0_base": 0.9373459849308039,
+     "text_arm": false
+    },
+    "pressure": {
+     "n_positions": 5,
+     "mean_position_norm": 4055.25048828125,
+     "norm_over_w0_base": 0.8561118006866028,
+     "text_arm": false
+    },
+    "principle": {
+     "n_positions": 2,
+     "mean_position_norm": 3846.492919921875,
+     "norm_over_w0_base": 0.8120405852902762,
+     "text_arm": false
+    },
+    "propulsion": {
+     "n_positions": 2,
+     "mean_position_norm": 5525.9404296875,
+     "norm_over_w0_base": 1.166592008414194,
+     "text_arm": false
+    },
+    "quantity": {
+     "n_positions": 2,
+     "mean_position_norm": 4847.8017578125,
+     "norm_over_w0_base": 1.0234288373174096,
+     "text_arm": false
+    },
+    "rate": {
+     "n_positions": 2,
+     "mean_position_norm": 3935.9599609375,
+     "norm_over_w0_base": 0.8309281459495567,
+     "text_arm": false
+    },
+    "rigid airship": {
+     "n_positions": 21,
+     "mean_position_norm": 1854.2943115234375,
+     "norm_over_w0_base": 0.39146367077168703,
+     "text_arm": false
+    },
+    "suffix": {
+     "n_positions": 2,
+     "mean_position_norm": 3215.315185546875,
+     "norm_over_w0_base": 0.6787914288471453,
+     "text_arm": false
+    },
+    "term": {
+     "n_positions": 3,
+     "mean_position_norm": 2380.8037109375,
+     "norm_over_w0_base": 0.502616091889288,
+     "text_arm": false
+    },
+    "title": {
+     "n_positions": 2,
+     "mean_position_norm": 2449.591796875,
+     "norm_over_w0_base": 0.5171380782099648,
+     "text_arm": false
+    },
+    "truss": {
+     "n_positions": 2,
+     "mean_position_norm": 6347.935546875,
+     "norm_over_w0_base": 1.3401249928659746,
+     "text_arm": false
+    },
+    "type": {
+     "n_positions": 5,
+     "mean_position_norm": 4547.244140625,
+     "norm_over_w0_base": 0.9599775354547909,
+     "text_arm": false
+    },
+    "war": {
+     "n_positions": 9,
+     "mean_position_norm": 2369.018798828125,
+     "norm_over_w0_base": 0.5001281562226638,
+     "text_arm": false
+    },
+    "warfare": {
+     "n_positions": 5,
+     "mean_position_norm": 2095.94580078125,
+     "norm_over_w0_base": 0.44247918564677136,
+     "text_arm": false
+    },
+    "western": {
+     "n_positions": 2,
+     "mean_position_norm": 6835.435546875,
+     "norm_over_w0_base": 1.443042063966953,
+     "text_arm": false
+    },
+    "world": {
+     "n_positions": 7,
+     "mean_position_norm": 2394.769775390625,
+     "norm_over_w0_base": 0.5055644948602073,
+     "text_arm": false
+    },
+    "zeppelin": {
+     "n_positions": 8,
+     "mean_position_norm": 1511.398681640625,
+     "norm_over_w0_base": 0.31907430888273486,
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_2027",
+   "n_tokens": 927,
+   "n_candidates": 4,
+   "gold_positions": 2,
+   "nongold_fired": [
+    "center",
+    "goaltender",
+    "end"
+   ],
+   "base_gauge_score": -14.297564481662013,
+   "deltas": {
+    "centre": {
+     "n_positions": 2,
+     "mean_position_norm": 6741.458984375,
+     "norm_over_w0_base": 1.4232024894753879
+    },
+    "center": {
+     "n_positions": 4,
+     "mean_position_norm": 3186.33447265625,
+     "norm_over_w0_base": 0.6726732543053576,
+     "text_arm": false
+    },
+    "end": {
+     "n_positions": 2,
+     "mean_position_norm": 5056.4306640625,
+     "norm_over_w0_base": 1.0674728906061288,
+     "text_arm": false
+    },
+    "goaltender": {
+     "n_positions": 14,
+     "mean_position_norm": 2080.58056640625,
+     "norm_over_w0_base": 0.4392354011982481,
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_2098",
+   "n_tokens": 882,
+   "n_candidates": 6,
+   "gold_positions": 8,
+   "nongold_fired": [
+    "20",
+    "100",
+    "678"
+   ],
+   "base_gauge_score": -9.868306001439748,
+   "deltas": {
+    "1994": {
+     "n_positions": 8,
+     "mean_position_norm": 3727.30810546875,
+     "norm_over_w0_base": 0.7868792478067291
+    },
+    "100": {
+     "n_positions": 6,
+     "mean_position_norm": 4631.93896484375,
+     "norm_over_w0_base": 0.9778576241645468,
+     "text_arm": false
+    },
+    "1945": {
+     "n_positions": 8,
+     "mean_position_norm": 4716.1728515625,
+     "norm_over_w0_base": 0.995640403464127,
+     "text_arm": false
+    },
+    "20": {
+     "n_positions": 4,
+     "mean_position_norm": 4117.6494140625,
+     "norm_over_w0_base": 0.8692849590071229,
+     "text_arm": false
+    },
+    "4": {
+     "n_positions": 7,
+     "mean_position_norm": 1135.11865234375,
+     "norm_over_w0_base": 0.23963710164370977,
+     "text_arm": false
+    },
+    "678": {
+     "n_positions": 6,
+     "mean_position_norm": 5290.703125,
+     "norm_over_w0_base": 1.1169306044918845,
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_2414",
+   "n_tokens": 2671,
+   "n_candidates": 52,
+   "gold_positions": 13,
+   "nongold_fired": [
+    "gulf",
+    "bermuda",
+    "jerusalem"
+   ],
+   "base_gauge_score": -12.161304136229747,
+   "deltas": {
+    "giza governorate": {
+     "n_positions": 13,
+     "mean_position_norm": 3077.81640625,
+     "norm_over_w0_base": 0.6497637947031571
+    },
+    "africa": {
+     "n_positions": 10,
+     "mean_position_norm": 2807.626953125,
+     "norm_over_w0_base": 0.5927235748918749,
+     "text_arm": false
+    },
+    "algeria": {
+     "n_positions": 5,
+     "mean_position_norm": 4136.60546875,
+     "norm_over_w0_base": 0.8732868085005946,
+     "text_arm": false
+    },
+    "aqaba": {
+     "n_positions": 12,
+     "mean_position_norm": 4052.8876953125,
+     "norm_over_w0_base": 0.8556129868774505,
+     "text_arm": false
+    },
+    "argentina": {
+     "n_positions": 2,
+     "mean_position_norm": 6023.6455078125,
+     "norm_over_w0_base": 1.27166349336334,
+     "text_arm": false
+    },
+    "atlantic ocean": {
+     "n_positions": 4,
+     "mean_position_norm": 4968.71240234375,
+     "norm_over_w0_base": 1.0489545181381026,
+     "text_arm": false
+    },
+    "bahrain": {
+     "n_positions": 3,
+     "mean_position_norm": 6108.16015625,
+     "norm_over_w0_base": 1.2895055448142454,
+     "text_arm": false
+    },
+    "basin": {
+     "n_positions": 2,
+     "mean_position_norm": 5993.607421875,
+     "norm_over_w0_base": 1.2653220947455617,
+     "text_arm": false
+    },
+    "bermuda": {
+     "n_positions": 3,
+     "mean_position_norm": 6461.265625,
+     "norm_over_w0_base": 1.3640503256008876,
+     "text_arm": false
+    },
+    "cairo": {
+     "n_positions": 8,
+     "mean_position_norm": 2110.4423828125,
+     "norm_over_w0_base": 0.4455395872131946,
+     "text_arm": false
+    },
+    "central african republic": {
+     "n_positions": 6,
+     "mean_position_norm": 4575.140625,
+     "norm_over_w0_base": 0.9658668164104611,
+     "text_arm": false
+    },
+    "chad": {
+     "n_positions": 3,
+     "mean_position_norm": 2995.755126953125,
+     "norm_over_w0_base": 0.6324396787728315,
+     "text_arm": false
+    },
+    "cross": {
+     "n_positions": 2,
+     "mean_position_norm": 4444.494140625,
+     "norm_over_w0_base": 0.9382857835458155,
+     "text_arm": false
+    },
+    "earth": {
+     "n_positions": 5,
+     "mean_position_norm": 6121.15576171875,
+     "norm_over_w0_base": 1.2922490723055842,
+     "text_arm": false
+    },
+    "east": {
+     "n_positions": 17,
+     "mean_position_norm": 2717.382080078125,
+     "norm_over_w0_base": 0.5736718046029231,
+     "text_arm": false
+    },
+    "egypt": {
+     "n_positions": 19,
+     "mean_position_norm": 1427.459228515625,
+     "norm_over_w0_base": 0.30135368803054435,
+     "text_arm": false
+    },
+    "eritrea": {
+     "n_positions": 3,
+     "mean_position_norm": 5759.71875,
+     "norm_over_w0_base": 1.2159454033136174,
+     "text_arm": false
+    },
+    "europe": {
+     "n_positions": 3,
+     "mean_position_norm": 4710.40771484375,
+     "norm_over_w0_base": 0.9944233142629157,
+     "text_arm": false
+    },
+    "fezzan": {
+     "n_positions": 6,
+     "mean_position_norm": 4217.54248046875,
+     "norm_over_w0_base": 0.8903735781206137,
+     "text_arm": false
+    },
+    "gaza strip": {
+     "n_positions": 9,
+     "mean_position_norm": 2999.281005859375,
+     "norm_over_w0_base": 0.6331840339114735,
+     "text_arm": false
+    },
+    "ghadames": {
+     "n_positions": 6,
+     "mean_position_norm": 4049.648681640625,
+     "norm_over_w0_base": 0.8549291924151624,
+     "text_arm": false
+    },
+    "gulf": {
+     "n_positions": 11,
+     "mean_position_norm": 2900.774169921875,
+     "norm_over_w0_base": 0.6123880646025256,
+     "text_arm": false
+    },
+    "indian": {
+     "n_positions": 4,
+     "mean_position_norm": 4411.587890625,
+     "norm_over_w0_base": 0.9313388812464994,
+     "text_arm": false
+    },
+    "indian ocean": {
+     "n_positions": 6,
+     "mean_position_norm": 3914.237060546875,
+     "norm_over_w0_base": 0.8263421822900255,
+     "text_arm": false
+    },
+    "israel": {
+     "n_positions": 9,
+     "mean_position_norm": 2880.689453125,
+     "norm_over_w0_base": 0.6081479410607267,
+     "text_arm": false
+    },
+    "jerusalem": {
+     "n_positions": 4,
+     "mean_position_norm": 4151.005859375,
+     "norm_over_w0_base": 0.8763269029125638,
+     "text_arm": false
+    },
+    "jordan": {
+     "n_positions": 12,
+     "mean_position_norm": 2817.125732421875,
+     "norm_over_w0_base": 0.5947288806237087,
+     "text_arm": false
+    },
+    "kuwait": {
+     "n_positions": 3,
+     "mean_position_norm": 6283.32421875,
+     "norm_over_w0_base": 1.326484769993012,
+     "text_arm": false
+    },
+    "lebanon": {
+     "n_positions": 4,
+     "mean_position_norm": 4643.40087890625,
+     "norm_over_w0_base": 0.9802773710866465,
+     "text_arm": false
+    },
+    "libya": {
+     "n_positions": 9,
+     "mean_position_norm": 3373.440673828125,
+     "norm_over_w0_base": 0.7121736075554905,
+     "text_arm": false
+    },
+    "mainland": {
+     "n_positions": 2,
+     "mean_position_norm": 6324.783203125,
+     "norm_over_w0_base": 1.3352372566446966,
+     "text_arm": false
+    },
+    "most": {
+     "n_positions": 6,
+     "mean_position_norm": 1832.4322509765625,
+     "norm_over_w0_base": 0.38684832874149905,
+     "text_arm": false
+    },
+    "niger": {
+     "n_positions": 2,
+     "mean_position_norm": 4778.744140625,
+     "norm_over_w0_base": 1.0088499497314607,
+     "text_arm": false
+    },
+    "norfolk island": {
+     "n_positions": 5,
+     "mean_position_norm": 6094.31494140625,
+     "norm_over_w0_base": 1.2865826546388965,
+     "text_arm": false
+    },
+    "north": {
+     "n_positions": 14,
+     "mean_position_norm": 1662.376708984375,
+     "norm_over_w0_base": 0.35094757324134446,
+     "text_arm": false
+    },
+    "northern": {
+     "n_positions": 5,
+     "mean_position_norm": 2124.606689453125,
+     "norm_over_w0_base": 0.4485298414770495,
+     "text_arm": false
+    },
+    "northwest": {
+     "n_positions": 2,
+     "mean_position_norm": 5740.75244140625,
+     "norm_over_w0_base": 1.2119413890980972,
+     "text_arm": false
+    },
+    "of": {
+     "n_positions": 94,
+     "mean_position_norm": 851.6561889648438,
+     "norm_over_w0_base": 0.17979479087852948,
+     "text_arm": false
+    },
+    "palestinian territories": {
+     "n_positions": 7,
+     "mean_position_norm": 2994.18701171875,
+     "norm_over_w0_base": 0.6321086309224301,
+     "text_arm": false
+    },
+    "post": {
+     "n_positions": 2,
+     "mean_position_norm": 1287.489501953125,
+     "norm_over_w0_base": 0.27180440741389345,
+     "text_arm": false
+    },
+    "qatar": {
+     "n_positions": 3,
+     "mean_position_norm": 5689.28076171875,
+     "norm_over_w0_base": 1.2010751029071531,
+     "text_arm": false
+    },
+    "red sea": {
+     "n_positions": 24,
+     "mean_position_norm": 2987.431396484375,
+     "norm_over_w0_base": 0.6306824398795439,
+     "text_arm": false
+    },
+    "river": {
+     "n_positions": 4,
+     "mean_position_norm": 3790.54443359375,
+     "norm_over_w0_base": 0.8002291917612019,
+     "text_arm": false
+    },
+    "r\u00e9union": {
+     "n_positions": 3,
+     "mean_position_norm": 4642.38671875,
+     "norm_over_w0_base": 0.9800632697678597,
+     "text_arm": false
+    },
+    "saudi arabia": {
+     "n_positions": 22,
+     "mean_position_norm": 3499.28369140625,
+     "norm_over_w0_base": 0.7387405712224641,
+     "text_arm": false
+    },
+    "seaside": {
+     "n_positions": 2,
+     "mean_position_norm": 4888.91845703125,
+     "norm_over_w0_base": 1.0321090634854786,
+     "text_arm": false
+    },
+    "south": {
+     "n_positions": 14,
+     "mean_position_norm": 2822.130126953125,
+     "norm_over_w0_base": 0.5957853680653292,
+     "text_arm": false
+    },
+    "southwest": {
+     "n_positions": 5,
+     "mean_position_norm": 2344.79638671875,
+     "norm_over_w0_base": 0.4950145157933351,
+     "text_arm": false
+    },
+    "state of palestine": {
+     "n_positions": 7,
+     "mean_position_norm": 3446.552001953125,
+     "norm_over_w0_base": 0.7276082819245728,
+     "text_arm": false
+    },
+    "sudan": {
+     "n_positions": 11,
+     "mean_position_norm": 2668.76806640625,
+     "norm_over_w0_base": 0.563408805830467,
+     "text_arm": false
+    },
+    "tel aviv": {
+     "n_positions": 5,
+     "mean_position_norm": 5366.13916015625,
+     "norm_over_w0_base": 1.1328560522739393,
+     "text_arm": false
+    },
+    "west bank": {
+     "n_positions": 10,
+     "mean_position_norm": 2099.90478515625,
+     "norm_over_w0_base": 0.44331497452145757,
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_2499",
+   "n_tokens": 1452,
+   "n_candidates": 41,
+   "gold_positions": 7,
+   "nongold_fired": [
+    "east",
+    "district",
+    "norway"
+   ],
+   "base_gauge_score": -10.435806069338062,
+   "deltas": {
+    "bauska municipality": {
+     "n_positions": 7,
+     "mean_position_norm": 2998.97607421875,
+     "norm_over_w0_base": 0.6331196592010343
+    },
+    "belarus": {
+     "n_positions": 8,
+     "mean_position_norm": 3230.5400390625,
+     "norm_over_w0_base": 0.6820055772200059,
+     "text_arm": false
+    },
+    "belgium": {
+     "n_positions": 3,
+     "mean_position_norm": 4729.97900390625,
+     "norm_over_w0_base": 0.9985550470792914,
+     "text_arm": false
+    },
+    "cyprus": {
+     "n_positions": 3,
+     "mean_position_norm": 6949.04052734375,
+     "norm_over_w0_base": 1.4670254318691636,
+     "text_arm": false
+    },
+    "denmark": {
+     "n_positions": 8,
+     "mean_position_norm": 4307.75146484375,
+     "norm_over_w0_base": 0.9094177718823961,
+     "text_arm": false
+    },
+    "district": {
+     "n_positions": 3,
+     "mean_position_norm": 3951.548583984375,
+     "norm_over_w0_base": 0.8342190904141343,
+     "text_arm": false
+    },
+    "earth": {
+     "n_positions": 2,
+     "mean_position_norm": 6366.44384765625,
+     "norm_over_w0_base": 1.344032316163333,
+     "text_arm": false
+    },
+    "east": {
+     "n_positions": 6,
+     "mean_position_norm": 3209.810546875,
+     "norm_over_w0_base": 0.6776293338941636,
+     "text_arm": false
+    },
+    "europe": {
+     "n_positions": 11,
+     "mean_position_norm": 1745.690185546875,
+     "norm_over_w0_base": 0.3685360429665804,
+     "text_arm": false
+    },
+    "european union": {
+     "n_positions": 8,
+     "mean_position_norm": 2969.083740234375,
+     "norm_over_w0_base": 0.6268090305609437,
+     "text_arm": false
+    },
+    "faroe islands": {
+     "n_positions": 5,
+     "mean_position_norm": 6473.16015625,
+     "norm_over_w0_base": 1.3665614031770292,
+     "text_arm": false
+    },
+    "finland": {
+     "n_positions": 4,
+     "mean_position_norm": 4787.0322265625,
+     "norm_over_w0_base": 1.0105996636385801,
+     "text_arm": false
+    },
+    "france": {
+     "n_positions": 2,
+     "mean_position_norm": 7038.1796875,
+     "norm_over_w0_base": 1.4858437729638965,
+     "text_arm": false
+    },
+    "germany": {
+     "n_positions": 3,
+     "mean_position_norm": 6902.76513671875,
+     "norm_over_w0_base": 1.4572561443467458,
+     "text_arm": false
+    },
+    "greece": {
+     "n_positions": 3,
+     "mean_position_norm": 7009.68994140625,
+     "norm_over_w0_base": 1.479829247375426,
+     "text_arm": false
+    },
+    "iceland": {
+     "n_positions": 3,
+     "mean_position_norm": 7015.59814453125,
+     "norm_over_w0_base": 1.4810765396033125,
+     "text_arm": false
+    },
+    "ireland": {
+     "n_positions": 3,
+     "mean_position_norm": 7411.658203125,
+     "norm_over_w0_base": 1.5646895472146984,
+     "text_arm": false
+    },
+    "isle of man": {
+     "n_positions": 6,
+     "mean_position_norm": 7390.42431640625,
+     "norm_over_w0_base": 1.5602068201804755,
+     "text_arm": false
+    },
+    "italy": {
+     "n_positions": 2,
+     "mean_position_norm": 8140.07421875,
+     "norm_over_w0_base": 1.7184668659247897,
+     "text_arm": false
+    },
+    "kingdom of denmark": {
+     "n_positions": 7,
+     "mean_position_norm": 5858.609375,
+     "norm_over_w0_base": 1.2368223950763768,
+     "text_arm": false
+    },
+    "latvia": {
+     "n_positions": 16,
+     "mean_position_norm": 2560.736328125,
+     "norm_over_w0_base": 0.5406020159025621,
+     "text_arm": false
+    },
+    "lithuania": {
+     "n_positions": 13,
+     "mean_position_norm": 2879.568603515625,
+     "norm_over_w0_base": 0.6079113163244363,
+     "text_arm": false
+    },
+    "minsk": {
+     "n_positions": 3,
+     "mean_position_norm": 6139.67578125,
+     "norm_over_w0_base": 1.2961588695709978,
+     "text_arm": false
+    },
+    "moscow": {
+     "n_positions": 3,
+     "mean_position_norm": 4490.841796875,
+     "norm_over_w0_base": 0.9480703272045744,
+     "text_arm": false
+    },
+    "most": {
+     "n_positions": 4,
+     "mean_position_norm": 3158.666015625,
+     "norm_over_w0_base": 0.6668321126447637,
+     "text_arm": false
+    },
+    "netherlands": {
+     "n_positions": 3,
+     "mean_position_norm": 6406.0625,
+     "norm_over_w0_base": 1.3523962867483312,
+     "text_arm": false
+    },
+    "northern": {
+     "n_positions": 10,
+     "mean_position_norm": 3782.594482421875,
+     "norm_over_w0_base": 0.7985508621406784,
+     "text_arm": false
+    },
+    "northwest": {
+     "n_positions": 3,
+     "mean_position_norm": 4798.82861328125,
+     "norm_over_w0_base": 1.0130900217322585,
+     "text_arm": false
+    },
+    "norway": {
+     "n_positions": 4,
+     "mean_position_norm": 5682.46044921875,
+     "norm_over_w0_base": 1.1996352534989616,
+     "text_arm": false
+    },
+    "of": {
+     "n_positions": 56,
+     "mean_position_norm": 1114.0526123046875,
+     "norm_over_w0_base": 0.235189809047779,
+     "text_arm": false
+    },
+    "portugal": {
+     "n_positions": 3,
+     "mean_position_norm": 7051.90380859375,
+     "norm_over_w0_base": 1.4887410988026737,
+     "text_arm": false
+    },
+    "russia": {
+     "n_positions": 8,
+     "mean_position_norm": 2910.911865234375,
+     "norm_over_w0_base": 0.6145282531343751,
+     "text_arm": false
+    },
+    "russian empire": {
+     "n_positions": 4,
+     "mean_position_norm": 4160.42919921875,
+     "norm_over_w0_base": 0.8783162824750416,
+     "text_arm": false
+    },
+    "saint petersburg": {
+     "n_positions": 6,
+     "mean_position_norm": 6232.23388671875,
+     "norm_over_w0_base": 1.3156989908458678,
+     "text_arm": false
+    },
+    "slovakia": {
+     "n_positions": 3,
+     "mean_position_norm": 6681.47412109375,
+     "norm_over_w0_base": 1.410538968574262,
+     "text_arm": false
+    },
+    "southwest": {
+     "n_positions": 3,
+     "mean_position_norm": 4243.419921875,
+     "norm_over_w0_base": 0.895836614996754,
+     "text_arm": false
+    },
+    "sweden": {
+     "n_positions": 9,
+     "mean_position_norm": 3352.0595703125,
+     "norm_over_w0_base": 0.7076598012975727,
+     "text_arm": false
+    },
+    "united kingdom": {
+     "n_positions": 4,
+     "mean_position_norm": 5961.41943359375,
+     "norm_over_w0_base": 1.2585268260716358,
+     "text_arm": false
+    },
+    "west": {
+     "n_positions": 5,
+     "mean_position_norm": 3435.16943359375,
+     "norm_over_w0_base": 0.7252052858278476,
+     "text_arm": false
+    },
+    "yekaterinburg": {
+     "n_positions": 9,
+     "mean_position_norm": 6678.4248046875,
+     "norm_over_w0_base": 1.4098952214698692,
+     "text_arm": false
+    },
+    "zemgale": {
+     "n_positions": 6,
+     "mean_position_norm": 4582.4482421875,
+     "norm_over_w0_base": 0.9674095416569528,
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_2655",
+   "n_tokens": 1252,
+   "n_candidates": 41,
+   "gold_positions": 9,
+   "nongold_fired": [
+    "vikings",
+    "coast",
+    "video"
+   ],
+   "base_gauge_score": -10.691783435964615,
+   "deltas": {
+    "video game developer": {
+     "n_positions": 9,
+     "mean_position_norm": 2433.44921875,
+     "norm_over_w0_base": 0.5137301872137725
+    },
+    "1": {
+     "n_positions": 2,
+     "mean_position_norm": 2986.248291015625,
+     "norm_over_w0_base": 0.6304326721879597,
+     "text_arm": false
+    },
+    "1980": {
+     "n_positions": 8,
+     "mean_position_norm": 3057.51171875,
+     "norm_over_w0_base": 0.6454772327193199,
+     "text_arm": false
+    },
+    "advertising": {
+     "n_positions": 2,
+     "mean_position_norm": 3753.322021484375,
+     "norm_over_w0_base": 0.7923710961025137,
+     "text_arm": false
+    },
+    "area": {
+     "n_positions": 3,
+     "mean_position_norm": 3986.862060546875,
+     "norm_over_w0_base": 0.8416741869848123,
+     "text_arm": false
+    },
+    "blizzard": {
+     "n_positions": 10,
+     "mean_position_norm": 2326.90625,
+     "norm_over_w0_base": 0.4912376943108944,
+     "text_arm": false
+    },
+    "brand": {
+     "n_positions": 2,
+     "mean_position_norm": 3220.325439453125,
+     "norm_over_w0_base": 0.6798491532727935,
+     "text_arm": false
+    },
+    "channel": {
+     "n_positions": 2,
+     "mean_position_norm": 4943.2109375,
+     "norm_over_w0_base": 1.0435708544037368,
+     "text_arm": false
+    },
+    "coast": {
+     "n_positions": 2,
+     "mean_position_norm": 4546.8671875,
+     "norm_over_w0_base": 0.9598979561490117,
+     "text_arm": false
+    },
+    "code": {
+     "n_positions": 2,
+     "mean_position_norm": 1088.67333984375,
+     "norm_over_w0_base": 0.22983194158448994,
+     "text_arm": false
+    },
+    "company": {
+     "n_positions": 11,
+     "mean_position_norm": 1327.9669189453125,
+     "norm_over_w0_base": 0.28034967347044504,
+     "text_arm": false
+    },
+    "computer": {
+     "n_positions": 2,
+     "mean_position_norm": 5909.48486328125,
+     "norm_over_w0_base": 1.247562818142507,
+     "text_arm": false
+    },
+    "country": {
+     "n_positions": 2,
+     "mean_position_norm": 5282.4287109375,
+     "norm_over_w0_base": 1.1151837768808295,
+     "text_arm": false
+    },
+    "county": {
+     "n_positions": 5,
+     "mean_position_norm": 3551.05078125,
+     "norm_over_w0_base": 0.7496692220248025,
+     "text_arm": false
+    },
+    "distributor": {
+     "n_positions": 3,
+     "mean_position_norm": 5330.96826171875,
+     "norm_over_w0_base": 1.125431055647934,
+     "text_arm": false
+    },
+    "dvd": {
+     "n_positions": 2,
+     "mean_position_norm": 5862.01416015625,
+     "norm_over_w0_base": 1.2375411858784473,
+     "text_arm": false
+    },
+    "entertainment": {
+     "n_positions": 7,
+     "mean_position_norm": 2433.144775390625,
+     "norm_over_w0_base": 0.5136659155853356,
+     "text_arm": false
+    },
+    "format": {
+     "n_positions": 3,
+     "mean_position_norm": 735.9547729492188,
+     "norm_over_w0_base": 0.15536884039942395,
+     "text_arm": false
+    },
+    "home": {
+     "n_positions": 4,
+     "mean_position_norm": 5230.458984375,
+     "norm_over_w0_base": 1.1042123470475347,
+     "text_arm": false
+    },
+    "july": {
+     "n_positions": 2,
+     "mean_position_norm": 4545.51953125,
+     "norm_over_w0_base": 0.9596134498226508,
+     "text_arm": false
+    },
+    "king": {
+     "n_positions": 2,
+     "mean_position_norm": 5648.919921875,
+     "norm_over_w0_base": 1.1925544476786518,
+     "text_arm": false
+    },
+    "league": {
+     "n_positions": 3,
+     "mean_position_norm": 3866.864013671875,
+     "norm_over_w0_base": 0.8163411664264268,
+     "text_arm": false
+    },
+    "manufacturing": {
+     "n_positions": 2,
+     "mean_position_norm": 3970.989501953125,
+     "norm_over_w0_base": 0.8383233003358945,
+     "text_arm": false
+    },
+    "market": {
+     "n_positions": 8,
+     "mean_position_norm": 2684.550537109375,
+     "norm_over_w0_base": 0.5667406738499596,
+     "text_arm": false
+    },
+    "market research": {
+     "n_positions": 4,
+     "mean_position_norm": 4474.22509765625,
+     "norm_over_w0_base": 0.9445623435841443,
+     "text_arm": false
+    },
+    "model": {
+     "n_positions": 3,
+     "mean_position_norm": 1724.9212646484375,
+     "norm_over_w0_base": 0.364151475769052,
+     "text_arm": false
+    },
+    "name": {
+     "n_positions": 3,
+     "mean_position_norm": 2503.857421875,
+     "norm_over_w0_base": 0.5285941996180962,
+     "text_arm": false
+    },
+    "network": {
+     "n_positions": 2,
+     "mean_position_norm": 6075.7470703125,
+     "norm_over_w0_base": 1.2826627553372572,
+     "text_arm": false
+    },
+    "october": {
+     "n_positions": 2,
+     "mean_position_norm": 4461.52001953125,
+     "norm_over_w0_base": 0.9418801498841769,
+     "text_arm": false
+    },
+    "official": {
+     "n_positions": 2,
+     "mean_position_norm": 7490.0791015625,
+     "norm_over_w0_base": 1.5812451352768417,
+     "text_arm": false
+    },
+    "organization": {
+     "n_positions": 2,
+     "mean_position_norm": 792.4542236328125,
+     "norm_over_w0_base": 0.16729654908284883,
+     "text_arm": false
+    },
+    "product": {
+     "n_positions": 2,
+     "mean_position_norm": 4267.59912109375,
+     "norm_over_w0_base": 0.9009411326688789,
+     "text_arm": false
+    },
+    "publisher": {
+     "n_positions": 5,
+     "mean_position_norm": 3151.78173828125,
+     "norm_over_w0_base": 0.6653787594942702,
+     "text_arm": false
+    },
+    "publishing": {
+     "n_positions": 2,
+     "mean_position_norm": 2929.45849609375,
+     "norm_over_w0_base": 0.6184436683689144,
+     "text_arm": false
+    },
+    "rock": {
+     "n_positions": 2,
+     "mean_position_norm": 5641.9453125,
+     "norm_over_w0_base": 1.191082024357732,
+     "text_arm": false
+    },
+    "software": {
+     "n_positions": 3,
+     "mean_position_norm": 4311.4287109375,
+     "norm_over_w0_base": 0.9101940824417526,
+     "text_arm": false
+    },
+    "state": {
+     "n_positions": 5,
+     "mean_position_norm": 3141.81982421875,
+     "norm_over_w0_base": 0.6632756804832505,
+     "text_arm": false
+    },
+    "stock exchange": {
+     "n_positions": 8,
+     "mean_position_norm": 3785.00244140625,
+     "norm_over_w0_base": 0.7990592110350438,
+     "text_arm": false
+    },
+    "university": {
+     "n_positions": 2,
+     "mean_position_norm": 5279.7646484375,
+     "norm_over_w0_base": 1.1146213614762552,
+     "text_arm": false
+    },
+    "video": {
+     "n_positions": 15,
+     "mean_position_norm": 1943.816650390625,
+     "norm_over_w0_base": 0.4103629054677285,
+     "text_arm": false
+    },
+    "vikings": {
+     "n_positions": 3,
+     "mean_position_norm": 5130.09326171875,
+     "norm_over_w0_base": 1.083023944555813,
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_2810",
+   "n_tokens": 2156,
+   "n_candidates": 43,
+   "gold_positions": 6,
+   "nongold_fired": [
+    "amsterdam",
+    "basin",
+    "eastleigh"
+   ],
+   "base_gauge_score": -18.772760358012633,
+   "deltas": {
+    "longgang district": {
+     "n_positions": 6,
+     "mean_position_norm": 3435.684814453125,
+     "norm_over_w0_base": 0.7253140888812801
+    },
+    "amsterdam": {
+     "n_positions": 4,
+     "mean_position_norm": 5683.9794921875,
+     "norm_over_w0_base": 1.1999559416081316,
+     "text_arm": false
+    },
+    "basin": {
+     "n_positions": 2,
+     "mean_position_norm": 5630.50439453125,
+     "norm_over_w0_base": 1.1886667099617314,
+     "text_arm": false
+    },
+    "beijing": {
+     "n_positions": 5,
+     "mean_position_norm": 3950.86572265625,
+     "norm_over_w0_base": 0.8340749302339112,
+     "text_arm": false
+    },
+    "british hong kong": {
+     "n_positions": 6,
+     "mean_position_norm": 4317.71240234375,
+     "norm_over_w0_base": 0.9115206447294113,
+     "text_arm": false
+    },
+    "central": {
+     "n_positions": 3,
+     "mean_position_norm": 2700.049072265625,
+     "norm_over_w0_base": 0.5700125996851121,
+     "text_arm": false
+    },
+    "china": {
+     "n_positions": 30,
+     "mean_position_norm": 1320.321044921875,
+     "norm_over_w0_base": 0.27873553816685687,
+     "text_arm": false
+    },
+    "commerce": {
+     "n_positions": 2,
+     "mean_position_norm": 3686.7490234375,
+     "norm_over_w0_base": 0.7783167412852922,
+     "text_arm": false
+    },
+    "district": {
+     "n_positions": 5,
+     "mean_position_norm": 3171.471435546875,
+     "norm_over_w0_base": 0.6695354896962047,
+     "text_arm": false
+    },
+    "east": {
+     "n_positions": 8,
+     "mean_position_norm": 3861.18701171875,
+     "norm_over_w0_base": 0.8151426835266317,
+     "text_arm": false
+    },
+    "eastleigh": {
+     "n_positions": 4,
+     "mean_position_norm": 5178.255859375,
+     "norm_over_w0_base": 1.0931916440171383,
+     "text_arm": false
+    },
+    "europe": {
+     "n_positions": 4,
+     "mean_position_norm": 4111.7353515625,
+     "norm_over_w0_base": 0.8680364297952088,
+     "text_arm": false
+    },
+    "fareham": {
+     "n_positions": 4,
+     "mean_position_norm": 6104.64501953125,
+     "norm_over_w0_base": 1.288763457479654,
+     "text_arm": false
+    },
+    "guangdong": {
+     "n_positions": 12,
+     "mean_position_norm": 2813.193115234375,
+     "norm_over_w0_base": 0.5938986581771469,
+     "text_arm": false
+    },
+    "guangzhou": {
+     "n_positions": 9,
+     "mean_position_norm": 3213.351318359375,
+     "norm_over_w0_base": 0.6783768330338759,
+     "text_arm": false
+    },
+    "hampshire": {
+     "n_positions": 4,
+     "mean_position_norm": 4390.09912109375,
+     "norm_over_w0_base": 0.9268023454070734,
+     "text_arm": false
+    },
+    "henan": {
+     "n_positions": 8,
+     "mean_position_norm": 3696.74755859375,
+     "norm_over_w0_base": 0.7804275514464848,
+     "text_arm": false
+    },
+    "hong kong": {
+     "n_positions": 24,
+     "mean_position_norm": 3521.6796875,
+     "norm_over_w0_base": 0.7434686334221722,
+     "text_arm": false
+    },
+    "lot": {
+     "n_positions": 2,
+     "mean_position_norm": 6363.41796875,
+     "norm_over_w0_base": 1.343393516995051,
+     "text_arm": false
+    },
+    "mainland": {
+     "n_positions": 11,
+     "mean_position_norm": 3042.22265625,
+     "norm_over_w0_base": 0.6422495290631562,
+     "text_arm": false
+    },
+    "malacca": {
+     "n_positions": 4,
+     "mean_position_norm": 5630.7587890625,
+     "norm_over_w0_base": 1.188720415684932,
+     "text_arm": false
+    },
+    "most": {
+     "n_positions": 11,
+     "mean_position_norm": 1265.8997802734375,
+     "norm_over_w0_base": 0.2672465593704909,
+     "text_arm": false
+    },
+    "netherlands": {
+     "n_positions": 2,
+     "mean_position_norm": 3571.991455078125,
+     "norm_over_w0_base": 0.7540900483166415,
+     "text_arm": false
+    },
+    "new york": {
+     "n_positions": 24,
+     "mean_position_norm": 3064.142578125,
+     "norm_over_w0_base": 0.6468770863106172,
+     "text_arm": false
+    },
+    "new york city": {
+     "n_positions": 15,
+     "mean_position_norm": 2332.191650390625,
+     "norm_over_w0_base": 0.4923535054448413,
+     "text_arm": false
+    },
+    "northwest": {
+     "n_positions": 3,
+     "mean_position_norm": 5046.845703125,
+     "norm_over_w0_base": 1.0654493909008882,
+     "text_arm": false
+    },
+    "of": {
+     "n_positions": 84,
+     "mean_position_norm": 1328.9068603515625,
+     "norm_over_w0_base": 0.28054810632488153,
+     "text_arm": false
+    },
+    "pacific ocean": {
+     "n_positions": 4,
+     "mean_position_norm": 5473.9306640625,
+     "norm_over_w0_base": 1.1556121258567102,
+     "text_arm": false
+    },
+    "portsea island": {
+     "n_positions": 6,
+     "mean_position_norm": 4009.259033203125,
+     "norm_over_w0_base": 0.8464024553485251,
+     "text_arm": false
+    },
+    "portsmouth": {
+     "n_positions": 5,
+     "mean_position_norm": 3575.91845703125,
+     "norm_over_w0_base": 0.7549190853201767,
+     "text_arm": false
+    },
+    "republic of china": {
+     "n_positions": 24,
+     "mean_position_norm": 3325.759521484375,
+     "norm_over_w0_base": 0.7021075469484377,
+     "text_arm": false
+    },
+    "road": {
+     "n_positions": 2,
+     "mean_position_norm": 3415.4755859375,
+     "norm_over_w0_base": 0.7210476794288935,
+     "text_arm": false
+    },
+    "san francisco": {
+     "n_positions": 4,
+     "mean_position_norm": 6082.1884765625,
+     "norm_over_w0_base": 1.2840226131116603,
+     "text_arm": false
+    },
+    "shenzhen": {
+     "n_positions": 8,
+     "mean_position_norm": 3756.102783203125,
+     "norm_over_w0_base": 0.7929581481056388,
+     "text_arm": false
+    },
+    "sichuan": {
+     "n_positions": 8,
+     "mean_position_norm": 3065.55712890625,
+     "norm_over_w0_base": 0.6471757148712939,
+     "text_arm": false
+    },
+    "south": {
+     "n_positions": 9,
+     "mean_position_norm": 3498.295654296875,
+     "norm_over_w0_base": 0.7385319847908005,
+     "text_arm": false
+    },
+    "southampton": {
+     "n_positions": 4,
+     "mean_position_norm": 4172.5146484375,
+     "norm_over_w0_base": 0.8808676651140843,
+     "text_arm": false
+    },
+    "southwest": {
+     "n_positions": 3,
+     "mean_position_norm": 4133.59423828125,
+     "norm_over_w0_base": 0.8726511017923817,
+     "text_arm": false
+    },
+    "taiwan": {
+     "n_positions": 10,
+     "mean_position_norm": 2776.3134765625,
+     "norm_over_w0_base": 0.5861129260840766,
+     "text_arm": false
+    },
+    "the hague": {
+     "n_positions": 5,
+     "mean_position_norm": 4995.7626953125,
+     "norm_over_w0_base": 1.0546651579837787,
+     "text_arm": false
+    },
+    "united kingdom": {
+     "n_positions": 4,
+     "mean_position_norm": 5854.8203125,
+     "norm_over_w0_base": 1.2360224787384926,
+     "text_arm": false
+    },
+    "west": {
+     "n_positions": 4,
+     "mean_position_norm": 5189.26025390625,
+     "norm_over_w0_base": 1.0955148031030786,
+     "text_arm": false
+    },
+    "york": {
+     "n_positions": 13,
+     "mean_position_norm": 1136.3631591796875,
+     "norm_over_w0_base": 0.23989983189708378,
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_2896",
+   "n_tokens": 2805,
+   "n_candidates": 27,
+   "gold_positions": 9,
+   "nongold_fired": [
+    "magnoliophyta",
+    "anthophora",
+    "hymenoptera"
+   ],
+   "base_gauge_score": -15.728257533268074,
+   "deltas": {
+    "anthophorini": {
+     "n_positions": 9,
+     "mean_position_norm": 2748.6064453125,
+     "norm_over_w0_base": 0.5802636409453007
+    },
+    "amegilla": {
+     "n_positions": 12,
+     "mean_position_norm": 2834.505615234375,
+     "norm_over_w0_base": 0.598397981413741,
+     "text_arm": false
+    },
+    "andrenidae": {
+     "n_positions": 6,
+     "mean_position_norm": 4514.01513671875,
+     "norm_over_w0_base": 0.9529624959519515,
+     "text_arm": false
+    },
+    "angiospermae": {
+     "n_positions": 7,
+     "mean_position_norm": 2792.27490234375,
+     "norm_over_w0_base": 0.5894825736574139,
+     "text_arm": false
+    },
+    "angiosperms": {
+     "n_positions": 7,
+     "mean_position_norm": 2424.43310546875,
+     "norm_over_w0_base": 0.5118267780412169,
+     "text_arm": false
+    },
+    "animal": {
+     "n_positions": 5,
+     "mean_position_norm": 3627.024658203125,
+     "norm_over_w0_base": 0.7657082146323958,
+     "text_arm": false
+    },
+    "anthophora": {
+     "n_positions": 22,
+     "mean_position_norm": 1929.707763671875,
+     "norm_over_w0_base": 0.4073843510111352,
+     "text_arm": false
+    },
+    "aphid": {
+     "n_positions": 4,
+     "mean_position_norm": 4920.65234375,
+     "norm_over_w0_base": 1.0388084658972612,
+     "text_arm": false
+    },
+    "apidae": {
+     "n_positions": 12,
+     "mean_position_norm": 3179.748291015625,
+     "norm_over_w0_base": 0.6712828327172711,
+     "text_arm": false
+    },
+    "apocrita": {
+     "n_positions": 9,
+     "mean_position_norm": 3549.183837890625,
+     "norm_over_w0_base": 0.7492750879889906,
+     "text_arm": false
+    },
+    "apoidea": {
+     "n_positions": 8,
+     "mean_position_norm": 3447.01806640625,
+     "norm_over_w0_base": 0.7277066736957726,
+     "text_arm": false
+    },
+    "area": {
+     "n_positions": 3,
+     "mean_position_norm": 3451.745849609375,
+     "norm_over_w0_base": 0.7287047651830876,
+     "text_arm": false
+    },
+    "bombini": {
+     "n_positions": 4,
+     "mean_position_norm": 3397.447021484375,
+     "norm_over_w0_base": 0.7172416341987995,
+     "text_arm": false
+    },
+    "bombus": {
+     "n_positions": 6,
+     "mean_position_norm": 2919.642578125,
+     "norm_over_w0_base": 0.6163714108765836,
+     "text_arm": false
+    },
+    "carpenter bee": {
+     "n_positions": 5,
+     "mean_position_norm": 2235.098388671875,
+     "norm_over_w0_base": 0.4718559585325654,
+     "text_arm": false
+    },
+    "clostridium": {
+     "n_positions": 4,
+     "mean_position_norm": 5278.84619140625,
+     "norm_over_w0_base": 1.1144274642299203,
+     "text_arm": false
+    },
+    "crabronidae": {
+     "n_positions": 6,
+     "mean_position_norm": 4430.66162109375,
+     "norm_over_w0_base": 0.9353655735025266,
+     "text_arm": false
+    },
+    "formicidae": {
+     "n_positions": 5,
+     "mean_position_norm": 4433.1884765625,
+     "norm_over_w0_base": 0.9358990228644533,
+     "text_arm": false
+    },
+    "honey bee": {
+     "n_positions": 12,
+     "mean_position_norm": 1267.957275390625,
+     "norm_over_w0_base": 0.2676809211577022,
+     "text_arm": false
+    },
+    "hymenoptera": {
+     "n_positions": 12,
+     "mean_position_norm": 2510.55517578125,
+     "norm_over_w0_base": 0.5300081754437093,
+     "text_arm": false
+    },
+    "insects": {
+     "n_positions": 8,
+     "mean_position_norm": 1901.017822265625,
+     "norm_over_w0_base": 0.4013275618017199,
+     "text_arm": false
+    },
+    "magnoliophyta": {
+     "n_positions": 8,
+     "mean_position_norm": 4315.115234375,
+     "norm_over_w0_base": 0.9109723515591528,
+     "text_arm": false
+    },
+    "meliponini": {
+     "n_positions": 8,
+     "mean_position_norm": 2267.7451171875,
+     "norm_over_w0_base": 0.4787480727476565,
+     "text_arm": false
+    },
+    "plant": {
+     "n_positions": 8,
+     "mean_position_norm": 3358.08203125,
+     "norm_over_w0_base": 0.7089312147139984,
+     "text_arm": false
+    },
+    "seed plants": {
+     "n_positions": 6,
+     "mean_position_norm": 3862.275634765625,
+     "norm_over_w0_base": 0.81537250485077,
+     "text_arm": false
+    },
+    "thorax": {
+     "n_positions": 2,
+     "mean_position_norm": 4743.1982421875,
+     "norm_over_w0_base": 1.0013457861276855,
+     "text_arm": false
+    },
+    "xylocopinae": {
+     "n_positions": 7,
+     "mean_position_norm": 3753.3515625,
+     "norm_over_w0_base": 0.7923773325636532,
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_3178",
+   "n_tokens": 1798,
+   "n_candidates": 47,
+   "gold_positions": 6,
+   "nongold_fired": [
+    "race",
+    "term",
+    "suffix"
+   ],
+   "base_gauge_score": -16.608191815581996,
+   "deltas": {
+    "armored personnel carrier": {
+     "n_positions": 6,
+     "mean_position_norm": 3566.699462890625,
+     "norm_over_w0_base": 0.7529728455756635
+    },
+    "area": {
+     "n_positions": 6,
+     "mean_position_norm": 4097.41015625,
+     "norm_over_w0_base": 0.8650122100115945,
+     "text_arm": false
+    },
+    "army": {
+     "n_positions": 3,
+     "mean_position_norm": 4284.59326171875,
+     "norm_over_w0_base": 0.9045287986770905,
+     "text_arm": false
+    },
+    "automobile": {
+     "n_positions": 2,
+     "mean_position_norm": 3969.3720703125,
+     "norm_over_w0_base": 0.8379818412032604,
+     "text_arm": false
+    },
+    "case": {
+     "n_positions": 2,
+     "mean_position_norm": 3145.327880859375,
+     "norm_over_w0_base": 0.6640162731288083,
+     "text_arm": false
+    },
+    "city": {
+     "n_positions": 3,
+     "mean_position_norm": 3643.0478515625,
+     "norm_over_w0_base": 0.7690909020790245,
+     "text_arm": false
+    },
+    "continent": {
+     "n_positions": 5,
+     "mean_position_norm": 2931.32763671875,
+     "norm_over_w0_base": 0.6188382662737366,
+     "text_arm": false
+    },
+    "country": {
+     "n_positions": 7,
+     "mean_position_norm": 1061.2763671875,
+     "norm_over_w0_base": 0.22404811351717746,
+     "text_arm": false
+    },
+    "dakar rally": {
+     "n_positions": 7,
+     "mean_position_norm": 3746.880615234375,
+     "norm_over_w0_base": 0.7910112383281106,
+     "text_arm": false
+    },
+    "district": {
+     "n_positions": 3,
+     "mean_position_norm": 4909.71826171875,
+     "norm_over_w0_base": 1.0365001506196527,
+     "text_arm": false
+    },
+    "english name": {
+     "n_positions": 4,
+     "mean_position_norm": 3873.588134765625,
+     "norm_over_w0_base": 0.8177607086801645,
+     "text_arm": false
+    },
+    "equipment": {
+     "n_positions": 2,
+     "mean_position_norm": 4015.974365234375,
+     "norm_over_w0_base": 0.8478201421262211,
+     "text_arm": false
+    },
+    "factory": {
+     "n_positions": 2,
+     "mean_position_norm": 4907.4814453125,
+     "norm_over_w0_base": 1.036027931967095,
+     "text_arm": false
+    },
+    "federal district": {
+     "n_positions": 4,
+     "mean_position_norm": 3194.4052734375,
+     "norm_over_w0_base": 0.6743770967214514,
+     "text_arm": false
+    },
+    "federation": {
+     "n_positions": 4,
+     "mean_position_norm": 3747.94091796875,
+     "norm_over_w0_base": 0.7912350808961152,
+     "text_arm": false
+    },
+    "foundation": {
+     "n_positions": 2,
+     "mean_position_norm": 5492.6357421875,
+     "norm_over_w0_base": 1.1595609912009974,
+     "text_arm": false
+    },
+    "four": {
+     "n_positions": 2,
+     "mean_position_norm": 3793.9345703125,
+     "norm_over_w0_base": 0.8009448901032031,
+     "text_arm": false
+    },
+    "gas": {
+     "n_positions": 2,
+     "mean_position_norm": 5173.9619140625,
+     "norm_over_w0_base": 1.0922851408888712,
+     "text_arm": false
+    },
+    "geographical": {
+     "n_positions": 2,
+     "mean_position_norm": 2781.40576171875,
+     "norm_over_w0_base": 0.587187968286112,
+     "text_arm": false
+    },
+    "identity": {
+     "n_positions": 2,
+     "mean_position_norm": 3379.466796875,
+     "norm_over_w0_base": 0.7134457940869336,
+     "text_arm": false
+    },
+    "india": {
+     "n_positions": 2,
+     "mean_position_norm": 5411.98681640625,
+     "norm_over_w0_base": 1.1425350399623382,
+     "text_arm": false
+    },
+    "malaysia": {
+     "n_positions": 2,
+     "mean_position_norm": 5856.0556640625,
+     "norm_over_w0_base": 1.2362832762043234,
+     "text_arm": false
+    },
+    "march": {
+     "n_positions": 2,
+     "mean_position_norm": 5512.18310546875,
+     "norm_over_w0_base": 1.1636876729992602,
+     "text_arm": false
+    },
+    "may": {
+     "n_positions": 3,
+     "mean_position_norm": 7511.26025390625,
+     "norm_over_w0_base": 1.5857167294548158,
+     "text_arm": false
+    },
+    "mineral": {
+     "n_positions": 2,
+     "mean_position_norm": 5565.552734375,
+     "norm_over_w0_base": 1.1749546389331624,
+     "text_arm": false
+    },
+    "oil": {
+     "n_positions": 2,
+     "mean_position_norm": 5620.77734375,
+     "norm_over_w0_base": 1.18661321339382,
+     "text_arm": false
+    },
+    "part": {
+     "n_positions": 4,
+     "mean_position_norm": 964.8831787109375,
+     "norm_over_w0_base": 0.20369836042570588,
+     "text_arm": false
+    },
+    "people": {
+     "n_positions": 3,
+     "mean_position_norm": 2577.096923828125,
+     "norm_over_w0_base": 0.5440559330127833,
+     "text_arm": false
+    },
+    "population": {
+     "n_positions": 4,
+     "mean_position_norm": 3638.74462890625,
+     "norm_over_w0_base": 0.7681824403927134,
+     "text_arm": false
+    },
+    "professional": {
+     "n_positions": 2,
+     "mean_position_norm": 6082.4033203125,
+     "norm_over_w0_base": 1.2840679691926742,
+     "text_arm": false
+    },
+    "race": {
+     "n_positions": 2,
+     "mean_position_norm": 4008.41845703125,
+     "norm_over_w0_base": 0.8462249996815576,
+     "text_arm": false
+    },
+    "rally raid": {
+     "n_positions": 4,
+     "mean_position_norm": 4047.299072265625,
+     "norm_over_w0_base": 0.8544331618200723,
+     "text_arm": false
+    },
+    "range": {
+     "n_positions": 2,
+     "mean_position_norm": 7261.64208984375,
+     "norm_over_w0_base": 1.533019354400629,
+     "text_arm": false
+    },
+    "region": {
+     "n_positions": 6,
+     "mean_position_norm": 2165.5078125,
+     "norm_over_w0_base": 0.457164556941101,
+     "text_arm": false
+    },
+    "republic": {
+     "n_positions": 8,
+     "mean_position_norm": 3233.236083984375,
+     "norm_over_w0_base": 0.6825747444957311,
+     "text_arm": false
+    },
+    "river": {
+     "n_positions": 2,
+     "mean_position_norm": 5328.65087890625,
+     "norm_over_w0_base": 1.1249418284649961,
+     "text_arm": false
+    },
+    "security": {
+     "n_positions": 2,
+     "mean_position_norm": 4718.0205078125,
+     "norm_over_w0_base": 0.9960304657608479,
+     "text_arm": false
+    },
+    "six": {
+     "n_positions": 2,
+     "mean_position_norm": 4523.4501953125,
+     "norm_over_w0_base": 0.9549543494824846,
+     "text_arm": false
+    },
+    "sport": {
+     "n_positions": 2,
+     "mean_position_norm": 4567.3994140625,
+     "norm_over_w0_base": 0.9642325543459229,
+     "text_arm": false
+    },
+    "state": {
+     "n_positions": 3,
+     "mean_position_norm": 3025.322265625,
+     "norm_over_w0_base": 0.6386816547993871,
+     "text_arm": false
+    },
+    "suffix": {
+     "n_positions": 2,
+     "mean_position_norm": 4540.46240234375,
+     "norm_over_w0_base": 0.9585458295247814,
+     "text_arm": false
+    },
+    "surface": {
+     "n_positions": 2,
+     "mean_position_norm": 4782.9208984375,
+     "norm_over_w0_base": 1.0097317131791748,
+     "text_arm": false
+    },
+    "term": {
+     "n_positions": 2,
+     "mean_position_norm": 2025.3890380859375,
+     "norm_over_w0_base": 0.42758381054324657,
+     "text_arm": false
+    },
+    "transport": {
+     "n_positions": 2,
+     "mean_position_norm": 4150.71923828125,
+     "norm_over_w0_base": 0.8762663937772109,
+     "text_arm": false
+    },
+    "truck": {
+     "n_positions": 4,
+     "mean_position_norm": 3120.69775390625,
+     "norm_over_w0_base": 0.6588165592275552,
+     "text_arm": false
+    },
+    "vehicle": {
+     "n_positions": 6,
+     "mean_position_norm": 1160.8988037109375,
+     "norm_over_w0_base": 0.24507959943089094,
+     "text_arm": false
+    },
+    "year": {
+     "n_positions": 2,
+     "mean_position_norm": 2946.671630859375,
+     "norm_over_w0_base": 0.6220775666551596,
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_3459",
+   "n_tokens": 2113,
+   "n_candidates": 30,
+   "gold_positions": 2,
+   "nongold_fired": [
+    "human",
+    "c",
+    "protein"
+   ],
+   "base_gauge_score": -10.571873242234147,
+   "deltas": {
+    "carbon": {
+     "n_positions": 2,
+     "mean_position_norm": 8309.146484375,
+     "norm_over_w0_base": 1.7541600400428035
+    },
+    "a": {
+     "n_positions": 30,
+     "mean_position_norm": 1180.0267333984375,
+     "norm_over_w0_base": 0.24911773378917393,
+     "text_arm": false
+    },
+    "behavior": {
+     "n_positions": 2,
+     "mean_position_norm": 4889.07666015625,
+     "norm_over_w0_base": 1.0321424620542252,
+     "text_arm": false
+    },
+    "c": {
+     "n_positions": 2,
+     "mean_position_norm": 3704.35888671875,
+     "norm_over_w0_base": 0.7820343936984099,
+     "text_arm": false
+    },
+    "d": {
+     "n_positions": 8,
+     "mean_position_norm": 786.686767578125,
+     "norm_over_w0_base": 0.1660789702421267,
+     "text_arm": false
+    },
+    "data": {
+     "n_positions": 2,
+     "mean_position_norm": 3011.369140625,
+     "norm_over_w0_base": 0.6357359835015289,
+     "text_arm": false
+    },
+    "e": {
+     "n_positions": 2,
+     "mean_position_norm": 2850.013427734375,
+     "norm_over_w0_base": 0.6016718658069372,
+     "text_arm": false
+    },
+    "english": {
+     "n_positions": 3,
+     "mean_position_norm": 1952.19482421875,
+     "norm_over_w0_base": 0.4121316380042731,
+     "text_arm": false
+    },
+    "fat": {
+     "n_positions": 3,
+     "mean_position_norm": 5797.39892578125,
+     "norm_over_w0_base": 1.223900138349466,
+     "text_arm": false
+    },
+    "fish": {
+     "n_positions": 4,
+     "mean_position_norm": 5095.42529296875,
+     "norm_over_w0_base": 1.0757051223921816,
+     "text_arm": false
+    },
+    "function": {
+     "n_positions": 3,
+     "mean_position_norm": 2656.58154296875,
+     "norm_over_w0_base": 0.5608360852169473,
+     "text_arm": false
+    },
+    "gas": {
+     "n_positions": 2,
+     "mean_position_norm": 6481.837890625,
+     "norm_over_w0_base": 1.3683933765219878,
+     "text_arm": false
+    },
+    "glucose": {
+     "n_positions": 7,
+     "mean_position_norm": 2363.614501953125,
+     "norm_over_w0_base": 0.4989872446211558,
+     "text_arm": false
+    },
+    "group": {
+     "n_positions": 5,
+     "mean_position_norm": 1974.655029296875,
+     "norm_over_w0_base": 0.41687325548728427,
+     "text_arm": false
+    },
+    "human": {
+     "n_positions": 2,
+     "mean_position_norm": 1664.637451171875,
+     "norm_over_w0_base": 0.35142484291201503,
+     "text_arm": false
+    },
+    "magnesium": {
+     "n_positions": 2,
+     "mean_position_norm": 6522.943359375,
+     "norm_over_w0_base": 1.3770712318040037,
+     "text_arm": false
+    },
+    "mother": {
+     "n_positions": 3,
+     "mean_position_norm": 3778.561767578125,
+     "norm_over_w0_base": 0.7976995078836442,
+     "text_arm": false
+    },
+    "one": {
+     "n_positions": 5,
+     "mean_position_norm": 34438.1171875,
+     "norm_over_w0_base": 7.270297754194388,
+     "text_arm": false
+    },
+    "organ": {
+     "n_positions": 2,
+     "mean_position_norm": 4423.98046875,
+     "norm_over_w0_base": 0.9339551024649919,
+     "text_arm": false
+    },
+    "organism": {
+     "n_positions": 3,
+     "mean_position_norm": 4221.22607421875,
+     "norm_over_w0_base": 0.8911512287460002,
+     "text_arm": false
+    },
+    "part": {
+     "n_positions": 3,
+     "mean_position_norm": 1564.5404052734375,
+     "norm_over_w0_base": 0.33029316129206143,
+     "text_arm": false
+    },
+    "polymer": {
+     "n_positions": 2,
+     "mean_position_norm": 6278.09716796875,
+     "norm_over_w0_base": 1.3253812771583406,
+     "text_arm": false
+    },
+    "protein": {
+     "n_positions": 3,
+     "mean_position_norm": 5817.21435546875,
+     "norm_over_w0_base": 1.2280834121669941,
+     "text_arm": false
+    },
+    "restricted": {
+     "n_positions": 2,
+     "mean_position_norm": 6490.107421875,
+     "norm_over_w0_base": 1.3701391733130195,
+     "text_arm": false
+    },
+    "s": {
+     "n_positions": 5,
+     "mean_position_norm": 1607.860107421875,
+     "norm_over_w0_base": 0.3394384676840285,
+     "text_arm": false
+    },
+    "salt": {
+     "n_positions": 2,
+     "mean_position_norm": 5457.81494140625,
+     "norm_over_w0_base": 1.1522099043706449,
+     "text_arm": false
+    },
+    "sixth": {
+     "n_positions": 2,
+     "mean_position_norm": 6535.5087890625,
+     "norm_over_w0_base": 1.379723944051312,
+     "text_arm": false
+    },
+    "sun": {
+     "n_positions": 2,
+     "mean_position_norm": 7158.0869140625,
+     "norm_over_w0_base": 1.5111576202698531,
+     "text_arm": false
+    },
+    "system": {
+     "n_positions": 7,
+     "mean_position_norm": 378.4262390136719,
+     "norm_over_w0_base": 0.07989029773753009,
+     "text_arm": false
+    },
+    "water": {
+     "n_positions": 3,
+     "mean_position_norm": 5775.625,
+     "norm_over_w0_base": 1.2193034026206941,
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_375",
+   "n_tokens": 547,
+   "n_candidates": 6,
+   "gold_positions": 12,
+   "nongold_fired": [
+    "video game",
+    "software",
+    "computer"
+   ],
+   "base_gauge_score": -10.055679510569446,
+   "deltas": {
+    "video game industry": {
+     "n_positions": 12,
+     "mean_position_norm": 2709.663818359375,
+     "norm_over_w0_base": 0.5720423873924932
+    },
+    "art": {
+     "n_positions": 2,
+     "mean_position_norm": 6042.5380859375,
+     "norm_over_w0_base": 1.2756519421965122,
+     "text_arm": false
+    },
+    "computer": {
+     "n_positions": 8,
+     "mean_position_norm": 3550.935791015625,
+     "norm_over_w0_base": 0.7496449462132597,
+     "text_arm": false
+    },
+    "interactive entertainment": {
+     "n_positions": 4,
+     "mean_position_norm": 3740.223388671875,
+     "norm_over_w0_base": 0.7896058183086887,
+     "text_arm": false
+    },
+    "software": {
+     "n_positions": 7,
+     "mean_position_norm": 2166.438720703125,
+     "norm_over_w0_base": 0.4573610827784948,
+     "text_arm": false
+    },
+    "video game": {
+     "n_positions": 18,
+     "mean_position_norm": 2370.115966796875,
+     "norm_over_w0_base": 0.5003597814818423,
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_3853",
+   "n_tokens": 456,
+   "n_candidates": 7,
+   "gold_positions": 7,
+   "nongold_fired": [
+    "label",
+    "record",
+    "labels"
+   ],
+   "base_gauge_score": -10.071621958288041,
+   "deltas": {
+    "warner music group": {
+     "n_positions": 7,
+     "mean_position_norm": 3268.36962890625,
+     "norm_over_w0_base": 0.6899918553485599
+    },
+    "album": {
+     "n_positions": 6,
+     "mean_position_norm": 2708.120849609375,
+     "norm_over_w0_base": 0.5717166482652105,
+     "text_arm": false
+    },
+    "atlantic records": {
+     "n_positions": 12,
+     "mean_position_norm": 2161.043212890625,
+     "norm_over_w0_base": 0.45622202665302825,
+     "text_arm": false
+    },
+    "label": {
+     "n_positions": 3,
+     "mean_position_norm": 1174.1368408203125,
+     "norm_over_w0_base": 0.2478743071363739,
+     "text_arm": false
+    },
+    "labels": {
+     "n_positions": 2,
+     "mean_position_norm": 1358.10498046875,
+     "norm_over_w0_base": 0.2867121781281954,
+     "text_arm": false
+    },
+    "pop": {
+     "n_positions": 3,
+     "mean_position_norm": 3889.3125,
+     "norm_over_w0_base": 0.8210803099413827,
+     "text_arm": false
+    },
+    "record": {
+     "n_positions": 4,
+     "mean_position_norm": 2778.0361328125,
+     "norm_over_w0_base": 0.5864765993882075,
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_4244",
+   "n_tokens": 2440,
+   "n_candidates": 24,
+   "gold_positions": 6,
+   "nongold_fired": [
+    "gaumont film company",
+    "nbc",
+    "tyler perry"
+   ],
+   "base_gauge_score": -18.81907545905591,
+   "deltas": {
+    "robert simonds": {
+     "n_positions": 6,
+     "mean_position_norm": 7145.732421875,
+     "norm_over_w0_base": 1.5085494394475405
+    },
+    "air": {
+     "n_positions": 4,
+     "mean_position_norm": 2004.339111328125,
+     "norm_over_w0_base": 0.4231399196533918,
+     "text_arm": false
+    },
+    "carl laemmle": {
+     "n_positions": 17,
+     "mean_position_norm": 3490.83740234375,
+     "norm_over_w0_base": 0.7369574587465979,
+     "text_arm": false
+    },
+    "columbia": {
+     "n_positions": 4,
+     "mean_position_norm": 3722.28759765625,
+     "norm_over_w0_base": 0.7858193586590326,
+     "text_arm": false
+    },
+    "comedy central": {
+     "n_positions": 8,
+     "mean_position_norm": 3218.9208984375,
+     "norm_over_w0_base": 0.6795526378931641,
+     "text_arm": false
+    },
+    "dave chappelle": {
+     "n_positions": 9,
+     "mean_position_norm": 4475.2783203125,
+     "norm_over_w0_base": 0.9447846914631155,
+     "text_arm": false
+    },
+    "dave foley": {
+     "n_positions": 5,
+     "mean_position_norm": 4318.3203125,
+     "norm_over_w0_base": 0.9116489818222806,
+     "text_arm": false
+    },
+    "david horsley": {
+     "n_positions": 9,
+     "mean_position_norm": 4475.94189453125,
+     "norm_over_w0_base": 0.9449247799042475,
+     "text_arm": false
+    },
+    "gaumont film company": {
+     "n_positions": 8,
+     "mean_position_norm": 4437.4130859375,
+     "norm_over_w0_base": 0.9367908883483932,
+     "text_arm": false
+    },
+    "jerry bruckheimer": {
+     "n_positions": 7,
+     "mean_position_norm": 5166.10107421875,
+     "norm_over_w0_base": 1.0906256237337684,
+     "text_arm": false
+    },
+    "john cusack": {
+     "n_positions": 6,
+     "mean_position_norm": 5893.05712890625,
+     "norm_over_w0_base": 1.2440947272569687,
+     "text_arm": false
+    },
+    "lorne michaels": {
+     "n_positions": 8,
+     "mean_position_norm": 5879.48583984375,
+     "norm_over_w0_base": 1.2412296660849127,
+     "text_arm": false
+    },
+    "mel brooks": {
+     "n_positions": 4,
+     "mean_position_norm": 5635.61181640625,
+     "norm_over_w0_base": 1.1897449477058382,
+     "text_arm": false
+    },
+    "nbc": {
+     "n_positions": 10,
+     "mean_position_norm": 2515.95361328125,
+     "norm_over_w0_base": 0.5311478500611896,
+     "text_arm": false
+    },
+    "nordisk film": {
+     "n_positions": 18,
+     "mean_position_norm": 3153.515625,
+     "norm_over_w0_base": 0.6657448036844541,
+     "text_arm": false
+    },
+    "ole olsen": {
+     "n_positions": 7,
+     "mean_position_norm": 5082.56298828125,
+     "norm_over_w0_base": 1.0729897362874723,
+     "text_arm": false
+    },
+    "pat powers": {
+     "n_positions": 4,
+     "mean_position_norm": 5594.2451171875,
+     "norm_over_w0_base": 1.1810119435525892,
+     "text_arm": false
+    },
+    "tamra davis": {
+     "n_positions": 7,
+     "mean_position_norm": 5018.33984375,
+     "norm_over_w0_base": 1.0594314636063418,
+     "text_arm": false
+    },
+    "the corporation": {
+     "n_positions": 4,
+     "mean_position_norm": 3527.147216796875,
+     "norm_over_w0_base": 0.7446228941429787,
+     "text_arm": false
+    },
+    "thomas edison": {
+     "n_positions": 5,
+     "mean_position_norm": 6807.44775390625,
+     "norm_over_w0_base": 1.4371335066768518,
+     "text_arm": false
+    },
+    "tyler perry": {
+     "n_positions": 6,
+     "mean_position_norm": 6605.322265625,
+     "norm_over_w0_base": 1.3944624025768286,
+     "text_arm": false
+    },
+    "universal studios": {
+     "n_positions": 10,
+     "mean_position_norm": 2706.49853515625,
+     "norm_over_w0_base": 0.5713741583125532,
+     "text_arm": false
+    },
+    "various": {
+     "n_positions": 2,
+     "mean_position_norm": 2641.310546875,
+     "norm_over_w0_base": 0.5576121955948689,
+     "text_arm": false
+    },
+    "ving rhames": {
+     "n_positions": 7,
+     "mean_position_norm": 5131.29833984375,
+     "norm_over_w0_base": 1.0832783509375008,
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_4333",
+   "n_tokens": 2318,
+   "n_candidates": 17,
+   "gold_positions": 3,
+   "nongold_fired": [
+    "city of london",
+    "surrey",
+    "split"
+   ],
+   "base_gauge_score": -17.030962720855996,
+   "deltas": {
+    "hertfordshire": {
+     "n_positions": 3,
+     "mean_position_norm": 5344.3447265625,
+     "norm_over_w0_base": 1.1282549871010705
+    },
+    "ada": {
+     "n_positions": 2,
+     "mean_position_norm": 5720.0390625,
+     "norm_over_w0_base": 1.207568547478331,
+     "text_arm": false
+    },
+    "city of london": {
+     "n_positions": 6,
+     "mean_position_norm": 4311.56591796875,
+     "norm_over_w0_base": 0.9102230484844002,
+     "text_arm": false
+    },
+    "egypt": {
+     "n_positions": 2,
+     "mean_position_norm": 6008.05224609375,
+     "norm_over_w0_base": 1.2683715696197406,
+     "text_arm": false
+    },
+    "enterprise": {
+     "n_positions": 2,
+     "mean_position_norm": 6812.7939453125,
+     "norm_over_w0_base": 1.4382621515200857,
+     "text_arm": false
+    },
+    "globe": {
+     "n_positions": 2,
+     "mean_position_norm": 4567.6240234375,
+     "norm_over_w0_base": 0.9642799720669831,
+     "text_arm": false
+    },
+    "greater london": {
+     "n_positions": 4,
+     "mean_position_norm": 4343.2978515625,
+     "norm_over_w0_base": 0.9169220385681734,
+     "text_arm": false
+    },
+    "harvest": {
+     "n_positions": 2,
+     "mean_position_norm": 5371.35546875,
+     "norm_over_w0_base": 1.1339572773045599,
+     "text_arm": false
+    },
+    "london": {
+     "n_positions": 14,
+     "mean_position_norm": 2310.418212890625,
+     "norm_over_w0_base": 0.4877568727980716,
+     "text_arm": false
+    },
+    "most": {
+     "n_positions": 5,
+     "mean_position_norm": 532.5913696289062,
+     "norm_over_w0_base": 0.11243639765305767,
+     "text_arm": false
+    },
+    "scotland": {
+     "n_positions": 3,
+     "mean_position_norm": 5157.23779296875,
+     "norm_over_w0_base": 1.088754479227934,
+     "text_arm": false
+    },
+    "sea": {
+     "n_positions": 2,
+     "mean_position_norm": 7265.1357421875,
+     "norm_over_w0_base": 1.533756906127119,
+     "text_arm": false
+    },
+    "side": {
+     "n_positions": 3,
+     "mean_position_norm": 6318.36083984375,
+     "norm_over_w0_base": 1.3338814190683834,
+     "text_arm": false
+    },
+    "split": {
+     "n_positions": 2,
+     "mean_position_norm": 2802.51611328125,
+     "norm_over_w0_base": 0.5916446155737519,
+     "text_arm": false
+    },
+    "surrey": {
+     "n_positions": 3,
+     "mean_position_norm": 6621.908203125,
+     "norm_over_w0_base": 1.3979638920311135,
+     "text_arm": false
+    },
+    "thames": {
+     "n_positions": 3,
+     "mean_position_norm": 6141.53173828125,
+     "norm_over_w0_base": 1.2965506842617578,
+     "text_arm": false
+    },
+    "united kingdom": {
+     "n_positions": 8,
+     "mean_position_norm": 5490.998046875,
+     "norm_over_w0_base": 1.1592152541652676,
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_441",
+   "n_tokens": 2029,
+   "n_candidates": 29,
+   "gold_positions": 15,
+   "nongold_fired": [
+    "scottish parliament",
+    "25",
+    "road"
+   ],
+   "base_gauge_score": -11.33110807509572,
+   "deltas": {
+    "london overground": {
+     "n_positions": 15,
+     "mean_position_norm": 2704.422607421875,
+     "norm_over_w0_base": 0.5709359051797549
+    },
+    "1932": {
+     "n_positions": 8,
+     "mean_position_norm": 4219.6826171875,
+     "norm_over_w0_base": 0.8908253865367151,
+     "text_arm": false
+    },
+    "19th century": {
+     "n_positions": 8,
+     "mean_position_norm": 3388.5751953125,
+     "norm_over_w0_base": 0.7153686857579249,
+     "text_arm": false
+    },
+    "24": {
+     "n_positions": 6,
+     "mean_position_norm": 3662.642578125,
+     "norm_over_w0_base": 0.7732275828315107,
+     "text_arm": false
+    },
+    "25": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.45654296875,
+     "norm_over_w0_base": 0.6781879352646526,
+     "text_arm": false
+    },
+    "back": {
+     "n_positions": 2,
+     "mean_position_norm": 2396.0205078125,
+     "norm_over_w0_base": 0.5058285394091107,
+     "text_arm": false
+    },
+    "castle": {
+     "n_positions": 2,
+     "mean_position_norm": 3247.39794921875,
+     "norm_over_w0_base": 0.6855644833495745,
+     "text_arm": false
+    },
+    "central london": {
+     "n_positions": 6,
+     "mean_position_norm": 5013.95361328125,
+     "norm_over_w0_base": 1.058505477979639,
+     "text_arm": false
+    },
+    "church of scotland": {
+     "n_positions": 7,
+     "mean_position_norm": 6098.09912109375,
+     "norm_over_w0_base": 1.2873815401567579,
+     "text_arm": false
+    },
+    "city": {
+     "n_positions": 25,
+     "mean_position_norm": 1513.9625244140625,
+     "norm_over_w0_base": 0.31961556670633606,
+     "text_arm": false
+    },
+    "city council": {
+     "n_positions": 8,
+     "mean_position_norm": 2426.760009765625,
+     "norm_over_w0_base": 0.5123180153231998,
+     "text_arm": false
+    },
+    "england": {
+     "n_positions": 7,
+     "mean_position_norm": 4692.12939453125,
+     "norm_over_w0_base": 0.9905645425886429,
+     "text_arm": false
+    },
+    "europe": {
+     "n_positions": 2,
+     "mean_position_norm": 6600.376953125,
+     "norm_over_w0_base": 1.3934183880574869,
+     "text_arm": false
+    },
+    "government": {
+     "n_positions": 3,
+     "mean_position_norm": 2916.3671875,
+     "norm_over_w0_base": 0.615679936805124,
+     "text_arm": false
+    },
+    "library": {
+     "n_positions": 2,
+     "mean_position_norm": 3278.56982421875,
+     "norm_over_w0_base": 0.6921452383767044,
+     "text_arm": false
+    },
+    "liverpool city council": {
+     "n_positions": 7,
+     "mean_position_norm": 4442.90283203125,
+     "norm_over_w0_base": 0.9379498393003046,
+     "text_arm": false
+    },
+    "london underground": {
+     "n_positions": 12,
+     "mean_position_norm": 2163.530029296875,
+     "norm_over_w0_base": 0.45674702329076594,
+     "text_arm": false
+    },
+    "national gallery": {
+     "n_positions": 4,
+     "mean_position_norm": 4106.90625,
+     "norm_over_w0_base": 0.8670169487924156,
+     "text_arm": false
+    },
+    "north london": {
+     "n_positions": 6,
+     "mean_position_norm": 3620.073974609375,
+     "norm_over_w0_base": 0.7642408423295889,
+     "text_arm": false
+    },
+    "part": {
+     "n_positions": 7,
+     "mean_position_norm": 1308.2608642578125,
+     "norm_over_w0_base": 0.27618949002143334,
+     "text_arm": false
+    },
+    "population": {
+     "n_positions": 10,
+     "mean_position_norm": 2622.5556640625,
+     "norm_over_w0_base": 0.5536528158863466,
+     "text_arm": false
+    },
+    "river": {
+     "n_positions": 3,
+     "mean_position_norm": 4798.08349609375,
+     "norm_over_w0_base": 1.0129327185967416,
+     "text_arm": false
+    },
+    "road": {
+     "n_positions": 9,
+     "mean_position_norm": 831.633056640625,
+     "norm_over_w0_base": 0.1755676685542712,
+     "text_arm": false
+    },
+    "scottish parliament": {
+     "n_positions": 4,
+     "mean_position_norm": 3115.1591796875,
+     "norm_over_w0_base": 0.6576473000754134,
+     "text_arm": false
+    },
+    "settlement": {
+     "n_positions": 2,
+     "mean_position_norm": 5177.05517578125,
+     "norm_over_w0_base": 1.092938165373471,
+     "text_arm": false
+    },
+    "silver": {
+     "n_positions": 3,
+     "mean_position_norm": 4953.96630859375,
+     "norm_over_w0_base": 1.0458414416685016,
+     "text_arm": false
+    },
+    "station": {
+     "n_positions": 12,
+     "mean_position_norm": 1425.68701171875,
+     "norm_over_w0_base": 0.30097955190317954,
+     "text_arm": false
+    },
+    "track": {
+     "n_positions": 3,
+     "mean_position_norm": 2750.6982421875,
+     "norm_over_w0_base": 0.5807052442431738,
+     "text_arm": false
+    },
+    "transport": {
+     "n_positions": 2,
+     "mean_position_norm": 4574.93798828125,
+     "norm_over_w0_base": 0.9658240373795047,
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_4490",
+   "n_tokens": 1348,
+   "n_candidates": 17,
+   "gold_positions": 6,
+   "nongold_fired": [
+    "pop",
+    "rock music",
+    "american record company"
+   ],
+   "base_gauge_score": -9.550405040827714,
+   "deltas": {
+    "sony music entertainment": {
+     "n_positions": 6,
+     "mean_position_norm": 4227.09326171875,
+     "norm_over_w0_base": 0.8923898620856929
+    },
+    "1982": {
+     "n_positions": 12,
+     "mean_position_norm": 3257.48046875,
+     "norm_over_w0_base": 0.6876930236151635,
+     "text_arm": false
+    },
+    "album": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.47265625,
+     "norm_over_w0_base": 0.6781913369707286,
+     "text_arm": false
+    },
+    "american record company": {
+     "n_positions": 6,
+     "mean_position_norm": 3443.138671875,
+     "norm_over_w0_base": 0.726887687187462,
+     "text_arm": false
+    },
+    "atlantic records": {
+     "n_positions": 4,
+     "mean_position_norm": 5213.94140625,
+     "norm_over_w0_base": 1.1007252890735726,
+     "text_arm": false
+    },
+    "australia": {
+     "n_positions": 4,
+     "mean_position_norm": 3460.4560546875,
+     "norm_over_w0_base": 0.7305435934811993,
+     "text_arm": false
+    },
+    "english": {
+     "n_positions": 5,
+     "mean_position_norm": 1697.898681640625,
+     "norm_over_w0_base": 0.35844668582700656,
+     "text_arm": false
+    },
+    "epic": {
+     "n_positions": 4,
+     "mean_position_norm": 3735.6728515625,
+     "norm_over_w0_base": 0.7886451455882104,
+     "text_arm": false
+    },
+    "europe": {
+     "n_positions": 2,
+     "mean_position_norm": 4299.734375,
+     "norm_over_w0_base": 0.9077252684865558,
+     "text_arm": false
+    },
+    "festival": {
+     "n_positions": 5,
+     "mean_position_norm": 2925.060791015625,
+     "norm_over_w0_base": 0.6175152603151574,
+     "text_arm": false
+    },
+    "island": {
+     "n_positions": 2,
+     "mean_position_norm": 6742.78662109375,
+     "norm_over_w0_base": 1.4234827694396541,
+     "text_arm": false
+    },
+    "latin": {
+     "n_positions": 2,
+     "mean_position_norm": 4822.6884765625,
+     "norm_over_w0_base": 1.0181271237748761,
+     "text_arm": false
+    },
+    "pop": {
+     "n_positions": 7,
+     "mean_position_norm": 5042.53515625,
+     "norm_over_w0_base": 1.0645393829845426,
+     "text_arm": false
+    },
+    "record": {
+     "n_positions": 7,
+     "mean_position_norm": 2103.759033203125,
+     "norm_over_w0_base": 0.44412865230664944,
+     "text_arm": false
+    },
+    "rock music": {
+     "n_positions": 4,
+     "mean_position_norm": 3454.55517578125,
+     "norm_over_w0_base": 0.7292978474833475,
+     "text_arm": false
+    },
+    "sony": {
+     "n_positions": 3,
+     "mean_position_norm": 4896.07421875,
+     "norm_over_w0_base": 1.0336197302292536,
+     "text_arm": false
+    },
+    "the collection": {
+     "n_positions": 4,
+     "mean_position_norm": 2841.871337890625,
+     "norm_over_w0_base": 0.5999529734185068,
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_4653",
+   "n_tokens": 3106,
+   "n_candidates": 36,
+   "gold_positions": 16,
+   "nongold_fired": [
+    "1998",
+    "1980",
+    "1947"
+   ],
+   "base_gauge_score": -19.55519517641936,
+   "deltas": {
+    "2005": {
+     "n_positions": 16,
+     "mean_position_norm": 2748.835693359375,
+     "norm_over_w0_base": 0.5803120379453828
+    },
+    "1": {
+     "n_positions": 2,
+     "mean_position_norm": 959.9817504882812,
+     "norm_over_w0_base": 0.20266361040132136,
+     "text_arm": false
+    },
+    "13": {
+     "n_positions": 4,
+     "mean_position_norm": 3140.38232421875,
+     "norm_over_w0_base": 0.6629722070684655,
+     "text_arm": false
+    },
+    "14": {
+     "n_positions": 8,
+     "mean_position_norm": 4105.4423828125,
+     "norm_over_w0_base": 0.8667079089495062,
+     "text_arm": false
+    },
+    "14 september 1999": {
+     "n_positions": 16,
+     "mean_position_norm": 4653.5166015625,
+     "norm_over_w0_base": 0.9824129209283923,
+     "text_arm": false
+    },
+    "18": {
+     "n_positions": 8,
+     "mean_position_norm": 2845.338623046875,
+     "norm_over_w0_base": 0.6006849587168723,
+     "text_arm": false
+    },
+    "19": {
+     "n_positions": 4,
+     "mean_position_norm": 2572.92626953125,
+     "norm_over_w0_base": 0.543175458090098,
+     "text_arm": false
+    },
+    "1939": {
+     "n_positions": 8,
+     "mean_position_norm": 2465.3876953125,
+     "norm_over_w0_base": 0.5204727809845208,
+     "text_arm": false
+    },
+    "1943": {
+     "n_positions": 8,
+     "mean_position_norm": 2522.775390625,
+     "norm_over_w0_base": 0.5325880087153881,
+     "text_arm": false
+    },
+    "1947": {
+     "n_positions": 8,
+     "mean_position_norm": 2907.1396484375,
+     "norm_over_w0_base": 0.6137318931255704,
+     "text_arm": false
+    },
+    "1953": {
+     "n_positions": 8,
+     "mean_position_norm": 2625.7578125,
+     "norm_over_w0_base": 0.5543288276574606,
+     "text_arm": false
+    },
+    "1954": {
+     "n_positions": 8,
+     "mean_position_norm": 3395.927001953125,
+     "norm_over_w0_base": 0.716920739925625,
+     "text_arm": false
+    },
+    "1956": {
+     "n_positions": 8,
+     "mean_position_norm": 2591.758544921875,
+     "norm_over_w0_base": 0.5471511762959855,
+     "text_arm": false
+    },
+    "1980": {
+     "n_positions": 16,
+     "mean_position_norm": 2791.7646484375,
+     "norm_over_w0_base": 0.5893748529650055,
+     "text_arm": false
+    },
+    "1981": {
+     "n_positions": 12,
+     "mean_position_norm": 2825.206787109375,
+     "norm_over_w0_base": 0.5964348877618509,
+     "text_arm": false
+    },
+    "1983": {
+     "n_positions": 12,
+     "mean_position_norm": 2680.539794921875,
+     "norm_over_w0_base": 0.5658939582830291,
+     "text_arm": false
+    },
+    "1988": {
+     "n_positions": 20,
+     "mean_position_norm": 3003.418212890625,
+     "norm_over_w0_base": 0.6340574477170009,
+     "text_arm": false
+    },
+    "1991": {
+     "n_positions": 8,
+     "mean_position_norm": 2655.28759765625,
+     "norm_over_w0_base": 0.5605629179108399,
+     "text_arm": false
+    },
+    "1992": {
+     "n_positions": 8,
+     "mean_position_norm": 3340.402587890625,
+     "norm_over_w0_base": 0.7051988731155523,
+     "text_arm": false
+    },
+    "1995": {
+     "n_positions": 8,
+     "mean_position_norm": 3069.411376953125,
+     "norm_over_w0_base": 0.6479893926564858,
+     "text_arm": false
+    },
+    "1997": {
+     "n_positions": 12,
+     "mean_position_norm": 2941.5498046875,
+     "norm_over_w0_base": 0.6209962879919848,
+     "text_arm": false
+    },
+    "1998": {
+     "n_positions": 12,
+     "mean_position_norm": 3709.1240234375,
+     "norm_over_w0_base": 0.7830403709589011,
+     "text_arm": false
+    },
+    "2": {
+     "n_positions": 2,
+     "mean_position_norm": 682.727783203125,
+     "norm_over_w0_base": 0.1441319872954449,
+     "text_arm": false
+    },
+    "2000": {
+     "n_positions": 16,
+     "mean_position_norm": 2072.9814453125,
+     "norm_over_w0_base": 0.4376311359963806,
+     "text_arm": false
+    },
+    "2002": {
+     "n_positions": 12,
+     "mean_position_norm": 2569.124755859375,
+     "norm_over_w0_base": 0.5423729131611551,
+     "text_arm": false
+    },
+    "2003": {
+     "n_positions": 8,
+     "mean_position_norm": 2630.32568359375,
+     "norm_over_w0_base": 0.5552931597890207,
+     "text_arm": false
+    },
+    "2007": {
+     "n_positions": 12,
+     "mean_position_norm": 2684.7880859375,
+     "norm_over_w0_base": 0.5667908232440808,
+     "text_arm": false
+    },
+    "2008": {
+     "n_positions": 12,
+     "mean_position_norm": 2740.8369140625,
+     "norm_over_w0_base": 0.5786234001246289,
+     "text_arm": false
+    },
+    "2009": {
+     "n_positions": 12,
+     "mean_position_norm": 2977.290771484375,
+     "norm_over_w0_base": 0.6285416328556805,
+     "text_arm": false
+    },
+    "22": {
+     "n_positions": 4,
+     "mean_position_norm": 3056.8388671875,
+     "norm_over_w0_base": 0.645335185720144,
+     "text_arm": false
+    },
+    "24": {
+     "n_positions": 4,
+     "mean_position_norm": 2873.744140625,
+     "norm_over_w0_base": 0.606681702659945,
+     "text_arm": false
+    },
+    "27": {
+     "n_positions": 4,
+     "mean_position_norm": 4094.534912109375,
+     "norm_over_w0_base": 0.8644052116410235,
+     "text_arm": false
+    },
+    "5": {
+     "n_positions": 2,
+     "mean_position_norm": 2016.717041015625,
+     "norm_over_w0_base": 0.4257530484118151,
+     "text_arm": false
+    },
+    "6": {
+     "n_positions": 2,
+     "mean_position_norm": 5071.9541015625,
+     "norm_over_w0_base": 1.0707500736233988,
+     "text_arm": false
+    },
+    "august 1957": {
+     "n_positions": 12,
+     "mean_position_norm": 3644.385498046875,
+     "norm_over_w0_base": 0.7693732952243382,
+     "text_arm": false
+    },
+    "june 1966": {
+     "n_positions": 12,
+     "mean_position_norm": 4972.86474609375,
+     "norm_over_w0_base": 1.0498311274857013,
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_4936",
+   "n_tokens": 3199,
+   "n_candidates": 19,
+   "gold_positions": 6,
+   "nongold_fired": [
+    "click",
+    "universal",
+    "wales"
+   ],
+   "base_gauge_score": -9.182147322780656,
+   "deltas": {
+    "laface records": {
+     "n_positions": 6,
+     "mean_position_norm": 4591.95458984375,
+     "norm_over_w0_base": 0.9694164451598223
+    },
+    "1996": {
+     "n_positions": 8,
+     "mean_position_norm": 3485.87890625,
+     "norm_over_w0_base": 0.735910661013194,
+     "text_arm": false
+    },
+    "album": {
+     "n_positions": 13,
+     "mean_position_norm": 2552.059814453125,
+     "norm_over_w0_base": 0.5387703002626093,
+     "text_arm": false
+    },
+    "chamillitary entertainment": {
+     "n_positions": 12,
+     "mean_position_norm": 2351.744384765625,
+     "norm_over_w0_base": 0.49648132114512933,
+     "text_arm": false
+    },
+    "chart records": {
+     "n_positions": 4,
+     "mean_position_norm": 3527.4404296875,
+     "norm_over_w0_base": 0.7446847948853627,
+     "text_arm": false
+    },
+    "click": {
+     "n_positions": 3,
+     "mean_position_norm": 3249.76171875,
+     "norm_over_w0_base": 0.6860635033227314,
+     "text_arm": false
+    },
+    "europe": {
+     "n_positions": 3,
+     "mean_position_norm": 3426.217529296875,
+     "norm_over_w0_base": 0.723315431938595,
+     "text_arm": false
+    },
+    "expansion": {
+     "n_positions": 2,
+     "mean_position_norm": 1644.9765625,
+     "norm_over_w0_base": 0.3472741945482165,
+     "text_arm": false
+    },
+    "funk": {
+     "n_positions": 2,
+     "mean_position_norm": 4707.2841796875,
+     "norm_over_w0_base": 0.9937638986941728,
+     "text_arm": false
+    },
+    "independent record label": {
+     "n_positions": 6,
+     "mean_position_norm": 5017.1953125,
+     "norm_over_w0_base": 1.0591898393929398,
+     "text_arm": false
+    },
+    "jazze pha": {
+     "n_positions": 15,
+     "mean_position_norm": 3820.361572265625,
+     "norm_over_w0_base": 0.8065239457729374,
+     "text_arm": false
+    },
+    "latin": {
+     "n_positions": 3,
+     "mean_position_norm": 2912.690185546875,
+     "norm_over_w0_base": 0.6149036777867687,
+     "text_arm": false
+    },
+    "melody": {
+     "n_positions": 3,
+     "mean_position_norm": 3590.948486328125,
+     "norm_over_w0_base": 0.7580921039741179,
+     "text_arm": false
+    },
+    "metronome": {
+     "n_positions": 4,
+     "mean_position_norm": 3007.49560546875,
+     "norm_over_w0_base": 0.6349182339772461,
+     "text_arm": false
+    },
+    "pop": {
+     "n_positions": 2,
+     "mean_position_norm": 4326.796875,
+     "norm_over_w0_base": 0.9134384853822897,
+     "text_arm": false
+    },
+    "record": {
+     "n_positions": 11,
+     "mean_position_norm": 1115.5616455078125,
+     "norm_over_w0_base": 0.23550838397590157,
+     "text_arm": false
+    },
+    "record label": {
+     "n_positions": 8,
+     "mean_position_norm": 2073.81689453125,
+     "norm_over_w0_base": 0.43780750930232387,
+     "text_arm": false
+    },
+    "universal": {
+     "n_positions": 2,
+     "mean_position_norm": 4580.3935546875,
+     "norm_over_w0_base": 0.9669757725912547,
+     "text_arm": false
+    },
+    "wales": {
+     "n_positions": 2,
+     "mean_position_norm": 4796.58642578125,
+     "norm_over_w0_base": 1.0126166691776755,
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_5015",
+   "n_tokens": 3078,
+   "n_candidates": 40,
+   "gold_positions": 22,
+   "nongold_fired": [
+    "burkina faso",
+    "algeria",
+    "stadium"
+   ],
+   "base_gauge_score": -11.091810862867405,
+   "deltas": {
+    "sidi bel abb\u00e8s": {
+     "n_positions": 22,
+     "mean_position_norm": 2664.49365234375,
+     "norm_over_w0_base": 0.5625064259822921
+    },
+    "africa": {
+     "n_positions": 20,
+     "mean_position_norm": 1563.92333984375,
+     "norm_over_w0_base": 0.3301628914116489,
+     "text_arm": false
+    },
+    "algeria": {
+     "n_positions": 21,
+     "mean_position_norm": 1824.7337646484375,
+     "norm_over_w0_base": 0.38522308635216257,
+     "text_arm": false
+    },
+    "algiers": {
+     "n_positions": 8,
+     "mean_position_norm": 2274.22900390625,
+     "norm_over_w0_base": 0.48011689865626017,
+     "text_arm": false
+    },
+    "antarctica": {
+     "n_positions": 3,
+     "mean_position_norm": 5333.68505859375,
+     "norm_over_w0_base": 1.1260046039087572,
+     "text_arm": false
+    },
+    "atlantic ocean": {
+     "n_positions": 14,
+     "mean_position_norm": 3485.579833984375,
+     "norm_over_w0_base": 0.7358475232867825,
+     "text_arm": false
+    },
+    "bamako": {
+     "n_positions": 4,
+     "mean_position_norm": 4632.58935546875,
+     "norm_over_w0_base": 0.9779949293916166,
+     "text_arm": false
+    },
+    "basin": {
+     "n_positions": 2,
+     "mean_position_norm": 5597.64453125,
+     "norm_over_w0_base": 1.1817296004526343,
+     "text_arm": false
+    },
+    "benin": {
+     "n_positions": 3,
+     "mean_position_norm": 4324.40576171875,
+     "norm_over_w0_base": 0.9129336928170037,
+     "text_arm": false
+    },
+    "burkina faso": {
+     "n_positions": 6,
+     "mean_position_norm": 5747.68701171875,
+     "norm_over_w0_base": 1.2134053596948282,
+     "text_arm": false
+    },
+    "central": {
+     "n_positions": 2,
+     "mean_position_norm": 3257.17822265625,
+     "norm_over_w0_base": 0.687629215855737,
+     "text_arm": false
+    },
+    "china": {
+     "n_positions": 2,
+     "mean_position_norm": 5467.04345703125,
+     "norm_over_w0_base": 1.154158154214203,
+     "text_arm": false
+    },
+    "earth": {
+     "n_positions": 2,
+     "mean_position_norm": 6575.4873046875,
+     "norm_over_w0_base": 1.388163886072009,
+     "text_arm": false
+    },
+    "fezzan": {
+     "n_positions": 6,
+     "mean_position_norm": 4485.57373046875,
+     "norm_over_w0_base": 0.9469581754817094,
+     "text_arm": false
+    },
+    "hot": {
+     "n_positions": 2,
+     "mean_position_norm": 4738.181640625,
+     "norm_over_w0_base": 1.0002867216360074,
+     "text_arm": false
+    },
+    "libya": {
+     "n_positions": 11,
+     "mean_position_norm": 2326.138671875,
+     "norm_over_w0_base": 0.49107564940327153,
+     "text_arm": false
+    },
+    "lisa": {
+     "n_positions": 2,
+     "mean_position_norm": 3844.633544921875,
+     "norm_over_w0_base": 0.8116480490255,
+     "text_arm": false
+    },
+    "madagascar": {
+     "n_positions": 3,
+     "mean_position_norm": 6080.80712890625,
+     "norm_over_w0_base": 1.2837309941271404,
+     "text_arm": false
+    },
+    "mali": {
+     "n_positions": 11,
+     "mean_position_norm": 2282.63037109375,
+     "norm_over_w0_base": 0.48189052758791423,
+     "text_arm": false
+    },
+    "mauritania": {
+     "n_positions": 13,
+     "mean_position_norm": 3321.989990234375,
+     "norm_over_w0_base": 0.7013117538906456,
+     "text_arm": false
+    },
+    "morocco": {
+     "n_positions": 11,
+     "mean_position_norm": 2833.456787109375,
+     "norm_over_w0_base": 0.5981765612727905,
+     "text_arm": false
+    },
+    "most": {
+     "n_positions": 7,
+     "mean_position_norm": 1095.61279296875,
+     "norm_over_w0_base": 0.23129694300124387,
+     "text_arm": false
+    },
+    "niamey": {
+     "n_positions": 4,
+     "mean_position_norm": 5633.220703125,
+     "norm_over_w0_base": 1.1892401551405523,
+     "text_arm": false
+    },
+    "niger": {
+     "n_positions": 10,
+     "mean_position_norm": 2297.313720703125,
+     "norm_over_w0_base": 0.484990358020219,
+     "text_arm": false
+    },
+    "north": {
+     "n_positions": 18,
+     "mean_position_norm": 2493.815673828125,
+     "norm_over_w0_base": 0.5264742666996995,
+     "text_arm": false
+    },
+    "northern": {
+     "n_positions": 2,
+     "mean_position_norm": 1164.5970458984375,
+     "norm_over_w0_base": 0.24586034251634648,
+     "text_arm": false
+    },
+    "northwest": {
+     "n_positions": 2,
+     "mean_position_norm": 2984.580810546875,
+     "norm_over_w0_base": 0.6300806471500893,
+     "text_arm": false
+    },
+    "of": {
+     "n_positions": 94,
+     "mean_position_norm": 816.1864013671875,
+     "norm_over_w0_base": 0.17230669518186367,
+     "text_arm": false
+    },
+    "orange": {
+     "n_positions": 2,
+     "mean_position_norm": 5346.1884765625,
+     "norm_over_w0_base": 1.1286442247417727,
+     "text_arm": false
+    },
+    "paradise": {
+     "n_positions": 2,
+     "mean_position_norm": 5847.7138671875,
+     "norm_over_w0_base": 1.2345222232769504,
+     "text_arm": false
+    },
+    "south": {
+     "n_positions": 7,
+     "mean_position_norm": 1182.4068603515625,
+     "norm_over_w0_base": 0.249620207009408,
+     "text_arm": false
+    },
+    "southwest": {
+     "n_positions": 6,
+     "mean_position_norm": 449.1025695800781,
+     "norm_over_w0_base": 0.09481091504636924,
+     "text_arm": false
+    },
+    "stadium": {
+     "n_positions": 4,
+     "mean_position_norm": 1992.647216796875,
+     "norm_over_w0_base": 0.4206716211082066,
+     "text_arm": false
+    },
+    "suez": {
+     "n_positions": 3,
+     "mean_position_norm": 6658.58984375,
+     "norm_over_w0_base": 1.4057078243722492,
+     "text_arm": false
+    },
+    "tunis": {
+     "n_positions": 7,
+     "mean_position_norm": 2372.17529296875,
+     "norm_over_w0_base": 0.5007945298265624,
+     "text_arm": false
+    },
+    "tunisia": {
+     "n_positions": 13,
+     "mean_position_norm": 2297.854248046875,
+     "norm_over_w0_base": 0.4851044697967703,
+     "text_arm": false
+    },
+    "union": {
+     "n_positions": 2,
+     "mean_position_norm": 6544.9033203125,
+     "norm_over_w0_base": 1.3817072417756537,
+     "text_arm": false
+    },
+    "university": {
+     "n_positions": 2,
+     "mean_position_norm": 6156.3349609375,
+     "norm_over_w0_base": 1.2996758213256283,
+     "text_arm": false
+    },
+    "west": {
+     "n_positions": 12,
+     "mean_position_norm": 2923.2529296875,
+     "norm_over_w0_base": 0.6171335992016244,
+     "text_arm": false
+    },
+    "western sahara": {
+     "n_positions": 11,
+     "mean_position_norm": 3420.039794921875,
+     "norm_over_w0_base": 0.7220112384454364,
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_535",
+   "n_tokens": 1421,
+   "n_candidates": 9,
+   "gold_positions": 14,
+   "nongold_fired": [
+    "earth",
+    "london",
+    "saint martin"
+   ],
+   "base_gauge_score": -9.211245704942911,
+   "deltas": {
+    "pacific ocean": {
+     "n_positions": 14,
+     "mean_position_norm": 3533.298828125,
+     "norm_over_w0_base": 0.7459215727490139
+    },
+    "aegean sea": {
+     "n_positions": 5,
+     "mean_position_norm": 5168.8583984375,
+     "norm_over_w0_base": 1.0912077278007828,
+     "text_arm": false
+    },
+    "asia": {
+     "n_positions": 2,
+     "mean_position_norm": 3862.565673828125,
+     "norm_over_w0_base": 0.8154337355601389,
+     "text_arm": false
+    },
+    "earth": {
+     "n_positions": 2,
+     "mean_position_norm": 7447.74853515625,
+     "norm_over_w0_base": 1.5723086472510432,
+     "text_arm": false
+    },
+    "france": {
+     "n_positions": 3,
+     "mean_position_norm": 2752.370361328125,
+     "norm_over_w0_base": 0.5810582485600662,
+     "text_arm": false
+    },
+    "london": {
+     "n_positions": 2,
+     "mean_position_norm": 5292.9599609375,
+     "norm_over_w0_base": 1.1174070495065367,
+     "text_arm": false
+    },
+    "saint martin": {
+     "n_positions": 4,
+     "mean_position_norm": 4449.7412109375,
+     "norm_over_w0_base": 0.9393935027425815,
+     "text_arm": false
+    },
+    "society islands": {
+     "n_positions": 8,
+     "mean_position_norm": 2466.75048828125,
+     "norm_over_w0_base": 0.5207604828529531,
+     "text_arm": false
+    },
+    "tahiti": {
+     "n_positions": 9,
+     "mean_position_norm": 3616.252685546875,
+     "norm_over_w0_base": 0.7634341225795526,
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_643",
+   "n_tokens": 404,
+   "n_candidates": 5,
+   "gold_positions": 2,
+   "nongold_fired": [
+    "aircraft",
+    "airline",
+    "company"
+   ],
+   "base_gauge_score": -11.228306198989527,
+   "deltas": {
+    "airport": {
+     "n_positions": 2,
+     "mean_position_norm": 4882.67822265625,
+     "norm_over_w0_base": 1.030791675496025
+    },
+    "aircraft": {
+     "n_positions": 2,
+     "mean_position_norm": 3794.27783203125,
+     "norm_over_w0_base": 0.8010173567508233,
+     "text_arm": false
+    },
+    "airline": {
+     "n_positions": 5,
+     "mean_position_norm": 2375.939208984375,
+     "norm_over_w0_base": 0.5015891374413278,
+     "text_arm": false
+    },
+    "company": {
+     "n_positions": 2,
+     "mean_position_norm": 3333.22998046875,
+     "norm_over_w0_base": 0.7036846500426979,
+     "text_arm": false
+    },
+    "line": {
+     "n_positions": 2,
+     "mean_position_norm": 4880.3779296875,
+     "norm_over_w0_base": 1.0303060561831676,
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_761",
+   "n_tokens": 1008,
+   "n_candidates": 53,
+   "gold_positions": 10,
+   "nongold_fired": [
+    "music",
+    "january",
+    "head"
+   ],
+   "base_gauge_score": -12.831757479507177,
+   "deltas": {
+    "innocent starter": {
+     "n_positions": 10,
+     "mean_position_norm": 3880.393310546875,
+     "norm_over_w0_base": 0.8191973625462846
+    },
+    "# 1": {
+     "n_positions": 3,
+     "mean_position_norm": 4811.96533203125,
+     "norm_over_w0_base": 1.0158633399222632,
+     "text_arm": false
+    },
+    "1": {
+     "n_positions": 6,
+     "mean_position_norm": 645.2327880859375,
+     "norm_over_w0_base": 0.13621634610897018,
+     "text_arm": false
+    },
+    "13": {
+     "n_positions": 10,
+     "mean_position_norm": 2771.353515625,
+     "norm_over_w0_base": 0.5850658191046658,
+     "text_arm": false
+    },
+    "1968": {
+     "n_positions": 8,
+     "mean_position_norm": 3691.70263671875,
+     "norm_over_w0_base": 0.7793625081986729,
+     "text_arm": false
+    },
+    "1999": {
+     "n_positions": 8,
+     "mean_position_norm": 4610.02099609375,
+     "norm_over_w0_base": 0.973230479245095,
+     "text_arm": false
+    },
+    "2001": {
+     "n_positions": 12,
+     "mean_position_norm": 3160.65234375,
+     "norm_over_w0_base": 0.6672514502301391,
+     "text_arm": false
+    },
+    "2002": {
+     "n_positions": 8,
+     "mean_position_norm": 2392.94140625,
+     "norm_over_w0_base": 0.5051785043025775,
+     "text_arm": false
+    },
+    "2008": {
+     "n_positions": 8,
+     "mean_position_norm": 3578.25146484375,
+     "norm_over_w0_base": 0.7554116111271885,
+     "text_arm": false
+    },
+    "2010": {
+     "n_positions": 12,
+     "mean_position_norm": 3750.88671875,
+     "norm_over_w0_base": 0.7918569746160192,
+     "text_arm": false
+    },
+    "3": {
+     "n_positions": 3,
+     "mean_position_norm": 2468.7529296875,
+     "norm_over_w0_base": 0.5211832221444045,
+     "text_arm": false
+    },
+    "6": {
+     "n_positions": 3,
+     "mean_position_norm": 1813.7877197265625,
+     "norm_over_w0_base": 0.3829122455654977,
+     "text_arm": false
+    },
+    "9": {
+     "n_positions": 3,
+     "mean_position_norm": 4620.38037109375,
+     "norm_over_w0_base": 0.9754174670059907,
+     "text_arm": false
+    },
+    "a": {
+     "n_positions": 13,
+     "mean_position_norm": 1977.032470703125,
+     "norm_over_w0_base": 0.4173751617565057,
+     "text_arm": false
+    },
+    "album": {
+     "n_positions": 11,
+     "mean_position_norm": 2179.415771484375,
+     "norm_over_w0_base": 0.4601006931537459,
+     "text_arm": false
+    },
+    "becoming": {
+     "n_positions": 2,
+     "mean_position_norm": 5395.3779296875,
+     "norm_over_w0_base": 1.139028705653945,
+     "text_arm": false
+    },
+    "confidence": {
+     "n_positions": 2,
+     "mean_position_norm": 3715.1904296875,
+     "norm_over_w0_base": 0.7843210617555343,
+     "text_arm": false
+    },
+    "debut": {
+     "n_positions": 5,
+     "mean_position_norm": 4495.439453125,
+     "norm_over_w0_base": 0.9490409473382752,
+     "text_arm": false
+    },
+    "december 5": {
+     "n_positions": 6,
+     "mean_position_norm": 4548.67333984375,
+     "norm_over_w0_base": 0.9602792564755367,
+     "text_arm": false
+    },
+    "first": {
+     "n_positions": 7,
+     "mean_position_norm": 605.6801147460938,
+     "norm_over_w0_base": 0.12786630447953332,
+     "text_arm": false
+    },
+    "first album": {
+     "n_positions": 4,
+     "mean_position_norm": 1907.0870361328125,
+     "norm_over_w0_base": 0.40260884531986635,
+     "text_arm": false
+    },
+    "girl": {
+     "n_positions": 5,
+     "mean_position_norm": 2768.180908203125,
+     "norm_over_w0_base": 0.5843960437946912,
+     "text_arm": false
+    },
+    "head": {
+     "n_positions": 2,
+     "mean_position_norm": 4503.10986328125,
+     "norm_over_w0_base": 0.9506602625124791,
+     "text_arm": false
+    },
+    "innocent": {
+     "n_positions": 8,
+     "mean_position_norm": 3608.48193359375,
+     "norm_over_w0_base": 0.761793624053875,
+     "text_arm": false
+    },
+    "is": {
+     "n_positions": 11,
+     "mean_position_norm": 2065.60791015625,
+     "norm_over_w0_base": 0.4360744946795779,
+     "text_arm": false
+    },
+    "it": {
+     "n_positions": 7,
+     "mean_position_norm": 486.59332275390625,
+     "norm_over_w0_base": 0.10272566070794893,
+     "text_arm": false
+    },
+    "j": {
+     "n_positions": 2,
+     "mean_position_norm": 5003.5634765625,
+     "norm_over_w0_base": 1.056311996052598,
+     "text_arm": false
+    },
+    "january": {
+     "n_positions": 4,
+     "mean_position_norm": 4016.90087890625,
+     "norm_over_w0_base": 0.8480157402255942,
+     "text_arm": false
+    },
+    "january 13": {
+     "n_positions": 12,
+     "mean_position_norm": 4026.594482421875,
+     "norm_over_w0_base": 0.8500621756763477,
+     "text_arm": false
+    },
+    "king": {
+     "n_positions": 4,
+     "mean_position_norm": 4581.35205078125,
+     "norm_over_w0_base": 0.9671781225617788,
+     "text_arm": false
+    },
+    "music": {
+     "n_positions": 4,
+     "mean_position_norm": 2159.37353515625,
+     "norm_over_w0_base": 0.45586953774614747,
+     "text_arm": false
+    },
+    "november": {
+     "n_positions": 2,
+     "mean_position_norm": 4925.2548828125,
+     "norm_over_w0_base": 1.0397801168509848,
+     "text_arm": false
+    },
+    "number 1": {
+     "n_positions": 6,
+     "mean_position_norm": 1752.650390625,
+     "norm_over_w0_base": 0.37000542536843223,
+     "text_arm": false
+    },
+    "number one": {
+     "n_positions": 4,
+     "mean_position_norm": 2036.010986328125,
+     "norm_over_w0_base": 0.42982623065088166,
+     "text_arm": false
+    },
+    "of june": {
+     "n_positions": 4,
+     "mean_position_norm": 3335.212158203125,
+     "norm_over_w0_base": 0.7041031114310536,
+     "text_arm": false
+    },
+    "on": {
+     "n_positions": 16,
+     "mean_position_norm": 1382.3365478515625,
+     "norm_over_w0_base": 0.2918277513450673,
+     "text_arm": false
+    },
+    "phantom": {
+     "n_positions": 3,
+     "mean_position_norm": 4572.22607421875,
+     "norm_over_w0_base": 0.9652515199387046,
+     "text_arm": false
+    },
+    "pop": {
+     "n_positions": 4,
+     "mean_position_norm": 4447.36279296875,
+     "norm_over_w0_base": 0.9388913903093554,
+     "text_arm": false
+    },
+    "pop singer": {
+     "n_positions": 6,
+     "mean_position_norm": 4111.33056640625,
+     "norm_over_w0_base": 0.8679509748152981,
+     "text_arm": false
+    },
+    "release": {
+     "n_positions": 3,
+     "mean_position_norm": 3003.352783203125,
+     "norm_over_w0_base": 0.6340436347286921,
+     "text_arm": false
+    },
+    "released": {
+     "n_positions": 10,
+     "mean_position_norm": 3668.64990234375,
+     "norm_over_w0_base": 0.7744958007058651,
+     "text_arm": false
+    },
+    "she": {
+     "n_positions": 3,
+     "mean_position_norm": 4298.439453125,
+     "norm_over_w0_base": 0.9074518950164439,
+     "text_arm": false
+    },
+    "singles": {
+     "n_positions": 3,
+     "mean_position_norm": 1279.55810546875,
+     "norm_over_w0_base": 0.2701299949094576,
+     "text_arm": false
+    },
+    "success": {
+     "n_positions": 2,
+     "mean_position_norm": 3838.2119140625,
+     "norm_over_w0_base": 0.8102923660721902,
+     "text_arm": false
+    },
+    "supersonic girl": {
+     "n_positions": 8,
+     "mean_position_norm": 4586.27978515625,
+     "norm_over_w0_base": 0.9682184261290374,
+     "text_arm": false
+    },
+    "the album": {
+     "n_positions": 8,
+     "mean_position_norm": 1690.1917724609375,
+     "norm_over_w0_base": 0.3568196652731303,
+     "text_arm": false
+    },
+    "the opening": {
+     "n_positions": 4,
+     "mean_position_norm": 513.8975830078125,
+     "norm_over_w0_base": 0.10848991608007383,
+     "text_arm": false
+    },
+    "the seventh": {
+     "n_positions": 4,
+     "mean_position_norm": 2473.3037109375,
+     "norm_over_w0_base": 0.522143946405884,
+     "text_arm": false
+    },
+    "took": {
+     "n_positions": 2,
+     "mean_position_norm": 6793.18115234375,
+     "norm_over_w0_base": 1.4341216567335142,
+     "text_arm": false
+    },
+    "two": {
+     "n_positions": 4,
+     "mean_position_norm": 1103.585205078125,
+     "norm_over_w0_base": 0.23298001439387328,
+     "text_arm": false
+    },
+    "ultimate diamond": {
+     "n_positions": 6,
+     "mean_position_norm": 4207.70849609375,
+     "norm_over_w0_base": 0.8882975065941977,
+     "text_arm": false
+    },
+    "up": {
+     "n_positions": 2,
+     "mean_position_norm": 3445.906494140625,
+     "norm_over_w0_base": 0.727472007517526,
+     "text_arm": false
+    },
+    "voice": {
+     "n_positions": 8,
+     "mean_position_norm": 3250.860595703125,
+     "norm_over_w0_base": 0.686295489368918,
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_814",
+   "n_tokens": 1471,
+   "n_candidates": 18,
+   "gold_positions": 5,
+   "nongold_fired": [
+    "turkey",
+    "thessaloniki",
+    "central"
+   ],
+   "base_gauge_score": -11.083262640577548,
+   "deltas": {
+    "sofia": {
+     "n_positions": 5,
+     "mean_position_norm": 2663.25244140625,
+     "norm_over_w0_base": 0.5622443915324336
+    },
+    "alliance": {
+     "n_positions": 4,
+     "mean_position_norm": 3466.5322265625,
+     "norm_over_w0_base": 0.7318263459178785,
+     "text_arm": false
+    },
+    "athens": {
+     "n_positions": 3,
+     "mean_position_norm": 4372.78564453125,
+     "norm_over_w0_base": 0.9231472637693546,
+     "text_arm": false
+    },
+    "belgrade": {
+     "n_positions": 3,
+     "mean_position_norm": 4740.63671875,
+     "norm_over_w0_base": 1.0008050179435954,
+     "text_arm": false
+    },
+    "born": {
+     "n_positions": 3,
+     "mean_position_norm": 4134.52783203125,
+     "norm_over_w0_base": 0.8728481945807882,
+     "text_arm": false
+    },
+    "bucharest": {
+     "n_positions": 3,
+     "mean_position_norm": 5460.03076171875,
+     "norm_over_w0_base": 1.1526776904971034,
+     "text_arm": false
+    },
+    "bulgaria": {
+     "n_positions": 17,
+     "mean_position_norm": 2164.355224609375,
+     "norm_over_w0_base": 0.4569212318746608,
+     "text_arm": false
+    },
+    "central": {
+     "n_positions": 3,
+     "mean_position_norm": 4981.70703125,
+     "norm_over_w0_base": 1.0516978394654366,
+     "text_arm": false
+    },
+    "europe": {
+     "n_positions": 10,
+     "mean_position_norm": 2355.17724609375,
+     "norm_over_w0_base": 0.4972060391623323,
+     "text_arm": false
+    },
+    "greece": {
+     "n_positions": 6,
+     "mean_position_norm": 3422.227294921875,
+     "norm_over_w0_base": 0.7224730458157612,
+     "text_arm": false
+    },
+    "hungary": {
+     "n_positions": 4,
+     "mean_position_norm": 5509.8955078125,
+     "norm_over_w0_base": 1.1632047338184628,
+     "text_arm": false
+    },
+    "iraq": {
+     "n_positions": 3,
+     "mean_position_norm": 7445.48681640625,
+     "norm_over_w0_base": 1.571831171416368,
+     "text_arm": false
+    },
+    "moldova": {
+     "n_positions": 3,
+     "mean_position_norm": 6660.21337890625,
+     "norm_over_w0_base": 1.4060505720299121,
+     "text_arm": false
+    },
+    "romania": {
+     "n_positions": 6,
+     "mean_position_norm": 4199.45556640625,
+     "norm_over_w0_base": 0.8865552145912443,
+     "text_arm": false
+    },
+    "russia": {
+     "n_positions": 2,
+     "mean_position_norm": 7997.17431640625,
+     "norm_over_w0_base": 1.6882989902123087,
+     "text_arm": false
+    },
+    "thessaloniki": {
+     "n_positions": 5,
+     "mean_position_norm": 3621.05810546875,
+     "norm_over_w0_base": 0.7644486041052339,
+     "text_arm": false
+    },
+    "turkey": {
+     "n_positions": 8,
+     "mean_position_norm": 2844.0751953125,
+     "norm_over_w0_base": 0.600418234035909,
+     "text_arm": false
+    },
+    "ukraine": {
+     "n_positions": 4,
+     "mean_position_norm": 5685.97412109375,
+     "norm_over_w0_base": 1.200377031587546,
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_939",
+   "n_tokens": 1472,
+   "n_candidates": 53,
+   "gold_positions": 4,
+   "nongold_fired": [
+    "house",
+    "three",
+    "soap opera"
+   ],
+   "base_gauge_score": -9.543212402195648,
+   "deltas": {
+    "television series": {
+     "n_positions": 4,
+     "mean_position_norm": 2675.221923828125,
+     "norm_over_w0_base": 0.564771292195929
+    },
+    "1980": {
+     "n_positions": 8,
+     "mean_position_norm": 3960.42041015625,
+     "norm_over_w0_base": 0.8360920388550089,
+     "text_arm": false
+    },
+    "abbey": {
+     "n_positions": 2,
+     "mean_position_norm": 6259.5703125,
+     "norm_over_w0_base": 1.3214700367448946,
+     "text_arm": false
+    },
+    "acting": {
+     "n_positions": 2,
+     "mean_position_norm": 2326.84326171875,
+     "norm_over_w0_base": 0.49122439673259716,
+     "text_arm": false
+    },
+    "area": {
+     "n_positions": 3,
+     "mean_position_norm": 1923.9219970703125,
+     "norm_over_w0_base": 0.4061629065953266,
+     "text_arm": false
+    },
+    "award": {
+     "n_positions": 4,
+     "mean_position_norm": 3655.3603515625,
+     "norm_over_w0_base": 0.7716902178491389,
+     "text_arm": false
+    },
+    "biography": {
+     "n_positions": 2,
+     "mean_position_norm": 4016.4912109375,
+     "norm_over_w0_base": 0.8479292544256606,
+     "text_arm": false
+    },
+    "borough": {
+     "n_positions": 4,
+     "mean_position_norm": 4154.3359375,
+     "norm_over_w0_base": 0.8770299221682817,
+     "text_arm": false
+    },
+    "broadcasting": {
+     "n_positions": 6,
+     "mean_position_norm": 2421.859130859375,
+     "norm_over_w0_base": 0.5112833812660679,
+     "text_arm": false
+    },
+    "broadcasting house": {
+     "n_positions": 4,
+     "mean_position_norm": 3548.32080078125,
+     "norm_over_w0_base": 0.749092890549917,
+     "text_arm": false
+    },
+    "channel": {
+     "n_positions": 3,
+     "mean_position_norm": 5916.609375,
+     "norm_over_w0_base": 1.2490668876381341,
+     "text_arm": false
+    },
+    "character": {
+     "n_positions": 2,
+     "mean_position_norm": 3060.0390625,
+     "norm_over_w0_base": 0.6460107851632488,
+     "text_arm": false
+    },
+    "city": {
+     "n_positions": 5,
+     "mean_position_norm": 3108.22021484375,
+     "norm_over_w0_base": 0.6561824017406618,
+     "text_arm": false
+    },
+    "city centre": {
+     "n_positions": 4,
+     "mean_position_norm": 4087.9814453125,
+     "norm_over_w0_base": 0.8630216965470914,
+     "text_arm": false
+    },
+    "comedian": {
+     "n_positions": 5,
+     "mean_position_norm": 4662.5244140625,
+     "norm_over_w0_base": 0.9843145777069088,
+     "text_arm": false
+    },
+    "comedy": {
+     "n_positions": 12,
+     "mean_position_norm": 2076.259033203125,
+     "norm_over_w0_base": 0.43832307393685066,
+     "text_arm": false
+    },
+    "company": {
+     "n_positions": 3,
+     "mean_position_norm": 2827.374755859375,
+     "norm_over_w0_base": 0.5968925718520837,
+     "text_arm": false
+    },
+    "corporation": {
+     "n_positions": 2,
+     "mean_position_norm": 4800.60009765625,
+     "norm_over_w0_base": 1.0134640032366198,
+     "text_arm": false
+    },
+    "council": {
+     "n_positions": 2,
+     "mean_position_norm": 6906.66015625,
+     "norm_over_w0_base": 1.45807842947913,
+     "text_arm": false
+    },
+    "december": {
+     "n_positions": 3,
+     "mean_position_norm": 4526.318359375,
+     "norm_over_w0_base": 0.9555598531640221,
+     "text_arm": false
+    },
+    "episode": {
+     "n_positions": 3,
+     "mean_position_norm": 5118.560546875,
+     "norm_over_w0_base": 1.0805892507433792,
+     "text_arm": false
+    },
+    "family": {
+     "n_positions": 11,
+     "mean_position_norm": 1911.1903076171875,
+     "norm_over_w0_base": 0.4034750949262336,
+     "text_arm": false
+    },
+    "february": {
+     "n_positions": 2,
+     "mean_position_norm": 4602.974609375,
+     "norm_over_w0_base": 0.9717429028698363,
+     "text_arm": false
+    },
+    "genre": {
+     "n_positions": 2,
+     "mean_position_norm": 4043.710693359375,
+     "norm_over_w0_base": 0.8536756121851354,
+     "text_arm": false
+    },
+    "grant": {
+     "n_positions": 3,
+     "mean_position_norm": 5056.43212890625,
+     "norm_over_w0_base": 1.0674731998521356,
+     "text_arm": false
+    },
+    "house": {
+     "n_positions": 5,
+     "mean_position_norm": 2495.705810546875,
+     "norm_over_w0_base": 0.5268732971306209,
+     "text_arm": false
+    },
+    "july": {
+     "n_positions": 2,
+     "mean_position_norm": 4551.62109375,
+     "norm_over_w0_base": 0.9609015625234499,
+     "text_arm": false
+    },
+    "lager": {
+     "n_positions": 2,
+     "mean_position_norm": 4391.90576171875,
+     "norm_over_w0_base": 0.9271837488156007,
+     "text_arm": false
+    },
+    "merge": {
+     "n_positions": 2,
+     "mean_position_norm": 5616.083984375,
+     "norm_over_w0_base": 1.1856223891876676,
+     "text_arm": false
+    },
+    "metropolitan": {
+     "n_positions": 4,
+     "mean_position_norm": 5528.3037109375,
+     "norm_over_w0_base": 1.1670909253053487,
+     "text_arm": false
+    },
+    "metropolitan borough": {
+     "n_positions": 6,
+     "mean_position_norm": 5216.64599609375,
+     "norm_over_w0_base": 1.1012962602843381,
+     "text_arm": false
+    },
+    "name": {
+     "n_positions": 2,
+     "mean_position_norm": 1327.6353759765625,
+     "norm_over_w0_base": 0.28027968079088017,
+     "text_arm": false
+    },
+    "narrative": {
+     "n_positions": 2,
+     "mean_position_norm": 4572.48046875,
+     "norm_over_w0_base": 0.9653052256619054,
+     "text_arm": false
+    },
+    "opera": {
+     "n_positions": 4,
+     "mean_position_norm": 3443.471923828125,
+     "norm_over_w0_base": 0.726958040654035,
+     "text_arm": false
+    },
+    "performance": {
+     "n_positions": 2,
+     "mean_position_norm": 1279.0623779296875,
+     "norm_over_w0_base": 0.2700253409066178,
+     "text_arm": false
+    },
+    "population": {
+     "n_positions": 3,
+     "mean_position_norm": 4670.55859375,
+     "norm_over_w0_base": 0.9860106889728297,
+     "text_arm": false
+    },
+    "public": {
+     "n_positions": 4,
+     "mean_position_norm": 4504.86181640625,
+     "norm_over_w0_base": 0.9510301207367483,
+     "text_arm": false
+    },
+    "radio": {
+     "n_positions": 2,
+     "mean_position_norm": 5859.73828125,
+     "norm_over_w0_base": 1.2370607206657052,
+     "text_arm": false
+    },
+    "role": {
+     "n_positions": 3,
+     "mean_position_norm": 815.8843383789062,
+     "norm_over_w0_base": 0.17224292607818795,
+     "text_arm": false
+    },
+    "sector": {
+     "n_positions": 2,
+     "mean_position_norm": 5192.2158203125,
+     "norm_over_w0_base": 1.0961387584630287,
+     "text_arm": false
+    },
+    "september": {
+     "n_positions": 3,
+     "mean_position_norm": 4393.70556640625,
+     "norm_over_w0_base": 0.9275637090760956,
+     "text_arm": false
+    },
+    "series": {
+     "n_positions": 9,
+     "mean_position_norm": 2783.60595703125,
+     "norm_over_w0_base": 0.5876524557884968,
+     "text_arm": false
+    },
+    "set": {
+     "n_positions": 2,
+     "mean_position_norm": 5986.6513671875,
+     "norm_over_w0_base": 1.2638535885407294,
+     "text_arm": false
+    },
+    "settlement": {
+     "n_positions": 2,
+     "mean_position_norm": 7073.98388671875,
+     "norm_over_w0_base": 1.4934024669468906,
+     "text_arm": false
+    },
+    "show": {
+     "n_positions": 8,
+     "mean_position_norm": 534.8800048828125,
+     "norm_over_w0_base": 0.11291955588310994,
+     "text_arm": false
+    },
+    "soap opera": {
+     "n_positions": 6,
+     "mean_position_norm": 4408.04296875,
+     "norm_over_w0_base": 0.9305905059097676,
+     "text_arm": false
+    },
+    "talk show": {
+     "n_positions": 4,
+     "mean_position_norm": 4054.051025390625,
+     "norm_over_w0_base": 0.8558585797479413,
+     "text_arm": false
+    },
+    "television": {
+     "n_positions": 12,
+     "mean_position_norm": 3238.909423828125,
+     "norm_over_w0_base": 0.683772454280509,
+     "text_arm": false
+    },
+    "television production company": {
+     "n_positions": 6,
+     "mean_position_norm": 3243.978271484375,
+     "norm_over_w0_base": 0.6848425485464338,
+     "text_arm": false
+    },
+    "three": {
+     "n_positions": 3,
+     "mean_position_norm": 3765.759765625,
+     "norm_over_w0_base": 0.7949968524062193,
+     "text_arm": false
+    },
+    "town": {
+     "n_positions": 3,
+     "mean_position_norm": 4504.80322265625,
+     "norm_over_w0_base": 0.9510177508964717,
+     "text_arm": false
+    },
+    "urban area": {
+     "n_positions": 4,
+     "mean_position_norm": 5777.17529296875,
+     "norm_over_w0_base": 1.2196306879780114,
+     "text_arm": false
+    },
+    "writing": {
+     "n_positions": 2,
+     "mean_position_norm": 376.5457763671875,
+     "norm_over_w0_base": 0.07949330961877939,
+     "text_arm": false
+    }
+   }
+  }
+ ],
+ "seconds": 2735
+}

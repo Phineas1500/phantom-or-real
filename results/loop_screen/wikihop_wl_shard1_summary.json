@@ -1,0 +1,4402 @@
+{
+ "n_rows": 26,
+ "rows_key": "wl_rows",
+ "shard_index": 1,
+ "shard_count": 2,
+ "loop": true,
+ "loop_rung": 2.0,
+ "n_fired_branches": 777,
+ "write_layer": 30,
+ "gauge_layer": 38,
+ "rungs": [
+  1.0,
+  2.0
+ ],
+ "seed": 20260826,
+ "w0_base_norm": 4736.823490844226,
+ "skipped": [],
+ "rows": [
+  {
+   "id": "WH_dev_124",
+   "n_tokens": 1258,
+   "n_candidates": 8,
+   "gold_positions": 15,
+   "nongold_fired": [
+    "sea of crete",
+    "coast",
+    "black sea"
+   ],
+   "base_gauge_score": -9.429579097633761,
+   "deltas": {
+    "aegean sea": {
+     "n_positions": 15,
+     "mean_position_norm": 3309.76025390625,
+     "norm_over_w0_base": 0.6987299105199218
+    },
+    "black sea": {
+     "n_positions": 4,
+     "mean_position_norm": 4508.37158203125,
+     "norm_over_w0_base": 0.9517710741693142,
+     "text_arm": false
+    },
+    "chios": {
+     "n_positions": 8,
+     "mean_position_norm": 3530.9462890625,
+     "norm_over_w0_base": 0.7454249236619102,
+     "text_arm": false
+    },
+    "coast": {
+     "n_positions": 5,
+     "mean_position_norm": 5554.54638671875,
+     "norm_over_w0_base": 1.1726310675192129,
+     "text_arm": false
+    },
+    "greece": {
+     "n_positions": 10,
+     "mean_position_norm": 3420.72998046875,
+     "norm_over_w0_base": 0.722156944855694,
+     "text_arm": false
+    },
+    "rhodes": {
+     "n_positions": 3,
+     "mean_position_norm": 5993.70556640625,
+     "norm_over_w0_base": 1.2653428142280247,
+     "text_arm": false
+    },
+    "samos": {
+     "n_positions": 35,
+     "mean_position_norm": 2436.616455078125,
+     "norm_over_w0_base": 0.5143988286217217,
+     "text_arm": false
+    },
+    "sea of crete": {
+     "n_positions": 7,
+     "mean_position_norm": 4558.720703125,
+     "norm_over_w0_base": 0.9624003748369598,
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_1436",
+   "n_tokens": 3326,
+   "n_candidates": 54,
+   "gold_positions": 19,
+   "nongold_fired": [
+    "hampshire",
+    "empress",
+    "northwest"
+   ],
+   "base_gauge_score": -9.404933421582433,
+   "deltas": {
+    "city of westminster": {
+     "n_positions": 19,
+     "mean_position_norm": 2986.72265625,
+     "norm_over_w0_base": 0.6305328163531987
+    },
+    "abingdon": {
+     "n_positions": 6,
+     "mean_position_norm": 4892.74462890625,
+     "norm_over_w0_base": 1.032916814055538,
+     "text_arm": false
+    },
+    "atlantic ocean": {
+     "n_positions": 6,
+     "mean_position_norm": 3695.511962890625,
+     "norm_over_w0_base": 0.7801667024396528,
+     "text_arm": false
+    },
+    "berkshire": {
+     "n_positions": 3,
+     "mean_position_norm": 5202.34326171875,
+     "norm_over_w0_base": 1.0982767822728299,
+     "text_arm": false
+    },
+    "british isles": {
+     "n_positions": 5,
+     "mean_position_norm": 4699.1572265625,
+     "norm_over_w0_base": 0.992048201847814,
+     "text_arm": false
+    },
+    "cambridgeshire": {
+     "n_positions": 6,
+     "mean_position_norm": 4741.4853515625,
+     "norm_over_w0_base": 1.0009841744636008,
+     "text_arm": false
+    },
+    "central": {
+     "n_positions": 9,
+     "mean_position_norm": 3540.728271484375,
+     "norm_over_w0_base": 0.7474900169550807,
+     "text_arm": false
+    },
+    "central area": {
+     "n_positions": 4,
+     "mean_position_norm": 3169.260498046875,
+     "norm_over_w0_base": 0.6690687343897692,
+     "text_arm": false
+    },
+    "chelsea": {
+     "n_positions": 9,
+     "mean_position_norm": 3811.9892578125,
+     "norm_over_w0_base": 0.8047564502204204,
+     "text_arm": false
+    },
+    "city of london": {
+     "n_positions": 21,
+     "mean_position_norm": 2432.18017578125,
+     "norm_over_w0_base": 0.5134622770897828,
+     "text_arm": false
+    },
+    "colne": {
+     "n_positions": 4,
+     "mean_position_norm": 4329.98779296875,
+     "norm_over_w0_base": 0.9141121262673506,
+     "text_arm": false
+    },
+    "district": {
+     "n_positions": 3,
+     "mean_position_norm": 3745.892822265625,
+     "norm_over_w0_base": 0.7908027034374482,
+     "text_arm": false
+    },
+    "east": {
+     "n_positions": 18,
+     "mean_position_norm": 1009.9457397460938,
+     "norm_over_w0_base": 0.21321160513964915,
+     "text_arm": false
+    },
+    "east of england": {
+     "n_positions": 9,
+     "mean_position_norm": 3038.31689453125,
+     "norm_over_w0_base": 0.6414249761267212,
+     "text_arm": false
+    },
+    "east sussex": {
+     "n_positions": 7,
+     "mean_position_norm": 3727.291259765625,
+     "norm_over_w0_base": 0.7868756914776497,
+     "text_arm": false
+    },
+    "empress": {
+     "n_positions": 3,
+     "mean_position_norm": 5141.40283203125,
+     "norm_over_w0_base": 1.0854115298931937,
+     "text_arm": false
+    },
+    "england": {
+     "n_positions": 18,
+     "mean_position_norm": 2364.718994140625,
+     "norm_over_w0_base": 0.49922041611036894,
+     "text_arm": false
+    },
+    "eu": {
+     "n_positions": 5,
+     "mean_position_norm": 2936.90966796875,
+     "norm_over_w0_base": 0.6200166997240836,
+     "text_arm": false
+    },
+    "europe": {
+     "n_positions": 6,
+     "mean_position_norm": 2036.0560302734375,
+     "norm_over_w0_base": 0.42983573996559427,
+     "text_arm": false
+    },
+    "european union": {
+     "n_positions": 8,
+     "mean_position_norm": 2757.75830078125,
+     "norm_over_w0_base": 0.5821957069144971,
+     "text_arm": false
+    },
+    "free state": {
+     "n_positions": 4,
+     "mean_position_norm": 4998.12890625,
+     "norm_over_w0_base": 1.0551646933669472,
+     "text_arm": false
+    },
+    "greater london": {
+     "n_positions": 26,
+     "mean_position_norm": 3188.6533203125,
+     "norm_over_w0_base": 0.6731627907343024,
+     "text_arm": false
+    },
+    "guildford": {
+     "n_positions": 3,
+     "mean_position_norm": 7185.36083984375,
+     "norm_over_w0_base": 1.516915471672585,
+     "text_arm": false
+    },
+    "hampshire": {
+     "n_positions": 4,
+     "mean_position_norm": 5173.9462890625,
+     "norm_over_w0_base": 1.0922818422647973,
+     "text_arm": false
+    },
+    "hertfordshire": {
+     "n_positions": 6,
+     "mean_position_norm": 4037.169189453125,
+     "norm_over_w0_base": 0.8522946226002598,
+     "text_arm": false
+    },
+    "inner london": {
+     "n_positions": 6,
+     "mean_position_norm": 3398.878173828125,
+     "norm_over_w0_base": 0.7175437675475544,
+     "text_arm": false
+    },
+    "kensington": {
+     "n_positions": 22,
+     "mean_position_norm": 2714.380859375,
+     "norm_over_w0_base": 0.5730382110757575,
+     "text_arm": false
+    },
+    "kent": {
+     "n_positions": 7,
+     "mean_position_norm": 3443.191162109375,
+     "norm_over_w0_base": 0.7268987685027098,
+     "text_arm": false
+    },
+    "kingdom of great britain": {
+     "n_positions": 21,
+     "mean_position_norm": 3627.333984375,
+     "norm_over_w0_base": 0.7657735170808557,
+     "text_arm": false
+    },
+    "kingston": {
+     "n_positions": 3,
+     "mean_position_norm": 5416.71240234375,
+     "norm_over_w0_base": 1.1435326675806425,
+     "text_arm": false
+    },
+    "london": {
+     "n_positions": 56,
+     "mean_position_norm": 1400.2506103515625,
+     "norm_over_w0_base": 0.29560962384562084,
+     "text_arm": false
+    },
+    "maidstone": {
+     "n_positions": 4,
+     "mean_position_norm": 4828.8603515625,
+     "norm_over_w0_base": 1.019430080284007,
+     "text_arm": false
+    },
+    "mainland": {
+     "n_positions": 2,
+     "mean_position_norm": 3873.70556640625,
+     "norm_over_w0_base": 0.8177854999017187,
+     "text_arm": false
+    },
+    "middlesex": {
+     "n_positions": 8,
+     "mean_position_norm": 3474.49755859375,
+     "norm_over_w0_base": 0.7335079226214746,
+     "text_arm": false
+    },
+    "most": {
+     "n_positions": 12,
+     "mean_position_norm": 352.6767272949219,
+     "norm_over_w0_base": 0.07445426834599353,
+     "text_arm": false
+    },
+    "north": {
+     "n_positions": 18,
+     "mean_position_norm": 1586.1292724609375,
+     "norm_over_w0_base": 0.33485082894195994,
+     "text_arm": false
+    },
+    "north west": {
+     "n_positions": 4,
+     "mean_position_norm": 3148.699462890625,
+     "norm_over_w0_base": 0.664728054354722,
+     "text_arm": false
+    },
+    "northern": {
+     "n_positions": 7,
+     "mean_position_norm": 4055.832763671875,
+     "norm_over_w0_base": 0.856234725974351,
+     "text_arm": false
+    },
+    "northern ireland": {
+     "n_positions": 10,
+     "mean_position_norm": 3347.02392578125,
+     "norm_over_w0_base": 0.7065967166078047,
+     "text_arm": false
+    },
+    "northwest": {
+     "n_positions": 3,
+     "mean_position_norm": 2849.322509765625,
+     "norm_over_w0_base": 0.601526004773676,
+     "text_arm": false
+    },
+    "of": {
+     "n_positions": 148,
+     "mean_position_norm": 891.456298828125,
+     "norm_over_w0_base": 0.18819706931263425,
+     "text_arm": false
+    },
+    "river": {
+     "n_positions": 11,
+     "mean_position_norm": 2859.5009765625,
+     "norm_over_w0_base": 0.603674800652718,
+     "text_arm": false
+    },
+    "road": {
+     "n_positions": 2,
+     "mean_position_norm": 2651.90283203125,
+     "norm_over_w0_base": 0.5598483534708639,
+     "text_arm": false
+    },
+    "roman britain": {
+     "n_positions": 5,
+     "mean_position_norm": 4729.015625,
+     "norm_over_w0_base": 0.9983516662887443,
+     "text_arm": false
+    },
+    "royal borough of kensington and chelsea": {
+     "n_positions": 38,
+     "mean_position_norm": 4270.763671875,
+     "norm_over_w0_base": 0.9016092071258154,
+     "text_arm": false
+    },
+    "scott": {
+     "n_positions": 4,
+     "mean_position_norm": 1940.325927734375,
+     "norm_over_w0_base": 0.4096259722332524,
+     "text_arm": false
+    },
+    "south kensington": {
+     "n_positions": 7,
+     "mean_position_norm": 3876.632568359375,
+     "norm_over_w0_base": 0.818403424964534,
+     "text_arm": false
+    },
+    "southwest": {
+     "n_positions": 2,
+     "mean_position_norm": 845.2020874023438,
+     "norm_over_w0_base": 0.1784322529720664,
+     "text_arm": false
+    },
+    "surrey": {
+     "n_positions": 9,
+     "mean_position_norm": 3100.6357421875,
+     "norm_over_w0_base": 0.6545812289988634,
+     "text_arm": false
+    },
+    "time": {
+     "n_positions": 2,
+     "mean_position_norm": 2228.99609375,
+     "norm_over_w0_base": 0.47056769120876285,
+     "text_arm": false
+    },
+    "united kingdom": {
+     "n_positions": 24,
+     "mean_position_norm": 3444.736328125,
+     "norm_over_w0_base": 0.7272249714990029,
+     "text_arm": false
+    },
+    "victoria": {
+     "n_positions": 5,
+     "mean_position_norm": 2720.65869140625,
+     "norm_over_w0_base": 0.5743635363793885,
+     "text_arm": false
+    },
+    "wales": {
+     "n_positions": 3,
+     "mean_position_norm": 3413.532470703125,
+     "norm_over_w0_base": 0.7206374646007221,
+     "text_arm": false
+    },
+    "west": {
+     "n_positions": 21,
+     "mean_position_norm": 2202.288818359375,
+     "norm_over_w0_base": 0.4649294664697057,
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_1490",
+   "n_tokens": 1959,
+   "n_candidates": 53,
+   "gold_positions": 8,
+   "nongold_fired": [
+    "military",
+    "september",
+    "founder"
+   ],
+   "base_gauge_score": -17.582417401844346,
+   "deltas": {
+    "synod": {
+     "n_positions": 8,
+     "mean_position_norm": 3340.289306640625,
+     "norm_over_w0_base": 0.7051749580910176
+    },
+    "ancient rome": {
+     "n_positions": 4,
+     "mean_position_norm": 2652.263671875,
+     "norm_over_w0_base": 0.559924531070567,
+     "text_arm": false
+    },
+    "armed forces": {
+     "n_positions": 4,
+     "mean_position_norm": 3539.941162109375,
+     "norm_over_w0_base": 0.7473238487673655,
+     "text_arm": false
+    },
+    "army": {
+     "n_positions": 2,
+     "mean_position_norm": 5337.685546875,
+     "norm_over_w0_base": 1.1268491547536394,
+     "text_arm": false
+    },
+    "august": {
+     "n_positions": 3,
+     "mean_position_norm": 4309.42138671875,
+     "norm_over_w0_base": 0.909770312330278,
+     "text_arm": false
+    },
+    "battle": {
+     "n_positions": 2,
+     "mean_position_norm": 5707.19140625,
+     "norm_over_w0_base": 1.2048562538336907,
+     "text_arm": false
+    },
+    "bridge": {
+     "n_positions": 2,
+     "mean_position_norm": 5695.7431640625,
+     "norm_over_w0_base": 1.2024393932076556,
+     "text_arm": false
+    },
+    "christian": {
+     "n_positions": 3,
+     "mean_position_norm": 4173.55615234375,
+     "norm_over_w0_base": 0.8810875390250001,
+     "text_arm": false
+    },
+    "christian church": {
+     "n_positions": 4,
+     "mean_position_norm": 3309.7744140625,
+     "norm_over_w0_base": 0.6987328998979887,
+     "text_arm": false
+    },
+    "church": {
+     "n_positions": 7,
+     "mean_position_norm": 2185.51123046875,
+     "norm_over_w0_base": 0.4613875173295162,
+     "text_arm": false
+    },
+    "civilization": {
+     "n_positions": 2,
+     "mean_position_norm": 5491.92626953125,
+     "norm_over_w0_base": 1.1594112130516487,
+     "text_arm": false
+    },
+    "cognomen": {
+     "n_positions": 4,
+     "mean_position_norm": 4659.97705078125,
+     "norm_over_w0_base": 0.9837767989008853,
+     "text_arm": false
+    },
+    "college": {
+     "n_positions": 2,
+     "mean_position_norm": 3457.49365234375,
+     "norm_over_w0_base": 0.7299181949732169,
+     "text_arm": false
+    },
+    "construction": {
+     "n_positions": 2,
+     "mean_position_norm": 2338.43798828125,
+     "norm_over_w0_base": 0.4936721819593237,
+     "text_arm": false
+    },
+    "council": {
+     "n_positions": 9,
+     "mean_position_norm": 1791.4365234375,
+     "norm_over_w0_base": 0.37819364113950105,
+     "text_arm": false
+    },
+    "cursus": {
+     "n_positions": 3,
+     "mean_position_norm": 4050.359375,
+     "norm_over_w0_base": 0.8550792282695169,
+     "text_arm": false
+    },
+    "district": {
+     "n_positions": 2,
+     "mean_position_norm": 5272.5751953125,
+     "norm_over_w0_base": 1.1131035820743214,
+     "text_arm": false
+    },
+    "doctrine": {
+     "n_positions": 2,
+     "mean_position_norm": 3619.91357421875,
+     "norm_over_w0_base": 0.7642069798918317,
+     "text_arm": false
+    },
+    "emperor": {
+     "n_positions": 11,
+     "mean_position_norm": 2537.744873046875,
+     "norm_over_w0_base": 0.5357482452010434,
+     "text_arm": false
+    },
+    "empire": {
+     "n_positions": 5,
+     "mean_position_norm": 2600.102294921875,
+     "norm_over_w0_base": 0.5489126415513677,
+     "text_arm": false
+    },
+    "force": {
+     "n_positions": 2,
+     "mean_position_norm": 2166.978515625,
+     "norm_over_w0_base": 0.45747503993204264,
+     "text_arm": false
+    },
+    "founder": {
+     "n_positions": 2,
+     "mean_position_norm": 5132.6142578125,
+     "norm_over_w0_base": 1.083556156933712,
+     "text_arm": false
+    },
+    "function": {
+     "n_positions": 2,
+     "mean_position_norm": 2973.06640625,
+     "norm_over_w0_base": 0.6276498189127417,
+     "text_arm": false
+    },
+    "government": {
+     "n_positions": 2,
+     "mean_position_norm": 5599.0751953125,
+     "norm_over_w0_base": 1.182031630719387,
+     "text_arm": false
+    },
+    "mediterranean sea": {
+     "n_positions": 4,
+     "mean_position_norm": 6495.32470703125,
+     "norm_over_w0_base": 1.3712406045076448,
+     "text_arm": false
+    },
+    "member": {
+     "n_positions": 2,
+     "mean_position_norm": 5008.53662109375,
+     "norm_over_w0_base": 1.057361886246071,
+     "text_arm": false
+    },
+    "military": {
+     "n_positions": 6,
+     "mean_position_norm": 3045.247314453125,
+     "norm_over_w0_base": 0.6428880705264325,
+     "text_arm": false
+    },
+    "november": {
+     "n_positions": 2,
+     "mean_position_norm": 4612.2216796875,
+     "norm_over_w0_base": 0.9736950698294821,
+     "text_arm": false
+    },
+    "office": {
+     "n_positions": 5,
+     "mean_position_norm": 2866.194580078125,
+     "norm_over_w0_base": 0.6050879002813114,
+     "text_arm": false
+    },
+    "period": {
+     "n_positions": 3,
+     "mean_position_norm": 1252.2139892578125,
+     "norm_over_w0_base": 0.26435732546889457,
+     "text_arm": false
+    },
+    "person": {
+     "n_positions": 2,
+     "mean_position_norm": 2291.75634765625,
+     "norm_over_w0_base": 0.4838171302109885,
+     "text_arm": false
+    },
+    "position": {
+     "n_positions": 2,
+     "mean_position_norm": 2220.27978515625,
+     "norm_over_w0_base": 0.46872757438562224,
+     "text_arm": false
+    },
+    "priesthood": {
+     "n_positions": 2,
+     "mean_position_norm": 4614.0029296875,
+     "norm_over_w0_base": 0.9740711129738895,
+     "text_arm": false
+    },
+    "province": {
+     "n_positions": 2,
+     "mean_position_norm": 5800.7822265625,
+     "norm_over_w0_base": 1.2246143935434353,
+     "text_arm": false
+    },
+    "ranking": {
+     "n_positions": 2,
+     "mean_position_norm": 4287.1298828125,
+     "norm_over_w0_base": 0.9050643096790632,
+     "text_arm": false
+    },
+    "republic": {
+     "n_positions": 6,
+     "mean_position_norm": 3781.427978515625,
+     "norm_over_w0_base": 0.7983045992371726,
+     "text_arm": false
+    },
+    "roman senate": {
+     "n_positions": 6,
+     "mean_position_norm": 2705.948486328125,
+     "norm_over_w0_base": 0.571258036436957,
+     "text_arm": false
+    },
+    "seal": {
+     "n_positions": 2,
+     "mean_position_norm": 7950.05078125,
+     "norm_over_w0_base": 1.6783506492518876,
+     "text_arm": false
+    },
+    "senate": {
+     "n_positions": 4,
+     "mean_position_norm": 2393.715576171875,
+     "norm_over_w0_base": 0.5053419408172315,
+     "text_arm": false
+    },
+    "senator": {
+     "n_positions": 2,
+     "mean_position_norm": 2998.369384765625,
+     "norm_over_w0_base": 0.6329915798131707,
+     "text_arm": false
+    },
+    "september": {
+     "n_positions": 2,
+     "mean_position_norm": 4366.3701171875,
+     "norm_over_w0_base": 0.9217928693410736,
+     "text_arm": false
+    },
+    "set": {
+     "n_positions": 2,
+     "mean_position_norm": 5403.625,
+     "norm_over_w0_base": 1.1407697606728706,
+     "text_arm": false
+    },
+    "society": {
+     "n_positions": 3,
+     "mean_position_norm": 3768.620361328125,
+     "norm_over_w0_base": 0.7956007583167212,
+     "text_arm": false
+    },
+    "state": {
+     "n_positions": 4,
+     "mean_position_norm": 3931.31689453125,
+     "norm_over_w0_base": 0.8299479391896416,
+     "text_arm": false
+    },
+    "the city": {
+     "n_positions": 6,
+     "mean_position_norm": 3189.580078125,
+     "norm_over_w0_base": 0.6733584403746767,
+     "text_arm": false
+    },
+    "throne": {
+     "n_positions": 2,
+     "mean_position_norm": 7444.1884765625,
+     "norm_over_w0_base": 1.57155707637224,
+     "text_arm": false
+    },
+    "time": {
+     "n_positions": 4,
+     "mean_position_norm": 2059.23828125,
+     "norm_over_w0_base": 0.4347297899595135,
+     "text_arm": false
+    },
+    "title": {
+     "n_positions": 9,
+     "mean_position_norm": 663.674560546875,
+     "norm_over_w0_base": 0.14010962448351452,
+     "text_arm": false
+    },
+    "town": {
+     "n_positions": 2,
+     "mean_position_norm": 5311.08251953125,
+     "norm_over_w0_base": 1.1212329380220742,
+     "text_arm": false
+    },
+    "war": {
+     "n_positions": 2,
+     "mean_position_norm": 5164.9775390625,
+     "norm_over_w0_base": 1.0903884320464652,
+     "text_arm": false
+    },
+    "wife": {
+     "n_positions": 2,
+     "mean_position_norm": 4204.98583984375,
+     "norm_over_w0_base": 0.8877227213493469,
+     "text_arm": false
+    },
+    "word": {
+     "n_positions": 5,
+     "mean_position_norm": 1982.375244140625,
+     "norm_over_w0_base": 0.41850308502572336,
+     "text_arm": false
+    },
+    "year": {
+     "n_positions": 2,
+     "mean_position_norm": 1997.9786376953125,
+     "norm_over_w0_base": 0.4217971477208707,
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_2014",
+   "n_tokens": 1735,
+   "n_candidates": 9,
+   "gold_positions": 7,
+   "nongold_fired": [
+    "san francisco 49ers",
+    "miami dolphins",
+    "los angeles rams"
+   ],
+   "base_gauge_score": -9.214071759193905,
+   "deltas": {
+    "washington redskins": {
+     "n_positions": 7,
+     "mean_position_norm": 4913.34130859375,
+     "norm_over_w0_base": 1.0372650190767534
+    },
+    "dallas cowboys": {
+     "n_positions": 5,
+     "mean_position_norm": 5794.12158203125,
+     "norm_over_w0_base": 1.2232082519499972,
+     "text_arm": false
+    },
+    "los angeles rams": {
+     "n_positions": 6,
+     "mean_position_norm": 4197.83544921875,
+     "norm_over_w0_base": 0.8862131885075974,
+     "text_arm": false
+    },
+    "louisville cardinals football": {
+     "n_positions": 7,
+     "mean_position_norm": 3200.151123046875,
+     "norm_over_w0_base": 0.6755901141835716,
+     "text_arm": false
+    },
+    "miami dolphins": {
+     "n_positions": 7,
+     "mean_position_norm": 3799.51220703125,
+     "norm_over_w0_base": 0.8021223958155294,
+     "text_arm": false
+    },
+    "pittsburgh steelers": {
+     "n_positions": 7,
+     "mean_position_norm": 6719.31982421875,
+     "norm_over_w0_base": 1.418528648408892,
+     "text_arm": false
+    },
+    "san francisco 49ers": {
+     "n_positions": 12,
+     "mean_position_norm": 5938.05419921875,
+     "norm_over_w0_base": 1.2535941460973528,
+     "text_arm": false
+    },
+    "sport": {
+     "n_positions": 4,
+     "mean_position_norm": 3615.529296875,
+     "norm_over_w0_base": 0.7632814065931381,
+     "text_arm": false
+    },
+    "virginia cavaliers": {
+     "n_positions": 7,
+     "mean_position_norm": 3161.284912109375,
+     "norm_over_w0_base": 0.6673849929641248,
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_2060",
+   "n_tokens": 705,
+   "n_candidates": 4,
+   "gold_positions": 4,
+   "nongold_fired": [
+    "open source",
+    "copyright",
+    "free software"
+   ],
+   "base_gauge_score": -10.208881298965194,
+   "deltas": {
+    "proprietary software": {
+     "n_positions": 4,
+     "mean_position_norm": 3329.53662109375,
+     "norm_over_w0_base": 0.7029049377772654
+    },
+    "copyright": {
+     "n_positions": 3,
+     "mean_position_norm": 3015.799072265625,
+     "norm_over_w0_base": 0.6366711949674381,
+     "text_arm": false
+    },
+    "free software": {
+     "n_positions": 12,
+     "mean_position_norm": 1610.54248046875,
+     "norm_over_w0_base": 0.3400047486636892,
+     "text_arm": false
+    },
+    "open source": {
+     "n_positions": 4,
+     "mean_position_norm": 1506.200927734375,
+     "norm_over_w0_base": 0.3179770009682017,
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_227",
+   "n_tokens": 1148,
+   "n_candidates": 46,
+   "gold_positions": 4,
+   "nongold_fired": [
+    "metropolitan",
+    "hundred",
+    "governor"
+   ],
+   "base_gauge_score": -10.082465357862846,
+   "deltas": {
+    "church": {
+     "n_positions": 4,
+     "mean_position_norm": 3637.812255859375,
+     "norm_over_w0_base": 0.7679856053093127
+    },
+    "april": {
+     "n_positions": 2,
+     "mean_position_norm": 5954.5,
+     "norm_over_w0_base": 1.2570660510169762,
+     "text_arm": false
+    },
+    "area": {
+     "n_positions": 3,
+     "mean_position_norm": 2555.734619140625,
+     "norm_over_w0_base": 0.5395460954119542,
+     "text_arm": false
+    },
+    "armed forces": {
+     "n_positions": 4,
+     "mean_position_norm": 4561.490234375,
+     "norm_over_w0_base": 0.9629850559540318,
+     "text_arm": false
+    },
+    "battle": {
+     "n_positions": 2,
+     "mean_position_norm": 6106.890625,
+     "norm_over_w0_base": 1.2892375316082534,
+     "text_arm": false
+    },
+    "capital": {
+     "n_positions": 2,
+     "mean_position_norm": 3715.748291015625,
+     "norm_over_w0_base": 0.7844388329431674,
+     "text_arm": false
+    },
+    "catholic church": {
+     "n_positions": 6,
+     "mean_position_norm": 2967.718017578125,
+     "norm_over_w0_base": 0.6265207102004976,
+     "text_arm": false
+    },
+    "chain": {
+     "n_positions": 2,
+     "mean_position_norm": 5650.087890625,
+     "norm_over_w0_base": 1.1928010198281647,
+     "text_arm": false
+    },
+    "christian": {
+     "n_positions": 2,
+     "mean_position_norm": 4628.21142578125,
+     "norm_over_w0_base": 0.9770706961589529,
+     "text_arm": false
+    },
+    "congress": {
+     "n_positions": 5,
+     "mean_position_norm": 3735.50390625,
+     "norm_over_w0_base": 0.788609479215413,
+     "text_arm": false
+    },
+    "continental congress": {
+     "n_positions": 4,
+     "mean_position_norm": 4727.93017578125,
+     "norm_over_w0_base": 0.9981225149976211,
+     "text_arm": false
+    },
+    "council": {
+     "n_positions": 4,
+     "mean_position_norm": 3669.260009765625,
+     "norm_over_w0_base": 0.7746246016677447,
+     "text_arm": false
+    },
+    "county": {
+     "n_positions": 13,
+     "mean_position_norm": 3177.65625,
+     "norm_over_w0_base": 0.6708411778783968,
+     "text_arm": false
+    },
+    "dynasty": {
+     "n_positions": 2,
+     "mean_position_norm": 5172.0869140625,
+     "norm_over_w0_base": 1.0918893060000212,
+     "text_arm": false
+    },
+    "educational institution": {
+     "n_positions": 4,
+     "mean_position_norm": 3012.2333984375,
+     "norm_over_w0_base": 0.6359184386456083,
+     "text_arm": false
+    },
+    "executive branch": {
+     "n_positions": 4,
+     "mean_position_norm": 4135.1982421875,
+     "norm_over_w0_base": 0.8729897261699525,
+     "text_arm": false
+    },
+    "five": {
+     "n_positions": 2,
+     "mean_position_norm": 4457.669921875,
+     "norm_over_w0_base": 0.9410673482960046,
+     "text_arm": false
+    },
+    "government": {
+     "n_positions": 7,
+     "mean_position_norm": 2817.175048828125,
+     "norm_over_w0_base": 0.5947392919059414,
+     "text_arm": false
+    },
+    "governor": {
+     "n_positions": 2,
+     "mean_position_norm": 6017.255859375,
+     "norm_over_w0_base": 1.2703145622811811,
+     "text_arm": false
+    },
+    "head of state": {
+     "n_positions": 6,
+     "mean_position_norm": 5371.94580078125,
+     "norm_over_w0_base": 1.1340819034453462,
+     "text_arm": false
+    },
+    "hundred": {
+     "n_positions": 2,
+     "mean_position_norm": 5331.904296875,
+     "norm_over_w0_base": 1.1256286638463522,
+     "text_arm": false
+    },
+    "institution": {
+     "n_positions": 3,
+     "mean_position_norm": 1918.1612548828125,
+     "norm_over_w0_base": 0.4049467451321362,
+     "text_arm": false
+    },
+    "july": {
+     "n_positions": 2,
+     "mean_position_norm": 4682.07080078125,
+     "norm_over_w0_base": 0.9884410533411668,
+     "text_arm": false
+    },
+    "lake": {
+     "n_positions": 8,
+     "mean_position_norm": 2964.59521484375,
+     "norm_over_w0_base": 0.6258614492547581,
+     "text_arm": false
+    },
+    "language": {
+     "n_positions": 2,
+     "mean_position_norm": 760.89111328125,
+     "norm_over_w0_base": 0.16063319960137235,
+     "text_arm": false
+    },
+    "liturgy": {
+     "n_positions": 2,
+     "mean_position_norm": 6206.5927734375,
+     "norm_over_w0_base": 1.310285845658843,
+     "text_arm": false
+    },
+    "metropolitan": {
+     "n_positions": 3,
+     "mean_position_norm": 4940.51025390625,
+     "norm_over_w0_base": 1.0430007078489896,
+     "text_arm": false
+    },
+    "metropolitan statistical area": {
+     "n_positions": 6,
+     "mean_position_norm": 4471.619140625,
+     "norm_over_w0_base": 0.9440121949378443,
+     "text_arm": false
+    },
+    "ministry": {
+     "n_positions": 2,
+     "mean_position_norm": 4655.9873046875,
+     "norm_over_w0_base": 0.9829345158600539,
+     "text_arm": false
+    },
+    "musket": {
+     "n_positions": 4,
+     "mean_position_norm": 5027.69482421875,
+     "norm_over_w0_base": 1.061406411688497,
+     "text_arm": false
+    },
+    "part": {
+     "n_positions": 3,
+     "mean_position_norm": 1490.1922607421875,
+     "norm_over_w0_base": 0.3145973802111415,
+     "text_arm": false
+    },
+    "preparation": {
+     "n_positions": 2,
+     "mean_position_norm": 3557.10986328125,
+     "norm_over_w0_base": 0.750948366591401,
+     "text_arm": false
+    },
+    "process": {
+     "n_positions": 4,
+     "mean_position_norm": 2145.068359375,
+     "norm_over_w0_base": 0.45284954432462765,
+     "text_arm": false
+    },
+    "revolutionary": {
+     "n_positions": 2,
+     "mean_position_norm": 4908.3388671875,
+     "norm_over_w0_base": 1.0362089439631421,
+     "text_arm": false
+    },
+    "roman catholic church": {
+     "n_positions": 6,
+     "mean_position_norm": 3343.193115234375,
+     "norm_over_w0_base": 0.7057879867587235,
+     "text_arm": false
+    },
+    "seat": {
+     "n_positions": 5,
+     "mean_position_norm": 3313.392578125,
+     "norm_over_w0_base": 0.6994967375350662,
+     "text_arm": false
+    },
+    "seat of government": {
+     "n_positions": 6,
+     "mean_position_norm": 3579.420654296875,
+     "norm_over_w0_base": 0.755658440981707,
+     "text_arm": false
+    },
+    "secretary of state": {
+     "n_positions": 6,
+     "mean_position_norm": 5858.84375,
+     "norm_over_w0_base": 1.236871874437483,
+     "text_arm": false
+    },
+    "seed": {
+     "n_positions": 2,
+     "mean_position_norm": 4050.32958984375,
+     "norm_over_w0_base": 0.8550729402673762,
+     "text_arm": false
+    },
+    "seminary": {
+     "n_positions": 6,
+     "mean_position_norm": 1518.7666015625,
+     "norm_over_w0_base": 0.3206297647565111,
+     "text_arm": false
+    },
+    "senate": {
+     "n_positions": 2,
+     "mean_position_norm": 4106.2314453125,
+     "norm_over_w0_base": 0.8668744894652306,
+     "text_arm": false
+    },
+    "term": {
+     "n_positions": 3,
+     "mean_position_norm": 4013.725341796875,
+     "norm_over_w0_base": 0.8473453464236058,
+     "text_arm": false
+    },
+    "theological college": {
+     "n_positions": 4,
+     "mean_position_norm": 3677.88671875,
+     "norm_over_w0_base": 0.7764458029434624,
+     "text_arm": false
+    },
+    "theology": {
+     "n_positions": 2,
+     "mean_position_norm": 2876.10107421875,
+     "norm_over_w0_base": 0.6071792794850697,
+     "text_arm": false
+    },
+    "united states congress": {
+     "n_positions": 6,
+     "mean_position_norm": 3943.236328125,
+     "norm_over_w0_base": 0.8324642739479008,
+     "text_arm": false
+    },
+    "war": {
+     "n_positions": 4,
+     "mean_position_norm": 3204.41162109375,
+     "norm_over_w0_base": 0.676489556194681,
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_2473",
+   "n_tokens": 2022,
+   "n_candidates": 6,
+   "gold_positions": 4,
+   "nongold_fired": [
+    "republic",
+    "monarchy",
+    "sultan"
+   ],
+   "base_gauge_score": -10.685948651292852,
+   "deltas": {
+    "constitutional monarchy": {
+     "n_positions": 4,
+     "mean_position_norm": 2844.67333984375,
+     "norm_over_w0_base": 0.6005445094887322
+    },
+    "empire": {
+     "n_positions": 8,
+     "mean_position_norm": 1950.349365234375,
+     "norm_over_w0_base": 0.41174203957656264,
+     "text_arm": false
+    },
+    "monarchy": {
+     "n_positions": 4,
+     "mean_position_norm": 3135.1611328125,
+     "norm_over_w0_base": 0.6618699512178217,
+     "text_arm": false
+    },
+    "principality": {
+     "n_positions": 18,
+     "mean_position_norm": 3384.05224609375,
+     "norm_over_w0_base": 0.7144138371705767,
+     "text_arm": false
+    },
+    "republic": {
+     "n_positions": 9,
+     "mean_position_norm": 3833.34033203125,
+     "norm_over_w0_base": 0.8092639169351966,
+     "text_arm": false
+    },
+    "sultan": {
+     "n_positions": 2,
+     "mean_position_norm": 4703.93408203125,
+     "norm_over_w0_base": 0.9930566530763605,
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_2601",
+   "n_tokens": 718,
+   "n_candidates": 6,
+   "gold_positions": 21,
+   "nongold_fired": [
+    "czechoslovakia",
+    "bohemia",
+    "roman empire"
+   ],
+   "base_gauge_score": -13.246785190096114,
+   "deltas": {
+    "czech republic": {
+     "n_positions": 21,
+     "mean_position_norm": 2596.1162109375,
+     "norm_over_w0_base": 0.5480711316255535
+    },
+    "austria": {
+     "n_positions": 3,
+     "mean_position_norm": 5038.86181640625,
+     "norm_over_w0_base": 1.0637638970812047,
+     "text_arm": false
+    },
+    "bohemia": {
+     "n_positions": 10,
+     "mean_position_norm": 2561.80712890625,
+     "norm_over_w0_base": 0.5408280747336162,
+     "text_arm": false
+    },
+    "czechoslovakia": {
+     "n_positions": 3,
+     "mean_position_norm": 2350.2021484375,
+     "norm_over_w0_base": 0.49615573664085005,
+     "text_arm": false
+    },
+    "holy roman empire": {
+     "n_positions": 6,
+     "mean_position_norm": 3949.810546875,
+     "norm_over_w0_base": 0.8338521700269309,
+     "text_arm": false
+    },
+    "roman empire": {
+     "n_positions": 6,
+     "mean_position_norm": 2996.293701171875,
+     "norm_over_w0_base": 0.6325533782213736,
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_2660",
+   "n_tokens": 1510,
+   "n_candidates": 15,
+   "gold_positions": 8,
+   "nongold_fired": [
+    "1965",
+    "1977",
+    "24"
+   ],
+   "base_gauge_score": -11.707682234455325,
+   "deltas": {
+    "1994": {
+     "n_positions": 8,
+     "mean_position_norm": 3559.910888671875,
+     "norm_over_w0_base": 0.7515396964976218
+    },
+    "1": {
+     "n_positions": 2,
+     "mean_position_norm": 541.4772338867188,
+     "norm_over_w0_base": 0.11431230970149857,
+     "text_arm": false
+    },
+    "1000": {
+     "n_positions": 8,
+     "mean_position_norm": 4226.39111328125,
+     "norm_over_w0_base": 0.8922416301663789,
+     "text_arm": false
+    },
+    "16": {
+     "n_positions": 8,
+     "mean_position_norm": 2678.075439453125,
+     "norm_over_w0_base": 0.5653737034173975,
+     "text_arm": false
+    },
+    "1965": {
+     "n_positions": 8,
+     "mean_position_norm": 3738.73681640625,
+     "norm_over_w0_base": 0.7892919851526722,
+     "text_arm": false
+    },
+    "1977": {
+     "n_positions": 12,
+     "mean_position_norm": 2629.705078125,
+     "norm_over_w0_base": 0.5551621425640915,
+     "text_arm": false
+    },
+    "1985": {
+     "n_positions": 8,
+     "mean_position_norm": 3458.26416015625,
+     "norm_over_w0_base": 0.7300808583728536,
+     "text_arm": false
+    },
+    "1991": {
+     "n_positions": 8,
+     "mean_position_norm": 3233.26904296875,
+     "norm_over_w0_base": 0.6825817025308867,
+     "text_arm": false
+    },
+    "2001": {
+     "n_positions": 8,
+     "mean_position_norm": 2532.148193359375,
+     "norm_over_w0_base": 0.5345667192906274,
+     "text_arm": false
+    },
+    "2006": {
+     "n_positions": 8,
+     "mean_position_norm": 2279.4404296875,
+     "norm_over_w0_base": 0.4812170928668579,
+     "text_arm": false
+    },
+    "2009": {
+     "n_positions": 12,
+     "mean_position_norm": 3052.283203125,
+     "norm_over_w0_base": 0.6443734306386415,
+     "text_arm": false
+    },
+    "24": {
+     "n_positions": 4,
+     "mean_position_norm": 4727.826171875,
+     "norm_over_w0_base": 0.9981005585311301,
+     "text_arm": false
+    },
+    "4": {
+     "n_positions": 6,
+     "mean_position_norm": 957.8622436523438,
+     "norm_over_w0_base": 0.20221615719981736,
+     "text_arm": false
+    },
+    "8": {
+     "n_positions": 5,
+     "mean_position_norm": 813.8250732421875,
+     "norm_over_w0_base": 0.1718081906187183,
+     "text_arm": false
+    },
+    "9": {
+     "n_positions": 2,
+     "mean_position_norm": 2582.707763671875,
+     "norm_over_w0_base": 0.5452404483012663,
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_2865",
+   "n_tokens": 2769,
+   "n_candidates": 25,
+   "gold_positions": 20,
+   "nongold_fired": [
+    "arenaviridae",
+    "theria",
+    "human"
+   ],
+   "base_gauge_score": -10.968054362038087,
+   "deltas": {
+    "sigmodontinae": {
+     "n_positions": 20,
+     "mean_position_norm": 3055.626220703125,
+     "norm_over_w0_base": 0.6450791815674204
+    },
+    "amniota": {
+     "n_positions": 4,
+     "mean_position_norm": 3498.77978515625,
+     "norm_over_w0_base": 0.7386341905960856,
+     "text_arm": false
+    },
+    "area": {
+     "n_positions": 10,
+     "mean_position_norm": 2482.70166015625,
+     "norm_over_w0_base": 0.5241279657042419,
+     "text_arm": false
+    },
+    "areas": {
+     "n_positions": 3,
+     "mean_position_norm": 3176.842529296875,
+     "norm_over_w0_base": 0.670669391721556,
+     "text_arm": false
+    },
+    "arenaviridae": {
+     "n_positions": 7,
+     "mean_position_norm": 3765.98681640625,
+     "norm_over_w0_base": 0.795044785537291,
+     "text_arm": false
+    },
+    "arvicolinae": {
+     "n_positions": 11,
+     "mean_position_norm": 3519.482666015625,
+     "norm_over_w0_base": 0.7430048159528023,
+     "text_arm": false
+    },
+    "baiomys": {
+     "n_positions": 6,
+     "mean_position_norm": 3439.863037109375,
+     "norm_over_w0_base": 0.7261961615750012,
+     "text_arm": false
+    },
+    "cocos": {
+     "n_positions": 4,
+     "mean_position_norm": 5458.45263671875,
+     "norm_over_w0_base": 1.1523445294656547,
+     "text_arm": false
+    },
+    "cricetidae": {
+     "n_positions": 16,
+     "mean_position_norm": 4167.30224609375,
+     "norm_over_w0_base": 0.8797672647394821,
+     "text_arm": false
+    },
+    "cricetinae": {
+     "n_positions": 7,
+     "mean_position_norm": 2474.52294921875,
+     "norm_over_w0_base": 0.5224013421656387,
+     "text_arm": false
+    },
+    "delta": {
+     "n_positions": 2,
+     "mean_position_norm": 5352.5029296875,
+     "norm_over_w0_base": 1.1299772811955768,
+     "text_arm": false
+    },
+    "human": {
+     "n_positions": 3,
+     "mean_position_norm": 3022.854248046875,
+     "norm_over_w0_base": 0.6381606268187382,
+     "text_arm": false
+    },
+    "kunsia": {
+     "n_positions": 6,
+     "mean_position_norm": 4148.46533203125,
+     "norm_over_w0_base": 0.8757905672545726,
+     "text_arm": false
+    },
+    "la": {
+     "n_positions": 2,
+     "mean_position_norm": 3170.0986328125,
+     "norm_over_w0_base": 0.6692456746467251,
+     "text_arm": false
+    },
+    "mammal": {
+     "n_positions": 3,
+     "mean_position_norm": 2688.355224609375,
+     "norm_over_w0_base": 0.5675438888119176,
+     "text_arm": false
+    },
+    "muridae": {
+     "n_positions": 4,
+     "mean_position_norm": 2665.846435546875,
+     "norm_over_w0_base": 0.5627920146696771,
+     "text_arm": false
+    },
+    "murinae": {
+     "n_positions": 4,
+     "mean_position_norm": 3242.4931640625,
+     "norm_over_w0_base": 0.6845290246364242,
+     "text_arm": false
+    },
+    "muroidea": {
+     "n_positions": 11,
+     "mean_position_norm": 2914.49853515625,
+     "norm_over_w0_base": 0.6152854419823041,
+     "text_arm": false
+    },
+    "oryzomyini": {
+     "n_positions": 25,
+     "mean_position_norm": 2522.511962890625,
+     "norm_over_w0_base": 0.5325323959751448,
+     "text_arm": false
+    },
+    "plant": {
+     "n_positions": 2,
+     "mean_position_norm": 6285.2548828125,
+     "norm_over_w0_base": 1.3268923562301247,
+     "text_arm": false
+    },
+    "rodentia": {
+     "n_positions": 5,
+     "mean_position_norm": 2710.473876953125,
+     "norm_over_w0_base": 0.5722134004343167,
+     "text_arm": false
+    },
+    "sauropsida": {
+     "n_positions": 6,
+     "mean_position_norm": 4920.75830078125,
+     "norm_over_w0_base": 1.0388308346917612,
+     "text_arm": false
+    },
+    "scolomys": {
+     "n_positions": 10,
+     "mean_position_norm": 3139.6162109375,
+     "norm_over_w0_base": 0.6628104714068495,
+     "text_arm": false
+    },
+    "theria": {
+     "n_positions": 4,
+     "mean_position_norm": 4171.8505859375,
+     "norm_over_w0_base": 0.88072747359095,
+     "text_arm": false
+    },
+    "zygodontomys": {
+     "n_positions": 73,
+     "mean_position_norm": 3117.657470703125,
+     "norm_over_w0_base": 0.6581747191402052,
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_2975",
+   "n_tokens": 2551,
+   "n_candidates": 56,
+   "gold_positions": 3,
+   "nongold_fired": [
+    "square",
+    "federal government",
+    "coast"
+   ],
+   "base_gauge_score": -21.56006547852145,
+   "deltas": {
+    "house": {
+     "n_positions": 3,
+     "mean_position_norm": 3008.6572265625,
+     "norm_over_w0_base": 0.6351634660607288
+    },
+    "april": {
+     "n_positions": 2,
+     "mean_position_norm": 6138.3544921875,
+     "norm_over_w0_base": 1.2958799296727614,
+     "text_arm": false
+    },
+    "area": {
+     "n_positions": 16,
+     "mean_position_norm": 1803.1455078125,
+     "norm_over_w0_base": 0.38066554755476695,
+     "text_arm": false
+    },
+    "baton": {
+     "n_positions": 3,
+     "mean_position_norm": 4488.52392578125,
+     "norm_over_w0_base": 0.9475809969396342,
+     "text_arm": false
+    },
+    "bay": {
+     "n_positions": 2,
+     "mean_position_norm": 4208.5546875,
+     "norm_over_w0_base": 0.8884761477041917,
+     "text_arm": false
+    },
+    "border": {
+     "n_positions": 4,
+     "mean_position_norm": 1658.821044921875,
+     "norm_over_w0_base": 0.35019693010056185,
+     "text_arm": false
+    },
+    "capital": {
+     "n_positions": 4,
+     "mean_position_norm": 2167.977294921875,
+     "norm_over_w0_base": 0.4576858941677568,
+     "text_arm": false
+    },
+    "census": {
+     "n_positions": 3,
+     "mean_position_norm": 5782.26513671875,
+     "norm_over_w0_base": 1.2207052147700355,
+     "text_arm": false
+    },
+    "century": {
+     "n_positions": 6,
+     "mean_position_norm": 1236.0264892578125,
+     "norm_over_w0_base": 0.26093995092849026,
+     "text_arm": false
+    },
+    "city": {
+     "n_positions": 19,
+     "mean_position_norm": 1715.7750244140625,
+     "norm_over_w0_base": 0.36222059524288214,
+     "text_arm": false
+    },
+    "coast": {
+     "n_positions": 2,
+     "mean_position_norm": 4758.697265625,
+     "norm_over_w0_base": 1.0046178150448404,
+     "text_arm": false
+    },
+    "concept": {
+     "n_positions": 2,
+     "mean_position_norm": 2702.739501953125,
+     "norm_over_w0_base": 0.5705805815178108,
+     "text_arm": false
+    },
+    "confluence": {
+     "n_positions": 2,
+     "mean_position_norm": 4615.923828125,
+     "norm_over_w0_base": 0.974476637570956,
+     "text_arm": false
+    },
+    "congress": {
+     "n_positions": 2,
+     "mean_position_norm": 5524.3173828125,
+     "norm_over_w0_base": 1.1662493638385334,
+     "text_arm": false
+    },
+    "continental divide": {
+     "n_positions": 4,
+     "mean_position_norm": 5968.5732421875,
+     "norm_over_w0_base": 1.2600370804874013,
+     "text_arm": false
+    },
+    "contract": {
+     "n_positions": 2,
+     "mean_position_norm": 5532.73193359375,
+     "norm_over_w0_base": 1.1680257759842496,
+     "text_arm": false
+    },
+    "county": {
+     "n_positions": 13,
+     "mean_position_norm": 3329.056396484375,
+     "norm_over_w0_base": 0.7028035566279988,
+     "text_arm": false
+    },
+    "exchange": {
+     "n_positions": 2,
+     "mean_position_norm": 3864.3623046875,
+     "norm_over_w0_base": 0.8158130257876189,
+     "text_arm": false
+    },
+    "federal government": {
+     "n_positions": 4,
+     "mean_position_norm": 4608.6376953125,
+     "norm_over_w0_base": 0.9729384479325658,
+     "text_arm": false
+    },
+    "fort": {
+     "n_positions": 4,
+     "mean_position_norm": 3981.78125,
+     "norm_over_w0_base": 0.8406015672098311,
+     "text_arm": false
+    },
+    "four": {
+     "n_positions": 4,
+     "mean_position_norm": 4153.7392578125,
+     "norm_over_w0_base": 0.8769039559614653,
+     "text_arm": false
+    },
+    "genocide": {
+     "n_positions": 2,
+     "mean_position_norm": 3248.49365234375,
+     "norm_over_w0_base": 0.6857957993627462,
+     "text_arm": false
+    },
+    "government": {
+     "n_positions": 7,
+     "mean_position_norm": 1464.5498046875,
+     "norm_over_w0_base": 0.3091839515486102,
+     "text_arm": false
+    },
+    "gulf": {
+     "n_positions": 5,
+     "mean_position_norm": 4353.31298828125,
+     "norm_over_w0_base": 0.9190363535174445,
+     "text_arm": false
+    },
+    "house of representatives": {
+     "n_positions": 6,
+     "mean_position_norm": 3363.8505859375,
+     "norm_over_w0_base": 0.7101490254892258,
+     "text_arm": false
+    },
+    "january": {
+     "n_positions": 2,
+     "mean_position_norm": 4622.208984375,
+     "norm_over_w0_base": 0.9758035091046217,
+     "text_arm": false
+    },
+    "law": {
+     "n_positions": 3,
+     "mean_position_norm": 946.6539916992188,
+     "norm_over_w0_base": 0.19984996137791491,
+     "text_arm": false
+    },
+    "los angeles": {
+     "n_positions": 8,
+     "mean_position_norm": 5218.30029296875,
+     "norm_over_w0_base": 1.1016455021081464,
+     "text_arm": false
+    },
+    "mail": {
+     "n_positions": 6,
+     "mean_position_norm": 2613.906494140625,
+     "norm_over_w0_base": 0.5518268728385229,
+     "text_arm": false
+    },
+    "manifesto": {
+     "n_positions": 2,
+     "mean_position_norm": 3845.0009765625,
+     "norm_over_w0_base": 0.8117256182322343,
+     "text_arm": false
+    },
+    "march": {
+     "n_positions": 2,
+     "mean_position_norm": 5123.0048828125,
+     "norm_over_w0_base": 1.0815275031283562,
+     "text_arm": false
+    },
+    "metropolitan statistical area": {
+     "n_positions": 6,
+     "mean_position_norm": 5852.72119140625,
+     "norm_over_w0_base": 1.2355793292105848,
+     "text_arm": false
+    },
+    "nation": {
+     "n_positions": 4,
+     "mean_position_norm": 2799.27978515625,
+     "norm_over_w0_base": 0.5909613880624766,
+     "text_arm": false
+    },
+    "native americans": {
+     "n_positions": 11,
+     "mean_position_norm": 1837.9188232421875,
+     "norm_over_w0_base": 0.38800660966039546,
+     "text_arm": false
+    },
+    "ocean": {
+     "n_positions": 3,
+     "mean_position_norm": 3920.473388671875,
+     "norm_over_w0_base": 0.8276587456234608,
+     "text_arm": false
+    },
+    "people": {
+     "n_positions": 3,
+     "mean_position_norm": 1674.7718505859375,
+     "norm_over_w0_base": 0.35356433564034895,
+     "text_arm": false
+    },
+    "period": {
+     "n_positions": 2,
+     "mean_position_norm": 2103.5498046875,
+     "norm_over_w0_base": 0.44408448166866193,
+     "text_arm": false
+    },
+    "policy": {
+     "n_positions": 6,
+     "mean_position_norm": 586.7488403320312,
+     "norm_over_w0_base": 0.12386968639767854,
+     "text_arm": false
+    },
+    "population": {
+     "n_positions": 9,
+     "mean_position_norm": 2729.250244140625,
+     "norm_over_w0_base": 0.5761773157509403,
+     "text_arm": false
+    },
+    "region": {
+     "n_positions": 5,
+     "mean_position_norm": 4873.91796875,
+     "norm_over_w0_base": 1.028942281292677,
+     "text_arm": false
+    },
+    "river": {
+     "n_positions": 4,
+     "mean_position_norm": 3210.271240234375,
+     "norm_over_w0_base": 0.677726591763338,
+     "text_arm": false
+    },
+    "running": {
+     "n_positions": 2,
+     "mean_position_norm": 6730.30712890625,
+     "norm_over_w0_base": 1.4208481996247515,
+     "text_arm": false
+    },
+    "saint": {
+     "n_positions": 3,
+     "mean_position_norm": 4838.14990234375,
+     "norm_over_w0_base": 1.0213912153778533,
+     "text_arm": false
+    },
+    "seat": {
+     "n_positions": 2,
+     "mean_position_norm": 4342.7802734375,
+     "norm_over_w0_base": 0.9168127716457306,
+     "text_arm": false
+    },
+    "service": {
+     "n_positions": 2,
+     "mean_position_norm": 5448.1142578125,
+     "norm_over_w0_base": 1.150161974230858,
+     "text_arm": false
+    },
+    "set": {
+     "n_positions": 2,
+     "mean_position_norm": 4386.50634765625,
+     "norm_over_w0_base": 0.9260438680341156,
+     "text_arm": false
+    },
+    "sovereign state": {
+     "n_positions": 4,
+     "mean_position_norm": 5447.11865234375,
+     "norm_over_w0_base": 1.1499517900281588,
+     "text_arm": false
+    },
+    "square": {
+     "n_positions": 3,
+     "mean_position_norm": 6031.060546875,
+     "norm_over_w0_base": 1.2732288966503387,
+     "text_arm": false
+    },
+    "state": {
+     "n_positions": 22,
+     "mean_position_norm": 1273.9715576171875,
+     "norm_over_w0_base": 0.26895060795058934,
+     "text_arm": false
+    },
+    "supreme court": {
+     "n_positions": 4,
+     "mean_position_norm": 4984.4677734375,
+     "norm_over_w0_base": 1.0522806651064671,
+     "text_arm": false
+    },
+    "term": {
+     "n_positions": 2,
+     "mean_position_norm": 1749.936767578125,
+     "norm_over_w0_base": 0.36943254714062407,
+     "text_arm": false
+    },
+    "territory": {
+     "n_positions": 10,
+     "mean_position_norm": 1356.25,
+     "norm_over_w0_base": 0.2863205696014399,
+     "text_arm": false
+    },
+    "the city": {
+     "n_positions": 8,
+     "mean_position_norm": 1264.0950927734375,
+     "norm_over_w0_base": 0.2668655682899729,
+     "text_arm": false
+    },
+    "trail": {
+     "n_positions": 2,
+     "mean_position_norm": 3957.111083984375,
+     "norm_over_w0_base": 0.835393400584389,
+     "text_arm": false
+    },
+    "transport": {
+     "n_positions": 2,
+     "mean_position_norm": 5457.1640625,
+     "norm_over_w0_base": 1.1520724960615727,
+     "text_arm": false
+    },
+    "union": {
+     "n_positions": 2,
+     "mean_position_norm": 7209.232421875,
+     "norm_over_w0_base": 1.5219550476832577,
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_3240",
+   "n_tokens": 2167,
+   "n_candidates": 34,
+   "gold_positions": 9,
+   "nongold_fired": [
+    "earth",
+    "north",
+    "attica region"
+   ],
+   "base_gauge_score": -9.605456666004379,
+   "deltas": {
+    "eordaia": {
+     "n_positions": 9,
+     "mean_position_norm": 3116.27880859375,
+     "norm_over_w0_base": 0.657883667106698
+    },
+    "athens": {
+     "n_positions": 11,
+     "mean_position_norm": 2173.343994140625,
+     "norm_over_w0_base": 0.4588188684550874,
+     "text_arm": false
+    },
+    "atlantic ocean": {
+     "n_positions": 4,
+     "mean_position_norm": 5378.0048828125,
+     "norm_over_w0_base": 1.135361048011945,
+     "text_arm": false
+    },
+    "attica region": {
+     "n_positions": 6,
+     "mean_position_norm": 4087.8134765625,
+     "norm_over_w0_base": 0.8629862363382985,
+     "text_arm": false
+    },
+    "austria": {
+     "n_positions": 3,
+     "mean_position_norm": 5840.22509765625,
+     "norm_over_w0_base": 1.2329412546076037,
+     "text_arm": false
+    },
+    "belgium": {
+     "n_positions": 3,
+     "mean_position_norm": 6109.8203125,
+     "norm_over_w0_base": 1.2898560236220813,
+     "text_arm": false
+    },
+    "central": {
+     "n_positions": 3,
+     "mean_position_norm": 3988.110595703125,
+     "norm_over_w0_base": 0.8419377676647054,
+     "text_arm": false
+    },
+    "classical athens": {
+     "n_positions": 5,
+     "mean_position_norm": 4115.53125,
+     "norm_over_w0_base": 0.8688377892811252,
+     "text_arm": false
+    },
+    "constantinople": {
+     "n_positions": 4,
+     "mean_position_norm": 5787.4990234375,
+     "norm_over_w0_base": 1.221810150752739,
+     "text_arm": false
+    },
+    "decentralized administration of macedonia and thrace": {
+     "n_positions": 17,
+     "mean_position_norm": 5037.3330078125,
+     "norm_over_w0_base": 1.0634411473319887,
+     "text_arm": false
+    },
+    "earth": {
+     "n_positions": 6,
+     "mean_position_norm": 3946.718505859375,
+     "norm_over_w0_base": 0.8331994032473365,
+     "text_arm": false
+    },
+    "estonia": {
+     "n_positions": 3,
+     "mean_position_norm": 7478.56103515625,
+     "norm_over_w0_base": 1.5788135339244769,
+     "text_arm": false
+    },
+    "eu": {
+     "n_positions": 2,
+     "mean_position_norm": 4112.33447265625,
+     "norm_over_w0_base": 0.8681629114120366,
+     "text_arm": false
+    },
+    "europe": {
+     "n_positions": 7,
+     "mean_position_norm": 1970.7041015625,
+     "norm_over_w0_base": 0.4160391674656361,
+     "text_arm": false
+    },
+    "european union": {
+     "n_positions": 6,
+     "mean_position_norm": 3045.462158203125,
+     "norm_over_w0_base": 0.6429334266074465,
+     "text_arm": false
+    },
+    "finland": {
+     "n_positions": 2,
+     "mean_position_norm": 7487.6845703125,
+     "norm_over_w0_base": 1.5807396211375395,
+     "text_arm": false
+    },
+    "france": {
+     "n_positions": 2,
+     "mean_position_norm": 6763.7138671875,
+     "norm_over_w0_base": 1.4279007609764298,
+     "text_arm": false
+    },
+    "germany": {
+     "n_positions": 2,
+     "mean_position_norm": 8171.38134765625,
+     "norm_over_w0_base": 1.7250761746665582,
+     "text_arm": false
+    },
+    "greece": {
+     "n_positions": 11,
+     "mean_position_norm": 3237.15625,
+     "norm_over_w0_base": 0.6834023383512341,
+     "text_arm": false
+    },
+    "kozani": {
+     "n_positions": 8,
+     "mean_position_norm": 3882.5810546875,
+     "norm_over_w0_base": 0.8196592214576106,
+     "text_arm": false
+    },
+    "macedonia": {
+     "n_positions": 10,
+     "mean_position_norm": 2872.8447265625,
+     "norm_over_w0_base": 0.6064918256116999,
+     "text_arm": false
+    },
+    "most": {
+     "n_positions": 4,
+     "mean_position_norm": 2407.781494140625,
+     "norm_over_w0_base": 0.508311424057622,
+     "text_arm": false
+    },
+    "mountain": {
+     "n_positions": 2,
+     "mean_position_norm": 7110.2607421875,
+     "norm_over_w0_base": 1.5010609443081158,
+     "text_arm": false
+    },
+    "naval": {
+     "n_positions": 2,
+     "mean_position_norm": 6878.5673828125,
+     "norm_over_w0_base": 1.4521477095585333,
+     "text_arm": false
+    },
+    "north": {
+     "n_positions": 2,
+     "mean_position_norm": 4285.74755859375,
+     "norm_over_w0_base": 0.9047724845305387,
+     "text_arm": false
+    },
+    "of": {
+     "n_positions": 68,
+     "mean_position_norm": 825.7072143554688,
+     "norm_over_w0_base": 0.17431665248905148,
+     "text_arm": false
+    },
+    "piraeus": {
+     "n_positions": 6,
+     "mean_position_norm": 5440.59326171875,
+     "norm_over_w0_base": 1.1485742021493592,
+     "text_arm": false
+    },
+    "rise": {
+     "n_positions": 2,
+     "mean_position_norm": 4959.8447265625,
+     "norm_over_w0_base": 1.0470824458942474,
+     "text_arm": false
+    },
+    "slovakia": {
+     "n_positions": 3,
+     "mean_position_norm": 7049.763671875,
+     "norm_over_w0_base": 1.4882892903865723,
+     "text_arm": false
+    },
+    "slovenia": {
+     "n_positions": 4,
+     "mean_position_norm": 7040.5361328125,
+     "norm_over_w0_base": 1.4863412467070187,
+     "text_arm": false
+    },
+    "the nation": {
+     "n_positions": 4,
+     "mean_position_norm": 2027.309326171875,
+     "norm_over_w0_base": 0.42798920628781023,
+     "text_arm": false
+    },
+    "thessaloniki": {
+     "n_positions": 9,
+     "mean_position_norm": 3004.552001953125,
+     "norm_over_w0_base": 0.6342968041263524,
+     "text_arm": false
+    },
+    "union": {
+     "n_positions": 4,
+     "mean_position_norm": 1473.035400390625,
+     "norm_over_w0_base": 0.31097536212566185,
+     "text_arm": false
+    },
+    "west": {
+     "n_positions": 3,
+     "mean_position_norm": 4552.85595703125,
+     "norm_over_w0_base": 0.9611622569072785,
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_3480",
+   "n_tokens": 2171,
+   "n_candidates": 32,
+   "gold_positions": 5,
+   "nongold_fired": [
+    "tuscany",
+    "florence",
+    "august"
+   ],
+   "base_gauge_score": -10.583203037971204,
+   "deltas": {
+    "paris": {
+     "n_positions": 5,
+     "mean_position_norm": 4641.44091796875,
+     "norm_over_w0_base": 0.9798635999293955
+    },
+    "ancient rome": {
+     "n_positions": 4,
+     "mean_position_norm": 4487.435546875,
+     "norm_over_w0_base": 0.947351227156497,
+     "text_arm": false
+    },
+    "arras": {
+     "n_positions": 3,
+     "mean_position_norm": 5226.47119140625,
+     "norm_over_w0_base": 1.1033704763347125,
+     "text_arm": false
+    },
+    "august": {
+     "n_positions": 2,
+     "mean_position_norm": 6105.232421875,
+     "norm_over_w0_base": 1.2888874651284266,
+     "text_arm": false
+    },
+    "austria": {
+     "n_positions": 3,
+     "mean_position_norm": 6227.42333984375,
+     "norm_over_w0_base": 1.3146834269591623,
+     "text_arm": false
+    },
+    "bologna": {
+     "n_positions": 6,
+     "mean_position_norm": 1863.6910400390625,
+     "norm_over_w0_base": 0.39344743236503915,
+     "text_arm": false
+    },
+    "boulogne": {
+     "n_positions": 4,
+     "mean_position_norm": 4826.556640625,
+     "norm_over_w0_base": 1.0189437393971337,
+     "text_arm": false
+    },
+    "central": {
+     "n_positions": 3,
+     "mean_position_norm": 2140.827880859375,
+     "norm_over_w0_base": 0.4519543286756128,
+     "text_arm": false
+    },
+    "douai": {
+     "n_positions": 8,
+     "mean_position_norm": 3417.80712890625,
+     "norm_over_w0_base": 0.7215398959898983,
+     "text_arm": false
+    },
+    "eu": {
+     "n_positions": 2,
+     "mean_position_norm": 7095.92529296875,
+     "norm_over_w0_base": 1.4980345598024531,
+     "text_arm": false
+    },
+    "florence": {
+     "n_positions": 8,
+     "mean_position_norm": 2661.458740234375,
+     "norm_over_w0_base": 0.5618657197969674,
+     "text_arm": false
+    },
+    "france": {
+     "n_positions": 10,
+     "mean_position_norm": 2776.59326171875,
+     "norm_over_w0_base": 0.5861719920713973,
+     "text_arm": false
+    },
+    "french guiana": {
+     "n_positions": 6,
+     "mean_position_norm": 5433.44775390625,
+     "norm_over_w0_base": 1.1470657001276328,
+     "text_arm": false
+    },
+    "french republic": {
+     "n_positions": 4,
+     "mean_position_norm": 3222.95947265625,
+     "norm_over_w0_base": 0.680405229134226,
+     "text_arm": false
+    },
+    "greece": {
+     "n_positions": 3,
+     "mean_position_norm": 5135.57373046875,
+     "norm_over_w0_base": 1.0841809369496807,
+     "text_arm": false
+    },
+    "italy": {
+     "n_positions": 11,
+     "mean_position_norm": 2345.031494140625,
+     "norm_over_w0_base": 0.4950641497774448,
+     "text_arm": false
+    },
+    "lille": {
+     "n_positions": 3,
+     "mean_position_norm": 5521.11279296875,
+     "norm_over_w0_base": 1.1655728366574079,
+     "text_arm": false
+    },
+    "lyon": {
+     "n_positions": 3,
+     "mean_position_norm": 8655.08203125,
+     "norm_over_w0_base": 1.8271911647076038,
+     "text_arm": false
+    },
+    "march": {
+     "n_positions": 3,
+     "mean_position_norm": 3732.504638671875,
+     "norm_over_w0_base": 0.7879762980162566,
+     "text_arm": false
+    },
+    "mediterranean sea": {
+     "n_positions": 8,
+     "mean_position_norm": 4491.0771484375,
+     "norm_over_w0_base": 0.9481200127296853,
+     "text_arm": false
+    },
+    "most": {
+     "n_positions": 11,
+     "mean_position_norm": 1603.3377685546875,
+     "norm_over_w0_base": 0.33848374794918323,
+     "text_arm": false
+    },
+    "netherlands": {
+     "n_positions": 2,
+     "mean_position_norm": 5348.17236328125,
+     "norm_over_w0_base": 1.1290630469171368,
+     "text_arm": false
+    },
+    "roma": {
+     "n_positions": 2,
+     "mean_position_norm": 4457.421875,
+     "norm_over_w0_base": 0.9410149826388339,
+     "text_arm": false
+    },
+    "roman": {
+     "n_positions": 4,
+     "mean_position_norm": 463.6956787109375,
+     "norm_over_w0_base": 0.09789169463612307,
+     "text_arm": false
+    },
+    "rome": {
+     "n_positions": 10,
+     "mean_position_norm": 2148.41845703125,
+     "norm_over_w0_base": 0.45355678994244,
+     "text_arm": false
+    },
+    "sicily": {
+     "n_positions": 3,
+     "mean_position_norm": 6384.73486328125,
+     "norm_over_w0_base": 1.3478937679696659,
+     "text_arm": false
+    },
+    "slovenia": {
+     "n_positions": 4,
+     "mean_position_norm": 7898.22607421875,
+     "norm_over_w0_base": 1.6674098347732773,
+     "text_arm": false
+    },
+    "switzerland": {
+     "n_positions": 3,
+     "mean_position_norm": 7824.93212890625,
+     "norm_over_w0_base": 1.651936607735333,
+     "text_arm": false
+    },
+    "tuscany": {
+     "n_positions": 6,
+     "mean_position_norm": 5272.98486328125,
+     "norm_over_w0_base": 1.113190067874255,
+     "text_arm": false
+    },
+    "union": {
+     "n_positions": 2,
+     "mean_position_norm": 3099.570556640625,
+     "norm_over_w0_base": 0.6543563556108357,
+     "text_arm": false
+    },
+    "vatican city": {
+     "n_positions": 8,
+     "mean_position_norm": 5331.88134765625,
+     "norm_over_w0_base": 1.1256238189922438,
+     "text_arm": false
+    },
+    "yvelines": {
+     "n_positions": 6,
+     "mean_position_norm": 5181.43896484375,
+     "norm_over_w0_base": 1.0938636355901625,
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_3816",
+   "n_tokens": 1097,
+   "n_candidates": 20,
+   "gold_positions": 13,
+   "nongold_fired": [
+    "republic",
+    "puebla",
+    "guadalajara"
+   ],
+   "base_gauge_score": -14.2269270796637,
+   "deltas": {
+    "torre\u00f3n": {
+     "n_positions": 13,
+     "mean_position_norm": 2782.1806640625,
+     "norm_over_w0_base": 0.5873515594237695
+    },
+    "caribbean": {
+     "n_positions": 2,
+     "mean_position_norm": 6081.119140625,
+     "norm_over_w0_base": 1.283796863526613,
+     "text_arm": false
+    },
+    "corona": {
+     "n_positions": 3,
+     "mean_position_norm": 3662.219482421875,
+     "norm_over_w0_base": 0.7731382622765137,
+     "text_arm": false
+    },
+    "federal district": {
+     "n_positions": 4,
+     "mean_position_norm": 3844.9052734375,
+     "norm_over_w0_base": 0.8117054141597826,
+     "text_arm": false
+    },
+    "guadalajara": {
+     "n_positions": 4,
+     "mean_position_norm": 5813.7216796875,
+     "norm_over_w0_base": 1.2273460666045088,
+     "text_arm": false
+    },
+    "home": {
+     "n_positions": 2,
+     "mean_position_norm": 6605.26953125,
+     "norm_over_w0_base": 1.3944512697205798,
+     "text_arm": false
+    },
+    "le\u00f3n": {
+     "n_positions": 3,
+     "mean_position_norm": 6036.33447265625,
+     "norm_over_w0_base": 1.2743422853572313,
+     "text_arm": false
+    },
+    "made": {
+     "n_positions": 4,
+     "mean_position_norm": 6117.216796875,
+     "norm_over_w0_base": 1.2914175097929923,
+     "text_arm": false
+    },
+    "mexico": {
+     "n_positions": 12,
+     "mean_position_norm": 2171.138427734375,
+     "norm_over_w0_base": 0.4583532470506772,
+     "text_arm": false
+    },
+    "most": {
+     "n_positions": 6,
+     "mean_position_norm": 1059.9190673828125,
+     "norm_over_w0_base": 0.22376157132127106,
+     "text_arm": false
+    },
+    "m\u00e9xico": {
+     "n_positions": 3,
+     "mean_position_norm": 3586.876220703125,
+     "norm_over_w0_base": 0.7572324000748969,
+     "text_arm": false
+    },
+    "of": {
+     "n_positions": 19,
+     "mean_position_norm": 1467.1168212890625,
+     "norm_over_w0_base": 0.30972587940522645,
+     "text_arm": false
+    },
+    "puebla": {
+     "n_positions": 6,
+     "mean_position_norm": 4824.72021484375,
+     "norm_over_w0_base": 1.0185560479864657,
+     "text_arm": false
+    },
+    "purchase": {
+     "n_positions": 2,
+     "mean_position_norm": 5270.59130859375,
+     "norm_over_w0_base": 1.1126847598989575,
+     "text_arm": false
+    },
+    "republic": {
+     "n_positions": 2,
+     "mean_position_norm": 4735.4765625,
+     "norm_over_w0_base": 0.9997156473432397,
+     "text_arm": false
+    },
+    "santos": {
+     "n_positions": 11,
+     "mean_position_norm": 2187.507568359375,
+     "norm_over_w0_base": 0.46180896809593885,
+     "text_arm": false
+    },
+    "southeast": {
+     "n_positions": 2,
+     "mean_position_norm": 4858.275390625,
+     "norm_over_w0_base": 1.0256399462668446,
+     "text_arm": false
+    },
+    "tijuana": {
+     "n_positions": 3,
+     "mean_position_norm": 6030.634765625,
+     "norm_over_w0_base": 1.273139009144329,
+     "text_arm": false
+    },
+    "united mexican states": {
+     "n_positions": 6,
+     "mean_position_norm": 4149.90625,
+     "norm_over_w0_base": 0.8760947622433737,
+     "text_arm": false
+    },
+    "zaragoza": {
+     "n_positions": 3,
+     "mean_position_norm": 4477.99560546875,
+     "norm_over_w0_base": 0.9453583428059409,
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_3916",
+   "n_tokens": 1555,
+   "n_candidates": 13,
+   "gold_positions": 16,
+   "nongold_fired": [
+    "ascomycetes",
+    "area",
+    "basidiomycota"
+   ],
+   "base_gauge_score": -10.255423831766509,
+   "deltas": {
+    "gloeophyllales": {
+     "n_positions": 16,
+     "mean_position_norm": 2263.33349609375,
+     "norm_over_w0_base": 0.47781672685683385
+    },
+    "agaricus": {
+     "n_positions": 4,
+     "mean_position_norm": 2893.306640625,
+     "norm_over_w0_base": 0.6108115800002792,
+     "text_arm": false
+    },
+    "area": {
+     "n_positions": 3,
+     "mean_position_norm": 3512.837890625,
+     "norm_over_w0_base": 0.7416020245244392,
+     "text_arm": false
+    },
+    "areas": {
+     "n_positions": 4,
+     "mean_position_norm": 2122.560302734375,
+     "norm_over_w0_base": 0.4480978248053906,
+     "text_arm": false
+    },
+    "artemisia": {
+     "n_positions": 9,
+     "mean_position_norm": 3630.18603515625,
+     "norm_over_w0_base": 0.7663756190563173,
+     "text_arm": false
+    },
+    "ascomycetes": {
+     "n_positions": 8,
+     "mean_position_norm": 3682.81396484375,
+     "norm_over_w0_base": 0.7774860034287188,
+     "text_arm": false
+    },
+    "ascomycota": {
+     "n_positions": 8,
+     "mean_position_norm": 3311.823974609375,
+     "norm_over_w0_base": 0.6991655866026625,
+     "text_arm": false
+    },
+    "basidiomycota": {
+     "n_positions": 12,
+     "mean_position_norm": 2810.8876953125,
+     "norm_over_w0_base": 0.5934119565032654,
+     "text_arm": false
+    },
+    "fungi": {
+     "n_positions": 10,
+     "mean_position_norm": 2280.23095703125,
+     "norm_over_w0_base": 0.4813839826285891,
+     "text_arm": false
+    },
+    "gloeophyllum": {
+     "n_positions": 18,
+     "mean_position_norm": 2650.0439453125,
+     "norm_over_w0_base": 0.5594559202880901,
+     "text_arm": false
+    },
+    "lentinus": {
+     "n_positions": 11,
+     "mean_position_norm": 3621.00927734375,
+     "norm_over_w0_base": 0.7644382959050035,
+     "text_arm": false
+    },
+    "neolentinus": {
+     "n_positions": 44,
+     "mean_position_norm": 3810.45458984375,
+     "norm_over_w0_base": 0.8044324634871769,
+     "text_arm": false
+    },
+    "polynesia": {
+     "n_positions": 3,
+     "mean_position_norm": 4448.26416015625,
+     "norm_over_w0_base": 0.9390816796856098,
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_4267",
+   "n_tokens": 2010,
+   "n_candidates": 54,
+   "gold_positions": 4,
+   "nongold_fired": [
+    "division",
+    "classification",
+    "romance"
+   ],
+   "base_gauge_score": -17.718284180740255,
+   "deltas": {
+    "short story": {
+     "n_positions": 4,
+     "mean_position_norm": 4829.66455078125,
+     "norm_over_w0_base": 1.0195998563418027
+    },
+    "1937": {
+     "n_positions": 8,
+     "mean_position_norm": 4874.5048828125,
+     "norm_over_w0_base": 1.0290661858594472,
+     "text_arm": false
+    },
+    "adult": {
+     "n_positions": 2,
+     "mean_position_norm": 7353.6826171875,
+     "norm_over_w0_base": 1.5524502087530563,
+     "text_arm": false
+    },
+    "august": {
+     "n_positions": 2,
+     "mean_position_norm": 5445.21484375,
+     "norm_over_w0_base": 1.1495498733011729,
+     "text_arm": false
+    },
+    "biography": {
+     "n_positions": 4,
+     "mean_position_norm": 1847.373046875,
+     "norm_over_w0_base": 0.39000250915951895,
+     "text_arm": false
+    },
+    "character": {
+     "n_positions": 2,
+     "mean_position_norm": 2162.017333984375,
+     "norm_over_w0_base": 0.45642767524762606,
+     "text_arm": false
+    },
+    "classification": {
+     "n_positions": 3,
+     "mean_position_norm": 2911.970458984375,
+     "norm_over_w0_base": 0.6147517349153716,
+     "text_arm": false
+    },
+    "continent": {
+     "n_positions": 2,
+     "mean_position_norm": 4349.1904296875,
+     "norm_over_w0_base": 0.9181660321719862,
+     "text_arm": false
+    },
+    "division": {
+     "n_positions": 2,
+     "mean_position_norm": 2894.6259765625,
+     "norm_over_w0_base": 0.6110901075705064,
+     "text_arm": false
+    },
+    "doctrine": {
+     "n_positions": 2,
+     "mean_position_norm": 3940.0888671875,
+     "norm_over_w0_base": 0.831799807361045,
+     "text_arm": false
+    },
+    "editing": {
+     "n_positions": 2,
+     "mean_position_norm": 1463.7176513671875,
+     "norm_over_w0_base": 0.3090082740461825,
+     "text_arm": false
+    },
+    "education": {
+     "n_positions": 2,
+     "mean_position_norm": 4594.5751953125,
+     "norm_over_w0_base": 0.9699696862661914,
+     "text_arm": false
+    },
+    "extraterrestrial life": {
+     "n_positions": 6,
+     "mean_position_norm": 5492.697265625,
+     "norm_over_w0_base": 1.1595739795332878,
+     "text_arm": false
+    },
+    "faith": {
+     "n_positions": 2,
+     "mean_position_norm": 6298.759765625,
+     "norm_over_w0_base": 1.3297433982498672,
+     "text_arm": false
+    },
+    "feature": {
+     "n_positions": 2,
+     "mean_position_norm": 3827.649658203125,
+     "norm_over_w0_base": 0.8080625477393368,
+     "text_arm": false
+    },
+    "february": {
+     "n_positions": 2,
+     "mean_position_norm": 4150.76904296875,
+     "norm_over_w0_base": 0.8762769081414461,
+     "text_arm": false
+    },
+    "fiction": {
+     "n_positions": 36,
+     "mean_position_norm": 851.0938720703125,
+     "norm_over_w0_base": 0.1796760790676254,
+     "text_arm": false
+    },
+    "genre": {
+     "n_positions": 11,
+     "mean_position_norm": 2008.4910888671875,
+     "norm_over_w0_base": 0.424016451689489,
+     "text_arm": false
+    },
+    "genus": {
+     "n_positions": 2,
+     "mean_position_norm": 5668.4296875,
+     "norm_over_w0_base": 1.1966731921627372,
+     "text_arm": false
+    },
+    "good": {
+     "n_positions": 2,
+     "mean_position_norm": 5473.73046875,
+     "norm_over_w0_base": 1.1555698622357653,
+     "text_arm": false
+    },
+    "heroes": {
+     "n_positions": 2,
+     "mean_position_norm": 4986.15087890625,
+     "norm_over_w0_base": 1.0526359887684114,
+     "text_arm": false
+    },
+    "information": {
+     "n_positions": 3,
+     "mean_position_norm": 717.8309936523438,
+     "norm_over_w0_base": 0.1515426941788805,
+     "text_arm": false
+    },
+    "inheritance": {
+     "n_positions": 2,
+     "mean_position_norm": 5896.00732421875,
+     "norm_over_w0_base": 1.2447175487148934,
+     "text_arm": false
+    },
+    "island": {
+     "n_positions": 2,
+     "mean_position_norm": 3191.19384765625,
+     "norm_over_w0_base": 0.6736991263922937,
+     "text_arm": false
+    },
+    "january": {
+     "n_positions": 2,
+     "mean_position_norm": 4321.20263671875,
+     "norm_over_w0_base": 0.912257474881885,
+     "text_arm": false
+    },
+    "june": {
+     "n_positions": 3,
+     "mean_position_norm": 4353.93798828125,
+     "norm_over_w0_base": 0.9191682984803945,
+     "text_arm": false
+    },
+    "literature": {
+     "n_positions": 4,
+     "mean_position_norm": 2405.455078125,
+     "norm_over_w0_base": 0.5078202898576414,
+     "text_arm": false
+    },
+    "magic": {
+     "n_positions": 5,
+     "mean_position_norm": 3314.271484375,
+     "norm_over_w0_base": 0.6996822851392146,
+     "text_arm": false
+    },
+    "march": {
+     "n_positions": 2,
+     "mean_position_norm": 4737.43115234375,
+     "norm_over_w0_base": 1.0001282845984651,
+     "text_arm": false
+    },
+    "may": {
+     "n_positions": 4,
+     "mean_position_norm": 6392.1015625,
+     "norm_over_w0_base": 1.3494489661384363,
+     "text_arm": false
+    },
+    "narrative": {
+     "n_positions": 3,
+     "mean_position_norm": 3788.478515625,
+     "norm_over_w0_base": 0.7997930518094508,
+     "text_arm": false
+    },
+    "novel": {
+     "n_positions": 2,
+     "mean_position_norm": 5806.4013671875,
+     "norm_over_w0_base": 1.2258006612259573,
+     "text_arm": false
+    },
+    "novella": {
+     "n_positions": 2,
+     "mean_position_norm": 5298.595703125,
+     "norm_over_w0_base": 1.118596821977137,
+     "text_arm": false
+    },
+    "november": {
+     "n_positions": 3,
+     "mean_position_norm": 4727.09716796875,
+     "norm_over_w0_base": 0.9979466571016893,
+     "text_arm": false
+    },
+    "parody": {
+     "n_positions": 2,
+     "mean_position_norm": 4997.09912109375,
+     "norm_over_w0_base": 1.0549472934240864,
+     "text_arm": false
+    },
+    "period": {
+     "n_positions": 2,
+     "mean_position_norm": 2601.135986328125,
+     "norm_over_w0_base": 0.5491308661502466,
+     "text_arm": false
+    },
+    "person": {
+     "n_positions": 3,
+     "mean_position_norm": 3504.797607421875,
+     "norm_over_w0_base": 0.7399046247334895,
+     "text_arm": false
+    },
+    "personality": {
+     "n_positions": 2,
+     "mean_position_norm": 4808.43310546875,
+     "norm_over_w0_base": 1.0151176447175914,
+     "text_arm": false
+    },
+    "play": {
+     "n_positions": 2,
+     "mean_position_norm": 8857.0224609375,
+     "norm_over_w0_base": 1.8698232007287539,
+     "text_arm": false
+    },
+    "romance": {
+     "n_positions": 2,
+     "mean_position_norm": 4490.240234375,
+     "norm_over_w0_base": 0.947943330177735,
+     "text_arm": false
+    },
+    "science": {
+     "n_positions": 14,
+     "mean_position_norm": 1685.9105224609375,
+     "norm_over_w0_base": 0.355915842276923,
+     "text_arm": false
+    },
+    "science fiction": {
+     "n_positions": 20,
+     "mean_position_norm": 1473.179443359375,
+     "norm_over_w0_base": 0.3110057713163417,
+     "text_arm": false
+    },
+    "sequence": {
+     "n_positions": 2,
+     "mean_position_norm": 3575.8056640625,
+     "norm_over_w0_base": 0.7548952733776444,
+     "text_arm": false
+    },
+    "series": {
+     "n_positions": 6,
+     "mean_position_norm": 3523.451171875,
+     "norm_over_w0_base": 0.7438426149265335,
+     "text_arm": false
+    },
+    "set": {
+     "n_positions": 2,
+     "mean_position_norm": 4720.5556640625,
+     "norm_over_w0_base": 0.9965656675168136,
+     "text_arm": false
+    },
+    "space": {
+     "n_positions": 2,
+     "mean_position_norm": 1687.895263671875,
+     "norm_over_w0_base": 0.35633484484579087,
+     "text_arm": false
+    },
+    "superhero": {
+     "n_positions": 2,
+     "mean_position_norm": 7025.0068359375,
+     "norm_over_w0_base": 1.483062826705721,
+     "text_arm": false
+    },
+    "supernatural": {
+     "n_positions": 8,
+     "mean_position_norm": 3169.41064453125,
+     "norm_over_w0_base": 0.6691004321054779,
+     "text_arm": false
+    },
+    "sword": {
+     "n_positions": 6,
+     "mean_position_norm": 3398.192138671875,
+     "norm_over_w0_base": 0.7173989373343164,
+     "text_arm": false
+    },
+    "technology": {
+     "n_positions": 2,
+     "mean_position_norm": 5191.7890625,
+     "norm_over_w0_base": 1.0960486647930145,
+     "text_arm": false
+    },
+    "three": {
+     "n_positions": 2,
+     "mean_position_norm": 3853.03466796875,
+     "norm_over_w0_base": 0.813421626416153,
+     "text_arm": false
+    },
+    "travel": {
+     "n_positions": 4,
+     "mean_position_norm": 4394.2314453125,
+     "norm_over_w0_base": 0.9276747283925778,
+     "text_arm": false
+    },
+    "two": {
+     "n_positions": 2,
+     "mean_position_norm": 3816.10107421875,
+     "norm_over_w0_base": 0.805624503761828,
+     "text_arm": false
+    },
+    "writing": {
+     "n_positions": 2,
+     "mean_position_norm": 827.1452026367188,
+     "norm_over_w0_base": 0.17462022898583873,
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_4342",
+   "n_tokens": 1080,
+   "n_candidates": 13,
+   "gold_positions": 4,
+   "nongold_fired": [
+    "engineering",
+    "bank",
+    "reconnaissance"
+   ],
+   "base_gauge_score": -10.380306883775718,
+   "deltas": {
+    "aerial reconnaissance": {
+     "n_positions": 4,
+     "mean_position_norm": 2231.02294921875,
+     "norm_over_w0_base": 0.47099558460032953
+    },
+    "art": {
+     "n_positions": 2,
+     "mean_position_norm": 5716.1650390625,
+     "norm_over_w0_base": 1.206750694872046,
+     "text_arm": false
+    },
+    "aviation": {
+     "n_positions": 5,
+     "mean_position_norm": 2695.25244140625,
+     "norm_over_w0_base": 0.5689999736354722,
+     "text_arm": false
+    },
+    "bank": {
+     "n_positions": 2,
+     "mean_position_norm": 2589.178955078125,
+     "norm_over_w0_base": 0.54660659407781,
+     "text_arm": false
+    },
+    "construction": {
+     "n_positions": 2,
+     "mean_position_norm": 1470.918212890625,
+     "norm_over_w0_base": 0.3105283985636688,
+     "text_arm": false
+    },
+    "engineering": {
+     "n_positions": 2,
+     "mean_position_norm": 3636.30517578125,
+     "norm_over_w0_base": 0.7676674427091994,
+     "text_arm": false
+    },
+    "home": {
+     "n_positions": 2,
+     "mean_position_norm": 6719.3994140625,
+     "norm_over_w0_base": 1.4185454507752677,
+     "text_arm": false
+    },
+    "military": {
+     "n_positions": 8,
+     "mean_position_norm": 2584.453125,
+     "norm_over_w0_base": 0.5456089149185043,
+     "text_arm": false
+    },
+    "reconnaissance": {
+     "n_positions": 5,
+     "mean_position_norm": 2112.448486328125,
+     "norm_over_w0_base": 0.4459630996196633,
+     "text_arm": false
+    },
+    "research": {
+     "n_positions": 2,
+     "mean_position_norm": 1966.39697265625,
+     "norm_over_w0_base": 0.4151298811233066,
+     "text_arm": false
+    },
+    "science": {
+     "n_positions": 2,
+     "mean_position_norm": 2648.53173828125,
+     "norm_over_w0_base": 0.5591366753269525,
+     "text_arm": false
+    },
+    "vehicle": {
+     "n_positions": 3,
+     "mean_position_norm": 3561.099609375,
+     "norm_over_w0_base": 0.7517906496322324,
+     "text_arm": false
+    },
+    "war": {
+     "n_positions": 2,
+     "mean_position_norm": 4267.33447265625,
+     "norm_over_w0_base": 0.9008852622236297,
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_4484",
+   "n_tokens": 1095,
+   "n_candidates": 6,
+   "gold_positions": 4,
+   "nongold_fired": [
+    "trave",
+    "havel",
+    "spree"
+   ],
+   "base_gauge_score": -9.133097501077932,
+   "deltas": {
+    "eider": {
+     "n_positions": 4,
+     "mean_position_norm": 5720.1875,
+     "norm_over_w0_base": 1.2075998844070317
+    },
+    "havel": {
+     "n_positions": 3,
+     "mean_position_norm": 5856.90380859375,
+     "norm_over_w0_base": 1.2364623296423265,
+     "text_arm": false
+    },
+    "neckar": {
+     "n_positions": 4,
+     "mean_position_norm": 4275.0869140625,
+     "norm_over_w0_base": 0.9025218951742209,
+     "text_arm": false
+    },
+    "rhine": {
+     "n_positions": 7,
+     "mean_position_norm": 4312.00927734375,
+     "norm_over_w0_base": 0.9103166469424928,
+     "text_arm": false
+    },
+    "spree": {
+     "n_positions": 3,
+     "mean_position_norm": 4398.3828125,
+     "norm_over_w0_base": 0.9285511315761721,
+     "text_arm": false
+    },
+    "trave": {
+     "n_positions": 4,
+     "mean_position_norm": 4698.7890625,
+     "norm_over_w0_base": 0.9919704780180763,
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_4547",
+   "n_tokens": 3114,
+   "n_candidates": 41,
+   "gold_positions": 16,
+   "nongold_fired": [
+    "north east",
+    "silesia",
+    "west"
+   ],
+   "base_gauge_score": -9.544427744982679,
+   "deltas": {
+    "blansko district": {
+     "n_positions": 16,
+     "mean_position_norm": 2244.977294921875,
+     "norm_over_w0_base": 0.4739415136031934
+    },
+    "belarus": {
+     "n_positions": 3,
+     "mean_position_norm": 6483.015625,
+     "norm_over_w0_base": 1.3686420103115466,
+     "text_arm": false
+    },
+    "berlin": {
+     "n_positions": 2,
+     "mean_position_norm": 5117.716796875,
+     "norm_over_w0_base": 1.0804111250433965,
+     "text_arm": false
+    },
+    "bratislava": {
+     "n_positions": 3,
+     "mean_position_norm": 4006.957275390625,
+     "norm_over_w0_base": 0.8459165267896609,
+     "text_arm": false
+    },
+    "brno": {
+     "n_positions": 10,
+     "mean_position_norm": 2654.53271484375,
+     "norm_over_w0_base": 0.5604035531352769,
+     "text_arm": false
+    },
+    "center": {
+     "n_positions": 2,
+     "mean_position_norm": 1925.9697265625,
+     "norm_over_w0_base": 0.40659520674249183,
+     "text_arm": false
+    },
+    "central": {
+     "n_positions": 11,
+     "mean_position_norm": 3142.9560546875,
+     "norm_over_w0_base": 0.6635155523026134,
+     "text_arm": false
+    },
+    "cologne": {
+     "n_positions": 2,
+     "mean_position_norm": 5637.70458984375,
+     "norm_over_w0_base": 1.190186757167716,
+     "text_arm": false
+    },
+    "czech republic": {
+     "n_positions": 41,
+     "mean_position_norm": 1932.1990966796875,
+     "norm_over_w0_base": 0.4079103011573942,
+     "text_arm": false
+    },
+    "d\u00fcsseldorf": {
+     "n_positions": 4,
+     "mean_position_norm": 7006.04931640625,
+     "norm_over_w0_base": 1.4790606679662426,
+     "text_arm": false
+    },
+    "europe": {
+     "n_positions": 14,
+     "mean_position_norm": 1532.0255126953125,
+     "norm_over_w0_base": 0.32342887921759256,
+     "text_arm": false
+    },
+    "flora": {
+     "n_positions": 2,
+     "mean_position_norm": 4941.43359375,
+     "norm_over_w0_base": 1.0431956359153478,
+     "text_arm": false
+    },
+    "frankfurt": {
+     "n_positions": 3,
+     "mean_position_norm": 6048.25,
+     "norm_over_w0_base": 1.2768577954594722,
+     "text_arm": false
+    },
+    "gda\u0144sk": {
+     "n_positions": 3,
+     "mean_position_norm": 6319.9375,
+     "norm_over_w0_base": 1.3342142708538252,
+     "text_arm": false
+    },
+    "germany": {
+     "n_positions": 8,
+     "mean_position_norm": 2537.9931640625,
+     "norm_over_w0_base": 0.5358006623992153,
+     "text_arm": false
+    },
+    "hamburg": {
+     "n_positions": 2,
+     "mean_position_norm": 6344.46044921875,
+     "norm_over_w0_base": 1.3393913582555723,
+     "text_arm": false
+    },
+    "hole": {
+     "n_positions": 5,
+     "mean_position_norm": 3443.000732421875,
+     "norm_over_w0_base": 0.726858566521811,
+     "text_arm": false
+    },
+    "holy roman empire": {
+     "n_positions": 6,
+     "mean_position_norm": 5013.63720703125,
+     "norm_over_w0_base": 1.0584386808421455,
+     "text_arm": false
+    },
+    "lakes": {
+     "n_positions": 2,
+     "mean_position_norm": 6714.46923828125,
+     "norm_over_w0_base": 1.4175046317979973,
+     "text_arm": false
+    },
+    "moravia": {
+     "n_positions": 22,
+     "mean_position_norm": 1903.303955078125,
+     "norm_over_w0_base": 0.4018101917365104,
+     "text_arm": false
+    },
+    "most": {
+     "n_positions": 8,
+     "mean_position_norm": 1473.7886962890625,
+     "norm_over_w0_base": 0.31113439188471737,
+     "text_arm": false
+    },
+    "mountain": {
+     "n_positions": 2,
+     "mean_position_norm": 5667.4892578125,
+     "norm_over_w0_base": 1.1964746562262982,
+     "text_arm": false
+    },
+    "north": {
+     "n_positions": 12,
+     "mean_position_norm": 1334.080810546875,
+     "norm_over_w0_base": 0.2816403889918023,
+     "text_arm": false
+    },
+    "north east": {
+     "n_positions": 4,
+     "mean_position_norm": 3315.87744140625,
+     "norm_over_w0_base": 0.7000213218447947,
+     "text_arm": false
+    },
+    "of": {
+     "n_positions": 99,
+     "mean_position_norm": 722.3873901367188,
+     "norm_over_w0_base": 0.1525046038833865,
+     "text_arm": false
+    },
+    "olomouc region": {
+     "n_positions": 8,
+     "mean_position_norm": 5901.50390625,
+     "norm_over_w0_base": 1.245877942814837,
+     "text_arm": false
+    },
+    "pardubice": {
+     "n_positions": 6,
+     "mean_position_norm": 5617.232421875,
+     "norm_over_w0_base": 1.1858648380570882,
+     "text_arm": false
+    },
+    "poland": {
+     "n_positions": 10,
+     "mean_position_norm": 2846.20068359375,
+     "norm_over_w0_base": 0.6008669499919411,
+     "text_arm": false
+    },
+    "pozna\u0144": {
+     "n_positions": 2,
+     "mean_position_norm": 6945.49560546875,
+     "norm_over_w0_base": 1.4662770565324317,
+     "text_arm": false
+    },
+    "prague": {
+     "n_positions": 5,
+     "mean_position_norm": 3722.591064453125,
+     "norm_over_w0_base": 0.7858834241234649,
+     "text_arm": false
+    },
+    "river": {
+     "n_positions": 7,
+     "mean_position_norm": 2355.318359375,
+     "norm_over_w0_base": 0.49723582986099835,
+     "text_arm": false
+    },
+    "rock": {
+     "n_positions": 6,
+     "mean_position_norm": 2696.940185546875,
+     "norm_over_w0_base": 0.5693562765764383,
+     "text_arm": false
+    },
+    "roman empire": {
+     "n_positions": 6,
+     "mean_position_norm": 2538.668701171875,
+     "norm_over_w0_base": 0.5359432763494039,
+     "text_arm": false
+    },
+    "silesia": {
+     "n_positions": 31,
+     "mean_position_norm": 1874.5743408203125,
+     "norm_over_w0_base": 0.39574502711440784,
+     "text_arm": false
+    },
+    "slovakia": {
+     "n_positions": 8,
+     "mean_position_norm": 3175.435302734375,
+     "norm_over_w0_base": 0.670372309390914,
+     "text_arm": false
+    },
+    "south": {
+     "n_positions": 16,
+     "mean_position_norm": 2850.21044921875,
+     "norm_over_w0_base": 0.6017134593948671,
+     "text_arm": false
+    },
+    "south moravian region": {
+     "n_positions": 20,
+     "mean_position_norm": 2914.407958984375,
+     "norm_over_w0_base": 0.6152663202708765,
+     "text_arm": false
+    },
+    "vyso\u010dina": {
+     "n_positions": 3,
+     "mean_position_norm": 4278.38623046875,
+     "norm_over_w0_base": 0.9032184202637935,
+     "text_arm": false
+    },
+    "warsaw": {
+     "n_positions": 3,
+     "mean_position_norm": 4878.27587890625,
+     "norm_over_w0_base": 1.029862288163246,
+     "text_arm": false
+    },
+    "west": {
+     "n_positions": 9,
+     "mean_position_norm": 3171.637451171875,
+     "norm_over_w0_base": 0.6695705375769883,
+     "text_arm": false
+    },
+    "zl\u00edn region": {
+     "n_positions": 6,
+     "mean_position_norm": 5700.734375,
+     "norm_over_w0_base": 1.2034930974352138,
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_4702",
+   "n_tokens": 1022,
+   "n_candidates": 3,
+   "gold_positions": 28,
+   "nongold_fired": [
+    "china",
+    "canada"
+   ],
+   "base_gauge_score": -9.017660625402801,
+   "deltas": {
+    "hong kong": {
+     "n_positions": 28,
+     "mean_position_norm": 3914.294189453125,
+     "norm_over_w0_base": 0.8263542428842953
+    },
+    "canada": {
+     "n_positions": 5,
+     "mean_position_norm": 3197.84423828125,
+     "norm_over_w0_base": 0.6751031032636832,
+     "text_arm": false
+    },
+    "china": {
+     "n_positions": 3,
+     "mean_position_norm": 3281.538818359375,
+     "norm_over_w0_base": 0.6927720284917179,
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_4987",
+   "n_tokens": 2107,
+   "n_candidates": 19,
+   "gold_positions": 6,
+   "nongold_fired": [
+    "computer",
+    "member",
+    "major"
+   ],
+   "base_gauge_score": -9.037534026707256,
+   "deltas": {
+    "record producer": {
+     "n_positions": 6,
+     "mean_position_norm": 4891.56494140625,
+     "norm_over_w0_base": 1.0326677679379699
+    },
+    "canada": {
+     "n_positions": 1,
+     "mean_position_norm": 6606.82275390625,
+     "norm_over_w0_base": 1.3947791735699109,
+     "text_arm": false
+    },
+    "computer": {
+     "n_positions": 2,
+     "mean_position_norm": 5246.8369140625,
+     "norm_over_w0_base": 1.1076699235688379,
+     "text_arm": false
+    },
+    "cook": {
+     "n_positions": 2,
+     "mean_position_norm": 7950.76220703125,
+     "norm_over_w0_base": 1.6785008397292456,
+     "text_arm": false
+    },
+    "diplomacy": {
+     "n_positions": 2,
+     "mean_position_norm": 3762.910888671875,
+     "norm_over_w0_base": 0.7943954204637728,
+     "text_arm": false
+    },
+    "electronic musician": {
+     "n_positions": 4,
+     "mean_position_norm": 3277.419921875,
+     "norm_over_w0_base": 0.6919024802612769,
+     "text_arm": false
+    },
+    "fashion": {
+     "n_positions": 3,
+     "mean_position_norm": 4645.72314453125,
+     "norm_over_w0_base": 0.9807676290896075,
+     "text_arm": false
+    },
+    "general": {
+     "n_positions": 2,
+     "mean_position_norm": 5496.1611328125,
+     "norm_over_w0_base": 1.160305243257637,
+     "text_arm": false
+    },
+    "head of state": {
+     "n_positions": 9,
+     "mean_position_norm": 2745.263916015625,
+     "norm_over_w0_base": 0.5795579930985241,
+     "text_arm": false
+    },
+    "justice": {
+     "n_positions": 2,
+     "mean_position_norm": 4335.55224609375,
+     "norm_over_w0_base": 0.9152868487656146,
+     "text_arm": false
+    },
+    "major": {
+     "n_positions": 5,
+     "mean_position_norm": 1328.4044189453125,
+     "norm_over_w0_base": 0.28044203494451003,
+     "text_arm": false
+    },
+    "member": {
+     "n_positions": 6,
+     "mean_position_norm": 5272.4482421875,
+     "norm_over_w0_base": 1.1130767807537223,
+     "text_arm": false
+    },
+    "monarch": {
+     "n_positions": 2,
+     "mean_position_norm": 4502.23046875,
+     "norm_over_w0_base": 0.9504746118263284,
+     "text_arm": false
+    },
+    "musician": {
+     "n_positions": 4,
+     "mean_position_norm": 3172.8671875,
+     "norm_over_w0_base": 0.6698301495997926,
+     "text_arm": false
+    },
+    "official": {
+     "n_positions": 3,
+     "mean_position_norm": 4723.18212890625,
+     "norm_over_w0_base": 0.9971201456072105,
+     "text_arm": false
+    },
+    "producer": {
+     "n_positions": 6,
+     "mean_position_norm": 2712.4404296875,
+     "norm_over_w0_base": 0.5726285631985987,
+     "text_arm": false
+    },
+    "research": {
+     "n_positions": 2,
+     "mean_position_norm": 1917.128173828125,
+     "norm_over_w0_base": 0.4047286493857601,
+     "text_arm": false
+    },
+    "singer": {
+     "n_positions": 2,
+     "mean_position_norm": 6976.9765625,
+     "norm_over_w0_base": 1.4729230624670204,
+     "text_arm": false
+    },
+    "sovereign": {
+     "n_positions": 3,
+     "mean_position_norm": 5329.24072265625,
+     "norm_over_w0_base": 1.1250663515237802,
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_5047",
+   "n_tokens": 2463,
+   "n_candidates": 48,
+   "gold_positions": 10,
+   "nongold_fired": [
+    "north",
+    "east",
+    "liechtenstein"
+   ],
+   "base_gauge_score": -9.909631936400885,
+   "deltas": {
+    "8th arrondissement of paris": {
+     "n_positions": 10,
+     "mean_position_norm": 3756.54931640625,
+     "norm_over_w0_base": 0.7930524165967464
+    },
+    "atlantic ocean": {
+     "n_positions": 18,
+     "mean_position_norm": 3466.91845703125,
+     "norm_over_w0_base": 0.7319078837817016,
+     "text_arm": false
+    },
+    "auvergne": {
+     "n_positions": 4,
+     "mean_position_norm": 5751.9404296875,
+     "norm_over_w0_base": 1.214303307016904,
+     "text_arm": false
+    },
+    "avenue": {
+     "n_positions": 5,
+     "mean_position_norm": 3025.3349609375,
+     "norm_over_w0_base": 0.638684334931447,
+     "text_arm": false
+    },
+    "banks": {
+     "n_positions": 2,
+     "mean_position_norm": 3145.75927734375,
+     "norm_over_w0_base": 0.6641073460778445,
+     "text_arm": false
+    },
+    "bar": {
+     "n_positions": 2,
+     "mean_position_norm": 3077.828857421875,
+     "norm_over_w0_base": 0.6497664232942159,
+     "text_arm": false
+    },
+    "basin": {
+     "n_positions": 2,
+     "mean_position_norm": 4793.34521484375,
+     "norm_over_w0_base": 1.0119324108463772,
+     "text_arm": false
+    },
+    "belgium": {
+     "n_positions": 5,
+     "mean_position_norm": 5523.20947265625,
+     "norm_over_w0_base": 1.166015470775304,
+     "text_arm": false
+    },
+    "bordeaux": {
+     "n_positions": 6,
+     "mean_position_norm": 4287.75927734375,
+     "norm_over_w0_base": 0.9051971823800339,
+     "text_arm": false
+    },
+    "brazil": {
+     "n_positions": 2,
+     "mean_position_norm": 4568.0732421875,
+     "norm_over_w0_base": 0.9643748075091034,
+     "text_arm": false
+    },
+    "cologne": {
+     "n_positions": 2,
+     "mean_position_norm": 4319.8125,
+     "norm_over_w0_base": 0.9119640004213236,
+     "text_arm": false
+    },
+    "cyprus": {
+     "n_positions": 3,
+     "mean_position_norm": 6942.81982421875,
+     "norm_over_w0_base": 1.4657121671598021,
+     "text_arm": false
+    },
+    "earth": {
+     "n_positions": 2,
+     "mean_position_norm": 8791.734375,
+     "norm_over_w0_base": 1.856040106200597,
+     "text_arm": false
+    },
+    "east": {
+     "n_positions": 6,
+     "mean_position_norm": 3803.447021484375,
+     "norm_over_w0_base": 0.8029530821311015,
+     "text_arm": false
+    },
+    "england": {
+     "n_positions": 2,
+     "mean_position_norm": 3756.018310546875,
+     "norm_over_w0_base": 0.7929403149192401,
+     "text_arm": false
+    },
+    "europe": {
+     "n_positions": 9,
+     "mean_position_norm": 1902.5650634765625,
+     "norm_over_w0_base": 0.4016542028965228,
+     "text_arm": false
+    },
+    "european union": {
+     "n_positions": 8,
+     "mean_position_norm": 3967.27734375,
+     "norm_over_w0_base": 0.8375396194133734,
+     "text_arm": false
+    },
+    "finland": {
+     "n_positions": 2,
+     "mean_position_norm": 7209.8212890625,
+     "norm_over_w0_base": 1.5220793645780373,
+     "text_arm": false
+    },
+    "france": {
+     "n_positions": 29,
+     "mean_position_norm": 2043.7108154296875,
+     "norm_over_w0_base": 0.43145175651572454,
+     "text_arm": false
+    },
+    "french guiana": {
+     "n_positions": 9,
+     "mean_position_norm": 3303.075439453125,
+     "norm_over_w0_base": 0.6973186663673698,
+     "text_arm": false
+    },
+    "germany": {
+     "n_positions": 4,
+     "mean_position_norm": 5725.0625,
+     "norm_over_w0_base": 1.2086290551180414,
+     "text_arm": false
+    },
+    "graub\u00fcnden": {
+     "n_positions": 6,
+     "mean_position_norm": 5546.32763671875,
+     "norm_over_w0_base": 1.1708959912564207,
+     "text_arm": false
+    },
+    "greece": {
+     "n_positions": 3,
+     "mean_position_norm": 5598.78955078125,
+     "norm_over_w0_base": 1.1819713277480388,
+     "text_arm": false
+    },
+    "indian": {
+     "n_positions": 2,
+     "mean_position_norm": 5280.3505859375,
+     "norm_over_w0_base": 1.114745059879021,
+     "text_arm": false
+    },
+    "ireland": {
+     "n_positions": 2,
+     "mean_position_norm": 9337.904296875,
+     "norm_over_w0_base": 1.9713430983704947,
+     "text_arm": false
+    },
+    "liechtenstein": {
+     "n_positions": 4,
+     "mean_position_norm": 5539.7080078125,
+     "norm_over_w0_base": 1.1694985085511764,
+     "text_arm": false
+    },
+    "lille": {
+     "n_positions": 5,
+     "mean_position_norm": 4829.31494140625,
+     "norm_over_w0_base": 1.0195260496281526,
+     "text_arm": false
+    },
+    "luxembourg": {
+     "n_positions": 3,
+     "mean_position_norm": 7879.18408203125,
+     "norm_over_w0_base": 1.6633898428473999,
+     "text_arm": false
+    },
+    "lyon": {
+     "n_positions": 5,
+     "mean_position_norm": 4755.2412109375,
+     "norm_over_w0_base": 1.0038882006325278,
+     "text_arm": false
+    },
+    "monaco": {
+     "n_positions": 3,
+     "mean_position_norm": 6179.791015625,
+     "norm_over_w0_base": 1.30462767455234,
+     "text_arm": false
+    },
+    "most": {
+     "n_positions": 4,
+     "mean_position_norm": 2513.530517578125,
+     "norm_over_w0_base": 0.5306363056247527,
+     "text_arm": false
+    },
+    "netherlands": {
+     "n_positions": 4,
+     "mean_position_norm": 5589.10302734375,
+     "norm_over_w0_base": 1.1799263869863188,
+     "text_arm": false
+    },
+    "nice": {
+     "n_positions": 6,
+     "mean_position_norm": 2271.146484375,
+     "norm_over_w0_base": 0.4794661419757108,
+     "text_arm": false
+    },
+    "nord": {
+     "n_positions": 3,
+     "mean_position_norm": 4231.4306640625,
+     "norm_over_w0_base": 0.8933055395121653,
+     "text_arm": false
+    },
+    "nord department": {
+     "n_positions": 4,
+     "mean_position_norm": 4368.54833984375,
+     "norm_over_w0_base": 0.9222527181533546,
+     "text_arm": false
+    },
+    "north": {
+     "n_positions": 10,
+     "mean_position_norm": 3026.16455078125,
+     "norm_over_w0_base": 0.6388594712533626,
+     "text_arm": false
+    },
+    "northern": {
+     "n_positions": 3,
+     "mean_position_norm": 4386.48583984375,
+     "norm_over_w0_base": 0.9260395385900189,
+     "text_arm": false
+    },
+    "of": {
+     "n_positions": 90,
+     "mean_position_norm": 925.2606811523438,
+     "norm_over_w0_base": 0.19533357806993942,
+     "text_arm": false
+    },
+    "paris": {
+     "n_positions": 13,
+     "mean_position_norm": 2646.689208984375,
+     "norm_over_w0_base": 0.5587476953912558,
+     "text_arm": false
+    },
+    "portugal": {
+     "n_positions": 3,
+     "mean_position_norm": 7924.34130859375,
+     "norm_over_w0_base": 1.67292307258454,
+     "text_arm": false
+    },
+    "provence": {
+     "n_positions": 3,
+     "mean_position_norm": 5075.40283203125,
+     "norm_over_w0_base": 1.0714781418056767,
+     "text_arm": false
+    },
+    "rhine": {
+     "n_positions": 5,
+     "mean_position_norm": 3599.026611328125,
+     "norm_over_w0_base": 0.7597974926202462,
+     "text_arm": false
+    },
+    "river": {
+     "n_positions": 8,
+     "mean_position_norm": 2042.921875,
+     "norm_over_w0_base": 0.4312852017705008,
+     "text_arm": false
+    },
+    "slovakia": {
+     "n_positions": 3,
+     "mean_position_norm": 6784.68310546875,
+     "norm_over_w0_base": 1.4323276175654038,
+     "text_arm": false
+    },
+    "slovenia": {
+     "n_positions": 4,
+     "mean_position_norm": 7255.03759765625,
+     "norm_over_w0_base": 1.531625067237456,
+     "text_arm": false
+    },
+    "south": {
+     "n_positions": 8,
+     "mean_position_norm": 3124.5947265625,
+     "norm_over_w0_base": 0.6596392566879488,
+     "text_arm": false
+    },
+    "toulouse": {
+     "n_positions": 8,
+     "mean_position_norm": 4599.82177734375,
+     "norm_over_w0_base": 0.971077302380955,
+     "text_arm": false
+    },
+    "west": {
+     "n_positions": 3,
+     "mean_position_norm": 3234.2587890625,
+     "norm_over_w0_base": 0.6827906497495583,
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_565",
+   "n_tokens": 2853,
+   "n_candidates": 19,
+   "gold_positions": 6,
+   "nongold_fired": [
+    "canadian football",
+    "game",
+    "accounting"
+   ],
+   "base_gauge_score": -8.885641562053177,
+   "deltas": {
+    "ice hockey player": {
+     "n_positions": 6,
+     "mean_position_norm": 2193.930908203125,
+     "norm_over_w0_base": 0.46316501183625675
+    },
+    "accounting": {
+     "n_positions": 2,
+     "mean_position_norm": 3711.18359375,
+     "norm_over_w0_base": 0.7834751708446221,
+     "text_arm": false
+    },
+    "association football": {
+     "n_positions": 4,
+     "mean_position_norm": 5544.884765625,
+     "norm_over_w0_base": 1.1705913839396105,
+     "text_arm": false
+    },
+    "bank": {
+     "n_positions": 3,
+     "mean_position_norm": 3207.600341796875,
+     "norm_over_w0_base": 0.6771627332107315,
+     "text_arm": false
+    },
+    "bubbles": {
+     "n_positions": 2,
+     "mean_position_norm": 5870.76611328125,
+     "norm_over_w0_base": 1.239388827687756,
+     "text_arm": false
+    },
+    "canada": {
+     "n_positions": 26,
+     "mean_position_norm": 2132.149169921875,
+     "norm_over_w0_base": 0.45012214916664967,
+     "text_arm": false
+    },
+    "canadian football": {
+     "n_positions": 6,
+     "mean_position_norm": 2105.286376953125,
+     "norm_over_w0_base": 0.44445109280985845,
+     "text_arm": false
+    },
+    "canadian football league": {
+     "n_positions": 6,
+     "mean_position_norm": 2955.1708984375,
+     "norm_over_w0_base": 0.6238718635282757,
+     "text_arm": false
+    },
+    "diplomacy": {
+     "n_positions": 2,
+     "mean_position_norm": 5032.44140625,
+     "norm_over_w0_base": 1.0624084718329005,
+     "text_arm": false
+    },
+    "fashion": {
+     "n_positions": 2,
+     "mean_position_norm": 7668.3330078125,
+     "norm_over_w0_base": 1.6188766633661922,
+     "text_arm": false
+    },
+    "game": {
+     "n_positions": 3,
+     "mean_position_norm": 4360.48193359375,
+     "norm_over_w0_base": 0.9205498034752816,
+     "text_arm": false
+    },
+    "general": {
+     "n_positions": 4,
+     "mean_position_norm": 813.8499755859375,
+     "norm_over_w0_base": 0.17181344780083585,
+     "text_arm": false
+    },
+    "governor": {
+     "n_positions": 1,
+     "mean_position_norm": 7148.97705078125,
+     "norm_over_w0_base": 1.509234419352855,
+     "text_arm": false
+    },
+    "head coach": {
+     "n_positions": 6,
+     "mean_position_norm": 2909.679931640625,
+     "norm_over_w0_base": 0.6142681772425604,
+     "text_arm": false
+    },
+    "major": {
+     "n_positions": 8,
+     "mean_position_norm": 2066.013671875,
+     "norm_over_w0_base": 0.43616015582349305,
+     "text_arm": false
+    },
+    "manager": {
+     "n_positions": 5,
+     "mean_position_norm": 2688.30615234375,
+     "norm_over_w0_base": 0.567533529070686,
+     "text_arm": false
+    },
+    "mayor": {
+     "n_positions": 2,
+     "mean_position_norm": 4446.22607421875,
+     "norm_over_w0_base": 0.9386514154079901,
+     "text_arm": false
+    },
+    "member": {
+     "n_positions": 2,
+     "mean_position_norm": 7467.8017578125,
+     "norm_over_w0_base": 1.5765421220036935,
+     "text_arm": false
+    },
+    "official": {
+     "n_positions": 3,
+     "mean_position_norm": 3937.260009765625,
+     "norm_over_w0_base": 0.8312026017806928,
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_75",
+   "n_tokens": 1224,
+   "n_candidates": 35,
+   "gold_positions": 22,
+   "nongold_fired": [
+    "pakistan",
+    "fremantle",
+    "chennai"
+   ],
+   "base_gauge_score": -12.188113107203856,
+   "deltas": {
+    "western australia": {
+     "n_positions": 22,
+     "mean_position_norm": 3652.189208984375,
+     "norm_over_w0_base": 0.7710207517851713
+    },
+    "australia": {
+     "n_positions": 21,
+     "mean_position_norm": 1924.1441650390625,
+     "norm_over_w0_base": 0.40620980890637526,
+     "text_arm": false
+    },
+    "bangladesh": {
+     "n_positions": 3,
+     "mean_position_norm": 5023.53759765625,
+     "norm_over_w0_base": 1.0605287715208749,
+     "text_arm": false
+    },
+    "canberra": {
+     "n_positions": 3,
+     "mean_position_norm": 4139.0205078125,
+     "norm_over_w0_base": 0.8737966520839935,
+     "text_arm": false
+    },
+    "central": {
+     "n_positions": 2,
+     "mean_position_norm": 5178.619140625,
+     "norm_over_w0_base": 1.093268337026853,
+     "text_arm": false
+    },
+    "chennai": {
+     "n_positions": 3,
+     "mean_position_norm": 5274.54345703125,
+     "norm_over_w0_base": 1.1135191056256115,
+     "text_arm": false
+    },
+    "delhi": {
+     "n_positions": 2,
+     "mean_position_norm": 5086.224609375,
+     "norm_over_w0_base": 1.073762748222755,
+     "text_arm": false
+    },
+    "east": {
+     "n_positions": 10,
+     "mean_position_norm": 3739.357421875,
+     "norm_over_w0_base": 0.7894230023776014,
+     "text_arm": false
+    },
+    "east timor": {
+     "n_positions": 5,
+     "mean_position_norm": 4257.7275390625,
+     "norm_over_w0_base": 0.8988571238282854,
+     "text_arm": false
+    },
+    "fremantle": {
+     "n_positions": 15,
+     "mean_position_norm": 2935.683349609375,
+     "norm_over_w0_base": 0.6197578092752954,
+     "text_arm": false
+    },
+    "guinea": {
+     "n_positions": 3,
+     "mean_position_norm": 4521.60888671875,
+     "norm_over_w0_base": 0.9545656272517937,
+     "text_arm": false
+    },
+    "hyderabad": {
+     "n_positions": 3,
+     "mean_position_norm": 6708.60009765625,
+     "norm_over_w0_base": 1.4162655861302953,
+     "text_arm": false
+    },
+    "india": {
+     "n_positions": 5,
+     "mean_position_norm": 2837.31396484375,
+     "norm_over_w0_base": 0.5989908575499963,
+     "text_arm": false
+    },
+    "indian": {
+     "n_positions": 6,
+     "mean_position_norm": 4462.66748046875,
+     "norm_over_w0_base": 0.9421223925895928,
+     "text_arm": false
+    },
+    "indonesia": {
+     "n_positions": 3,
+     "mean_position_norm": 4854.22119140625,
+     "norm_over_w0_base": 1.024784056401709,
+     "text_arm": false
+    },
+    "kolkata": {
+     "n_positions": 3,
+     "mean_position_norm": 5635.283203125,
+     "norm_over_w0_base": 1.1896755735182871,
+     "text_arm": false
+    },
+    "most": {
+     "n_positions": 4,
+     "mean_position_norm": 2514.29248046875,
+     "norm_over_w0_base": 0.5307971650893492,
+     "text_arm": false
+    },
+    "mumbai": {
+     "n_positions": 2,
+     "mean_position_norm": 4967.2109375,
+     "norm_over_w0_base": 1.0486375409810156,
+     "text_arm": false
+    },
+    "myanmar": {
+     "n_positions": 3,
+     "mean_position_norm": 5341.06787109375,
+     "norm_over_w0_base": 1.1275632037836039,
+     "text_arm": false
+    },
+    "nepal": {
+     "n_positions": 3,
+     "mean_position_norm": 7071.04052734375,
+     "norm_over_w0_base": 1.492781088636998,
+     "text_arm": false
+    },
+    "new south wales": {
+     "n_positions": 6,
+     "mean_position_norm": 5334.01806640625,
+     "norm_over_w0_base": 1.1260749058343291,
+     "text_arm": false
+    },
+    "north": {
+     "n_positions": 8,
+     "mean_position_norm": 3284.7509765625,
+     "norm_over_w0_base": 0.6934501534438792,
+     "text_arm": false
+    },
+    "northern territory": {
+     "n_positions": 4,
+     "mean_position_norm": 5008.80322265625,
+     "norm_over_w0_base": 1.0574181690193294,
+     "text_arm": false
+    },
+    "of": {
+     "n_positions": 38,
+     "mean_position_norm": 1564.739501953125,
+     "norm_over_w0_base": 0.33033519297850117,
+     "text_arm": false
+    },
+    "pakistan": {
+     "n_positions": 2,
+     "mean_position_norm": 4695.89453125,
+     "norm_over_w0_base": 0.9913594079084143,
+     "text_arm": false
+    },
+    "papua new guinea": {
+     "n_positions": 7,
+     "mean_position_norm": 5222.22119140625,
+     "norm_over_w0_base": 1.1024732505866528,
+     "text_arm": false
+    },
+    "perth": {
+     "n_positions": 13,
+     "mean_position_norm": 2927.611083984375,
+     "norm_over_w0_base": 0.6180536576131946,
+     "text_arm": false
+    },
+    "plain": {
+     "n_positions": 5,
+     "mean_position_norm": 482.0830993652344,
+     "norm_over_w0_base": 0.10177349869528587,
+     "text_arm": false
+    },
+    "south": {
+     "n_positions": 15,
+     "mean_position_norm": 3020.58251953125,
+     "norm_over_w0_base": 0.6376810378030157,
+     "text_arm": false
+    },
+    "south australia": {
+     "n_positions": 4,
+     "mean_position_norm": 4479.03564453125,
+     "norm_over_w0_base": 0.9455779074708499,
+     "text_arm": false
+    },
+    "southwest": {
+     "n_positions": 2,
+     "mean_position_norm": 3873.3173828125,
+     "norm_over_w0_base": 0.8177035497098865,
+     "text_arm": false
+    },
+    "sri lanka": {
+     "n_positions": 5,
+     "mean_position_norm": 4340.43896484375,
+     "norm_over_w0_base": 0.9163184934446796,
+     "text_arm": false
+    },
+    "tasmania": {
+     "n_positions": 3,
+     "mean_position_norm": 5384.203125,
+     "norm_over_w0_base": 1.1366695709492003,
+     "text_arm": false
+    },
+    "vanuatu": {
+     "n_positions": 3,
+     "mean_position_norm": 5668.52001953125,
+     "norm_over_w0_base": 1.1966922623331635,
+     "text_arm": false
+    },
+    "west": {
+     "n_positions": 7,
+     "mean_position_norm": 2851.093505859375,
+     "norm_over_w0_base": 0.601899883196035,
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_801",
+   "n_tokens": 2406,
+   "n_candidates": 37,
+   "gold_positions": 11,
+   "nongold_fired": [
+    "antarctica",
+    "new zealand",
+    "tuvalu"
+   ],
+   "base_gauge_score": -9.607771994794886,
+   "deltas": {
+    "wellington region": {
+     "n_positions": 11,
+     "mean_position_norm": 2951.13037109375,
+     "norm_over_w0_base": 0.6230188599592047
+    },
+    "antarctica": {
+     "n_positions": 3,
+     "mean_position_norm": 6588.86865234375,
+     "norm_over_w0_base": 1.3909888483451682,
+     "text_arm": false
+    },
+    "auckland": {
+     "n_positions": 12,
+     "mean_position_norm": 2159.209228515625,
+     "norm_over_w0_base": 0.45583485065237195,
+     "text_arm": false
+    },
+    "australia": {
+     "n_positions": 8,
+     "mean_position_norm": 2769.808349609375,
+     "norm_over_w0_base": 0.5847396161083728,
+     "text_arm": false
+    },
+    "caledonia": {
+     "n_positions": 6,
+     "mean_position_norm": 5577.75439453125,
+     "norm_over_w0_base": 1.1775305550887538,
+     "text_arm": false
+    },
+    "canberra": {
+     "n_positions": 3,
+     "mean_position_norm": 5758.81396484375,
+     "norm_over_w0_base": 1.215754392363347,
+     "text_arm": false
+    },
+    "centre": {
+     "n_positions": 3,
+     "mean_position_norm": 3922.078857421875,
+     "norm_over_w0_base": 0.8279976792470385,
+     "text_arm": false
+    },
+    "earth": {
+     "n_positions": 3,
+     "mean_position_norm": 6196.93896484375,
+     "norm_over_w0_base": 1.3082478113912774,
+     "text_arm": false
+    },
+    "east": {
+     "n_positions": 13,
+     "mean_position_norm": 3877.247802734375,
+     "norm_over_w0_base": 0.8185333082874379,
+     "text_arm": false
+    },
+    "fiji": {
+     "n_positions": 6,
+     "mean_position_norm": 4216.8212890625,
+     "norm_over_w0_base": 0.8902213260032097,
+     "text_arm": false
+    },
+    "france": {
+     "n_positions": 4,
+     "mean_position_norm": 5647.17578125,
+     "norm_over_w0_base": 1.1921862387664195,
+     "text_arm": false
+    },
+    "golden": {
+     "n_positions": 2,
+     "mean_position_norm": 6077.7294921875,
+     "norm_over_w0_base": 1.283081268266614,
+     "text_arm": false
+    },
+    "hill": {
+     "n_positions": 2,
+     "mean_position_norm": 7624.48193359375,
+     "norm_over_w0_base": 1.6096191779852171,
+     "text_arm": false
+    },
+    "loyalty islands": {
+     "n_positions": 4,
+     "mean_position_norm": 4644.6728515625,
+     "norm_over_w0_base": 0.9805458997026502,
+     "text_arm": false
+    },
+    "most": {
+     "n_positions": 6,
+     "mean_position_norm": 772.73388671875,
+     "norm_over_w0_base": 0.16313335048526972,
+     "text_arm": false
+    },
+    "mountain": {
+     "n_positions": 5,
+     "mean_position_norm": 3429.794189453125,
+     "norm_over_w0_base": 0.7240705076054766,
+     "text_arm": false
+    },
+    "new zealand": {
+     "n_positions": 70,
+     "mean_position_norm": 2110.16796875,
+     "norm_over_w0_base": 0.44548165512789933,
+     "text_arm": false
+    },
+    "north": {
+     "n_positions": 33,
+     "mean_position_norm": 2609.317626953125,
+     "norm_over_w0_base": 0.5508581081808637,
+     "text_arm": false
+    },
+    "north island": {
+     "n_positions": 40,
+     "mean_position_norm": 2636.06884765625,
+     "norm_over_w0_base": 0.5565056103001282,
+     "text_arm": false
+    },
+    "of": {
+     "n_positions": 105,
+     "mean_position_norm": 1215.4571533203125,
+     "norm_over_w0_base": 0.25659751849940393,
+     "text_arm": false
+    },
+    "pacific ocean": {
+     "n_positions": 18,
+     "mean_position_norm": 3218.50439453125,
+     "norm_over_w0_base": 0.6794647089451982,
+     "text_arm": false
+    },
+    "papua new guinea": {
+     "n_positions": 7,
+     "mean_position_norm": 6493.32470703125,
+     "norm_over_w0_base": 1.370818380626205,
+     "text_arm": false
+    },
+    "river": {
+     "n_positions": 17,
+     "mean_position_norm": 1599.5419921875,
+     "norm_over_w0_base": 0.3376824142337674,
+     "text_arm": false
+    },
+    "south": {
+     "n_positions": 18,
+     "mean_position_norm": 1632.44384765625,
+     "norm_over_w0_base": 0.3446283887950627,
+     "text_arm": false
+    },
+    "south island": {
+     "n_positions": 12,
+     "mean_position_norm": 2182.498779296875,
+     "norm_over_w0_base": 0.4607515529162976,
+     "text_arm": false
+    },
+    "southwest": {
+     "n_positions": 3,
+     "mean_position_norm": 4502.14306640625,
+     "norm_over_w0_base": 0.9504561601479159,
+     "text_arm": false
+    },
+    "tasmania": {
+     "n_positions": 4,
+     "mean_position_norm": 4638.83740234375,
+     "norm_over_w0_base": 0.9793139666931071,
+     "text_arm": false
+    },
+    "the nation": {
+     "n_positions": 4,
+     "mean_position_norm": 2497.9677734375,
+     "norm_over_w0_base": 0.5273508245062972,
+     "text_arm": false
+    },
+    "the valley": {
+     "n_positions": 8,
+     "mean_position_norm": 1389.772216796875,
+     "norm_over_w0_base": 0.2933975098466633,
+     "text_arm": false
+    },
+    "tonga": {
+     "n_positions": 8,
+     "mean_position_norm": 4039.357421875,
+     "norm_over_w0_base": 0.8527565845935882,
+     "text_arm": false
+    },
+    "tongatapu": {
+     "n_positions": 6,
+     "mean_position_norm": 4282.87939453125,
+     "norm_over_w0_base": 0.904166980849001,
+     "text_arm": false
+    },
+    "tuvalu": {
+     "n_positions": 4,
+     "mean_position_norm": 5053.6005859375,
+     "norm_over_w0_base": 1.066875427320771,
+     "text_arm": false
+    },
+    "vanuatu": {
+     "n_positions": 4,
+     "mean_position_norm": 5605.7822265625,
+     "norm_over_w0_base": 1.1834475651030438,
+     "text_arm": false
+    },
+    "wallis": {
+     "n_positions": 5,
+     "mean_position_norm": 5069.208984375,
+     "norm_over_w0_base": 1.070170546606442,
+     "text_arm": false
+    },
+    "wallis and futuna": {
+     "n_positions": 9,
+     "mean_position_norm": 5278.6220703125,
+     "norm_over_w0_base": 1.1143801495908623,
+     "text_arm": false
+    },
+    "wellington": {
+     "n_positions": 18,
+     "mean_position_norm": 2545.21484375,
+     "norm_over_w0_base": 0.5373252452133014,
+     "text_arm": false
+    },
+    "west": {
+     "n_positions": 4,
+     "mean_position_norm": 3881.8720703125,
+     "norm_over_w0_base": 0.8195095463902643,
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_926",
+   "n_tokens": 2339,
+   "n_candidates": 18,
+   "gold_positions": 4,
+   "nongold_fired": [
+    "music theorist",
+    "mathematician",
+    "intellectual"
+   ],
+   "base_gauge_score": -14.00331487401762,
+   "deltas": {
+    "geographer": {
+     "n_positions": 4,
+     "mean_position_norm": 2273.430419921875,
+     "norm_over_w0_base": 0.4799483080414909
+    },
+    "academic": {
+     "n_positions": 4,
+     "mean_position_norm": 3168.940673828125,
+     "norm_over_w0_base": 0.6690012156782597,
+     "text_arm": false
+    },
+    "author": {
+     "n_positions": 2,
+     "mean_position_norm": 2595.12353515625,
+     "norm_over_w0_base": 0.5478615659148681,
+     "text_arm": false
+    },
+    "aviation": {
+     "n_positions": 2,
+     "mean_position_norm": 3217.81640625,
+     "norm_over_w0_base": 0.6793194664039509,
+     "text_arm": false
+    },
+    "bank": {
+     "n_positions": 2,
+     "mean_position_norm": 3459.20263671875,
+     "norm_over_w0_base": 0.7302789819812833,
+     "text_arm": false
+    },
+    "expert": {
+     "n_positions": 8,
+     "mean_position_norm": 2209.154052734375,
+     "norm_over_w0_base": 0.4663787994221093,
+     "text_arm": false
+    },
+    "faculty": {
+     "n_positions": 5,
+     "mean_position_norm": 3174.71142578125,
+     "norm_over_w0_base": 0.6702194903224973,
+     "text_arm": false
+    },
+    "general": {
+     "n_positions": 4,
+     "mean_position_norm": 2891.073486328125,
+     "norm_over_w0_base": 0.6103401344627388,
+     "text_arm": false
+    },
+    "intellectual": {
+     "n_positions": 2,
+     "mean_position_norm": 4931.7958984375,
+     "norm_over_w0_base": 1.0411610033538583,
+     "text_arm": false
+    },
+    "librarian": {
+     "n_positions": 2,
+     "mean_position_norm": 4038.04541015625,
+     "norm_over_w0_base": 0.8524796032533954,
+     "text_arm": false
+    },
+    "major": {
+     "n_positions": 3,
+     "mean_position_norm": 3129.0009765625,
+     "norm_over_w0_base": 0.660569468676746,
+     "text_arm": false
+    },
+    "mathematician": {
+     "n_positions": 2,
+     "mean_position_norm": 3941.470458984375,
+     "norm_over_w0_base": 0.832091477886566,
+     "text_arm": false
+    },
+    "mountain": {
+     "n_positions": 2,
+     "mean_position_norm": 7311.68310546875,
+     "norm_over_w0_base": 1.5435836103248204,
+     "text_arm": false
+    },
+    "music theorist": {
+     "n_positions": 4,
+     "mean_position_norm": 5193.73828125,
+     "norm_over_w0_base": 1.0964601681462147,
+     "text_arm": false
+    },
+    "pedagogy": {
+     "n_positions": 2,
+     "mean_position_norm": 3535.907470703125,
+     "norm_over_w0_base": 0.7464722883463266,
+     "text_arm": false
+    },
+    "professor": {
+     "n_positions": 4,
+     "mean_position_norm": 2107.44091796875,
+     "norm_over_w0_base": 0.4449059421450278,
+     "text_arm": false
+    },
+    "research": {
+     "n_positions": 15,
+     "mean_position_norm": 2135.784912109375,
+     "norm_over_w0_base": 0.45088969775581017,
+     "text_arm": false
+    },
+    "science": {
+     "n_positions": 9,
+     "mean_position_norm": 1449.1959228515625,
+     "norm_over_w0_base": 0.3059425637566406,
+     "text_arm": false
+    }
+   }
+  }
+ ],
+ "seconds": 2189
+}
