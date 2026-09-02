@@ -2911,3 +2911,20 @@ construction here). MDE: 48 gold samples per rung → repair rate ≥ 0.10
 detectable; fingerprint lift ≥ 0.06. Reader: scripts/wikihop_wh_gates.py.
 [Launched after registration commit dbb62bf and tooling commit ad03f43:
 job-az23x, context ctx-be35c137, 2026-09-02 01:45 UTC.]
+
+### WH — LANDED: NO-CEILING (job-az23x, 2026-09-02)
+
+Gate (a) TEXT CEILING FAILS: hint-first gold text repairs 2/12 rows
+(rate 0.167, dP +0.167 [0, +0.417]); 10 rows keep their wrong answer
+even when told the gold candidate as text. Pre-named branch: the write
+test is uninformative; no further arms. Descriptive: non-gold text hints
+do move answers (+0.188 [+0.056, +0.347]); the 2× δ write fully repairs
+one of the two hint-repairable rows (4/4; the first whole-row repair by
+any activation write in item W) and the non-gold fingerprint rises with
+dose (+0.049 → +0.076, CIs touching 0); delivery audit valid on all 576
+fired records. Reading: the reading-driven filter does not isolate
+commitment failures; the hint-REPAIRABLE slice (~16% of failing rows)
+is the sandbox analog and was never sampled on purpose. Implied next
+registration (not launched): hint-first text screening of the 287-row
+W2 pool to find hint-repairable rows, then the WH design on 12–24 of
+them with rungs {1, 2, 4}×. Full numbers: docs/wikihop_wh_summary.md.

@@ -1,0 +1,124 @@
+{
+ "n_rows": 12,
+ "delivery_audit": {
+  "n_fired_records": 576,
+  "n_zero_prefill_hook_calls": 0,
+  "n_zero_positions_written": 0,
+  "n_gauge_forward_unhooked": 0,
+  "valid": true
+ },
+ "text_ceiling_gold": {
+  "n_rows": 12,
+  "rate": 0.16666666666666666,
+  "baseline": 0.0,
+  "dP": 0.16666666666666666,
+  "ci": [
+   0.0,
+   0.4166666666666667
+  ],
+  "pass": false
+ },
+ "text_nongold_fingerprint_ceiling": {
+  "n_rows": 12,
+  "n_fires": 36,
+  "answers_fired_rate": 0.25,
+  "lift": 0.1875,
+  "ci": [
+   0.05555555555555555,
+   0.34722222222222227
+  ],
+  "pass": true
+ },
+ "per_rung": {
+  "0.5": {
+   "gold": {
+    "n_rows": 12,
+    "rate": 0.0,
+    "baseline": 0.0,
+    "dP": 0.0,
+    "ci": [
+     0.0,
+     0.0
+    ],
+    "pass": false
+   },
+   "nongold": {
+    "n_rows": 12,
+    "n_fires": 36,
+    "answers_fired_rate": 0.1111111111111111,
+    "lift": 0.048611111111111105,
+    "ci": [
+     0.0,
+     0.11805555555555554
+    ],
+    "pass": false
+   },
+   "positive_control_pass": false,
+   "recovered_fraction": 0.0,
+   "gauge_shift_gold": -0.2575284628588479,
+   "gauge_shift_nongold": 0.1390397656158345
+  },
+  "1.0": {
+   "gold": {
+    "n_rows": 12,
+    "rate": 0.0,
+    "baseline": 0.0,
+    "dP": 0.0,
+    "ci": [
+     0.0,
+     0.0
+    ],
+    "pass": false
+   },
+   "nongold": {
+    "n_rows": 12,
+    "n_fires": 36,
+    "answers_fired_rate": 0.1111111111111111,
+    "lift": 0.048611111111111105,
+    "ci": [
+     0.0,
+     0.11805555555555554
+    ],
+    "pass": false
+   },
+   "positive_control_pass": false,
+   "recovered_fraction": 0.0,
+   "gauge_shift_gold": -0.21325137050203447,
+   "gauge_shift_nongold": 0.09336155162069855
+  },
+  "2.0": {
+   "gold": {
+    "n_rows": 12,
+    "rate": 0.08333333333333333,
+    "baseline": 0.0,
+    "dP": 0.08333333333333333,
+    "ci": [
+     0.0,
+     0.25
+    ],
+    "pass": false
+   },
+   "nongold": {
+    "n_rows": 12,
+    "n_fires": 36,
+    "answers_fired_rate": 0.1388888888888889,
+    "lift": 0.0763888888888889,
+    "ci": [
+     0.0,
+     0.19444444444444445
+    ],
+    "pass": false
+   },
+   "positive_control_pass": false,
+   "recovered_fraction": 0.5,
+   "gauge_shift_gold": -0.04951458925554982,
+   "gauge_shift_nongold": 0.06471661751965802
+  }
+ },
+ "gold_delta_mean_position_norm": {
+  "mean": 6268.94873046875,
+  "n": 12
+ },
+ "rungs_passing": [],
+ "verdict": "NO-CEILING (hint-first text does not repair these rows; write test uninformative)"
+}
