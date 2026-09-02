@@ -3202,3 +3202,6 @@ gauge-select − RANDOM-BRANCH expectation CI > 0 (the random-branch
 comparator is now a registered reading) → FROZEN-LOOP-CLOSES. MDE at
 n = 59: repair ≥ ~0.05. Cost ~$3 (two jobs). Readers:
 scripts/wikihop_wl_gates.py (extended with the random-branch reading).
+[Launched after registration commit 3c792c9 / tooling f8d56cd: job A
+job-tj7za (test shard 1, donors shard 0), job B job-7swth (test shard 0,
+donors shard 1), context ctx-ae10e32e, seed 20260830, 2026-09-02 17:10 UTC.]
