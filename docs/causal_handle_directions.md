@@ -3329,3 +3329,47 @@ program. Frozen loop: gauge-select 0.254 vs baseline 0.050 (+0.204
 oracle 0.700 (36% recovered; the real-text L38 gauge is the limiting
 half on pseudonym text). Descriptive rider; no prediction registered.
 Full numbers: docs/wikihop_wa_summary.md (rider section).
+
+### WG. Refit the gauge on anonymized text: is the selector's shortfall a distribution mismatch? (registered 2026-09-02, before any data)
+
+**Why.** Across WL/WF/WX/WA the write is stable and the selector is
+the variable half: the L38 gauge (fit once on real-entity W0 text,
+natural gate 0.776) recovers 93% → 63% → 46% → 43% → 36% of the oracle
+as the setting moves away from its fit distribution, bottoming out on
+pseudonym text where the write is strongest (+0.650). WG refits the
+gauge on anonymized rows and re-reads the frozen loop on the SAME
+branches. **Registered directional prediction (the program's 13th):
+on the 60 WA rows, the loop selected by a gauge fit on anonymized text
+repairs more than the loop selected by the real-text gauge (row-paired
+difference in gauge-select correct rate, CI > 0), same branches, same
+seeds.**
+
+**Stage 1 — capture + fit (~$1).** W0 capture on all 536 anonymized rows
+(std prompt; final-token states at L38/43/48/53, float32). Offline fit
+(scripts/wikihop_w0_fit.py --exclude-ids-file): logistic on final-token
+states vs std-majority labels from the WA stage-1 grades, 5-fold CV,
+**the 60 WA test rows excluded from the fit** (and from donors);
+primary layer = argmax CV AUC among {38,43,48,53}; NATURAL GATE CV ≥
+0.65 (FAIL → the gauge cannot be fit on pseudonym text; reported, stage
+2 still runs with the best layer as descriptive). The anonymized-fit
+gauge for all four layers is pinned in a new npz before stage 2.
+
+**Stage 2 — the WA rider re-run (two jobs, ~$2.5).** Identical to the
+rider (cross-fit frozen direction, seed 20260836, rungs 1×/2×, loop at
+2×) so every branch's generations reproduce; each branch's final-token
+state is scored by ALL gauges in one forward: the anonymized-fit gauge
+at L38/43/48/53 and the real-text W0 gauge at L38 (the rider's
+selector). PRIMARY selector = the anonymized-fit gauge at its pinned
+layer. Delivery: hook counters (a zero aborts); generation identity
+with the rider is checked (same outputs per branch = same seeds).
+
+**Gates.** (a) NATURAL GATE on anonymized text (stage 1). (b) 13th
+prediction: paired (new-gauge loop − real-gauge loop) CI > 0 →
+**GAUGE-REFIT-HELPS**; else **SELECTOR-LIMIT-IS-NOT-DISTRIBUTION**
+(the shortfall is in what final-token states carry, not in the fit).
+(c) Descriptive: loop vs baseline / random branch under each gauge;
+fraction of the 0.700 oracle recovered; argmax-gold rate; per-layer
+comparison; the real-gauge loop must reproduce the rider's 0.254 (a
+consistency check on identical branches). MDE (n = 60, paired): ≈
+0.07. Readers: scripts/wikihop_wl_gates.py (per gauge key) +
+scripts/wikihop_wg_compare.py.
