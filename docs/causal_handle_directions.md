@@ -2975,3 +2975,5 @@ per-row table; the WH rows' stage-1 re-measurement vs their WH text
 arm. MDE: 24 rows × k=4 = 96 gold samples per rung → repair ≥ ~0.08
 detectable against a 0 baseline; fingerprint ≥ ~0.05. Reader:
 scripts/wikihop_wh_gates.py (unchanged).
+[Stage 1 launched after registration commit 18c6339 / tooling cab0b51:
+job-iimvi, context ctx-1697ef9c, 2026-09-02 02:16 UTC.]
