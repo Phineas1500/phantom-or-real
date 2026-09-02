@@ -3526,4 +3526,7 @@ PASS: closed-book **0.113** (WA 0.127; real 0.45). std 0.361, hint-first
 WA 23.6%)**, 43 reading-driven + 4 memory-driven; all 47 pinned (no cap
 needed; ≥ 20 → not underpowered) in docs/wikihop_wo_pinned.json,
 cross-fit shards 24 + 23 in docs/wikihop_wo_frozen_pinned.json. MDE at
-n = 47 ≈ 0.08 (paired). Stage 2 launches.
+n = 47 ≈ 0.08 (paired). Stage 2 launches. [Stage 2 launched after pins
+commit 9df8e0b: job A job-k76n4 (test shard 1, 23 rows), job B job-6fgby
+(test shard 0, 24 rows), context ctx-42367914, seed 20260842, 2026-09-02
+23:50 UTC.]
