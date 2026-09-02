@@ -1,0 +1,4487 @@
+{
+ "n_rows": 30,
+ "rows_key": "wh_rows",
+ "shard_index": 0,
+ "shard_count": 1,
+ "loop": true,
+ "loop_rung": 2.0,
+ "n_fired_branches": 788,
+ "write_layer": 30,
+ "gauge_layer": 38,
+ "rungs": [
+  1.0,
+  2.0
+ ],
+ "seed": 20260830,
+ "frozen": {
+  "norm_target": 3212.9004486339572,
+  "n_donors": 29,
+  "n_positions": 229,
+  "mean_delta_norm": 1529.4518005792856,
+  "mean_position_norm": 3212.9004486339572
+ },
+ "wx_job": "B",
+ "w0_base_norm": 4736.823490844226,
+ "skipped": [],
+ "rows": [
+  {
+   "id": "WH_dev_110",
+   "n_tokens": 989,
+   "n_candidates": 10,
+   "gold_positions": 3,
+   "nongold_fired": [
+    "of",
+    "home",
+    "ukraine"
+   ],
+   "base_gauge_score": -21.90181789949174,
+   "deltas": {
+    "kiev": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 3736.691162109375,
+     "cos_frozen_vs_own_gold_delta": 0.689954015456344
+    },
+    "central": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "home": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "kharkiv": {
+     "n_positions": 12,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "march": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "moscow": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "of": {
+     "n_positions": 29,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "soviet union": {
+     "n_positions": 8,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "ukraine": {
+     "n_positions": 17,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "union": {
+     "n_positions": 7,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_210",
+   "n_tokens": 1692,
+   "n_candidates": 54,
+   "gold_positions": 3,
+   "nongold_fired": [
+    "network",
+    "will",
+    "county"
+   ],
+   "base_gauge_score": -4.752992285646944,
+   "deltas": {
+    "tournament": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 3108.564208984375,
+     "cos_frozen_vs_own_gold_delta": 0.7259498676778149
+    },
+    "1": {
+     "n_positions": 5,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1980": {
+     "n_positions": 16,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "association": {
+     "n_positions": 11,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "beach": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "capital": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "championship": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "club": {
+     "n_positions": 10,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "community": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "container": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "continent": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "county": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "cup": {
+     "n_positions": 22,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "del": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "drawing": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "england": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "federation": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "final": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "football": {
+     "n_positions": 26,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "forest": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "governing body": {
+     "n_positions": 8,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "home": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "june": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "league": {
+     "n_positions": 9,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "mediterranean sea": {
+     "n_positions": 6,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "member": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "method": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "network": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "object": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "part": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "play": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "port": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "professional": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "professional association": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "research": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "river": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "row": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "rule": {
+     "n_positions": 5,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "season": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "seven": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "six": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "sport": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "super cup": {
+     "n_positions": 12,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "system": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "team sport": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "term": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "three": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "town": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "two": {
+     "n_positions": 8,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "uefa champions league": {
+     "n_positions": 16,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "union": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "urban area": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "will": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "world cup": {
+     "n_positions": 6,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_275",
+   "n_tokens": 1889,
+   "n_candidates": 35,
+   "gold_positions": 9,
+   "nongold_fired": [
+    "atlantic ocean",
+    "1975",
+    "municipality"
+   ],
+   "base_gauge_score": 3.3545650109491376,
+   "deltas": {
+    "european northern observatory": {
+     "n_positions": 9,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 2902.83642578125,
+     "cos_frozen_vs_own_gold_delta": 0.7814990529797383
+    },
+    "1975": {
+     "n_positions": 8,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "atlantic ocean": {
+     "n_positions": 8,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "atmosphere": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "balearic islands": {
+     "n_positions": 6,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "canary islands": {
+     "n_positions": 29,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "city": {
+     "n_positions": 8,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "city council": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "community": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "country": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "earth": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "english": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "european union": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "foot": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "france": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "government": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "green": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "islands": {
+     "n_positions": 22,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "mediterranean sea": {
+     "n_positions": 6,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "medium": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "municipality": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "nature": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "optics": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "part": {
+     "n_positions": 5,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "radiation": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "research institute": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "rock": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "roque de los muchachos observatory": {
+     "n_positions": 25,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "sky": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "state": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "the city": {
+     "n_positions": 6,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "the middle": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "university": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "v": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "volcano": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_452",
+   "n_tokens": 1226,
+   "n_candidates": 11,
+   "gold_positions": 8,
+   "nongold_fired": [
+    "1983",
+    "1947",
+    "1895"
+   ],
+   "base_gauge_score": -12.68600977815581,
+   "deltas": {
+    "1982": {
+     "n_positions": 8,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 3017.223876953125,
+     "cos_frozen_vs_own_gold_delta": 0.6125382578476316
+    },
+    "1520": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1530": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1895": {
+     "n_positions": 8,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1947": {
+     "n_positions": 8,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1957": {
+     "n_positions": 8,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1983": {
+     "n_positions": 8,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1997": {
+     "n_positions": 8,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "2005": {
+     "n_positions": 8,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "2006": {
+     "n_positions": 8,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "22": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_686",
+   "n_tokens": 1052,
+   "n_candidates": 9,
+   "gold_positions": 3,
+   "nongold_fired": [
+    "middlesex county",
+    "charles river",
+    "middlesex"
+   ],
+   "base_gauge_score": -4.25120509489811,
+   "deltas": {
+    "boston": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 4566.32958984375,
+     "cos_frozen_vs_own_gold_delta": 0.8448313583985769
+    },
+    "cambridge": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "charles river": {
+     "n_positions": 6,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "massachusetts": {
+     "n_positions": 7,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "middlesex": {
+     "n_positions": 7,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "middlesex county": {
+     "n_positions": 6,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "most": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "soviet union": {
+     "n_positions": 6,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "union": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_792",
+   "n_tokens": 2306,
+   "n_candidates": 49,
+   "gold_positions": 11,
+   "nongold_fired": [
+    "republic",
+    "india",
+    "urban district"
+   ],
+   "base_gauge_score": 17.60608528148805,
+   "deltas": {
+    "region of tanzania": {
+     "n_positions": 11,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 2973.70703125,
+     "cos_frozen_vs_own_gold_delta": 0.6514229502130079
+    },
+    "1": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "25": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "area": {
+     "n_positions": 5,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "border": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "capital": {
+     "n_positions": 10,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "channel": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "city": {
+     "n_positions": 6,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "climate": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "community": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "continent": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "country": {
+     "n_positions": 24,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "definition": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "democracy": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "destination": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "fresh water": {
+     "n_positions": 6,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "geography": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "india": {
+     "n_positions": 6,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "lake": {
+     "n_positions": 15,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "member": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "mine": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "mountain": {
+     "n_positions": 6,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "municipality": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "name": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "ocean": {
+     "n_positions": 10,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "part": {
+     "n_positions": 6,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "perspective": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "planet": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "province": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "region": {
+     "n_positions": 23,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "republic": {
+     "n_positions": 19,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "rift": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "rural district": {
+     "n_positions": 6,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "savanna": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "series": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "seven": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "sovereign state": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "state": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "summit": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "surface": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "term": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "territory": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "three": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "town": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "two": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "urban district": {
+     "n_positions": 6,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "valley": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "volcano": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "water": {
+     "n_positions": 6,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_1054",
+   "n_tokens": 789,
+   "n_candidates": 27,
+   "gold_positions": 2,
+   "nongold_fired": [
+    "category",
+    "set",
+    "game"
+   ],
+   "base_gauge_score": -14.538505529252456,
+   "deltas": {
+    "book": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 3066.7861328125,
+     "cos_frozen_vs_own_gold_delta": 0.47031075396645144
+    },
+    "age": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "august": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "category": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "ceremony": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "fiction": {
+     "n_positions": 13,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "film": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "four": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "game": {
+     "n_positions": 6,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "history": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "limited": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "literature": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "nebula": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "novel": {
+     "n_positions": 8,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "professional": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "protagonist": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "public": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "science": {
+     "n_positions": 14,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "sequel": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "set": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "space": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "space travel": {
+     "n_positions": 6,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "speaker": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "species": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "time": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "travel": {
+     "n_positions": 6,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "year": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_1301",
+   "n_tokens": 1384,
+   "n_candidates": 18,
+   "gold_positions": 16,
+   "nongold_fired": [
+    "pyrosome",
+    "animal",
+    "catenulida"
+   ],
+   "base_gauge_score": -15.978370106712436,
+   "deltas": {
+    "cheilostomata": {
+     "n_positions": 16,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 3564.878173828125,
+     "cos_frozen_vs_own_gold_delta": 0.8705388443555235
+    },
+    "animal": {
+     "n_positions": 5,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "anthozoa": {
+     "n_positions": 6,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "box": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "brachiopoda": {
+     "n_positions": 7,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "bryozoa": {
+     "n_positions": 18,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "catenulida": {
+     "n_positions": 8,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "cnidaria": {
+     "n_positions": 9,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "gymnolaemata": {
+     "n_positions": 17,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "hydrozoa": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "lophophore": {
+     "n_positions": 15,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "metazoa": {
+     "n_positions": 6,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "moss": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "physalia": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "physalis": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "pterobranchia": {
+     "n_positions": 15,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "pyrosome": {
+     "n_positions": 6,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "siphonophora": {
+     "n_positions": 5,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_1388",
+   "n_tokens": 2470,
+   "n_candidates": 40,
+   "gold_positions": 20,
+   "nongold_fired": [
+    "baden",
+    "as",
+    "italy"
+   ],
+   "base_gauge_score": 0.6444124690450875,
+   "deltas": {
+    "wei\u00dfenburg in bayern": {
+     "n_positions": 20,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 3424.50634765625,
+     "cos_frozen_vs_own_gold_delta": 0.822007587241254
+    },
+    "as": {
+     "n_positions": 12,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "asia": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "atlantic ocean": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "au": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "austria": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "baden": {
+     "n_positions": 5,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "bavaria": {
+     "n_positions": 16,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "belgium": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "berlin": {
+     "n_positions": 8,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "centre": {
+     "n_positions": 5,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "cologne": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "dax": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "d\u00fcsseldorf": {
+     "n_positions": 8,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "east": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "eichst\u00e4tt": {
+     "n_positions": 9,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "erlangen": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "europe": {
+     "n_positions": 8,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "european union": {
+     "n_positions": 18,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "finland": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "frankfurt": {
+     "n_positions": 8,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "f\u00fcrth": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "germany": {
+     "n_positions": 28,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "greece": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "hamburg": {
+     "n_positions": 8,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "hesse": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "italy": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "lakes": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "mediterranean sea": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "middle franconia": {
+     "n_positions": 20,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "most": {
+     "n_positions": 9,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "munich": {
+     "n_positions": 11,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "nuremberg": {
+     "n_positions": 10,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "old": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "real": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "ries": {
+     "n_positions": 7,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "slovakia": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "stuttgart": {
+     "n_positions": 6,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "swabia": {
+     "n_positions": 6,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "west": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_1504",
+   "n_tokens": 2433,
+   "n_candidates": 15,
+   "gold_positions": 6,
+   "nongold_fired": [
+    "electrical engineering",
+    "television",
+    "consumer electronics"
+   ],
+   "base_gauge_score": 0.9065215523190487,
+   "deltas": {
+    "video game industry": {
+     "n_positions": 6,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 1615.9488525390625,
+     "cos_frozen_vs_own_gold_delta": 0.261193190781701
+    },
+    "aging": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "computer": {
+     "n_positions": 16,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "consumer electronics": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "electrical engineering": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "electronics": {
+     "n_positions": 5,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "engineering": {
+     "n_positions": 5,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "news": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "publisher": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "publishing": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "restaurant": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "sport": {
+     "n_positions": 5,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "technology": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "television": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "video game": {
+     "n_positions": 48,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_1662",
+   "n_tokens": 2032,
+   "n_candidates": 40,
+   "gold_positions": 6,
+   "nongold_fired": [
+    "bangalore",
+    "district",
+    "dhaka"
+   ],
+   "base_gauge_score": -5.806271457297317,
+   "deltas": {
+    "sylhet division": {
+     "n_positions": 6,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 3522.703125,
+     "cos_frozen_vs_own_gold_delta": 0.7952395042731731
+    },
+    "bangalore": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "bangladesh": {
+     "n_positions": 18,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "banks": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "bhutan": {
+     "n_positions": 10,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "central": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "centre": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "chennai": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "date": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "delhi": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "dhaka": {
+     "n_positions": 7,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "district": {
+     "n_positions": 6,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "east": {
+     "n_positions": 9,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "england": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "hamlet": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "hill": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "hyderabad": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "india": {
+     "n_positions": 14,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "indian ocean": {
+     "n_positions": 10,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "indonesia": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "islamabad": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "kolkata": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "laos": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "maldives": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "most": {
+     "n_positions": 5,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "myanmar": {
+     "n_positions": 9,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "nepal": {
+     "n_positions": 10,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "north": {
+     "n_positions": 6,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "of": {
+     "n_positions": 61,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "river": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "rural area": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "sikkim": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "south": {
+     "n_positions": 14,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "southern region": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "southwest": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "sri lanka": {
+     "n_positions": 7,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "sylhet": {
+     "n_positions": 8,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "union": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "west": {
+     "n_positions": 8,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "yangon": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_1737",
+   "n_tokens": 1308,
+   "n_candidates": 13,
+   "gold_positions": 4,
+   "nongold_fired": [
+    "colombia",
+    "buenos aires",
+    "metropolis"
+   ],
+   "base_gauge_score": -2.3220311253650934,
+   "deltas": {
+    "la paz": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 3953.65283203125,
+     "cos_frozen_vs_own_gold_delta": 0.7063881542985104
+    },
+    "africa": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "argentina": {
+     "n_positions": 7,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "brazil": {
+     "n_positions": 10,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "buenos aires": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "central": {
+     "n_positions": 5,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "chile": {
+     "n_positions": 9,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "colombia": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "europe": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "metropolis": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "north america": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "peru": {
+     "n_positions": 7,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "the americas": {
+     "n_positions": 13,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_2004",
+   "n_tokens": 1332,
+   "n_candidates": 11,
+   "gold_positions": 8,
+   "nongold_fired": [
+    "2006",
+    "2013",
+    "27"
+   ],
+   "base_gauge_score": -22.66583715040482,
+   "deltas": {
+    "2012": {
+     "n_positions": 8,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 4011.34765625,
+     "cos_frozen_vs_own_gold_delta": 0.3788998194667016
+    },
+    "1928": {
+     "n_positions": 8,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1956": {
+     "n_positions": 12,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "200": {
+     "n_positions": 6,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "2006": {
+     "n_positions": 8,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "2007": {
+     "n_positions": 8,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "2011": {
+     "n_positions": 12,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "2013": {
+     "n_positions": 8,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "27": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "400": {
+     "n_positions": 6,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "january 1918": {
+     "n_positions": 12,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_2118",
+   "n_tokens": 656,
+   "n_candidates": 6,
+   "gold_positions": 6,
+   "nongold_fired": [
+    "academy awards",
+    "award",
+    "bafta"
+   ],
+   "base_gauge_score": 5.8465701222401565,
+   "deltas": {
+    "nandi awards": {
+     "n_positions": 6,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 5322.3544921875,
+     "cos_frozen_vs_own_gold_delta": 0.8374337347873857
+    },
+    "2015": {
+     "n_positions": 12,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "academy awards": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "award": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "bafta": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "filmfare awards": {
+     "n_positions": 12,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_2481",
+   "n_tokens": 2763,
+   "n_candidates": 47,
+   "gold_positions": 25,
+   "nongold_fired": [
+    "northwest territories",
+    "of",
+    "new york city"
+   ],
+   "base_gauge_score": -17.00967662125654,
+   "deltas": {
+    "ontario": {
+     "n_positions": 25,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 1818.6072998046875,
+     "cos_frozen_vs_own_gold_delta": 0.505183034296327
+    },
+    "angeles": {
+     "n_positions": 8,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "avenue": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "barrie": {
+     "n_positions": 6,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "basin": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "bathurst street": {
+     "n_positions": 5,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "calgary": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "canada": {
+     "n_positions": 29,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "center": {
+     "n_positions": 6,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "central": {
+     "n_positions": 6,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "chicago": {
+     "n_positions": 5,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "durham": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "edmonton": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "etobicoke": {
+     "n_positions": 6,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "golden": {
+     "n_positions": 9,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "kitchener": {
+     "n_positions": 8,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "lakes": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "lawrence": {
+     "n_positions": 6,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "los angeles": {
+     "n_positions": 14,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "mexico": {
+     "n_positions": 7,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "mississauga": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "most": {
+     "n_positions": 20,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "m\u00e9xico": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "new york": {
+     "n_positions": 26,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "new york city": {
+     "n_positions": 18,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "north": {
+     "n_positions": 11,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "north america": {
+     "n_positions": 10,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "northern": {
+     "n_positions": 5,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "northwest": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "northwest territories": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "of": {
+     "n_positions": 102,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "old toronto": {
+     "n_positions": 5,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "ottawa": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "parry sound": {
+     "n_positions": 5,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "quebec": {
+     "n_positions": 7,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "quebec city": {
+     "n_positions": 5,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "south": {
+     "n_positions": 7,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "southern california": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "the nation": {
+     "n_positions": 6,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "the valley": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "time": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "toronto": {
+     "n_positions": 41,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "union": {
+     "n_positions": 8,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "waterloo": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "western district": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "weston": {
+     "n_positions": 15,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "york": {
+     "n_positions": 15,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_2616",
+   "n_tokens": 1513,
+   "n_candidates": 14,
+   "gold_positions": 3,
+   "nongold_fired": [
+    "division",
+    "country",
+    "people"
+   ],
+   "base_gauge_score": 4.378318178332275,
+   "deltas": {
+    "airport": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 5105.05224609375,
+     "cos_frozen_vs_own_gold_delta": 0.7960335240195937
+    },
+    "aircraft": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "airline": {
+     "n_positions": 20,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "brand": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "capital": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "city": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "country": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "division": {
+     "n_positions": 1,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "flag": {
+     "n_positions": 5,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "gulf": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "name": {
+     "n_positions": 5,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "people": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "star": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "state": {
+     "n_positions": 8,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_2895",
+   "n_tokens": 1623,
+   "n_candidates": 14,
+   "gold_positions": 8,
+   "nongold_fired": [
+    "ray milland",
+    "john wayne",
+    "raoul walsh"
+   ],
+   "base_gauge_score": -14.703878331577387,
+   "deltas": {
+    "kubec glasmon": {
+     "n_positions": 8,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 5486.31591796875,
+     "cos_frozen_vs_own_gold_delta": 0.814910211062369
+    },
+    "alfred hitchcock": {
+     "n_positions": 6,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "humphrey bogart": {
+     "n_positions": 8,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "ivan goff": {
+     "n_positions": 6,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "john bright": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "john wayne": {
+     "n_positions": 9,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "john wexley": {
+     "n_positions": 7,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "loretta young": {
+     "n_positions": 5,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "michael curtiz": {
+     "n_positions": 6,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "orson welles": {
+     "n_positions": 10,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "raoul walsh": {
+     "n_positions": 7,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "ray milland": {
+     "n_positions": 15,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "stanley kubrick": {
+     "n_positions": 8,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "william shakespeare": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_3011",
+   "n_tokens": 2419,
+   "n_candidates": 42,
+   "gold_positions": 3,
+   "nongold_fired": [
+    "louisiana",
+    "mining",
+    "wayne county"
+   ],
+   "base_gauge_score": -10.200507994313398,
+   "deltas": {
+    "windsor": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 3260.576171875,
+     "cos_frozen_vs_own_gold_delta": 0.6384930373459756
+    },
+    "arkansas": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "as": {
+     "n_positions": 16,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "asia": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "best": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "cadillac": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "canada": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "court": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "delta": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "detroit": {
+     "n_positions": 17,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "england": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "fort": {
+     "n_positions": 6,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "geneva": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "indonesia": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "iowa": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "kentucky": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "lake superior": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "lakes": {
+     "n_positions": 13,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "lansing": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "leader": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "lies": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "lincoln park": {
+     "n_positions": 5,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "louisiana": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "major": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "mexico": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "michigan": {
+     "n_positions": 15,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "mining": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "mississippi": {
+     "n_positions": 10,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "mississippi river": {
+     "n_positions": 9,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "missouri": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "most": {
+     "n_positions": 7,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "new york": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "north america": {
+     "n_positions": 8,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "pontiac": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "scotland": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "tennessee": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "this": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "time": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "united states of america": {
+     "n_positions": 12,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "vienna": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "wayne county": {
+     "n_positions": 9,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "wisconsin": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_3097",
+   "n_tokens": 807,
+   "n_candidates": 6,
+   "gold_positions": 2,
+   "nongold_fired": [
+    "television",
+    "founder",
+    "official"
+   ],
+   "base_gauge_score": -19.65965627649434,
+   "deltas": {
+    "singer": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 5427.6904296875,
+     "cos_frozen_vs_own_gold_delta": 0.824456168676723
+    },
+    "founder": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "musician": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "official": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "songwriter": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "television": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_3295",
+   "n_tokens": 1386,
+   "n_candidates": 8,
+   "gold_positions": 12,
+   "nongold_fired": [
+    "norway",
+    "finland",
+    "denmark"
+   ],
+   "base_gauge_score": -16.54854460047953,
+   "deltas": {
+    "royal caribbean international": {
+     "n_positions": 12,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 3600.8115234375,
+     "cos_frozen_vs_own_gold_delta": 0.8241554516249573
+    },
+    "denmark": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "finland": {
+     "n_positions": 22,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "holland america line": {
+     "n_positions": 10,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "netherlands": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "norway": {
+     "n_positions": 5,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "pullmantur cruises": {
+     "n_positions": 8,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "southern": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_3486",
+   "n_tokens": 968,
+   "n_candidates": 4,
+   "gold_positions": 9,
+   "nongold_fired": [
+    "doug petrie",
+    "david fury",
+    "joss whedon"
+   ],
+   "base_gauge_score": -10.003247976155581,
+   "deltas": {
+    "david greenwalt": {
+     "n_positions": 9,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 3372.2119140625,
+     "cos_frozen_vs_own_gold_delta": 0.8245306295920555
+    },
+    "david fury": {
+     "n_positions": 6,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "doug petrie": {
+     "n_positions": 7,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "joss whedon": {
+     "n_positions": 22,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_3662",
+   "n_tokens": 1140,
+   "n_candidates": 19,
+   "gold_positions": 11,
+   "nongold_fired": [
+    "wales",
+    "melbourne",
+    "central"
+   ],
+   "base_gauge_score": -6.167189337368523,
+   "deltas": {
+    "victoria": {
+     "n_positions": 11,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 2281.8515625,
+     "cos_frozen_vs_own_gold_delta": 0.23471858697532907
+    },
+    "australia": {
+     "n_positions": 17,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "broken hill": {
+     "n_positions": 8,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "central": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "hill": {
+     "n_positions": 5,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "local government area": {
+     "n_positions": 18,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "melbourne": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "mildura": {
+     "n_positions": 22,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "murray": {
+     "n_positions": 11,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "murray mallee": {
+     "n_positions": 12,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "new south wales": {
+     "n_positions": 18,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "north": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "of": {
+     "n_positions": 47,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "river": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "road": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "south": {
+     "n_positions": 15,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "sydney": {
+     "n_positions": 6,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "wales": {
+     "n_positions": 7,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "west": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_3871",
+   "n_tokens": 1443,
+   "n_candidates": 30,
+   "gold_positions": 10,
+   "nongold_fired": [
+    "canton of valais",
+    "rh\u00f4ne",
+    "west"
+   ],
+   "base_gauge_score": -7.695255515305807,
+   "deltas": {
+    "canton of geneva": {
+     "n_positions": 10,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 3374.326904296875,
+     "cos_frozen_vs_own_gold_delta": 0.8635433014856784
+    },
+    "alpine": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "appenzell": {
+     "n_positions": 6,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "ascona": {
+     "n_positions": 6,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "canton of valais": {
+     "n_positions": 8,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "canton of vaud": {
+     "n_positions": 12,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "central": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "district": {
+     "n_positions": 5,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "europe": {
+     "n_positions": 5,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "france": {
+     "n_positions": 7,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "fribourg": {
+     "n_positions": 6,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "geneva": {
+     "n_positions": 18,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "germany": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "graub\u00fcnden": {
+     "n_positions": 6,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "jura": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "locarno": {
+     "n_positions": 10,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "neuch\u00e2tel": {
+     "n_positions": 6,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "north": {
+     "n_positions": 5,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "northern": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "novena": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "of": {
+     "n_positions": 67,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "payerne": {
+     "n_positions": 11,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "piedmont": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "rh\u00f4ne": {
+     "n_positions": 10,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "river": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "savoie": {
+     "n_positions": 5,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "switzerland": {
+     "n_positions": 18,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "ticino": {
+     "n_positions": 12,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "uri": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "west": {
+     "n_positions": 5,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_3951",
+   "n_tokens": 1211,
+   "n_candidates": 12,
+   "gold_positions": 6,
+   "nongold_fired": [
+    "russia",
+    "korea",
+    "pacific ocean"
+   ],
+   "base_gauge_score": -13.013798983369298,
+   "deltas": {
+    "edo": {
+     "n_positions": 6,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 3453.879638671875,
+     "cos_frozen_vs_own_gold_delta": 0.5157494214047129
+    },
+    "asia": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "east china sea": {
+     "n_positions": 6,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "japan": {
+     "n_positions": 8,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "korea": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "most": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "ocean": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "okhotsk": {
+     "n_positions": 12,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "pacific ocean": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "russia": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "sea of okhotsk": {
+     "n_positions": 12,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "westminster": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_4107",
+   "n_tokens": 865,
+   "n_candidates": 7,
+   "gold_positions": 8,
+   "nongold_fired": [
+    "50",
+    "1796",
+    "1969"
+   ],
+   "base_gauge_score": -10.466926096441858,
+   "deltas": {
+    "1983": {
+     "n_positions": 8,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 3254.44970703125,
+     "cos_frozen_vs_own_gold_delta": 0.6294060481056422
+    },
+    "1796": {
+     "n_positions": 8,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1969": {
+     "n_positions": 8,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1986": {
+     "n_positions": 8,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "20": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "50": {
+     "n_positions": 6,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "september 1995": {
+     "n_positions": 12,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_4214",
+   "n_tokens": 2220,
+   "n_candidates": 5,
+   "gold_positions": 6,
+   "nongold_fired": [
+    "city",
+    "seven network",
+    "bbc"
+   ],
+   "base_gauge_score": -1.272689252201977,
+   "deltas": {
+    "itv": {
+     "n_positions": 6,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 3932.599609375,
+     "cos_frozen_vs_own_gold_delta": 0.8578399852753239
+    },
+    "bbc": {
+     "n_positions": 6,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "city": {
+     "n_positions": 23,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "nine network": {
+     "n_positions": 8,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "seven network": {
+     "n_positions": 6,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_4449",
+   "n_tokens": 1178,
+   "n_candidates": 45,
+   "gold_positions": 6,
+   "nongold_fired": [
+    "river",
+    "character",
+    "terminology"
+   ],
+   "base_gauge_score": -2.1030955218947205,
+   "deltas": {
+    "short film": {
+     "n_positions": 6,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 2697.120361328125,
+     "cos_frozen_vs_own_gold_delta": 0.8013687142924661
+    },
+    "1": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "academy": {
+     "n_positions": 7,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "academy awards": {
+     "n_positions": 6,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "animated short film": {
+     "n_positions": 6,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "april": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "bank": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "border": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "broadcasting": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "ceremony": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "character": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "city": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "crew": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "december": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "design": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "director": {
+     "n_positions": 6,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "discourse": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "entertainment": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "family": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "film": {
+     "n_positions": 18,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "filmmaking": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "geographical": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "homme": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "march": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "motion": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "norm": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "november": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "october": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "performance": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "person": {
+     "n_positions": 5,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "production": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "province": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "region": {
+     "n_positions": 5,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "river": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "role": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "service": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "speech": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "statuette": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "term": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "terminology": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "title": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "two": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "vision": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "visual arts": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "voting": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_4691",
+   "n_tokens": 2340,
+   "n_candidates": 33,
+   "gold_positions": 13,
+   "nongold_fired": [
+    "scotland",
+    "queen maud land",
+    "orkney"
+   ],
+   "base_gauge_score": -9.290114474747767,
+   "deltas": {
+    "s\u00f8nderborg municipality": {
+     "n_positions": 13,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 3257.917724609375,
+     "cos_frozen_vs_own_gold_delta": 0.7576549762971194
+    },
+    "antarctica": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "atlantic ocean": {
+     "n_positions": 6,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "denmark": {
+     "n_positions": 25,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "d\u00fcsseldorf": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "east": {
+     "n_positions": 7,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "europe": {
+     "n_positions": 12,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "european union": {
+     "n_positions": 6,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "faroe islands": {
+     "n_positions": 11,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "foster": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "frankfurt": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "germany": {
+     "n_positions": 8,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "greenland": {
+     "n_positions": 9,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "iceland": {
+     "n_positions": 6,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "kingdom of denmark": {
+     "n_positions": 10,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "mainland": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "most": {
+     "n_positions": 6,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "north america": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "northern": {
+     "n_positions": 6,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "norway": {
+     "n_positions": 10,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "of": {
+     "n_positions": 88,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "orkney": {
+     "n_positions": 5,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "queen maud land": {
+     "n_positions": 7,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "scandinavia": {
+     "n_positions": 6,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "schengen": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "scotland": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "shetland": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "south": {
+     "n_positions": 8,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "stuttgart": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "svalbard": {
+     "n_positions": 5,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "sweden": {
+     "n_positions": 9,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "west": {
+     "n_positions": 5,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "\u00e5land islands": {
+     "n_positions": 6,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_4705",
+   "n_tokens": 1011,
+   "n_candidates": 34,
+   "gold_positions": 4,
+   "nongold_fired": [
+    "plane",
+    "incident",
+    "cause"
+   ],
+   "base_gauge_score": -9.895696720483345,
+   "deltas": {
+    "ship": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 3369.73046875,
+     "cos_frozen_vs_own_gold_delta": 0.4086851408370195
+    },
+    "acting": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "angle": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "area": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "atmosphere": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "bacteria": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "biology": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "boat": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "cause": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "chemical": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "construction": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "course": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "cross": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "direction": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "fluid": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "force": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "gas": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "incident": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "injury": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "line": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "may": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "plane": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "point": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "relation": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "rescue": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "science": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "shape": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "structural element": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "study": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "surface": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "term": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "two": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "wind": {
+     "n_positions": 10,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "wing": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_4900",
+   "n_tokens": 1038,
+   "n_candidates": 10,
+   "gold_positions": 4,
+   "nongold_fired": [
+    "entertainment",
+    "actor",
+    "military"
+   ],
+   "base_gauge_score": -15.747362526934829,
+   "deltas": {
+    "martial artist": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 3266.6220703125,
+     "cos_frozen_vs_own_gold_delta": 0.7522987289276645
+    },
+    "actor": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "entertainment": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "grappling": {
+     "n_positions": 11,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "hunting": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "law enforcement": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "military": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "president": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "religious": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "sovereign": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  }
+ ],
+ "seconds": 1135
+}

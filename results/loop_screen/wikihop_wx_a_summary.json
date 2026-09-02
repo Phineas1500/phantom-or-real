@@ -1,0 +1,5438 @@
+{
+ "n_rows": 29,
+ "rows_key": "wh_rows",
+ "shard_index": 0,
+ "shard_count": 1,
+ "loop": true,
+ "loop_rung": 2.0,
+ "n_fired_branches": 945,
+ "write_layer": 30,
+ "gauge_layer": 38,
+ "rungs": [
+  1.0,
+  2.0
+ ],
+ "seed": 20260830,
+ "frozen": {
+  "norm_target": 3288.0375866406252,
+  "n_donors": 30,
+  "n_positions": 235,
+  "mean_delta_norm": 1557.2044149398957,
+  "mean_position_norm": 3288.0375866406252
+ },
+ "wx_job": "A",
+ "w0_base_norm": 4736.823490844226,
+ "skipped": [],
+ "rows": [
+  {
+   "id": "WH_dev_126",
+   "n_tokens": 2409,
+   "n_candidates": 9,
+   "gold_positions": 17,
+   "nongold_fired": [
+    "prince",
+    "disney channel",
+    "the walt disney company"
+   ],
+   "base_gauge_score": 20.358646411672048,
+   "deltas": {
+    "walt disney animation studios": {
+     "n_positions": 17,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 2388.780029296875,
+     "cos_frozen_vs_own_gold_delta": 0.8277019221401252
+    },
+    "1995": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "disney channel": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "hasbro": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "history": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "pbs": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "prince": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "the walt disney company": {
+     "n_positions": 29,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "walt disney pictures": {
+     "n_positions": 13,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_220",
+   "n_tokens": 1384,
+   "n_candidates": 26,
+   "gold_positions": 5,
+   "nongold_fired": [
+    "london",
+    "walthamstow",
+    "east london"
+   ],
+   "base_gauge_score": -4.818421147774339,
+   "deltas": {
+    "essex": {
+     "n_positions": 5,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 4596.5625,
+     "cos_frozen_vs_own_gold_delta": 0.8750889773103716
+    },
+    "central": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "city of london": {
+     "n_positions": 9,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "county of london": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "district": {
+     "n_positions": 9,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "east london": {
+     "n_positions": 10,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "elizabeth": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "epping forest": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "greater london": {
+     "n_positions": 12,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "hill": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "independence": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "inner london": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "kensington": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "london": {
+     "n_positions": 35,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "london borough of waltham forest": {
+     "n_positions": 22,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "mail": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "middlesex": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "of": {
+     "n_positions": 65,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "road": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "southwest": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "split": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "surrey": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "time": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "united kingdom": {
+     "n_positions": 16,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "walthamstow": {
+     "n_positions": 40,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "westminster": {
+     "n_positions": 9,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_280",
+   "n_tokens": 1491,
+   "n_candidates": 4,
+   "gold_positions": 7,
+   "nongold_fired": [
+    "martial arts",
+    "united kingdom",
+    "music"
+   ],
+   "base_gauge_score": -0.4106530697232108,
+   "deltas": {
+    "judo": {
+     "n_positions": 7,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 3455.660400390625,
+     "cos_frozen_vs_own_gold_delta": 0.48423384834979205
+    },
+    "martial arts": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "music": {
+     "n_positions": 11,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "united kingdom": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_471",
+   "n_tokens": 1981,
+   "n_candidates": 22,
+   "gold_positions": 4,
+   "nongold_fired": [
+    "music",
+    "fiction",
+    "business magnate"
+   ],
+   "base_gauge_score": 7.529737265769726,
+   "deltas": {
+    "science fiction": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 4543.7255859375,
+     "cos_frozen_vs_own_gold_delta": 0.7989603345265998
+    },
+    "advertising": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "animal": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "baseball": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "basketball": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "board game": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "business magnate": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "family": {
+     "n_positions": 5,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "family game": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "fiction": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "game": {
+     "n_positions": 14,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "laser tag": {
+     "n_positions": 12,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "music": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "news": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "radio": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "reference": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "research": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "television": {
+     "n_positions": 22,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "television series": {
+     "n_positions": 12,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "toy": {
+     "n_positions": 7,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "variety": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "will": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_754",
+   "n_tokens": 1945,
+   "n_candidates": 32,
+   "gold_positions": 17,
+   "nongold_fired": [
+    "most",
+    "bhutan",
+    "independence"
+   ],
+   "base_gauge_score": -3.3147388236730553,
+   "deltas": {
+    "west nusa tenggara": {
+     "n_positions": 17,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 3664.214111328125,
+     "cos_frozen_vs_own_gold_delta": 0.8551965114264252
+    },
+    "ahmedabad": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "andaman and nicobar islands": {
+     "n_positions": 11,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "australia": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "bali": {
+     "n_positions": 7,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "bangalore": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "bhutan": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "breed": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "center": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "china": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "denpasar": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "east": {
+     "n_positions": 10,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "flores": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "guinea": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "hyderabad": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "independence": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "india": {
+     "n_positions": 7,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "indian": {
+     "n_positions": 5,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "indonesia": {
+     "n_positions": 13,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "insular region": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "java": {
+     "n_positions": 10,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "lesser sunda islands": {
+     "n_positions": 20,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "most": {
+     "n_positions": 9,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "of": {
+     "n_positions": 66,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "pacific ocean": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "post": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "river": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "south": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "southwest": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "sri lanka": {
+     "n_positions": 5,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "sumbawa": {
+     "n_positions": 17,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "west": {
+     "n_positions": 13,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_1044",
+   "n_tokens": 2084,
+   "n_candidates": 35,
+   "gold_positions": 25,
+   "nongold_fired": [
+    "north",
+    "kerala",
+    "thamarassery"
+   ],
+   "base_gauge_score": -9.999682746383629,
+   "deltas": {
+    "kozhikode district": {
+     "n_positions": 25,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 2370.066650390625,
+     "cos_frozen_vs_own_gold_delta": 0.8239170541324079
+    },
+    "africa": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "delhi": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "east": {
+     "n_positions": 5,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "europe": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "freedom": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "hyderabad": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "india": {
+     "n_positions": 16,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "indian": {
+     "n_positions": 9,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "indian ocean": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "indonesia": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "karnataka": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "kerala": {
+     "n_positions": 13,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "koyilandy": {
+     "n_positions": 16,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "kozhikode": {
+     "n_positions": 56,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "lakshadweep": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "maldives": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "most": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "mumbai": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "mysore": {
+     "n_positions": 13,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "nepal": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "north": {
+     "n_positions": 5,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "of": {
+     "n_positions": 73,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "ports": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "post": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "puducherry": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "red sea": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "sindh": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "south": {
+     "n_positions": 7,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "southwest": {
+     "n_positions": 5,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "sri lanka": {
+     "n_positions": 5,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "temple": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "thamarassery": {
+     "n_positions": 28,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "wayanad district": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "west": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_1122",
+   "n_tokens": 1635,
+   "n_candidates": 30,
+   "gold_positions": 13,
+   "nongold_fired": [
+    "artful dodger",
+    "stone",
+    "girls"
+   ],
+   "base_gauge_score": 2.1673129697115088,
+   "deltas": {
+    "kamaljit singh jhooti": {
+     "n_positions": 13,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 4705.216796875,
+     "cos_frozen_vs_own_gold_delta": 0.8025932942656425
+    },
+    "a": {
+     "n_positions": 24,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "all": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "area": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "artful dodger": {
+     "n_positions": 7,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "cage the elephant": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "culture": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "devo": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "earth": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "girls": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "india": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "industry": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "islands": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "joss stone": {
+     "n_positions": 5,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "keith richards": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "kt tunstall": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "land": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "maritime": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "nepal": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "november": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "ocean": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "stone": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "the human league": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "time": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "together": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "total": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "uk": {
+     "n_positions": 16,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "union": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "various": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "virgin": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_1346",
+   "n_tokens": 2107,
+   "n_candidates": 29,
+   "gold_positions": 14,
+   "nongold_fired": [
+    "actor",
+    "band",
+    "existence"
+   ],
+   "base_gauge_score": -1.0044896761892506,
+   "deltas": {
+    "time travel": {
+     "n_positions": 14,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 2800.351318359375,
+     "cos_frozen_vs_own_gold_delta": 0.7693834757450156
+    },
+    "actor": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "band": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "biology": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "city": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "comedian": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "comedy": {
+     "n_positions": 7,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "conflict": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "cyborg": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "enterprise": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "existence": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "extraterrestrial life": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "fantasy": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "fiction": {
+     "n_positions": 15,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "film": {
+     "n_positions": 22,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "film industry": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "hollywood": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "immigration": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "life": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "literature": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "love": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "navigation": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "outer space": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "robot": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "science": {
+     "n_positions": 17,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "television": {
+     "n_positions": 5,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "time": {
+     "n_positions": 17,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "travel": {
+     "n_positions": 16,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "true": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_1467",
+   "n_tokens": 2491,
+   "n_candidates": 59,
+   "gold_positions": 6,
+   "nongold_fired": [
+    "book series",
+    "action",
+    "public"
+   ],
+   "base_gauge_score": 7.856961986259953,
+   "deltas": {
+    "limited series": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 3484.053466796875,
+     "cos_frozen_vs_own_gold_delta": 0.5891730465589247
+    },
+    "1": {
+     "n_positions": 5,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "action": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "addition": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "anthology": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "archetype": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "august": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "bill": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "book": {
+     "n_positions": 22,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "book series": {
+     "n_positions": 12,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "breed": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "canon": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "character": {
+     "n_positions": 11,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "city": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "combat": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "comic": {
+     "n_positions": 33,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "comic book": {
+     "n_positions": 40,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "county": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "dc comics": {
+     "n_positions": 24,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "dog": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "fiction": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "fighter": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "four": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "hall": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "hall of fame": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "home": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "imprint": {
+     "n_positions": 5,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "jack": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "january": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "july": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "lex": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "limited": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "magazine": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "manufacturing": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "may": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "name": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "novel": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "october": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "page": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "public": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "publication": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "publisher": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "radio": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "river": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "seat": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "sense": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "september": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "shared universe": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "society": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "spider": {
+     "n_positions": 10,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "steel": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "suicide": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "superhero": {
+     "n_positions": 13,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "team": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "term": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "time": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "video": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "volume": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "year": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_1594",
+   "n_tokens": 2546,
+   "n_candidates": 32,
+   "gold_positions": 16,
+   "nongold_fired": [
+    "day",
+    "china",
+    "communist party of china"
+   ],
+   "base_gauge_score": -16.54387715257653,
+   "deltas": {
+    "mtr": {
+     "n_positions": 16,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 2511.2958984375,
+     "cos_frozen_vs_own_gold_delta": 0.428904601724507
+    },
+    "accounting": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "asia": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "bay": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "bridge": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "china": {
+     "n_positions": 40,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "chinese": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "communist party of china": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "country": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "day": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "december": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "europe": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "government": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "guangzhou metro": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "islands": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "january": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "japan": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "ma": {
+     "n_positions": 15,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "mass": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "october": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "part": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "population": {
+     "n_positions": 12,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "port": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "portuguese": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "river": {
+     "n_positions": 11,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "road": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "shenzhen metro": {
+     "n_positions": 15,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "south china sea": {
+     "n_positions": 9,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "state": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "station": {
+     "n_positions": 22,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "war": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "world bank": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_1728",
+   "n_tokens": 908,
+   "n_candidates": 24,
+   "gold_positions": 9,
+   "nongold_fired": [
+    "a\u0161",
+    "czech republic",
+    "\u00fast\u00ed nad labem"
+   ],
+   "base_gauge_score": -6.967347351967146,
+   "deltas": {
+    "saxony": {
+     "n_positions": 9,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 2201.191650390625,
+     "cos_frozen_vs_own_gold_delta": 0.7538933875600419
+    },
+    "a\u0161": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "berlin": {
+     "n_positions": 7,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "central": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "centre": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "cologne": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "czech republic": {
+     "n_positions": 7,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "europe": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "european union": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "frankfurt": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "free state": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "gera": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "germany": {
+     "n_positions": 15,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "karlovy vary": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "leipzig": {
+     "n_positions": 12,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "most": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "munich": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "north": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "of": {
+     "n_positions": 36,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "plain": {
+     "n_positions": 5,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "poland": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "river": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "stuttgart": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "\u00fast\u00ed nad labem": {
+     "n_positions": 12,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_1807",
+   "n_tokens": 2730,
+   "n_candidates": 61,
+   "gold_positions": 5,
+   "nongold_fired": [
+    "plate",
+    "history",
+    "republic"
+   ],
+   "base_gauge_score": 4.218910402667049,
+   "deltas": {
+    "university": {
+     "n_positions": 5,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 1798.3629150390625,
+     "cos_frozen_vs_own_gold_delta": 0.05900695719634836
+    },
+    "1": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "age": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "area": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "bay": {
+     "n_positions": 9,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "bengali": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "border": {
+     "n_positions": 7,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "bridge": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "capital": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "city": {
+     "n_positions": 22,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "climate": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "country": {
+     "n_positions": 18,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "curriculum": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "democracy": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "division": {
+     "n_positions": 7,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "education": {
+     "n_positions": 5,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "educational institution": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "eight": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "grave": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "gulf": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "history": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "india": {
+     "n_positions": 17,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "institution": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "islam": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "language": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "may": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "meeting": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "metropolitan": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "mosque": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "mountain": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "mountain range": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "nation": {
+     "n_positions": 5,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "ocean": {
+     "n_positions": 5,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "part": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "people": {
+     "n_positions": 5,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "perimeter": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "place of worship": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "plate": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "population": {
+     "n_positions": 7,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "range": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "religion": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "republic": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "river": {
+     "n_positions": 10,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "saint": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "seaport": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "seat": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "share": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "shrine": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "six": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "size": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "sovereign state": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "square": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "state": {
+     "n_positions": 7,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "system": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "ten": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "term": {
+     "n_positions": 5,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "territory": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "tourism": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "transcontinental country": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "union": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "word": {
+     "n_positions": 5,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_2099",
+   "n_tokens": 1398,
+   "n_candidates": 5,
+   "gold_positions": 6,
+   "nongold_fired": [
+    "sport",
+    "cycling",
+    "cycling race"
+   ],
+   "base_gauge_score": 0.41226054126443834,
+   "deltas": {
+    "road bicycle racing": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 4060.683349609375,
+     "cos_frozen_vs_own_gold_delta": 0.7958662884776545
+    },
+    "classic cycle races": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "cycling": {
+     "n_positions": 12,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "cycling race": {
+     "n_positions": 10,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "sport": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_2423",
+   "n_tokens": 576,
+   "n_candidates": 31,
+   "gold_positions": 2,
+   "nongold_fired": [
+    "only",
+    "in time",
+    "deep"
+   ],
+   "base_gauge_score": -12.440033001805872,
+   "deltas": {
+    "tarot": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 3663.34814453125,
+     "cos_frozen_vs_own_gold_delta": 0.7195871645083773
+    },
+    "1973": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "a": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "all": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "blues": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "change": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "continued": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "dark moor": {
+     "n_positions": 12,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "deep": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "deep purple": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "elements": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "fifteen": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "he is": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "in time": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "is": {
+     "n_positions": 11,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "melodies": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "metal": {
+     "n_positions": 10,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "only": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "power": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "project": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "purple": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "randy": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "s": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "speed": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "symphonic": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "the band": {
+     "n_positions": 12,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "the only": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "they": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "three": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "time": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "very": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_2520",
+   "n_tokens": 1373,
+   "n_candidates": 15,
+   "gold_positions": 2,
+   "nongold_fired": [
+    "writer",
+    "film",
+    "education"
+   ],
+   "base_gauge_score": -0.7966837009014168,
+   "deltas": {
+    "supernatural": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 5727.1806640625,
+     "cos_frozen_vs_own_gold_delta": 0.8095528780532965
+    },
+    "2014": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "animal": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "band": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "bear": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "child": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "comedy": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "education": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "family": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "film": {
+     "n_positions": 24,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "high school": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "horror film": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "pregnancy": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "television": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "writer": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_2709",
+   "n_tokens": 2009,
+   "n_candidates": 50,
+   "gold_positions": 4,
+   "nongold_fired": [
+    "mythology",
+    "myth",
+    "state"
+   ],
+   "base_gauge_score": -1.2809571789582186,
+   "deltas": {
+    "deity": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 3192.45263671875,
+     "cos_frozen_vs_own_gold_delta": 0.7558652404580742
+    },
+    "area": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "city": {
+     "n_positions": 9,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "civilization": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "concept": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "country": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "day": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "dragon": {
+     "n_positions": 5,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "dynasty": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "empire": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "epic": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "extinct": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "faith": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "family": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "fire": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "fresh water": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "god": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "goddess": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "head": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "historical region": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "language family": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "marriage": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "monotheism": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "mother": {
+     "n_positions": 5,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "myth": {
+     "n_positions": 5,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "mythology": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "name": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "narrative": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "object": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "ocean": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "period": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "plain": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "principal": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "principle": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "religion": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "river": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "ruler": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "salt": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "sea": {
+     "n_positions": 5,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "sense": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "six": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "sky": {
+     "n_positions": 5,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "state": {
+     "n_positions": 7,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "symbol": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "term": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "the city": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "tiara": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "two": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "writing": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "writing system": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_2974",
+   "n_tokens": 2531,
+   "n_candidates": 58,
+   "gold_positions": 5,
+   "nongold_fired": [
+    "status",
+    "group",
+    "single"
+   ],
+   "base_gauge_score": -9.252345677141172,
+   "deltas": {
+    "village": {
+     "n_positions": 5,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 2499.587890625,
+     "cos_frozen_vs_own_gold_delta": 0.634890199897274
+    },
+    "adult": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "animal": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "area": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "body of water": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "border": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "branch": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "channel": {
+     "n_positions": 10,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "clade": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "class": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "country": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "county": {
+     "n_positions": 23,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "county council": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "cut": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "designation": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "england": {
+     "n_positions": 20,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "estuary": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "evidence": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "five": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "four": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "genus": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "government": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "group": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "head": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "home": {
+     "n_positions": 5,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "island": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "list": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "local government": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "location": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "moth": {
+     "n_positions": 5,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "nine": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "official": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "order": {
+     "n_positions": 5,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "parish": {
+     "n_positions": 5,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "part": {
+     "n_positions": 7,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "point": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "port": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "ridge": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "river": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "route": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "sea": {
+     "n_positions": 9,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "settlement": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "show": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "single": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "species": {
+     "n_positions": 10,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "status": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "stone": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "structure": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "the city": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "three": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "time": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "town": {
+     "n_positions": 13,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "trade": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "trail": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "tree": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "tree of life": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "tunnel": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "water": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_3068",
+   "n_tokens": 294,
+   "n_candidates": 15,
+   "gold_positions": 2,
+   "nongold_fired": [
+    "fashion",
+    "it",
+    "is"
+   ],
+   "base_gauge_score": -7.502925472030463,
+   "deltas": {
+    "beat": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 5286.5322265625,
+     "cos_frozen_vs_own_gold_delta": 0.7592442198513008
+    },
+    "1950s": {
+     "n_positions": 10,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1984": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "a": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "and": {
+     "n_positions": 7,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "as": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "born": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "fashion": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "is": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "it": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "october": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "october 24": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "on": {
+     "n_positions": 5,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "pop": {
+     "n_positions": 7,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "roll": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_3198",
+   "n_tokens": 1136,
+   "n_candidates": 11,
+   "gold_positions": 3,
+   "nongold_fired": [
+    "film producer",
+    "acting",
+    "mc"
+   ],
+   "base_gauge_score": -2.7499959660886533,
+   "deltas": {
+    "screenwriter": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 3002.711669921875,
+     "cos_frozen_vs_own_gold_delta": 0.6453207138287258
+    },
+    "academic": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "acting": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "actor": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "director": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "doctor": {
+     "n_positions": 7,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "film producer": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "islam": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "mc": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "military": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "reader": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_3400",
+   "n_tokens": 1455,
+   "n_candidates": 20,
+   "gold_positions": 11,
+   "nongold_fired": [
+    "race",
+    "geography",
+    "american football"
+   ],
+   "base_gauge_score": -12.393637784259436,
+   "deltas": {
+    "olympic games": {
+     "n_positions": 11,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 3063.62890625,
+     "cos_frozen_vs_own_gold_delta": 0.7433918863751864
+    },
+    "american football": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "caribbean sea": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "city": {
+     "n_positions": 15,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "color": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "company": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "english": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "geography": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "geology": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "globalization": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "language": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "new guinea": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "new zealand": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "organization": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "protest": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "race": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "running": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "science": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "sport": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "time": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_3634",
+   "n_tokens": 1801,
+   "n_candidates": 62,
+   "gold_positions": 4,
+   "nongold_fired": [
+    "two",
+    "staff",
+    "border"
+   ],
+   "base_gauge_score": -9.74635775184524,
+   "deltas": {
+    "television series": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 1913.723876953125,
+     "cos_frozen_vs_own_gold_delta": 0.7761068343639076
+    },
+    "25": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "age": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "april": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "archipelago": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "august": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "bailiwick": {
+     "n_positions": 9,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "behavior": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "bill": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "border": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "broadcasting": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "channel": {
+     "n_positions": 12,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "character": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "coast": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "comedian": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "comedy": {
+     "n_positions": 9,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "corporation": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "country": {
+     "n_positions": 5,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "crown": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "december": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "double act": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "duchy": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "england": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "episodes": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "film": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "flagship": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "gender": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "government": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "governor": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "head of state": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "international relations": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "island": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "journalist": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "lieutenant governor": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "location": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "lying": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "march": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "name": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "number": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "ocean": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "october": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "population": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "port": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "public": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "queen": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "relationship": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "report": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "republic": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "scottish": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "september": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "seven": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "show": {
+     "n_positions": 5,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "situation comedy": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "staff": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "television": {
+     "n_positions": 19,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "television channel": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "television comedy": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "television producer": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "term": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "title": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "two": {
+     "n_positions": 9,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "will": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_3786",
+   "n_tokens": 1668,
+   "n_candidates": 13,
+   "gold_positions": 4,
+   "nongold_fired": [
+    "technology",
+    "english",
+    "classification"
+   ],
+   "base_gauge_score": -5.251875060992385,
+   "deltas": {
+    "probability theory": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 2949.282958984375,
+     "cos_frozen_vs_own_gold_delta": 0.6724007972020785
+    },
+    "action": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "classification": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "engineering": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "english": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "french": {
+     "n_positions": 1,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "geometry": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "mathematics": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "mayor": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "river": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "science": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "technology": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "the arts": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_3930",
+   "n_tokens": 497,
+   "n_candidates": 5,
+   "gold_positions": 4,
+   "nongold_fired": [
+    "russia",
+    "south ossetia",
+    "world"
+   ],
+   "base_gauge_score": -1.0227190545654266,
+   "deltas": {
+    "georgia": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 3961.206787109375,
+     "cos_frozen_vs_own_gold_delta": 0.4576695191126209
+    },
+    "russia": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "south ossetia": {
+     "n_positions": 24,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "soviet union": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "world": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_3969",
+   "n_tokens": 3019,
+   "n_candidates": 27,
+   "gold_positions": 8,
+   "nongold_fired": [
+    "55",
+    "1972",
+    "7"
+   ],
+   "base_gauge_score": -27.81190882023479,
+   "deltas": {
+    "2001": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 2889.685546875,
+     "cos_frozen_vs_own_gold_delta": 0.7847850120664661
+    },
+    "1": {
+     "n_positions": 9,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "100": {
+     "n_positions": 9,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "11": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "13": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1887": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "19": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1929": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1960": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1961": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1972": {
+     "n_positions": 24,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1974": {
+     "n_positions": 24,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "2": {
+     "n_positions": 5,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "2006": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "2011": {
+     "n_positions": 32,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "2015": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "211": {
+     "n_positions": 9,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "300": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "35": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "4": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "55": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "7": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "8": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "800": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "april 1974": {
+     "n_positions": 24,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "november 1966": {
+     "n_positions": 12,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "november 1975": {
+     "n_positions": 12,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_4176",
+   "n_tokens": 2203,
+   "n_candidates": 47,
+   "gold_positions": 12,
+   "nongold_fired": [
+    "tree",
+    "cheese",
+    "french"
+   ],
+   "base_gauge_score": -23.28153915794624,
+   "deltas": {
+    "ananas comosus": {
+     "n_positions": 12,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 4766.57666015625,
+     "cos_frozen_vs_own_gold_delta": 0.806478643068062
+    },
+    "a": {
+     "n_positions": 62,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "algorithm": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "century": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "cheese": {
+     "n_positions": 9,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "coconut": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "cocos nucifera": {
+     "n_positions": 10,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "condiment": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "cottage cheese": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "cream": {
+     "n_positions": 15,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "earth": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "family": {
+     "n_positions": 10,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "fat": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "flat": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "french": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "fruit": {
+     "n_positions": 16,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "head": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "hydrogen": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "hydroxyl": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "juice": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "korea": {
+     "n_positions": 5,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "lactic acid bacteria": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "light": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "member": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "milk": {
+     "n_positions": 13,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "molasses": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "nut": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "one": {
+     "n_positions": 5,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "orange": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "order": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "pineapple": {
+     "n_positions": 5,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "plant": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "product": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "raspberry": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "rennet": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "restricted": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "sausage": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "south america": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "stone": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "sugars": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "tree": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "vanilla": {
+     "n_positions": 9,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "wall": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "whey": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "whipped cream": {
+     "n_positions": 13,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "word": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "yogurt": {
+     "n_positions": 5,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_4257",
+   "n_tokens": 2351,
+   "n_candidates": 49,
+   "gold_positions": 2,
+   "nongold_fired": [
+    "romance",
+    "emperor",
+    "chinese dynasty"
+   ],
+   "base_gauge_score": -8.180185855363675,
+   "deltas": {
+    "book": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 2922.634765625,
+     "cos_frozen_vs_own_gold_delta": 0.6832266575805374
+    },
+    "achievement": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "century": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "chinese": {
+     "n_positions": 45,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "chinese dynasty": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "chronicle": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "collection": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "conquest": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "day": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "divination": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "dynasty": {
+     "n_positions": 30,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "editor": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "emperor": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "empire": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "era": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "final": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "grammar": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "historiography": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "india": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "initiative": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "language": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "language family": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "law": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "ma": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "military": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "millennium": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "part": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "period": {
+     "n_positions": 14,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "person": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "point": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "politician": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "politics": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "river": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "romance": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "saw": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "september": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "series": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "ship": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "six": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "spring": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "standard": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "ten": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "term": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "text": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "time": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "title": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "valley": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "variation": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "work": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_4627",
+   "n_tokens": 2179,
+   "n_candidates": 22,
+   "gold_positions": 10,
+   "nongold_fired": [
+    "morocco",
+    "europe",
+    "singapore"
+   ],
+   "base_gauge_score": -9.317110014460845,
+   "deltas": {
+    "labuan": {
+     "n_positions": 10,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 3729.62451171875,
+     "cos_frozen_vs_own_gold_delta": 0.7706236008538828
+    },
+    "bangkok": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "brunei": {
+     "n_positions": 9,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "cambodia": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "denmark": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "europe": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "hong kong": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "india": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "indonesia": {
+     "n_positions": 10,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "johor": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "kuala lumpur": {
+     "n_positions": 19,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "laos": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "macau": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "malacca": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "malaysia": {
+     "n_positions": 31,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "metro manila": {
+     "n_positions": 5,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "morocco": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "philippines": {
+     "n_positions": 7,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "singapore": {
+     "n_positions": 7,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "taiwan": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "thailand": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "vietnam": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_4700",
+   "n_tokens": 2725,
+   "n_candidates": 26,
+   "gold_positions": 8,
+   "nongold_fired": [
+    "409",
+    "25",
+    "229"
+   ],
+   "base_gauge_score": -14.555887615755806,
+   "deltas": {
+    "2006": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 3391.3720703125,
+     "cos_frozen_vs_own_gold_delta": 0.4457606162389356
+    },
+    "1": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "100": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "18": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1990": {
+     "n_positions": 12,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1996": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "2": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "2000": {
+     "n_positions": 20,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "2001": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "2003": {
+     "n_positions": 12,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "2010": {
+     "n_positions": 16,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "2011": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "2013": {
+     "n_positions": 12,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "2014": {
+     "n_positions": 24,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "2015": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "2016": {
+     "n_positions": 16,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "229": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "25": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "4": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "409": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "5": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "50": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "550": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "750": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "8": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "november 2000": {
+     "n_positions": 12,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_4849",
+   "n_tokens": 1586,
+   "n_candidates": 10,
+   "gold_positions": 4,
+   "nongold_fired": [
+    "official",
+    "military",
+    "dragoon"
+   ],
+   "base_gauge_score": -18.672744613909757,
+   "deltas": {
+    "soldier": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 2603.5498046875,
+     "cos_frozen_vs_own_gold_delta": 0.4393769427153395
+    },
+    "construction": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "dragoon": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "general": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "military": {
+     "n_positions": 13,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "monarch": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "official": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "r": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "saint": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "warrior": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  }
+ ],
+ "seconds": 1433
+}

@@ -3205,3 +3205,23 @@ scripts/wikihop_wl_gates.py (extended with the random-branch reading).
 [Launched after registration commit 3c792c9 / tooling f8d56cd: job A
 job-tj7za (test shard 1, donors shard 0), job B job-7swth (test shard 0,
 donors shard 1), context ctx-ae10e32e, seed 20260830, 2026-09-02 17:10 UTC.]
+
+### WX — LANDED: FROZEN-WRITE-TRANSFERS (pinned 2×) + FROZEN-LOOP-CLOSES (job-tj7za + job-7swth, 2026-09-02)
+
+Cross-fit on the 59 WF rows. Frozen direction = donor mean gold
+hint-delta at L30 (30/29 donors; |mean δ| 47–48% of the per-position
+norm; cosine 0.68 with test rows' own deltas), same vector at every
+candidate's address at N = donor mean per-position |δ| (3,288 / 3,213).
+(a) TEXT CEILING PASS 0.932. (b) FROZEN ORACLE PASS at both rungs:
+gold-address dP **+0.326 [+0.216, +0.445] at 1×, +0.360 [+0.242,
++0.483] at 2×**; specificity +0.326 / +0.346 (gold under non-gold
+addresses 0.017 / 0.031); delivery audit valid on all 6,932 fired
+records. Equal to the per-candidate deltas on the same rows (WF +0.309 /
++0.347): the identity is carried by the ADDRESS. (c) FROZEN LOOP PASS:
+gauge-select 0.174 vs baseline 0.017 (+0.157 [+0.072, +0.254]) and vs
+random branch 0.048 (+0.126 [+0.040, +0.221]); oracle 0.377 (46%
+recovered; per-candidate 63%); gold argmax 0.288 (chance 0.070). The
+stated expectation (frozen fails) was wrong; exploratory, no
+prediction registered; a fresh-draw replication would be owed before
+claiming it at WL/WF level. Cost ~$2.2. Full numbers:
+docs/wikihop_wx_summary.md.
