@@ -3,6 +3,9 @@
 Mode via W0_MODE env:
   grade   : vLLM — std k=8 + closed k=8 on the 800-row frame (seed 20260821);
             prompts identical to the screening's constructions.
+  hint    : vLLM — hint-first TEXT arm (gold named before the documents) k=8
+            on the rows listed under W0_ROWS_KEY (default w2_pool) of
+            /app/wikihop_w0_pinned.json; item WR stage 1 (seed 20260824).
   capture : HF transformers — one forward per row on the std prompt; captures
             final-token states at layers {38,43,48,53} and per-candidate
             mention-mean states (+ position counts + mean per-position norm)
@@ -42,7 +45,27 @@ def main():
     print(f"mode={mode} rows={len(rows)}", flush=True)
     t0 = time.time()
 
-    if mode == "grade":
+    if mode == "hint":
+        import sys
+        sys.path.insert(0, "/app")
+        from wikihop_common import hint_first_prompt
+        from vllm import LLM, SamplingParams
+        pins = json.load(open("/app/wikihop_w0_pinned.json"))
+        ids = pins["pools"][os.environ.get("W0_ROWS_KEY", "w2_pool")]
+        by_id = {r["id"]: r for r in rows}
+        seed = int(os.environ.get("W0_SEED", "20260824"))
+        llm = LLM(model="google/gemma-3-27b-it", max_model_len=8192, gpu_memory_utilization=0.92)
+        convs = [[{"role": "user", "content": SYSTEM + "\n\n" + hint_first_prompt(by_id[i], by_id[i]["answer"])}] for i in ids]
+        outs = llm.chat(convs, SamplingParams(n=8, temperature=0.7, max_tokens=32, seed=seed))
+        n = 0
+        with open(os.path.join(outdir, "wikihop_hint_grades.jsonl"), "w") as f:
+            for rid, o in zip(ids, outs):
+                for s_i, c in enumerate(o.outputs):
+                    f.write(json.dumps({"id": rid, "arm": "hint_first", "sample_index": s_i,
+                                        "model_output": c.text}, ensure_ascii=False) + "\n")
+                    n += 1
+        summary = {"mode": mode, "n_rows": len(ids), "n_generations": n, "seed": seed, "seconds": round(time.time() - t0)}
+    elif mode == "grade":
         from vllm import LLM, SamplingParams
         llm = LLM(model="google/gemma-3-27b-it", max_model_len=8192, gpu_memory_utilization=0.92)
         convs, meta = [], []

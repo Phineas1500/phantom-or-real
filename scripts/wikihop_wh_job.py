@@ -74,7 +74,8 @@ def main():
     fake = os.environ.get("WH_FAKE_MODEL") == "1"
     max_rows = int(os.environ.get("WH_MAX_ROWS", "10000"))
 
-    pins = json.load(open(os.path.join(APP, "wikihop_wh_pinned.json")))
+    pins = json.load(open(os.path.join(APP, os.environ.get("WH_PINS_FILE", "wikihop_wh_pinned.json"))))
+    rows_key = os.environ.get("WH_ROWS_KEY", "wh_rows")
     z = np.load(os.path.join(APP, "wikihop_w0_pinned.npz"))
     gauge_layer = int(os.environ.get("WH_GAUGE_LAYER", int(z["gauge_layer"][0])))
     gw, gb, gmean = (z[f"gauge_w_L{gauge_layer}"].astype(np.float64), float(z[f"gauge_b_L{gauge_layer}"][0]),
@@ -85,8 +86,8 @@ def main():
     for line in gzip.open(os.path.join(APP, "wikihop_port_input.jsonl.gz"), "rt"):
         r = json.loads(line)
         frame[r["id"]] = r
-    row_ids = pins["wh_rows"][:max_rows]
-    print(f"rows={len(row_ids)} write=L{write_layer} gauge=L{gauge_layer} rungs={rungs} base_norm(W0)={base_norm:.1f}", flush=True)
+    row_ids = pins[rows_key][:max_rows]
+    print(f"rows={len(row_ids)} ({rows_key}) write=L{write_layer} gauge=L{gauge_layer} rungs={rungs} base_norm(W0)={base_norm:.1f}", flush=True)
 
     from transformers import AutoTokenizer
     tok = AutoTokenizer.from_pretrained(MODEL)
