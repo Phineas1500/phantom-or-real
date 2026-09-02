@@ -33,3 +33,9 @@ def exact_match(output, gold):
 def contains_match(output, gold):
     g = normalize_answer(gold)
     return bool(g) and g in normalize_answer(output)
+
+
+def hint_first_prompt(r, cand):
+    """Item WH: the hint precedes the documents so mention positions are
+    downstream of it (the screening's hint-after form cannot move them)."""
+    return f"Hint: pay close attention to {cand}.\n\n" + std_closed_prompts(r)["std"]
