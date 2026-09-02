@@ -3157,3 +3157,48 @@ gold branch repairs. The 11th prediction is confirmed on two disjoint
 draws with a frozen recipe; the loop closes on both. The fresh-draw
 obligation is DISCHARGED — no further WikiHop replication is owed. Scope
 stands: compatible-answer failures. Full numbers: docs/wikihop_wf_summary.md.
+
+### WX. Frozen, row-independent write: is the natural-data lever a property of the representation, or of the per-question hint computation? (registered 2026-09-02, before any data)
+
+**Why.** WL/WF's loop computes each candidate's nudge from a hinted
+prompt naming that candidate (~25 extra forwards per question). The
+sandbox's closed loop used a FROZEN write — one direction fit on donor
+rows, identity supplied by the ADDRESS (which candidate's mentions) —
+and it transferred (+0.498, the C4 rider). On WikiHop the class-mean
+direction at the address failed everywhere (W1/sweep). WX asks whether
+a frozen direction derived from HINT-DELTAS (not the class-mean) at
+the candidate's address carries the repair. Expectation stated, no
+directional prediction registered: W1 suggests the candidate-specific
+content is essential and the frozen direction will underperform; a pass
+would make the loop ~25× cheaper and locate the effect in the
+representation rather than in the test-time hint.
+
+**Frame.** The 59 WF rows (fresh frame), cross-fit: job A tests shard 1
+(29 rows) with shard 0 (30 rows) as donors; job B the reverse. Pinned
+in docs/wikihop_wx_pinned.json. Every other pin frozen from W0.
+
+**Frozen write.** In-job, from the donor rows only: δ = mean over all
+donor gold-mention positions of (hint-first[gold] state − std state)
+at L30; u = δ/|δ|; norm target N = donor mean per-position |δ|. The
+write at candidate X's whole-word mentions = u × rung × N with rungs
+{1, 2} (the same per-position amplitudes as WL/WF's 1×/2×). The same
+vector for every candidate — only the address changes.
+
+**Arms per test row.** std baseline k=8; hint-first gold text k=8
+(ceiling); frozen write at the GOLD address k=4 at 1× and 2×; 3 seeded
+non-gold addresses (seed 20260830 + row) k=4 at 1× and 2×
+(specificity); every candidate's address at 2× k=4 (the loop); W0's L38
+gauge under every write; hook counters (a zero aborts). Descriptive:
+cosine between u and each test row's own gold δ (one hint forward per
+test row), per-position norms.
+
+**Gates.** (a) TEXT CEILING CI > 0. (b) FROZEN ORACLE: at 1× or 2×,
+gold-address dP CI > 0 AND specificity (gold-address − mean non-gold-
+address correct) CI > 0 → **FROZEN-WRITE-TRANSFERS**; else
+**FROZEN-WRITE-FAILS** (the per-candidate content is essential; W1's
+null generalizes to hint-derived frozen directions). (c) FROZEN LOOP
+(read only if (b) passes): gauge-select − baseline CI > 0 AND
+gauge-select − RANDOM-BRANCH expectation CI > 0 (the random-branch
+comparator is now a registered reading) → FROZEN-LOOP-CLOSES. MDE at
+n = 59: repair ≥ ~0.05. Cost ~$3 (two jobs). Readers:
+scripts/wikihop_wl_gates.py (extended with the random-branch reading).

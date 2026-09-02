@@ -47,6 +47,20 @@ window and collapses at 4× (WR).
 | selection signal (gold − mean non-gold gauge) | +0.86 [+0.09, +1.64] | +1.56 [+0.65, +2.56] |
 | gauge picks gold on rows where the gold branch repairs | 10 of 22 | 10 of 14 |
 
+## Post-hoc validation (2026-09-02, after landing; descriptive): the meter, not the nudges' base rate
+Expected accuracy of a randomly chosen branch (mean over each row's
+branches) vs the gauge's choice, on the same records:
+
+| draw | gauge-select | random branch | oracle | gauge − random [CI] |
+|---|---|---|---|---|
+| WL (53) | 0.255 | 0.045 | 0.274 | +0.210 [+0.112, +0.320] |
+| WF (59) | 0.229 | 0.044 | 0.364 | +0.185 [+0.096, +0.281] |
+
+The gauge's edge over random selection does not shrink with the number
+of candidates: on the tercile of rows with ~45 candidates, gauge-select
+is 0.276 (WL) / 0.298 (WF) vs random 0.012 / 0.016. Registered as a
+reading in the next item (WX).
+
 ## Verdict
 **HINT-DELTA-TRANSFERS (both rungs) + LOOP-CLOSES-ON-NATURAL-DATA, REPLICATED.**
 The write half is now confirmed on two disjoint draws (53 + 59 rows) with
