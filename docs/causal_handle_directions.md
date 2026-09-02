@@ -3280,3 +3280,15 @@ survive anonymization? (descriptive, ~$2). MDE at n ≈ 40–60: repair ≥
 --max-rows 60), scripts/wikihop_wl_gates.py (stage 2).
 [Stage 1 launched after registration commit 5c09028: job-agh5n, context
 ctx-7e88dcf3, 2026-09-02 17:56 UTC.]
+
+**Stage 1 landed (job-agh5n, 12,864 generations).** CONTAMINATION CHECK
+PASS: closed-book accuracy **0.127** (real frames 0.445–0.457; chance
+≈ 0.064; below the pre-named 0.15 ceiling) — memory no longer answers.
+std 0.378 (real 0.466), hint-first 0.534. 326 rows at 0/8 std;
+DOC-DEPENDENT 288; hint-first on the pool bimodal (216 at 0/8, 63 at
+8/8, 9 between); HINT-REPAIRABLE ∧ doc-dependent **68 (23.6%; real
+frames 27.5% / 21.4%)**, 50 reading-driven + 10 memory-driven among the
+60 drawn (the memory-driven share falls from 34–46% to 17%, as
+anonymization should make it). WA rows = 60 (seeded cap, seed
+20260833), pinned in docs/wikihop_wa_pinned.json (two shards, 30 + 30).
+Stage 2 launches on them with every W0 pin frozen.
