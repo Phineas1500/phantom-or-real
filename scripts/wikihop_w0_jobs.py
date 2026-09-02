@@ -65,16 +65,23 @@ def main():
                                         "model_output": c.text}, ensure_ascii=False) + "\n")
                     n += 1
         summary = {"mode": mode, "n_rows": len(ids), "n_generations": n, "seed": seed, "seconds": round(time.time() - t0)}
-    elif mode == "grade":
+    elif mode in ("grade", "grade_hint"):
         from vllm import LLM, SamplingParams
+        if mode == "grade_hint":
+            import sys
+            sys.path.insert(0, "/app")
+            from wikihop_common import hint_first_prompt
         llm = LLM(model="google/gemma-3-27b-it", max_model_len=8192, gpu_memory_utilization=0.92)
         convs, meta = [], []
         for r in rows:
             ps = std_closed_prompts(r)
-            for arm in ("std", "closed"):
+            if mode == "grade_hint":
+                ps["hint_first"] = hint_first_prompt(r, r["answer"])
+            for arm in ps:
                 convs.append([{"role": "user", "content": SYSTEM + "\n\n" + ps[arm]}])
                 meta.append((r["id"], arm))
-        outs = llm.chat(convs, SamplingParams(n=8, temperature=0.7, max_tokens=32, seed=20260821))
+        outs = llm.chat(convs, SamplingParams(n=8, temperature=0.7, max_tokens=32,
+                                              seed=int(os.environ.get("W0_SEED", "20260821"))))
         n = 0
         with open(os.path.join(outdir, "wikihop_w0_grades.jsonl"), "w") as f:
             for (rid, arm), o in zip(meta, outs):

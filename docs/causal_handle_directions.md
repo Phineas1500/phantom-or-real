@@ -3087,3 +3087,40 @@ selection signal +1.56 [+0.65, +2.56]; the gauge picks gold on 10 of the
 (hint-repairable) failures, 27.5% of the doc-dependent pool. Obligation
 opened: fresh-draw replication on a new WikiHop frame (to be registered
 before launch). Full numbers: docs/wikihop_wl_summary.md.
+
+### WF. Fresh-frame replication of the closed loop on WikiHop (registered 2026-09-02, before any data — the obligation opened by WL's PASS)
+
+**Frame.** 800 NEW WikiHop dev rows, seed **20260827**, docs ≤ 14,000
+chars, drawn from the 3,480 rows not in W0's frame or the screening
+(builder scripts/wikihop_frame.py — verified to reproduce W0's frame
+byte-for-byte on all 800 rows; the fresh frame overlaps neither).
+File results/loop_screen/wikihop_fresh_input.jsonl.gz.
+
+**Stage 1 — one vLLM job (~$1.5).** std k=8, closed k=8 and hint-first
+k=8 on all 800 rows, seed 20260828. Pools (pre-defined, identical to
+W0/WR): DOC-DEPENDENT failing = 0/8 std ∧ 0/8 closed; HINT-REPAIRABLE
+= ≥ 4/8 hint-first. WF rows = ALL doc-dependent ∧ hint-repairable rows
+(no sampling), pinned in docs/wikihop_wf_pinned.json before stage 2;
+if fewer than 20, UNDERPOWERED (reported, stage 2 not run). Reported:
+std/closed/hint accuracies, pool sizes, the hint-repairable rate of the
+doc-dependent pool (W0/WR: 27.5%), the memory/reading split (descriptive).
+
+**Stage 2 — the WL job, unchanged, on the WF rows (two shards, ~$5).**
+Every pin FROZEN from W0: the L38 gauge (w, b, mean), the L30 write
+site, whole-word addressing, no refit of anything. Gold hint-delta at
+**1× (pinned) and 2×**, k=4; 3 seeded non-gold at 1× (specificity);
+every candidate's δ_X at 2× (the loop); std baseline k=8; hint-first
+gold text k=8 (ceiling re-measure); hook counters (a zero aborts).
+Seed 20260829.
+
+**Gates (identical to WL).** (a) TEXT CEILING CI > 0. (b) REPLICATION:
+at 1× or 2×, gold-δ dP CI > 0 AND specificity CI > 0 → the 11th
+prediction replicates on a disjoint frame with a frozen recipe. (c)
+LOOP at 2×: gauge-select over all candidates − baseline CI > 0 AND −
+SC@8 CI > 0 → **LOOP-CLOSES-ON-NATURAL-DATA, REPLICATED**; (i) only →
+LOOP-BEATS-BASELINE-NOT-SC; neither → SELECTOR-FAILS-ON-FRESH-FRAME.
+(b) fails → WL-DOES-NOT-REPLICATE (the natural-data claim shrinks to
+suggestive). No amendments except on independent-telemetry evidence.
+MDE at the expected n ≈ 60–80: repair ≥ ~0.05; loop repair ≥ ~0.06.
+Readers: scripts/wikihop_wf_pins.py (stage 1), scripts/wikihop_wl_gates.py
+(stage 2).
