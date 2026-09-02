@@ -2909,3 +2909,5 @@ non-gold text answers-fired lift (fingerprint ceiling); |δ| norms;
 gauge shifts; per-row texture (memory- vs reading-driven is fixed by
 construction here). MDE: 48 gold samples per rung → repair rate ≥ 0.10
 detectable; fingerprint lift ≥ 0.06. Reader: scripts/wikihop_wh_gates.py.
+[Launched after registration commit dbb62bf and tooling commit ad03f43:
+job-az23x, context ctx-be35c137, 2026-09-02 01:45 UTC.]
