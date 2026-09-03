@@ -4011,3 +4011,22 @@ Ladder so far (2×, descriptive): Qwen L19 +0.104 [+0.035, +0.188], L25
 [+0.069, +0.306]; L37 and L49 pending resubmits. Gemma (59 WX rows):
 L15 +0.110, L20 +0.407, L25 +0.449, L30 +0.360, L35 +0.017, L40 −0.017,
 L45 −0.017. Full ladder reading and summary at the item's close.
+
+**WY LANDED (complete) 2026-09-03 16:20 UTC.** Ladder (frozen hint-delta
+write at 2×, gold-address dP, every delivery audit valid; Gemma on the
+59 WX rows, Qwen on the 36 WY rows): Gemma L15 +0.110, L20 +0.407, **L25
++0.449 [+0.331, +0.568]**, L30 +0.360, L35 +0.017, L40 −0.017, L45
+−0.017; Qwen L19 +0.104, L25 +0.167, **L31 +0.372 [+0.253, +0.497]**,
+L37 +0.347 [+0.236, +0.458], L43 +0.167 [+0.090, +0.250], L49 0.000.
+Reading (descriptive, as pre-named): each model carries a band about a
+quarter of its depth wide where one frozen direction repairs at +0.35 to
++0.45 — Gemma 0.32–0.48 (peak 0.40), Qwen 0.48–0.58 (peak 0.48) — with
+shoulders near +0.1–0.17 and nothing beyond 0.56 (Gemma) / 0.77 (Qwen);
+the bands overlap at 0.48 but Qwen's is about a tenth deeper, and
+neither peak is the class-mean carrier's layer (Qwen L43 = shoulder,
++0.167, matching WQ's +0.162). Qwen L31 selector decomposition: gold
+beaten 15/36, never fired 13, tied-lost 4, selected 4. Cost: WY $54.30
+over 35 jobs ($18.7 lost to 10 jobs that died at download on
+full-disk machines), WT $0.51. Tally: 22 predictions, 19 confirmed;
+≈ $105 across 88 jobs. Summary docs/wikihop_wy_summary.md; ladder
+docs/wikihop_wy_ladder.json.

@@ -103,7 +103,7 @@
 </div>
 
 <div class="col">
-  <h2>What happened, in seven findings</h2>
+  <h2>What happened, in eight findings</h2>
 
   <div class="finding">
     <div class="num">1 / 528<small>gold repairs</small></div>
@@ -130,8 +130,12 @@
     <p><strong>Run blind, it helps the failures and hurts the successes, and on real text the two cancel.</strong> Every earlier number sat on questions an oracle had picked. Without the filter, the loop raises accuracy across all document-dependent failures on both a renamed-entity frame and a real-text frame. But it also breaks about a tenth of the questions the model already had right. On renamed entities an abstaining version breaks nothing and keeps a third of the gain. On real text the failures outside the fixable quarter are firm, the abstaining version still breaks one row in sixty, and the frame nets about zero. The loop is a repair tool for questions already known to be wrong.</p>
   </div>
   <div class="finding">
-    <div class="num">+0.16<small>on a second model</small></div>
-    <p><strong>The nudge works on a second model. The way of choosing does not.</strong> On Qwen3.5-27B, a different architecture, over the same questions, one frozen vector at the candidate's address repairs the model at the registered layer with the same specificity, and repairs more at the depth that matched Gemma's. But watching what Qwen answers picks the right branch no better than chance: nudged toward a wrong candidate, Qwen goes along more readily than when nudged toward the right one. There, a probe on the hidden state does better. What transfers across models is the write. Which selector works is a property of the model.</p>
+    <div class="num">+0.37<small>on a second model</small></div>
+    <p><strong>The nudge works on a second model. The way of choosing does not.</strong> On Qwen3.5-27B, a different architecture, one frozen vector at the candidate's address repairs the model at Gemma's relative depth exactly as strongly as it repairs Gemma, confirmed on a third set of questions the vector had never seen. But watching what Qwen answers picks the right branch no better than chance: nudged toward a wrong candidate, Qwen goes along more readily than when nudged toward the right one. There, a probe on the hidden state closes the loop instead, at half the oracle. What transfers across models is the write. Which selector works is a property of the model.</p>
+  </div>
+  <div class="finding">
+    <div class="num">×8<small>attention at L32</small></div>
+    <p><strong>The nudge lives in a band of the network, and it works by pointing attention.</strong> Run at every depth, the same frozen vector repairs only inside a band about a quarter of the network wide: layers 20 to 30 of Gemma's 62, layers 31 to 37 of Qwen's 64, with nothing above. Inside that band, a measurement of what it does: the position that produces the answer sends up to eight times more attention to the addressed span in the layers just above the write, and the amount it sends predicts whether the model adopts that candidate. "Attend to this one" is now a number.</p>
   </div>
 </div>
 
@@ -211,12 +215,12 @@
 
   <h2>Where it stands</h2>
   <div class="status">
-    <div><div class="big">19</div><div class="eyebrow">predictions registered before data</div></div>
-    <div><div class="big">16</div><div class="eyebrow">confirmed</div></div>
+    <div><div class="big">22</div><div class="eyebrow">predictions registered before data</div></div>
+    <div><div class="big">19</div><div class="eyebrow">confirmed</div></div>
     <div><div class="big">3</div><div class="eyebrow">refuted (all three about selectors)</div></div>
-    <div><div class="big">$50</div><div class="eyebrow">52 H100 jobs, two days</div></div>
+    <div><div class="big">$105</div><div class="eyebrow">88 H100 jobs, three days</div></div>
   </div>
-  <p style="margin-top:22px">Every step was registered before launch, every intervention audited for delivery on independent channels, and every artifact is committed. Five settings on Gemma, two disjoint draws each on real and renamed text, the blind reading on both, and a second model on the same questions.</p>
+  <p style="margin-top:22px">Every step was registered before launch, every intervention audited for delivery on independent channels, and every artifact is committed. Five settings on Gemma, two disjoint draws each on real and renamed text, the blind reading on both, a second model on the same questions and on a fresh frame, a depth ladder on both models, and an attention read of the write.</p>
 
   <h3>The deployment reading <span class="pill good">landed, two frames</span></h3>
   <p>Run the loop blind on everything the model gets wrong because of the documents, and on questions it already gets right. Both readings confirmed their registered prediction: the failures improve, with intervals clear of zero. Both also failed the collateral bound set in advance: forced to answer, the loop breaks about a tenth of the questions the model already had right. The abstaining version, which only overrides the model when exactly one branch is accepted at least half the time, is collateral-free on renamed entities but breaks one row in sixty on real text. What separates the frames is reach. When entities are renamed and the model cannot answer from memory, the loop fixes some failures a hint could not. On real text those failures are firm. Net over a whole frame: about two points gained on renamed entities, about zero on real text, and ten or three points with a perfect detector of which questions are wrong.</p>
@@ -243,6 +247,8 @@
     <tr><td class="n">WD</td><td>blind yield and collateral, renamed entities</td><td>helps blind, +0.12; safe only when abstaining <span class="pill meter">loop</span></td></tr>
     <tr><td class="n">WE</td><td>blind yield and collateral, real text</td><td>helps blind, +0.06; nets about zero on the frame <span class="pill meter">loop</span></td></tr>
     <tr><td class="n">WQ</td><td>the loop on a second model, Qwen3.5-27B</td><td>write transfers, +0.16 <span class="pill">write</span>; no selector beats chance <span class="pill meter">loop</span></td></tr>
+    <tr><td class="n">WT</td><td>what the write does to attention</td><td>routes attention onto the span, ×8 at L32 <span class="pill">write</span></td></tr>
+    <tr><td class="n">WY</td><td>Qwen at Gemma's depth, fresh frame; depth ladder on both models</td><td>+0.37 with specificity; probe closes the loop on Qwen; a mid-depth band on both models <span class="pill">write</span> <span class="pill meter">loop</span></td></tr>
   </table>
   </div>
 </div>
