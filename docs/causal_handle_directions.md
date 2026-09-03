@@ -4173,3 +4173,41 @@ the frame is under repair. wikihop_common gains a free-form prompt for
 rows with no candidates; WikiHop prompts unchanged.]
 [WP format probe launched: job-8k9y9 (context ctx-c37221ba, W0_MODE
 grade, seed 20260876), 2026-09-03 21:19 UTC.]
+[WP format probe LANDED (job-8k9y9, $0.20): std / closed exact-match on
+the same 100 rows — 12 candidates 0.164 / 0.111, 20 candidates 0.110 /
+0.070, free-form 0.062 / 0.000 (containment 0.100 / 0.000). No format
+clears the pre-named rule (documents ≥ 0.15 over closed-book). Raw
+free-form outputs show the cause: Gemma-3-27B returns the BRIDGE entity
+("George Thorogood" for his profession, "J. D. Martinez" for his
+ethnicity, 8/8 samples) — without room to reason it does not complete
+the second hop, on any format. **WP (HotpotQA) is closed as
+INSTRUMENT-FAILURE with no verdict:** a fixable pool there would test a
+pointer to the hinted span, not evidence use; the 25th/26th predictions
+are withdrawn unread and re-registered below on a task where a single
+reading step yields the answer. HotpotQA with a reasoning budget is
+recorded as future work (the readers would need last-line parsing).]
+
+### WP′. The second task, re-pointed: SQuAD v1.1 (single-paragraph extractive reading) with candidates enumerated from the paragraph
+
+Registered 2026-09-03, before any SQuAD data. Frame
+(scripts/squad_frame.py → results/loop_screen/squad_input.jsonl.gz, seed
+20260877): 800 rows drawn from the validation split among rows whose
+answer is an entity-like whole-word span of the paragraph (a
+capitalized span, a number, or a year — so the enumerated candidates
+are of the answer's kind); candidates = the paragraph's capitalized
+spans, numbers and years, lowercased like WikiHop's, deduplicated,
+capped at 20 with the answer always present and a seeded order; docs =
+the paragraph with its title. Prompts: the WikiHop constructions with
+the free-form question. Stage 1 (Gemma, grade_hint k=8, seed 20260878):
+doc-dependent pool, hint-repairable rows (≥ 4/8), cross-fit pins capped
+at 60 (draw seed 20260879, shard seed 20260880). Pre-named descriptive:
+SQuAD's hint-repairable rate and closed-book accuracy; the instrument
+check that documents beat closed-book by ≥ 0.15 on the frame (else the
+same closure as WP). Stage 2 unchanged from WP: the WX recipe at L30,
+cross-fit frozen direction from SQuAD donors (A/B), WikiHop L38 gauge
+frozen for ties, job seed 20260881; the WikiHop-donor cross-task pair
+(XA/XB) as the descriptive extra. **Registered directional predictions
+(the 25th and 26th, re-pointed): the gold-address frozen write repairs
+SQuAD failures with CI > 0 and specificity CI > 0; the output-first loop
+beats the k=8 baseline and the random-branch rate with CI > 0.** Failure
+readings and readers as in WP. Cost ~$6.
