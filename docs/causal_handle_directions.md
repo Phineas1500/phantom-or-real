@@ -3812,3 +3812,10 @@ job A tests 13 rows with 14 donors, job B the reverse (seeds 20260855 /
 loop at 2× k=4, text-hint gold arm k=8), WH_MODEL Qwen/Qwen3.5-27B,
 write L43 (A/B) + L31 descriptive (A/B), gauge L48 with L53/L58 extras,
 seed 20260857.]
+[Stage 2 launched after commit 79ceaf6: L43 primary job-i33vz (A, 13
+test rows) + job-7pxb9 (B, 14); L31 descriptive job-dzy76 (A) +
+job-mx57i (B); context ctx-cb77deed (fresh frame, wikihop_wq_pinned.npz
+as the gauge npz, gauge L48 with L53/L58 extras; L31 jobs also read
+L38/L43), seed 20260857, no cache mount, 2026-09-03 05:39 UTC. Fake-
+model dry run with the real pins validated baseline / write 1×·2× /
+text-hint arms and the gauge keys.]
