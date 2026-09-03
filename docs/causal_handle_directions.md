@@ -3923,3 +3923,12 @@ straddles zero → WRITE-DOES-NOT-ROUTE-ATTENTION-AT-L38, with the curve
 reported. One job, ~$3, seed 20260864. Reader:
 scripts/wikihop_wt_gates.py. Amendments only on independent-telemetry
 evidence, per policy.
+[WY launched after registration commit f74f704: stage 1 Qwen grade_hint
+job-nfejy (third frame, seed 20260860, max_num_seqs 256, no cache
+mount; context ctx-42d78baf), 2026-09-03 13:08 UTC. Gemma depth ladder
+sweep (context ctx-7bb135db, loop off, text arm off, rung 2×, 3 seeded
+non-gold, gauge L53 for scores, seed 20260865; 59 WX rows cross-fit):
+L15 job-jqqme (A) / job-6iqbe (B); L20 job-4iw6r / job-pea4n; L25
+job-ggbjg / job-de6nq; L35 job-nueuv / job-yxjzu; L40 job-uirwv /
+job-7gmzi; L45 job-bnu69 / job-r279r. Qwen L31 jobs and the Qwen ladder
+follow the stage-1 pins.]
