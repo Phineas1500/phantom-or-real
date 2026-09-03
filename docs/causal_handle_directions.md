@@ -4078,3 +4078,13 @@ job-ij882 / B job-zr3sp. Attention sweep (context ctx-da1b91af; WT
 settings) — flip job-n7c9t; random seed 20260867 job-5m7en. Fake-model
 dry run of the random mode validated write_kind frozen_random, hooks,
 and the non-gold arms.]
+[WV 2026-09-03 19:20 UTC: attention jobs job-n7c9t (flip) and job-5m7en
+(random) LANDED; behaviour: random-68 B (job-zr3sp) landed, the other
+five FAILED at model download on full-disk machines (~$1.3 each; the
+platform's disk problem, ticket filed) and were resubmitted as flip A
+job-bdnba / B job-288qk, random-67 A job-cxsgd / B job-zs47i, random-68
+A job-byrpw. First look at the attention read (gold-span final-token
+mass, write − none, 30 rows): hint-delta +0.055 at L32 (WT); flipped
+−0.007 [−0.009, −0.005]; random −0.005 [−0.007, −0.004]; at L38 flipped
+−0.005, random 0.000. The direction carries the routing; the behaviour
+arms are read at the landing.]
