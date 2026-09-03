@@ -3569,7 +3569,7 @@ frame (507 rows). Doc-dependent pool 293 = 47 hint-repairable (already
 run in WO: their branches ARE the loop on that stratum, reused) + 246
 unrepairable; a seeded 100 of the 246 run now (seed 20260843; two
 shards). Collateral: 60 seeded correct-majority rows (std ≥ 5/8; seed
-20260844) of the 170 available. Frozen direction: donor mean gold
+20260844) of the 181 available. Frozen direction: donor mean gold
 hint-delta over the 47 WO rows (one vector, fit on rows disjoint from
 every test row here). Job seed 20260845.
 
