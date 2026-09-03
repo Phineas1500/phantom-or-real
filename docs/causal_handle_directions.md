@@ -3980,3 +3980,9 @@ L25 +0.449 [+0.331, +0.568]; L30 (WX) +0.360 [+0.242, +0.483]; L35
 +0.017 [−0.034, +0.085]; L40 (B only, 30 rows) −0.033 [−0.100, 0.000];
 L45 −0.017 [−0.051, 0.000]. Descriptive; the full ladder is read at the
 WY landing.]
+[2026-09-03 15:25 UTC: Gemma L40 A landed on the third attempt
+(job-gq5qj) — L40 both shards −0.017 [−0.051, 0.000]; the Gemma ladder
+is complete. Qwen sweep: L19 A/B and L25 A landed (Qwen L19 +0.104
+[+0.035, +0.188], specificity +0.090); L43 B (job-2kj95) and L49 B
+(job-imv4n) FAILED on a full machine disk ($1.71 each, no cache mount)
+and were resubmitted as job-axae9 / job-kk4tg; 7 jobs running.]
