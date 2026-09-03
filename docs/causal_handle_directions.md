@@ -3971,3 +3971,12 @@ with loop on, seed 20260863; ladder (loop off, rung 2×, 3 non-gold, seed
 20260866, gauge L53 for scores): L19 job-cpwgu / job-i2uep, L25
 job-ardtv / job-53xe5, L37 job-djz9h / job-zfkd8, L43 job-ixkh5 /
 job-2kj95, L49 job-nvq3j / job-imv4n.]
+[Gemma ladder update 2026-09-03 14:58 UTC: L35 A/B, L40 B, L45 A/B
+landed; L40 A failed a second time on a full disk (job-7wt2t, $1.30,
+without the cache mount — the machine's own disk) and was resubmitted a
+third time as job-gq5qj. Landed layers (gold-address dP at 2×, 59 rows
+unless noted): L15 +0.110 [+0.042, +0.186]; L20 +0.407 [+0.284, +0.530];
+L25 +0.449 [+0.331, +0.568]; L30 (WX) +0.360 [+0.242, +0.483]; L35
++0.017 [−0.034, +0.085]; L40 (B only, 30 rows) −0.033 [−0.100, 0.000];
+L45 −0.017 [−0.051, 0.000]. Descriptive; the full ladder is read at the
+WY landing.]

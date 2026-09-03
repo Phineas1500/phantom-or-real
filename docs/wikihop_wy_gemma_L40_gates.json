@@ -1,0 +1,81 @@
+{
+ "n_rows": 30,
+ "delivery_audit": {
+  "n_fired_records": 480,
+  "n_zero_prefill_hook_calls": 0,
+  "n_zero_positions_written": 0,
+  "n_gauge_forward_unhooked": 0,
+  "valid": true
+ },
+ "text_ceiling": {
+  "n_rows": 0,
+  "rate": null,
+  "dP": null,
+  "ci": [
+   NaN,
+   NaN
+  ],
+  "pass": false
+ },
+ "per_rung": {
+  "2.0": {
+   "n_rows_gold": 30,
+   "gold_rate": 0.0,
+   "dP": -0.03333333333333333,
+   "dP_ci": [
+    -0.1,
+    0.0
+   ],
+   "dP_pass": false,
+   "n_rows_spec": 30,
+   "nongold_write_gold_rate": 0.04444444444444444,
+   "specificity": -0.04444444444444444,
+   "specificity_ci": [
+    -0.12222222222222222,
+    0.0
+   ],
+   "specificity_pass": false,
+   "n_nongold_fires": 90,
+   "nongold_answers_fired_rate": 0.022222222222222223,
+   "replication_pass": false
+  }
+ },
+ "rungs_passing_replication": [],
+ "pinned_rung": null,
+ "loop": {
+  "rung": 2.0,
+  "n_rows": 30,
+  "gauge_select_rate": 0.0,
+  "oracle_rate": 0.0,
+  "baseline_rate": 0.03333333333333333,
+  "sc8_rate": 0.03333333333333333,
+  "dP_vs_baseline": -0.03333333333333333,
+  "dP_vs_baseline_ci": [
+   -0.1,
+   0.0
+  ],
+  "dP_vs_sc8": -0.03333333333333333,
+  "dP_vs_sc8_ci": [
+   -0.1,
+   0.0
+  ],
+  "argmax_gold_rate": 0.43333333333333335,
+  "chance_rate": 0.25,
+  "selection_signal": 0.08055567584415388,
+  "selection_signal_ci": [
+   -0.5118744677460335,
+   0.6451069336605819
+  ],
+  "mean_n_branches": 4.0,
+  "random_branch_rate": 0.03333333333333333,
+  "dP_vs_random_branch": -0.03333333333333333,
+  "dP_vs_random_branch_ci": [
+   -0.09166666666666666,
+   0.0
+  ],
+  "pass_i": false,
+  "pass_ii": false,
+  "pass_random": false
+ },
+ "verdict": "NO-CEILING"
+}
