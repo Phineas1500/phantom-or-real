@@ -3587,3 +3587,6 @@ correct rows. ABSTENTION (descriptive): answer only when the top
 answers-fired rate is unique and ≥ 0.5, else keep the baseline answer —
 yield and collateral under that rule (the deployment-relevant mode).
 Reader: scripts/wikihop_wd_gates.py.
+[Launched after registration commit d9709ba / tooling a867b5e: Y1
+job-iqv3d (50 unrepairable rows), Y2 job-dd5f2 (50), C job-g5naa (60
+correct rows), context ctx-92f605b4, seed 20260845, 2026-09-03 00:41 UTC.]
