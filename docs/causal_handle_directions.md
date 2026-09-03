@@ -4236,3 +4236,22 @@ rule re-checked at re-grading; if nothing clears, WP′ closes as
 INSTRUMENT-FAILURE like WP.]
 [WP′ candidate-format probe launched: job-shra9 (context ctx-f3e816f6,
 W0_MODE grade, seed 20260884), 2026-09-03 22:25 UTC.]
+[**CORRECTION 2026-09-03 23:10 UTC — a job bug, found from the model's
+own words.** The closed-book replies on the SQuAD probe read "Please
+provide the documents and the question with the missing parts ('' of
+?)": the grading job (scripts/wikihop_w0_jobs.py) carried an INLINE copy
+of the WikiHop prompt template, so every HotpotQA and SQuAD std/closed
+prompt asked "what is the '' of ?" — the question was never shown. The
+hint-first arm imported the shared module and so did show the question,
+which is why hints "repaired" 71–92%. Consequences: the WP stage-1
+reading (job-rba4e), the WP format probe (job-8k9y9), the WP′ stage-1
+reading (job-mymvk) and the WP′ candidate probe (job-shra9) are VOID as
+instruments (≈ $1.05 total); the "Gemma returns the bridge entity"
+interpretation is withdrawn; WP's INSTRUMENT-FAILURE closure is
+reopened. WikiHop results are unaffected (the inline template IS the
+WikiHop prompt, byte-identical to the shared one for WikiHop rows; the
+stage-2 job always imported the shared module). Fix: the grading job now
+routes std_closed_prompts through wikihop_common. Re-grading, corrected,
+both frames as registered (HotpotQA 40-candidate frame for WP, SQuAD
+enumerated frame for WP′), seeds 20260886 / 20260887, with the same pre-
+named instrument rule (documents ≥ 0.15 over closed-book).]

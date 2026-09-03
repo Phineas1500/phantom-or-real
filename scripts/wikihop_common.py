@@ -10,6 +10,17 @@ SYSTEM = "You are a careful reading assistant. Answer concisely."
 
 def std_closed_prompts(r):
     q = r["question"] if r.get("question") else f"Based on the documents, what is the '{r['relation']}' of {r['subject']}?"
+    style = r.get("style")
+    if style == "plain":
+        return {"std": f"Read the passage and answer the question.\n\nPassage:\n{r['docs']}\n\nQuestion: {q}\n\nAnswer:",
+                "closed": f"Answer the question.\n\nQuestion: {q}\n\nAnswer:"}
+    if style == "qfirst":
+        return {"std": f"Question: {q}\n\nPassage:\n{r['docs']}\n\nAnswer the question with a short phrase taken from the passage.",
+                "closed": f"Question: {q}\n\nAnswer the question with a short phrase."}
+    if style == "which":
+        cands = "\n".join(f"- {c}" for c in r["candidates"])
+        return {"std": f"Passage:\n{r['docs']}\n\nQuestion: {q}\n\nWhich of these candidates answers the question?\n{cands}\n\nReply with that candidate only.",
+                "closed": f"Question: {q}\n\nWhich of these candidates answers the question?\n{cands}\n\nReply with that candidate only."}
     if not r["candidates"]:
         return {
             "std": f"Documents:\n{r['docs']}\n\nQuestion: {q}\n\nAnswer with the exact answer phrase from the documents, nothing else.",

@@ -33,12 +33,10 @@ LLM_KW = {"max_num_seqs": int(os.environ["W0_MAX_NUM_SEQS"])} if os.environ.get(
 
 
 def std_closed_prompts(r):
-    q = f"Based on the documents, what is the '{r['relation']}' of {r['subject']}?"
-    cands = "\n".join(f"- {c}" for c in r["candidates"])
-    return {
-        "std": f"Documents:\n{r['docs']}\n\nQuestion: {q}\nCandidates:\n{cands}\n\nAnswer with exactly one candidate, nothing else.",
-        "closed": f"Question: {q}\nCandidates:\n{cands}\n\nAnswer with exactly one candidate, nothing else.",
-    }
+    import sys as _sys
+    _sys.path.insert(0, "/app")
+    from wikihop_common import std_closed_prompts as _shared
+    return _shared(r)
 
 
 def main():
