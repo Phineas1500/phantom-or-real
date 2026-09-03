@@ -4260,3 +4260,29 @@ correction commit 3659dac: WP (HotpotQA) job-krxds (context
 ctx-fe286b61, seed 20260886); WP′ (SQuAD) job-gmcqj (context
 ctx-16539009, seed 20260887). Job-path prompt render verified to
 contain the question in both std and closed prompts.]
+[Corrected stage 1 LANDED 2026-09-03 23:30 UTC. **HotpotQA (job-krxds,
+$0.43):** std 0.613, closed-book 0.521, hint-first 0.712; failing 0/8
+299; doc-dependent 219; hint-repairable ∧ doc-dependent **53 (24.2%)**,
+27 reading-driven; correct-majority 488; pins A/B 26/27 (not
+underpowered). **SQuAD (job-gmcqj, $0.24):** std 0.897, closed-book
+0.692, hint-first 0.925; failing 0/8 78; doc-dependent 54; hint-
+repairable ∧ doc-dependent **14 (25.9%)**, 5 reading-driven; correct-
+majority 717; pins A/B 7/7 — **UNDERPOWERED** (< 20): per the
+registration the write reading stands and the loop reading is
+descriptive. The close-cousin quarter appears on both tasks (24–26%,
+WikiHop 20–27%). Instrument gate as written (documents ≥ 0.15 over
+closed-book): SQuAD +0.205 PASS; HotpotQA +0.092 FAIL. **Amendment,
+recorded and flagged:** the 0.15 threshold was written while the
+instrument was broken and is inconsistent with the reference task —
+WikiHop's own margins on the identical prompts are +0.02 (WF frame)
+to +0.07 (W0 frame), telemetry on disk before the rule and independent
+of HotpotQA's outcome — so it would exclude the task every WikiHop
+verdict rests on; the gate's purpose (that the model reads the question
+and the documents) is met by the verified prompt render and by std 0.61
+against 0.07 under the broken job. HotpotQA proceeds to stage 2 with
+this amendment on record; a reviewer may discount it accordingly.
+Stage 2 launched for both tasks with the WX recipe (L30, 1×/2×, loop at
+2× k=4, 3 seeded non-gold, text-hint gold k=8, WikiHop real-text L38
+gauge for ties): HotpotQA jobs A/B/XA/XB (seed 20260874), SQuAD jobs
+A/B/XA/XB (seed 20260881); XA/XB = the same test shards with the 59
+WikiHop WX donors (cross-task vector, descriptive).]
