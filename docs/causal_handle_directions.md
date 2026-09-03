@@ -3938,3 +3938,17 @@ cancelled unbilled before starting because its no-write record lacked
 the per-candidate span masses the paired test needs — fixed before any
 data), 2026-09-03 13:12 UTC. Fake-model dry run of job and reader
 passed.]
+
+**WT LANDED 2026-09-03 (job-8wnju, $0.51).** 30 rows (≤ 1,600 tokens;
+A 11 / B 19), 120 write records, delivery audit valid. Primary at the
+pinned L38: written-span attention mass, write − none, row×candidate-
+paired **+0.0030 [+0.0024, +0.0036]** on a baseline of 0.0048 → **the
+22nd registered prediction CONFIRMED: WRITE-ROUTES-ATTENTION-AT-L38.**
+Gold writes +0.0035 [+0.0020, +0.0048]; non-gold writes raise their own
+span +0.0028 [+0.0022, +0.0035] and lower the gold span −0.0003
+[−0.0005, −0.0002]. Descriptive curve: the gain peaks at L32 (+0.048,
+eight times baseline) and stays above zero at every layer to L61; L38
+is a local trough. Written-span mass at L38 correlates with WX's
+acceptance of the branch (r = 0.42; accepted branches 0.0131 vs
+0.0066). Summary docs/wikihop_wt_summary.md; reader
+docs/wikihop_wt_gates.json; rows results/loop_screen/wikihop_wt.jsonl.
