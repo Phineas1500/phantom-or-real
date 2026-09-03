@@ -4234,3 +4234,5 @@ format whose std accuracy exceeds closed-book by ≥ 0.15, preferring
 clears, the frame is rebuilt with sibling candidates anyway and the
 rule re-checked at re-grading; if nothing clears, WP′ closes as
 INSTRUMENT-FAILURE like WP.]
+[WP′ candidate-format probe launched: job-shra9 (context ctx-f3e816f6,
+W0_MODE grade, seed 20260884), 2026-09-03 22:25 UTC.]
