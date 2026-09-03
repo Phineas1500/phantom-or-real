@@ -3770,3 +3770,10 @@ contrast, now on natural text). Readers: scripts/wikihop_wl_gates.py
 scripts/wikihop_wo_gates.py with --tie-key set to the pinned gauge key
 (output-first selector vs baseline and random branch). Cost ~$10 total.
 Amendments only on independent-telemetry evidence, per policy.
+[Stage 1 launched after registration commit 4a772fa: grade_hint
+job-u4tge (vLLM, seed 20260854), capture job-kurbd (HF bf16; L38/43/48/
+53/58 final-token, L43/L31 candidate means), context ctx-712938ae
+(fresh frame as wikihop_port_input.jsonl.gz), 2026-09-03 03:40 UTC.
+Fake-model dry run of the stage-2 job under the Qwen tokenizer (64
+layers, width 5120, write L43, gauge L48) validated render, hooks, and
+per-model turn-end token.]
