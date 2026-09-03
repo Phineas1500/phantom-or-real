@@ -29,6 +29,7 @@ WRITE_LAYERS = [int(x) for x in os.environ.get("W0_WRITE_LAYERS", "30").split(",
 WRITE_LAYER = WRITE_LAYERS[0]
 MODEL = os.environ.get("W0_MODEL", "google/gemma-3-27b-it")
 CT_KW = {"enable_thinking": False} if "qwen" in MODEL.lower() else {}
+LLM_KW = {"max_num_seqs": int(os.environ["W0_MAX_NUM_SEQS"])} if os.environ.get("W0_MAX_NUM_SEQS") else {}
 
 
 def std_closed_prompts(r):
@@ -56,7 +57,7 @@ def main():
         ids = pins["pools"][os.environ.get("W0_ROWS_KEY", "w2_pool")]
         by_id = {r["id"]: r for r in rows}
         seed = int(os.environ.get("W0_SEED", "20260824"))
-        llm = LLM(model=MODEL, max_model_len=8192, gpu_memory_utilization=0.92)
+        llm = LLM(model=MODEL, max_model_len=8192, gpu_memory_utilization=0.92, **LLM_KW)
         convs = [[{"role": "user", "content": SYSTEM + "\n\n" + hint_first_prompt(by_id[i], by_id[i]["answer"])}] for i in ids]
         outs = llm.chat(convs, SamplingParams(n=8, temperature=0.7, max_tokens=32, seed=seed), chat_template_kwargs=CT_KW or None)
         n = 0
@@ -73,7 +74,7 @@ def main():
             import sys
             sys.path.insert(0, "/app")
             from wikihop_common import hint_first_prompt
-        llm = LLM(model=MODEL, max_model_len=8192, gpu_memory_utilization=0.92)
+        llm = LLM(model=MODEL, max_model_len=8192, gpu_memory_utilization=0.92, **LLM_KW)
         convs, meta = [], []
         for r in rows:
             ps = std_closed_prompts(r)
