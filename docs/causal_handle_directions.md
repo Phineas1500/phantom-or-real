@@ -4151,3 +4151,7 @@ readings: 25th fails → WRITE-IS-WIKIHOP-SPECIFIC; 26th fails with the
 scripts/wikihop_wl_gates.py --frozen, scripts/wikihop_wo_gates.py
 --tie-key primary_L38 (single gauge). Cost ~$8 plus platform retries.
 Amendments only on independent-telemetry evidence, per policy.
+[WP stage 1 launched after registration commit 2960cd1: Gemma grade_hint
+job-rba4e (context ctx-3f48b6b0: HotpotQA frame as
+wikihop_port_input.jsonl.gz, seed 20260871, no cache mount), 2026-09-03
+20:35 UTC.]
