@@ -3964,3 +3964,10 @@ mode; ~$2 each because the download ran long before failing).
 Resubmitted 2026-09-03 14:10 UTC without the cache mount: L35 A
 job-ut8qi, L40 A job-7wt2t, L40 B job-w3a7y, L45 A job-wcg68. L35 B
 (job-yxjzu) and L45 B (job-r279r) still running from the first sweep.]
+[WY Qwen stage 2 launched 2026-09-03 14:12 UTC (context ctx-c382693d:
+third frame, WQ L48 gauge npz frozen, wikihop_wy_pinned.json; no cache
+mount): L31 registered pair job-4ukdh (A, 18 rows) / job-bb9gw (B, 18)
+with loop on, seed 20260863; ladder (loop off, rung 2×, 3 non-gold, seed
+20260866, gauge L53 for scores): L19 job-cpwgu / job-i2uep, L25
+job-ardtv / job-53xe5, L37 job-djz9h / job-zfkd8, L43 job-ixkh5 /
+job-2kj95, L49 job-nvq3j / job-imv4n.]
