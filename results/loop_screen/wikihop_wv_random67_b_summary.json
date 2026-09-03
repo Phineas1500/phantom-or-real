@@ -1,0 +1,1141 @@
+{
+ "n_rows": 30,
+ "rows_key": "wh_rows",
+ "shard_index": 0,
+ "shard_count": 1,
+ "loop": false,
+ "loop_rung": 2.0,
+ "n_fired_branches": 120,
+ "write_layer": 30,
+ "gauge_layer": 53,
+ "rungs": [
+  2.0
+ ],
+ "seed": 20260869,
+ "frozen": {
+  "norm_target": 3212.9004486339572,
+  "n_donors": 29,
+  "n_positions": 229,
+  "mean_delta_norm": 1529.4518005792856,
+  "mean_position_norm": 3212.9004486339572,
+  "cos_random_vs_hint": -0.02372713592449485,
+  "vector_mode": "random",
+  "vector_seed": 20260867
+ },
+ "wx_job": "B",
+ "w0_base_norm": 4736.823490844226,
+ "skipped": [],
+ "rows": [
+  {
+   "id": "WH_dev_110",
+   "n_tokens": 989,
+   "n_candidates": 10,
+   "gold_positions": 3,
+   "nongold_fired": [
+    "ukraine",
+    "soviet union",
+    "kharkiv"
+   ],
+   "base_gauge_score": -8.606889600698453,
+   "deltas": {
+    "kiev": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 3736.691162109375,
+     "cos_frozen_vs_own_gold_delta": -0.015526300648767505,
+     "text_arm": false
+    },
+    "ukraine": {
+     "n_positions": 17,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen"
+    },
+    "soviet union": {
+     "n_positions": 8,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen"
+    },
+    "kharkiv": {
+     "n_positions": 12,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen"
+    }
+   }
+  },
+  {
+   "id": "WH_dev_210",
+   "n_tokens": 1692,
+   "n_candidates": 54,
+   "gold_positions": 3,
+   "nongold_fired": [
+    "object",
+    "league",
+    "club"
+   ],
+   "base_gauge_score": -2.854875952644909,
+   "deltas": {
+    "tournament": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 3108.564208984375,
+     "cos_frozen_vs_own_gold_delta": -0.019138426041430817,
+     "text_arm": false
+    },
+    "object": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen"
+    },
+    "league": {
+     "n_positions": 9,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen"
+    },
+    "club": {
+     "n_positions": 10,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen"
+    }
+   }
+  },
+  {
+   "id": "WH_dev_275",
+   "n_tokens": 1889,
+   "n_candidates": 35,
+   "gold_positions": 9,
+   "nongold_fired": [
+    "earth",
+    "european union",
+    "government"
+   ],
+   "base_gauge_score": 0.3125151783279177,
+   "deltas": {
+    "european northern observatory": {
+     "n_positions": 9,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 2902.83642578125,
+     "cos_frozen_vs_own_gold_delta": -0.012544116488098054,
+     "text_arm": false
+    },
+    "earth": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen"
+    },
+    "european union": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen"
+    },
+    "government": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen"
+    }
+   }
+  },
+  {
+   "id": "WH_dev_452",
+   "n_tokens": 1226,
+   "n_candidates": 11,
+   "gold_positions": 8,
+   "nongold_fired": [
+    "22",
+    "1895",
+    "1530"
+   ],
+   "base_gauge_score": -4.669366755436513,
+   "deltas": {
+    "1982": {
+     "n_positions": 8,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 3017.223876953125,
+     "cos_frozen_vs_own_gold_delta": -0.013911077568999149,
+     "text_arm": false
+    },
+    "22": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen"
+    },
+    "1895": {
+     "n_positions": 8,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen"
+    },
+    "1530": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen"
+    }
+   }
+  },
+  {
+   "id": "WH_dev_686",
+   "n_tokens": 1052,
+   "n_candidates": 9,
+   "gold_positions": 3,
+   "nongold_fired": [
+    "middlesex",
+    "soviet union",
+    "most"
+   ],
+   "base_gauge_score": -11.895047411994936,
+   "deltas": {
+    "boston": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 4566.32958984375,
+     "cos_frozen_vs_own_gold_delta": -0.021205314462024418,
+     "text_arm": false
+    },
+    "middlesex": {
+     "n_positions": 7,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen"
+    },
+    "soviet union": {
+     "n_positions": 6,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen"
+    },
+    "most": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen"
+    }
+   }
+  },
+  {
+   "id": "WH_dev_792",
+   "n_tokens": 2306,
+   "n_candidates": 49,
+   "gold_positions": 11,
+   "nongold_fired": [
+    "democracy",
+    "part",
+    "geography"
+   ],
+   "base_gauge_score": 4.291095481579547,
+   "deltas": {
+    "region of tanzania": {
+     "n_positions": 11,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 2973.70703125,
+     "cos_frozen_vs_own_gold_delta": -0.013869756223053354,
+     "text_arm": false
+    },
+    "democracy": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen"
+    },
+    "part": {
+     "n_positions": 6,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen"
+    },
+    "geography": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen"
+    }
+   }
+  },
+  {
+   "id": "WH_dev_1054",
+   "n_tokens": 789,
+   "n_candidates": 27,
+   "gold_positions": 2,
+   "nongold_fired": [
+    "speaker",
+    "travel",
+    "literature"
+   ],
+   "base_gauge_score": -4.211532941048518,
+   "deltas": {
+    "book": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 3066.7861328125,
+     "cos_frozen_vs_own_gold_delta": -0.019479466164571437,
+     "text_arm": false
+    },
+    "speaker": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen"
+    },
+    "travel": {
+     "n_positions": 6,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen"
+    },
+    "literature": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen"
+    }
+   }
+  },
+  {
+   "id": "WH_dev_1301",
+   "n_tokens": 1384,
+   "n_candidates": 18,
+   "gold_positions": 16,
+   "nongold_fired": [
+    "lophophore",
+    "brachiopoda",
+    "pterobranchia"
+   ],
+   "base_gauge_score": -9.733575320884068,
+   "deltas": {
+    "cheilostomata": {
+     "n_positions": 16,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 3564.878173828125,
+     "cos_frozen_vs_own_gold_delta": -0.019567123579261336,
+     "text_arm": false
+    },
+    "lophophore": {
+     "n_positions": 15,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen"
+    },
+    "brachiopoda": {
+     "n_positions": 7,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen"
+    },
+    "pterobranchia": {
+     "n_positions": 15,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen"
+    }
+   }
+  },
+  {
+   "id": "WH_dev_1388",
+   "n_tokens": 2470,
+   "n_candidates": 40,
+   "gold_positions": 20,
+   "nongold_fired": [
+    "most",
+    "west",
+    "erlangen"
+   ],
+   "base_gauge_score": 1.9508476881387264,
+   "deltas": {
+    "wei\u00dfenburg in bayern": {
+     "n_positions": 20,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 3424.50634765625,
+     "cos_frozen_vs_own_gold_delta": -0.013235622392728201,
+     "text_arm": false
+    },
+    "most": {
+     "n_positions": 9,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen"
+    },
+    "west": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen"
+    },
+    "erlangen": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen"
+    }
+   }
+  },
+  {
+   "id": "WH_dev_1504",
+   "n_tokens": 2433,
+   "n_candidates": 15,
+   "gold_positions": 6,
+   "nongold_fired": [
+    "news",
+    "technology",
+    "publisher"
+   ],
+   "base_gauge_score": -7.245179043644258,
+   "deltas": {
+    "video game industry": {
+     "n_positions": 6,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 1615.9488525390625,
+     "cos_frozen_vs_own_gold_delta": -0.029079067280234808,
+     "text_arm": false
+    },
+    "news": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen"
+    },
+    "technology": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen"
+    },
+    "publisher": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen"
+    }
+   }
+  },
+  {
+   "id": "WH_dev_1662",
+   "n_tokens": 2032,
+   "n_candidates": 40,
+   "gold_positions": 6,
+   "nongold_fired": [
+    "east",
+    "sikkim",
+    "indonesia"
+   ],
+   "base_gauge_score": 4.32829327156227,
+   "deltas": {
+    "sylhet division": {
+     "n_positions": 6,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 3522.703125,
+     "cos_frozen_vs_own_gold_delta": -0.010098973359239457,
+     "text_arm": false
+    },
+    "east": {
+     "n_positions": 9,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen"
+    },
+    "sikkim": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen"
+    },
+    "indonesia": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen"
+    }
+   }
+  },
+  {
+   "id": "WH_dev_1737",
+   "n_tokens": 1308,
+   "n_candidates": 13,
+   "gold_positions": 4,
+   "nongold_fired": [
+    "brazil",
+    "colombia",
+    "argentina"
+   ],
+   "base_gauge_score": -19.876175744509812,
+   "deltas": {
+    "la paz": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 3953.65283203125,
+     "cos_frozen_vs_own_gold_delta": -0.022869070784980534,
+     "text_arm": false
+    },
+    "brazil": {
+     "n_positions": 10,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen"
+    },
+    "colombia": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen"
+    },
+    "argentina": {
+     "n_positions": 7,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen"
+    }
+   }
+  },
+  {
+   "id": "WH_dev_2004",
+   "n_tokens": 1332,
+   "n_candidates": 11,
+   "gold_positions": 8,
+   "nongold_fired": [
+    "1956",
+    "200",
+    "2006"
+   ],
+   "base_gauge_score": -5.390507879313981,
+   "deltas": {
+    "2012": {
+     "n_positions": 8,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 4011.34765625,
+     "cos_frozen_vs_own_gold_delta": -0.022299233444079372,
+     "text_arm": false
+    },
+    "1956": {
+     "n_positions": 12,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen"
+    },
+    "200": {
+     "n_positions": 6,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen"
+    },
+    "2006": {
+     "n_positions": 8,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen"
+    }
+   }
+  },
+  {
+   "id": "WH_dev_2118",
+   "n_tokens": 656,
+   "n_candidates": 6,
+   "gold_positions": 6,
+   "nongold_fired": [
+    "filmfare awards",
+    "award",
+    "bafta"
+   ],
+   "base_gauge_score": -5.7804125971381675,
+   "deltas": {
+    "nandi awards": {
+     "n_positions": 6,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 5322.3544921875,
+     "cos_frozen_vs_own_gold_delta": -0.017864543140715772,
+     "text_arm": false
+    },
+    "filmfare awards": {
+     "n_positions": 12,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen"
+    },
+    "award": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen"
+    },
+    "bafta": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen"
+    }
+   }
+  },
+  {
+   "id": "WH_dev_2481",
+   "n_tokens": 2763,
+   "n_candidates": 47,
+   "gold_positions": 25,
+   "nongold_fired": [
+    "new york",
+    "mississauga",
+    "union"
+   ],
+   "base_gauge_score": -8.63636853298698,
+   "deltas": {
+    "ontario": {
+     "n_positions": 25,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 1818.6072998046875,
+     "cos_frozen_vs_own_gold_delta": -0.038721730980062055,
+     "text_arm": false
+    },
+    "new york": {
+     "n_positions": 26,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen"
+    },
+    "mississauga": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen"
+    },
+    "union": {
+     "n_positions": 8,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen"
+    }
+   }
+  },
+  {
+   "id": "WH_dev_2616",
+   "n_tokens": 1513,
+   "n_candidates": 14,
+   "gold_positions": 3,
+   "nongold_fired": [
+    "capital",
+    "name",
+    "gulf"
+   ],
+   "base_gauge_score": -3.2187122246255817,
+   "deltas": {
+    "airport": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 5105.05224609375,
+     "cos_frozen_vs_own_gold_delta": -0.023717597850049,
+     "text_arm": false
+    },
+    "capital": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen"
+    },
+    "name": {
+     "n_positions": 5,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen"
+    },
+    "gulf": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen"
+    }
+   }
+  },
+  {
+   "id": "WH_dev_2895",
+   "n_tokens": 1623,
+   "n_candidates": 14,
+   "gold_positions": 8,
+   "nongold_fired": [
+    "raoul walsh",
+    "william shakespeare",
+    "michael curtiz"
+   ],
+   "base_gauge_score": -10.755425732078242,
+   "deltas": {
+    "kubec glasmon": {
+     "n_positions": 8,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 5486.31591796875,
+     "cos_frozen_vs_own_gold_delta": -0.011834734092487581,
+     "text_arm": false
+    },
+    "raoul walsh": {
+     "n_positions": 7,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen"
+    },
+    "william shakespeare": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen"
+    },
+    "michael curtiz": {
+     "n_positions": 6,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen"
+    }
+   }
+  },
+  {
+   "id": "WH_dev_3011",
+   "n_tokens": 2419,
+   "n_candidates": 42,
+   "gold_positions": 3,
+   "nongold_fired": [
+    "canada",
+    "lake superior",
+    "north america"
+   ],
+   "base_gauge_score": 6.470766024778297,
+   "deltas": {
+    "windsor": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 3260.576171875,
+     "cos_frozen_vs_own_gold_delta": -0.03034614296411934,
+     "text_arm": false
+    },
+    "canada": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen"
+    },
+    "lake superior": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen"
+    },
+    "north america": {
+     "n_positions": 8,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen"
+    }
+   }
+  },
+  {
+   "id": "WH_dev_3097",
+   "n_tokens": 807,
+   "n_candidates": 6,
+   "gold_positions": 2,
+   "nongold_fired": [
+    "founder",
+    "television",
+    "official"
+   ],
+   "base_gauge_score": 6.679019912894634,
+   "deltas": {
+    "singer": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 5427.6904296875,
+     "cos_frozen_vs_own_gold_delta": -0.014166519510676935,
+     "text_arm": false
+    },
+    "founder": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen"
+    },
+    "television": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen"
+    },
+    "official": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen"
+    }
+   }
+  },
+  {
+   "id": "WH_dev_3295",
+   "n_tokens": 1386,
+   "n_candidates": 8,
+   "gold_positions": 12,
+   "nongold_fired": [
+    "denmark",
+    "holland america line",
+    "norway"
+   ],
+   "base_gauge_score": -4.504945314654658,
+   "deltas": {
+    "royal caribbean international": {
+     "n_positions": 12,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 3600.8115234375,
+     "cos_frozen_vs_own_gold_delta": -0.021488433560311253,
+     "text_arm": false
+    },
+    "denmark": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen"
+    },
+    "holland america line": {
+     "n_positions": 10,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen"
+    },
+    "norway": {
+     "n_positions": 5,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen"
+    }
+   }
+  },
+  {
+   "id": "WH_dev_3486",
+   "n_tokens": 968,
+   "n_candidates": 4,
+   "gold_positions": 9,
+   "nongold_fired": [
+    "david fury",
+    "joss whedon",
+    "doug petrie"
+   ],
+   "base_gauge_score": -2.6094492280846384,
+   "deltas": {
+    "david greenwalt": {
+     "n_positions": 9,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 3372.2119140625,
+     "cos_frozen_vs_own_gold_delta": -0.014066012373690883,
+     "text_arm": false
+    },
+    "david fury": {
+     "n_positions": 6,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen"
+    },
+    "joss whedon": {
+     "n_positions": 22,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen"
+    },
+    "doug petrie": {
+     "n_positions": 7,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen"
+    }
+   }
+  },
+  {
+   "id": "WH_dev_3662",
+   "n_tokens": 1140,
+   "n_candidates": 19,
+   "gold_positions": 11,
+   "nongold_fired": [
+    "west",
+    "wales",
+    "broken hill"
+   ],
+   "base_gauge_score": 7.899700552980687,
+   "deltas": {
+    "victoria": {
+     "n_positions": 11,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 2281.8515625,
+     "cos_frozen_vs_own_gold_delta": -0.03649032993238823,
+     "text_arm": false
+    },
+    "west": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen"
+    },
+    "wales": {
+     "n_positions": 7,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen"
+    },
+    "broken hill": {
+     "n_positions": 8,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen"
+    }
+   }
+  },
+  {
+   "id": "WH_dev_3871",
+   "n_tokens": 1443,
+   "n_candidates": 30,
+   "gold_positions": 10,
+   "nongold_fired": [
+    "central",
+    "northern",
+    "rh\u00f4ne"
+   ],
+   "base_gauge_score": -6.083732831040002,
+   "deltas": {
+    "canton of geneva": {
+     "n_positions": 10,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 3374.326904296875,
+     "cos_frozen_vs_own_gold_delta": -0.015466147409899973,
+     "text_arm": false
+    },
+    "central": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen"
+    },
+    "northern": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen"
+    },
+    "rh\u00f4ne": {
+     "n_positions": 10,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen"
+    }
+   }
+  },
+  {
+   "id": "WH_dev_3951",
+   "n_tokens": 1211,
+   "n_candidates": 12,
+   "gold_positions": 6,
+   "nongold_fired": [
+    "westminster",
+    "sea of okhotsk",
+    "russia"
+   ],
+   "base_gauge_score": -11.90966268915674,
+   "deltas": {
+    "edo": {
+     "n_positions": 6,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 3453.879638671875,
+     "cos_frozen_vs_own_gold_delta": -0.038472548132756794,
+     "text_arm": false
+    },
+    "westminster": {
+     "n_positions": 3,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen"
+    },
+    "sea of okhotsk": {
+     "n_positions": 12,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen"
+    },
+    "russia": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen"
+    }
+   }
+  },
+  {
+   "id": "WH_dev_4107",
+   "n_tokens": 865,
+   "n_candidates": 7,
+   "gold_positions": 8,
+   "nongold_fired": [
+    "1969",
+    "20",
+    "september 1995"
+   ],
+   "base_gauge_score": -2.251207561269874,
+   "deltas": {
+    "1983": {
+     "n_positions": 8,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 3254.44970703125,
+     "cos_frozen_vs_own_gold_delta": -0.012642454105928961,
+     "text_arm": false
+    },
+    "1969": {
+     "n_positions": 8,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen"
+    },
+    "20": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen"
+    },
+    "september 1995": {
+     "n_positions": 12,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen"
+    }
+   }
+  },
+  {
+   "id": "WH_dev_4214",
+   "n_tokens": 2220,
+   "n_candidates": 5,
+   "gold_positions": 6,
+   "nongold_fired": [
+    "nine network",
+    "city",
+    "bbc"
+   ],
+   "base_gauge_score": -0.03766406028114129,
+   "deltas": {
+    "itv": {
+     "n_positions": 6,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 3932.599609375,
+     "cos_frozen_vs_own_gold_delta": -0.028824987878065523,
+     "text_arm": false
+    },
+    "nine network": {
+     "n_positions": 8,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen"
+    },
+    "city": {
+     "n_positions": 23,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen"
+    },
+    "bbc": {
+     "n_positions": 6,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen"
+    }
+   }
+  },
+  {
+   "id": "WH_dev_4449",
+   "n_tokens": 1178,
+   "n_candidates": 45,
+   "gold_positions": 6,
+   "nongold_fired": [
+    "voting",
+    "production",
+    "crew"
+   ],
+   "base_gauge_score": -5.130170985538825,
+   "deltas": {
+    "short film": {
+     "n_positions": 6,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 2697.120361328125,
+     "cos_frozen_vs_own_gold_delta": -0.007727859621242238,
+     "text_arm": false
+    },
+    "voting": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen"
+    },
+    "production": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen"
+    },
+    "crew": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen"
+    }
+   }
+  },
+  {
+   "id": "WH_dev_4691",
+   "n_tokens": 2340,
+   "n_candidates": 33,
+   "gold_positions": 13,
+   "nongold_fired": [
+    "atlantic ocean",
+    "\u00e5land islands",
+    "west"
+   ],
+   "base_gauge_score": 9.619348716669755,
+   "deltas": {
+    "s\u00f8nderborg municipality": {
+     "n_positions": 13,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 3257.917724609375,
+     "cos_frozen_vs_own_gold_delta": -0.010305790864410492,
+     "text_arm": false
+    },
+    "atlantic ocean": {
+     "n_positions": 6,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen"
+    },
+    "\u00e5land islands": {
+     "n_positions": 6,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen"
+    },
+    "west": {
+     "n_positions": 5,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen"
+    }
+   }
+  },
+  {
+   "id": "WH_dev_4705",
+   "n_tokens": 1011,
+   "n_candidates": 34,
+   "gold_positions": 4,
+   "nongold_fired": [
+    "injury",
+    "gas",
+    "shape"
+   ],
+   "base_gauge_score": -18.35406507550193,
+   "deltas": {
+    "ship": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 3369.73046875,
+     "cos_frozen_vs_own_gold_delta": -0.03086479043454579,
+     "text_arm": false
+    },
+    "injury": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen"
+    },
+    "gas": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen"
+    },
+    "shape": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen"
+    }
+   }
+  },
+  {
+   "id": "WH_dev_4900",
+   "n_tokens": 1038,
+   "n_candidates": 10,
+   "gold_positions": 4,
+   "nongold_fired": [
+    "law enforcement",
+    "religious",
+    "sovereign"
+   ],
+   "base_gauge_score": -1.369403336444163,
+   "deltas": {
+    "martial artist": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 3266.6220703125,
+     "cos_frozen_vs_own_gold_delta": -0.023918077385007938,
+     "text_arm": false
+    },
+    "law enforcement": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen"
+    },
+    "religious": {
+     "n_positions": 2,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen"
+    },
+    "sovereign": {
+     "n_positions": 4,
+     "mean_position_norm": 3212.9004486339572,
+     "write_kind": "frozen"
+    }
+   }
+  }
+ ],
+ "seconds": 1686
+}

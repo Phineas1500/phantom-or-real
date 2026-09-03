@@ -135,7 +135,7 @@
   </div>
   <div class="finding">
     <div class="num">×8<small>attention at L32</small></div>
-    <p><strong>The nudge lives in a band of the network, and it works by pointing attention.</strong> Run at every depth, the same frozen vector repairs only inside a band about a quarter of the network wide: layers 20 to 30 of Gemma's 62, layers 31 to 37 of Qwen's 64, with nothing above. Inside that band, a measurement of what it does: the position that produces the answer sends up to eight times more attention to the addressed span in the layers just above the write, and the amount it sends predicts whether the model adopts that candidate. "Attend to this one" is now a number.</p>
+    <p><strong>The nudge lives in a band of the network, and it works by pointing attention.</strong> Run at every depth, the same frozen vector repairs only inside a band about a quarter of the network wide: layers 20 to 30 of Gemma's 62, layers 31 to 37 of Qwen's 64, with nothing above. Inside that band, a measurement of what it does: the position that produces the answer sends up to eight times more attention to the addressed span in the layers just above the write, and the amount it sends predicts whether the model adopts that candidate. And it is the direction that does this, not the disturbance: a random vector of the same size at the same spot, or the same vector with its sign reversed, repairs nothing at all and sends no attention to the span. "Attend to this one" is now a number, and it belongs to one specific direction.</p>
   </div>
 </div>
 
@@ -215,12 +215,12 @@
 
   <h2>Where it stands</h2>
   <div class="status">
-    <div><div class="big">22</div><div class="eyebrow">predictions registered before data</div></div>
-    <div><div class="big">19</div><div class="eyebrow">confirmed</div></div>
+    <div><div class="big">24</div><div class="eyebrow">predictions registered before data</div></div>
+    <div><div class="big">21</div><div class="eyebrow">confirmed</div></div>
     <div><div class="big">3</div><div class="eyebrow">refuted (all three about selectors)</div></div>
-    <div><div class="big">$105</div><div class="eyebrow">88 H100 jobs, three days</div></div>
+    <div><div class="big">$115</div><div class="eyebrow">101 H100 jobs, three days</div></div>
   </div>
-  <p style="margin-top:22px">Every step was registered before launch, every intervention audited for delivery on independent channels, and every artifact is committed. Five settings on Gemma, two disjoint draws each on real and renamed text, the blind reading on both, a second model on the same questions and on a fresh frame, a depth ladder on both models, and an attention read of the write.</p>
+  <p style="margin-top:22px">Every step was registered before launch, every intervention audited for delivery on independent channels, and every artifact is committed. Five settings on Gemma, two disjoint draws each on real and renamed text, the blind reading on both, a second model on the same questions and on a fresh frame, a depth ladder on both models, an attention read of the write, and a content control against random and sign-reversed vectors.</p>
 
   <h3>The deployment reading <span class="pill good">landed, two frames</span></h3>
   <p>Run the loop blind on everything the model gets wrong because of the documents, and on questions it already gets right. Both readings confirmed their registered prediction: the failures improve, with intervals clear of zero. Both also failed the collateral bound set in advance: forced to answer, the loop breaks about a tenth of the questions the model already had right. The abstaining version, which only overrides the model when exactly one branch is accepted at least half the time, is collateral-free on renamed entities but breaks one row in sixty on real text. What separates the frames is reach. When entities are renamed and the model cannot answer from memory, the loop fixes some failures a hint could not. On real text those failures are firm. Net over a whole frame: about two points gained on renamed entities, about zero on real text, and ten or three points with a perfect detector of which questions are wrong.</p>
@@ -249,6 +249,7 @@
     <tr><td class="n">WQ</td><td>the loop on a second model, Qwen3.5-27B</td><td>write transfers, +0.16 <span class="pill">write</span>; no selector beats chance <span class="pill meter">loop</span></td></tr>
     <tr><td class="n">WT</td><td>what the write does to attention</td><td>routes attention onto the span, ×8 at L32 <span class="pill">write</span></td></tr>
     <tr><td class="n">WY</td><td>Qwen at Gemma's depth, fresh frame; depth ladder on both models</td><td>+0.37 with specificity; probe closes the loop on Qwen; a mid-depth band on both models <span class="pill">write</span> <span class="pill meter">loop</span></td></tr>
+    <tr><td class="n">WV</td><td>the content control: flipped and random vectors at the same address</td><td>repair nothing, route nothing; the direction carries both <span class="pill">write</span></td></tr>
   </table>
   </div>
 </div>

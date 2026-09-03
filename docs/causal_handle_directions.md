@@ -4088,3 +4088,21 @@ mass, write − none, 30 rows): hint-delta +0.055 at L32 (WT); flipped
 −0.007 [−0.009, −0.005]; random −0.005 [−0.007, −0.004]; at L38 flipped
 −0.005, random 0.000. The direction carries the routing; the behaviour
 arms are read at the landing.]
+
+**WV LANDED 2026-09-03 20:00 UTC (behaviour resubmits job-bdnba /
+job-288qk flip, job-cxsgd / job-zs47i random-67, job-byrpw random-68 +
+job-zr3sp from the first sweep; attention job-n7c9t / job-5m7en; WV ≈ $9
+over 13 jobs incl. five full-disk failures).** 59 rows, baseline 0.017.
+Gold-address repair at L30 × 2×: hint-delta 0.377 (+0.360 [+0.242,
++0.483], WX); sign-flipped **0.000** (−0.017 [−0.051, 0.000]); random,
+two draws pooled, **0.000** (−0.017 [−0.051, 0.000]). **Row-paired
+hint − random = +0.377 [+0.258, +0.508] → the 23rd registered prediction
+CONFIRMED: CONTENT-MATTERS. Hint − flip = +0.377 [+0.258, +0.508] → the
+24th CONFIRMED: SIGN-MATTERS.** Non-gold-address arms 0.031 / 0.041 /
+0.025. Attention (30 rows, gold-span final-token mass, write − none):
+hint-delta +0.055 [+0.041, +0.069] at L32 and +0.0035 at L38; flipped
+−0.007 [−0.009, −0.005] / −0.005; random −0.005 [−0.007, −0.004] /
+0.000 — the pre-named reading "the direction carries the routing".
+Verdict CONTENT-MATTERS / SIGN-MATTERS. Tally: 24 predictions, 21
+confirmed; ≈ $115 across 101 jobs. Summary docs/wikihop_wv_summary.md;
+reader docs/wikihop_wv_gates.json.
