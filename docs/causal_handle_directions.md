@@ -3670,3 +3670,9 @@ with the repairable stratum from WX's branches under the same selector
 within strata; COLLATERAL = loop − baseline on the 60 correct rows;
 ABSTENTION (descriptive). Reader: scripts/wikihop_wd_gates.py
 --pins docs/wikihop_we_pinned.json --tie-key primary_L38.
+[Launched after registration commit 5a86912: Y1 job-qa7tt (50 unrepairable
+real-text rows), Y2 job-dukdd (50), C job-4u3y2 (60 correct rows), context
+ctx-69b2f31a (fresh frame as wikihop_port_input.jsonl.gz, real-text W0 npz
+primary, WG anonymized npz as second gauge L48), seed 20260852,
+2026-09-03 02:01 UTC; fake-model dry run of the C job validated pins,
+hooks, and gauge keys (primary_L38/43/48/53 + second_L48).]
