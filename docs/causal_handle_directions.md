@@ -3991,3 +3991,23 @@ L37 A (job-djz9h), L37 B (job-zfkd8), L49 A (job-nvq3j) FAILED on a
 full machine disk ($1.9 each) and were resubmitted as job-curfd /
 job-9nmcw / job-284ui; L43 B / L49 B resubmits (job-axae9 / job-kk4tg)
 running.]
+
+**WY LANDED (registered part) 2026-09-03 (Qwen L31 jobs job-4ukdh /
+job-bb9gw; 36 fresh rows, third frame).** Delivery audit valid on all
+3,408 fired branches. Text ceiling 0.795 (+0.771 [+0.698, +0.840]).
+**Gold-address frozen write at L31: 1× +0.170 [+0.094, +0.253], 2×
++0.372 [+0.253, +0.497] with specificity +0.368 [+0.250, +0.491] →
+pinned rung 2×, the 20th registered prediction CONFIRMED:
+QWEN-WRITE-TRANSFERS-AT-GEMMA-DEPTH** (gold rate 0.396 vs baseline
+0.024; Gemma on its own real-text rows +0.360). **L48 gauge-select
+loop 0.188 vs baseline 0.024 ([+0.062, +0.281]) and vs random branch
+0.061 ([+0.030, +0.239]), oracle 0.396 (47% recovered), gold argmax
+36% → the 21st registered prediction CONFIRMED: QWEN-PROBE-SELECTOR-
+CLOSES-THE-LOOP.** Output-first (descriptive): 0.111, vs baseline
+[+0.003, +0.188], vs random [−0.033, +0.151] — the probe beats the
+output selector on Qwen for the second time, the reverse of Gemma.
+Ladder so far (2×, descriptive): Qwen L19 +0.104 [+0.035, +0.188], L25
++0.167 [+0.087, +0.260], L31 +0.372, L43 (A only, 18 rows) +0.181
+[+0.069, +0.306]; L37 and L49 pending resubmits. Gemma (59 WX rows):
+L15 +0.110, L20 +0.407, L25 +0.449, L30 +0.360, L35 +0.017, L40 −0.017,
+L45 −0.017. Full ladder reading and summary at the item's close.
