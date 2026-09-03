@@ -3780,3 +3780,10 @@ job-u4tge (vLLM, seed 20260854), capture job-kurbd (HF bf16; L38/43/48/
 Fake-model dry run of the stage-2 job under the Qwen tokenizer (64
 layers, width 5120, write L43, gauge L48) validated render, hooks, and
 per-model turn-end token.]
+[Stage 1 v1 (job-u4tge, job-kurbd) FAILED at model download, $0.49: the
+shared HF cache guarantees only 32 GiB free and the ~54 GB checkpoint
+filled it ("No space left on device"; the vLLM job's xet writer died on
+the same disk). Resubmitted 2026-09-03 03:58 UTC without the cache mount
+(the platform's documented path for large models): grade_hint
+job-s6ayr, capture job-rhh7m (both queued at submit: the fleet had no
+machine with a 150-minute window free). No design change.]
