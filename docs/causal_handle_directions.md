@@ -3610,3 +3610,23 @@ COLLATERAL-HARM**; the deployment-relevant mode is abstention. Tally: 16
 predictions, 14 confirmed; chain W → … → WO → WD, ≈ $35 / 41 jobs.
 Reader docs/wikihop_wd_gates.json; summary docs/wikihop_wd_summary.md;
 rows results/loop_screen/wikihop_wd_{y1,y2,c}.jsonl.
+
+**Descriptive addendum (post-hoc, unregistered; 2026-09-03; docs/wikihop_loop_descriptives.md).**
+On the WD/WO/WX/WA rows already on disk: (A) every abstention threshold
+from 0.25 to 1.0 gives the same yield (+0.039) and zero collateral —
+the rule abstains on ties at full acceptance, not on a threshold. (B)
+90–96% of the selector's gap to the oracle is a tie at full acceptance
+lost on the gauge; the tied wrong branch is usually the model's own
+baseline answer (12/15 on WO), whose nudge trivially confirms it; a
+lower dose does not separate tied pairs. (C) gpt-5.4-mini judge: 43% of
+203 wrong picks are the containing entity of the gold (base rate 9% over
+200 random non-gold candidates), siblings at base rate, unrelated
+depleted — the close-cousin scope in semantic form. (D) A two-stage
+blind rule (unsteered gauge < 0 → failure → loop with the baseline
+answer dropped from the tie) reaches frame net +0.02–0.03 because the
+gauge flags 22–35% of correct rows; with an oracle detector the same
+rule reaches +0.180 [+0.125, +0.240] yield, 0.000 collateral, frame net
++0.104. The deployment ceiling is the failure detector. Implied
+registrations: a specificity tie-break (prefer the narrower tied
+entity) and a better failure detector, each on a fresh frame; neither
+launched.

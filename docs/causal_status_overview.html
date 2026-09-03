@@ -1011,6 +1011,19 @@
       </table>
     </div>
     <div class="verdict">
+      <b>Descriptive addendum after WD (post-hoc, no new jobs).</b> Three things the existing rows say. The abstention rule is not
+      tunable: every threshold from 0.25 to 1.0 yields +0.039 with zero collateral, because it abstains on ties at full acceptance.
+      Those ties are 90–96% of the selector's gap to the oracle, and the tied wrong branch is usually the model's own baseline answer,
+      whose nudge trivially confirms it; a lower dose does not separate tied pairs. A gpt-5.4-mini judge on all 203 wrong picks:
+      <b>43% are the containing entity of the gold answer</b> (Ukraine for Kiev, Austria for Vorarlberg) against a 9% base rate over
+      random non-gold candidates — the sandbox's close-cousin scope in semantic form; string cousins catch only 5–14%. A two-stage
+      blind rule (unsteered gauge &lt; 0 → failure → loop with the baseline answer dropped from the tie) nets +0.02–0.03 on the frame
+      because the gauge flags 22–35% of correct rows; with a perfect failure detector the same rule reaches yield +0.180
+      [+0.125, +0.240], collateral 0.000, <b>frame net +0.104</b>. The deployment ceiling is now the failure detector, not the write.
+      Implied registrations (not launched): a specificity tie-break and a better failure detector, each on a fresh frame.
+      (docs/wikihop_loop_descriptives.md)
+    </div>
+    <div class="verdict">
       <b>WO (Sep 3): THE LOOP CLOSES WITH NO PROBE — the 15th registered prediction, confirmed.</b> After three linear probes capped
       the selector, the model's own outputs were tried as the signal: pick the candidate whose write makes the model answer that
       candidate most often, with the real-text gauge only breaking ties. Registered on a third anonymized frame (507 rows, closed-book
