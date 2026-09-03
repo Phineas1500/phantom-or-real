@@ -3629,7 +3629,10 @@ rule reaches +0.180 [+0.125, +0.240] yield, 0.000 collateral, frame net
 +0.104. The deployment ceiling is the failure detector. Implied
 registrations: a specificity tie-break (prefer the narrower tied
 entity) and a better failure detector, each on a fresh frame; neither
-launched.
+launched. [Later, 2026-09-03: the specificity tie-break was estimated
+on all seven frozen-write settings with 603 judged tied pairs before
+registering it — paired Δ from −0.050 to +0.064, every CI straddling
+zero, null on correct rows; NOT registered (docs/wikihop_loop_descriptives.md §E).]
 
 ### WE. Blind yield and collateral on REAL text (the WD design on the WF frame)
 

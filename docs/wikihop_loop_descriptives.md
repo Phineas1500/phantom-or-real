@@ -114,3 +114,27 @@ selector.**
    frames), scored by the two-stage rule's frame net against the +0.104
    oracle ceiling, on a fresh frame.
 Both are cheap ($3–5) and both use the existing job code.
+
+## E. The specificity tie-break, estimated before registering it (2026-09-03, later)
+Blind rule: among branches tied at the top acceptance rate, drop any
+candidate the judge calls a PARENT of another tied candidate; pick the
+unique survivor, else the gauge tie-break among survivors. 603 tied
+pairs judged (gpt-5.4-mini; `docs/wikihop_tied_pair_relations.json`;
+script `scripts/wikihop_specificity_tiebreak.py`).
+
+| setting | rows | tied rows | rows changed | plain output-first | specificity tie-break | paired Δ [95% CI] |
+|---|---|---|---|---|---|---|
+| WX real (59) | 59 | 24 | 3 | 0.271 | 0.254 | −0.017 [−0.051, 0.000] |
+| WA rider anonymized (60) | 60 | 44 | 13 | 0.350 | 0.300 | −0.050 [−0.133, +0.017] |
+| WO anonymized (47) | 47 | 29 | 14 | 0.362 | 0.426 | +0.064 [−0.064, +0.191] |
+| WD unrepairable (100) | 100 | 37 | 13 | 0.083 | 0.083 | 0.000 [−0.040, +0.040] |
+| WE unrepairable, real (100) | 100 | 18 | 6 | 0.013 | 0.022 | +0.010 [0.000, +0.030] |
+| WD correct rows (60) | 60 | 16 | 2 | 0.850 | 0.850 | 0.000 [−0.050, +0.050] |
+| WE correct rows (60) | 60 | 11 | 3 | 0.900 | 0.883 | −0.017 [−0.067, +0.033] |
+
+No consistent gain: the rule helps on one setting, hurts on two, and
+is null on the rest. The parent enrichment among wrong picks (section
+C) is real, but preferring the narrower tied candidate also drops gold
+when gold is the broader one. **Not registered.** The implied
+registration list is now down to the failure detector, whose ceiling on
+real text is +0.029 (WE); nothing on the deployment side is worth a job.
