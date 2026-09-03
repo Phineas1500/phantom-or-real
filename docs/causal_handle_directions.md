@@ -4215,3 +4215,22 @@ readings and readers as in WP. Cost ~$6.
 grade_hint job-mymvk (context ctx-050d8e48: SQuAD frame as
 wikihop_port_input.jsonl.gz, seed 20260878, no cache mount), 2026-09-03
 21:53 UTC.]
+[WP′ stage 1 LANDED (job-mymvk, $0.22) and FAILS the pre-named
+instrument rule: std 0.148 vs closed-book 0.150 (documents add
+nothing), hint-first 0.925. The prompt is well-formed and the paragraph
+states the answer; Gemma returns the candidate that occurs most often
+in the paragraph ("gdp" 8/8 for "how many companies were registered in
+Warsaw in 2006?", with "304,016" in the list) — the enumerated,
+lowercased span lists steer the model to a frequency heuristic on both
+HotpotQA and SQuAD, which WikiHop's human-curated, answer-typed
+candidates never did. Second pre-stage-2 instrument probe (job below,
+seed 20260884, W0_MODE grade, k=8, the same seeded 200 rows, draw seed
+20260882): (i) free-form; (ii) SIBLING candidates — the answers to the
+other SQuAD questions on the same paragraph (human-selected spans of
+the answer's kind), lowercased, padded to ≥ 6 with enumerated spans;
+(iii) the same with original casing. Pre-named choice: the candidate
+format whose std accuracy exceeds closed-book by ≥ 0.15, preferring
+(ii) for parity with WikiHop's lowercase lists; if only free-form
+clears, the frame is rebuilt with sibling candidates anyway and the
+rule re-checked at re-grading; if nothing clears, WP′ closes as
+INSTRUMENT-FAILURE like WP.]
