@@ -4155,3 +4155,19 @@ Amendments only on independent-telemetry evidence, per policy.
 job-rba4e (context ctx-3f48b6b0: HotpotQA frame as
 wikihop_port_input.jsonl.gz, seed 20260871, no cache mount), 2026-09-03
 20:35 UTC.]
+[WP stage 1 LANDED (job-rba4e, $0.41) and exposed an INSTRUMENT FAULT,
+not a model result: with the 40-candidate list Gemma scores std 0.067
+against closed-book 0.072 (documents add nothing), hint-first 0.712; the
+chosen candidate sits in the first quarter of the list 54% of the time
+and is a paragraph title 41% of the time (gold is a title 23%). The
+list, not the reading, drives the answer. Pre-stage-2 correction,
+recorded before any stage-2 data: a probe grading (std/closed only, no
+hint, k=8, seed 20260876) of three formats on the same seeded 100 rows
+(draw seed 20260875) — a 12-candidate list, a 20-candidate list, and
+free-form answering ("exact answer phrase from the documents"; scored
+exact and containment) — picks the format for the re-graded frame by a
+pre-named rule: the smallest candidate list whose std accuracy exceeds
+closed-book by ≥ 0.15, else free-form with containment scoring. Stage 2
+and its predictions are unchanged; only the candidate enumeration of
+the frame is under repair. wikihop_common gains a free-form prompt for
+rows with no candidates; WikiHop prompts unchanged.]
