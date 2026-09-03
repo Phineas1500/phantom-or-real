@@ -4070,3 +4070,11 @@ WT_VECTOR_MODE (hint | flip | random) + *_VECTOR_SEED. Cost ~$10 (6
 behaviour jobs + 2 attention jobs; Gemma jobs run without the cache
 mount after today's disk failures). Amendments only on independent-
 telemetry evidence, per policy.
+[WV launched after registration commit 4c14172, 2026-09-03 17:08 UTC,
+no cache mount: behaviour sweep (context ctx-f01413c1; L30, 2×, loop
+off, 3 seeded non-gold, seed 20260869) — flip A job-kqyzd / B job-i7bt9;
+random seed 20260867 A job-32iat / B job-zqscg; random seed 20260868 A
+job-ij882 / B job-zr3sp. Attention sweep (context ctx-da1b91af; WT
+settings) — flip job-n7c9t; random seed 20260867 job-5m7en. Fake-model
+dry run of the random mode validated write_kind frozen_random, hooks,
+and the non-gold arms.]
