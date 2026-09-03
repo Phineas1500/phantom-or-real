@@ -3530,3 +3530,20 @@ n = 47 ≈ 0.08 (paired). Stage 2 launches. [Stage 2 launched after pins
 commit 9df8e0b: job A job-k76n4 (test shard 1, 23 rows), job B job-6fgby
 (test shard 0, 24 rows), context ctx-42367914, seed 20260842, 2026-09-02
 23:50 UTC.]
+
+### WO — LANDED: OUTPUT-SELECTOR-BEATS-GAUGE (15th prediction CONFIRMED) (job-dp3e2, job-k76n4 + job-6fgby, 2026-09-03)
+
+Third anonymized frame (507 rows; contamination check PASS, closed-book
+0.113); 47 hint-repairable rows, all used. Gate (a) PASS: delivery
+audit valid (729 branches), text ceiling 0.891, gold-address frozen
+write **+0.386 [+0.255, +0.527] at 1×, +0.657 [+0.524, +0.790] at 2×**,
+specificity +0.367 / +0.614 (the WA rider's +0.650 replicates on a
+disjoint draw). (b) **15th prediction CONFIRMED**: output-first
+selection (answers-fired, real-text gauge tie-break) 0.362 vs the
+real-text gauge 0.218, row-paired **+0.144 [+0.032, +0.271]**; 53% of
+the 0.686 oracle; gold argmax 0.383 (chance ≈ 0.09); vs baseline
++0.33 [+0.20, +0.47], vs random branch [+0.08, +0.34], vs SC@8 [+0.21,
++0.49]. Secondary: vs the anonymized-fit L48 gauge (0.351, 51%) +0.011
+[−0.138, +0.160] — a tie; that gauge transfers across anonymized
+frames. Verdict as pre-named. Tally: 15 predictions, 13 confirmed.
+Full numbers: docs/wikihop_wo_summary.md. WikiHop chain complete.
