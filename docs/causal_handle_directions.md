@@ -3630,3 +3630,43 @@ rule reaches +0.180 [+0.125, +0.240] yield, 0.000 collateral, frame net
 registrations: a specificity tie-break (prefer the narrower tied
 entity) and a better failure detector, each on a fresh frame; neither
 launched.
+
+### WE. Blind yield and collateral on REAL text (the WD design on the WF frame)
+
+Registered 2026-09-03, before any data. WD's deployment reading sits on
+renamed entities; on real text the model answers ~45% of questions from
+memory (closed-book 0.445 on this frame), so both the yield and the
+collateral could differ. WE is WD with nothing changed but the frame.
+**Registered directional prediction (the program's 17th): on the
+doc-dependent pool of the WF real-text frame, reweighted to the pool's
+composition, the blind loop (frozen write at every candidate's address,
+output-first selection, real-text L38 gauge tie-break) raises accuracy
+over the k=8 baseline — CI > 0.** Pre-named non-inferiority bound for
+collateral: on correct-majority rows the loop's accuracy is within 0.10
+of baseline (harm CI lower bound above −0.10) → NO-COLLATERAL; otherwise
+COLLATERAL-HARM (reported with the abstention variant: answer only when
+the top answers-fired rate is unique and ≥ 0.5). Pre-named descriptive
+comparison: real-text vs anonymized (WD) yield and collateral, side by
+side, no verdict attached.
+
+**Frame and rows (docs/wikihop_we_pinned.json; scripts/wikihop_we_pins.py).**
+The WF fresh frame (800 real rows, frame seed 20260827). Doc-dependent
+pool 276 = 59 hint-repairable (already run in WX with cross-fit frozen
+writes at every candidate: those branches ARE the loop on that stratum,
+reused) + 217 unrepairable; a seeded 100 of the 217 run now (seed
+20260850; two shards of 50). Collateral: 60 seeded correct-majority rows
+(std ≥ 5/8; seed 20260851) of the 372 available. Weights 59/276 = 0.214
+and 217/276 = 0.786. Frozen direction: donor mean gold hint-delta over
+the 59 WF rows (disjoint from every test row here). Job seed 20260852.
+
+**Arms per row.** std baseline k=8; every candidate at 2× with k=4 (the
+loop); real-text gauges scored per branch (primary, L38/43/48/53) and
+the anonymized-fit L48 gauge as a second reading; no text-hint arm, no
+1× arm; hook counters (a zero aborts). Cost ~$5 (three jobs).
+
+**Readings.** As WD: BLIND YIELD = Σ_stratum w_s × (loop − baseline)_s
+with the repairable stratum from WX's branches under the same selector
+(tie-break = real-text L38 gauge score in both files), row-bootstrap CI
+within strata; COLLATERAL = loop − baseline on the 60 correct rows;
+ABSTENTION (descriptive). Reader: scripts/wikihop_wd_gates.py
+--pins docs/wikihop_we_pinned.json --tie-key primary_L38.

@@ -29,7 +29,7 @@ def per_row(recs, rung=2.0, tie_key="second_L38"):
         cands = list(br)
         corr = lambda c: float(np.mean([x["correct"] for x in br[c]]))
         af = lambda c: float(np.mean([x["answers_fired"] for x in br[c]]))
-        tsc = lambda c: (br[c][0]["gauge_scores"] or {}).get(tie_key, br[c][0]["gauge_score"])
+        tsc = lambda c: (br[c][0].get("gauge_scores") or {}).get(tie_key, br[c][0]["gauge_score"])
         best = max(cands, key=lambda c: (af(c), tsc(c)))
         top = max(af(c) for c in cands); uniq = sum(1 for c in cands if af(c) == top) == 1
         abstain = not (uniq and top >= 0.5)
@@ -45,11 +45,12 @@ def main() -> int:
     p.add_argument("--repairable-jsonl", type=Path, nargs="+", required=True, help="WO records (the 47 hint-repairable rows)")
     p.add_argument("--pins", type=Path, default=Path("docs/wikihop_wd_pinned.json"))
     p.add_argument("--out", type=Path, default=Path("docs/wikihop_wd_gates.json"))
+    p.add_argument("--tie-key", default="second_L38", help="gauge_scores key for the tie-break; falls back to gauge_score")
     args = p.parse_args()
     pins = json.load(open(args.pins)); w_rep, w_unrep = pins["pool"]["weight_repairable"], pins["pool"]["weight_unrepairable"]
-    Y = per_row([json.loads(l) for f in args.yield_jsonl for l in open(f)])
-    C = per_row([json.loads(l) for f in args.collateral_jsonl for l in open(f)])
-    R = per_row([json.loads(l) for f in args.repairable_jsonl for l in open(f)])
+    Y = per_row([json.loads(l) for f in args.yield_jsonl for l in open(f)], tie_key=args.tie_key)
+    C = per_row([json.loads(l) for f in args.collateral_jsonl for l in open(f)], tie_key=args.tie_key)
+    R = per_row([json.loads(l) for f in args.repairable_jsonl for l in open(f)], tie_key=args.tie_key)
     def stratum(d, key):
         return [d[i][key] - d[i]["base"] for i in sorted(d)]
     d_rep, d_unrep = stratum(R, "loop"), stratum(Y, "loop")
