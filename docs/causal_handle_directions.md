@@ -3794,3 +3794,21 @@ manifest tracked). grade_hint job-s6ayr FAILED at vLLM engine start
 sequences at this memory budget and vLLM's default max_num_seqs is 1024.
 Fix: W0_MAX_NUM_SEQS env (set 256), no other change; resubmitted as v3:
 job-4akjt (context ctx-461e5401), 2026-09-03 04:38 UTC.]
+[Stage 1 v3 grade_hint job-4akjt SUCCEEDED ($1.84; 19,200 generations).
+Stage-1 readings on Qwen3.5-27B (same 800 rows as Gemma's WF frame;
+Gemma in parentheses): std 0.534 (0.466), closed-book 0.451 (0.445),
+hint-first 0.691 (0.621); failing 0/8 278 (409); doc-dependent 137
+(276); hint-repairable ∧ doc-dependent **27 = 19.7%** (59 = 21.4%),
+reading-driven 15 / memory-driven 12; correct-majority 418 (372). Not
+underpowered (27 ≥ 20), but roughly half Gemma's n. Natural gauge gate
+(scripts/wikihop_w0_fit.py --cap-layers 38,43,48,53,58 --write-layer 43;
+docs/wikihop_wq_fit.json): 5-fold CV AUC L38 0.836, L43 0.831, **L48
+0.841**, L53 0.822, L58 0.808 — best layer after L43 is L48 → **PASS**
+(≥ 0.70; Gemma's W0 read 0.776); tie-break gauge pinned = L48. Capture
+finite everywhere, no Gemma-style massive dimensions (base norm 67 vs
+Gemma's 4,737 on the same recipe). Pins docs/wikihop_wq_pinned.json:
+job A tests 13 rows with 14 donors, job B the reverse (seeds 20260855 /
+20260856). Stage-2 launch: WX env (rungs 1×/2×, 3 seeded non-gold at 1×,
+loop at 2× k=4, text-hint gold arm k=8), WH_MODEL Qwen/Qwen3.5-27B,
+write L43 (A/B) + L31 descriptive (A/B), gauge L48 with L53/L58 extras,
+seed 20260857.]
