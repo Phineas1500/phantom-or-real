@@ -4030,3 +4030,43 @@ over 35 jobs ($18.7 lost to 10 jobs that died at download on
 full-disk machines), WT $0.51. Tally: 22 predictions, 19 confirmed;
 ≈ $105 across 88 jobs. Summary docs/wikihop_wy_summary.md; ladder
 docs/wikihop_wy_ladder.json.
+
+### WV. The content control: is it the direction, or any perturbation at the address?
+
+Registered 2026-09-03, before any data. Every specificity test in the
+chain varied the ADDRESS and kept the vector. WT showed the write
+routes attention onto the addressed span, which raises the possibility
+that any large perturbation at the span would draw attention and
+repair. WV varies the VECTOR and keeps the address: on Gemma-3-27B, the
+59 WX rows (cross-fit donors as in WX, frozen direction per job), write
+at L30 × 2× at the gold candidate's whole-word mentions, k=4, with the
+donor mean per-position |δ| as the norm target in every arm:
+(a) the frozen hint-delta direction — WX's existing records
+    (results/loop_screen/wikihop_wx_{a,b}.jsonl, gold at 2×), reused;
+(b) the sign-flipped hint-delta (same norm);
+(c) a matched-norm random direction, one frozen Gaussian unit vector
+    per job (seed 20260867), and (d) a second random draw (seed
+    20260868). Each arm also fires at three seeded non-gold addresses
+(the WX seeds) so the random vector's own address-specificity is read.
+std baseline k=8 from the same jobs. Loop off, text arm off.
+
+**Registered directional predictions.** (23rd) *Content*: gold-address
+repair under the hint-delta exceeds repair under the matched-norm random
+direction — row-paired (hint − random, pooled over the two draws) CI > 0.
+(24th) *Sign*: gold-address repair under the hint-delta exceeds repair
+under the sign-flipped direction — row-paired CI > 0. Pre-named
+descriptive: the random and flipped arms' own dP vs baseline and their
+address-specificity; and the ATTENTION read — a WT-style job per
+non-hint mode (flip; random seed 20260867) on the ≤ 1,600-token rows,
+final-token mass onto the gold span at L32 and L38 under each vector,
+compared with WT's hint-delta records. Pre-named readings of the
+attention: if the random vector routes as much attention as the
+hint-delta but repairs less, routing is necessary but not sufficient;
+if it routes less, the direction carries the routing. Failure readings:
+23rd fails → ANY-PERTURBATION-REPAIRS (the mechanism claim is demoted
+to "a perturbation at the address"); 24th fails → SIGN-DOES-NOT-MATTER.
+Readers: scripts/wikihop_wv_gates.py. Tooling: WH_VECTOR_MODE /
+WT_VECTOR_MODE (hint | flip | random) + *_VECTOR_SEED. Cost ~$10 (6
+behaviour jobs + 2 attention jobs; Gemma jobs run without the cache
+mount after today's disk failures). Amendments only on independent-
+telemetry evidence, per policy.

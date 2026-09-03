@@ -144,7 +144,7 @@ def main():
 
     n_rec = 0
     fout = open(os.path.join(outdir, "wikihop_wt.jsonl"), "w")
-    summary = {"jobs": {}, "write_layer": write_layer, "rung": rung, "max_tokens": max_tokens, "model": MODEL, "seed": int(os.environ.get("WT_SEED", "20260864"))}
+    summary = {"jobs": {}, "write_layer": write_layer, "rung": rung, "max_tokens": max_tokens, "model": MODEL, "seed": int(os.environ.get("WT_SEED", "20260864")), "vector_mode": os.environ.get("WT_VECTOR_MODE", "hint")}
     for job in jobs:
         test_ids = pins["jobs"][job]["test_rows"][:max_rows]
         donor_ids = pins["jobs"][job]["donor_rows"]
@@ -160,6 +160,12 @@ def main():
             acc = d.sum(axis=0) if acc is None else acc + d.sum(axis=0); n_pos += len(pos_s); norms.extend(np.linalg.norm(d, axis=1).tolist()); n_donors += 1
         mean_delta = acc / n_pos
         unit, norm_target = mean_delta / max(np.linalg.norm(mean_delta), 1e-8), float(np.mean(norms))
+        vector_mode = os.environ.get("WT_VECTOR_MODE", "hint")
+        if vector_mode == "flip":
+            unit = -unit
+        elif vector_mode == "random":
+            v = np.random.default_rng(int(os.environ.get("WT_VECTOR_SEED", "20260867"))).standard_normal(unit.shape[0])
+            unit = v / np.linalg.norm(v)
         print(f"job {job}: frozen write from {n_donors} donors / {n_pos} positions, norm target {norm_target:.1f} ({time.time()-t0:.0f}s)", flush=True)
         n_rows_used, n_skipped_long = 0, 0
         for rid in test_ids:
@@ -189,7 +195,7 @@ def main():
                 fout.write(json.dumps(rec) + "\n"); n_rec += 1
             n_rows_used += 1
             print(f"  row {rid}: {len(ids_s)} tokens, {len(cand_pos)} candidates ({time.time()-t0:.0f}s)", flush=True)
-        summary["jobs"][job] = {"n_donors": n_donors, "norm_target": norm_target, "n_rows_used": n_rows_used, "n_skipped_long": n_skipped_long}
+        summary["jobs"][job] = {"n_donors": n_donors, "norm_target": norm_target, "n_rows_used": n_rows_used, "n_skipped_long": n_skipped_long, "vector_mode": vector_mode}
     fout.close()
     summary["n_records"] = n_rec; summary["seconds"] = round(time.time() - t0)
     json.dump(summary, open(os.path.join(outdir, "wikihop_wt_summary.json"), "w"))

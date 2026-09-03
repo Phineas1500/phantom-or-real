@@ -216,6 +216,17 @@ def main():
                   "mean_position_norm": float(np.mean(norms))}
         print(f"frozen write from {n_donors} donors / {n_pos} positions: |mean δ| {frozen['mean_delta_norm']:.1f}, "
               f"norm target (donor mean per-position |δ|) {frozen['norm_target']:.1f} ({time.time()-t0:.0f}s)", flush=True)
+        vector_mode = os.environ.get("WH_VECTOR_MODE", "hint")
+        if vector_mode == "flip":
+            frozen["unit"] = -frozen["unit"]
+        elif vector_mode == "random":
+            v = np.random.default_rng(int(os.environ.get("WH_VECTOR_SEED", "20260867"))).standard_normal(frozen["unit"].shape[0])
+            frozen["cos_random_vs_hint"] = float(v @ frozen["unit"] / np.linalg.norm(v))
+            frozen["unit"] = v / np.linalg.norm(v)
+        frozen["vector_mode"] = vector_mode
+        frozen["vector_seed"] = int(os.environ.get("WH_VECTOR_SEED", "20260867")) if vector_mode == "random" else None
+        if vector_mode != "hint":
+            print(f"vector mode {vector_mode}: direction replaced, norm target kept", flush=True)
 
     if os.environ.get("WH_CAPTURE_ONLY", "0") == "1":
         assert frozen is not None, "capture-only mode is defined for the frozen-write (WX) design"
@@ -284,7 +295,7 @@ def main():
                        "answers_fired": None if fired is None else normalize_answer(o) == normalize_answer(fired),
                        "gauge_score": gscore, "base_gauge_score": b_score, "n_fired_positions": npos,
                        "gauge_scores": extra_scores, "base_gauge_scores": b_extra,
-                       "delta_mean_position_norm": delta_norm, "write_kind": "frozen" if frozen is not None else "per_candidate",
+                       "delta_mean_position_norm": delta_norm, "write_kind": (("frozen" if frozen.get("vector_mode", "hint") == "hint" else "frozen_" + frozen["vector_mode"]) if frozen is not None else "per_candidate"),
                        "hook_prefill_calls": None if writer is None else writer.prefill_calls,
                        "hook_positions_written": None if writer is None else writer.positions_written,
                        "gauge_forward_hook_calls": None if gauge_writer is None else gauge_writer.prefill_calls,
