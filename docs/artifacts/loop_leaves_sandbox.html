@@ -126,8 +126,8 @@
     <p><strong>The best way to pick the branch is to watch what the model does.</strong> Three different probes on the hidden state capped out well below the oracle. The model's own outputs do better: pick the candidate whose nudge makes the model actually answer with that candidate. Registered on a fresh set of questions, that beats the original meter by 14 points and needs no probe at all.</p>
   </div>
   <div class="finding">
-    <div class="num meter">+0.12<small>blind, no filter</small></div>
-    <p><strong>Run blind, it still helps. Only the abstaining version is safe.</strong> Every earlier number sat on questions an oracle had picked. Removing the filter, the loop raises accuracy across all document-dependent failures of a new frame, and reaches some rows a text hint could not. Forced to answer, it also breaks 13% of questions the model already had right. Let it stay silent unless one branch is clearly accepted, and it breaks nothing while keeping a third of the gain.</p>
+    <div class="num meter">+0.12 / +0.06<small>blind: renamed / real</small></div>
+    <p><strong>Run blind, it helps the failures and hurts the successes, and on real text the two cancel.</strong> Every earlier number sat on questions an oracle had picked. Without the filter, the loop raises accuracy across all document-dependent failures on both a renamed-entity frame and a real-text frame. But it also breaks about a tenth of the questions the model already had right. On renamed entities an abstaining version breaks nothing and keeps a third of the gain. On real text the failures outside the fixable quarter are firm, the abstaining version still breaks one row in sixty, and the frame nets about zero. The loop is a repair tool for questions already known to be wrong.</p>
   </div>
 </div>
 
@@ -207,20 +207,23 @@
 
   <h2>Where it stands</h2>
   <div class="status">
-    <div><div class="big">16</div><div class="eyebrow">predictions registered before data</div></div>
-    <div><div class="big">14</div><div class="eyebrow">confirmed</div></div>
+    <div><div class="big">17</div><div class="eyebrow">predictions registered before data</div></div>
+    <div><div class="big">15</div><div class="eyebrow">confirmed</div></div>
     <div><div class="big">2</div><div class="eyebrow">refuted (both about probe selectors)</div></div>
-    <div><div class="big">$35</div><div class="eyebrow">41 H100 jobs, two days</div></div>
+    <div><div class="big">$40</div><div class="eyebrow">44 H100 jobs, two days</div></div>
   </div>
-  <p style="margin-top:22px">Every step was registered before launch, every intervention audited for delivery on independent channels, and every artifact is committed. Four settings, two disjoint draws each on real and renamed text.</p>
+  <p style="margin-top:22px">Every step was registered before launch, every intervention audited for delivery on independent channels, and every artifact is committed. Five settings, two disjoint draws each on real and renamed text, and the blind reading on both.</p>
 
-  <h3>The deployment reading <span class="pill good">landed</span></h3>
-  <p>Run the loop blind on everything the model gets wrong because of the documents, and on questions it already gets right. On the failures it adds 12 points, interval clear of zero. On the correct questions the always-answer version costs 13 points, past the bound we set in advance, so that form is recorded as harmful. The abstaining version, which only overrides the model when exactly one branch is accepted at least half the time, costs nothing on correct questions and keeps 4 points of yield. Across the whole frame the two forms net about the same 2 points. One of them breaks nothing.</p>
+  <h3>The deployment reading <span class="pill good">landed, two frames</span></h3>
+  <p>Run the loop blind on everything the model gets wrong because of the documents, and on questions it already gets right. Both readings confirmed their registered prediction: the failures improve, with intervals clear of zero. Both also failed the collateral bound set in advance: forced to answer, the loop breaks about a tenth of the questions the model already had right. The abstaining version, which only overrides the model when exactly one branch is accepted at least half the time, is collateral-free on renamed entities but breaks one row in sixty on real text. What separates the frames is reach. When entities are renamed and the model cannot answer from memory, the loop fixes some failures a hint could not. On real text those failures are firm. Net over a whole frame: about two points gained on renamed entities, about zero on real text, and ten or three points with a perfect detector of which questions are wrong.</p>
   <div class="tablewrap">
   <table>
-    <tr><th>questions</th><th>model alone</th><th>loop, always answer</th><th>loop, abstaining</th></tr>
-    <tr><td>document-dependent failures (weighted)</td><td class="n">0.00</td><td class="n">+0.12 [+0.08, +0.17]</td><td class="n">+0.04 [+0.02, +0.07]</td></tr>
-    <tr><td>already correct</td><td class="n">0.98</td><td class="n">−0.13 [−0.22, −0.05]</td><td class="n">0.00</td></tr>
+    <tr><th>questions</th><th>renamed entities</th><th>real text</th></tr>
+    <tr><td>failures a hint could not fix, always answer</td><td class="n">+0.08 [+0.03, +0.14]</td><td class="n">+0.01 [0.00, +0.03]</td></tr>
+    <tr><td>all document-dependent failures, always answer</td><td class="n">+0.12 [+0.08, +0.17]</td><td class="n">+0.06 [+0.04, +0.09]</td></tr>
+    <tr><td>already correct, always answer</td><td class="n">−0.13 [−0.22, −0.05]</td><td class="n">−0.10 [−0.18, −0.03]</td></tr>
+    <tr><td>already correct, abstaining</td><td class="n">0.00</td><td class="n">−0.02 [−0.05, 0.00]</td></tr>
+    <tr><td>net over the frame, abstaining</td><td class="n">+0.02</td><td class="n">0.00</td></tr>
   </table>
   </div>
 
@@ -233,7 +236,8 @@
     <tr><td class="n">WA</td><td>entities renamed, memory removed</td><td>strongest setting, +0.65 <span class="pill">write</span></td></tr>
     <tr><td class="n">WG · WB</td><td>better probes for the selector</td><td>no significant gain, twice <span class="pill meter">loop</span></td></tr>
     <tr><td class="n">WO</td><td>the model's own answers as the selector</td><td>beats the probe, +0.14 <span class="pill meter">loop</span></td></tr>
-    <tr><td class="n">WD</td><td>blind yield and collateral</td><td>helps blind, +0.12; safe only when abstaining <span class="pill meter">loop</span></td></tr>
+    <tr><td class="n">WD</td><td>blind yield and collateral, renamed entities</td><td>helps blind, +0.12; safe only when abstaining <span class="pill meter">loop</span></td></tr>
+    <tr><td class="n">WE</td><td>blind yield and collateral, real text</td><td>helps blind, +0.06; nets about zero on the frame <span class="pill meter">loop</span></td></tr>
   </table>
   </div>
 </div>

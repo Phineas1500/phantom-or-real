@@ -3676,3 +3676,26 @@ ctx-69b2f31a (fresh frame as wikihop_port_input.jsonl.gz, real-text W0 npz
 primary, WG anonymized npz as second gauge L48), seed 20260852,
 2026-09-03 02:01 UTC; fake-model dry run of the C job validated pins,
 hooks, and gauge keys (primary_L38/43/48/53 + second_L48).]
+
+**LANDED 2026-09-03 (jobs job-qa7tt Y1, job-dukdd Y2, job-4u3y2 C; $4.78).**
+Delivery audit valid on all 14,244 fired branches (zero-prefill 0,
+zero-positions 0, unhooked 0; no rows skipped). Strata (loop − baseline,
+output-first, real-text L38 tie-break): hint-repairable 59 rows (WX
+branches) +0.254 [+0.153, +0.373] (loop 0.271, random 0.048);
+unrepairable 100 rows +0.013 [0.000, +0.033] (loop 0.013, random 0.006;
+Y1 0.000, Y2 +0.025). **BLIND YIELD (weights 0.214 / 0.786) = +0.064
+[+0.040, +0.093] → the 17th registered prediction CONFIRMED.** COLLATERAL
+on 60 correct-majority rows: 0.998 → 0.900, −0.098 [−0.179, −0.033]; the
+lower bound is below −0.10 → **COLLATERAL-HARM** (6 rows broken).
+ABSTENTION variant: yield +0.015 [+0.004, +0.030]; collateral −0.017
+[−0.050, 0.000] (one correct row broken by a uniquely accepted wrong
+branch — not collateral-free on real text). Pre-named comparison with
+WD (anonymized): unrepairable-stratum reach 1.3% vs 8.3%; yield +0.064
+vs +0.123; collateral −0.098 vs −0.133; frame net (pool shares) always
+−0.023 vs +0.023, abstention −0.003 vs +0.023; with an oracle failure
+detector +0.029 vs +0.104. **Verdict: BLIND-LOOP-HELPS / COLLATERAL-HARM**;
+blind deployment value on real text ≈ 0 — the loop is a repair tool for
+rows known to be failing, and real-text failures outside the
+hint-repairable quarter are firm. Tally: 17 predictions, 15 confirmed;
+≈ $40 / 44 jobs. Reader docs/wikihop_we_gates.json; summary
+docs/wikihop_we_summary.md; rows results/loop_screen/wikihop_we_{y1,y2,c}.jsonl.
