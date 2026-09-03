@@ -3819,3 +3819,30 @@ as the gauge npz, gauge L48 with L53/L58 extras; L31 jobs also read
 L38/L43), seed 20260857, no cache mount, 2026-09-03 05:39 UTC. Fake-
 model dry run with the real pins validated baseline / write 1×·2× /
 text-hint arms and the gauge keys.]
+
+**LANDED 2026-09-03 (stage 2 jobs job-i33vz/job-7pxb9 at L43, job-dzy76/
+job-mx57i at L31; WQ total $9.63 over 8 jobs incl. 2 setup failures).**
+Delivery audit valid on all 2,144 (L43) fired branches (zero-prefill 0,
+zero-positions 0, unhooked 0). Text ceiling 0.690 (+0.639 [+0.537,
++0.731]). **L43 (registered): gold-address frozen write 1× +0.069
+[−0.009, +0.139] (fails), 2× +0.162 [+0.088, +0.250] with specificity
++0.189 [+0.105, +0.280] → pinned rung 2×, the 18th registered prediction
+CONFIRMED: QWEN-WRITE-TRANSFERS** (gold rate 0.213 vs baseline 0.051;
+Gemma on the same rows +0.360 / 0.377). **Loop at L43: output-first
+0.046 (vs baseline 0.051 [−0.051, +0.042]; vs random branch 0.042
+[−0.024, +0.040]), gauge-select 0.046, oracle 0.213 → the 19th
+registered prediction NOT confirmed: QWEN-SELECTOR-FAILS.** Decomposition:
+gold never fires 14/27, out-fired by a wrong branch 11/27, tied-lost 1,
+selected 1; gold never fully accepted, a wrong branch fully accepted on
+18/27 — a different failure from Gemma's ties. L31 (pre-named
+descriptive): 2× +0.255 [+0.134, +0.389], specificity +0.288 [+0.161,
++0.429], gold rate 0.306; gauge-select loop 0.157 (vs baseline [+0.019,
++0.222]; 51% of oracle), output-first 0.083 ([−0.032, +0.111]) — the
+write is stronger at the Gemma-analog depth and the gauge selector
+beats the output selector there, the reverse of Gemma's WO ordering;
+descriptive, not a verdict. **Verdict: QWEN-WRITE-TRANSFERS / QWEN-
+SELECTOR-FAILS** — the write half of the loop is cross-model, the
+selector half is model-specific (item N's sandbox contrast on natural
+text). Tally: 19 predictions, 16 confirmed (13th, 14th, 19th not);
+≈ $50 / 52 jobs. Summary docs/wikihop_wq_summary.md; readers
+docs/wikihop_wq_write_gates.json, docs/wikihop_wq_gates.json (+ _l31_).

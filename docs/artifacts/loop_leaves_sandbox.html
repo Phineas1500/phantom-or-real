@@ -79,7 +79,7 @@
   <div class="col">
     <div class="eyebrow">Phantom or Real · WikiHop port · September 2–3, 2026</div>
     <h1>The Loop Leaves the Sandbox</h1>
-    <p class="lede">We could always read, from a model's hidden state, whether it was about to be right. The question was whether that signal is something the model uses or a coincidence it carries. On a synthetic puzzle task the answer was "uses." This is what happened when we tried the same trick on real reading-comprehension questions.</p>
+    <p class="lede">We could always read, from a model's hidden state, whether it was about to be right. The question was whether that signal is something the model uses or a coincidence it carries. On a synthetic puzzle task the answer was "uses." This is what happened when we tried the same trick on real reading-comprehension questions, and then on a second model.</p>
   </div>
 </header>
 
@@ -103,7 +103,7 @@
 </div>
 
 <div class="col">
-  <h2>What happened, in six findings</h2>
+  <h2>What happened, in seven findings</h2>
 
   <div class="finding">
     <div class="num">1 / 528<small>gold repairs</small></div>
@@ -128,6 +128,10 @@
   <div class="finding">
     <div class="num meter">+0.12 / +0.06<small>blind: renamed / real</small></div>
     <p><strong>Run blind, it helps the failures and hurts the successes, and on real text the two cancel.</strong> Every earlier number sat on questions an oracle had picked. Without the filter, the loop raises accuracy across all document-dependent failures on both a renamed-entity frame and a real-text frame. But it also breaks about a tenth of the questions the model already had right. On renamed entities an abstaining version breaks nothing and keeps a third of the gain. On real text the failures outside the fixable quarter are firm, the abstaining version still breaks one row in sixty, and the frame nets about zero. The loop is a repair tool for questions already known to be wrong.</p>
+  </div>
+  <div class="finding">
+    <div class="num">+0.16<small>on a second model</small></div>
+    <p><strong>The nudge works on a second model. The way of choosing does not.</strong> On Qwen3.5-27B, a different architecture, over the same questions, one frozen vector at the candidate's address repairs the model at the registered layer with the same specificity, and repairs more at the depth that matched Gemma's. But watching what Qwen answers picks the right branch no better than chance: nudged toward a wrong candidate, Qwen goes along more readily than when nudged toward the right one. There, a probe on the hidden state does better. What transfers across models is the write. Which selector works is a property of the model.</p>
   </div>
 </div>
 
@@ -207,12 +211,12 @@
 
   <h2>Where it stands</h2>
   <div class="status">
-    <div><div class="big">17</div><div class="eyebrow">predictions registered before data</div></div>
-    <div><div class="big">15</div><div class="eyebrow">confirmed</div></div>
-    <div><div class="big">2</div><div class="eyebrow">refuted (both about probe selectors)</div></div>
-    <div><div class="big">$40</div><div class="eyebrow">44 H100 jobs, two days</div></div>
+    <div><div class="big">19</div><div class="eyebrow">predictions registered before data</div></div>
+    <div><div class="big">16</div><div class="eyebrow">confirmed</div></div>
+    <div><div class="big">3</div><div class="eyebrow">refuted (all three about selectors)</div></div>
+    <div><div class="big">$50</div><div class="eyebrow">52 H100 jobs, two days</div></div>
   </div>
-  <p style="margin-top:22px">Every step was registered before launch, every intervention audited for delivery on independent channels, and every artifact is committed. Five settings, two disjoint draws each on real and renamed text, and the blind reading on both.</p>
+  <p style="margin-top:22px">Every step was registered before launch, every intervention audited for delivery on independent channels, and every artifact is committed. Five settings on Gemma, two disjoint draws each on real and renamed text, the blind reading on both, and a second model on the same questions.</p>
 
   <h3>The deployment reading <span class="pill good">landed, two frames</span></h3>
   <p>Run the loop blind on everything the model gets wrong because of the documents, and on questions it already gets right. Both readings confirmed their registered prediction: the failures improve, with intervals clear of zero. Both also failed the collateral bound set in advance: forced to answer, the loop breaks about a tenth of the questions the model already had right. The abstaining version, which only overrides the model when exactly one branch is accepted at least half the time, is collateral-free on renamed entities but breaks one row in sixty on real text. What separates the frames is reach. When entities are renamed and the model cannot answer from memory, the loop fixes some failures a hint could not. On real text those failures are firm. Net over a whole frame: about two points gained on renamed entities, about zero on real text, and ten or three points with a perfect detector of which questions are wrong.</p>
@@ -238,6 +242,7 @@
     <tr><td class="n">WO</td><td>the model's own answers as the selector</td><td>beats the probe, +0.14 <span class="pill meter">loop</span></td></tr>
     <tr><td class="n">WD</td><td>blind yield and collateral, renamed entities</td><td>helps blind, +0.12; safe only when abstaining <span class="pill meter">loop</span></td></tr>
     <tr><td class="n">WE</td><td>blind yield and collateral, real text</td><td>helps blind, +0.06; nets about zero on the frame <span class="pill meter">loop</span></td></tr>
+    <tr><td class="n">WQ</td><td>the loop on a second model, Qwen3.5-27B</td><td>write transfers, +0.16 <span class="pill">write</span>; no selector beats chance <span class="pill meter">loop</span></td></tr>
   </table>
   </div>
 </div>
