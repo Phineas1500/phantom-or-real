@@ -1,0 +1,232 @@
+<title>The Loop Leaves the Sandbox</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  :root {
+    --paper: #F6F7F3; --ink: #1C2429; --ink-2: #4B5760; --ink-3: #7A858C;
+    --rule: #D6DCD3; --band: #ECEFE9;
+    --write: #0E6B77; --write-soft: #D7E8EA;
+    --meter: #B8601F; --meter-soft: #F1E2D5;
+    --good: #2F7A4A;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #111A1D; --ink: #E4EAE6; --ink-2: #B4BFB9; --ink-3: #7F8B86;
+      --rule: #2B373B; --band: #182326;
+      --write: #52B4BE; --write-soft: #173236;
+      --meter: #E39A5E; --meter-soft: #3A2718;
+      --good: #6CC08A;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #111A1D; --ink: #E4EAE6; --ink-2: #B4BFB9; --ink-3: #7F8B86;
+    --rule: #2B373B; --band: #182326;
+    --write: #52B4BE; --write-soft: #173236;
+    --meter: #E39A5E; --meter-soft: #3A2718;
+    --good: #6CC08A;
+  }
+  body { margin: 0; background: var(--paper); color: var(--ink); font-family: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif; font-size: 17px; line-height: 1.55; }
+  .col { max-width: 68ch; margin: 0 auto; padding: 0 24px; }
+  h1, h2, h3 { font-family: "Fraunces", Georgia, "Times New Roman", serif; font-weight: 600; text-wrap: balance; margin: 0; }
+  h1 { font-size: 44px; line-height: 1.08; letter-spacing: -0.01em; }
+  h2 { font-size: 26px; line-height: 1.2; margin-top: 56px; }
+  h3 { font-size: 19px; margin-top: 28px; }
+  p { margin: 14px 0; max-width: 68ch; }
+  .eyebrow { font-family: "IBM Plex Mono", ui-monospace, Menlo, monospace; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3); }
+  header { padding: 64px 0 28px; }
+  header .lede { font-size: 20px; color: var(--ink-2); margin-top: 18px; }
+  .tools { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin: 22px 0 6px; }
+  .tool { border-top: 3px solid var(--rule); padding-top: 12px; }
+  .tool.write { border-top-color: var(--write); }
+  .tool.meter { border-top-color: var(--meter); }
+  .tool .eyebrow { margin-bottom: 6px; }
+  .tool p { margin: 6px 0; font-size: 15.5px; color: var(--ink-2); }
+  @media (max-width: 640px) { .tools { grid-template-columns: 1fr; } h1 { font-size: 36px; } }
+  .band { background: var(--band); margin: 36px 0; padding: 26px 0 22px; }
+  .band .col { max-width: 900px; }
+  figure { margin: 0; }
+  figcaption { font-size: 14.5px; color: var(--ink-2); margin-top: 10px; max-width: 80ch; }
+  svg text { font-family: "IBM Plex Mono", ui-monospace, Menlo, monospace; fill: var(--ink-2); }
+  svg .lbl { fill: var(--ink); font-weight: 500; }
+  svg .grid { stroke: var(--rule); stroke-width: 1; }
+  svg .write-bar { fill: var(--write); }
+  svg .meter-bar { fill: var(--meter); }
+  svg .ghost { fill: var(--ink-3); }
+  svg .ci { stroke: var(--ink); stroke-width: 1.5; }
+  .finding { display: grid; grid-template-columns: 92px 1fr; gap: 16px; align-items: start; padding: 16px 0; border-top: 1px solid var(--rule); }
+  .finding:last-of-type { border-bottom: 1px solid var(--rule); }
+  .num { font-family: "IBM Plex Mono", ui-monospace, Menlo, monospace; font-size: 26px; font-weight: 500; line-height: 1.1; color: var(--write); font-variant-numeric: tabular-nums; }
+  .num.meter { color: var(--meter); }
+  .num small { display: block; font-size: 11.5px; color: var(--ink-3); font-weight: 400; letter-spacing: 0.04em; margin-top: 4px; }
+  .finding p { margin: 0; }
+  table { border-collapse: collapse; width: 100%; font-size: 15px; margin: 14px 0; }
+  th, td { text-align: left; padding: 8px 10px 8px 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
+  th { font-family: "IBM Plex Mono", ui-monospace, Menlo, monospace; font-weight: 500; font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-3); }
+  td.n { font-family: "IBM Plex Mono", ui-monospace, Menlo, monospace; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .tablewrap { overflow-x: auto; }
+  .pill { display: inline-block; font-family: "IBM Plex Mono", ui-monospace, Menlo, monospace; font-size: 12px; padding: 2px 8px; border-radius: 3px; background: var(--write-soft); color: var(--write); }
+  .pill.meter { background: var(--meter-soft); color: var(--meter); }
+  .pill.good { background: transparent; color: var(--good); border: 1px solid var(--good); }
+  .status { display: flex; gap: 22px; flex-wrap: wrap; margin: 18px 0 0; }
+  .status div { min-width: 140px; }
+  .status .big { font-family: "Fraunces", Georgia, serif; font-size: 34px; font-weight: 600; line-height: 1; }
+  .status .eyebrow { margin-top: 6px; }
+  footer { padding: 40px 0 64px; font-size: 14px; color: var(--ink-3); }
+  a { color: var(--write); }
+  a:focus-visible { outline: 2px solid var(--meter); outline-offset: 2px; }
+</style>
+
+<header>
+  <div class="col">
+    <div class="eyebrow">Phantom or Real · WikiHop port · September 2–3, 2026</div>
+    <h1>The Loop Leaves the Sandbox</h1>
+    <p class="lede">We could always read, from a model's hidden state, whether it was about to be right. The question was whether that signal is something the model uses or a coincidence it carries. On a synthetic puzzle task the answer was "uses." This is what happened when we tried the same trick on real reading-comprehension questions.</p>
+  </div>
+</header>
+
+<div class="col">
+  <h2>Two tools, both made from the model's own insides</h2>
+  <p>Take a question the model gets wrong even though the answer is in the documents in front of it. We give it a list of candidates, and it commits, eight times out of eight, to the wrong one. Two ingredients are involved.</p>
+  <div class="tools">
+    <div class="tool write">
+      <div class="eyebrow">The nudge (write)</div>
+      <p>A single vector added to the model's hidden state at layer 30, at the places where a candidate is mentioned in the text. Its meaning is roughly "attend to this one." It was built from other questions, by recording how a hint changes the state.</p>
+    </div>
+    <div class="tool meter">
+      <div class="eyebrow">The meter (read)</div>
+      <p>A linear probe on a later layer's final state that predicts whether the model is about to be right. Fit once, on other questions, never touched again.</p>
+    </div>
+    <div class="tool">
+      <div class="eyebrow">The loop</div>
+      <p>Nudge the model toward each candidate in turn, one branch per candidate. Pick the branch that looks best. Answer with it. No label is used anywhere: the nudge, the meter, and the choice all come from the model.</p>
+    </div>
+  </div>
+</div>
+
+<div class="col">
+  <h2>What happened, in five findings</h2>
+
+  <div class="finding">
+    <div class="num">1 / 528<small>gold repairs</small></div>
+    <p><strong>The first port failed, and the failure taught us the direction.</strong> The nudge we started with, an average "correct minus incorrect" direction, did nothing at any layer or dose, even though the meter kept moving. It carries no information about <em>which</em> candidate you mean. The direction that does is the change a hint makes to the state, the one that built the sandbox loop in the first place.</p>
+  </div>
+  <div class="finding">
+    <div class="num">27%<small>of failures</small></div>
+    <p><strong>Only one kind of failure can be fixed.</strong> About a quarter of the model's document-dependent errors flip if you simply tell it "pay attention to X." Those are the close-cousin cases: it answered "Paris" where the label was "1st arrondissement of Paris," "mammal" for "Paenungulata." The rest are firm beliefs in a competing answer, or debatable labels, and nothing moves them.</p>
+  </div>
+  <div class="finding">
+    <div class="num">+0.30<small>then +0.35, replicated</small></div>
+    <p><strong>On those rows, the nudge works on real text.</strong> Writing the right candidate's vector fixes about a third of samples the model got wrong every time; writing a wrong candidate's vector fixes almost nothing. It replicated on a second, disjoint set of questions with every setting frozen.</p>
+  </div>
+  <div class="finding">
+    <div class="num">+0.65<small>with memory removed</small></div>
+    <p><strong>One frozen vector, and it is strongest when the model cannot cheat.</strong> A single direction averaged over other questions works as well as each question's own. Rename every entity so the model cannot answer from memory (closed-book accuracy falls from 45% to 12%), and the same vector fixes 70% of samples, on two disjoint draws. What tells the model which candidate you mean is only <em>where</em> you write.</p>
+  </div>
+  <div class="finding">
+    <div class="num meter">0.36<small>vs 0.22, no probe</small></div>
+    <p><strong>The best way to pick the branch is to watch what the model does.</strong> Three different probes on the hidden state capped out well below the oracle. The model's own outputs do better: pick the candidate whose nudge makes the model actually answer with that candidate. Registered on a fresh set of questions, that beats the original meter by 14 points and needs no probe at all.</p>
+  </div>
+</div>
+
+<div class="band">
+  <div class="col">
+    <figure>
+      <svg viewBox="0 0 900 250" width="100%" role="img" aria-label="Repair from writing the right candidate's vector, by setting, with 95% intervals">
+        <text x="16" y="20" font-size="13" class="lbl">How much the nudge repairs, by setting (gain in accuracy over a baseline near zero; bars with 95% intervals)</text>
+        <line class="grid" x1="230" y1="40" x2="230" y2="215"/>
+        <line class="grid" x1="530" y1="40" x2="530" y2="215"/>
+        <line class="grid" x1="830" y1="40" x2="830" y2="215"/>
+        <text x="230" y="232" font-size="12" text-anchor="middle">0</text>
+        <text x="530" y="232" font-size="12" text-anchor="middle">+0.40</text>
+        <text x="830" y="232" font-size="12" text-anchor="middle">+0.80</text>
+        <!-- scale: 750 px per 1.0; x0 = 230 -->
+        <g>
+          <text x="216" y="60" font-size="13" text-anchor="end" class="lbl">real text, first draw</text>
+          <rect class="write-bar" x="230" y="49" width="223" height="14" rx="2"/><line class="ci" x1="372" y1="56" x2="545" y2="56"/>
+          <text x="560" y="60" font-size="12">+0.30</text>
+          <text x="216" y="92" font-size="13" text-anchor="end" class="lbl">real text, fresh draw</text>
+          <rect class="write-bar" x="230" y="81" width="260" height="14" rx="2"/><line class="ci" x1="395" y1="88" x2="589" y2="88"/>
+          <text x="598" y="92" font-size="12">+0.35</text>
+          <text x="216" y="124" font-size="13" text-anchor="end" class="lbl">real text, one frozen vector</text>
+          <rect class="write-bar" x="230" y="113" width="270" height="14" rx="2"/><line class="ci" x1="412" y1="120" x2="592" y2="120"/>
+          <text x="602" y="124" font-size="12">+0.36</text>
+          <text x="216" y="156" font-size="13" text-anchor="end" class="lbl">entities renamed, frozen vector</text>
+          <rect class="write-bar" x="230" y="145" width="488" height="14" rx="2"/><line class="ci" x1="631" y1="152" x2="797" y2="152"/>
+          <text x="806" y="156" font-size="12">+0.65</text>
+          <text x="216" y="188" font-size="13" text-anchor="end" class="lbl">renamed, second draw</text>
+          <rect class="write-bar" x="230" y="177" width="493" height="14" rx="2"/><line class="ci" x1="623" y1="184" x2="822" y2="184"/>
+          <text x="832" y="188" font-size="12">+0.66</text>
+          <text x="216" y="212" font-size="13" text-anchor="end" class="lbl">wrong candidate's address</text>
+          <rect class="ghost" x="230" y="203" width="34" height="12" rx="2"/>
+          <text x="272" y="213" font-size="12">0.02 – 0.07 in every setting</text>
+        </g>
+      </svg>
+      <figcaption>Each bar is the accuracy gain from writing the right candidate's vector at its mentions, on questions the model got wrong eight times out of eight. The last row is the same vector written at a wrong candidate's mentions: almost nothing. The candidate's identity lives in the address, not in the vector.</figcaption>
+    </figure>
+  </div>
+</div>
+
+<div class="band" style="margin-top:0">
+  <div class="col">
+    <figure>
+      <svg viewBox="0 0 900 230" width="100%" role="img" aria-label="Accuracy of the loop by selector on identical branches">
+        <text x="16" y="20" font-size="13" class="lbl">Picking the branch without the answer (same 47 questions, same branches; accuracy of the chosen branch)</text>
+        <line class="grid" x1="230" y1="40" x2="230" y2="200"/>
+        <line class="grid" x1="530" y1="40" x2="530" y2="200"/>
+        <line class="grid" x1="830" y1="40" x2="830" y2="200"/>
+        <text x="230" y="217" font-size="12" text-anchor="middle">0</text>
+        <text x="530" y="217" font-size="12" text-anchor="middle">0.40</text>
+        <text x="830" y="217" font-size="12" text-anchor="middle">0.80</text>
+        <!-- scale: 750 px per 1.0 -->
+        <g>
+          <text x="216" y="60" font-size="13" text-anchor="end" class="lbl">always the right branch (oracle)</text>
+          <rect class="ghost" x="230" y="49" width="515" height="14" rx="2"/><text x="754" y="60" font-size="12">0.69</text>
+          <text x="216" y="92" font-size="13" text-anchor="end" class="lbl">watch what the model answers</text>
+          <rect class="meter-bar" x="230" y="81" width="272" height="14" rx="2"/><text x="511" y="92" font-size="12" class="lbl">0.36</text>
+          <text x="216" y="124" font-size="13" text-anchor="end" class="lbl">probe refit on renamed text</text>
+          <rect class="meter-bar" x="230" y="113" width="263" height="14" rx="2"/><text x="502" y="124" font-size="12">0.35</text>
+          <text x="216" y="156" font-size="13" text-anchor="end" class="lbl">the original probe</text>
+          <rect class="meter-bar" x="230" y="145" width="164" height="14" rx="2"/><text x="403" y="156" font-size="12">0.22</text>
+          <text x="216" y="188" font-size="13" text-anchor="end" class="lbl">a random branch / the model alone</text>
+          <rect class="ghost" x="230" y="177" width="117" height="14" rx="2"/><text x="356" y="188" font-size="12">0.16 / 0.03</text>
+        </g>
+      </svg>
+      <figcaption>Every selector sees the identical set of nudged branches. The model's own acceptance of a nudge, answering with the candidate it was nudged toward, picks correctly more than half as often as an oracle that always knows the answer, and needs no probe. It beat the original probe by +0.14 with an interval clear of zero.</figcaption>
+    </figure>
+  </div>
+</div>
+
+<div class="col">
+  <h2>What it means</h2>
+  <p><strong>The signal is real, not a phantom, on real text too.</strong> The model's computation responds to a write into the place a probe reads, and the model can recognize which of its own nudged states is the right one. Both halves of the sandbox loop survive, with a scope: the failure has to be one the model can be talked out of, and the write has to carry candidate identity through its address.</p>
+  <p><strong>The write is the solved half.</strong> One vector, fit once, reused everywhere. It works best exactly where the sandbox worked, on novel names, which says it never depended on the model knowing the entities.</p>
+  <p><strong>The selector is the honest limit.</strong> Reading the hidden state, even with a probe fit on the right data or on the nudged branches themselves, tops out around half of what the oracle achieves. Watching the model's answers does as well or better for free. The remaining gap is in what the model does with a nudge, not in how we read it.</p>
+
+  <h2>Where it stands</h2>
+  <div class="status">
+    <div><div class="big">15</div><div class="eyebrow">predictions registered before data</div></div>
+    <div><div class="big">13</div><div class="eyebrow">confirmed</div></div>
+    <div><div class="big">2</div><div class="eyebrow">refuted (both about probe selectors)</div></div>
+    <div><div class="big">$31</div><div class="eyebrow">38 H100 jobs, two days</div></div>
+  </div>
+  <p style="margin-top:22px">Every step was registered before launch, every intervention audited for delivery on independent channels, and every artifact is committed. Four settings, two disjoint draws each on real and renamed text.</p>
+
+  <h3>Running now <span class="pill good">in progress</span></h3>
+  <p>The one number the paper still lacks: run the loop blind, with no oracle to select fixable questions, on all document-dependent failures and on questions the model already gets right. That gives a deployment yield and a collateral cost. Three jobs are in flight; the reading lands within the hour.</p>
+
+  <div class="tablewrap">
+  <table>
+    <tr><th>item</th><th>question</th><th>verdict</th></tr>
+    <tr><td class="n">W</td><td>class-mean write on WikiHop</td><td>does not transfer <span class="pill">write</span></td></tr>
+    <tr><td class="n">WL · WF</td><td>hint-delta write + loop, two real-text draws</td><td>closes, replicated <span class="pill">write</span> <span class="pill meter">loop</span></td></tr>
+    <tr><td class="n">WX</td><td>one frozen vector</td><td>transfers, identity from the address <span class="pill">write</span></td></tr>
+    <tr><td class="n">WA</td><td>entities renamed, memory removed</td><td>strongest setting, +0.65 <span class="pill">write</span></td></tr>
+    <tr><td class="n">WG · WB</td><td>better probes for the selector</td><td>no significant gain, twice <span class="pill meter">loop</span></td></tr>
+    <tr><td class="n">WO</td><td>the model's own answers as the selector</td><td>beats the probe, +0.14 <span class="pill meter">loop</span></td></tr>
+    <tr><td class="n">WD</td><td>blind yield and collateral</td><td>in progress</td></tr>
+  </table>
+  </div>
+</div>
+
+<footer>
+  <div class="col">Gemma-3-27B, WikiHop (QAngaroo) dev, writes at layer 30 on candidate mentions; full registrations, gates, and row-level records in docs/causal_handle_directions.md and docs/wikihop_*_summary.md of the phantom-or-real repository.</div>
+</footer>
