@@ -3952,3 +3952,15 @@ is a local trough. Written-span mass at L38 correlates with WX's
 acceptance of the branch (r = 0.42; accepted branches 0.0131 vs
 0.0066). Summary docs/wikihop_wt_summary.md; reader
 docs/wikihop_wt_gates.json; rows results/loop_screen/wikihop_wt.jsonl.
+[WY stage 1 LANDED (job-nfejy, $1.94): third frame on Qwen — std 0.537,
+closed-book 0.440, hint-first 0.710; failing 0/8 284; doc-dependent 140;
+hint-repairable ∧ doc-dependent 36 (25.7%; 23 reading-driven); correct-
+majority 416; pins docs/wikihop_wy_pinned.json, jobs A/B 18/18 rows
+(draw seed 20260861, shard seed 20260862). Gemma ladder sweep: L15/L20/
+L25 A+B succeeded; L35 A (job-nueuv), L40 A/B (job-uirwv, job-7gmzi),
+L45 A (job-bnu69) FAILED at model download — the shared HF cache on
+their machines had no room for the 54 GB checkpoint (the WQ failure
+mode; ~$2 each because the download ran long before failing).
+Resubmitted 2026-09-03 14:10 UTC without the cache mount: L35 A
+job-ut8qi, L40 A job-7wt2t, L40 B job-w3a7y, L45 A job-wcg68. L35 B
+(job-yxjzu) and L45 B (job-r279r) still running from the first sweep.]
