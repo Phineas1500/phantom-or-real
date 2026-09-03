@@ -176,7 +176,8 @@ def main():
                 continue
             base_rows = attention_rows(ids_s)
             rec = {"job": job, "id": rid, "condition": "none", "fired_candidate": None, "fired_is_gold": None, "n_tokens": len(ids_s),
-                   "n_written_positions": 0, "n_gold_positions": len(gold_pos), "per_layer": masses(base_rows, [], gold_pos)}
+                   "n_written_positions": 0, "n_gold_positions": len(gold_pos), "per_layer": masses(base_rows, [], gold_pos),
+                   "candidate_masses": {c: masses(base_rows, pos, gold_pos) for c, pos in cand_pos.items()}}
             fout.write(json.dumps(rec) + "\n"); n_rec += 1
             for c, pos in cand_pos.items():
                 mat = torch.from_numpy(np.tile(unit.astype(np.float32) * norm_target * rung, (len(pos), 1)))
