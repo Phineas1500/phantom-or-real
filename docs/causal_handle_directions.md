@@ -3986,3 +3986,8 @@ is complete. Qwen sweep: L19 A/B and L25 A landed (Qwen L19 +0.104
 [+0.035, +0.188], specificity +0.090); L43 B (job-2kj95) and L49 B
 (job-imv4n) FAILED on a full machine disk ($1.71 each, no cache mount)
 and were resubmitted as job-axae9 / job-kk4tg; 7 jobs running.]
+[2026-09-03 15:45 UTC: Qwen L31 A/B (registered), L25 B, L43 A landed;
+L37 A (job-djz9h), L37 B (job-zfkd8), L49 A (job-nvq3j) FAILED on a
+full machine disk ($1.9 each) and were resubmitted as job-curfd /
+job-9nmcw / job-284ui; L43 B / L49 B resubmits (job-axae9 / job-kk4tg)
+running.]

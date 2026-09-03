@@ -1,0 +1,83 @@
+{
+ "n_rows": 18,
+ "delivery_audit": {
+  "n_fired_records": 284,
+  "n_zero_prefill_hook_calls": 0,
+  "n_zero_positions_written": 0,
+  "n_gauge_forward_unhooked": 0,
+  "valid": true
+ },
+ "text_ceiling": {
+  "n_rows": 0,
+  "rate": null,
+  "dP": null,
+  "ci": [
+   NaN,
+   NaN
+  ],
+  "pass": false
+ },
+ "per_rung": {
+  "2.0": {
+   "n_rows_gold": 18,
+   "gold_rate": 0.2222222222222222,
+   "dP": 0.18055555555555555,
+   "dP_ci": [
+    0.06944444444444445,
+    0.3055555555555556
+   ],
+   "dP_pass": true,
+   "n_rows_spec": 18,
+   "nongold_write_gold_rate": 0.039351851851851846,
+   "specificity": 0.18287037037037038,
+   "specificity_ci": [
+    0.06944444444444445,
+    0.3148148148148148
+   ],
+   "specificity_pass": true,
+   "n_nongold_fires": 53,
+   "nongold_answers_fired_rate": 0.16037735849056603,
+   "replication_pass": true
+  }
+ },
+ "rungs_passing_replication": [
+  "2.0"
+ ],
+ "pinned_rung": "2.0",
+ "loop": {
+  "rung": 2.0,
+  "n_rows": 18,
+  "gauge_select_rate": 0.125,
+  "oracle_rate": 0.2222222222222222,
+  "baseline_rate": 0.041666666666666664,
+  "sc8_rate": 0.0,
+  "dP_vs_baseline": 0.08333333333333333,
+  "dP_vs_baseline_ci": [
+   -0.013888888888888888,
+   0.19444444444444445
+  ],
+  "dP_vs_sc8": 0.125,
+  "dP_vs_sc8_ci": [
+   0.027777777777777776,
+   0.25
+  ],
+  "argmax_gold_rate": 0.4444444444444444,
+  "chance_rate": 0.2546296296296296,
+  "selection_signal": 0.32995867433194215,
+  "selection_signal_ci": [
+   -0.32370167952175455,
+   0.9713974430741549
+  ],
+  "mean_n_branches": 3.9444444444444446,
+  "random_branch_rate": 0.08912037037037038,
+  "dP_vs_random_branch": 0.03587962962962962,
+  "dP_vs_random_branch_ci": [
+   -0.04629629629629631,
+   0.11921296296296295
+  ],
+  "pass_i": false,
+  "pass_ii": true,
+  "pass_random": false
+ },
+ "verdict": "NO-CEILING"
+}
