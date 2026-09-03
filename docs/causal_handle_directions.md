@@ -3590,3 +3590,23 @@ Reader: scripts/wikihop_wd_gates.py.
 [Launched after registration commit d9709ba / tooling a867b5e: Y1
 job-iqv3d (50 unrepairable rows), Y2 job-dd5f2 (50), C job-g5naa (60
 correct rows), context ctx-92f605b4, seed 20260845, 2026-09-03 00:41 UTC.]
+
+**LANDED 2026-09-03 (jobs job-iqv3d Y1, job-dd5f2 Y2, job-g5naa C; $3.89).**
+Delivery audit valid on all 10,284 fired branches (zero-prefill 0,
+zero-positions 0, unhooked 0; no rows skipped). Strata (loop − baseline,
+output-first selector): hint-repairable 47 rows +0.332 [+0.197, +0.468]
+(loop 0.362, random branch 0.156); unrepairable 100 rows +0.083 [+0.033,
++0.140] (loop 0.083, random 0.019; Y1 +0.12, Y2 +0.045). **BLIND YIELD
+(weights 0.160 / 0.840) = +0.123 [+0.076, +0.174] → the 16th registered
+prediction CONFIRMED.** COLLATERAL on 60 correct-majority rows: 0.983 →
+0.850, −0.133 [−0.217, −0.050]; the lower bound is below the pre-named
+−0.10 → **COLLATERAL-HARM** for the always-answer loop (8 rows broken,
+each 1.0 → 0.0). ABSTENTION variant (registered as descriptive): yield
++0.039 [+0.015, +0.070] (abstains on 66% / 40% of the two strata),
+collateral **0.000 [0.000, 0.000]** — every harmed row is one the rule
+abstains on. Frame-level net (descriptive, pool shares 293/507 and
+181/507): ≈ +0.023 under either mode. **Verdict: BLIND-LOOP-HELPS /
+COLLATERAL-HARM**; the deployment-relevant mode is abstention. Tally: 16
+predictions, 14 confirmed; chain W → … → WO → WD, ≈ $35 / 41 jobs.
+Reader docs/wikihop_wd_gates.json; summary docs/wikihop_wd_summary.md;
+rows results/loop_screen/wikihop_wd_{y1,y2,c}.jsonl.
