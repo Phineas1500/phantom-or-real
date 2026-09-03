@@ -4211,3 +4211,7 @@ frozen for ties, job seed 20260881; the WikiHop-donor cross-task pair
 SQuAD failures with CI > 0 and specificity CI > 0; the output-first loop
 beats the k=8 baseline and the random-branch rate with CI > 0.** Failure
 readings and readers as in WP. Cost ~$6.
+[WP′ stage 1 launched after registration commit d8d0b6b: Gemma
+grade_hint job-mymvk (context ctx-050d8e48: SQuAD frame as
+wikihop_port_input.jsonl.gz, seed 20260878, no cache mount), 2026-09-03
+21:53 UTC.]
