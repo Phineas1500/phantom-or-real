@@ -27,6 +27,8 @@ SYSTEM = "You are a careful reading assistant. Answer concisely."
 CAP_LAYERS = [int(x) for x in os.environ.get("W0_CAP_LAYERS", "38,43,48,53").split(",") if x.strip()]
 WRITE_LAYERS = [int(x) for x in os.environ.get("W0_WRITE_LAYERS", "30").split(",") if x.strip()]
 WRITE_LAYER = WRITE_LAYERS[0]
+MODEL = os.environ.get("W0_MODEL", "google/gemma-3-27b-it")
+CT_KW = {"enable_thinking": False} if "qwen" in MODEL.lower() else {}
 
 
 def std_closed_prompts(r):
@@ -54,9 +56,9 @@ def main():
         ids = pins["pools"][os.environ.get("W0_ROWS_KEY", "w2_pool")]
         by_id = {r["id"]: r for r in rows}
         seed = int(os.environ.get("W0_SEED", "20260824"))
-        llm = LLM(model="google/gemma-3-27b-it", max_model_len=8192, gpu_memory_utilization=0.92)
+        llm = LLM(model=MODEL, max_model_len=8192, gpu_memory_utilization=0.92)
         convs = [[{"role": "user", "content": SYSTEM + "\n\n" + hint_first_prompt(by_id[i], by_id[i]["answer"])}] for i in ids]
-        outs = llm.chat(convs, SamplingParams(n=8, temperature=0.7, max_tokens=32, seed=seed))
+        outs = llm.chat(convs, SamplingParams(n=8, temperature=0.7, max_tokens=32, seed=seed), chat_template_kwargs=CT_KW or None)
         n = 0
         with open(os.path.join(outdir, "wikihop_hint_grades.jsonl"), "w") as f:
             for rid, o in zip(ids, outs):
@@ -71,7 +73,7 @@ def main():
             import sys
             sys.path.insert(0, "/app")
             from wikihop_common import hint_first_prompt
-        llm = LLM(model="google/gemma-3-27b-it", max_model_len=8192, gpu_memory_utilization=0.92)
+        llm = LLM(model=MODEL, max_model_len=8192, gpu_memory_utilization=0.92)
         convs, meta = [], []
         for r in rows:
             ps = std_closed_prompts(r)
@@ -81,7 +83,7 @@ def main():
                 convs.append([{"role": "user", "content": SYSTEM + "\n\n" + ps[arm]}])
                 meta.append((r["id"], arm))
         outs = llm.chat(convs, SamplingParams(n=8, temperature=0.7, max_tokens=32,
-                                              seed=int(os.environ.get("W0_SEED", "20260821"))))
+                                              seed=int(os.environ.get("W0_SEED", "20260821"))), chat_template_kwargs=CT_KW or None)
         n = 0
         with open(os.path.join(outdir, "wikihop_w0_grades.jsonl"), "w") as f:
             for (rid, arm), o in zip(meta, outs):
@@ -94,9 +96,9 @@ def main():
         import numpy as np
         import torch
         from transformers import AutoModelForCausalLM, AutoTokenizer
-        tok = AutoTokenizer.from_pretrained("google/gemma-3-27b-it")
+        tok = AutoTokenizer.from_pretrained(MODEL)
         model = AutoModelForCausalLM.from_pretrained(
-            "google/gemma-3-27b-it", torch_dtype=torch.bfloat16, device_map="auto")
+            MODEL, torch_dtype=torch.bfloat16, device_map="auto")
         model.eval()
         layers_mod = model.model.language_model.layers if hasattr(model.model, "language_model") else model.model.layers
         print(f"model loaded ({time.time()-t0:.0f}s); n_layers={len(layers_mod)}", flush=True)
@@ -109,7 +111,7 @@ def main():
         for n_done, r in enumerate(rows):
             prompt = SYSTEM + "\n\n" + std_closed_prompts(r)["std"]
             msgs = [{"role": "user", "content": prompt}]
-            text = tok.apply_chat_template(msgs, tokenize=False, add_generation_prompt=True)
+            text = tok.apply_chat_template(msgs, tokenize=False, add_generation_prompt=True, **CT_KW)
             enc = tok(text, return_offsets_mapping=True, add_special_tokens=False)
             ids = enc["input_ids"]
             offsets = enc["offset_mapping"]

@@ -3699,3 +3699,74 @@ rows known to be failing, and real-text failures outside the
 hint-repairable quarter are firm. Tally: 17 predictions, 15 confirmed;
 ≈ $40 / 44 jobs. Reader docs/wikihop_we_gates.json; summary
 docs/wikihop_we_summary.md; rows results/loop_screen/wikihop_we_{y1,y2,c}.jsonl.
+
+### WQ. The WikiHop loop on a second model: does one frozen vector at the address repair Qwen3.5-27B, and does the output-first loop close?
+
+Registered 2026-09-03, before any data. Every WikiHop result (W → WE)
+is on Gemma-3-27B. The sandbox loop was ported to Qwen3.5-27B in item N
+(raw class-mean write at L43, oracle transfer +0.199, selector weak);
+Qwen carries its correctness signal at a different depth and across the
+whole state rather than a compact subspace (G/J series), so the
+frozen-vector-at-the-address recipe is a genuine test there. Model:
+**Qwen/Qwen3.5-27B** (64 layers, hidden 5120, linear-attention hybrid;
+thinking disabled via enable_thinking=false, as in every prior Qwen
+job). Frame: the **WF fresh real-text frame** (800 rows,
+results/loop_screen/wikihop_fresh_input.jsonl.gz) — the same rows Gemma
+saw in WF/WX/WE, so the cross-model comparison is on identical
+questions. Prompts identical to Gemma's (system text concatenated into
+the single user turn).
+
+**Stage 1 (two jobs, ~$4).** (a) grade_hint: std / closed / hint-first
+at k=8 (vLLM, seed 20260854) over all 800 rows → Qwen's document-
+dependent pool (0/8 std ∧ 0/8 closed), hint-repairable rows (≥ 4/8
+hint-first), and the pool composition the WD design would use;
+(b) capture (HF, bf16): final-token states at L38/43/48/53/58 and
+candidate-mention means + per-dim mean squares at L43 and L31 over all
+800 rows. Offline (scripts/wikihop_w0_fit.py --cap-layers 38,43,48,53,58
+--write-layer 43): the natural gauge gate — 5-fold CV AUC of a
+final-token logistic probe (std-correct vs std-incorrect majority rows)
+per layer. The stage-2 tie-break gauge must sit strictly after the
+write layer (a job invariant), so the pinned gauge is the best-AUC layer
+among L48/53/58 for the L43 jobs (L38–58 for the L31 extra); **PASS if
+that layer's CV AUC ≥ 0.70** (Gemma's W0 read 0.776 at L38). If PASS
+the tie-break in stage 2 is that gauge; if FAIL the tie-break is a
+row-seeded random choice among tied branches and the gauge is reported
+as descriptive (stated now). The all-layer ladder is descriptive. Descriptive readings
+pre-named: Qwen's hint-repairable rate of the doc-dependent pool
+(Gemma: 21.4% on this frame), reading- vs memory-driven split, closed-
+book accuracy.
+
+**Pins (scripts/wikihop_wq_pins.py → docs/wikihop_wq_pinned.json).**
+All hint-repairable doc-dependent rows, capped at 60 by a seeded draw
+(seed 20260855) if more; two seeded shards (seed 20260856); job A tests
+shard 1 with shard 0 as donors, job B the reverse (the WX/WO cross-fit
+rule). Underpowered flag if fewer than 20 rows (then the write reading
+stands, the selector reading is descriptive).
+
+**Stage 2 (two jobs at L43, ~$4; one descriptive extra at L31, ~$1.5).**
+The WX recipe with nothing changed but the model and the layer: frozen
+direction = donor mean per-position gold hint-delta, written at each
+candidate's whole-word mention positions at donor mean per-position
+|δ| × rung; gold at 1× and 2×, three seeded non-gold candidates at 1×,
+every candidate at 2× with k=4 (the loop); std baseline k=8; hook
+counters (a zero aborts). Write layer **L43** (Qwen's carrier, relative
+depth 0.67) is primary; a second pair of jobs at L31 (relative depth
+0.48, Gemma's L30 analog) is pre-named descriptive and reported either
+way. Job seed 20260857.
+
+**Registered directional predictions.** (18th) *The write transfers*:
+on the test rows, the gold-address frozen write at the pinned rung
+(the larger of 1×/2× on the replication gate, as in WX) repairs with
+row-bootstrap CI > 0 AND specificity (gold-address minus non-gold-
+address) CI > 0. (19th) *The loop closes*: the output-first selector
+(argmax answers-fired, tie-break as pinned by the gauge gate) beats the
+k=8 baseline with CI > 0 AND beats the random-branch rate with CI > 0.
+Each is directional and counts separately in the tally. Failure
+readings pre-named: 18th fails → QWEN-WRITE-DOES-NOT-TRANSFER-AT-L43
+(the L31 extra is then the only descriptive lead; no amendment);
+19th fails with the 18th passing → QWEN-SELECTOR-FAILS (the item N
+contrast, now on natural text). Readers: scripts/wikihop_wl_gates.py
+--frozen (write gates, delivery audit, gauge-select loop) and
+scripts/wikihop_wo_gates.py with --tie-key set to the pinned gauge key
+(output-first selector vs baseline and random branch). Cost ~$10 total.
+Amendments only on independent-telemetry evidence, per policy.

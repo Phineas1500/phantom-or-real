@@ -19,7 +19,9 @@ APP = os.environ.get("WH_APP_DIR", "/app")
 sys.path.insert(0, APP)
 from wikihop_common import SYSTEM, hint_first_prompt, normalize_answer, std_closed_prompts  # noqa: E402
 
-MODEL = "google/gemma-3-27b-it"
+MODEL = os.environ.get("WH_MODEL", "google/gemma-3-27b-it")
+IS_QWEN = "qwen" in MODEL.lower()
+CT_KW = {"enable_thinking": False} if IS_QWEN else {}
 
 
 def layers_of(model):
@@ -115,7 +117,7 @@ def main():
     tok = AutoTokenizer.from_pretrained(MODEL)
     if fake:
         from fake_gemma import FakeGemma
-        model = FakeGemma(n_layers=62, d=len(gw), vocab=len(tok))
+        model = FakeGemma(n_layers=int(os.environ.get("WH_FAKE_LAYERS", "62")), d=len(gw), vocab=len(tok))
     else:
         from transformers import AutoModelForCausalLM
         model = AutoModelForCausalLM.from_pretrained(MODEL, torch_dtype=torch.bfloat16, device_map="auto",
@@ -123,13 +125,14 @@ def main():
     model.eval()
     layers = layers_of(model)
     dev = next(model.parameters()).device
-    eos_ids = sorted({tok.eos_token_id, tok.convert_tokens_to_ids("<end_of_turn>")} - {None})
+    turn_end = tok.convert_tokens_to_ids("<|im_end|>" if IS_QWEN else "<end_of_turn>")
+    eos_ids = sorted({tok.eos_token_id, turn_end} - {None, tok.unk_token_id})
     pad_id = tok.pad_token_id if tok.pad_token_id is not None else tok.eos_token_id
     print(f"model loaded ({time.time()-t0:.0f}s) n_layers={len(layers)}", flush=True)
 
     def render(user_text):
         text = tok.apply_chat_template([{"role": "user", "content": SYSTEM + "\n\n" + user_text}],
-                                       tokenize=False, add_generation_prompt=True)
+                                       tokenize=False, add_generation_prompt=True, **CT_KW)
         enc = tok(text, return_offsets_mapping=True, add_special_tokens=False)
         return text, enc["input_ids"], enc["offset_mapping"]
 

@@ -69,12 +69,17 @@ def main() -> int:
     p.add_argument("--out-npz", type=Path, default=Path("results/loop_screen/wikihop_w0_pinned.npz"))
     p.add_argument("--out-json", type=Path, default=Path("docs/wikihop_w0_pinned.json"))
     p.add_argument("--w1-rows", type=int, default=12)
+    p.add_argument("--cap-layers", default="38,43,48,53", help="final-token capture layers present in the npz")
+    p.add_argument("--write-layer", type=int, default=30, help="candidate-capture layer key (cand_L<layer>)")
     p.add_argument("--sweep-capture", type=Path, default=None,
                    help="multi-layer candidate capture npz (W0_WRITE_LAYERS job); adds class_vector_L*/base_norm_L* pins")
     p.add_argument("--sweep-manifest", type=Path, default=None)
     p.add_argument("--exclude-ids-file", type=Path, default=None,
                    help="JSON with a list under 'wf_rows' (or a bare list): rows excluded from the gauge fit and the donors")
     args = p.parse_args()
+    global CAP_LAYERS
+    CAP_LAYERS = [int(x) for x in args.cap_layers.split(",") if x.strip()]
+    WL = args.write_layer
     excluded = set()
     if args.exclude_ids_file is not None:
         ex = json.load(open(args.exclude_ids_file))
@@ -160,7 +165,7 @@ def main() -> int:
     print(f"PRIMARY gauge layer L{primary} CV AUC {gauge[primary]:.4f} -> NATURAL GATE {'PASS' if natural_pass else 'FAIL'}; "
           f"OOF AUC doc-dependent-vs-correct-majority {auc_dd_vs_correct:.4f}", flush=True)
 
-    cand_vecs = cap["cand_L30"].astype(np.float64)
+    cand_vecs = cap[f"cand_L{WL}"].astype(np.float64)
     finite_cand = np.isfinite(cand_vecs).all(axis=1)
     n_nonfinite_cand = int((~finite_cand).sum())
     gold_vec = {}
@@ -179,8 +184,8 @@ def main() -> int:
     single_pos = np.array([c["n_positions"] == 1 for m in man_rows for c in m["candidates"]])[finite_cand]
     measured = [c["mean_position_norm"] for m in man_rows for c in m["candidates"] if "mean_position_norm" in c]
     literal_base = float(np.mean(measured)) if measured else float(all_norms.mean())
-    if "L30_sq_mean_cand" in cap:
-        sq = cap["L30_sq_mean_cand"].astype(np.float64)
+    if f"L{WL}_sq_mean_cand" in cap:
+        sq = cap[f"L{WL}_sq_mean_cand"].astype(np.float64)
         pooled = sq.mean(axis=0)
         massive = [int(d) for d in np.argsort(-pooled)[:16] if pooled[d] / pooled.sum() > 0.05]
         keep = np.ones(sq.shape[1], dtype=bool)
@@ -194,12 +199,12 @@ def main() -> int:
         keep[massive] = False
         base_norm = float(np.linalg.norm(cand_vecs[finite_cand][:, keep], axis=1).mean())
         literal_rms = None
-    write = {"capture_dtype": str(cap["cand_L30"].dtype), "n_nonfinite_final_rows_dropped": n_nonfinite_final,
+    write = {"capture_dtype": str(cap[f"cand_L{WL}"].dtype), "n_nonfinite_final_rows_dropped": n_nonfinite_final,
              "n_nonfinite_candidate_vectors_dropped": n_nonfinite_cand,
              "amplitude_base_source": ("mean per-position L30 RMS norm at candidate-mention positions EXCLUDING the massive-activation dims"
-                                       if "L30_sq_mean_cand" in cap else "norm of mention-mean vectors excluding massive dims (fallback)"),
+                                       if f"L{WL}_sq_mean_cand" in cap else "norm of mention-mean vectors excluding massive dims (fallback)"),
              "massive_dims_excluded": massive,
-             "massive_dims_share_of_norm_sq": float(1 - (cap["L30_sq_mean_cand"].astype(np.float64).mean(0)[keep].sum() / cap["L30_sq_mean_cand"].astype(np.float64).mean(0).sum())) if "L30_sq_mean_cand" in cap else None,
+             "massive_dims_share_of_norm_sq": float(1 - (cap[f"L{WL}_sq_mean_cand"].astype(np.float64).mean(0)[keep].sum() / cap[f"L{WL}_sq_mean_cand"].astype(np.float64).mean(0).sum())) if f"L{WL}_sq_mean_cand" in cap else None,
              "literal_base_mean_position_norm": literal_base, "literal_base_rms": literal_rms,
              "literal_rung_multiples_of_base": [round(m * literal_base / base_norm, 4) for m in (0.25, 0.5, 1.0)],
              "mean_norm_of_mention_mean_vectors": float(all_norms.mean()),
