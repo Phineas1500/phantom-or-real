@@ -4255,3 +4255,8 @@ routes std_closed_prompts through wikihop_common. Re-grading, corrected,
 both frames as registered (HotpotQA 40-candidate frame for WP, SQuAD
 enumerated frame for WP′), seeds 20260886 / 20260887, with the same pre-
 named instrument rule (documents ≥ 0.15 over closed-book).]
+[Corrected stage-1 grading launched 2026-09-03 23:05 UTC after
+correction commit 3659dac: WP (HotpotQA) job-krxds (context
+ctx-fe286b61, seed 20260886); WP′ (SQuAD) job-gmcqj (context
+ctx-16539009, seed 20260887). Job-path prompt render verified to
+contain the question in both std and closed prompts.]
