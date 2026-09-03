@@ -4286,3 +4286,8 @@ Stage 2 launched for both tasks with the WX recipe (L30, 1×/2×, loop at
 gauge for ties): HotpotQA jobs A/B/XA/XB (seed 20260874), SQuAD jobs
 A/B/XA/XB (seed 20260881); XA/XB = the same test shards with the 59
 WikiHop WX donors (cross-task vector, descriptive).]
+[Stage 2 launched 2026-09-03 23:33 UTC. HotpotQA (context ctx-3b591969,
+seed 20260874): A job-m9m6h, B job-jvxge, XA job-pum5j, XB job-a4hcv.
+SQuAD (context ctx-4c6d618e, seed 20260881): A job-87imv, B job-an6wn,
+XA job-rg56z, XB job-hvbva. No cache mount; gauge = WikiHop real-text
+L38 (wikihop_w0_pinned.npz), single gauge, tie-break key gauge_score.]
