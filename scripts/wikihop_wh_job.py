@@ -75,7 +75,7 @@ def main():
     max_new = int(os.environ.get("WH_MAX_NEW_TOKENS", "32"))
     fake = os.environ.get("WH_FAKE_MODEL") == "1"
     max_rows = int(os.environ.get("WH_MAX_ROWS", "10000"))
-    loop = os.environ.get("WH_LOOP", "0") == "1" or os.environ.get("WH_WX_JOB") is not None
+    loop = (os.environ.get("WH_LOOP", "0") == "1" or os.environ.get("WH_WX_JOB") is not None) and os.environ.get("WH_LOOP_OFF") != "1"
     loop_rung = float(os.environ.get("WH_LOOP_RUNG", "2.0"))
     text_nongold = os.environ.get("WH_TEXT_NONGOLD", "0" if loop else "1") == "1"
     shard_index, shard_count = int(os.environ.get("WH_SHARD_INDEX", "0")), int(os.environ.get("WH_SHARD_COUNT", "1"))

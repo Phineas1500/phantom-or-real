@@ -3846,3 +3846,80 @@ selector half is model-specific (item N's sandbox contrast on natural
 text). Tally: 19 predictions, 16 confirmed (13th, 14th, 19th not);
 ≈ $50 / 52 jobs. Summary docs/wikihop_wq_summary.md; readers
 docs/wikihop_wq_write_gates.json, docs/wikihop_wq_gates.json (+ _l31_).
+
+### WY. Qwen at Gemma's relative depth on a fresh frame, and the depth ladder of the frozen hint-delta write on both models
+
+Registered 2026-09-03, before any data. WQ's registered layer (L43,
+Qwen's class-mean carrier) gave a write of +0.162 and no working
+selector; its pre-named descriptive L31 pair (relative depth 0.48 =
+Gemma's L30) gave +0.255 and a gauge-select loop at 51% of the oracle,
+on the same 27 rows. Neither L31 number is a verdict. WY makes them
+predictions on fresh rows and asks whether relative depth, not the
+class-mean carrier, is where the addressable hint-delta signal lives —
+on both models.
+
+**Frame.** A third real-text draw, 800 rows, seed 20260858, disjoint
+from all four prior frames (results/loop_screen/wikihop_third_input.jsonl.gz;
+verified zero overlap). Stage 1 (Qwen only, ~$2): grade_hint
+(std/closed/hint-first k=8, vLLM, max_num_seqs 256, seed 20260860) →
+doc-dependent pool, hint-repairable rows (≥ 4/8), cross-fit pins capped
+at 60 (draw seed 20260861, shard seed 20260862; scripts/wikihop_wq_pins.py).
+No new capture: the tie-break gauge is the WQ L48 gauge fit on the WF
+frame (results/loop_screen/wikihop_wq_pinned.npz), frozen and reused on
+a frame it has never seen. Gemma's ladder needs no grading: it runs on
+the 59 WX rows (docs/wikihop_wx_pinned.json, cross-fit A/B).
+
+**Qwen L31, registered (2 jobs, ~$3).** The WX recipe at write layer
+L31: gold at 1×/2×, three seeded non-gold at 1×, every candidate at 2×
+with k=4, text-hint gold arm k=8, gauge L48 (+ L53/L58 extras), job
+seed 20260863. **Registered directional predictions.** (20th) *The
+write transfers at Gemma's relative depth*: gold-address frozen write at
+the pinned rung (larger of 1×/2× on the replication gate) repairs with
+CI > 0 and specificity CI > 0. (21st) *A probe selector closes the loop
+on Qwen*: the L48 gauge-select loop beats the k=8 baseline with CI > 0
+and beats the random-branch rate with CI > 0. The output-first selector
+is reported alongside (descriptive; WQ read it at chance on Qwen).
+Failure readings pre-named: 20th fails → the L31 lead was a small-n
+artefact, QWEN-DEPTH-NOT-REPLICATED; 21st fails → QWEN-SELECTOR-FAILS
+stands for both selector families.
+
+**Depth ladder, pre-named descriptive (no prediction; ~$18).** The
+frozen hint-delta write at 2× (gold-address dP and specificity against
+three seeded non-gold addresses, k=4; no loop, no text arm) at: Qwen
+L19/L25/L37/L43/L49 on the WY rows (A/B cross-fit; L31 from the
+registered jobs), and Gemma L15/L20/L25/L35/L40/L45 on the 59 WX rows
+(L30 from WX). Reported as two curves of dP against relative depth. The
+question pre-named: does each model's peak sit near relative depth 0.5,
+and is Qwen's L43 (0.67) off-peak? Descriptive only; nothing here
+amends WQ's verdict.
+
+**Readers.** scripts/wikihop_wl_gates.py --frozen and
+scripts/wikihop_wo_gates.py --tie-key primary_L48 for the L31 jobs;
+scripts/wikihop_wl_gates.py --frozen per ladder job (write gates only).
+Amendments only on independent-telemetry evidence, per policy.
+
+### WT. What the write does to attention: does the hint-delta vector raise final-token attention onto the addressed span?
+
+Registered 2026-09-03, before any data. The write is described as
+"attend to this one"; nothing has measured it. WT reads Gemma-3-27B's
+attention from the final prompt token (the answer position) to the
+written span, with and without the frozen write, on rows already on
+disk: the 59 WX rows (cross-fit donors as in WX), restricted to prompts
+of ≤ 1,600 tokens so eager attention over all 62 layers fits one H100.
+Per row: the gold candidate and the three non-gold candidates WX fired
+(from wikihop_wx_{a,b}.jsonl), each with a prefill under the frozen
+write at L30 × 2× at that candidate's mentions and one without; per
+layer, the final token's attention mass (mean over heads, and max over
+heads) onto the written span, onto the gold span, and onto the rest.
+**Registered directional prediction (the program's 22nd): at L38 (the
+gauge layer, eight layers after the write) the final-token attention
+mass onto the written span is higher under the write than without it —
+row×candidate-paired mean difference, bootstrap CI > 0.** Pre-named
+descriptive: the per-layer curve L31–L61 (Gemma's local layers see only
+the last 1,024 tokens); whether a non-gold write lowers attention onto
+the gold span; and whether the attention gain per branch predicts WX's
+acceptance of that branch (answers-fired at 2×). Failure reading: CI
+straddles zero → WRITE-DOES-NOT-ROUTE-ATTENTION-AT-L38, with the curve
+reported. One job, ~$3, seed 20260864. Reader:
+scripts/wikihop_wt_gates.py. Amendments only on independent-telemetry
+evidence, per policy.
