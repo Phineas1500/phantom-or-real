@@ -4171,3 +4171,5 @@ closed-book by ≥ 0.15, else free-form with containment scoring. Stage 2
 and its predictions are unchanged; only the candidate enumeration of
 the frame is under repair. wikihop_common gains a free-form prompt for
 rows with no candidates; WikiHop prompts unchanged.]
+[WP format probe launched: job-8k9y9 (context ctx-c37221ba, W0_MODE
+grade, seed 20260876), 2026-09-03 21:19 UTC.]
