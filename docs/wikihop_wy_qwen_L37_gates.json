@@ -20,23 +20,23 @@
  "per_rung": {
   "2.0": {
    "n_rows_gold": 36,
-   "gold_rate": 0.19444444444444445,
-   "dP": 0.16666666666666666,
+   "gold_rate": 0.375,
+   "dP": 0.3472222222222222,
    "dP_ci": [
-    0.09027777777777778,
-    0.25
+    0.2361111111111111,
+    0.4583333333333333
    ],
    "dP_pass": true,
    "n_rows_spec": 36,
-   "nongold_write_gold_rate": 0.033564814814814804,
-   "specificity": 0.16087962962962965,
+   "nongold_write_gold_rate": 0.024305555555555552,
+   "specificity": 0.3506944444444444,
    "specificity_ci": [
-    0.08214699074074074,
-    0.24537037037037038
+    0.24074074074074073,
+    0.4618055555555556
    ],
    "specificity_pass": true,
    "n_nongold_fires": 107,
-   "nongold_answers_fired_rate": 0.102803738317757,
+   "nongold_answers_fired_rate": 0.16121495327102803,
    "replication_pass": true
   }
  },
@@ -47,37 +47,37 @@
  "loop": {
   "rung": 2.0,
   "n_rows": 36,
-  "gauge_select_rate": 0.13194444444444445,
-  "oracle_rate": 0.19444444444444445,
+  "gauge_select_rate": 0.19444444444444445,
+  "oracle_rate": 0.375,
   "baseline_rate": 0.027777777777777776,
   "sc8_rate": 0.0,
-  "dP_vs_baseline": 0.10416666666666667,
+  "dP_vs_baseline": 0.16666666666666666,
   "dP_vs_baseline_ci": [
-   0.034722222222222224,
-   0.18055555555555555
+   0.06597222222222222,
+   0.28125
   ],
-  "dP_vs_sc8": 0.13194444444444445,
+  "dP_vs_sc8": 0.19444444444444445,
   "dP_vs_sc8_ci": [
-   0.0625,
-   0.20833333333333334
+   0.10416666666666667,
+   0.3055555555555556
   ],
   "argmax_gold_rate": 0.4166666666666667,
   "chance_rate": 0.25231481481481477,
-  "selection_signal": 0.5179477232281106,
+  "selection_signal": 0.5829090633623558,
   "selection_signal_ci": [
-   0.044663818032024835,
-   1.0003927596205413
+   -0.06759685682830455,
+   1.2234862326765448
   ],
   "mean_n_branches": 3.9722222222222223,
-  "random_branch_rate": 0.07581018518518519,
-  "dP_vs_random_branch": 0.05613425925925925,
+  "random_branch_rate": 0.11400462962962964,
+  "dP_vs_random_branch": 0.08043981481481483,
   "dP_vs_random_branch_ci": [
-   0.0028935185185185158,
-   0.1117187500000001
+   -0.005787037037037039,
+   0.17478298611111112
   ],
   "pass_i": true,
   "pass_ii": true,
-  "pass_random": true
+  "pass_random": false
  },
  "verdict": "NO-CEILING"
 }
