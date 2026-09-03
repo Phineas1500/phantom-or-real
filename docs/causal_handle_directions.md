@@ -3792,5 +3792,5 @@ candidate vectors; results/loop_screen/wikihop_wq_capture.npz, untracked,
 manifest tracked). grade_hint job-s6ayr FAILED at vLLM engine start
 ($0.55): the linear-attention hybrid's Mamba cache admits 345 decode
 sequences at this memory budget and vLLM's default max_num_seqs is 1024.
-Fix: W0_MAX_NUM_SEQS env (set 256), no other change; resubmitted as v3
-(id below).]
+Fix: W0_MAX_NUM_SEQS env (set 256), no other change; resubmitted as v3:
+job-4akjt (context ctx-461e5401), 2026-09-03 04:38 UTC.]
