@@ -1,0 +1,1340 @@
+{
+ "n_rows": 13,
+ "rows_key": "wh_rows",
+ "shard_index": 0,
+ "shard_count": 1,
+ "loop": true,
+ "loop_rung": 2.0,
+ "n_fired_branches": 238,
+ "write_layer": 43,
+ "gauge_layer": 48,
+ "rungs": [
+  1.0,
+  2.0
+ ],
+ "seed": 20260857,
+ "frozen": {
+  "norm_target": 30.07737287623518,
+  "n_donors": 14,
+  "n_positions": 120,
+  "mean_delta_norm": 14.356629131176051,
+  "mean_position_norm": 30.07737287623518
+ },
+ "wx_job": "A",
+ "w0_base_norm": 67.06871378164239,
+ "skipped": [],
+ "rows": [
+  {
+   "id": "WH_dev_1346",
+   "n_tokens": 2145,
+   "n_candidates": 29,
+   "gold_positions": 14,
+   "nongold_fired": [
+    "band",
+    "film industry",
+    "outer space"
+   ],
+   "base_gauge_score": -5.436183532132261,
+   "deltas": {
+    "time travel": {
+     "n_positions": 14,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 24.364749908447266,
+     "cos_frozen_vs_own_gold_delta": 0.7006395797328739
+    },
+    "actor": {
+     "n_positions": 3,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "band": {
+     "n_positions": 4,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "biology": {
+     "n_positions": 2,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "city": {
+     "n_positions": 2,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "comedian": {
+     "n_positions": 2,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "comedy": {
+     "n_positions": 7,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "conflict": {
+     "n_positions": 2,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "cyborg": {
+     "n_positions": 4,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "enterprise": {
+     "n_positions": 2,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "existence": {
+     "n_positions": 2,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "extraterrestrial life": {
+     "n_positions": 8,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "fantasy": {
+     "n_positions": 2,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "fiction": {
+     "n_positions": 15,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "film": {
+     "n_positions": 22,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "film industry": {
+     "n_positions": 4,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "hollywood": {
+     "n_positions": 3,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "immigration": {
+     "n_positions": 2,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "life": {
+     "n_positions": 4,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "literature": {
+     "n_positions": 4,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "love": {
+     "n_positions": 4,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "navigation": {
+     "n_positions": 2,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "outer space": {
+     "n_positions": 4,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "robot": {
+     "n_positions": 2,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "science": {
+     "n_positions": 17,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "television": {
+     "n_positions": 5,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "time": {
+     "n_positions": 17,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "travel": {
+     "n_positions": 16,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "true": {
+     "n_positions": 2,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_2099",
+   "n_tokens": 1417,
+   "n_candidates": 5,
+   "gold_positions": 6,
+   "nongold_fired": [
+    "cycling",
+    "classic cycle races",
+    "cycling race"
+   ],
+   "base_gauge_score": -2.8923887983193293,
+   "deltas": {
+    "road bicycle racing": {
+     "n_positions": 6,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 31.56652069091797,
+     "cos_frozen_vs_own_gold_delta": 0.650953911133447
+    },
+    "classic cycle races": {
+     "n_positions": 6,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "cycling": {
+     "n_positions": 12,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "cycling race": {
+     "n_positions": 10,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "sport": {
+     "n_positions": 4,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_2668",
+   "n_tokens": 773,
+   "n_candidates": 22,
+   "gold_positions": 8,
+   "nongold_fired": [
+    "field",
+    "animal",
+    "performance"
+   ],
+   "base_gauge_score": -11.107301310927564,
+   "deltas": {
+    "house mouse": {
+     "n_positions": 8,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 25.465560913085938,
+     "cos_frozen_vs_own_gold_delta": 0.7121311565859713
+    },
+    "animal": {
+     "n_positions": 4,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "association": {
+     "n_positions": 2,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "company": {
+     "n_positions": 2,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "family": {
+     "n_positions": 3,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "field": {
+     "n_positions": 2,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "genealogy": {
+     "n_positions": 6,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "genus": {
+     "n_positions": 3,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "human": {
+     "n_positions": 2,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "humans": {
+     "n_positions": 3,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "information": {
+     "n_positions": 2,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "kinship": {
+     "n_positions": 4,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "mouse": {
+     "n_positions": 8,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "order": {
+     "n_positions": 4,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "performance": {
+     "n_positions": 2,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "person": {
+     "n_positions": 2,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "reference": {
+     "n_positions": 2,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "share": {
+     "n_positions": 2,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "species": {
+     "n_positions": 4,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "sport": {
+     "n_positions": 2,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "study": {
+     "n_positions": 2,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "writing": {
+     "n_positions": 2,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_2748",
+   "n_tokens": 963,
+   "n_candidates": 17,
+   "gold_positions": 10,
+   "nongold_fired": [
+    "f",
+    "wheat",
+    "a"
+   ],
+   "base_gauge_score": -5.409693432645883,
+   "deltas": {
+    "flour": {
+     "n_positions": 10,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 23.401166915893555,
+     "cos_frozen_vs_own_gold_delta": 0.7908473191594889
+    },
+    "a": {
+     "n_positions": 27,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "atmosphere": {
+     "n_positions": 2,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "bran": {
+     "n_positions": 2,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "cereal": {
+     "n_positions": 6,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "dough": {
+     "n_positions": 6,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "f": {
+     "n_positions": 2,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "flat": {
+     "n_positions": 2,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "fruit": {
+     "n_positions": 2,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "grilling": {
+     "n_positions": 4,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "italy": {
+     "n_positions": 3,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "pasta": {
+     "n_positions": 10,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "plant": {
+     "n_positions": 2,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "temperature": {
+     "n_positions": 3,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "wheat": {
+     "n_positions": 4,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "wheat flour": {
+     "n_positions": 6,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "yeast": {
+     "n_positions": 2,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_3068",
+   "n_tokens": 306,
+   "n_candidates": 15,
+   "gold_positions": 2,
+   "nongold_fired": [
+    "roll",
+    "fashion",
+    "october 24"
+   ],
+   "base_gauge_score": -7.901562224566254,
+   "deltas": {
+    "beat": {
+     "n_positions": 2,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 44.39469909667969,
+     "cos_frozen_vs_own_gold_delta": 0.6400277847411356
+    },
+    "1950s": {
+     "n_positions": 10,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1984": {
+     "n_positions": 8,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "a": {
+     "n_positions": 6,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "and": {
+     "n_positions": 7,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "as": {
+     "n_positions": 4,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "born": {
+     "n_positions": 3,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "fashion": {
+     "n_positions": 2,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "is": {
+     "n_positions": 6,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "it": {
+     "n_positions": 4,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "october": {
+     "n_positions": 5,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "october 24": {
+     "n_positions": 9,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "on": {
+     "n_positions": 5,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "pop": {
+     "n_positions": 7,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "roll": {
+     "n_positions": 3,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_3870",
+   "n_tokens": 1857,
+   "n_candidates": 9,
+   "gold_positions": 10,
+   "nongold_fired": [
+    "walt disney",
+    "nicholas ray",
+    "chuck jones"
+   ],
+   "base_gauge_score": -4.283274079355329,
+   "deltas": {
+    "robert mckimson": {
+     "n_positions": 10,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 37.45294189453125,
+     "cos_frozen_vs_own_gold_delta": 0.7428461922595578
+    },
+    "alan hale": {
+     "n_positions": 4,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "alan young": {
+     "n_positions": 8,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "chuck jones": {
+     "n_positions": 5,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "friz freleng": {
+     "n_positions": 10,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "morris": {
+     "n_positions": 3,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "nicholas ray": {
+     "n_positions": 5,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "variety": {
+     "n_positions": 2,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "walt disney": {
+     "n_positions": 6,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_4076",
+   "n_tokens": 3360,
+   "n_candidates": 34,
+   "gold_positions": 3,
+   "nongold_fired": [
+    "7",
+    "967",
+    "61"
+   ],
+   "base_gauge_score": -3.807014427693357,
+   "deltas": {
+    "570": {
+     "n_positions": 3,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 30.226659774780273,
+     "cos_frozen_vs_own_gold_delta": 0.532773504786114
+    },
+    "10": {
+     "n_positions": 4,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "14": {
+     "n_positions": 4,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1500": {
+     "n_positions": 8,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "156": {
+     "n_positions": 6,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "17": {
+     "n_positions": 4,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "19": {
+     "n_positions": 4,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1927": {
+     "n_positions": 8,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1993": {
+     "n_positions": 8,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "2": {
+     "n_positions": 4,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "20": {
+     "n_positions": 4,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "2000": {
+     "n_positions": 8,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "2013": {
+     "n_positions": 8,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "23": {
+     "n_positions": 4,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "26": {
+     "n_positions": 4,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "300": {
+     "n_positions": 6,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "33": {
+     "n_positions": 6,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "337": {
+     "n_positions": 6,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "4": {
+     "n_positions": 5,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "44": {
+     "n_positions": 4,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "47": {
+     "n_positions": 4,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "500": {
+     "n_positions": 12,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "562": {
+     "n_positions": 6,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "600 bce": {
+     "n_positions": 9,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "61": {
+     "n_positions": 4,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "632": {
+     "n_positions": 6,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "654": {
+     "n_positions": 6,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "67": {
+     "n_positions": 4,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "670": {
+     "n_positions": 6,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "7": {
+     "n_positions": 3,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "70": {
+     "n_positions": 4,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "8": {
+     "n_positions": 1,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "9": {
+     "n_positions": 2,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "967": {
+     "n_positions": 6,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_4162",
+   "n_tokens": 2196,
+   "n_candidates": 8,
+   "gold_positions": 19,
+   "nongold_fired": [
+    "divine",
+    "brad wright",
+    "city"
+   ],
+   "base_gauge_score": -3.393988901614491,
+   "deltas": {
+    "jonathan glassner": {
+     "n_positions": 19,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 21.503061294555664,
+     "cos_frozen_vs_own_gold_delta": 0.6102723041106418
+    },
+    "brad wright": {
+     "n_positions": 14,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "city": {
+     "n_positions": 3,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "dean devlin": {
+     "n_positions": 12,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "divine": {
+     "n_positions": 2,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "noah": {
+     "n_positions": 3,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "roland emmerich": {
+     "n_positions": 18,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "ua": {
+     "n_positions": 2,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_4301",
+   "n_tokens": 713,
+   "n_candidates": 7,
+   "gold_positions": 8,
+   "nongold_fired": [
+    "2014",
+    "2005",
+    "2009"
+   ],
+   "base_gauge_score": -9.522588238550643,
+   "deltas": {
+    "2002": {
+     "n_positions": 8,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 31.03140640258789,
+     "cos_frozen_vs_own_gold_delta": 0.6016746074136294
+    },
+    "1963": {
+     "n_positions": 8,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1972": {
+     "n_positions": 8,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "2005": {
+     "n_positions": 8,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "2007": {
+     "n_positions": 8,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "2009": {
+     "n_positions": 8,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "2014": {
+     "n_positions": 8,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_452",
+   "n_tokens": 1246,
+   "n_candidates": 11,
+   "gold_positions": 8,
+   "nongold_fired": [
+    "22",
+    "2005",
+    "2006"
+   ],
+   "base_gauge_score": -3.842715927985637,
+   "deltas": {
+    "1982": {
+     "n_positions": 8,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 31.571062088012695,
+     "cos_frozen_vs_own_gold_delta": 0.7140798106637727
+    },
+    "1520": {
+     "n_positions": 4,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1530": {
+     "n_positions": 4,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1895": {
+     "n_positions": 8,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1947": {
+     "n_positions": 8,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1957": {
+     "n_positions": 8,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1983": {
+     "n_positions": 8,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1997": {
+     "n_positions": 8,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "2005": {
+     "n_positions": 8,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "2006": {
+     "n_positions": 8,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "22": {
+     "n_positions": 4,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_4849",
+   "n_tokens": 1631,
+   "n_candidates": 10,
+   "gold_positions": 4,
+   "nongold_fired": [
+    "general",
+    "monarch",
+    "r"
+   ],
+   "base_gauge_score": -4.188435607303002,
+   "deltas": {
+    "soldier": {
+     "n_positions": 4,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 24.856918334960938,
+     "cos_frozen_vs_own_gold_delta": 0.723747597246553
+    },
+    "construction": {
+     "n_positions": 2,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "dragoon": {
+     "n_positions": 6,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "general": {
+     "n_positions": 4,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "military": {
+     "n_positions": 13,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "monarch": {
+     "n_positions": 2,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "official": {
+     "n_positions": 2,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "r": {
+     "n_positions": 2,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "saint": {
+     "n_positions": 2,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "warrior": {
+     "n_positions": 4,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_4869",
+   "n_tokens": 2432,
+   "n_candidates": 7,
+   "gold_positions": 12,
+   "nongold_fired": [
+    "united states army",
+    "diesel",
+    "tank"
+   ],
+   "base_gauge_score": -3.9671179054859325,
+   "deltas": {
+    "betrayal at krondor": {
+     "n_positions": 12,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 41.047515869140625,
+     "cos_frozen_vs_own_gold_delta": 0.7015297640091498
+    },
+    "c": {
+     "n_positions": 3,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "computer": {
+     "n_positions": 23,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "diesel": {
+     "n_positions": 2,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "kilobyte": {
+     "n_positions": 7,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "tank": {
+     "n_positions": 11,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "united states army": {
+     "n_positions": 12,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "WH_dev_758",
+   "n_tokens": 1041,
+   "n_candidates": 12,
+   "gold_positions": 5,
+   "nongold_fired": [
+    "greenland",
+    "sea",
+    "nord"
+   ],
+   "base_gauge_score": -3.5944332283749487,
+   "deltas": {
+    "trondheim": {
+     "n_positions": 5,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 25.89556312561035,
+     "cos_frozen_vs_own_gold_delta": 0.8060986326846815
+    },
+    "antarctic": {
+     "n_positions": 7,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "antarctica": {
+     "n_positions": 3,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "faroe islands": {
+     "n_positions": 6,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "greenland": {
+     "n_positions": 3,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "most": {
+     "n_positions": 2,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "nord": {
+     "n_positions": 2,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "norway": {
+     "n_positions": 11,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "norwegian sea": {
+     "n_positions": 4,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "ocean": {
+     "n_positions": 3,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "sea": {
+     "n_positions": 4,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "shoreline": {
+     "n_positions": 2,
+     "mean_position_norm": 30.07737287623518,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  }
+ ],
+ "seconds": 1677
+}
