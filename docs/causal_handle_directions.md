@@ -3547,3 +3547,43 @@ the 0.686 oracle; gold argmax 0.383 (chance ≈ 0.09); vs baseline
 [−0.138, +0.160] — a tie; that gauge transfers across anonymized
 frames. Verdict as pre-named. Tally: 15 predictions, 13 confirmed.
 Full numbers: docs/wikihop_wo_summary.md. WikiHop chain complete.
+
+## Pre-Registered Deployment Reading (2026-09-03)
+
+### WD. Blind yield and collateral: the loop as a black box on ALL document-dependent failures, and on rows the model gets right
+
+Registered 2026-09-03, before any data. Every loop result so far sits on
+rows pre-selected by the gold hint (an oracle filter). WD reads the loop
+with no filter: what it yields on all doc-dependent failures, and what it
+costs on correct rows. **Registered directional prediction (the
+program's 16th): on the doc-dependent pool of the WO frame, reweighted
+to the pool's composition, the blind loop (frozen write at every
+candidate's address, output-first selection) raises accuracy over the
+k=8 baseline — CI > 0.** Pre-named non-inferiority bound for collateral:
+on correct-majority rows the loop's accuracy is within 0.10 of baseline
+(the harm CI's lower bound above −0.10) → NO-COLLATERAL; otherwise
+COLLATERAL-HARM (reported with the abstention variant).
+
+**Frame and rows (docs/wikihop_wd_pinned.json).** The WO anonymized
+frame (507 rows). Doc-dependent pool 293 = 47 hint-repairable (already
+run in WO: their branches ARE the loop on that stratum, reused) + 246
+unrepairable; a seeded 100 of the 246 run now (seed 20260843; two
+shards). Collateral: 60 seeded correct-majority rows (std ≥ 5/8; seed
+20260844) of the 170 available. Frozen direction: donor mean gold
+hint-delta over the 47 WO rows (one vector, fit on rows disjoint from
+every test row here). Job seed 20260845.
+
+**Arms per row.** std baseline k=8; every candidate at 2× with k=4 (the
+loop); the anonymized-fit and real-text gauges scored per branch (tie-
+breaks); no text-hint arm, no 1× arm (unnecessary for a blind reading);
+hook counters (a zero aborts). Cost ~$6 (three jobs).
+
+**Readings.** BLIND YIELD = Σ_stratum w_s × (loop − baseline)_s with w =
+(47/293, 246/293) for the repairable stratum (from WO's branches under
+the same selector) and the unrepairable stratum (the 100 rows), row-
+bootstrap CI within strata; also the unweighted per-stratum numbers and
+the loop vs random-branch reading. COLLATERAL = loop − baseline on the 60
+correct rows. ABSTENTION (descriptive): answer only when the top
+answers-fired rate is unique and ≥ 0.5, else keep the baseline answer —
+yield and collateral under that rule (the deployment-relevant mode).
+Reader: scripts/wikihop_wd_gates.py.
