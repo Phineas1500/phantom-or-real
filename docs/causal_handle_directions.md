@@ -3932,3 +3932,9 @@ L15 job-jqqme (A) / job-6iqbe (B); L20 job-4iw6r / job-pea4n; L25
 job-ggbjg / job-de6nq; L35 job-nueuv / job-yxjzu; L40 job-uirwv /
 job-7gmzi; L45 job-bnu69 / job-r279r. Qwen L31 jobs and the Qwen ladder
 follow the stage-1 pins.]
+[WT launched after registration commit f74f704 + tooling f881b6d:
+job-8wnju (context ctx-c6a7ab18; the first submission job-6ydrz was
+cancelled unbilled before starting because its no-write record lacked
+the per-candidate span masses the paired test needs — fixed before any
+data), 2026-09-03 13:12 UTC. Fake-model dry run of job and reader
+passed.]
