@@ -9,7 +9,7 @@ SYSTEM = "You are a careful reading assistant. Answer concisely."
 
 
 def std_closed_prompts(r):
-    q = f"Based on the documents, what is the '{r['relation']}' of {r['subject']}?"
+    q = r["question"] if r.get("question") else f"Based on the documents, what is the '{r['relation']}' of {r['subject']}?"
     cands = "\n".join(f"- {c}" for c in r["candidates"])
     return {
         "std": f"Documents:\n{r['docs']}\n\nQuestion: {q}\nCandidates:\n{cands}\n\nAnswer with exactly one candidate, nothing else.",

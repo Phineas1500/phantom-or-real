@@ -4106,3 +4106,48 @@ hint-delta +0.055 [+0.041, +0.069] at L32 and +0.0035 at L38; flipped
 Verdict CONTENT-MATTERS / SIGN-MATTERS. Tally: 24 predictions, 21
 confirmed; ≈ $115 across 101 jobs. Summary docs/wikihop_wv_summary.md;
 reader docs/wikihop_wv_gates.json.
+
+### WP. A second task: HotpotQA (distractor) with candidates enumerated from the passages — does the loop leave WikiHop?
+
+Registered 2026-09-03, before any data. Every natural-text result so far
+is on WikiHop, whose candidate list is entity-typed and supplied. WP runs
+the frozen-write loop on HotpotQA (distractor setting, validation):
+ten paragraphs, a free-form bridge or comparison question, an answer
+that is a span of the paragraphs. Frame (scripts/hotpot_frame.py →
+results/loop_screen/hotpot_input.jsonl.gz, seed 20260870): 800 rows
+drawn from 6,699 eligible (yes/no answers and answers over six words
+dropped; the answer must occur as a whole-word span of the paragraphs —
+the write's address); candidates enumerated from the paragraphs
+(titles, capitalized spans, years), capped at 40 with the answer always
+present and a seeded order — mean 39.9, min 15; 693 bridge / 107
+comparison; mean 5,698 characters of documents. Prompts: the WikiHop
+constructions with the question in place of the relation template
+(wikihop_common.std_closed_prompts uses r["question"] when present; the
+WikiHop prompts are byte-identical to before — verified).
+
+**Stage 1 (Gemma-3-27B, one job, ~$2).** grade_hint (std / closed /
+hint-first, k=8, vLLM, seed 20260871) → doc-dependent pool (0/8 std ∧
+0/8 closed), hint-repairable rows (≥ 4/8 hint-first), cross-fit pins
+capped at 60 (scripts/wikihop_wq_pins.py; draw seed 20260872, shard
+seed 20260873). Pre-named descriptive: HotpotQA's hint-repairable rate
+against WikiHop's 20–27%; closed-book accuracy. Underpowered flag at
+< 20 rows (write reading stands, loop reading descriptive).
+
+**Stage 2 (Gemma, ~$4 + a descriptive pair).** The WX recipe at L30 ×
+1×/2× with the loop at 2× (k=4), three seeded non-gold at 1×, text-hint
+gold arm k=8, cross-fit frozen direction from HotpotQA donors (jobs
+A/B), job seed 20260874. Tie-break gauge: the WikiHop real-text L38
+probe (results/loop_screen/wikihop_w0_pinned.npz), frozen — a cross-
+task probe, used only for ties. **Registered directional predictions.**
+(25th) *The write leaves WikiHop*: the gold-address frozen write at the
+pinned rung repairs with CI > 0 and specificity CI > 0. (26th) *The
+loop leaves WikiHop*: the output-first selector beats the k=8 baseline
+with CI > 0 and the random-branch rate with CI > 0. Pre-named
+descriptive extra (jobs XA/XB): the SAME frozen direction fit on the
+59 WikiHop WX rows (donors = WX shards), written at HotpotQA addresses
+— does one vector cross tasks? Reported either way, no verdict. Failure
+readings: 25th fails → WRITE-IS-WIKIHOP-SPECIFIC; 26th fails with the
+25th passing → SELECTOR-IS-WIKIHOP-SPECIFIC. Readers:
+scripts/wikihop_wl_gates.py --frozen, scripts/wikihop_wo_gates.py
+--tie-key primary_L38 (single gauge). Cost ~$8 plus platform retries.
+Amendments only on independent-telemetry evidence, per policy.
