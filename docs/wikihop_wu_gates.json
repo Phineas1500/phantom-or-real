@@ -1,0 +1,181 @@
+{
+ "arms": {
+  "wikihop_donors": {
+   "n_rows": 120,
+   "baseline_accuracy": 0.5677083333333334,
+   "delivery_bad_records": 0,
+   "n_branches": 1439,
+   "rules": {
+    "abstention": {
+     "frame_net": -0.0020833333333333333,
+     "ci95": [
+      -0.04065104166666666,
+      0.0375
+     ],
+     "abstained_frac": 0.225,
+     "rule_accuracy": 0.565625,
+     "n_rows_improved": 11,
+     "n_rows_harmed": 9
+    },
+    "always": {
+     "frame_net": -0.071875,
+     "ci95": [
+      -0.13127604166666668,
+      -0.016640624999999905
+     ],
+     "abstained_frac": 0.0,
+     "rule_accuracy": 0.49583333333333335,
+     "n_rows_improved": 12,
+     "n_rows_harmed": 26
+    },
+    "grounded": {
+     "frame_net": 0.04479166666666667,
+     "ci95": [
+      0.0125,
+      0.08333333333333333
+     ],
+     "abstained_frac": 0.9083333333333333,
+     "rule_accuracy": 0.6125,
+     "n_rows_improved": 7,
+     "n_rows_harmed": 2
+    },
+    "grounded_gauge": {
+     "frame_net": 0.014583333333333334,
+     "ci95": [
+      -0.004166666666666667,
+      0.0364843750000001
+     ],
+     "abstained_frac": 0.85,
+     "rule_accuracy": 0.5822916666666667,
+     "n_rows_improved": 5,
+     "n_rows_harmed": 4
+    },
+    "oracle": {
+     "frame_net": 0.026041666666666668,
+     "ci95": [
+      0.003125,
+      0.057291666666666664
+     ],
+     "abstained_frac": 0.8916666666666667,
+     "rule_accuracy": 0.59375,
+     "n_rows_improved": 4,
+     "n_rows_harmed": 2
+    }
+   },
+   "strata": {
+    "conflict_failure_repairable": {
+     "n": 7,
+     "baseline": 0.07142857142857142,
+     "abstention_dP": 0.0,
+     "abstention_ci95": [
+      0.0,
+      0.0
+     ],
+     "always_dP": -0.07142857142857142,
+     "always_ci95": [
+      -0.14285714285714285,
+      -0.017857142857142856
+     ],
+     "grounded_dP": 0.35714285714285715,
+     "grounded_ci95": [
+      0.05357142857142857,
+      0.6964285714285714
+     ]
+    },
+    "conflict_failure_unrepairable": {
+     "n": 17,
+     "baseline": 0.029411764705882353,
+     "abstention_dP": -0.014705882352941176,
+     "abstention_ci95": [
+      -0.03676470588235294,
+      0.0
+     ],
+     "always_dP": -0.014705882352941176,
+     "always_ci95": [
+      -0.03676470588235294,
+      0.0
+     ],
+     "grounded_dP": 0.0,
+     "grounded_ci95": [
+      0.0,
+      0.0
+     ]
+    },
+    "correct_majority": {
+     "n": 66,
+     "baseline": 0.946969696969697,
+     "abstention_dP": -0.015151515151515152,
+     "abstention_ci95": [
+      -0.06628787878787878,
+      0.026515151515151516
+     ],
+     "always_dP": -0.11742424242424243,
+     "always_ci95": [
+      -0.2026988636363636,
+      -0.03977272727272727
+     ],
+     "grounded_dP": 0.0,
+     "grounded_ci95": [
+      0.0,
+      0.0
+     ]
+    },
+    "mixed": {
+     "n": 17,
+     "baseline": 0.2647058823529412,
+     "abstention_dP": 0.051470588235294115,
+     "abstention_ci95": [
+      -0.14724264705882348,
+      0.2647058823529412
+     ],
+     "always_dP": -0.014705882352941176,
+     "always_ci95": [
+      -0.25,
+      0.2426470588235294
+     ],
+     "grounded_dP": 0.16911764705882354,
+     "grounded_ci95": [
+      0.007352941176470588,
+      0.35294117647058826
+     ]
+    },
+    "other_failure": {
+     "n": 13,
+     "baseline": 0.009615384615384616,
+     "abstention_dP": 0.009615384615384616,
+     "abstention_ci95": [
+      0.0,
+      0.028846153846153848
+     ],
+     "always_dP": 0.009615384615384616,
+     "always_ci95": [
+      0.0,
+      0.028846153846153848
+     ],
+     "grounded_dP": 0.0,
+     "grounded_ci95": [
+      0.0,
+      0.0
+     ]
+    }
+   },
+   "write_on_repairable_conflict_rows": {
+    "n": 7,
+    "gold_1x_dP": 0.32142857142857145,
+    "gold_2x_dP": 0.6785714285714286,
+    "gold_2x_ci95": [
+     0.48214285714285715,
+     0.8392857142857143
+    ],
+    "nongold_address_gold_rate_2x": 0.05283228676085818,
+    "specificity_2x": 0.6971677132391418,
+    "specificity_ci95": [
+     0.5115384615384616,
+     0.8597421180010467
+    ],
+    "text_hint_gold": 0.75
+   }
+  }
+ },
+ "prediction_GROUNDED_RULE_HELPS_BLIND_ON_QWEN": "NOT CONFIRMED"
+}

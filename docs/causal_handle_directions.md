@@ -4804,3 +4804,61 @@ vs L25 0.106 vs L20 0.125 on repairable rows. Reading: the recipe of
 WK/WK′/WS (L30 × 2×) is the right setting for the conflict regime; no
 candidate for a registered confirmation. Lever closed. Reader
 `scripts/wikihop_wj_gates.py` → docs/wikihop_wj_gates.json.
+
+**WU LANDED 2026-09-04 19:25 UTC (XA job-teem6 $1.32, XB job-6mzf7 $1.51;
+WU total $3.92 over 3 jobs).** Qwen3.5-27B, 120 blind NQ-Swap rows,
+baseline 0.568, 1,439 branches, delivery valid everywhere. **31st
+registered prediction NOT CONFIRMED:** the grounded rule with the
+registered probe selector (argmax L48 gauge among non-baseline
+branches) nets **+0.015 [−0.004, +0.036]** (5 up / 4 down). Pre-named
+rider, the output-first variant of WK′/WS: **+0.045 [+0.013, +0.083]**
+(7 up / 2 down; acts on 9% of rows; frame accuracy 0.568 → 0.613) — on
+this regime Qwen's output vote works and its probe does not, the
+reverse of WY on WikiHop, and the registration bet on WY. Always-answer
+−0.072 [−0.131, −0.017]; abstention −0.002; oracle two-stage (probe
+select on all failures) +0.026 [+0.003, +0.057]. Strata (output-first
+grounded): repairable +0.357 [+0.054, +0.696] (7 rows), unrepairable
+0, correct 0.000 (66 rows), mixed +0.169 [+0.007, +0.353] (17 rows —
+Qwen's draw is less deterministic than Gemma's). Write on the 7
+repairable rows with Qwen's own cross-task vector (WY donors at L31):
+2× **+0.679 [+0.482, +0.839]**, specificity +0.697, text hint 0.75. The
+effect is present on Qwen; the registered selector was the wrong one.
+A registered replication with the output vote would be needed to claim
+it; not launched.
+
+**WI′ LANDED 2026-09-04 19:25 UTC (XA job-eb56t $1.14, XB job-sbr5w
+$1.17; $2.31).** 120 fresh blind NQ-Swap rows under the WI instruction,
+instructed baseline 0.714, 1,459 branches, delivery valid everywhere.
+**32nd registered prediction NOT CONFIRMED:** the grounded loop over
+the instructed baseline nets **+0.025 [0.000, +0.058]** (3 up / 0 down;
+the lower bound sits on zero). Riders on the same 120 rows: the
+instruction alone (WI grades) **+0.125 [+0.074, +0.182]** (0.593 →
+0.718); instruction + loop vs plain std +0.146 [+0.085, +0.213];
+always-answer under the instruction −0.159 (collateral −0.231 on
+correct rows); probe-select +0.010; oracle −0.002 (9 up / 10 down: with
+the baseline removed from ties on every failure, the instructed model's
+own good answers are thrown away). Under the instruction the
+repairable conflict rows already sit at 0.481 (the instruction fixed
+them), the loop lifts them to 0.558; the write's gold-address dP on
+them +0.442 [+0.192, +0.692] with non-gold-address gold rate 0.387 (the
+instruction pulls every branch toward the document's answer). Reading:
+the loop adds a little on top of the instruction, not measurably at
+this size; the instruction is the stronger and cheaper mitigation on
+this regime, and the write's distinct contribution is the 17–20% of
+conflict failures only attention fixes (WI), which the blind rule
+reaches only in part.
+
+**Levers verdict (WI, WJ, WU, WI′ + the detector addendum; $11.25 over
+12 jobs).** The whole-frame number cannot be raised by a better
+detector (closed), a different layer or dose (L30 × 2× confirmed), or
+stacking on the instruction (+0.025, n.s.); it replicates on Qwen with
+the output vote (+0.045, rider) but not with the registered probe. The
+honest deployment statement for the paper: a one-line context-faithful
+instruction is the stronger and cheaper frame-level mitigation
+(+5 to +8; +12.5 on the WI′ rows); the frozen write is a mechanism
+result with a distinct reach (a fifth of conflict failures the
+instruction does not fix; a quarter of hint-unrepairable rows), and as a
+blind tool it is worth 3–6 points where the model ignores the passage.
+Program tally: **32 registered predictions — 25 confirmed, 6 not (13th,
+14th, 19th, 28th, 31st, 32nd), 1 intermediate (27th); ≈ $145 across 139
+jobs.** Summary docs/wikihop_levers_summary.md.

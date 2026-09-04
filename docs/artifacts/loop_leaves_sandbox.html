@@ -103,7 +103,7 @@
 </div>
 
 <div class="col">
-  <h2>What happened, in ten findings</h2>
+  <h2>What happened, in eleven findings</h2>
 
   <div class="finding">
     <div class="num">1 / 528<small>gold repairs</small></div>
@@ -144,6 +144,10 @@
   <div class="finding">
     <div class="num meter">+0.05<small>whole frame, blind, twice replicated</small></div>
     <p><strong>Where the document contradicts memory, a groundedness check makes the loop work blind.</strong> We asked why the loop nets nothing when run blind on WikiHop and found the model answers those questions mostly from memory, and a firm wrong memory is what the nudge cannot move. So we built the regime where the passage contradicts what the model remembers, swapping the answer entity in Wikipedia paragraphs. A third of those failures are fixable. The loop as registered still did not help blind: the model's own answer always wins its own branch. But one label-free check, "is the answer actually a span of the passage?", flags the memory failures and only three percent of correct rows, and with it the loop lifts whole-frame accuracy by four to six points with at most one row harmed. That is the first blind gain outside the sandbox. It first appeared as a pre-named rider after the registered rule failed, so we registered it properly and ran it twice more: on a fresh draw of the same questions and on a second set built from SQuAD passages, with one frozen vector learned on WikiHop and nothing fit to the new data. It held both times, five and three points, with no correct answer broken. Its limit is honest: the check only fires when the model answers from outside the passage, which is exactly the situation where a retrieval system is being ignored.</p>
+  </div>
+  <div class="finding">
+    <div class="num meter">+8<small>points from one sentence</small></div>
+    <p><strong>We tried to make the blind gain bigger, and learned that a sentence beats it.</strong> Four attempts, all registered in advance. A wider detector broke correct answers. A different layer or dose did not help: the recipe was already the best one for this regime. On a second model the effect appeared, five points, but with the vote we had relegated to a backup rather than the probe we had bet on, so the registered prediction failed. And the plainest baseline of all, telling the model in one sentence to follow the documents over its memory, raises whole-frame accuracy by five to eight points on its own, more than the loop, for free. Run on top of that sentence the loop adds about two more points, too few to call. The honest reading is that the nudge is a finding about mechanism, with a reach the sentence lacks: a fifth of the conflict failures are fixed only by attention, and a quarter of the failures the hint cannot touch still move under the write. As a product it is the smaller tool.</p>
   </div>
 </div>
 
@@ -223,10 +227,10 @@
 
   <h2>Where it stands</h2>
   <div class="status">
-    <div><div class="big">30</div><div class="eyebrow">predictions registered before data</div></div>
+    <div><div class="big">32</div><div class="eyebrow">predictions registered before data</div></div>
     <div><div class="big">25</div><div class="eyebrow">confirmed</div></div>
-    <div><div class="big">4</div><div class="eyebrow">refuted (all four about selection rules)</div></div>
-    <div><div class="big">$134</div><div class="eyebrow">127 H100 jobs, three days</div></div>
+    <div><div class="big">6</div><div class="eyebrow">refuted (all six about selection or deployment rules)</div></div>
+    <div><div class="big">$145</div><div class="eyebrow">139 H100 jobs, three days</div></div>
   </div>
   <p style="margin-top:22px">Every step was registered before launch, every intervention audited for delivery on independent channels, and every artifact is committed. Five settings on Gemma, two disjoint draws each on real and renamed text, the blind reading on both, a second model on the same questions and on a fresh frame, a depth ladder on both models, an attention read of the write, a content control against random and sign-reversed vectors, and two more reading tasks.</p>
 
@@ -261,6 +265,7 @@
     <tr><td class="n">WP · WP′</td><td>two more tasks, HotpotQA and SQuAD</td><td>write and loop hold on HotpotQA; WikiHop's vector is the best vector on both <span class="pill">write</span> <span class="pill meter">loop</span></td></tr>
     <tr><td class="n">WK</td><td>the knowledge-conflict regime, NQ-Swap, run blind</td><td>registered rule fails; groundedness check + loop gains 4–6 points blind, one row harmed <span class="pill meter">loop</span></td></tr>
     <tr><td class="n">WK′ · WS</td><td>the grounded rule registered and replicated: fresh draw, then counterfactual SQuAD</td><td>+5 and +3 points blind, no row harmed, one frozen vector <span class="pill meter">loop</span> <span class="pill good">replicated</span></td></tr>
+    <tr><td class="n">WI · WJ · WU · WI′</td><td>four levers on the blind gain: a sentence, depth and dose, a second model, stacking</td><td>the sentence wins (+5 to +8); recipe confirmed; Qwen +5 with the backup vote; stacking +2, too few to call <span class="pill meter">loop</span></td></tr>
   </table>
   </div>
 </div>
