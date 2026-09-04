@@ -4590,3 +4590,10 @@ harmed), +0.023 [+0.006, +0.042] with own donors; abstention −0.002 /
 −0.003; always −0.099 / −0.054; oracle +0.080 / +0.022.** Reader outputs
 docs/wikihop_wkprime_gates.json, docs/wikihop_wk_pooled_gates.json;
 rows results/loop_screen/wikihop_wkp_{a,b,xa,xb}.jsonl.
+
+[WS stage 2 launched 2026-09-04 13:32 UTC after the WS stage-1 landing
+commit 97d445b: context ctx-44778560 (WH job, WS pins under the job's
+pins name, WS stage-2 input, real-text L38 gauge), seed 20260904: XA
+job-xehsu (64 rows, 30 WikiHop donors), XB job-rf6wz (56 rows, 29). The
+registered arm only; the own-donor rider is not run (14 donors per
+half, below 20).]
