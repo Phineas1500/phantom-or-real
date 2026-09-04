@@ -4435,3 +4435,45 @@ job-ayty2, B job-qzigj (own-frame donors), XA job-7t69a, XB job-x2pj7
 (WikiHop WX donors). Fake-model dry run of job A (2 rows) validated
 pins, branch enumeration (memory candidate has no mentions and drops,
 as designed), rungs, text arm, and gauge keys.]
+
+**WK LANDED 2026-09-04 05:40 UTC (stage 2: A job-ayty2 $0.78, B job-qzigj
+$0.75, XA job-7t69a $0.84, XB job-x2pj7 $0.98; WK total $3.58 over 5
+jobs).** 120 blind rows, baseline 0.597, 1,397 branches per arm, delivery
+valid on every fired branch (0 bad records, 0 skipped candidates).
+**28th prediction NOT CONFIRMED:** the registered abstention rule nets
+**−0.009 [−0.025, 0.000]** with own-frame donors (0 rows improved, 2
+harmed) and −0.003 with the WikiHop vector. Cause, from the branch
+tables: on 45 of the 46 failing rows the baseline's own answer has a
+branch (a correction to the registration text: the job's addresses are
+whole-word mentions in the rendered prompt, which lists the candidates,
+so the memory candidate is written at its list mention) and that branch
+fires at 1.0, so the unique top branch is the baseline's own and the
+rule reproduces the baseline; the gold branch fires at 0.29 (own) / 0.50
+(WikiHop) on repairable rows against 0.96 for the text hint. Correct
+rows resist the write more strongly than on WikiHop (own-answer branch
+0.99, other branches 0.02 / 0.06). Always-answer: −0.078 [−0.138, −0.025]
+/ −0.099 [−0.176, −0.023] (collateral on correct rows −0.111 / −0.224).
+**Pre-named rider, the groundedness two-stage rule (flag a row whose
+baseline answer is not a whole-word span of the document; flagged rows
+run the loop with the baseline removed from ties, gauge tie-break):
++0.037 [+0.008, +0.071] with own donors (5 rows improved, 0 harmed, acts
+on 5% of rows) and +0.062 [+0.021, +0.113] with the WikiHop vector (8
+improved, 1 harmed, acts on 11%)** — frame accuracy 0.597 → 0.634 /
+0.659; the oracle two-stage rule gives +0.019 / +0.077 [+0.025, +0.133].
+The detector flags 67% of repairable and 70% of unrepairable conflict
+failures, 9% of other failures and 3% of correct rows. Strata (WikiHop
+vector, grounded): repairable +0.250, unrepairable +0.152, correct 0.000.
+Write reading on the 12 repairable conflict rows in the draw: own donors
+2× +0.208 [+0.021, +0.438] (1× +0.396), specificity +0.210; WikiHop
+vector 2× **+0.417 [+0.167, +0.667]**, specificity +0.420 — the
+cross-task vector beats the frame's own again. Descriptive regularity:
+Gemma's hint response is bimodal on every frame (65–76% of failures at
+0/8 with the hint, 18–30% at 8/8, 2–5% between); Qwen's is graded.
+Verdict: **ABSTENTION-LOOP-DOES-NOT-CLOSE-BLIND / GROUNDED-TWO-STAGE-
+HELPS (rider, descriptive)** — the first blind frame-level gain on
+natural text, from a label-free groundedness check plus the loop; it
+was pre-named but not a registered prediction, so it stands as a
+descriptive result until a registered replication. Tally: 28
+predictions — 23 confirmed, 4 not (13th, 14th, 19th, 28th), 1
+intermediate (27th); ≈ $129 across 120 jobs. Summary
+docs/wikihop_wk_summary.md; reader outputs docs/wikihop_wk_gates.json.

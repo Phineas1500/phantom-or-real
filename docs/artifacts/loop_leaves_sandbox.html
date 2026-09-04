@@ -79,7 +79,7 @@
   <div class="col">
     <div class="eyebrow">Phantom or Real · WikiHop port · September 2–3, 2026</div>
     <h1>The Loop Leaves the Sandbox</h1>
-    <p class="lede">We could always read, from a model's hidden state, whether it was about to be right. The question was whether that signal is something the model uses or a coincidence it carries. On a synthetic puzzle task the answer was "uses." This is what happened when we tried the same trick on real reading-comprehension questions, then on a second model, then on two more tasks.</p>
+    <p class="lede">We could always read, from a model's hidden state, whether it was about to be right. The question was whether that signal is something the model uses or a coincidence it carries. On a synthetic puzzle task the answer was "uses." This is what happened when we tried the same trick on real reading-comprehension questions, then on a second model, then on two more tasks, then blind, where the passage contradicts what the model remembers.</p>
   </div>
 </header>
 
@@ -103,7 +103,7 @@
 </div>
 
 <div class="col">
-  <h2>What happened, in nine findings</h2>
+  <h2>What happened, in ten findings</h2>
 
   <div class="finding">
     <div class="num">1 / 528<small>gold repairs</small></div>
@@ -140,6 +140,10 @@
   <div class="finding">
     <div class="num">+0.49<small>HotpotQA, WikiHop's vector</small></div>
     <p><strong>It is not a WikiHop trick, and one vector serves three tasks.</strong> Two more reading tasks were put in the same frame: HotpotQA, with free-form multi-hop questions over ten paragraphs, and SQuAD, with one paragraph and short answers. Both show the same fixable quarter. On HotpotQA the nudge repairs about a third of samples and the loop picks correctly 23 percent of the time against 3 for the model alone, both registered in advance and both confirmed. The stranger part: the vector learned on WikiHop repairs HotpotQA and SQuAD better than vectors learned on those tasks themselves, and closes the loop on both. Along the way a bug in the grading job hid the question from the model for two runs; the model's own reply, asking for the missing question, gave it away, and the runs were redone.</p>
+  </div>
+  <div class="finding">
+    <div class="num meter">+0.06<small>whole frame, blind</small></div>
+    <p><strong>Where the document contradicts memory, a groundedness check makes the loop work blind.</strong> We asked why the loop nets nothing when run blind on WikiHop and found the model answers those questions mostly from memory, and a firm wrong memory is what the nudge cannot move. So we built the regime where the passage contradicts what the model remembers, swapping the answer entity in Wikipedia paragraphs. A third of those failures are fixable. The loop as registered still did not help blind: the model's own answer always wins its own branch. But one label-free check, "is the answer actually a span of the passage?", flags the memory failures and only three percent of correct rows, and with it the loop lifts whole-frame accuracy by four to six points with at most one row harmed. That is the first blind gain outside the sandbox. It came from a pre-named rider rather than the registered prediction, which failed, so it is a lead to replicate, not a confirmed result.</p>
   </div>
 </div>
 
@@ -219,10 +223,10 @@
 
   <h2>Where it stands</h2>
   <div class="status">
-    <div><div class="big">26</div><div class="eyebrow">predictions registered before data</div></div>
+    <div><div class="big">28</div><div class="eyebrow">predictions registered before data</div></div>
     <div><div class="big">23</div><div class="eyebrow">confirmed</div></div>
     <div><div class="big">3</div><div class="eyebrow">refuted (all three about selectors)</div></div>
-    <div><div class="big">$125</div><div class="eyebrow">115 H100 jobs, three days</div></div>
+    <div><div class="big">$129</div><div class="eyebrow">120 H100 jobs, three days</div></div>
   </div>
   <p style="margin-top:22px">Every step was registered before launch, every intervention audited for delivery on independent channels, and every artifact is committed. Five settings on Gemma, two disjoint draws each on real and renamed text, the blind reading on both, a second model on the same questions and on a fresh frame, a depth ladder on both models, an attention read of the write, a content control against random and sign-reversed vectors, and two more reading tasks.</p>
 
@@ -255,6 +259,7 @@
     <tr><td class="n">WY</td><td>Qwen at Gemma's depth, fresh frame; depth ladder on both models</td><td>+0.37 with specificity; probe closes the loop on Qwen; a mid-depth band on both models <span class="pill">write</span> <span class="pill meter">loop</span></td></tr>
     <tr><td class="n">WV</td><td>the content control: flipped and random vectors at the same address</td><td>repair nothing, route nothing; the direction carries both <span class="pill">write</span></td></tr>
     <tr><td class="n">WP · WP′</td><td>two more tasks, HotpotQA and SQuAD</td><td>write and loop hold on HotpotQA; WikiHop's vector is the best vector on both <span class="pill">write</span> <span class="pill meter">loop</span></td></tr>
+    <tr><td class="n">WK</td><td>the knowledge-conflict regime, NQ-Swap, run blind</td><td>registered rule fails; groundedness check + loop gains 4–6 points blind, one row harmed <span class="pill meter">loop</span></td></tr>
   </table>
   </div>
 </div>
