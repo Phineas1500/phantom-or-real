@@ -4477,3 +4477,70 @@ descriptive result until a registered replication. Tally: 28
 predictions — 23 confirmed, 4 not (13th, 14th, 19th, 28th), 1
 intermediate (27th); ≈ $129 across 120 jobs. Summary
 docs/wikihop_wk_summary.md; reader outputs docs/wikihop_wk_gates.json.
+
+### Item WK′ — registered replication of the grounded two-stage rule on a fresh blind NQ-Swap draw (registered 2026-09-04 06:05 UTC, before any data)
+
+**Motivation.** WK's registered rule failed and its pre-named rider —
+flag rows whose baseline answer is not a whole-word span of the passage,
+then run the loop with the baseline removed from ties — gave +0.037 /
++0.062 at the frame level. A rider is not a prediction. WK′ registers
+it, with the vector pinned to the one fixed direction the program
+already has (the WikiHop WX direction, fit on 59 WikiHop rows), so the
+deployment story is: one frozen vector, no fitting on the target task, a
+label-free groundedness check, run blind.
+
+**Design.** A fresh uniform seeded draw of 120 rows from the 800 NQ-Swap
+rows, disjoint from WK's 120 (draw seed 20260895; halves seed 20260896;
+donor seed 20260897). Stage 1 is WK's (the grades exist for all 800
+rows; the draw is blind to them). Stage 2, the WH job unchanged, seed
+20260898, rungs 1×/2×, loop at 2× k = 4, three seeded non-gold, text-
+hint gold k = 8, real-text L38 gauge for ties: **XA′/XB′ — the WikiHop
+WX donors (the registered arm)**; A′/B′ — own-frame donors (repairable
+conflict failures outside both draws, cap 30; rider). Reader
+`scripts/wikihop_wk_gates.py`.
+
+**29th registered prediction — GROUNDED-TWO-STAGE-HELPS-BLIND.** With
+the WikiHop vector, the grounded two-stage rule's frame net over the
+120 fresh rows is > 0 with the 95% row-bootstrap CI lower bound > 0.
+CONFIRMED / NOT CONFIRMED on that CI. Pre-named descriptive riders: the
+own-donor arm under the same rule; abstention, always-answer and oracle
+rules; per-stratum yield and collateral; the write reading on repairable
+conflict rows; the pooled 240-row estimate over WK + WK′. Budget ≈ $3.5
+(four jobs).
+
+### Item WS — the same rule on a second conflict frame: counterfactual SQuAD (registered 2026-09-04 06:05 UTC, before any data)
+
+**Frame.** The 800 WP′ SQuAD rows restricted to capitalized named-entity
+answers (512 rows; 358 of them known closed-book at ≥ 5/8 in WP′), the
+answer replaced at every whole-word mention of the paragraph (title
+included) by a seeded named-entity answer of another row from the same
+shape bucket (word count, digits), never already present in the
+paragraph or question; the original answer becomes the memory
+candidate; candidates re-enumerated from the substituted paragraph
+(sentence-bounded spans, cap 20). `scripts/squad_cf_frame.py`, seed
+20260899; file `results/loop_screen/squad_cf_input.jsonl.gz`. Unlike
+NQ-Swap's substitutions this frame is ours, with a different passage
+style (one titled paragraph, free-form question) — a second
+construction, not a second draw.
+
+**Stage 1** (grade_hint, k = 8, seed 20260900): the WK readings (memory
+rate, conflict failures, memory-answer share, hint-repairable share) and
+the instrument gate (std accuracy against the document's answer within
+[0.10, 0.90]; outside → STOP, report). No fixable-share prediction: the
+27th already covers the regime; the share is reported descriptively.
+
+**Stage 2** (blind draw of 120 rows, seeds 20260901 / 20260902 /
+20260903; job seed 20260904): XA/XB with the WikiHop WX donors (the
+registered arm); A/B own-donor arm only if each half holds ≥ 20
+repairable conflict failures outside the draw (rider).
+
+**30th registered prediction — GROUNDED-TWO-STAGE-HELPS-BLIND on a
+second conflict frame.** Same statement as the 29th, on this frame.
+Budget ≈ $3 (one stage-1 job, two to four stage-2 jobs).
+
+**Boundary, from existing data (no job).** On the WikiHop, HotpotQA and
+SQuAD real frames the baseline answer is a whole-word span of the
+documents on ≥ 96% of failing rows (docs/wikihop_detector_analysis.md,
+`in_docs`), so the grounded rule reduces to the baseline there: zero
+gain, zero harm. The rule's reach is the regime where the model answers
+from outside the passage. Both registrations state this limit up front.
