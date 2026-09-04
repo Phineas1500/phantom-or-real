@@ -4405,3 +4405,23 @@ mount; mission knowledge-conflict-blind-loop), 2026-09-04 04:08 UTC.
 Job-path prompt render checked locally on the frame: the question is
 present in the std and closed prompts; the hint names the document's
 answer.]
+
+[WK stage 1 LANDED 2026-09-04 04:30 UTC (job-it6ue, $0.24, 19,200
+generations). NQ-Swap, 800 named-entity conflict rows: std accuracy
+against the document's answer **0.578**, closed-book against it 0.016
+(by construction), hint-first 0.716. **Memory rate 0.74** (closed-book
+modal answer is the original fact). 0/8 failures 323; **conflict
+failures 226** (memory ∧ 0/8), of which 52% answer with the memory
+fact and 48% with something else; 17% of all std samples are the memory
+answer. Hint-repairable share of conflict failures **74/226 = 0.327
+[0.270, 0.385]** (0.325 over all 0/8 failures) → **27th prediction
+INTERMEDIATE** (≥ 0.25, < 0.50): a third of conflict failures are
+fixable, above WikiHop's 21–26% but not the sandbox's majority.
+Instrument gate: std 0.578 within [0.10, 0.90], PASS. Stage 2 proceeds
+per the registration. Pins docs/wikihop_wk_pinned.json (seeds half
+20260890 / draw 20260891 / donor 20260892): 120-row blind draw = 71
+correct-majority, 12 repairable conflict failures, 23 unrepairable
+conflict failures, 11 other failures, 3 mixed; jobs A (60 test, 30
+donors), B (60, 29), XA/XB (WikiHop WX donors 30/29); stage-2 input
+results/loop_screen/wk_stage2_input.jsonl.gz (800 NQ-Swap + 59 WikiHop
+rows).]
