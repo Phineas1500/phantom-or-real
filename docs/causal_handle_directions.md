@@ -4397,3 +4397,11 @@ draw. Budget ≈ $7 (stage 1 ≈ $0.5, stage 2 four jobs ≈ $6).
 
 **Amendment policy.** As for WP: amendments only on independent
 telemetry (prompt render, delivery audit), recorded before unblinding.
+
+[WK stage 1 launched after registration commit ce94af0: Gemma grade_hint
+job-it6ue (context ctx-bca4feff: NQ-Swap frame as
+wikihop_port_input.jsonl.gz + wikihop_common.py, seed 20260888, no cache
+mount; mission knowledge-conflict-blind-loop), 2026-09-04 04:08 UTC.
+Job-path prompt render checked locally on the frame: the question is
+present in the std and closed prompts; the hint names the document's
+answer.]
