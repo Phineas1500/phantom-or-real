@@ -4569,3 +4569,24 @@ repairable conflict failures, 14 unrepairable, 19 other failures; XA
 (64 rows, 30 WikiHop donors), XB (56, 29). Own-donor pools hold 14 per
 half, below the registered 20 → the own-donor rider is not run. Stage-2
 input results/loop_screen/ws_stage2_input.jsonl.gz (476 + 59 rows).]
+
+**WK′ LANDED 2026-09-04 13:40 UTC (XA′ job-rtda7 $0.89, XB′ job-ejkyx
+$0.80, A′ job-z3eqz $0.89, B′ job-d5jgz $0.81; $3.39).** 120 fresh blind
+rows (disjoint from WK's), baseline 0.617, 1,395 branches per arm,
+delivery valid everywhere. **29th registered prediction CONFIRMED —
+GROUNDED-TWO-STAGE-HELPS-BLIND: with the WikiHop vector the grounded
+two-stage rule nets +0.050 [+0.017, +0.092]** (6 rows improved, 0
+harmed; acts on 9% of rows; frame accuracy 0.617 → 0.667). Riders:
+own-donor arm +0.008 [0.000, +0.025] (1 / 0; the 25-donor own-frame
+direction is weak here: gold 2× +0.229 on the repairable rows against
+**+0.750 [+0.500, +1.000]** for the WikiHop vector, specificity +0.697);
+abstention 0.000 / +0.004 (the 28th's failure replicates); always-answer
+−0.100 [−0.183, −0.017] / −0.029; oracle +0.083 [+0.033, +0.142] /
++0.025. Strata (WikiHop vector, grounded): repairable +0.250,
+unrepairable +0.150, other failures 0, correct 0.000 (73 rows, none
+touched). **Pooled WK + WK′, 240 blind rows (descriptive): grounded
+rule +0.056 [+0.029, +0.087] with the WikiHop vector (14 improved, 1
+harmed), +0.023 [+0.006, +0.042] with own donors; abstention −0.002 /
+−0.003; always −0.099 / −0.054; oracle +0.080 / +0.022.** Reader outputs
+docs/wikihop_wkprime_gates.json, docs/wikihop_wk_pooled_gates.json;
+rows results/loop_screen/wikihop_wkp_{a,b,xa,xb}.jsonl.
