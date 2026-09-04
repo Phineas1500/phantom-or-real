@@ -4770,3 +4770,10 @@ baseline is > 0 with the 95% CI lower bound > 0. CONFIRMED / NOT
 CONFIRMED on that CI. Pre-named riders: the instruction's own net on
 the same rows (from the WI grades, faithful − std per row); instruction
 + loop vs plain std; per-stratum. Budget ≈ $2 (two jobs).
+[WU stage 2 launched 2026-09-04 18:22 UTC after the stage-1 landing
+commit 03f49c5: context ctx-2dc1a457 (WH job, WU pins under the job's
+pins name, WU stage-2 input = NQ-Swap + WY's 36 Qwen donor rows, the WQ
+probe npz), WH_MODEL Qwen/Qwen3.5-27B, write L31, gauge L48, rungs
+1×/2×, loop at 2× k=4, three seeded non-gold, seed 20260913: XA
+job-teem6 (51 rows, 18 WY donors), XB job-6mzf7 (69, 18). Registered arm
+only.]
