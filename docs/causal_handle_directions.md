@@ -4425,3 +4425,13 @@ conflict failures, 11 other failures, 3 mixed; jobs A (60 test, 30
 donors), B (60, 29), XA/XB (WikiHop WX donors 30/29); stage-2 input
 results/loop_screen/wk_stage2_input.jsonl.gz (800 NQ-Swap + 59 WikiHop
 rows).]
+
+[WK stage 2 launched 2026-09-04 04:41 UTC after the stage-1 landing
+commit 0121526: context ctx-49de828f (WH job, frozen-write + loop mode;
+stage-2 input as wikihop_port_input.jsonl.gz; WK pins; real-text W0
+gauge npz, L38), seed 20260894 for all four, rungs 1×/2×, loop at 2×
+k=4, three seeded non-gold, text-hint gold k=8, no cache mount. A
+job-ayty2, B job-qzigj (own-frame donors), XA job-7t69a, XB job-x2pj7
+(WikiHop WX donors). Fake-model dry run of job A (2 rows) validated
+pins, branch enumeration (memory candidate has no mentions and drops,
+as designed), rungs, text arm, and gauge keys.]
