@@ -84,6 +84,8 @@ def main() -> int:
     p.add_argument("--rows", type=Path, default=Path("results/loop_screen/nqswap_rows.jsonl"))
     p.add_argument("--frame", type=Path, default=Path("results/loop_screen/wk_stage2_input.jsonl.gz"))
     p.add_argument("--out", type=Path, default=Path("docs/wikihop_wk_gates.json"))
+    p.add_argument("--prediction", default="28", choices=["28", "grounded-wikihop", "none"],
+                   help="which registered statement the verdict line scores: 28 = abstention rule, own donors (WK); grounded-wikihop = grounded two-stage rule, WikiHop vector (WK′ 29th, WS 30th)")
     args = p.parse_args()
     frame = {json.loads(l)["id"]: json.loads(l) for l in gzip.open(args.frame, "rt")}
     rows = {json.loads(l)["id"]: json.loads(l) for l in open(args.rows)}
@@ -129,9 +131,14 @@ def main() -> int:
                                                         "nongold_address_gold_rate_2x": float(np.nanmean(ng2)), "specificity_2x": float(np.mean(spec)) if spec else None, "specificity_ci95": boot_ci(spec) if spec else None,
                                                         "text_hint_gold": float(np.nanmean([R[i]["text_gold"] if R[i]["text_gold"] is not None else np.nan for i in rep]))}
         out["arms"][arm] = res
-    own = out["arms"].get("own_donors", {}).get("rules", {}).get("abstention")
-    if own:
-        out["prediction_28_BLIND_LOOP_HELPS_AT_FRAME_LEVEL"] = "CONFIRMED" if own["ci95"][0] > 0 else "NOT CONFIRMED"
+    if args.prediction == "28":
+        own = out["arms"].get("own_donors", {}).get("rules", {}).get("abstention")
+        if own:
+            out["prediction_28_BLIND_LOOP_HELPS_AT_FRAME_LEVEL"] = "CONFIRMED" if own["ci95"][0] > 0 else "NOT CONFIRMED"
+    elif args.prediction == "grounded-wikihop":
+        g = out["arms"].get("wikihop_donors", {}).get("rules", {}).get("grounded")
+        if g:
+            out["prediction_GROUNDED_TWO_STAGE_HELPS_BLIND"] = "CONFIRMED" if g["ci95"][0] > 0 else "NOT CONFIRMED"
     args.out.write_text(json.dumps(out, indent=1, default=float) + "\n")
     for arm, res in out["arms"].items():
         print(f"\n== {arm}: {res['n_rows']} rows, baseline {res['baseline_accuracy']:.3f}, branches {res['n_branches']}, delivery-bad {res['delivery_bad_records']}")
@@ -143,8 +150,9 @@ def main() -> int:
             print(f"| {s} | {d['n']} | {d['baseline']:.3f} | {d['abstention_dP']:+.3f} [{d['abstention_ci95'][0]:+.3f}, {d['abstention_ci95'][1]:+.3f}] | {d['always_dP']:+.3f} [{d['always_ci95'][0]:+.3f}, {d['always_ci95'][1]:+.3f}] | {d['grounded_dP']:+.3f} [{d['grounded_ci95'][0]:+.3f}, {d['grounded_ci95'][1]:+.3f}] |")
         if "write_on_repairable_conflict_rows" in res:
             print("write on repairable conflict rows:", json.dumps(res["write_on_repairable_conflict_rows"]))
-    if "prediction_28_BLIND_LOOP_HELPS_AT_FRAME_LEVEL" in out:
-        print("\n28th prediction:", out["prediction_28_BLIND_LOOP_HELPS_AT_FRAME_LEVEL"])
+    for k in ("prediction_28_BLIND_LOOP_HELPS_AT_FRAME_LEVEL", "prediction_GROUNDED_TWO_STAGE_HELPS_BLIND"):
+        if k in out:
+            print(f"\n{k}: {out[k]}")
     return 0
 
 
