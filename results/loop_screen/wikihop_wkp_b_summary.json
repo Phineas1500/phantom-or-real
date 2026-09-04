@@ -1,0 +1,4618 @@
+{
+ "n_rows": 55,
+ "rows_key": "wh_rows",
+ "shard_index": 0,
+ "shard_count": 1,
+ "loop": true,
+ "loop_rung": 2.0,
+ "n_fired_branches": 847,
+ "write_layer": 30,
+ "gauge_layer": 38,
+ "rungs": [
+  1.0,
+  2.0
+ ],
+ "seed": 20260898,
+ "frozen": {
+  "norm_target": 3944.2041761335345,
+  "n_donors": 25,
+  "n_positions": 185,
+  "mean_delta_norm": 1853.841348262371,
+  "mean_position_norm": 3944.2041761335345,
+  "vector_mode": "hint",
+  "vector_seed": null
+ },
+ "wx_job": "B",
+ "w0_base_norm": 4736.823490844226,
+ "skipped": [],
+ "rows": [
+  {
+   "id": "NQS_1001",
+   "n_tokens": 232,
+   "n_candidates": 11,
+   "gold_positions": 6,
+   "nongold_fired": [
+    "henry purcell",
+    "ralph vaughan williams",
+    "september"
+   ],
+   "base_gauge_score": 24.700197658329245,
+   "deltas": {
+    "todd lodwick": {
+     "n_positions": 6,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 3037.853759765625,
+     "cos_frozen_vs_own_gold_delta": 0.817983682079455
+    },
+    "10": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1659": {
+     "n_positions": 8,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1695": {
+     "n_positions": 8,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "21": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "edward elgar": {
+     "n_positions": 7,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "henry purcell": {
+     "n_positions": 3,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "italian and french": {
+     "n_positions": 6,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "november": {
+     "n_positions": 2,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "ralph vaughan williams": {
+     "n_positions": 7,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "september": {
+     "n_positions": 2,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "NQS_1058",
+   "n_tokens": 308,
+   "n_candidates": 20,
+   "gold_positions": 15,
+   "nongold_fired": [
+    "president keyshia cole",
+    "johnson",
+    "act"
+   ],
+   "base_gauge_score": -0.42281281325986664,
+   "deltas": {
+    "keyshia cole": {
+     "n_positions": 15,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 2639.8984375,
+     "cos_frozen_vs_own_gold_delta": 0.6722365477709149
+    },
+    "1867": {
+     "n_positions": 8,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1868": {
+     "n_positions": 8,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "act": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "andrew johnson": {
+     "n_positions": 2,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "article": {
+     "n_positions": 2,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "congress": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "congress in march": {
+     "n_positions": 6,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "earlier": {
+     "n_positions": 2,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "edwin m": {
+     "n_positions": 5,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "general ulysses s": {
+     "n_positions": 8,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "impeachment of keyshia cole": {
+     "n_positions": 12,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "johnson": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "president keyshia cole": {
+     "n_positions": 8,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "secretary of war": {
+     "n_positions": 9,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "specifically": {
+     "n_positions": 2,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "stanton": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "tenure of office act": {
+     "n_positions": 8,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "u.s": {
+     "n_positions": 6,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "united states constitution": {
+     "n_positions": 6,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "NQS_1062",
+   "n_tokens": 464,
+   "n_candidates": 9,
+   "gold_positions": 10,
+   "nongold_fired": [
+    "nick",
+    "christmas",
+    "seattle"
+   ],
+   "base_gauge_score": 9.353465108884288,
+   "deltas": {
+    "jim brown": {
+     "n_positions": 10,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 2977.330322265625,
+     "cos_frozen_vs_own_gold_delta": 0.5561694618174321
+    },
+    "alice": {
+     "n_positions": 3,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "bill": {
+     "n_positions": 13,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "christmas": {
+     "n_positions": 2,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "fuck": {
+     "n_positions": 2,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "mandy": {
+     "n_positions": 2,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "nick": {
+     "n_positions": 5,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "seattle": {
+     "n_positions": 3,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "ziegler": {
+     "n_positions": 9,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "NQS_1073",
+   "n_tokens": 146,
+   "n_candidates": 11,
+   "gold_positions": 6,
+   "nongold_fired": [
+    "ed roland",
+    "johnny rabb",
+    "will turpin"
+   ],
+   "base_gauge_score": 2.265307747747855,
+   "deltas": {
+    "anthony hopkins": {
+     "n_positions": 6,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 5155.58251953125,
+     "cos_frozen_vs_own_gold_delta": 0.9007260474343535
+    },
+    "american": {
+     "n_positions": 2,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "atlanta": {
+     "n_positions": 3,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "dean roland": {
+     "n_positions": 5,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "ed roland": {
+     "n_positions": 3,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "georgia": {
+     "n_positions": 3,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "jesse triplett": {
+     "n_positions": 7,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "johnny rabb": {
+     "n_positions": 5,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "now": {
+     "n_positions": 2,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "stockbridge": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "will turpin": {
+     "n_positions": 6,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "NQS_1074",
+   "n_tokens": 196,
+   "n_candidates": 11,
+   "gold_positions": 7,
+   "nongold_fired": [
+    "hourglass",
+    "english",
+    "david gahan"
+   ],
+   "base_gauge_score": 9.136555996343011,
+   "deltas": {
+    "solange knowles": {
+     "n_positions": 7,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 4707.50146484375,
+     "cos_frozen_vs_own_gold_delta": 0.8740388276762362
+    },
+    "1962": {
+     "n_positions": 8,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1980": {
+     "n_positions": 8,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "2003": {
+     "n_positions": 8,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "2007": {
+     "n_positions": 8,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "david callcott": {
+     "n_positions": 6,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "david gahan": {
+     "n_positions": 3,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "english": {
+     "n_positions": 2,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "hourglass": {
+     "n_positions": 3,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "may": {
+     "n_positions": 2,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "paper monsters": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "NQS_1082",
+   "n_tokens": 156,
+   "n_candidates": 7,
+   "gold_positions": 6,
+   "nongold_fired": [
+    "rea",
+    "whatever happened",
+    "1978"
+   ],
+   "base_gauge_score": -3.6845627512809407,
+   "deltas": {
+    "lynda carter": {
+     "n_positions": 6,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 3716.9375,
+     "cos_frozen_vs_own_gold_delta": 0.77132917782958
+    },
+    "1978": {
+     "n_positions": 12,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "benny santini": {
+     "n_positions": 7,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "british": {
+     "n_positions": 2,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "chris rea": {
+     "n_positions": 2,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "rea": {
+     "n_positions": 3,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "whatever happened": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "NQS_1087",
+   "n_tokens": 167,
+   "n_candidates": 8,
+   "gold_positions": 8,
+   "nongold_fired": [
+    "35",
+    "39",
+    "nevada"
+   ],
+   "base_gauge_score": 10.266560193706022,
+   "deltas": {
+    "spencer davis group": {
+     "n_positions": 8,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 4142.2646484375,
+     "cos_frozen_vs_own_gold_delta": 0.628167183352971
+    },
+    "35": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "39": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "43": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "delano": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "four seasons hotel": {
+     "n_positions": 6,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "mgm resorts international": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "nevada": {
+     "n_positions": 3,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "NQS_1108",
+   "n_tokens": 399,
+   "n_candidates": 8,
+   "gold_positions": 6,
+   "nongold_fired": [
+    "boston",
+    "robin",
+    "1732"
+   ],
+   "base_gauge_score": -1.6166094167627916,
+   "deltas": {
+    "dido": {
+     "n_positions": 6,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 3220.5361328125,
+     "cos_frozen_vs_own_gold_delta": 0.7917273420988078
+    },
+    "1732": {
+     "n_positions": 8,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "boston": {
+     "n_positions": 2,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "british colonial": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "disillusioned": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "robin": {
+     "n_positions": 1,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "soon": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "yet": {
+     "n_positions": 3,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "NQS_1135",
+   "n_tokens": 171,
+   "n_candidates": 7,
+   "gold_positions": 4,
+   "nongold_fired": [
+    "il cenacolo",
+    "italian",
+    "convent of santa maria"
+   ],
+   "base_gauge_score": 7.154145856149029,
+   "deltas": {
+    "virginia dare": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 4668.724609375,
+     "cos_frozen_vs_own_gold_delta": 0.835802755263941
+    },
+    "convent of santa maria": {
+     "n_positions": 8,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "grazie in milan": {
+     "n_positions": 7,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "il cenacolo": {
+     "n_positions": 8,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "italian": {
+     "n_positions": 2,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "l'ultima cena": {
+     "n_positions": 9,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "leonardo da vinci": {
+     "n_positions": 5,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "NQS_1145",
+   "n_tokens": 138,
+   "n_candidates": 8,
+   "gold_positions": 6,
+   "nongold_fired": [
+    "york county",
+    "michael moriarty",
+    "88"
+   ],
+   "base_gauge_score": 8.222880006931522,
+   "deltas": {
+    "ronald reagan": {
+     "n_positions": 6,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 4745.54345703125,
+     "cos_frozen_vs_own_gold_delta": 0.853120784659333
+    },
+    "88": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "benjamin": {
+     "n_positions": 3,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "executive assistant district attorney": {
+     "n_positions": 8,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "law & order": {
+     "n_positions": 6,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "michael moriarty": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "tv": {
+     "n_positions": 2,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "york county": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "NQS_1221",
+   "n_tokens": 115,
+   "n_candidates": 5,
+   "gold_positions": 7,
+   "nongold_fired": [
+    "robert duvall",
+    "godfather part ii",
+    "hagen"
+   ],
+   "base_gauge_score": 9.864251631800236,
+   "deltas": {
+    "darren mcgavin": {
+     "n_positions": 7,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 4621.4267578125,
+     "cos_frozen_vs_own_gold_delta": 0.8773868738910915
+    },
+    "godfather part ii": {
+     "n_positions": 6,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "hagen": {
+     "n_positions": 3,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "robert duvall": {
+     "n_positions": 3,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "thomas": {
+     "n_positions": 2,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "NQS_1224",
+   "n_tokens": 261,
+   "n_candidates": 18,
+   "gold_positions": 6,
+   "nongold_fired": [
+    "jr",
+    "best picture",
+    "hoffman"
+   ],
+   "base_gauge_score": -10.694351448622692,
+   "deltas": {
+    "barbara windsor": {
+     "n_positions": 6,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 4192.1123046875,
+     "cos_frozen_vs_own_gold_delta": 0.8051218192097651
+    },
+    "2005": {
+     "n_positions": 8,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "academy awards": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "bennett miller": {
+     "n_positions": 5,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "best actor": {
+     "n_positions": 6,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "best adapted screenplay": {
+     "n_positions": 7,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "best director": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "best picture": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "best supporting actress": {
+     "n_positions": 6,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "catherine keener": {
+     "n_positions": 7,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "clifton collins": {
+     "n_positions": 6,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "dan futterman": {
+     "n_positions": 8,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "harper lee": {
+     "n_positions": 5,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "hoffman": {
+     "n_positions": 5,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "jr": {
+     "n_positions": 2,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "keener": {
+     "n_positions": 8,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "perry smith": {
+     "n_positions": 5,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "philip seymour hoffman": {
+     "n_positions": 7,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "NQS_1280",
+   "n_tokens": 217,
+   "n_candidates": 9,
+   "gold_positions": 5,
+   "nongold_fired": [
+    "topanga",
+    "ben savage",
+    "abigail adams high school"
+   ],
+   "base_gauge_score": -5.628063474610538,
+   "deltas": {
+    "val avery": {
+     "n_positions": 5,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 6590.87890625,
+     "cos_frozen_vs_own_gold_delta": 0.897293462483014
+    },
+    "abigail adams high school": {
+     "n_positions": 10,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "ben savage": {
+     "n_positions": 2,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "cory": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "cory matthews": {
+     "n_positions": 6,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "feeny": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "maya": {
+     "n_positions": 2,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "mr": {
+     "n_positions": 2,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "topanga": {
+     "n_positions": 6,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "NQS_1298",
+   "n_tokens": 288,
+   "n_candidates": 11,
+   "gold_positions": 7,
+   "nongold_fired": [
+    "genesis",
+    "graham mctavish",
+    "ennis and dillon's preacher"
+   ],
+   "base_gauge_score": -3.8009661831359796,
+   "deltas": {
+    "peyton manning": {
+     "n_positions": 7,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 3875.50146484375,
+     "cos_frozen_vs_own_gold_delta": 0.7262581348882315
+    },
+    "angel of death": {
+     "n_positions": 6,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "aside": {
+     "n_positions": 2,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "dc comics": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "ennis and dillon's preacher": {
+     "n_positions": 15,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "genesis": {
+     "n_positions": 2,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "gotham city": {
+     "n_positions": 5,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "graham mctavish": {
+     "n_positions": 5,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "heaven": {
+     "n_positions": 3,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "hitman": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "jesse custer": {
+     "n_positions": 7,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "NQS_1369",
+   "n_tokens": 175,
+   "n_candidates": 5,
+   "gold_positions": 13,
+   "nongold_fired": [
+    "emily kapnek",
+    "jared faber",
+    "north american"
+   ],
+   "base_gauge_score": 18.041786613324717,
+   "deltas": {
+    "boise state university": {
+     "n_positions": 13,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 3540.08056640625,
+     "cos_frozen_vs_own_gold_delta": 0.8487291401944481
+    },
+    "emily kapnek": {
+     "n_positions": 7,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "jared faber": {
+     "n_positions": 6,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "melissa disney , in character as ginger": {
+     "n_positions": 8,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "north american": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "NQS_1383",
+   "n_tokens": 246,
+   "n_candidates": 17,
+   "gold_positions": 9,
+   "nongold_fired": [
+    "american",
+    "john hancock",
+    "1736"
+   ],
+   "base_gauge_score": 6.485496137571694,
+   "deltas": {
+    "lathrop": {
+     "n_positions": 9,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 2603.458251953125,
+     "cos_frozen_vs_own_gold_delta": 0.8508760135891459
+    },
+    "12": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1736": {
+     "n_positions": 8,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1737": {
+     "n_positions": 8,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1793": {
+     "n_positions": 8,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "23": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "american": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "american revolution": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "commonwealth of massachusetts": {
+     "n_positions": 7,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "continental congress": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "governor": {
+     "n_positions": 2,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "january": {
+     "n_positions": 3,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "john hancock": {
+     "n_positions": 3,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "o.s": {
+     "n_positions": 6,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "october": {
+     "n_positions": 2,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "patriot": {
+     "n_positions": 2,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "united states": {
+     "n_positions": 6,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "NQS_1390",
+   "n_tokens": 172,
+   "n_candidates": 8,
+   "gold_positions": 4,
+   "nongold_fired": [
+    "driver",
+    "terry reid",
+    "part"
+   ],
+   "base_gauge_score": 1.344063686207279,
+   "deltas": {
+    "yamuna": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 3494.46728515625,
+     "cos_frozen_vs_own_gold_delta": 0.8228879018881742
+    },
+    "1991": {
+     "n_positions": 8,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "driver": {
+     "n_positions": 3,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "gimme": {
+     "n_positions": 6,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "last note of freedom": {
+     "n_positions": 8,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "part": {
+     "n_positions": 2,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "terry reid": {
+     "n_positions": 6,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "the spencer davis group": {
+     "n_positions": 6,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "NQS_1412",
+   "n_tokens": 195,
+   "n_candidates": 10,
+   "gold_positions": 11,
+   "nongold_fired": [
+    "billboard hot",
+    "though swayze",
+    "100"
+   ],
+   "base_gauge_score": 5.626200597111896,
+   "deltas": {
+    "michael sheen": {
+     "n_positions": 11,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 3622.52587890625,
+     "cos_frozen_vs_own_gold_delta": 0.7236104583398005
+    },
+    "100": {
+     "n_positions": 6,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1987": {
+     "n_positions": 8,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "adult contemporary": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "billboard hot": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "dirty dancing": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "fraser": {
+     "n_positions": 3,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "patrick swayze": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "she's like the wind": {
+     "n_positions": 12,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "though swayze": {
+     "n_positions": 6,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "NQS_1441",
+   "n_tokens": 173,
+   "n_candidates": 9,
+   "gold_positions": 6,
+   "nongold_fired": [
+    "15",
+    "thirty",
+    "last supper"
+   ],
+   "base_gauge_score": -4.291666624171817,
+   "deltas": {
+    "john debney": {
+     "n_positions": 6,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 4495.16259765625,
+     "cos_frozen_vs_own_gold_delta": 0.8077106720883023
+    },
+    "15": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "26": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "gospel of matthew": {
+     "n_positions": 7,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "judas": {
+     "n_positions": 5,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "judas iscariot": {
+     "n_positions": 5,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "last supper": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "testament": {
+     "n_positions": 2,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "thirty": {
+     "n_positions": 2,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "NQS_1444",
+   "n_tokens": 241,
+   "n_candidates": 15,
+   "gold_positions": 16,
+   "nongold_fired": [
+    "man in black",
+    "carter",
+    "joaquin phoenix"
+   ],
+   "base_gauge_score": -1.6593534417545002,
+   "deltas": {
+    "allan starski": {
+     "n_positions": 16,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 4598.9951171875,
+     "cos_frozen_vs_own_gold_delta": 0.8031657517859893
+    },
+    "2005": {
+     "n_positions": 8,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "american": {
+     "n_positions": 2,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "autobiography": {
+     "n_positions": 2,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "carter": {
+     "n_positions": 6,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "cash": {
+     "n_positions": 8,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "james mangold": {
+     "n_positions": 6,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "joaquin phoenix": {
+     "n_positions": 3,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "johnny cash": {
+     "n_positions": 5,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "june carter": {
+     "n_positions": 5,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "man in black": {
+     "n_positions": 6,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "mangold and gill dennis": {
+     "n_positions": 11,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "own story": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "own words and cash": {
+     "n_positions": 8,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "vivian liberto": {
+     "n_positions": 7,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "NQS_1456",
+   "n_tokens": 192,
+   "n_candidates": 14,
+   "gold_positions": 7,
+   "nongold_fired": [
+    "varese",
+    "saint",
+    "1925"
+   ],
+   "base_gauge_score": 3.4713594840184485,
+   "deltas": {
+    "barbara gaskin": {
+     "n_positions": 7,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 3716.203369140625,
+     "cos_frozen_vs_own_gold_delta": 0.8813413815370102
+    },
+    "1881": {
+     "n_positions": 8,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1925": {
+     "n_positions": 8,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "21": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "august": {
+     "n_positions": 2,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "born in dumenza": {
+     "n_positions": 8,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "france": {
+     "n_positions": 2,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "italian": {
+     "n_positions": 2,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "italy": {
+     "n_positions": 2,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "maur": {
+     "n_positions": 3,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "october": {
+     "n_positions": 3,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "saint": {
+     "n_positions": 2,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "varese": {
+     "n_positions": 5,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "vincenzo peruggia": {
+     "n_positions": 5,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "NQS_1470",
+   "n_tokens": 212,
+   "n_candidates": 6,
+   "gold_positions": 6,
+   "nongold_fired": [
+    "tin woodman",
+    "towards",
+    "glinda"
+   ],
+   "base_gauge_score": 9.949518073030498,
+   "deltas": {
+    "steve coogan": {
+     "n_positions": 6,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 5546.71484375,
+     "cos_frozen_vs_own_gold_delta": 0.9000168240973274
+    },
+    "dorothy": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "glinda": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "symbolically": {
+     "n_positions": 3,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "tin woodman": {
+     "n_positions": 3,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "towards": {
+     "n_positions": 2,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "NQS_1494",
+   "n_tokens": 272,
+   "n_candidates": 14,
+   "gold_positions": 6,
+   "nongold_fired": [
+    "1,500",
+    "spring and autumn",
+    "13"
+   ],
+   "base_gauge_score": -8.815771641056893,
+   "deltas": {
+    "eleanor roosevelt": {
+     "n_positions": 6,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 3746.3203125,
+     "cos_frozen_vs_own_gold_delta": 0.6727032939377333
+    },
+    "1,500": {
+     "n_positions": 10,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1080": {
+     "n_positions": 8,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "13": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "bc": {
+     "n_positions": 2,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "chinese": {
+     "n_positions": 3,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "east asia": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "eastern and western": {
+     "n_positions": 6,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "emperor shenzong of song": {
+     "n_positions": 12,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "master sun": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "seven military classics": {
+     "n_positions": 6,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "spring and autumn": {
+     "n_positions": 6,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "sun tzu": {
+     "n_positions": 3,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "sunzi": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "NQS_1572",
+   "n_tokens": 292,
+   "n_candidates": 14,
+   "gold_positions": 6,
+   "nongold_fired": [
+    "1920",
+    "norman pritchard",
+    "28"
+   ],
+   "base_gauge_score": -4.447566278199851,
+   "deltas": {
+    "orrin hatch": {
+     "n_positions": 6,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 4468.9404296875,
+     "cos_frozen_vs_own_gold_delta": 0.864800585384082
+    },
+    "1900": {
+     "n_positions": 8,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1920": {
+     "n_positions": 12,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1928": {
+     "n_positions": 8,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1956": {
+     "n_positions": 8,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1964": {
+     "n_positions": 8,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1980": {
+     "n_positions": 8,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "28": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "indian": {
+     "n_positions": 2,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "norman pritchard": {
+     "n_positions": 5,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "olympic games": {
+     "n_positions": 15,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "summer games": {
+     "n_positions": 6,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "summer olympic games": {
+     "n_positions": 7,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "winter olympic games": {
+     "n_positions": 7,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "NQS_1609",
+   "n_tokens": 166,
+   "n_candidates": 8,
+   "gold_positions": 4,
+   "nongold_fired": [
+    "i do",
+    "david yow",
+    "melanie lynskey"
+   ],
+   "base_gauge_score": 1.7507304052929504,
+   "deltas": {
+    "strabo": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 4068.82373046875,
+     "cos_frozen_vs_own_gold_delta": 0.8818437840986206
+    },
+    "2017": {
+     "n_positions": 8,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "american": {
+     "n_positions": 2,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "david yow": {
+     "n_positions": 5,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "elijah wood": {
+     "n_positions": 6,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "i do": {
+     "n_positions": 6,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "macon blair": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "melanie lynskey": {
+     "n_positions": 9,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "NQS_1613",
+   "n_tokens": 127,
+   "n_candidates": 8,
+   "gold_positions": 6,
+   "nongold_fired": [
+    "australian",
+    "set chart",
+    "january"
+   ],
+   "base_gauge_score": 4.360307028678204,
+   "deltas": {
+    "rafael nadal": {
+     "n_positions": 6,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 5108.978515625,
+     "cos_frozen_vs_own_gold_delta": 0.8799046435149629
+    },
+    "16": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1972": {
+     "n_positions": 8,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "australian": {
+     "n_positions": 6,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "australian go": {
+     "n_positions": 5,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "january": {
+     "n_positions": 2,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "john young": {
+     "n_positions": 2,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "set chart": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "NQS_1619",
+   "n_tokens": 332,
+   "n_candidates": 20,
+   "gold_positions": 7,
+   "nongold_fired": [
+    "1978",
+    "brian collins",
+    "dolly"
+   ],
+   "base_gauge_score": 1.9110815761395725,
+   "deltas": {
+    "polly walker": {
+     "n_positions": 7,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 3668.55224609375,
+     "cos_frozen_vs_own_gold_delta": 0.8963176562846846
+    },
+    "14": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1978": {
+     "n_positions": 8,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1980": {
+     "n_positions": 12,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "2013": {
+     "n_positions": 8,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "2017": {
+     "n_positions": 8,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "86": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "again": {
+     "n_positions": 2,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "august": {
+     "n_positions": 2,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "brian collins": {
+     "n_positions": 6,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "deconstructed": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "dolly": {
+     "n_positions": 6,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "dolly parton": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "joe sun": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "kesha": {
+     "n_positions": 6,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "parton": {
+     "n_positions": 5,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "pebe sebert": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "rainbow": {
+     "n_positions": 2,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "starting": {
+     "n_positions": 2,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "u.s": {
+     "n_positions": 9,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "NQS_1660",
+   "n_tokens": 195,
+   "n_candidates": 9,
+   "gold_positions": 7,
+   "nongold_fired": [
+    "michael rosen",
+    "helen oxenbury",
+    "2014"
+   ],
+   "base_gauge_score": 4.412440570777493,
+   "deltas": {
+    "rodney crowell": {
+     "n_positions": 7,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 3728.76611328125,
+     "cos_frozen_vs_own_gold_delta": 0.7589738146010206
+    },
+    "1,500": {
+     "n_positions": 10,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1989": {
+     "n_positions": 8,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "2014": {
+     "n_positions": 8,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "30,000": {
+     "n_positions": 12,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "guinness world record": {
+     "n_positions": 7,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "helen oxenbury": {
+     "n_positions": 8,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "largest reading lesson": {
+     "n_positions": 6,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "michael rosen": {
+     "n_positions": 3,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "NQS_1662",
+   "n_tokens": 215,
+   "n_candidates": 10,
+   "gold_positions": 9,
+   "nongold_fired": [
+    "100",
+    "atlantic records",
+    "jerry leiber"
+   ],
+   "base_gauge_score": 1.3621780638002647,
+   "deltas": {
+    "henry selick": {
+     "n_positions": 9,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 3748.615966796875,
+     "cos_frozen_vs_own_gold_delta": 0.8892720029655627
+    },
+    "100": {
+     "n_positions": 6,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1957": {
+     "n_positions": 8,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1958": {
+     "n_positions": 8,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1959": {
+     "n_positions": 8,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "atlantic records": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "coasters": {
+     "n_positions": 5,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "jerry leiber": {
+     "n_positions": 3,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "top": {
+     "n_positions": 2,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "yakety yak": {
+     "n_positions": 6,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "NQS_18",
+   "n_tokens": 184,
+   "n_candidates": 11,
+   "gold_positions": 8,
+   "nongold_fired": [
+    "ethiopia",
+    "cape colony",
+    "angola and mozambique"
+   ],
+   "base_gauge_score": 19.015110603016925,
+   "deltas": {
+    "croatia": {
+     "n_positions": 8,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 4009.9677734375,
+     "cos_frozen_vs_own_gold_delta": 0.6545124716620285
+    },
+    "algeria": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "angola and mozambique": {
+     "n_positions": 8,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "cape colony": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "croatia and croatia": {
+     "n_positions": 8,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "ethiopia": {
+     "n_positions": 3,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "european": {
+     "n_positions": 3,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "even": {
+     "n_positions": 2,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "france": {
+     "n_positions": 2,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "portugal": {
+     "n_positions": 3,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "united kingdom": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "NQS_239",
+   "n_tokens": 289,
+   "n_candidates": 18,
+   "gold_positions": 6,
+   "nongold_fired": [
+    "o.s",
+    "thomas jefferson",
+    "1826"
+   ],
+   "base_gauge_score": 5.730475983411737,
+   "deltas": {
+    "geoffrey rush": {
+     "n_positions": 6,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 3876.878662109375,
+     "cos_frozen_vs_own_gold_delta": 0.8831368020461713
+    },
+    "13": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1743": {
+     "n_positions": 8,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1797": {
+     "n_positions": 8,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1801": {
+     "n_positions": 12,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1809": {
+     "n_positions": 8,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1826": {
+     "n_positions": 8,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "american": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "american founding father": {
+     "n_positions": 6,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "april": {
+     "n_positions": 3,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "declaration of independence": {
+     "n_positions": 6,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "great britain": {
+     "n_positions": 5,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "john adams": {
+     "n_positions": 5,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "july": {
+     "n_positions": 2,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "o.s": {
+     "n_positions": 6,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "previously": {
+     "n_positions": 2,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "thomas jefferson": {
+     "n_positions": 3,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "vice president": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "NQS_270",
+   "n_tokens": 260,
+   "n_candidates": 14,
+   "gold_positions": 6,
+   "nongold_fired": [
+    "endemol shine north america",
+    "cbs",
+    "wall entertainment"
+   ],
+   "base_gauge_score": 13.756236542126432,
+   "deltas": {
+    "african development bank": {
+     "n_positions": 6,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 4579.33740234375,
+     "cos_frozen_vs_own_gold_delta": 0.8612372105368122
+    },
+    "18": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "2008": {
+     "n_positions": 8,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "2017": {
+     "n_positions": 8,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "2018": {
+     "n_positions": 8,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "american": {
+     "n_positions": 2,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "cbs": {
+     "n_positions": 2,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "celebrity edition": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "endemol shine north america": {
+     "n_positions": 11,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "february": {
+     "n_positions": 2,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "fly": {
+     "n_positions": 2,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "julie chen": {
+     "n_positions": 5,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "u.s": {
+     "n_positions": 6,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "wall entertainment": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "NQS_280",
+   "n_tokens": 466,
+   "n_candidates": 20,
+   "gold_positions": 10,
+   "nongold_fired": [
+    "italian peninsula",
+    "revolution",
+    "internally"
+   ],
+   "base_gauge_score": -10.460153010017352,
+   "deltas": {
+    "keith thibodeaux": {
+     "n_positions": 10,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 5685.0244140625,
+     "cos_frozen_vs_own_gold_delta": 0.9011760968219955
+    },
+    "1792": {
+     "n_positions": 8,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1793": {
+     "n_positions": 8,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1794": {
+     "n_positions": 8,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1795": {
+     "n_positions": 8,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1799": {
+     "n_positions": 8,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "committee of public safety": {
+     "n_positions": 8,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "directory": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "external": {
+     "n_positions": 2,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "french": {
+     "n_positions": 5,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "internally": {
+     "n_positions": 3,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "italian peninsula": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "jacobins": {
+     "n_positions": 5,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "large": {
+     "n_positions": 2,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "low countries": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "maximilien robespierre": {
+     "n_positions": 10,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "napoleon bonaparte": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "revolution": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "revolutionary wars": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "rhine": {
+     "n_positions": 3,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "NQS_286",
+   "n_tokens": 186,
+   "n_candidates": 8,
+   "gold_positions": 9,
+   "nongold_fired": [
+    "international date line",
+    "western and eastern hemispheres",
+    "russia and fiji"
+   ],
+   "base_gauge_score": 10.324915852436517,
+   "deltas": {
+    "senate democratic caucus": {
+     "n_positions": 9,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 2889.2802734375,
+     "cos_frozen_vs_own_gold_delta": 0.39256000848961986
+    },
+    "180th meridian": {
+     "n_positions": 5,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "antarctica": {
+     "n_positions": 3,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "international date line": {
+     "n_positions": 6,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "pacific ocean": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "prime meridian": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "russia and fiji": {
+     "n_positions": 7,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "western and eastern hemispheres": {
+     "n_positions": 10,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "NQS_303",
+   "n_tokens": 146,
+   "n_candidates": 9,
+   "gold_positions": 5,
+   "nongold_fired": [
+    "addo",
+    "president akufo",
+    "akuffo"
+   ],
+   "base_gauge_score": 7.563347861226263,
+   "deltas": {
+    "nick corri": {
+     "n_positions": 5,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 3769.54052734375,
+     "cos_frozen_vs_own_gold_delta": 0.8450686898982692
+    },
+    "19": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "2017": {
+     "n_positions": 8,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "addo": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "akuffo": {
+     "n_positions": 9,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "georgina wood": {
+     "n_positions": 6,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "june": {
+     "n_positions": 2,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "president akufo": {
+     "n_positions": 5,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "sophia akuffo": {
+     "n_positions": 5,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "NQS_319",
+   "n_tokens": 183,
+   "n_candidates": 12,
+   "gold_positions": 6,
+   "nongold_fired": [
+    "city of industry",
+    "fox and christopher lloyd",
+    "san gabriel valley"
+   ],
+   "base_gauge_score": -16.259040115733036,
+   "deltas": {
+    "roanoke": {
+     "n_positions": 6,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 3955.638671875,
+     "cos_frozen_vs_own_gold_delta": 0.8941031153088562
+    },
+    "1985": {
+     "n_positions": 8,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "california": {
+     "n_positions": 2,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "city of industry": {
+     "n_positions": 6,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "fox and christopher lloyd": {
+     "n_positions": 10,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "lone pine mall": {
+     "n_positions": 6,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "los angeles county": {
+     "n_positions": 6,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "michael j": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "puente hills mall": {
+     "n_positions": 3,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "san gabriel valley": {
+     "n_positions": 7,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "twin pines": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "united states": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "NQS_343",
+   "n_tokens": 211,
+   "n_candidates": 10,
+   "gold_positions": 6,
+   "nongold_fired": [
+    "sheev palpatine",
+    "supreme chancellor",
+    "galactic empire"
+   ],
+   "base_gauge_score": 18.627853864072826,
+   "deltas": {
+    "rms titanic": {
+     "n_positions": 6,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 4290.30517578125,
+     "cos_frozen_vs_own_gold_delta": 0.5175613832052607
+    },
+    "darth vader": {
+     "n_positions": 5,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "galactic empire": {
+     "n_positions": 6,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "galactic republic": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "ian mcdiarmid": {
+     "n_positions": 11,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "naboo": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "republic": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "senator": {
+     "n_positions": 2,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "sheev palpatine": {
+     "n_positions": 5,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "supreme chancellor": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "NQS_42",
+   "n_tokens": 157,
+   "n_candidates": 5,
+   "gold_positions": 4,
+   "nongold_fired": [
+    "senate democratic caucus",
+    "united states senate",
+    "united states senators"
+   ],
+   "base_gauge_score": -10.117289162185132,
+   "deltas": {
+    "tlc": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 3677.2138671875,
+     "cos_frozen_vs_own_gold_delta": 0.36270951513907257
+    },
+    "senate": {
+     "n_positions": 9,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "senate democratic caucus": {
+     "n_positions": 3,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "united states senate": {
+     "n_positions": 9,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "united states senators": {
+     "n_positions": 6,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "NQS_634",
+   "n_tokens": 132,
+   "n_candidates": 5,
+   "gold_positions": 6,
+   "nongold_fired": [
+    "rome",
+    "italian",
+    "monti"
+   ],
+   "base_gauge_score": 5.919306404437225,
+   "deltas": {
+    "del norte county": {
+     "n_positions": 6,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 4256.22900390625,
+     "cos_frozen_vs_own_gold_delta": 0.8292375310184579
+    },
+    "italian": {
+     "n_positions": 2,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "monti": {
+     "n_positions": 8,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "piazza di spagna": {
+     "n_positions": 7,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "rome": {
+     "n_positions": 1,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "NQS_637",
+   "n_tokens": 168,
+   "n_candidates": 7,
+   "gold_positions": 6,
+   "nongold_fired": [
+    "sicily",
+    "dido",
+    "south wales"
+   ],
+   "base_gauge_score": -9.810062209277556,
+   "deltas": {
+    "new south wales": {
+     "n_positions": 6,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 3829.158203125,
+     "cos_frozen_vs_own_gold_delta": 0.6314033048840594
+    },
+    "dido": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "italy": {
+     "n_positions": 2,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "rome": {
+     "n_positions": 2,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "sicily": {
+     "n_positions": 2,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "south wales": {
+     "n_positions": 6,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "trojans": {
+     "n_positions": 3,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "NQS_638",
+   "n_tokens": 254,
+   "n_candidates": 17,
+   "gold_positions": 5,
+   "nongold_fired": [
+    "17",
+    "habsburg",
+    "sweden"
+   ],
+   "base_gauge_score": -14.960181206827814,
+   "deltas": {
+    "salem": {
+     "n_positions": 5,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 2730.132568359375,
+     "cos_frozen_vs_own_gold_delta": 0.6622592983575243
+    },
+    "17": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1814": {
+     "n_positions": 8,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "austria": {
+     "n_positions": 3,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "central italy": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "denmark": {
+     "n_positions": 3,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "duchy of modena": {
+     "n_positions": 9,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "duchy of parma": {
+     "n_positions": 9,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "grand duchy of tuscany": {
+     "n_positions": 12,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "habsburg": {
+     "n_positions": 3,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "lombardy": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "norway": {
+     "n_positions": 2,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "representatives": {
+     "n_positions": 2,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "sweden": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "treaty of kiel": {
+     "n_positions": 6,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "union": {
+     "n_positions": 2,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "venetia in northern italy": {
+     "n_positions": 12,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "NQS_656",
+   "n_tokens": 207,
+   "n_candidates": 11,
+   "gold_positions": 12,
+   "nongold_fired": [
+    "december",
+    "massachusetts",
+    "east india company"
+   ],
+   "base_gauge_score": -9.207460557321463,
+   "deltas": {
+    "oakland raiders": {
+     "n_positions": 12,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 4995.58642578125,
+     "cos_frozen_vs_own_gold_delta": 0.6703126689833123
+    },
+    "10": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "16": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1773": {
+     "n_positions": 12,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "british oakland raiders": {
+     "n_positions": 8,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "china in american": {
+     "n_positions": 6,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "december": {
+     "n_positions": 2,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "east india company": {
+     "n_positions": 3,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "massachusetts": {
+     "n_positions": 3,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "native americans": {
+     "n_positions": 5,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "tea act of may": {
+     "n_positions": 8,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "NQS_657",
+   "n_tokens": 287,
+   "n_candidates": 16,
+   "gold_positions": 6,
+   "nongold_fired": [
+    "north atlantic ocean",
+    "harland and wolff",
+    "belfast"
+   ],
+   "base_gauge_score": 11.522065712017412,
+   "deltas": {
+    "saint petersburg": {
+     "n_positions": 6,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 6145.64599609375,
+     "cos_frozen_vs_own_gold_delta": 0.8586364525015745
+    },
+    "1,500": {
+     "n_positions": 10,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "15": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1912": {
+     "n_positions": 8,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "2,224": {
+     "n_positions": 10,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "april": {
+     "n_positions": 2,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "belfast": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "british": {
+     "n_positions": 2,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "harland and wolff": {
+     "n_positions": 9,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "north atlantic ocean": {
+     "n_positions": 3,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "olympic": {
+     "n_positions": 3,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "rms titanic": {
+     "n_positions": 6,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "southampton": {
+     "n_positions": 3,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "thomas andrews": {
+     "n_positions": 5,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "white star line": {
+     "n_positions": 6,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "york city": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "NQS_660",
+   "n_tokens": 264,
+   "n_candidates": 16,
+   "gold_positions": 4,
+   "nongold_fired": [
+    "gary oldman",
+    "2009",
+    "hughes"
+   ],
+   "base_gauge_score": -15.276037667820072,
+   "deltas": {
+    "ethiopia": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 4146.974609375,
+     "cos_frozen_vs_own_gold_delta": 0.6395782674437336
+    },
+    "2009": {
+     "n_positions": 8,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "2010": {
+     "n_positions": 8,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "american": {
+     "n_positions": 2,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "denzel washington": {
+     "n_positions": 6,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "february": {
+     "n_positions": 2,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "filming": {
+     "n_positions": 3,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "gary oldman": {
+     "n_positions": 7,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "gary whitta": {
+     "n_positions": 7,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "hughes": {
+     "n_positions": 3,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "jennifer beals": {
+     "n_positions": 8,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "mila kunis": {
+     "n_positions": 6,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "new mexico": {
+     "n_positions": 2,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "ray stevenson": {
+     "n_positions": 5,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "united states": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "west coast": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "NQS_689",
+   "n_tokens": 313,
+   "n_candidates": 14,
+   "gold_positions": 6,
+   "nongold_fired": [
+    "tabard inn at southwark",
+    "1400",
+    "chaucer"
+   ],
+   "base_gauge_score": -7.553202758403677,
+   "deltas": {
+    "lansdowne": {
+     "n_positions": 6,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 3961.242431640625,
+     "cos_frozen_vs_own_gold_delta": 0.7780782155941349
+    },
+    "1386": {
+     "n_positions": 8,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1387": {
+     "n_positions": 8,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1389": {
+     "n_positions": 8,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1400": {
+     "n_positions": 8,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "17,000": {
+     "n_positions": 12,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "24": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "chaucer": {
+     "n_positions": 7,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "clerk": {
+     "n_positions": 2,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "geoffrey chaucer": {
+     "n_positions": 6,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "london": {
+     "n_positions": 1,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "middle english": {
+     "n_positions": 6,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "tabard inn at southwark": {
+     "n_positions": 12,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "tales of caunterbury": {
+     "n_positions": 10,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "NQS_741",
+   "n_tokens": 154,
+   "n_candidates": 8,
+   "gold_positions": 21,
+   "nongold_fired": [
+    "filming",
+    "north shore",
+    "manchester - by - the - sea , massachusetts"
+   ],
+   "base_gauge_score": 3.256606898188139,
+   "deltas": {
+    "utah beach": {
+     "n_positions": 21,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 3194.39990234375,
+     "cos_frozen_vs_own_gold_delta": 0.22902670214789883
+    },
+    "2015": {
+     "n_positions": 8,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "23": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "filming": {
+     "n_positions": 3,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "manchester - by - the - sea , massachusetts": {
+     "n_positions": 11,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "march": {
+     "n_positions": 2,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "north shore": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "principal": {
+     "n_positions": 2,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "NQS_797",
+   "n_tokens": 296,
+   "n_candidates": 9,
+   "gold_positions": 6,
+   "nongold_fired": [
+    "218",
+    "method of composing",
+    "arnold schoenberg"
+   ],
+   "base_gauge_score": -6.485154270419549,
+   "deltas": {
+    "ralph northam": {
+     "n_positions": 6,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 5641.931640625,
+     "cos_frozen_vs_own_gold_delta": 0.920232398871135
+    },
+    "1975": {
+     "n_positions": 8,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "218": {
+     "n_positions": 6,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "anon": {
+     "n_positions": 2,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "arnold schoenberg": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "method of composing": {
+     "n_positions": 7,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "schoenberg": {
+     "n_positions": 6,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "serialism": {
+     "n_positions": 12,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "twelve notes": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "NQS_799",
+   "n_tokens": 388,
+   "n_candidates": 20,
+   "gold_positions": 16,
+   "nongold_fired": [
+    "franklin",
+    "adams",
+    "constitution"
+   ],
+   "base_gauge_score": -10.585250523136429,
+   "deltas": {
+    "herman frank": {
+     "n_positions": 16,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 3718.023193359375,
+     "cos_frozen_vs_own_gold_delta": 0.8740709946208521
+    },
+    "1777": {
+     "n_positions": 8,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1780": {
+     "n_positions": 8,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1783": {
+     "n_positions": 8,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1973": {
+     "n_positions": 8,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "adams": {
+     "n_positions": 8,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "committee of five": {
+     "n_positions": 6,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "constitution": {
+     "n_positions": 3,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "declaration of independence": {
+     "n_positions": 9,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "federalist papers": {
+     "n_positions": 5,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "franklin": {
+     "n_positions": 5,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "hamilton": {
+     "n_positions": 3,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "historian richard b": {
+     "n_positions": 7,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "jay": {
+     "n_positions": 7,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "jefferson": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "john adams": {
+     "n_positions": 3,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "madison": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "morris": {
+     "n_positions": 3,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "president": {
+     "n_positions": 3,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "washington": {
+     "n_positions": 5,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "NQS_838",
+   "n_tokens": 247,
+   "n_candidates": 7,
+   "gold_positions": 7,
+   "nongold_fired": [
+    "bradford hill",
+    "jakob henle",
+    "robert koch"
+   ],
+   "base_gauge_score": 7.440905660378537,
+   "deltas": {
+    "bing russell": {
+     "n_positions": 7,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 4962.84765625,
+     "cos_frozen_vs_own_gold_delta": 0.8902038446386029
+    },
+    "1884": {
+     "n_positions": 8,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1890": {
+     "n_positions": 8,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "bradford hill": {
+     "n_positions": 6,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "jakob henle": {
+     "n_positions": 7,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "koch": {
+     "n_positions": 6,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "robert koch": {
+     "n_positions": 2,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "NQS_883",
+   "n_tokens": 252,
+   "n_candidates": 10,
+   "gold_positions": 7,
+   "nongold_fired": [
+    "grey warden",
+    "origins",
+    "chantry"
+   ],
+   "base_gauge_score": 0.9493249055583627,
+   "deltas": {
+    "matthew broderick": {
+     "n_positions": 7,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 3397.861572265625,
+     "cos_frozen_vs_own_gold_delta": 0.7475720401303089
+    },
+    "arl eamon": {
+     "n_positions": 8,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "chantry": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "circle of magi": {
+     "n_positions": 10,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "david gaider": {
+     "n_positions": 6,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "grey warden": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "king maric": {
+     "n_positions": 6,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "origins": {
+     "n_positions": 2,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "redcliffe castle": {
+     "n_positions": 6,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "steve valentine": {
+     "n_positions": 2,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "NQS_888",
+   "n_tokens": 247,
+   "n_candidates": 8,
+   "gold_positions": 15,
+   "nongold_fired": [
+    "phil rynda",
+    "ward",
+    "olivia olson"
+   ],
+   "base_gauge_score": 5.565532966263426,
+   "deltas": {
+    "donna pescow": {
+     "n_positions": 15,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 4539.43310546875,
+     "cos_frozen_vs_own_gold_delta": 0.8143553202286866
+    },
+    "1,000": {
+     "n_positions": 10,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "american": {
+     "n_positions": 2,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "marceline the vampire queen": {
+     "n_positions": 11,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "olivia olson": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "pendleton ward": {
+     "n_positions": 5,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "phil rynda": {
+     "n_positions": 6,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "ward": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "NQS_917",
+   "n_tokens": 159,
+   "n_candidates": 7,
+   "gold_positions": 12,
+   "nongold_fired": [
+    "1816",
+    "president henry shefflin",
+    "philadelphia on january"
+   ],
+   "base_gauge_score": 16.141104919843862,
+   "deltas": {
+    "henry shefflin": {
+     "n_positions": 12,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 4299.13037109375,
+     "cos_frozen_vs_own_gold_delta": 0.9181818414345294
+    },
+    "1816": {
+     "n_positions": 8,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1817": {
+     "n_positions": 8,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1832": {
+     "n_positions": 8,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "james madison": {
+     "n_positions": 2,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "philadelphia on january": {
+     "n_positions": 7,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "president henry shefflin": {
+     "n_positions": 10,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "NQS_953",
+   "n_tokens": 258,
+   "n_candidates": 17,
+   "gold_positions": 5,
+   "nongold_fired": [
+    "nicklaus",
+    "augusta",
+    "nick faldo"
+   ],
+   "base_gauge_score": 5.945390380542927,
+   "deltas": {
+    "sierra nevada": {
+     "n_positions": 5,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 3962.477783203125,
+     "cos_frozen_vs_own_gold_delta": 0.8983102825164231
+    },
+    "1961": {
+     "n_positions": 8,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1963": {
+     "n_positions": 8,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1980": {
+     "n_positions": 8,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1983": {
+     "n_positions": 8,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1986": {
+     "n_positions": 8,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "augusta": {
+     "n_positions": 3,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "gary player": {
+     "n_positions": 5,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "jimmy demaret": {
+     "n_positions": 7,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "nick faldo": {
+     "n_positions": 6,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "nicklaus": {
+     "n_positions": 2,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "palmer and tiger woods": {
+     "n_positions": 9,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "phil mickelson": {
+     "n_positions": 7,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "player": {
+     "n_positions": 5,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "sam snead": {
+     "n_positions": 6,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "seve ballesteros of spain": {
+     "n_positions": 14,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "south africa": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "NQS_982",
+   "n_tokens": 400,
+   "n_candidates": 18,
+   "gold_positions": 14,
+   "nongold_fired": [
+    "cincinnati reds and thyestes",
+    "aegisthus",
+    "aerope"
+   ],
+   "base_gauge_score": -20.220025802052767,
+   "deltas": {
+    "cincinnati reds": {
+     "n_positions": 14,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 3796.46923828125,
+     "cos_frozen_vs_own_gold_delta": 0.6627771587660515
+    },
+    "aegisthus": {
+     "n_positions": 3,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "aerope": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "agamemnon": {
+     "n_positions": 22,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "agamemnon and clytemnestra": {
+     "n_positions": 18,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "atreus": {
+     "n_positions": 12,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "cincinnati reds and thyestes": {
+     "n_positions": 11,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "clytemnestra and helen": {
+     "n_positions": 14,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "electra and chrysothemis": {
+     "n_positions": 14,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "greece": {
+     "n_positions": 3,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "iphigenia": {
+     "n_positions": 8,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "king of sparta": {
+     "n_positions": 7,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "menelaus": {
+     "n_positions": 9,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "orestes": {
+     "n_positions": 6,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "pelopia": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "thyestes": {
+     "n_positions": 16,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "tyndareus": {
+     "n_positions": 20,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "tyndareus in sparta": {
+     "n_positions": 13,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "NQS_991",
+   "n_tokens": 395,
+   "n_candidates": 20,
+   "gold_positions": 5,
+   "nongold_fired": [
+    "rhine",
+    "bauer",
+    "231"
+   ],
+   "base_gauge_score": 4.560912990393798,
+   "deltas": {
+    "matt monro": {
+     "n_positions": 5,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 5411.08251953125,
+     "cos_frozen_vs_own_gold_delta": 0.9172718471525184
+    },
+    "1919": {
+     "n_positions": 12,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "227": {
+     "n_positions": 6,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "230": {
+     "n_positions": 6,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "231": {
+     "n_positions": 6,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "allied": {
+     "n_positions": 2,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "allies": {
+     "n_positions": 3,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "archduke franz ferdinand": {
+     "n_positions": 10,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "articles": {
+     "n_positions": 3,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "austria": {
+     "n_positions": 3,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "bauer": {
+     "n_positions": 5,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "european": {
+     "n_positions": 2,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "gustav bauer": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "hedjaz": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "june": {
+     "n_positions": 4,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "koran": {
+     "n_positions": 3,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "league of nations": {
+     "n_positions": 6,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "philipp scheidemann": {
+     "n_positions": 8,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "rhine": {
+     "n_positions": 3,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "scheidemann": {
+     "n_positions": 12,
+     "mean_position_norm": 3944.2041761335345,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  }
+ ],
+ "seconds": 1093
+}

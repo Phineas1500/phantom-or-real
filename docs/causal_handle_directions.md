@@ -4555,3 +4555,17 @@ the registered arm; A′ job-z3eqz, B′ job-d5jgz (own-frame donors 25/25)
 counterfactual SQuAD frame, 476 rows, seed 20260900): job-sgtjp.
 Prompt render on the WS frame checked locally: question present in std
 and closed prompts, gold present in the documents.]
+
+[WS stage 1 LANDED 2026-09-04 13:35 UTC (job-sgtjp, $0.60, 11,424
+generations). Counterfactual SQuAD, 476 rows: std against the document's
+answer **0.675**, closed-book against it 0.004, hint-first 0.761;
+**memory rate 0.72**; 0/8 failures 151; **conflict failures 103**, 48%
+answering with the memory fact; hint-repairable share **39/103 = 0.379
+[0.291, 0.476]** — the fixable third again (descriptive; NQ-Swap 0.327).
+Instrument gate: std 0.675 within [0.10, 0.90], PASS. Pins
+docs/wikihop_ws_pinned.json (seeds half 20260902 / draw 20260901 /
+donor 20260903): 120-row blind draw = 76 correct-majority, 11
+repairable conflict failures, 14 unrepairable, 19 other failures; XA
+(64 rows, 30 WikiHop donors), XB (56, 29). Own-donor pools hold 14 per
+half, below the registered 20 → the own-donor rider is not run. Stage-2
+input results/loop_screen/ws_stage2_input.jsonl.gz (476 + 59 rows).]
