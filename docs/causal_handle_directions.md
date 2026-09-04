@@ -4777,3 +4777,11 @@ probe npz), WH_MODEL Qwen/Qwen3.5-27B, write L31, gauge L48, rungs
 1×/2×, loop at 2× k=4, three seeded non-gold, seed 20260913: XA
 job-teem6 (51 rows, 18 WY donors), XB job-6mzf7 (69, 18). Registered arm
 only.]
+[WI′ launched 2026-09-04 18:27 UTC after registration commit 03f49c5 and
+job-patch commit a62e327: context ctx-030f586a (WH job with WH_FAITHFUL,
+WI′ pins under the job's pins name, WK stage-2 input, real-text L38
+gauge), WH_FAITHFUL=1, write L30, rungs 1×/2×, loop at 2× k=4, three
+seeded non-gold, seed 20260916: XA job-eb56t (55 rows, 30 WikiHop
+donors), XB job-sbr5w (65, 29). Fake-model dry run (1 row) under the
+instruction: 202-token prompt, gold 10 write positions, 10 branches, no
+skips, text and rung arms present.]
