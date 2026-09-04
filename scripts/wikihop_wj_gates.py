@@ -27,7 +27,7 @@ def load(path):
 
 def main() -> int:
     p = argparse.ArgumentParser(description=__doc__)
-    p.add_argument("--records", nargs="+", type=Path, required=True, help="layer=path pairs, e.g. 20=results/loop_screen/wikihop_wj_L20.jsonl")
+    p.add_argument("--records", nargs="+", type=str, required=True, help="layer=path pairs, e.g. 20=results/loop_screen/wikihop_wj_L20.jsonl")
     p.add_argument("--pins", type=Path, default=Path("docs/wikihop_wj_pinned.json"))
     p.add_argument("--out", type=Path, default=Path("docs/wikihop_wj_gates.json"))
     args = p.parse_args()
