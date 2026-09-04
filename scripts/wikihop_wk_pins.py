@@ -32,6 +32,7 @@ def main() -> int:
     p.add_argument("--frame", type=Path, default=Path("results/loop_screen/nqswap_input.jsonl.gz"))
     p.add_argument("--wikihop-frame", type=Path, default=Path("results/loop_screen/wikihop_fresh_input.jsonl.gz"))
     p.add_argument("--wp-pins", type=Path, default=Path("docs/wikihop_wp_pinned.json"))
+    p.add_argument("--xdonor-jobs", default="XA,XB", help="job keys in --wp-pins whose donor_rows become the XA/XB (cross-task) donors; e.g. A,B for the WY Qwen pins")
     p.add_argument("--out", type=Path, default=Path("docs/wikihop_wk_pinned.json"))
     p.add_argument("--out-rows", type=Path, default=Path("results/loop_screen/nqswap_rows.jsonl"))
     p.add_argument("--out-stage2-input", type=Path, default=Path("results/loop_screen/wk_stage2_input.jsonl.gz"))
@@ -84,7 +85,7 @@ def main() -> int:
         pool = sorted(r["id"] for r in rep_cf if r["id"] in H and r["id"] not in draw and r["id"] not in excluded)
         return sorted(random.Random(args.donor_seed).sample(pool, args.max_donors)) if len(pool) > args.max_donors else pool
     dA, dB = donors(H0), donors(H1)
-    wp = json.load(open(args.wp_pins))["jobs"]; xa, xb = wp["XA"]["donor_rows"], wp["XB"]["donor_rows"]
+    wp = json.load(open(args.wp_pins))["jobs"]; ka, kb = args.xdonor_jobs.split(","); xa, xb = wp[ka]["donor_rows"], wp[kb]["donor_rows"]
     wh = {json.loads(l)["id"]: json.loads(l) for l in gzip.open(args.wikihop_frame, "rt")}
     with gzip.open(args.out_stage2_input, "wt") as f:
         for i in ids:
