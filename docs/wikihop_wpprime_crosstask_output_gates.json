@@ -1,0 +1,82 @@
+{
+ "n_rows": 14,
+ "mean_branches": 13.571428571428571,
+ "write_consistency": {
+  "1.0": {
+   "gold_dP": 0.5267857142857143,
+   "ci": [
+    0.2767857142857143,
+    0.7767857142857143
+   ],
+   "specificity": 0.511904761904762,
+   "specificity_ci": [
+    0.2619047619047619,
+    0.7502976190476202
+   ]
+  },
+  "2.0": {
+   "gold_dP": 0.6517857142857143,
+   "ci": [
+    0.4017857142857143,
+    0.8660714285714286
+   ],
+   "specificity": 0.6227398854278554,
+   "specificity_ci": [
+    0.38799789652703187,
+    0.8359291084854995
+   ]
+  }
+ },
+ "selectors": {
+  "output_level": {
+   "select": 0.42857142857142855,
+   "gold_argmax": 0.42857142857142855,
+   "vs_baseline_ci": [
+    0.13392857142857142,
+    0.6160714285714286
+   ],
+   "vs_random_ci": [
+    0.04877161281179137,
+    0.49879747732426305
+   ],
+   "vs_sc8_ci": [
+    0.14285714285714285,
+    0.6428571428571429
+   ],
+   "oracle_recovered": 0.5853658536585366
+  },
+  "primary_gauge": {
+   "select": 0.30357142857142855,
+   "gold_argmax": 0.2857142857142857,
+   "oracle_recovered": 0.4146341463414634
+  },
+  "real_text_gauge": {
+   "select": 0.30357142857142855,
+   "gold_argmax": 0.2857142857142857,
+   "oracle_recovered": 0.4146341463414634
+  },
+  "oracle": 0.7321428571428571,
+  "random_branch": 0.1644982993197279,
+  "baseline": 0.08035714285714286,
+  "sc8": 0.07142857142857142
+ },
+ "prediction_15": {
+  "paired_output_minus_real_gauge": 0.125,
+  "ci": [
+   0.0,
+   0.30357142857142855
+  ],
+  "pass": false
+ },
+ "secondary_output_minus_primary_gauge": {
+  "mean": 0.125,
+  "ci": [
+   0.0,
+   0.30357142857142855
+  ]
+ },
+ "coverage": {
+  "rows_decided_by_output_signal_alone": 14
+ },
+ "verdict": "OUTPUT-SELECTOR-NOT-BETTER"
+}

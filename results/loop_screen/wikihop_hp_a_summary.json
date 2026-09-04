@@ -1,0 +1,6661 @@
+{
+ "n_rows": 26,
+ "rows_key": "wh_rows",
+ "shard_index": 0,
+ "shard_count": 1,
+ "loop": true,
+ "loop_rung": 2.0,
+ "n_fired_branches": 1144,
+ "write_layer": 30,
+ "gauge_layer": 38,
+ "rungs": [
+  1.0,
+  2.0
+ ],
+ "seed": 20260874,
+ "frozen": {
+  "norm_target": 3632.1704787671156,
+  "n_donors": 27,
+  "n_positions": 312,
+  "mean_delta_norm": 1378.4711546717135,
+  "mean_position_norm": 3632.1704787671156,
+  "vector_mode": "hint",
+  "vector_seed": null
+ },
+ "wx_job": "A",
+ "w0_base_norm": 4736.823490844226,
+ "skipped": [],
+ "rows": [
+  {
+   "id": "HP_dev_1111",
+   "n_tokens": 1554,
+   "n_candidates": 40,
+   "gold_positions": 16,
+   "nongold_fired": [
+    "United States",
+    "Critics",
+    "May"
+   ],
+   "base_gauge_score": -2.4681368675934086,
+   "deltas": {
+    "last seen in 1933": {
+     "n_positions": 16,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 3820.517822265625,
+     "cos_frozen_vs_own_gold_delta": 0.34941555158078824
+    },
+    "1917": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1930": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1933": {
+     "n_positions": 24,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1975": {
+     "n_positions": 28,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1998": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "2008": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "African American": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "African Americans": {
+     "n_positions": 4,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "African-American": {
+     "n_positions": 9,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "America": {
+     "n_positions": 8,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Ava Muhammad": {
+     "n_positions": 8,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Blackman in America": {
+     "n_positions": 16,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Clara Muhammad": {
+     "n_positions": 9,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Critics": {
+     "n_positions": 2,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Detroit": {
+     "n_positions": 4,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Elijah Robert Poole": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Emmanuel Muhammad": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "February": {
+     "n_positions": 5,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Georgia": {
+     "n_positions": 4,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Having": {
+     "n_positions": 2,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Islam": {
+     "n_positions": 20,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Islamic": {
+     "n_positions": 3,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Louis Farrakhan": {
+     "n_positions": 16,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Malcolm X": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "May": {
+     "n_positions": 3,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Message": {
+     "n_positions": 4,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Message to the Blackman in America": {
+     "n_positions": 21,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Michigan": {
+     "n_positions": 2,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Muhammad Ali": {
+     "n_positions": 4,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Muhammad Speaks": {
+     "n_positions": 4,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Nation of Islam": {
+     "n_positions": 48,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "October": {
+     "n_positions": 3,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "September": {
+     "n_positions": 3,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Southern Poverty Law Center": {
+     "n_positions": 8,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Tynnetta Muhammad": {
+     "n_positions": 15,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "United States": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Wallace D. Fard Muhammad on July": {
+     "n_positions": 16,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Wallace Fard Muhammad": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Warith Deen Mohammed": {
+     "n_positions": 20,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "HP_dev_1186",
+   "n_tokens": 1355,
+   "n_candidates": 40,
+   "gold_positions": 10,
+   "nongold_fired": [
+    "Down",
+    "American",
+    "Gaelic"
+   ],
+   "base_gauge_score": -1.2807383430530146,
+   "deltas": {
+    "Ravalli County, Montana": {
+     "n_positions": 10,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 4697.4267578125,
+     "cos_frozen_vs_own_gold_delta": 0.8407920968923981
+    },
+    "1858": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1889": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1911": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1914": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "2010": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "All for One Theater": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "American": {
+     "n_positions": 2,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "British Canada. Henson's": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Broadway": {
+     "n_positions": 2,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Charles County": {
+     "n_positions": 4,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Dawn": {
+     "n_positions": 2,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Down": {
+     "n_positions": 4,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Dresden": {
+     "n_positions": 2,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Elliott Hewitt": {
+     "n_positions": 4,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Formerly": {
+     "n_positions": 2,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Frew McMillan": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Gaelic": {
+     "n_positions": 3,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Haldimand County": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Josiah Henson": {
+     "n_positions": 13,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "June": {
+     "n_positions": 2,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Kent County": {
+     "n_positions": 4,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Life of Josiah Henson": {
+     "n_positions": 8,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Marie Trainer": {
+     "n_positions": 8,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Maryland": {
+     "n_positions": 2,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "May": {
+     "n_positions": 4,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Montana": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Notts County": {
+     "n_positions": 9,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Ontario": {
+     "n_positions": 5,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Port Tobacco": {
+     "n_positions": 4,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Strathclyde Park Rowing Club": {
+     "n_positions": 19,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Theater": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Tom Hewitt (actor)": {
+     "n_positions": 10,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Tom Hewitt (footballer)": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Tom O'Hare": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Trainer": {
+     "n_positions": 7,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Upper Canada": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Victor": {
+     "n_positions": 5,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Victor, Montana": {
+     "n_positions": 9,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Welsh": {
+     "n_positions": 3,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "HP_dev_1299",
+   "n_tokens": 1804,
+   "n_candidates": 40,
+   "gold_positions": 14,
+   "nongold_fired": [
+    "Sleeping Beauty Castle",
+    "Beast",
+    "White Cyclone"
+   ],
+   "base_gauge_score": 20.961830153368414,
+   "deltas": {
+    "Autopia": {
+     "n_positions": 14,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 2924.283447265625,
+     "cos_frozen_vs_own_gold_delta": 0.6951790781543624
+    },
+    "1959": {
+     "n_positions": 16,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1981": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Anniversary": {
+     "n_positions": 4,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Arrow Dynamics": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Beast": {
+     "n_positions": 3,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Bob Gurr": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "California": {
+     "n_positions": 5,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Caribbean": {
+     "n_positions": 2,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Disneyland 10th Anniversary": {
+     "n_positions": 20,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Disneyland Monorail": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Disneyland in Anaheim": {
+     "n_positions": 9,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Dixieland": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Flying Saucers": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Gurr": {
+     "n_positions": 10,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Haunted Mansion": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "It's": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Julie Reihm": {
+     "n_positions": 8,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "June": {
+     "n_positions": 4,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Jungle Cruise": {
+     "n_positions": 4,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Kings Island": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "List of Kings Island attractions": {
+     "n_positions": 10,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Man": {
+     "n_positions": 5,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Mark Twain Riverboat": {
+     "n_positions": 8,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Mine Train Through Nature's Wonderland": {
+     "n_positions": 14,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Mountain": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Next": {
+     "n_positions": 3,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Pirates": {
+     "n_positions": 2,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Roller coaster phobia": {
+     "n_positions": 21,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Sleeping Beauty Castle": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Small World": {
+     "n_positions": 4,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Submarine Voyage": {
+     "n_positions": 18,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Tencennial": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Third Man on the Mountain": {
+     "n_positions": 15,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Tomorrowland and Fantasyland": {
+     "n_positions": 18,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "United States": {
+     "n_positions": 8,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Walt Disney": {
+     "n_positions": 18,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Walt Disney's Enchanted Tiki Room": {
+     "n_positions": 16,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Walt Disney's Wonderful World of Color": {
+     "n_positions": 16,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "White Cyclone": {
+     "n_positions": 14,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "HP_dev_1525",
+   "n_tokens": 1504,
+   "n_candidates": 40,
+   "gold_positions": 10,
+   "nongold_fired": [
+    "Top Country Albums",
+    "Hot Country Singles",
+    "Morning"
+   ],
+   "base_gauge_score": 8.071347739177982,
+   "deltas": {
+    "The Land of Enchantment": {
+     "n_positions": 10,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 3991.50732421875,
+     "cos_frozen_vs_own_gold_delta": 0.40186053482772827
+    },
+    "1983": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1984": {
+     "n_positions": 16,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "2007": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "2010": {
+     "n_positions": 16,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "All the Greatest Hits": {
+     "n_positions": 16,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "American": {
+     "n_positions": 7,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "August": {
+     "n_positions": 3,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Be Love": {
+     "n_positions": 8,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Billboard": {
+     "n_positions": 7,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "British": {
+     "n_positions": 3,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Bubbling": {
+     "n_positions": 4,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Canadian": {
+     "n_positions": 4,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Collection": {
+     "n_positions": 5,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Country Tracks": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Disenchanted": {
+     "n_positions": 9,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Don't Count the Rainy Days": {
+     "n_positions": 28,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Greatest Hits": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Hot": {
+     "n_positions": 7,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Hot Country Singles": {
+     "n_positions": 15,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "McFly": {
+     "n_positions": 10,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "McFly. Released": {
+     "n_positions": 8,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Michael Martin Murphey": {
+     "n_positions": 40,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Mirror Never Lies": {
+     "n_positions": 18,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Morning": {
+     "n_positions": 4,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Murphey": {
+     "n_positions": 42,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "My World": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "My Worlds": {
+     "n_positions": 18,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "My Worlds Acoustic": {
+     "n_positions": 9,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "My Worlds: The Collection": {
+     "n_positions": 20,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "November": {
+     "n_positions": 3,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "RPM": {
+     "n_positions": 3,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Radio Land": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "The Heart Never Lies (album)": {
+     "n_positions": 14,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "The Mirror Never Lies (song)": {
+     "n_positions": 14,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Top Country Albums": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "U.S": {
+     "n_positions": 15,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Victor Careaga and Wayland Holyfield": {
+     "n_positions": 16,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Western": {
+     "n_positions": 3,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Will It Be Love by Morning": {
+     "n_positions": 18,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "HP_dev_1574",
+   "n_tokens": 1480,
+   "n_candidates": 40,
+   "gold_positions": 8,
+   "nongold_fired": [
+    "Nanhai Pearl Artificial Island",
+    "Grant's",
+    "Archipelago of San Bernardo"
+   ],
+   "base_gauge_score": 15.169517975131278,
+   "deltas": {
+    "Jefferson Memorial": {
+     "n_positions": 8,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 2977.5146484375,
+     "cos_frozen_vs_own_gold_delta": 0.754982140208226
+    },
+    "Abraham Lincoln. Grant's": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Administratively": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "American Civil War": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Archipelago of San Bernardo": {
+     "n_positions": 13,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Capitol Hill": {
+     "n_positions": 4,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Capitol Reflecting Pool": {
+     "n_positions": 8,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Caribbean Sea": {
+     "n_positions": 4,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Colombia": {
+     "n_positions": 2,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Department": {
+     "n_positions": 4,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Franklin Delano Roosevelt": {
+     "n_positions": 20,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Franklin Delano Roosevelt Memorial": {
+     "n_positions": 15,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Funaafou": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Grant": {
+     "n_positions": 13,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Grant and Lincoln": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Grant's": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Gulf of Morrosquillo": {
+     "n_positions": 10,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Hains Point": {
+     "n_positions": 9,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Harbor Island": {
+     "n_positions": 11,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Harbor Island, Seattle": {
+     "n_positions": 9,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Hoffman Island": {
+     "n_positions": 7,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Lawrence Halprin": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Lincoln Memorial": {
+     "n_positions": 4,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Mall": {
+     "n_positions": 3,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Nanhai Pearl Artificial Island": {
+     "n_positions": 18,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Pennsylvania Avenue and Maryland Avenue": {
+     "n_positions": 10,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Presidential Memorial Commission of San Francisco": {
+     "n_positions": 19,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Roosevelt": {
+     "n_positions": 7,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Seattle": {
+     "n_positions": 4,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Spanish": {
+     "n_positions": 2,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Street": {
+     "n_positions": 2,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Sucre Department": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Ulysses S. Grant Memorial": {
+     "n_positions": 17,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Union": {
+     "n_positions": 4,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Union Square": {
+     "n_positions": 4,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "United States": {
+     "n_positions": 16,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "United States Capitol": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "United States President Ulysses S. Grant": {
+     "n_positions": 14,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Washington Channel": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Washington D.C": {
+     "n_positions": 8,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "HP_dev_1689",
+   "n_tokens": 1720,
+   "n_candidates": 40,
+   "gold_positions": 10,
+   "nongold_fired": [
+    "NFL Draft",
+    "Bears",
+    "Jr"
+   ],
+   "base_gauge_score": 19.568586170217774,
+   "deltas": {
+    "University of Texas at Austin": {
+     "n_positions": 10,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 3753.555419921875,
+     "cos_frozen_vs_own_gold_delta": 0.7569465130400604
+    },
+    "1963 Bowling Green Falcons football team": {
+     "n_positions": 27,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1963 Texas Longhorns football team": {
+     "n_positions": 27,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1976": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1977": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1980": {
+     "n_positions": 8,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1981": {
+     "n_positions": 16,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1983": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1984": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1989": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1990": {
+     "n_positions": 16,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1991": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1993": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1999": {
+     "n_positions": 16,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "All-American": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "American": {
+     "n_positions": 15,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Bears": {
+     "n_positions": 4,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Bowling Green Falcons": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Bowling Green State University": {
+     "n_positions": 8,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "December": {
+     "n_positions": 3,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Dickerson": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Eric Dickerson": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Jr": {
+     "n_positions": 4,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Lincoln Kennedy": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Longhorns": {
+     "n_positions": 14,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "MAC": {
+     "n_positions": 4,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Marc Bulger": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Marty Booker": {
+     "n_positions": 5,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Moe Gardner": {
+     "n_positions": 7,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "NFL": {
+     "n_positions": 19,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "NFL Draft": {
+     "n_positions": 16,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "National Football League": {
+     "n_positions": 27,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Orleans Saints": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Patrick Kerney": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Philadelphia Stars": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Scott Woerner": {
+     "n_positions": 8,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "September": {
+     "n_positions": 3,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Texas Longhorns": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Tommy Nobis": {
+     "n_positions": 9,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Woerner": {
+     "n_positions": 18,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "HP_dev_178",
+   "n_tokens": 850,
+   "n_candidates": 40,
+   "gold_positions": 16,
+   "nongold_fired": [
+    "January",
+    "Britons",
+    "British Overseas Territories"
+   ],
+   "base_gauge_score": -17.18268303676639,
+   "deltas": {
+    "Alistair Grant": {
+     "n_positions": 16,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 3951.56787109375,
+     "cos_frozen_vs_own_gold_delta": 0.8109918382498557
+    },
+    "1963": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Arild Nyquist": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Australian Referendum": {
+     "n_positions": 10,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Australian referendum, 1937": {
+     "n_positions": 16,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Basra": {
+     "n_positions": 4,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "British": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "British Overseas Territories": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "British people": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Britons": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Celtic Britons": {
+     "n_positions": 4,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Chawalit Kamutchati": {
+     "n_positions": 18,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Cornish": {
+     "n_positions": 2,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Croatian": {
+     "n_positions": 2,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Crown": {
+     "n_positions": 2,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "December": {
+     "n_positions": 2,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Earth": {
+     "n_positions": 2,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Emeritus Professor of Medical Materials": {
+     "n_positions": 10,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "FREng": {
+     "n_positions": 4,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "FRS": {
+     "n_positions": 4,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "French": {
+     "n_positions": 2,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Great Britain and Brittany": {
+     "n_positions": 8,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Iraq": {
+     "n_positions": 2,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "January": {
+     "n_positions": 2,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "June": {
+     "n_positions": 2,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Northern Irish": {
+     "n_positions": 4,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Norwegian": {
+     "n_positions": 2,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Paul M\u00e9fano": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Robin Bailie": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Robin John Bailie": {
+     "n_positions": 8,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Russian": {
+     "n_positions": 3,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Sir Matthew Alistair Grant": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Thai": {
+     "n_positions": 2,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Valentina Tereshkova": {
+     "n_positions": 11,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Valentina Vladimirovna Tereshkova": {
+     "n_positions": 16,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Vatroslav Ro\u017ei\u0107": {
+     "n_positions": 16,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Vostok": {
+     "n_positions": 4,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Welsh": {
+     "n_positions": 2,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "William Bonfield": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "William Bonfield CBE": {
+     "n_positions": 8,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "HP_dev_1803",
+   "n_tokens": 1903,
+   "n_candidates": 40,
+   "gold_positions": 12,
+   "nongold_fired": [
+    "Ossipee",
+    "Shropshire",
+    "U.S"
+   ],
+   "base_gauge_score": 26.97418863698912,
+   "deltas": {
+    "47,818": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 4139.25048828125,
+     "cos_frozen_vs_own_gold_delta": 0.7937176229033684
+    },
+    "1840": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1990": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "2000": {
+     "n_positions": 28,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "2011": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "2015": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "A488": {
+     "n_positions": 8,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Bishop's Castle": {
+     "n_positions": 8,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Carroll County, New Hampshire": {
+     "n_positions": 10,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Condover": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Ector County": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Hampshire": {
+     "n_positions": 7,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Hawaiian": {
+     "n_positions": 5,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Hope Township, New Jersey": {
+     "n_positions": 10,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Jersey": {
+     "n_positions": 10,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "July": {
+     "n_positions": 3,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Maryland": {
+     "n_positions": 4,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Milladore, Wisconsin": {
+     "n_positions": 8,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Minsterley": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Niihau": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "North Laurel": {
+     "n_positions": 10,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "North Laurel, Maryland": {
+     "n_positions": 8,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Ocean": {
+     "n_positions": 10,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Ocean County": {
+     "n_positions": 14,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Ocean County, New Jersey": {
+     "n_positions": 10,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Odessa": {
+     "n_positions": 10,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Odessa, Texas": {
+     "n_positions": 7,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Ossipee": {
+     "n_positions": 9,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Pontesbury": {
+     "n_positions": 9,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Portage County": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Rea Brook": {
+     "n_positions": 4,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Shrewsbury": {
+     "n_positions": 4,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Shropshire": {
+     "n_positions": 4,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Texas": {
+     "n_positions": 5,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "U.S": {
+     "n_positions": 9,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "United States": {
+     "n_positions": 28,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "United States Census": {
+     "n_positions": 18,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "United States Census Bureau": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Wisconsin": {
+     "n_positions": 4,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Wood County": {
+     "n_positions": 8,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "HP_dev_2536",
+   "n_tokens": 1583,
+   "n_candidates": 40,
+   "gold_positions": 10,
+   "nongold_fired": [
+    "1951",
+    "1967",
+    "Screen Actors Guild"
+   ],
+   "base_gauge_score": 5.821215378323813,
+   "deltas": {
+    "Marika Nicolette Green": {
+     "n_positions": 10,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 3983.01513671875,
+     "cos_frozen_vs_own_gold_delta": 0.7881489768992025
+    },
+    "1930": {
+     "n_positions": 8,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1933": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1951": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1959": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1967": {
+     "n_positions": 16,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1974": {
+     "n_positions": 20,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Alden Gay": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "American": {
+     "n_positions": 4,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Au Hasard Balthazar": {
+     "n_positions": 17,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Balthazar": {
+     "n_positions": 18,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Boston April": {
+     "n_positions": 4,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Broadway": {
+     "n_positions": 2,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Country Priest": {
+     "n_positions": 8,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Diary": {
+     "n_positions": 4,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Diary of a Country Priest": {
+     "n_positions": 15,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Dreamer": {
+     "n_positions": 8,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Emmanuelle": {
+     "n_positions": 18,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Emmanuelle (film)": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Four Nights of a Dreamer": {
+     "n_positions": 18,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "French": {
+     "n_positions": 11,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Guinevere in Robert Bresson's": {
+     "n_positions": 20,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Harry Mathews": {
+     "n_positions": 4,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "January": {
+     "n_positions": 4,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Jean Paul Leroux": {
+     "n_positions": 8,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Kenneth Thomson": {
+     "n_positions": 8,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Kenneth Thomson (actor)": {
+     "n_positions": 10,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Lancelot": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Laura Duke": {
+     "n_positions": 10,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Laura Duke Condominas": {
+     "n_positions": 15,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Marika Green": {
+     "n_positions": 9,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Mouchette": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Niki de Saint-Phalle and American": {
+     "n_positions": 18,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Pickpocket (film)": {
+     "n_positions": 10,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Risky Business": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Screen Actors Guild": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Thomson": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Thomsons": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Venezuelan": {
+     "n_positions": 9,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Venezuelan Film": {
+     "n_positions": 14,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "HP_dev_2680",
+   "n_tokens": 1430,
+   "n_candidates": 40,
+   "gold_positions": 10,
+   "nongold_fired": [
+    "Maine",
+    "Gerlach",
+    "Baileyville"
+   ],
+   "base_gauge_score": 17.104455476452504,
+   "deltas": {
+    "1,521": {
+     "n_positions": 10,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 4718.21875,
+     "cos_frozen_vs_own_gold_delta": 0.7979288945062893
+    },
+    "2008": {
+     "n_positions": 16,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "AM on October": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Alabama": {
+     "n_positions": 4,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Baileyville": {
+     "n_positions": 10,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Baileyville, Maine": {
+     "n_positions": 8,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Bay County": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "CDP": {
+     "n_positions": 22,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "California": {
+     "n_positions": 4,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Cedar Grove": {
+     "n_positions": 8,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Cedar Grove, Florida": {
+     "n_positions": 8,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Empire": {
+     "n_positions": 10,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Empire, Nevada": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Florence": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Florence (CDP), Wisconsin": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Florence County": {
+     "n_positions": 8,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Florida": {
+     "n_positions": 5,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Gerlach": {
+     "n_positions": 16,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Gerlach, Nevada": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Jacumba Hot Springs": {
+     "n_positions": 20,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Jacumba Hot Springs, California": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Long Lake": {
+     "n_positions": 14,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Long Lake (CDP), Wisconsin": {
+     "n_positions": 14,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Macedonia": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Macedonia, Alabama": {
+     "n_positions": 8,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Maine": {
+     "n_positions": 7,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Mineville, New York": {
+     "n_positions": 10,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Nevada": {
+     "n_positions": 8,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Nixon": {
+     "n_positions": 3,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "October": {
+     "n_positions": 4,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Pyramid Lake Paiute Tribe": {
+     "n_positions": 15,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Reno": {
+     "n_positions": 3,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Sparks Metropolitan Statistical Area. Prior": {
+     "n_positions": 20,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "United States": {
+     "n_positions": 22,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Washington County": {
+     "n_positions": 10,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Washoe County": {
+     "n_positions": 9,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Wisconsin": {
+     "n_positions": 8,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Woodland, Washington County, Maine": {
+     "n_positions": 13,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "York": {
+     "n_positions": 5,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "ZIP": {
+     "n_positions": 4,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "HP_dev_4128",
+   "n_tokens": 2370,
+   "n_candidates": 40,
+   "gold_positions": 24,
+   "nongold_fired": [
+    "Hurricane Bertha",
+    "Christmas 1994 nor'easter",
+    "December"
+   ],
+   "base_gauge_score": -3.8384699841366685,
+   "deltas": {
+    "1991 Perfect Storm": {
+     "n_positions": 24,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 2985.091796875,
+     "cos_frozen_vs_own_gold_delta": -0.03459802378272854
+    },
+    "1990": {
+     "n_positions": 20,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1991": {
+     "n_positions": 24,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "April": {
+     "n_positions": 5,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Arthur": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Atlantic Ocean": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "August": {
+     "n_positions": 9,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Bertha": {
+     "n_positions": 9,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Bijli": {
+     "n_positions": 16,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Bilji": {
+     "n_positions": 8,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Category": {
+     "n_positions": 3,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Christmas": {
+     "n_positions": 5,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Christmas 1994 nor'easter": {
+     "n_positions": 27,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Cyclone Bijli": {
+     "n_positions": 9,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "December": {
+     "n_positions": 3,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Delhi": {
+     "n_positions": 4,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Dinah": {
+     "n_positions": 20,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Florida": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Hurricane Arthur": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Hurricane Bertha": {
+     "n_positions": 8,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Hurricane Bertha (1990)": {
+     "n_positions": 16,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "JTWC": {
+     "n_positions": 8,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "July": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "June": {
+     "n_positions": 7,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "March": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "March 1969 nor'easter": {
+     "n_positions": 27,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "NWS": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "National Hurricane Center": {
+     "n_positions": 9,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "North Carolina": {
+     "n_positions": 10,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Nova Scotia": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "November": {
+     "n_positions": 7,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "November 2001 Atlantic Canada storm complex": {
+     "n_positions": 30,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Perfect Storm": {
+     "n_positions": 14,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "RSMC": {
+     "n_positions": 8,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Robert Case": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Subtropical Storm": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Subtropical Storm One (1974)": {
+     "n_positions": 20,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Typhoon Dinah": {
+     "n_positions": 14,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Typhoon Dinah (1987)": {
+     "n_positions": 20,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "United States": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "HP_dev_4338",
+   "n_tokens": 1377,
+   "n_candidates": 40,
+   "gold_positions": 8,
+   "nongold_fired": [
+    "Thomas F. Murphy",
+    "October",
+    "Pat Murphy"
+   ],
+   "base_gauge_score": -4.518757710708463,
+   "deltas": {
+    "Leatherheads": {
+     "n_positions": 8,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 3026.6005859375,
+     "cos_frozen_vs_own_gold_delta": 0.6556762125733244
+    },
+    "1925": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "2009": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "2016": {
+     "n_positions": 16,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Abbot of Iona Saint Eunan": {
+     "n_positions": 14,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "All-Ireland": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "American": {
+     "n_positions": 7,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Among": {
+     "n_positions": 3,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "April": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Bart Got a Room": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Cathedral": {
+     "n_positions": 2,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "County Donegal": {
+     "n_positions": 4,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Current Donegal": {
+     "n_positions": 4,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "December": {
+     "n_positions": 2,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Diocese of Raphoe": {
+     "n_positions": 8,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Donegal": {
+     "n_positions": 8,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Frank Little (bishop)": {
+     "n_positions": 10,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Gaelic": {
+     "n_positions": 2,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Glencar": {
+     "n_positions": 4,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Ireland. Located": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Irish": {
+     "n_positions": 7,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Irish Brigade": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Letterkenny": {
+     "n_positions": 4,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Michael Murphy": {
+     "n_positions": 4,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Named": {
+     "n_positions": 2,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "National Football League": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Neil Gallagher": {
+     "n_positions": 4,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "October": {
+     "n_positions": 2,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Ozark Sharks": {
+     "n_positions": 9,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Pat Murphy": {
+     "n_positions": 10,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Pat Murphy of Meagher's Brigade": {
+     "n_positions": 24,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Roman Catholic": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Room": {
+     "n_positions": 4,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Saint Eunan's College": {
+     "n_positions": 24,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Thomas F. Murphy": {
+     "n_positions": 8,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Thomas Francis McNamara. Noted": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Thomas Francis Murphy (actor)": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Thomas Murphy": {
+     "n_positions": 4,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Tommy Holmes": {
+     "n_positions": 4,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Tommy Kelly (actor)": {
+     "n_positions": 10,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "HP_dev_4345",
+   "n_tokens": 1316,
+   "n_candidates": 40,
+   "gold_positions": 24,
+   "nongold_fired": [
+    "Legoland Windsor",
+    "Johor",
+    "Tussauds Group"
+   ],
+   "base_gauge_score": 24.71741048978371,
+   "deltas": {
+    "Legoland Billund": {
+     "n_positions": 24,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 2844.441650390625,
+     "cos_frozen_vs_own_gold_delta": 0.8299547832465733
+    },
+    "2011": {
+     "n_positions": 16,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "2012": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Angry Beavers": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Animal Jam for Jim Henson Productions": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Asia": {
+     "n_positions": 3,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Crackers the Corporate Crime Fighting Chicken": {
+     "n_positions": 14,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Denmark": {
+     "n_positions": 4,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Discovery Channel": {
+     "n_positions": 4,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Germany": {
+     "n_positions": 3,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Iskandar Puteri": {
+     "n_positions": 8,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Japan": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "John A. Derevlany": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "John Derevlany": {
+     "n_positions": 8,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Johor": {
+     "n_positions": 4,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Legends of Chima": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Legoland Billund Resort": {
+     "n_positions": 10,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Legoland California": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Legoland Deutschland": {
+     "n_positions": 15,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Legoland Deutschland Resort": {
+     "n_positions": 8,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Legoland Discovery Centers. Derevlany": {
+     "n_positions": 16,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Legoland Discovery Centre": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Legoland Florida": {
+     "n_positions": 15,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Legoland Japan": {
+     "n_positions": 9,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Legoland Malaysia": {
+     "n_positions": 21,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Legoland Malaysia Resort": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Legoland Windsor": {
+     "n_positions": 9,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Malaysia": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Malaysia's": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Merlin Entertainments": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Michael Moore's TV Nation": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Miniland": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Nusa Cemerlang": {
+     "n_positions": 8,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "October": {
+     "n_positions": 3,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "September": {
+     "n_positions": 3,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Sultan Ibrahim Ismail": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Sultan of Johor": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "TV": {
+     "n_positions": 4,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "The Tussauds Group": {
+     "n_positions": 18,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Tussauds Group": {
+     "n_positions": 20,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "HP_dev_4464",
+   "n_tokens": 1682,
+   "n_candidates": 40,
+   "gold_positions": 6,
+   "nongold_fired": [
+    "Greenville",
+    "Government of Ghana",
+    "Ribeira Brava"
+   ],
+   "base_gauge_score": 22.296859052995302,
+   "deltas": {
+    "310": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 4364.44189453125,
+     "cos_frozen_vs_own_gold_delta": 0.75116366310577
+    },
+    "CDP": {
+     "n_positions": 3,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "California": {
+     "n_positions": 4,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Cape Verde": {
+     "n_positions": 10,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Crescent City and Crescent": {
+     "n_positions": 8,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Crescent Mills": {
+     "n_positions": 13,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Crescent Mills, California": {
+     "n_positions": 9,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Crescent Range": {
+     "n_positions": 13,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Eastern Region": {
+     "n_positions": 4,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Ghana Census Bureau": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Ghana. Somanya": {
+     "n_positions": 8,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Government of Ghana": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Greenville": {
+     "n_positions": 2,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Hampshire": {
+     "n_positions": 7,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Indiana": {
+     "n_positions": 5,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Males": {
+     "n_positions": 2,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Mount Crescent": {
+     "n_positions": 8,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Mount Vernon": {
+     "n_positions": 8,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Mount Vernon, Indiana": {
+     "n_positions": 8,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Nicolau": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Orange Walk Town": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Pedra Badejo": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Plumas County": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Population and Housing Census": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Randolph": {
+     "n_positions": 17,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Randolph Mountains": {
+     "n_positions": 4,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Randolph Mtn": {
+     "n_positions": 7,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Randolph's Ice Gulch Town Forest": {
+     "n_positions": 16,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Randolph, New Hampshire": {
+     "n_positions": 13,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Ribeira Brava": {
+     "n_positions": 9,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Santa Cruz": {
+     "n_positions": 14,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Santa Cruz (Santiago)": {
+     "n_positions": 10,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Santiago": {
+     "n_positions": 5,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Somanya": {
+     "n_positions": 18,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Tarrafal de S\u00e3o Nicolau, Cape Verde": {
+     "n_positions": 20,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "United States": {
+     "n_positions": 10,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "United States. Crescent Mills": {
+     "n_positions": 10,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "White Mountains": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "White Mountains in Randolph": {
+     "n_positions": 8,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Yilo Krobo District": {
+     "n_positions": 10,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "HP_dev_4544",
+   "n_tokens": 1768,
+   "n_candidates": 40,
+   "gold_positions": 27,
+   "nongold_fired": [
+    "Sports",
+    "SLS",
+    "SLS station"
+   ],
+   "base_gauge_score": 1.2193197901640815,
+   "deltas": {
+    "Las Vegas Boulevard": {
+     "n_positions": 27,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 2737.404541015625,
+     "cos_frozen_vs_own_gold_delta": 0.8007751569955446
+    },
+    "April": {
+     "n_positions": 3,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Casbar Theatre Lounge": {
+     "n_positions": 8,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Cashman Field": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Downtown Las Vegas": {
+     "n_positions": 9,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "El Rancho Vegas": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Guinness World Record": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Las Vegas Convention and Visitors Authority": {
+     "n_positions": 18,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Las Vegas Lights FC": {
+     "n_positions": 8,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Las Vegas Mayor Oscar Goodman": {
+     "n_positions": 10,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Las Vegas Monorail": {
+     "n_positions": 10,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Las Vegas Raiders": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Las Vegas Strip": {
+     "n_positions": 21,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Las Vegas Uncork'd": {
+     "n_positions": 21,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Las Vegas Valley": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Macau": {
+     "n_positions": 10,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Macau Tower": {
+     "n_positions": 11,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "May": {
+     "n_positions": 2,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Minor League Baseball": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "NFL": {
+     "n_positions": 2,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "NHL": {
+     "n_positions": 2,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "National Football League": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "National Hockey League": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Nevada": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Oakland Raiders": {
+     "n_positions": 4,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "SLS": {
+     "n_positions": 5,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "SLS station": {
+     "n_positions": 7,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Sahara": {
+     "n_positions": 10,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Sahara Hotel and Casino": {
+     "n_positions": 8,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Sahara Station": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Sports": {
+     "n_positions": 5,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Sports in the Las Vegas metropolitan area": {
+     "n_positions": 14,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Stratosphere Las Vegas": {
+     "n_positions": 16,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Triple-A Pacific Coast League": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Tropicana \u2013 Las Vegas Boulevard intersection": {
+     "n_positions": 22,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Trump International Hotel Las Vegas": {
+     "n_positions": 15,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "U.S": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "United Soccer League": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "United States": {
+     "n_positions": 8,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Vegas Golden Knights": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "HP_dev_4732",
+   "n_tokens": 1301,
+   "n_candidates": 40,
+   "gold_positions": 8,
+   "nongold_fired": [
+    "Inside the Third Reich",
+    "Internationally",
+    "Secret Diaries"
+   ],
+   "base_gauge_score": -3.541335319047727,
+   "deltas": {
+    "1968": {
+     "n_positions": 8,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 2078.843017578125,
+     "cos_frozen_vs_own_gold_delta": 0.6497732328481404
+    },
+    "1905": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1981": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Adolf Hitler": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Adolf Hitler's": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Albert Friedrich Speer": {
+     "n_positions": 16,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Albert Speer (play)": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Albert Speer Jr.": {
+     "n_positions": 15,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Alex Jennings": {
+     "n_positions": 4,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Alliance": {
+     "n_positions": 2,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "April": {
+     "n_positions": 2,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "British": {
+     "n_positions": 3,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "David Edgar": {
+     "n_positions": 4,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "English": {
+     "n_positions": 3,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "German": {
+     "n_positions": 16,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "German Nation": {
+     "n_positions": 8,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Gitta Sereny": {
+     "n_positions": 16,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Greater Germanic Reich": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Greens": {
+     "n_positions": 2,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Hilde Schramm": {
+     "n_positions": 17,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Hitler": {
+     "n_positions": 13,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Inside": {
+     "n_positions": 4,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Inside the Third Reich": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Internationally": {
+     "n_positions": 4,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Lyttelton": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "March": {
+     "n_positions": 3,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Nazi Germany": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Nazi Party": {
+     "n_positions": 4,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Nazi-era": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Reich": {
+     "n_positions": 14,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Royal National Theatre": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Rudolf Wolters": {
+     "n_positions": 10,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Secret Diaries": {
+     "n_positions": 8,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Spandau": {
+     "n_positions": 21,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Spandau Prison": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Spandau: The Secret Diaries": {
+     "n_positions": 21,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Speer and Hitler": {
+     "n_positions": 8,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Speer und Er": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Speer's": {
+     "n_positions": 28,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Wolters": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "HP_dev_4795",
+   "n_tokens": 2168,
+   "n_candidates": 40,
+   "gold_positions": 20,
+   "nongold_fired": [
+    "2007",
+    "Film Festival",
+    "Persian"
+   ],
+   "base_gauge_score": -15.615060671730655,
+   "deltas": {
+    "2011": {
+     "n_positions": 20,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 3278.70703125,
+     "cos_frozen_vs_own_gold_delta": 0.48963648566112034
+    },
+    "1997": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1998": {
+     "n_positions": 16,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "2005": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "2007": {
+     "n_positions": 16,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "2008": {
+     "n_positions": 20,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "2012": {
+     "n_positions": 28,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "2014": {
+     "n_positions": 16,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "2015": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "A Little Chaos": {
+     "n_positions": 9,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Alan Rickman": {
+     "n_positions": 9,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Asian": {
+     "n_positions": 2,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "August": {
+     "n_positions": 3,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "British": {
+     "n_positions": 7,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Busan International Film Festival": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Company Pictures": {
+     "n_positions": 8,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "European": {
+     "n_positions": 3,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Film Festival": {
+     "n_positions": 70,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Gardener": {
+     "n_positions": 4,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Greek": {
+     "n_positions": 3,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "January": {
+     "n_positions": 3,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Jonathan Miles": {
+     "n_positions": 8,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Jonathan Miles (filmmaker)": {
+     "n_positions": 14,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "L (film)": {
+     "n_positions": 8,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Little Chaos": {
+     "n_positions": 8,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "London": {
+     "n_positions": 3,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Meerkats": {
+     "n_positions": 18,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Mohsen Makhmalbaf": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Persian": {
+     "n_positions": 3,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Rupert's Land": {
+     "n_positions": 17,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Rupert's Land (film)": {
+     "n_positions": 15,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "SEOUL International Film Festival": {
+     "n_positions": 20,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "SEOUL International Women": {
+     "n_positions": 30,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Salmon Fishing": {
+     "n_positions": 10,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Salmon Fishing in the Yemen": {
+     "n_positions": 20,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Seoul International Women's Film Festival": {
+     "n_positions": 14,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "The Gardener (2012 film)": {
+     "n_positions": 18,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "The Meerkats": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Toronto International Film Festival": {
+     "n_positions": 16,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Yemen": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "HP_dev_51",
+   "n_tokens": 1617,
+   "n_candidates": 40,
+   "gold_positions": 10,
+   "nongold_fired": [
+    "2003",
+    "John A. Brown (department store)",
+    "French"
+   ],
+   "base_gauge_score": 7.172629003957589,
+   "deltas": {
+    "1,462": {
+     "n_positions": 10,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 3409.612548828125,
+     "cos_frozen_vs_own_gold_delta": 0.30017544983356165
+    },
+    "1995": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "2002": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "2003": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "2010": {
+     "n_positions": 16,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Brown": {
+     "n_positions": 9,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Carrefour": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Courtyard": {
+     "n_positions": 4,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Dayton-Hudson": {
+     "n_positions": 9,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "December": {
+     "n_positions": 5,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Disney Springs": {
+     "n_positions": 10,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Disney Springs Area": {
+     "n_positions": 9,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Estonia": {
+     "n_positions": 4,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Estonia. Selver": {
+     "n_positions": 8,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "February": {
+     "n_positions": 3,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Florida": {
+     "n_positions": 3,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "French": {
+     "n_positions": 4,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Holiday Inn": {
+     "n_positions": 16,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Holiday Inn Lake Buena Vista Downtown": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Holiday Inn Orlando": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Host Marriott Corporation": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Hotel Plaza Boulevard": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Howard Johnson's": {
+     "n_positions": 8,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "John A. Brown": {
+     "n_positions": 16,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "John A. Brown (department store)": {
+     "n_positions": 16,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Latvia": {
+     "n_positions": 3,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Lewis's": {
+     "n_positions": 21,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Liverpool": {
+     "n_positions": 3,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Marriott": {
+     "n_positions": 4,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "May": {
+     "n_positions": 2,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Sainsbury's": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "SavaCentre": {
+     "n_positions": 9,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Selver": {
+     "n_positions": 18,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Tallinn": {
+     "n_positions": 4,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Tallinn. Expansion": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Tallinna Kaubamaja": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Tazweed Center": {
+     "n_positions": 10,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Tesco Extra": {
+     "n_positions": 7,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Uno-X": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Walt Disney World Resort in Lake Buena Vista": {
+     "n_positions": 16,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "HP_dev_5786",
+   "n_tokens": 2094,
+   "n_candidates": 40,
+   "gold_positions": 4,
+   "nongold_fired": [
+    "Maryland",
+    "June",
+    "USS"
+   ],
+   "base_gauge_score": 2.5212005715927894,
+   "deltas": {
+    "Mercury Seven": {
+     "n_positions": 4,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 4353.23828125,
+     "cos_frozen_vs_own_gold_delta": 0.7678354612180383
+    },
+    "1942": {
+     "n_positions": 20,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1943": {
+     "n_positions": 20,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "2007": {
+     "n_positions": 20,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Alan Shepard": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "American": {
+     "n_positions": 7,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Andrew Carl Bennett": {
+     "n_positions": 9,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Commandant": {
+     "n_positions": 3,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Commanding Officer": {
+     "n_positions": 8,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "December": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Director": {
+     "n_positions": 5,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "FFG-26": {
+     "n_positions": 20,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "February": {
+     "n_positions": 4,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Fran McKee": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Gallery": {
+     "n_positions": 10,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Herbert J. Ray": {
+     "n_positions": 8,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Hispanic Admirals in the United States Navy": {
+     "n_positions": 24,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "James C. Van Sice": {
+     "n_positions": 18,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Jonathan W. Bailey": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Jr": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "July": {
+     "n_positions": 4,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "June": {
+     "n_positions": 5,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "March": {
+     "n_positions": 3,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Maryland": {
+     "n_positions": 4,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Moon Shot": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Naval War College": {
+     "n_positions": 9,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Navy": {
+     "n_positions": 17,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "November": {
+     "n_positions": 3,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Philip H. Greene": {
+     "n_positions": 20,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Philip H. Greene, Jr.": {
+     "n_positions": 28,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "September": {
+     "n_positions": 5,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Slayton": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Superintendent": {
+     "n_positions": 3,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "U.S. Navy": {
+     "n_positions": 15,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "USN": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "USS": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "USS Gallery (FFG-26)": {
+     "n_positions": 18,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "United States": {
+     "n_positions": 34,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "United States Navy": {
+     "n_positions": 21,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "World War I": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "HP_dev_6258",
+   "n_tokens": 1064,
+   "n_candidates": 40,
+   "gold_positions": 7,
+   "nongold_fired": [
+    "Genting Sempah\u2013Genting Highlands Highway",
+    "Genting Bhd",
+    "Tan Sri Mohammad Noah"
+   ],
+   "base_gauge_score": 19.97824196492447,
+   "deltas": {
+    "resort": {
+     "n_positions": 7,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 3325.755615234375,
+     "cos_frozen_vs_own_gold_delta": 0.6248456278820613
+    },
+    "2013": {
+     "n_positions": 20,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "2013 Genting Highlands bus crash": {
+     "n_positions": 27,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "20th Century Fox World (Malaysia)": {
+     "n_positions": 18,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "August": {
+     "n_positions": 2,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "B66": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Basically": {
+     "n_positions": 2,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Bentong": {
+     "n_positions": 4,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "C66": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Century Fox World": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Chin Swee Temple": {
+     "n_positions": 8,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Genting Berhad": {
+     "n_positions": 8,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Genting Bhd": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Genting Grand Hotel": {
+     "n_positions": 16,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Genting Group": {
+     "n_positions": 15,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Genting Group and Resorts World Bhd": {
+     "n_positions": 14,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Genting Highlands Highway": {
+     "n_positions": 28,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Genting Malaysia Berhad": {
+     "n_positions": 15,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Genting Sempah": {
+     "n_positions": 40,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Genting Sempah-Genting Highlands Highway": {
+     "n_positions": 20,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Genting Sempah\u2013Genting Highlands Highway": {
+     "n_positions": 40,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Highlands Hotel": {
+     "n_positions": 4,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Hotel Theme Park": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Jalan Batang Kali": {
+     "n_positions": 17,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Jalan Batang Kali\u2013Genting Highlands": {
+     "n_positions": 25,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Lim Kok Ho": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Malaysia's": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Malaysia. Along": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Masjid Yayasan Mohamed Noah": {
+     "n_positions": 11,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Maxims Hotel": {
+     "n_positions": 15,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Mohamed Noah Foundation Mosque": {
+     "n_positions": 13,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Muslims": {
+     "n_positions": 2,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Pahang": {
+     "n_positions": 16,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Resort Hotel and Maxims Hotel": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Resorts World Bhd": {
+     "n_positions": 15,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Resorts World Genting": {
+     "n_positions": 13,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Selangor": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Tan Sri Mohammad Noah": {
+     "n_positions": 8,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Tanah Tinggi Genting": {
+     "n_positions": 9,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "World Hotel": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "HP_dev_634",
+   "n_tokens": 1312,
+   "n_candidates": 40,
+   "gold_positions": 22,
+   "nongold_fired": [
+    "Armenian Golgotha",
+    "Apsley Cherry-Garrard",
+    "Jamie Zeppa"
+   ],
+   "base_gauge_score": 11.792194499727044,
+   "deltas": {
+    "Apsley George Benet Cherry-Garrard": {
+     "n_positions": 22,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 3971.343505859375,
+     "cos_frozen_vs_own_gold_delta": 0.7751040100741469
+    },
+    "1922": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1959": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "2010": {
+     "n_positions": 20,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Antoura": {
+     "n_positions": 10,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Apsley Cherry-Garrard": {
+     "n_positions": 32,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Armenian": {
+     "n_positions": 15,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Armenian Genocide": {
+     "n_positions": 10,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Armenian Golgotha": {
+     "n_positions": 13,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "BBC Television": {
+     "n_positions": 4,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Barry Letts": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Beyond the Sky": {
+     "n_positions": 15,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Beyond the Sky and Earth": {
+     "n_positions": 15,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Bhutan": {
+     "n_positions": 3,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Cherry-Garrard": {
+     "n_positions": 40,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Doctor": {
+     "n_positions": 2,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Earth": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Goodbye": {
+     "n_positions": 4,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Goodbye, Antoura": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Jamie Zeppa": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "January": {
+     "n_positions": 2,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Karnig Panian": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Kate McAll": {
+     "n_positions": 15,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Kate McAll for BBC Radio": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Lost Souls": {
+     "n_positions": 4,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Mark Meadows": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Mark Meadows (actor)": {
+     "n_positions": 10,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "May": {
+     "n_positions": 2,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Meadows": {
+     "n_positions": 5,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Men": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Moon": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Radio": {
+     "n_positions": 11,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Scott": {
+     "n_positions": 3,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Sherubtse College": {
+     "n_positions": 10,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Stitches (book)": {
+     "n_positions": 10,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Terra Nova Expedition": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "The First Men in the Moon (2010 film)": {
+     "n_positions": 26,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "The Worst Journey in the World (docudrama)": {
+     "n_positions": 22,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Trashigang": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Volume": {
+     "n_positions": 3,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "HP_dev_6400",
+   "n_tokens": 2186,
+   "n_candidates": 40,
+   "gold_positions": 16,
+   "nongold_fired": [
+    "2002",
+    "NHL 2K10",
+    "February"
+   ],
+   "base_gauge_score": -10.201859725703985,
+   "deltas": {
+    "17 October 2006": {
+     "n_positions": 16,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 21123.205078125,
+     "cos_frozen_vs_own_gold_delta": 0.5961391719114068
+    },
+    "2000": {
+     "n_positions": 20,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "2002": {
+     "n_positions": 20,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "2005": {
+     "n_positions": 16,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "2006": {
+     "n_positions": 32,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "2008": {
+     "n_positions": 16,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "2009": {
+     "n_positions": 16,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "2016": {
+     "n_positions": 16,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Activision": {
+     "n_positions": 4,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Bully": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Bully (video game)": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Dancing Stage Fusion": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "February": {
+     "n_positions": 4,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Fusion": {
+     "n_positions": 9,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Game Boy Advance": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "High Impact Games": {
+     "n_positions": 15,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Japan": {
+     "n_positions": 5,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Killzone": {
+     "n_positions": 18,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Killzone (series)": {
+     "n_positions": 10,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "King of Fighters": {
+     "n_positions": 21,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Konami": {
+     "n_positions": 8,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "NHL": {
+     "n_positions": 8,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "NHL 2K10": {
+     "n_positions": 24,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Nintendo": {
+     "n_positions": 7,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "November": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "October": {
+     "n_positions": 8,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "PAL": {
+     "n_positions": 3,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "PC": {
+     "n_positions": 4,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "PlayStation Portable": {
+     "n_positions": 18,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Pro Evolution Soccer": {
+     "n_positions": 21,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Pro Evolution Soccer 6": {
+     "n_positions": 20,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Sports": {
+     "n_positions": 3,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "The King of Fighters 2000": {
+     "n_positions": 27,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Tony Hawk's Pro Skater": {
+     "n_positions": 28,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Tony Hawk's Pro Skater 3": {
+     "n_positions": 27,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Ty the Tasmanian Tiger 3: Night of the Quinkan": {
+     "n_positions": 36,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Wii": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Winning Eleven": {
+     "n_positions": 8,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "World Soccer": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Xbox": {
+     "n_positions": 14,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "HP_dev_6617",
+   "n_tokens": 1755,
+   "n_candidates": 40,
+   "gold_positions": 14,
+   "nongold_fired": [
+    "Charlotte Riley",
+    "Anna Jobarteh",
+    "Flynn"
+   ],
+   "base_gauge_score": -0.43946134901508815,
+   "deltas": {
+    "Sarah Hurst in \"Easy Virtue\"": {
+     "n_positions": 14,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 4011.695068359375,
+     "cos_frozen_vs_own_gold_delta": 0.7721174917089882
+    },
+    "1981": {
+     "n_positions": 16,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1996": {
+     "n_positions": 20,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1997": {
+     "n_positions": 16,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "2001": {
+     "n_positions": 16,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "2009": {
+     "n_positions": 24,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "2010": {
+     "n_positions": 16,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Academy Award for Best Actress": {
+     "n_positions": 15,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Academy Award for Best Supporting Actress": {
+     "n_positions": 18,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Adam": {
+     "n_positions": 4,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Adam Ant": {
+     "n_positions": 4,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Amanda Donohoe": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Anna Jobarteh": {
+     "n_positions": 8,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Antmusic": {
+     "n_positions": 4,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Ants": {
+     "n_positions": 2,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "August": {
+     "n_positions": 3,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "BBC": {
+     "n_positions": 5,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "British": {
+     "n_positions": 5,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "C.J. Lamb": {
+     "n_positions": 10,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "CBBC": {
+     "n_positions": 8,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Charlotte Riley": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "December": {
+     "n_positions": 4,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Emily Atack": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Emmerdale": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Flynn": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Helena Bonham Carter": {
+     "n_positions": 13,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "ITV": {
+     "n_positions": 4,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Jane Cox": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Janet McTeer": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "June": {
+     "n_positions": 2,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Kathryn Drysdale": {
+     "n_positions": 10,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Liar": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Michael Wynne": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Play": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Shannon Flynn": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Stand and Deliver": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Supporting Role": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "TV": {
+     "n_positions": 3,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "The Priory (play)": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Waterloo Road": {
+     "n_positions": 8,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "HP_dev_7073",
+   "n_tokens": 1646,
+   "n_candidates": 40,
+   "gold_positions": 8,
+   "nongold_fired": [
+    "Criterion",
+    "Concurrent",
+    "Center for Organizational Research and Education"
+   ],
+   "base_gauge_score": 15.625565699247556,
+   "deltas": {
+    "Rachel Anne Maddow": {
+     "n_positions": 8,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 2527.301513671875,
+     "cos_frozen_vs_own_gold_delta": 0.4915944365320941
+    },
+    "2009": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "2014": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "2016": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "ABS": {
+     "n_positions": 3,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "American": {
+     "n_positions": 7,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "American Bladesmith Society": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "April": {
+     "n_positions": 2,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "August": {
+     "n_positions": 4,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Brown Association for Cooperative Housing": {
+     "n_positions": 15,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "CRP": {
+     "n_positions": 5,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "California": {
+     "n_positions": 9,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "California Reentry Program": {
+     "n_positions": 16,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "California. WAMM": {
+     "n_positions": 8,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Cambridge": {
+     "n_positions": 2,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Center for Consumer Freedom": {
+     "n_positions": 8,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Center for Organizational Research and Education": {
+     "n_positions": 18,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Concurrent": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Criterion": {
+     "n_positions": 5,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Criterion validity": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Endowment": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Endowment tax": {
+     "n_positions": 7,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Grade": {
+     "n_positions": 10,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "International School": {
+     "n_positions": 10,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "MIT": {
+     "n_positions": 2,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "MSA": {
+     "n_positions": 3,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Massachusetts": {
+     "n_positions": 2,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Men's Alliance for Medical Marijuana": {
+     "n_positions": 28,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Michael Corral. Members": {
+     "n_positions": 8,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "New International School (Tokyo)": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "NewIS": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Rachel Maddow": {
+     "n_positions": 9,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "San Quentin": {
+     "n_positions": 10,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Santa Cruz": {
+     "n_positions": 4,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Tokyo": {
+     "n_positions": 5,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Ujamaa Place": {
+     "n_positions": 20,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Valerie Leveroni Corral": {
+     "n_positions": 8,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "WAMM": {
+     "n_positions": 10,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Wo": {
+     "n_positions": 4,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Wo/Men's Alliance for Medical Marijuana": {
+     "n_positions": 27,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "HP_dev_7193",
+   "n_tokens": 1192,
+   "n_candidates": 40,
+   "gold_positions": 16,
+   "nongold_fired": [
+    "July",
+    "Baku",
+    "March"
+   ],
+   "base_gauge_score": 1.1896297777116163,
+   "deltas": {
+    "Anatoly Vasilyevich Lunacharsky": {
+     "n_positions": 16,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 3371.1796875,
+     "cos_frozen_vs_own_gold_delta": 0.6974668575567305
+    },
+    "1909": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1928": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1937": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1938": {
+     "n_positions": 16,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Aleksandra Lvovna Sokolovskaya": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Aleksandra Sokolovskaya": {
+     "n_positions": 10,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Alexander Bogdanov": {
+     "n_positions": 9,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Anatoly Lunacharsky": {
+     "n_positions": 19,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Apollinariya Yakubova": {
+     "n_positions": 19,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Baku": {
+     "n_positions": 2,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Bandi Sailu": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "December": {
+     "n_positions": 3,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Emancipation": {
+     "n_positions": 4,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Fateful Struggle": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "February": {
+     "n_positions": 2,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Geneva": {
+     "n_positions": 2,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Great Purges": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "July": {
+     "n_positions": 3,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "League of Struggle": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Leon Trotsky's": {
+     "n_positions": 8,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "March": {
+     "n_positions": 3,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Martemyan Ryutin": {
+     "n_positions": 10,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Matvey Ivanovich Skobelev": {
+     "n_positions": 14,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Matvey Skobelev": {
+     "n_positions": 10,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Moscow": {
+     "n_positions": 2,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "November": {
+     "n_positions": 4,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "O.S": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Red Cross": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Russian Social Democracy": {
+     "n_positions": 9,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Sergey Yustinovich Bagotsky": {
+     "n_positions": 22,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Soviet": {
+     "n_positions": 8,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Soviet People's Commissar of Education": {
+     "n_positions": 16,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Vladimir Alexandrovich Bazarov": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Vladimir Alexandrovich Rudnev. Bazarov": {
+     "n_positions": 18,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Vladimir Bazarov": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Vladimir Lenin": {
+     "n_positions": 4,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Vy": {
+     "n_positions": 2,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "You Fell Victim": {
+     "n_positions": 15,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "You Fell Victim to a Fateful Struggle": {
+     "n_positions": 24,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "HP_dev_803",
+   "n_tokens": 2329,
+   "n_candidates": 40,
+   "gold_positions": 6,
+   "nongold_fired": [
+    "1966",
+    "Oscars",
+    "2013"
+   ],
+   "base_gauge_score": 10.955258893520517,
+   "deltas": {
+    "WB Television Network": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 4158.74560546875,
+     "cos_frozen_vs_own_gold_delta": 0.49968010501303267
+    },
+    "1966": {
+     "n_positions": 16,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1997": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "2007": {
+     "n_positions": 24,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "2009": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "2011": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "2013": {
+     "n_positions": 16,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "2014": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "2016": {
+     "n_positions": 16,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "ABC": {
+     "n_positions": 3,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Academy Award-winning": {
+     "n_positions": 8,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Afghan": {
+     "n_positions": 3,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "April": {
+     "n_positions": 2,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Arab": {
+     "n_positions": 4,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Arabic": {
+     "n_positions": 4,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Belgian": {
+     "n_positions": 3,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Ben": {
+     "n_positions": 5,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Ben Johnson": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Ben Johnson (actor)": {
+     "n_positions": 10,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Buffy the Vampire Slayer": {
+     "n_positions": 14,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Egypt": {
+     "n_positions": 8,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "England": {
+     "n_positions": 3,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "English": {
+     "n_positions": 7,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Johnson": {
+     "n_positions": 9,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Josquin Des Pres": {
+     "n_positions": 20,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Josquin Des Pres (20th century musician)": {
+     "n_positions": 22,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Jr": {
+     "n_positions": 2,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "June": {
+     "n_positions": 3,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Kal Naga": {
+     "n_positions": 6,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "NBC": {
+     "n_positions": 3,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Oscars": {
+     "n_positions": 4,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Qurban Ali Mirzaee": {
+     "n_positions": 15,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Schalkse Ruiters": {
+     "n_positions": 18,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "September": {
+     "n_positions": 3,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Son": {
+     "n_positions": 3,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Time for Terry": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Tuff TV": {
+     "n_positions": 21,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Tuff TV Network": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "U.S. TV": {
+     "n_positions": 25,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "Youtoo America": {
+     "n_positions": 12,
+     "mean_position_norm": 3632.1704787671156,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  }
+ ],
+ "seconds": 2090
+}
