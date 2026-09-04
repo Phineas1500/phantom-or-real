@@ -4785,3 +4785,22 @@ seeded non-gold, seed 20260916: XA job-eb56t (55 rows, 30 WikiHop
 donors), XB job-sbr5w (65, 29). Fake-model dry run (1 row) under the
 instruction: 202-token prompt, gold 10 write positions, 10 branches, no
 skips, text and rung arms present.]
+
+**WJ LANDED 2026-09-04 18:40 UTC (L20 job-b55u4 $1.11, L25 job-s9fu3
+$1.08, L30 job-gjr8y $1.06; $3.25).** 40 repairable + 40 unrepairable
+NQ-Swap conflict rows outside both blind draws, WikiHop XA donors, loop
+also run (see the launch note). Depth wins go to L30 at every dose on
+the conflict regime — the reverse of WikiHop's L25 peak (WY):
+repairable-row gold rate **L30 × 1× 0.675 / L30 × 2× 0.637** (dP +0.588
+[+0.444, +0.734] / +0.550 [+0.400, +0.700]; specificity +0.585 / +0.548)
+vs L25 × 2× 0.544 and L20 × 2× 0.412; paired against L30 × 2×: L30 × 1×
++0.037 [−0.056, +0.131] (tie), L25 × 2× −0.094 [−0.250, +0.044], L20 ×
+2× −0.225 [−0.400, −0.050], L30 × 3× −0.150 [−0.256, −0.056]. **Reach on
+hint-unrepairable rows is highest at L30 × 2×: 0.256 [0.138, 0.388]**
+(1× 0.138, 3× 0.163, L25 ≤ 0.10, L20 ≤ 0.075) — the write moves a
+quarter of the rows the text hint cannot. The loop's output vote at each
+layer (unplanned descriptive, always-answer on the same rows): L30 0.200
+vs L25 0.106 vs L20 0.125 on repairable rows. Reading: the recipe of
+WK/WK′/WS (L30 × 2×) is the right setting for the conflict regime; no
+candidate for a registered confirmation. Lever closed. Reader
+`scripts/wikihop_wj_gates.py` → docs/wikihop_wj_gates.json.
