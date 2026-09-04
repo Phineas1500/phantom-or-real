@@ -4597,3 +4597,29 @@ pins name, WS stage-2 input, real-text L38 gauge), seed 20260904: XA
 job-xehsu (64 rows, 30 WikiHop donors), XB job-rf6wz (56 rows, 29). The
 registered arm only; the own-donor rider is not run (14 donors per
 half, below 20).]
+
+**WS LANDED 2026-09-04 14:15 UTC (XA job-xehsu $0.55, XB job-rf6wz
+$0.52; WS total $1.68 over 3 jobs; WK′ + WS $5.07 over 7 jobs).** 120
+blind counterfactual-SQuAD rows, baseline 0.635, 1,682 branches,
+delivery valid everywhere. **30th registered prediction CONFIRMED —
+GROUNDED-TWO-STAGE-HELPS-BLIND on a second conflict frame: +0.033
+[+0.008, +0.067]** with the WikiHop vector (4 rows improved, 0 harmed;
+acts on 8% of rows; frame accuracy 0.635 → 0.669; none of the 76
+correct rows touched). Riders: oracle two-stage +0.078 [+0.035, +0.128]
+(10 / 0); always-answer −0.025 [−0.087, +0.034] (collateral on correct
+rows −0.113); abstention +0.007 [0.000, +0.020] (2 / 0). Strata
+(grounded): repairable conflict failures **+0.364 [+0.091, +0.636]**,
+unrepairable 0, other failures 0, correct 0. Write on the 11 repairable
+rows in the draw: WikiHop vector 2× **+0.716 [+0.466, +0.932]**,
+specificity +0.557, text hint 1.0. The detector flags 6/11 repairable,
+4/14 unrepairable, 2/19 other failures, 0/76 correct rows on this frame.
+**Verdict for WK′ + WS: GROUNDED-TWO-STAGE-HELPS-BLIND, confirmed twice
+(fresh draw of the same frame; a second construction with different
+passages) with one frozen vector fit on another task, a label-free
+detector, and no row harmed in 240 rows.** The rule's reach is bounded
+by the detector: it fires only when the model answers from outside the
+passage (≥ 96% of failures on the multi-candidate reading frames are
+grounded, so there it reduces to the baseline). Program tally: **30
+registered predictions — 25 confirmed, 4 not (13th, 14th, 19th, 28th),
+1 intermediate (27th); ≈ $134 across 127 jobs.** Summary
+docs/wikihop_wkprime_ws_summary.md.
