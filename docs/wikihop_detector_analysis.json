@@ -1,0 +1,816 @@
+{
+ "frames": {
+  "WD": {
+   "n_rows": 207,
+   "strata": {
+    "repairable": 47,
+    "unrepairable": 100,
+    "correct": 60
+   },
+   "gauge_keys": {
+    "primary_L38": 207,
+    "primary_L43": 207,
+    "primary_L48": 207,
+    "primary_L53": 207,
+    "second_L38": 207
+   }
+  },
+  "WE": {
+   "n_rows": 219,
+   "strata": {
+    "repairable": 59,
+    "unrepairable": 100,
+    "correct": 60
+   },
+   "gauge_keys": {
+    "primary_L38": 160,
+    "primary_L43": 160,
+    "primary_L48": 160,
+    "primary_L53": 160,
+    "second_L48": 160
+   }
+  }
+ },
+ "auroc": {
+  "WD": {
+   "gauge_main": 0.8111103526734923,
+   "gauge_real": 0.7692810011376561,
+   "sc_share": 0.5300767918088736,
+   "sc_distinct": 0.5297400455062571,
+   "cb_agree": 0.5631825938566551,
+   "cb_share": 0.5247690557451643,
+   "in_docs": 0.5101023890784983,
+   "in_cands": 0.5430375426621158,
+   "log_n_cands": 0.752469283276451,
+   "af_base": 0.5520034129692828,
+   "af_max_other": 0.6020648464163824,
+   "af_margin": 0.6235153583617745,
+   "n_top_tied": 0.5742576791808875
+  },
+  "WE": {
+   "gauge_main": 0.793205917874396,
+   "gauge_real": 0.793205917874396,
+   "sc_share": 0.5304945652173916,
+   "sc_distinct": 0.5295978260869565,
+   "cb_agree": 0.6042249396135264,
+   "cb_share": 0.5054311594202902,
+   "in_docs": 0.5036231884057971,
+   "in_cands": 0.5477536231884059,
+   "log_n_cands": 0.6570543478260868,
+   "af_base": 0.5803399758454107,
+   "af_max_other": 0.5301068840579712,
+   "af_margin": 0.5795778985507245,
+   "n_top_tied": 0.5008010265700482
+  }
+ },
+ "detectors": [
+  {
+   "frame": "WD",
+   "detector": "gauge<0 (two-stage baseline)",
+   "flag_rates": {
+    "repairable": 0.574468085106383,
+    "unrepairable": 0.69,
+    "correct": 0.21666666666666667
+   },
+   "yield_weighted_answer": 0.10186006825938568,
+   "collateral_answer": -0.1,
+   "frame_net_answer": 0.023165680473372786,
+   "frame_net_answer_ci": [
+    -0.01667250164365549,
+    0.061266436554898086
+   ],
+   "frame_net_abstain": 0.025361604207758053,
+   "oracle_answer": 0.10391518737672582,
+   "oracle_abstain": 0.07661735700197238,
+   "oracle_repairable_only": 0.050542406311637075,
+   "extra": null
+  },
+  {
+   "frame": "WD",
+   "detector": "oracle repairable-only flag",
+   "flag_rates": {
+    "repairable": 1.0,
+    "unrepairable": 0.0,
+    "correct": 0.0
+   },
+   "yield_weighted_answer": 0.08745733788395904,
+   "collateral_answer": 0.0,
+   "frame_net_answer": 0.050542406311637075,
+   "frame_net_answer_ci": [
+    0.03673570019723866,
+    0.0636094674556213
+   ],
+   "frame_net_abstain": 0.042652859960552264,
+   "oracle_answer": 0.10391518737672582,
+   "oracle_abstain": 0.07661735700197238,
+   "oracle_repairable_only": 0.050542406311637075,
+   "extra": null
+  },
+  {
+   "frame": "WD",
+   "detector": "baseline-only \u2192 fail \u00b7 cross-frame fit on WE, \u03c4*=0.8 chosen there",
+   "flag_rates": {
+    "repairable": 0.23404255319148937,
+    "unrepairable": 0.12,
+    "correct": 0.0
+   },
+   "yield_weighted_answer": 0.04907849829351535,
+   "collateral_answer": 0.0,
+   "frame_net_answer": 0.028362919132149892,
+   "frame_net_answer_ci": [
+    0.011834319526627217,
+    0.04883629191321499
+   ],
+   "frame_net_abstain": 0.01956607495069033,
+   "oracle_answer": 0.10391518737672582,
+   "oracle_abstain": 0.07661735700197238,
+   "oracle_repairable_only": 0.050542406311637075,
+   "extra": {
+    "coef": {
+     "gauge_main": -0.594,
+     "gauge_real": -0.594,
+     "sc_share": -1.422,
+     "sc_distinct": -0.948,
+     "cb_agree": -0.109,
+     "cb_share": -0.035,
+     "in_docs": -0.115,
+     "in_cands": -1.034,
+     "log_n_cands": 0.065
+    },
+    "auroc": 0.8547906712172928,
+    "tau": 0.8
+   }
+  },
+  {
+   "frame": "WD",
+   "detector": "baseline-only \u2192 fail \u00b7 within-frame 5-fold, \u03c4=0.5",
+   "flag_rates": {
+    "repairable": 0.7872340425531915,
+    "unrepairable": 0.84,
+    "correct": 0.36666666666666664
+   },
+   "yield_weighted_answer": 0.14752559726962458,
+   "collateral_answer": -0.13333333333333333,
+   "frame_net_answer": 0.03765614727153189,
+   "frame_net_answer_ci": [
+    -0.00466995397764628,
+    0.08343006245890865
+   ],
+   "frame_net_abstain": 0.03215318869165022,
+   "oracle_answer": 0.10391518737672582,
+   "oracle_abstain": 0.07661735700197238,
+   "oracle_repairable_only": 0.050542406311637075,
+   "extra": {
+    "auroc": 0.8291695108077364
+   }
+  },
+  {
+   "frame": "WD",
+   "detector": "baseline-only \u2192 fail \u00b7 within-frame 5-fold, best \u03c4=0.65 (optimistic)",
+   "flag_rates": {
+    "repairable": 0.6595744680851063,
+    "unrepairable": 0.74,
+    "correct": 0.26666666666666666
+   },
+   "yield_weighted_answer": 0.1323037542662116,
+   "collateral_answer": -0.1,
+   "frame_net_answer": 0.0407593688362919,
+   "frame_net_answer_ci": [
+    0.0004601413543721212,
+    0.08155054240631163
+   ],
+   "frame_net_abstain": 0.03415844838921761,
+   "oracle_answer": 0.10391518737672582,
+   "oracle_abstain": 0.07661735700197238,
+   "oracle_repairable_only": 0.050542406311637075,
+   "extra": {
+    "tau": 0.65
+   }
+  },
+  {
+   "frame": "WD",
+   "detector": "baseline+loop \u2192 fail \u00b7 cross-frame fit on WE, \u03c4*=0.85 chosen there",
+   "flag_rates": {
+    "repairable": 0.2978723404255319,
+    "unrepairable": 0.18,
+    "correct": 0.016666666666666666
+   },
+   "yield_weighted_answer": 0.05747440273037542,
+   "collateral_answer": -0.016666666666666666,
+   "frame_net_answer": 0.02726495726495726,
+   "frame_net_answer_ci": [
+    0.003911078238001315,
+    0.05171597633136094
+   ],
+   "frame_net_abstain": 0.01956607495069033,
+   "oracle_answer": 0.10391518737672582,
+   "oracle_abstain": 0.07661735700197238,
+   "oracle_repairable_only": 0.050542406311637075,
+   "extra": {
+    "coef": {
+     "gauge_main": -0.613,
+     "gauge_real": -0.613,
+     "sc_share": -1.475,
+     "sc_distinct": -1.344,
+     "cb_agree": -0.193,
+     "cb_share": 0.025,
+     "in_docs": -0.378,
+     "in_cands": -0.666,
+     "log_n_cands": 0.119,
+     "af_base": -1.086,
+     "af_max_other": -0.833,
+     "af_margin": -0.021,
+     "n_top_tied": 1.026
+    },
+    "auroc": 0.8166757679180892,
+    "tau": 0.85
+   }
+  },
+  {
+   "frame": "WD",
+   "detector": "baseline+loop \u2192 fail \u00b7 within-frame 5-fold, \u03c4=0.5",
+   "flag_rates": {
+    "repairable": 0.8085106382978723,
+    "unrepairable": 0.84,
+    "correct": 0.4
+   },
+   "yield_weighted_answer": 0.14752559726962458,
+   "collateral_answer": -0.15,
+   "frame_net_answer": 0.031706114398422094,
+   "frame_net_answer_ci": [
+    -0.01383522353714661,
+    0.0777956114398422
+   ],
+   "frame_net_abstain": 0.02620315581854043,
+   "oracle_answer": 0.10391518737672582,
+   "oracle_abstain": 0.07661735700197238,
+   "oracle_repairable_only": 0.050542406311637075,
+   "extra": {
+    "auroc": 0.8175244596131972
+   }
+  },
+  {
+   "frame": "WD",
+   "detector": "baseline+loop \u2192 fail \u00b7 within-frame 5-fold, best \u03c4=0.6 (optimistic)",
+   "flag_rates": {
+    "repairable": 0.723404255319149,
+    "unrepairable": 0.79,
+    "correct": 0.3
+   },
+   "yield_weighted_answer": 0.14752559726962458,
+   "collateral_answer": -0.11666666666666667,
+   "frame_net_answer": 0.04360618014464169,
+   "frame_net_answer_ci": [
+    0.0005313938198553553,
+    0.08552736686390533
+   ],
+   "frame_net_abstain": 0.03215318869165022,
+   "oracle_answer": 0.10391518737672582,
+   "oracle_abstain": 0.07661735700197238,
+   "oracle_repairable_only": 0.050542406311637075,
+   "extra": {
+    "tau": 0.6
+   }
+  },
+  {
+   "frame": "WD",
+   "detector": "baseline-only \u2192 rep \u00b7 cross-frame fit on WE, \u03c4*=0.15 chosen there",
+   "flag_rates": {
+    "repairable": 0.10638297872340426,
+    "unrepairable": 0.1,
+    "correct": 0.0
+   },
+   "yield_weighted_answer": 0.03044368600682594,
+   "collateral_answer": 0.0,
+   "frame_net_answer": 0.017593688362919132,
+   "frame_net_answer_ci": [
+    0.003944773175542406,
+    0.034122287968441814
+   ],
+   "frame_net_abstain": 0.008796844181459566,
+   "oracle_answer": 0.10391518737672582,
+   "oracle_abstain": 0.07661735700197238,
+   "oracle_repairable_only": 0.050542406311637075,
+   "extra": {
+    "coef": {
+     "gauge_main": -0.192,
+     "gauge_real": -0.192,
+     "sc_share": -0.304,
+     "sc_distinct": -0.225,
+     "cb_agree": -0.07,
+     "cb_share": 0.324,
+     "in_docs": -0.502,
+     "in_cands": -0.25,
+     "log_n_cands": 0.175
+    },
+    "auroc": 0.5479185144584511,
+    "tau": 0.15
+   }
+  },
+  {
+   "frame": "WD",
+   "detector": "baseline-only \u2192 rep \u00b7 within-frame 5-fold, \u03c4=0.5",
+   "flag_rates": {
+    "repairable": 0.02127659574468085,
+    "unrepairable": 0.03,
+    "correct": 0.0
+   },
+   "yield_weighted_answer": 0.011808873720136519,
+   "collateral_answer": 0.0,
+   "frame_net_answer": 0.006824457593688362,
+   "frame_net_answer_ci": [
+    0.0,
+    0.01850098619329388
+   ],
+   "frame_net_abstain": 0.006824457593688362,
+   "oracle_answer": 0.10391518737672582,
+   "oracle_abstain": 0.07661735700197238,
+   "oracle_repairable_only": 0.050542406311637075,
+   "extra": {
+    "auroc": 0.627588154201338
+   }
+  },
+  {
+   "frame": "WD",
+   "detector": "baseline-only \u2192 rep \u00b7 within-frame 5-fold, best \u03c4=0.2 (optimistic)",
+   "flag_rates": {
+    "repairable": 0.19148936170212766,
+    "unrepairable": 0.1,
+    "correct": 0.016666666666666666
+   },
+   "yield_weighted_answer": 0.04225255972696246,
+   "collateral_answer": 0.0,
+   "frame_net_answer": 0.024418145956607493,
+   "frame_net_answer_ci": [
+    0.007889546351084811,
+    0.04382642998027613
+   ],
+   "frame_net_abstain": 0.017593688362919132,
+   "oracle_answer": 0.10391518737672582,
+   "oracle_abstain": 0.07661735700197238,
+   "oracle_repairable_only": 0.050542406311637075,
+   "extra": {
+    "tau": 0.2
+   }
+  },
+  {
+   "frame": "WD",
+   "detector": "baseline+loop \u2192 rep \u00b7 cross-frame fit on WE, \u03c4*=0.25 chosen there",
+   "flag_rates": {
+    "repairable": 0.14893617021276595,
+    "unrepairable": 0.14,
+    "correct": 0.016666666666666666
+   },
+   "yield_weighted_answer": 0.01522184300341297,
+   "collateral_answer": -0.016666666666666666,
+   "frame_net_answer": 0.0028468113083497696,
+   "frame_net_answer_ci": [
+    -0.013905325443786982,
+    0.018468113083497696
+   ],
+   "frame_net_abstain": 0.0,
+   "oracle_answer": 0.10391518737672582,
+   "oracle_abstain": 0.07661735700197238,
+   "oracle_repairable_only": 0.050542406311637075,
+   "extra": {
+    "coef": {
+     "gauge_main": -0.185,
+     "gauge_real": -0.185,
+     "sc_share": -0.447,
+     "sc_distinct": -1.077,
+     "cb_agree": -0.02,
+     "cb_share": 0.364,
+     "in_docs": -1.206,
+     "in_cands": 0.246,
+     "log_n_cands": 0.156,
+     "af_base": -0.722,
+     "af_max_other": -0.182,
+     "af_margin": -0.28,
+     "n_top_tied": 0.791
+    },
+    "auroc": 0.6535175311840811,
+    "tau": 0.25
+   }
+  },
+  {
+   "frame": "WD",
+   "detector": "baseline+loop \u2192 rep \u00b7 within-frame 5-fold, \u03c4=0.5",
+   "flag_rates": {
+    "repairable": 0.02127659574468085,
+    "unrepairable": 0.04,
+    "correct": 0.016666666666666666
+   },
+   "yield_weighted_answer": 0.020204778156996585,
+   "collateral_answer": 0.0,
+   "frame_net_answer": 0.01167652859960552,
+   "frame_net_answer_ci": [
+    0.0,
+    0.026232741617357003
+   ],
+   "frame_net_abstain": 0.006824457593688362,
+   "oracle_answer": 0.10391518737672582,
+   "oracle_abstain": 0.07661735700197238,
+   "oracle_repairable_only": 0.050542406311637075,
+   "extra": {
+    "auroc": 0.7322532263690265
+   }
+  },
+  {
+   "frame": "WD",
+   "detector": "baseline+loop \u2192 rep \u00b7 within-frame 5-fold, best \u03c4=0.1 (optimistic)",
+   "flag_rates": {
+    "repairable": 0.7021276595744681,
+    "unrepairable": 0.33,
+    "correct": 0.21666666666666667
+   },
+   "yield_weighted_answer": 0.16459044368600684,
+   "collateral_answer": -0.2,
+   "frame_net_answer": 0.023717948717948717,
+   "frame_net_answer_ci": [
+    -0.02395553911900065,
+    0.07119740302432609
+   ],
+   "frame_net_abstain": 0.016242603550295845,
+   "oracle_answer": 0.10391518737672582,
+   "oracle_abstain": 0.07661735700197238,
+   "oracle_repairable_only": 0.050542406311637075,
+   "extra": {
+    "tau": 0.1
+   }
+  },
+  {
+   "frame": "WE",
+   "detector": "gauge<0 (two-stage baseline)",
+   "flag_rates": {
+    "repairable": 0.7966101694915254,
+    "unrepairable": 0.81,
+    "correct": 0.3333333333333333
+   },
+   "yield_weighted_answer": 0.06644927536231884,
+   "collateral_answer": -0.09791666666666667,
+   "frame_net_answer": -0.02260625,
+   "frame_net_answer_ci": [
+    -0.06104015624999999,
+    0.011174999999999997
+   ],
+   "frame_net_abstain": -0.03803125,
+   "oracle_answer": 0.029281250000000005,
+   "oracle_abstain": 0.012606250000000001,
+   "oracle_repairable_only": 0.022500000000000003,
+   "extra": null
+  },
+  {
+   "frame": "WE",
+   "detector": "oracle repairable-only flag",
+   "flag_rates": {
+    "repairable": 1.0,
+    "unrepairable": 0.0,
+    "correct": 0.0
+   },
+   "yield_weighted_answer": 0.06521739130434784,
+   "collateral_answer": 0.0,
+   "frame_net_answer": 0.022500000000000003,
+   "frame_net_answer_ci": [
+    0.01375,
+    0.031249999999999997
+   ],
+   "frame_net_abstain": 0.011250000000000001,
+   "oracle_answer": 0.029281250000000005,
+   "oracle_abstain": 0.012606250000000001,
+   "oracle_repairable_only": 0.022500000000000003,
+   "extra": null
+  },
+  {
+   "frame": "WE",
+   "detector": "baseline-only \u2192 fail \u00b7 cross-frame fit on WD, \u03c4*=0.65 chosen there",
+   "flag_rates": {
+    "repairable": 0.7796610169491526,
+    "unrepairable": 0.83,
+    "correct": 0.35
+   },
+   "yield_weighted_answer": 0.07007246376811593,
+   "collateral_answer": -0.11458333333333333,
+   "frame_net_answer": -0.029106250000000007,
+   "frame_net_answer_ci": [
+    -0.07007765625000001,
+    0.005965937500000012
+   ],
+   "frame_net_abstain": -0.04578125,
+   "oracle_answer": 0.029281250000000005,
+   "oracle_abstain": 0.012606250000000001,
+   "oracle_repairable_only": 0.022500000000000003,
+   "extra": {
+    "coef": {
+     "gauge_main": -0.969,
+     "gauge_real": -0.406,
+     "sc_share": -0.696,
+     "sc_distinct": -0.091,
+     "cb_agree": -0.12,
+     "cb_share": -0.028,
+     "in_docs": -0.369,
+     "in_cands": -1.078,
+     "log_n_cands": 0.414
+    },
+    "auroc": 0.812949879227053,
+    "tau": 0.65
+   }
+  },
+  {
+   "frame": "WE",
+   "detector": "baseline-only \u2192 fail \u00b7 within-frame 5-fold, \u03c4=0.5",
+   "flag_rates": {
+    "repairable": 0.5932203389830508,
+    "unrepairable": 0.64,
+    "correct": 0.23333333333333334
+   },
+   "yield_weighted_answer": 0.051956521739130436,
+   "collateral_answer": -0.08125,
+   "frame_net_answer": -0.019856250000000002,
+   "frame_net_answer_ci": [
+    -0.05683250000000001,
+    0.011427656250000012
+   ],
+   "frame_net_abstain": -0.032781250000000005,
+   "oracle_answer": 0.029281250000000005,
+   "oracle_abstain": 0.012606250000000001,
+   "oracle_repairable_only": 0.022500000000000003,
+   "extra": {
+    "auroc": 0.8001618357487922
+   }
+  },
+  {
+   "frame": "WE",
+   "detector": "baseline-only \u2192 fail \u00b7 within-frame 5-fold, best \u03c4=0.8 (optimistic)",
+   "flag_rates": {
+    "repairable": 0.2711864406779661,
+    "unrepairable": 0.21,
+    "correct": 0.016666666666666666
+   },
+   "yield_weighted_answer": 0.018115942028985508,
+   "collateral_answer": 0.0,
+   "frame_net_answer": 0.0062499999999999995,
+   "frame_net_answer_ci": [
+    0.00125,
+    0.012499999999999999
+   ],
+   "frame_net_abstain": 0.0025,
+   "oracle_answer": 0.029281250000000005,
+   "oracle_abstain": 0.012606250000000001,
+   "oracle_repairable_only": 0.022500000000000003,
+   "extra": {
+    "tau": 0.8
+   }
+  },
+  {
+   "frame": "WE",
+   "detector": "baseline+loop \u2192 fail \u00b7 cross-frame fit on WD, \u03c4*=0.6 chosen there",
+   "flag_rates": {
+    "repairable": 0.8135593220338984,
+    "unrepairable": 0.85,
+    "correct": 0.38333333333333336
+   },
+   "yield_weighted_answer": 0.07731884057971014,
+   "collateral_answer": -0.14791666666666667,
+   "frame_net_answer": -0.042106250000000005,
+   "frame_net_answer_ci": [
+    -0.08531421875000002,
+    0.0007168750000000138
+   ],
+   "frame_net_abstain": -0.05878125,
+   "oracle_answer": 0.029281250000000005,
+   "oracle_abstain": 0.012606250000000001,
+   "oracle_repairable_only": 0.022500000000000003,
+   "extra": {
+    "coef": {
+     "gauge_main": -0.971,
+     "gauge_real": -0.427,
+     "sc_share": -0.822,
+     "sc_distinct": -0.111,
+     "cb_agree": -0.137,
+     "cb_share": -0.055,
+     "in_docs": -0.343,
+     "in_cands": -1.132,
+     "log_n_cands": 0.404,
+     "af_base": 0.215,
+     "af_max_other": 0.197,
+     "af_margin": -0.05,
+     "n_top_tied": -0.289
+    },
+    "auroc": 0.8037204106280191,
+    "tau": 0.6
+   }
+  },
+  {
+   "frame": "WE",
+   "detector": "baseline+loop \u2192 fail \u00b7 within-frame 5-fold, \u03c4=0.5",
+   "flag_rates": {
+    "repairable": 0.6779661016949152,
+    "unrepairable": 0.67,
+    "correct": 0.2
+   },
+   "yield_weighted_answer": 0.05588768115942029,
+   "collateral_answer": -0.05,
+   "frame_net_answer": -0.0039687500000000035,
+   "frame_net_answer_ci": [
+    -0.03357500000000001,
+    0.0206375
+   ],
+   "frame_net_abstain": -0.019393750000000005,
+   "oracle_answer": 0.029281250000000005,
+   "oracle_abstain": 0.012606250000000001,
+   "oracle_repairable_only": 0.022500000000000003,
+   "extra": {
+    "auroc": 0.8157083333333333
+   }
+  },
+  {
+   "frame": "WE",
+   "detector": "baseline+loop \u2192 fail \u00b7 within-frame 5-fold, best \u03c4=0.85 (optimistic)",
+   "flag_rates": {
+    "repairable": 0.3389830508474576,
+    "unrepairable": 0.24,
+    "correct": 0.016666666666666666
+   },
+   "yield_weighted_answer": 0.03322463768115942,
+   "collateral_answer": 0.0,
+   "frame_net_answer": 0.0114625,
+   "frame_net_answer_ci": [
+    0.0037500000000000003,
+    0.020425
+   ],
+   "frame_net_abstain": 0.0025,
+   "oracle_answer": 0.029281250000000005,
+   "oracle_abstain": 0.012606250000000001,
+   "oracle_repairable_only": 0.022500000000000003,
+   "extra": {
+    "tau": 0.85
+   }
+  },
+  {
+   "frame": "WE",
+   "detector": "baseline-only \u2192 rep \u00b7 cross-frame fit on WD, \u03c4*=0.2 chosen there",
+   "flag_rates": {
+    "repairable": 0.1864406779661017,
+    "unrepairable": 0.15,
+    "correct": 0.016666666666666666
+   },
+   "yield_weighted_answer": 0.010869565217391306,
+   "collateral_answer": 0.0,
+   "frame_net_answer": 0.0037500000000000003,
+   "frame_net_answer_ci": [
+    0.0,
+    0.008749999999999999
+   ],
+   "frame_net_abstain": 0.0025,
+   "oracle_answer": 0.029281250000000005,
+   "oracle_abstain": 0.012606250000000001,
+   "oracle_repairable_only": 0.022500000000000003,
+   "extra": {
+    "coef": {
+     "gauge_main": -0.171,
+     "gauge_real": -0.462,
+     "sc_share": -0.018,
+     "sc_distinct": 0.273,
+     "cb_agree": -0.135,
+     "cb_share": -0.165,
+     "in_docs": 0.053,
+     "in_cands": -0.325,
+     "log_n_cands": -0.591
+    },
+    "auroc": 0.6206244424620876,
+    "tau": 0.2
+   }
+  },
+  {
+   "frame": "WE",
+   "detector": "baseline-only \u2192 rep \u00b7 within-frame 5-fold, \u03c4=0.5",
+   "flag_rates": {
+    "repairable": 0.03389830508474576,
+    "unrepairable": 0.01,
+    "correct": 0.0
+   },
+   "yield_weighted_answer": 0.0036231884057971015,
+   "collateral_answer": 0.0,
+   "frame_net_answer": 0.00125,
+   "frame_net_answer_ci": [
+    0.0,
+    0.0037500000000000003
+   ],
+   "frame_net_abstain": 0.00125,
+   "oracle_answer": 0.029281250000000005,
+   "oracle_abstain": 0.012606250000000001,
+   "oracle_repairable_only": 0.022500000000000003,
+   "extra": {
+    "auroc": 0.6850669045495097
+   }
+  },
+  {
+   "frame": "WE",
+   "detector": "baseline-only \u2192 rep \u00b7 within-frame 5-fold, best \u03c4=0.15 (optimistic)",
+   "flag_rates": {
+    "repairable": 0.2033898305084746,
+    "unrepairable": 0.18,
+    "correct": 0.016666666666666666
+   },
+   "yield_weighted_answer": 0.014492753623188406,
+   "collateral_answer": 0.0,
+   "frame_net_answer": 0.005,
+   "frame_net_answer_ci": [
+    0.00125,
+    0.01
+   ],
+   "frame_net_abstain": 0.0025,
+   "oracle_answer": 0.029281250000000005,
+   "oracle_abstain": 0.012606250000000001,
+   "oracle_repairable_only": 0.022500000000000003,
+   "extra": {
+    "tau": 0.15
+   }
+  },
+  {
+   "frame": "WE",
+   "detector": "baseline+loop \u2192 rep \u00b7 cross-frame fit on WD, \u03c4*=0.1 chosen there",
+   "flag_rates": {
+    "repairable": 0.3389830508474576,
+    "unrepairable": 0.15,
+    "correct": 0.13333333333333333
+   },
+   "yield_weighted_answer": 0.04833333333333334,
+   "collateral_answer": -0.11666666666666667,
+   "frame_net_answer": -0.037575000000000004,
+   "frame_net_answer_ci": [
+    -0.08028750000000001,
+    -0.0017875000000000044
+   ],
+   "frame_net_abstain": -0.04150000000000001,
+   "oracle_answer": 0.029281250000000005,
+   "oracle_abstain": 0.012606250000000001,
+   "oracle_repairable_only": 0.022500000000000003,
+   "extra": {
+    "coef": {
+     "gauge_main": -0.098,
+     "gauge_real": -0.402,
+     "sc_share": 0.032,
+     "sc_distinct": 0.183,
+     "cb_agree": -0.204,
+     "cb_share": -0.244,
+     "in_docs": 0.053,
+     "in_cands": -0.189,
+     "log_n_cands": -0.688,
+     "af_base": 0.191,
+     "af_max_other": 0.631,
+     "af_margin": -0.405,
+     "n_top_tied": 0.011
+    },
+    "auroc": 0.6851293487957182,
+    "tau": 0.1
+   }
+  },
+  {
+   "frame": "WE",
+   "detector": "baseline+loop \u2192 rep \u00b7 within-frame 5-fold, \u03c4=0.5",
+   "flag_rates": {
+    "repairable": 0.0847457627118644,
+    "unrepairable": 0.05,
+    "correct": 0.0
+   },
+   "yield_weighted_answer": 0.01480072463768116,
+   "collateral_answer": 0.0,
+   "frame_net_answer": 0.00510625,
+   "frame_net_answer_ci": [
+    0.00125,
+    0.010425
+   ],
+   "frame_net_abstain": 0.0013562499999999998,
+   "oracle_answer": 0.029281250000000005,
+   "oracle_abstain": 0.012606250000000001,
+   "oracle_repairable_only": 0.022500000000000003,
+   "extra": {
+    "auroc": 0.7124264049955399
+   }
+  },
+  {
+   "frame": "WE",
+   "detector": "baseline+loop \u2192 rep \u00b7 within-frame 5-fold, best \u03c4=0.25 (optimistic)",
+   "flag_rates": {
+    "repairable": 0.3389830508474576,
+    "unrepairable": 0.11,
+    "correct": 0.0
+   },
+   "yield_weighted_answer": 0.040778985507246374,
+   "collateral_answer": 0.0,
+   "frame_net_answer": 0.014068749999999998,
+   "frame_net_answer_ci": [
+    0.0062499999999999995,
+    0.02324375
+   ],
+   "frame_net_abstain": 0.0013562499999999998,
+   "oracle_answer": 0.029281250000000005,
+   "oracle_abstain": 0.012606250000000001,
+   "oracle_repairable_only": 0.022500000000000003,
+   "extra": {
+    "tau": 0.25
+   }
+  }
+ ]
+}

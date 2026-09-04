@@ -4318,3 +4318,82 @@ HotpotQA +0.175 [+0.085, +0.269], SQuAD +0.393 [+0.161, +0.643].
 Verdict WRITE-LEAVES-WIKIHOP / LOOP-LEAVES-WIKIHOP. Tally: 26
 predictions, 23 confirmed; ≈ $125 across 115 jobs. Summary
 docs/wikihop_wp_summary.md.
+
+### Item WK — the knowledge-conflict regime: does the blind loop help at the frame level, as it did on InAbHyD? (NQ-Swap; registered 2026-09-04 04:20 UTC, before any data)
+
+**Motivation (from the record, not from new data).** The blind loop
+nets ≈ 0 on real WikiHop and +0.02 on anonymized WikiHop because the
+fixable rows are a quarter of the failures and the failures are half
+the frame; a perfect failure detector would lift those frames only to
++0.029 / +0.104, and blind detectors recover a fraction of that
+(docs/wikihop_detector_analysis.md, descriptive). InAbHyD worked blind
+because every failure there is a reading failure (closed-book is
+chance). Gemma answers WikiHop and HotpotQA largely from memory
+(closed-book 0.445 / 0.521 against 0.466 / 0.613 with documents), and a
+firm wrong memory is what the write cannot move. The regime where a
+blind loop should work is the one where the document contradicts the
+model's memory and the document is the gold: knowledge conflict.
+
+**Frame.** NQ-Swap (Longpre et al. 2021; HF `pminervini/NQ-Swap`,
+`dev` split pairing original and substituted contexts). 1,667 Natural
+Questions; each answer entity in the Wikipedia paragraph is replaced by
+a type-matched entity. `scripts/nqswap_frame.py`, seed 20260904:
+paragraph contexts only (no tables), original and substituted answers
+both named entities (no numbers, no dates), substituted answer a
+whole-word span of the substituted context and the original answer
+absent from it, one substitution per question (seeded). Candidates =
+the substituted answer (gold, the document's answer), the original
+answer (the memory candidate, no address in the document), plus up to
+18 sentence-bounded paragraph spans. 815 eligible → 800 drawn;
+candidates mean 12.3 (min 5); paragraphs mean 606 characters. File
+`results/loop_screen/nqswap_input.jsonl.gz` (sha256 4d650353ea5d996d…).
+Fields: `question`, `docs` (substituted paragraph), `candidates`,
+`answer` (substituted), `answer_original`, `org_context`.
+
+**Stage 1 (grade_hint job, unchanged code path: std / closed-book /
+hint-first, k = 8, seed 20260888).** Pre-named readings:
+- memory rate = closed-book modal answer == original answer (the model
+  knows the original fact); conflict rows = rows with memory;
+- std accuracy against the document's answer; **conflict failure** = a
+  conflict row with 0/8 std correct; memory-answer share among conflict
+  failures (std modal == original answer);
+- hint-repairable = ≥ 4/8 hint-first correct;
+- instrument gate (replaces the documents-over-closed-book gate, which
+  is vacuous on a counterfactual gold): std accuracy against the
+  document's answer within [0.10, 0.90], so the frame holds both
+  failures and correct rows; outside it → STOP, report, no stage 2.
+
+**27th registered prediction — FIXABLE-MAJORITY.** Among conflict
+failures, the hint-repairable share is ≥ 0.50 with the 95% CI lower
+bound > 0.25 (WikiHop's 21–26%). CONFIRMED if both hold; INTERMEDIATE
+if the point estimate is in [0.25, 0.50); NOT CONFIRMED below 0.25.
+Stage 2 launches on CONFIRMED or INTERMEDIATE.
+
+**Stage 2 (the blind frame test).** A uniform seeded draw of 120 rows
+from the 800, blind to stage-1 status, split into cross-fit halves A/B
+(seeded). For each half, donors are hint-repairable conflict failures
+from the *other* half outside the draw (the WX recipe: frozen hint-delta
+direction, donor mean per-position norm, L30 × 2×, whole-word mentions,
+k = 4 per branch; baseline k = 8; the frozen real-text L38 gauge scored
+on every branch). Every candidate is a branch, the memory candidate
+included (no address → it reproduces the baseline). A second arm per
+half writes the WikiHop-fit direction (the 59 WX donors) instead, the
+cross-task vector of WP. Frame net = mean over the 120 rows of (rule
+answer correct − baseline correct), row-bootstrap CI.
+
+**28th registered prediction — BLIND-LOOP-HELPS-AT-FRAME-LEVEL.** The
+abstention rule of WD/WE (output-first: pick the branch whose written
+candidate fires most; answer only when a unique non-baseline branch is
+on top, else keep the baseline), run blind over the 120 drawn rows with
+own-frame donors, changes frame accuracy by > 0 with the 95% CI lower
+bound > 0. CONFIRMED / NOT CONFIRMED on that CI. Pre-named descriptive
+riders: the always-answer rule; the two-stage rule with the
+groundedness detector (flag a row when its baseline answer is not a
+whole-word span of the document — a label-free check a deployment can
+run); the WikiHop-vector arm on the same rules; per-stratum yield and
+collateral (conflict failures / correct rows); the write reading (gold-
+address dP and specificity at 2×) on the repairable conflict rows in the
+draw. Budget ≈ $7 (stage 1 ≈ $0.5, stage 2 four jobs ≈ $6).
+
+**Amendment policy.** As for WP: amendments only on independent
+telemetry (prompt render, delivery audit), recorded before unblinding.
