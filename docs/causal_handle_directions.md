@@ -4709,3 +4709,10 @@ off, text non-gold off, three seeded non-gold, seed 20260908: L20
 job-b55u4, L25 job-s9fu3, L30 job-gjr8y. Faithful-prompt render checked
 locally (instruction precedes the documents; the hint variant keeps the
 hint before the documents).]
+[WJ launch note, 2026-09-04 18:05 UTC: the ladder jobs run with the loop
+ON (all mention-bearing candidates at 2× k=4) in addition to the ladder
+rungs — in frozen-write mode the WH job enables the loop unless
+WH_LOOP_OFF=1, and the launch set WH_LOOP=0, which that mode ignores.
+No reading changes; the extra branches are the output-first loop at
+L20 / L25 / L30 on the same rows (descriptive, unplanned). Weight
+downloads took ≈ 15 min on this batch's machines (billed idle).]
