@@ -4623,3 +4623,76 @@ grounded, so there it reduces to the baseline). Program tally: **30
 registered predictions — 25 confirmed, 4 not (13th, 14th, 19th, 28th),
 1 intermediate (27th); ≈ $134 across 127 jobs.** Summary
 docs/wikihop_wkprime_ws_summary.md.
+
+**Descriptive addendum (2026-09-04 14:40 UTC, no job): widening the
+groundedness detector on the 360 blind rows already run
+(`scripts/wikihop_wk_detector_sweep.py` → docs/wikihop_wk_detector_sweep.json).**
+Adding the loop's own acceptance signal (flag when the best non-baseline
+branch fires ≥ τ, any τ from 0.25 to 1.0) flags 30–40% of correct rows
+on every frame and turns the frame net negative (pooled −0.093 [−0.146,
+−0.040], 33 up / 68 down); the acceptance signal alone is the same.
+Margin variants (flag when an alternative out-fires the baseline's own
+branch) add two rows over 360 (+0.053 vs +0.049, chosen post hoc). The
+groundedness check is saturated as a blind detector; the remaining gap
+to the oracle (+0.080 pooled) is grounded wrong answers, which no
+label-free signal we have separates from correct rows. Lever closed.
+
+### Item WI — the prompting baseline: how much of the conflict regime does a context-faithful instruction recover? (registered 2026-09-04 14:45 UTC, before any data; descriptive, no prediction)
+
+Stage-1 grading on both conflict frames (NQ-Swap 800 rows, seed
+20260906; counterfactual SQuAD 476 rows, seed 20260907) with two extra
+arms from the shared prompt module: **faithful** = the std prompt
+prefixed with "Answer using only the documents below. If the documents
+disagree with what you remember, follow the documents."; **faithful +
+hint** = the same instruction on the hint-first prompt. k = 8 each.
+Pre-named readings: (a) accuracy against the document's answer under
+the instruction vs std; (b) conflict failures (memory ∧ std 0/8) with
+faithful ≥ 5/8 — the instruction's repair share — against the hint's
+0.33 / 0.38; (c) overlap: of hint-repairable conflict failures, the
+share the instruction also fixes, and of instruction-fixed rows, the
+share the hint also fixes; (d) collateral: correct-majority rows with
+faithful ≤ 3/8; (e) the instruction + hint arm as the ceiling with
+both. Purpose: the paper's comparison against the standard mitigation.
+The write's stacking on top of the instruction is a later item if (b)
+is large. Budget ≈ $1.2 (two jobs).
+
+### Item WJ — depth and dose on conflict rows (registered 2026-09-04 14:45 UTC, before any data; descriptive ladder with a pre-named comparison)
+
+Frame: NQ-Swap; 40 hint-repairable and 40 unrepairable conflict failures
+outside both blind draws (seed 20260905; pools 50 / 109). Vector: the
+WikiHop XA donors (30 rows) define the frozen hint-delta at each write
+layer in-job (WY's ladder method). Write layers **L20, L25, L30**, rungs
+**1×, 2×, 3×** on the gold address and three seeded non-gold addresses;
+text-hint gold k = 8; no loop; gauge L38 for scores. One job per layer
+(seed 20260908). Pre-named readings: gold-address repair and
+specificity per (layer, rung) on the repairable rows; reach (gold rate)
+on the unrepairable rows; the paired comparison of every setting
+against **L30 × 2×** (the recipe of WK/WK′/WS) over the same rows. No
+directional prediction: the ladder chooses a setting; a setting that
+beats L30 × 2× on the repairable rows with a CI clear of zero is a
+candidate for a registered confirmation on fresh rows, not a result.
+Budget ≈ $2.5 (three jobs).
+
+### Item WU — the grounded rule on a second model: Qwen3.5-27B (registered 2026-09-04 14:45 UTC, before any data)
+
+Stage 1: Qwen grade_hint on the NQ-Swap frame (800 rows, seed 20260909,
+max_num_seqs 256): Qwen's memory rate, conflict failures, memory-answer
+share, hint-repairable share; instrument gate std ∈ [0.10, 0.90].
+Stage 2: a uniform blind draw of 120 rows (seeds 20260910 / 20260911 /
+20260912), the WH job with WH_MODEL Qwen/Qwen3.5-27B, **write L31**
+(WY's band peak), **gauge L48** (the WQ probe npz), rungs 1×/2×, loop at
+2× k = 4, three seeded non-gold, text-hint gold k = 8; donors = WY's 36
+Qwen-repairable WikiHop rows (the third frame), split as WY's A/B,
+appended to the stage-2 input — Qwen's own cross-task vector, computed
+in-job at L31. Selector on flagged rows, pre-named: **primary = probe
+select** (argmax L48 gauge among non-baseline branches; WY's 21st
+showed the probe closes Qwen's loop while the output vote does not);
+rider = the output-first variant of WK′/WS. Detector = the same
+groundedness check.
+
+**31st registered prediction — GROUNDED-RULE-HELPS-BLIND-ON-QWEN.** The
+grounded two-stage rule with the probe selector nets > 0 over the 120
+blind rows with the 95% CI lower bound > 0. CONFIRMED / NOT CONFIRMED on
+that CI. Riders: output-first variant; abstention / always / oracle;
+per-stratum; the write reading on repairable conflict rows. Budget ≈ $5
+(stage 1 ≈ $0.8, two stage-2 jobs ≈ $4).

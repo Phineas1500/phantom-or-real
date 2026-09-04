@@ -55,3 +55,13 @@ def hint_first_prompt(r, cand):
     """Item WH: the hint precedes the documents so mention positions are
     downstream of it (the screening's hint-after form cannot move them)."""
     return f"Hint: pay close attention to {cand}.\n\n" + std_closed_prompts(r)["std"]
+
+
+FAITHFUL_INSTRUCTION = ("Answer using only the documents below. If the documents disagree with what you remember, "
+                        "follow the documents.\n\n")
+
+
+def faithful_prompt(r):
+    """Item WI: the context-faithful instruction baseline — the std prompt with a
+    one-sentence instruction to prefer the documents over memory."""
+    return FAITHFUL_INSTRUCTION + std_closed_prompts(r)["std"]

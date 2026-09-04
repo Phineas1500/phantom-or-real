@@ -78,6 +78,10 @@ def main():
             ps = std_closed_prompts(r)
             if mode == "grade_hint":
                 ps["hint_first"] = hint_first_prompt(r, r["answer"])
+                if os.environ.get("W0_FAITHFUL") == "1":
+                    from wikihop_common import faithful_prompt, hint_first_prompt as _hf
+                    ps["faithful"] = faithful_prompt(r)
+                    ps["faithful_hint"] = faithful_prompt(r).replace(std_closed_prompts(r)["std"], _hf(r, r["answer"]))
             for arm in ps:
                 convs.append([{"role": "user", "content": SYSTEM + "\n\n" + ps[arm]}])
                 meta.append((r["id"], arm))
