@@ -9,13 +9,14 @@ OUT=${1:?outdir}
 PINS=${2:-docs/wikihop_wk_pinned.json}
 INPUT=${3:-results/loop_screen/wk_stage2_input.jsonl.gz}
 TAG=${4:-wkctx2}
+NPZ=${5:-results/loop_screen/wikihop_w0_pinned.npz}
 CTX=$OUT/$TAG; rm -rf "$CTX"; mkdir -p "$CTX"
 cp scripts/wikihop_wh_job.py "$CTX/wh_job.py"
 cp scripts/wikihop_common.py "$CTX/wikihop_common.py"
 cp scripts/wikihop_fake_gemma.py "$CTX/fake_gemma.py"
 cp "$INPUT" "$CTX/wikihop_port_input.jsonl.gz"
 cp "$PINS" "$CTX/wikihop_wk_pinned.json"
-cp results/loop_screen/wikihop_w0_pinned.npz "$CTX/wikihop_w0_pinned.npz"
+cp "$NPZ" "$CTX/wikihop_w0_pinned.npz"
 cat > "$CTX/Dockerfile" <<'DOCKER'
 FROM vllm/vllm-openai:v0.26.0
 RUN pip install -U --no-cache-dir transformers accelerate

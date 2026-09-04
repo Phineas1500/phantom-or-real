@@ -65,6 +65,13 @@ def rule_value(row, rule, docs=None, is_failure=None):
     if rule == "abstention":
         fire = len(tied) == 1 and top >= 0.5
         return (c[tied[0]]["corr"] if fire else row["base"]), not fire
+    if rule == "grounded_gauge":
+        if whole_word(row["base_modal"], docs):
+            return row["base"], True
+        non_base = [x for x in c if normalize_answer(x) != row["base_modal"]]
+        if not non_base:
+            return row["base"], True
+        return c[max(non_base, key=lambda x: c[x]["gauge"])]["corr"], False
     if rule in ("grounded", "oracle"):
         flag = (not whole_word(row["base_modal"], docs)) if rule == "grounded" else is_failure
         if not flag or top == 0:
@@ -84,7 +91,7 @@ def main() -> int:
     p.add_argument("--rows", type=Path, default=Path("results/loop_screen/nqswap_rows.jsonl"))
     p.add_argument("--frame", type=Path, default=Path("results/loop_screen/wk_stage2_input.jsonl.gz"))
     p.add_argument("--out", type=Path, default=Path("docs/wikihop_wk_gates.json"))
-    p.add_argument("--prediction", default="28", choices=["28", "grounded-wikihop", "none"],
+    p.add_argument("--prediction", default="28", choices=["28", "grounded-wikihop", "grounded-gauge-wikihop", "none"],
                    help="which registered statement the verdict line scores: 28 = abstention rule, own donors (WK); grounded-wikihop = grounded two-stage rule, WikiHop vector (WK′ 29th, WS 30th)")
     args = p.parse_args()
     frame = {json.loads(l)["id"]: json.loads(l) for l in gzip.open(args.frame, "rt")}
@@ -105,7 +112,7 @@ def main() -> int:
         docs = {i: frame[i]["docs"].lower() for i in ids}
         res = {"n_rows": n, "baseline_accuracy": float(np.mean([R[i]["base"] for i in ids])), "delivery_bad_records": int(sum(R[i]["audit_bad"] for i in ids)),
                "n_branches": int(sum(len(R[i]["cands"]) for i in ids)), "rules": {}, "strata": {}}
-        for rule in ("abstention", "always", "grounded", "oracle"):
+        for rule in ("abstention", "always", "grounded", "grounded_gauge", "oracle"):
             vals, abst = [], []
             for i in ids:
                 v, a = rule_value(R[i], rule, docs=docs[i], is_failure=rows.get(i, {}).get("std_n_correct") == 0)
@@ -139,6 +146,10 @@ def main() -> int:
         g = out["arms"].get("wikihop_donors", {}).get("rules", {}).get("grounded")
         if g:
             out["prediction_GROUNDED_TWO_STAGE_HELPS_BLIND"] = "CONFIRMED" if g["ci95"][0] > 0 else "NOT CONFIRMED"
+    elif args.prediction == "grounded-gauge-wikihop":
+        g = out["arms"].get("wikihop_donors", {}).get("rules", {}).get("grounded_gauge")
+        if g:
+            out["prediction_GROUNDED_RULE_HELPS_BLIND_ON_QWEN"] = "CONFIRMED" if g["ci95"][0] > 0 else "NOT CONFIRMED"
     args.out.write_text(json.dumps(out, indent=1, default=float) + "\n")
     for arm, res in out["arms"].items():
         print(f"\n== {arm}: {res['n_rows']} rows, baseline {res['baseline_accuracy']:.3f}, branches {res['n_branches']}, delivery-bad {res['delivery_bad_records']}")
@@ -150,7 +161,7 @@ def main() -> int:
             print(f"| {s} | {d['n']} | {d['baseline']:.3f} | {d['abstention_dP']:+.3f} [{d['abstention_ci95'][0]:+.3f}, {d['abstention_ci95'][1]:+.3f}] | {d['always_dP']:+.3f} [{d['always_ci95'][0]:+.3f}, {d['always_ci95'][1]:+.3f}] | {d['grounded_dP']:+.3f} [{d['grounded_ci95'][0]:+.3f}, {d['grounded_ci95'][1]:+.3f}] |")
         if "write_on_repairable_conflict_rows" in res:
             print("write on repairable conflict rows:", json.dumps(res["write_on_repairable_conflict_rows"]))
-    for k in ("prediction_28_BLIND_LOOP_HELPS_AT_FRAME_LEVEL", "prediction_GROUNDED_TWO_STAGE_HELPS_BLIND"):
+    for k in ("prediction_28_BLIND_LOOP_HELPS_AT_FRAME_LEVEL", "prediction_GROUNDED_TWO_STAGE_HELPS_BLIND", "prediction_GROUNDED_RULE_HELPS_BLIND_ON_QWEN"):
         if k in out:
             print(f"\n{k}: {out[k]}")
     return 0
