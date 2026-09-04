@@ -18,6 +18,21 @@ import torch
 APP = os.environ.get("WH_APP_DIR", "/app")
 sys.path.insert(0, APP)
 from wikihop_common import SYSTEM, hint_first_prompt, normalize_answer, std_closed_prompts  # noqa: E402
+try:
+    from wikihop_common import FAITHFUL_INSTRUCTION  # noqa: E402
+except ImportError:  # older shared module
+    FAITHFUL_INSTRUCTION = ""
+FAITHFUL = os.environ.get("WH_FAITHFUL") == "1"
+
+
+def test_std_prompt(r):
+    """Item WI′: with WH_FAITHFUL=1 the test rows' base prompt carries the
+    context-faithful instruction; donors (the frozen direction) do not."""
+    return (FAITHFUL_INSTRUCTION if FAITHFUL else "") + std_closed_prompts(r)["std"]
+
+
+def test_hint_prompt(r, cand):
+    return (FAITHFUL_INSTRUCTION if FAITHFUL else "") + hint_first_prompt(r, cand)
 
 MODEL = os.environ.get("WH_MODEL", "google/gemma-3-27b-it")
 IS_QWEN = "qwen" in MODEL.lower()
@@ -273,7 +288,7 @@ def main():
     for ri, rid in enumerate(row_ids):
         r = frame[rid]
         gold = r["answer"]
-        text_s, ids_s, off_s = render(std_closed_prompts(r)["std"])
+        text_s, ids_s, off_s = render(test_std_prompt(r))
         row_seed = seed0 + (ri * shard_count + shard_index) * 10007
         g_state, h_std_all = forward(ids_s)
         b_score = gauge_score(g_state)
@@ -319,7 +334,7 @@ def main():
             cand_rungs = rungs if (is_gold or seeded) else []
             if loop and loop_rung not in cand_rungs:
                 cand_rungs = cand_rungs + [loop_rung]
-            text_h, ids_h, off_h = render(hint_first_prompt(r, cand))
+            text_h, ids_h, off_h = render(test_hint_prompt(r, cand))
             pos_h_all = mention_positions(text_h, off_h, cand)
             pos_s = cands_pos[cand]
             pos_h = pos_h_all[len(pos_h_all) - len(pos_s):] if len(pos_h_all) > len(pos_s) else None
