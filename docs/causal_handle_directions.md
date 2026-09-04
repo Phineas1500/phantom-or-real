@@ -4291,3 +4291,30 @@ seed 20260874): A job-m9m6h, B job-jvxge, XA job-pum5j, XB job-a4hcv.
 SQuAD (context ctx-4c6d618e, seed 20260881): A job-87imv, B job-an6wn,
 XA job-rg56z, XB job-hvbva. No cache mount; gauge = WikiHop real-text
 L38 (wikihop_w0_pinned.npz), single gauge, tie-break key gauge_score.]
+
+**WP + WP′ LANDED 2026-09-04 01:05 UTC (stage 2: HotpotQA job-m9m6h /
+job-jvxge + XA/XB job-pum5j / job-a4hcv; SQuAD job-87imv / job-an6wn +
+XA/XB job-rg56z / job-hvbva; ≈ $9.9 over 14 jobs incl. the voided and
+corrected stage-1 runs).** HotpotQA, 53 rows, delivery valid on 9,328
+branches, text ceiling 0.922: gold-address frozen write 1× +0.252
+[+0.146, +0.363], **2× +0.314 [+0.193, +0.436] with specificity +0.305
+[+0.187, +0.425] → pinned 2×, the 25th registered prediction
+CONFIRMED: WRITE-LEAVES-WIKIHOP.** Output-first loop **0.231 vs
+baseline 0.031 [+0.099, +0.309] and vs random branch 0.047 [+0.086,
++0.290]** (WikiHop gauge-select 0.156, oracle 0.344) **→ the 26th
+CONFIRMED: LOOP-LEAVES-WIKIHOP.** SQuAD, 14 rows (underpowered),
+delivery valid on 984 branches: write **1× +0.455 [+0.214, +0.696],
+specificity +0.411 [+0.190, +0.637] → pinned 1×, the write reading
+CONFIRMED**; 2× +0.259 [−0.045, +0.554]; loop descriptive — output-
+first 0.179 vs baseline 0.080 [0.000, +0.241], vs random 0.188 [−0.102,
++0.075]: does not close on 14 rows. Cross-task arm (descriptive): the
+WikiHop-fit direction (59 WX donors) at HotpotQA addresses 2× **+0.488
+[+0.354, +0.616]**, specificity +0.476, output-first 0.321 vs baseline
+[+0.175, +0.415] / random [+0.150, +0.391], oracle 0.519; at SQuAD
+addresses **+0.652 [+0.402, +0.866]**, specificity +0.623, output-first
+0.429 vs baseline [+0.134, +0.616] / random [+0.049, +0.499]. Row-
+paired, WikiHop's vector beats each task's own cross-fit vector at 2×:
+HotpotQA +0.175 [+0.085, +0.269], SQuAD +0.393 [+0.161, +0.643].
+Verdict WRITE-LEAVES-WIKIHOP / LOOP-LEAVES-WIKIHOP. Tally: 26
+predictions, 23 confirmed; ≈ $125 across 115 jobs. Summary
+docs/wikihop_wp_summary.md.
