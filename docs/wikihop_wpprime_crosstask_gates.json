@@ -1,0 +1,105 @@
+{
+ "n_rows": 14,
+ "delivery_audit": {
+  "n_fired_records": 984,
+  "n_zero_prefill_hook_calls": 0,
+  "n_zero_positions_written": 0,
+  "n_gauge_forward_unhooked": 0,
+  "valid": true
+ },
+ "text_ceiling": {
+  "n_rows": 14,
+  "rate": 0.9821428571428571,
+  "dP": 0.9017857142857143,
+  "ci": [
+   0.75,
+   1.0
+  ],
+  "pass": true
+ },
+ "per_rung": {
+  "1.0": {
+   "n_rows_gold": 14,
+   "gold_rate": 0.6071428571428571,
+   "dP": 0.5267857142857143,
+   "dP_ci": [
+    0.2767857142857143,
+    0.7767857142857143
+   ],
+   "dP_pass": true,
+   "n_rows_spec": 14,
+   "nongold_write_gold_rate": 0.09523809523809523,
+   "specificity": 0.511904761904762,
+   "specificity_ci": [
+    0.2619047619047619,
+    0.7502976190476202
+   ],
+   "specificity_pass": true,
+   "n_nongold_fires": 42,
+   "nongold_answers_fired_rate": 0.1130952380952381,
+   "replication_pass": true
+  },
+  "2.0": {
+   "n_rows_gold": 14,
+   "gold_rate": 0.7321428571428571,
+   "dP": 0.6517857142857143,
+   "dP_ci": [
+    0.4017857142857143,
+    0.8660714285714286
+   ],
+   "dP_pass": true,
+   "n_rows_spec": 14,
+   "nongold_write_gold_rate": 0.10940297171500178,
+   "specificity": 0.6227398854278554,
+   "specificity_ci": [
+    0.38799789652703187,
+    0.8359291084854995
+   ],
+   "specificity_pass": true,
+   "n_nongold_fires": 176,
+   "nongold_answers_fired_rate": 0.1377840909090909,
+   "replication_pass": true
+  }
+ },
+ "rungs_passing_replication": [
+  "1.0",
+  "2.0"
+ ],
+ "pinned_rung": "2.0",
+ "loop": {
+  "rung": 2.0,
+  "n_rows": 14,
+  "gauge_select_rate": 0.30357142857142855,
+  "oracle_rate": 0.7321428571428571,
+  "baseline_rate": 0.08035714285714286,
+  "sc8_rate": 0.07142857142857142,
+  "dP_vs_baseline": 0.22321428571428573,
+  "dP_vs_baseline_ci": [
+   0.03571428571428571,
+   0.45535714285714285
+  ],
+  "dP_vs_sc8": 0.23214285714285715,
+  "dP_vs_sc8_ci": [
+   0.03571428571428571,
+   0.4642857142857143
+  ],
+  "argmax_gold_rate": 0.2857142857142857,
+  "chance_rate": 0.08780743066457351,
+  "selection_signal": 2.190855292732921,
+  "selection_signal_ci": [
+   0.18410408068815712,
+   4.040482653422182
+  ],
+  "mean_n_branches": 13.571428571428571,
+  "random_branch_rate": 0.1644982993197279,
+  "dP_vs_random_branch": 0.1390731292517007,
+  "dP_vs_random_branch_ci": [
+   -0.042397604875283455,
+   0.36202487244897974
+  ],
+  "pass_i": true,
+  "pass_ii": true,
+  "pass_random": false
+ },
+ "verdict": "FROZEN-WRITE-TRANSFERS (pinned rung 2.0x) + FROZEN-LOOP-FAILS"
+}
