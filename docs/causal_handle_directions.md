@@ -4696,3 +4696,16 @@ blind rows with the 95% CI lower bound > 0. CONFIRMED / NOT CONFIRMED on
 that CI. Riders: output-first variant; abstention / always / oracle;
 per-stratum; the write reading on repairable conflict rows. Budget ≈ $5
 (stage 1 ≈ $0.8, two stage-2 jobs ≈ $4).
+
+[WI + WJ + WU stage 1 launched 2026-09-04 17:17 UTC after registration
+commit c5b97e5; mission conflict-regime-levers. WI: NQ-Swap job-g3kw5
+(context ctx-d2fceee7, seed 20260906), counterfactual SQuAD job-cehc7
+(ctx-ee53f2df, seed 20260907), both with W0_FAITHFUL=1 (arms std /
+closed / hint_first / faithful / faithful_hint). WU stage 1: Qwen
+grade_hint on NQ-Swap job-qu4h8 (ctx-d2fceee7, max_num_seqs 256, seed
+20260909). WJ: context ctx-0e3792c7 (WH job, WJ pins under the job's
+pins name, WK stage-2 input, real-text L38 gauge), rungs 1×/2×/3×, loop
+off, text non-gold off, three seeded non-gold, seed 20260908: L20
+job-b55u4, L25 job-s9fu3, L30 job-gjr8y. Faithful-prompt render checked
+locally (instruction precedes the documents; the hint variant keeps the
+hint before the documents).]
