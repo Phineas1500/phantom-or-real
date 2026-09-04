@@ -4544,3 +4544,14 @@ documents on ≥ 96% of failing rows (docs/wikihop_detector_analysis.md,
 `in_docs`), so the grounded rule reduces to the baseline there: zero
 gain, zero harm. The rule's reach is the regime where the model answers
 from outside the passage. Both registrations state this limit up front.
+
+[WK′ + WS launched 2026-09-04 12:49 UTC after registration commit
+1e104ac (pins/frame commit 5d88119); mission grounded-loop-replication.
+WK′ stage 2, context ctx-5a6c69e1 (WH job, WK′ pins under the job's pins
+name, the WK stage-2 input, real-text L38 gauge), seed 20260898: XA′
+job-rtda7 (65 rows, 30 WikiHop donors), XB′ job-ejkyx (55 rows, 29) =
+the registered arm; A′ job-z3eqz, B′ job-d5jgz (own-frame donors 25/25)
+= rider. WS stage 1, context ctx-a828e997 (grade_hint on the
+counterfactual SQuAD frame, 476 rows, seed 20260900): job-sgtjp.
+Prompt render on the WS frame checked locally: question present in std
+and closed prompts, gold present in the documents.]
