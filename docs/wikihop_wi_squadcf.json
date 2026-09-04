@@ -1,0 +1,56 @@
+{
+ "n_rows": 476,
+ "accuracy_vs_document": {
+  "closed": 0.003676470588235294,
+  "faithful": 0.7247899159663865,
+  "faithful_hint": 0.7977941176470589,
+  "hint_first": 0.759453781512605,
+  "std": 0.6741071428571429
+ },
+ "memory_rate": 0.7247899159663865,
+ "n_conflict_failures": 104,
+ "hint_repairable_share": 0.36538461538461536,
+ "hint_repairable_ci": [
+  0.2692307692307692,
+  0.46153846153846156
+ ],
+ "instruction_repair_share": 0.20192307692307693,
+ "instruction_repair_ci": [
+  0.125,
+  0.27884615384615385
+ ],
+ "instruction_any_sample_share": 0.2403846153846154,
+ "instruction_plus_hint_repair_share": 0.4519230769230769,
+ "instruction_plus_hint_ci": [
+  0.3557692307692308,
+  0.5480769230769231
+ ],
+ "overlap": {
+  "hint_fixed_also_instruction_fixed": 0.4473684210526316,
+  "instruction_fixed_also_hint_fixed": 0.8095238095238095,
+  "n_hint_only": 21,
+  "n_instruction_only": 4,
+  "n_both": 17,
+  "n_neither": 62
+ },
+ "memory_answer_sample_share_on_conflict_failures": {
+  "std": 0.47716346153846156,
+  "faithful": 0.328125
+ },
+ "collateral": {
+  "n_correct_majority": 321,
+  "n_broken_by_instruction": 3,
+  "share": 0.009345794392523364,
+  "faithful_accuracy_on_correct_rows": 0.9887071651090342
+ },
+ "faithful_hist_on_conflict_failures": {
+  "0": 79,
+  "1": 2,
+  "2": 1,
+  "4": 1,
+  "5": 1,
+  "6": 2,
+  "7": 1,
+  "8": 17
+ }
+}

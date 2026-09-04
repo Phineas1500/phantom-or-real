@@ -4716,3 +4716,57 @@ WH_LOOP_OFF=1, and the launch set WH_LOOP=0, which that mode ignores.
 No reading changes; the extra branches are the output-first loop at
 L20 / L25 / L30 on the same rows (descriptive, unplanned). Weight
 downloads took ≈ 15 min on this batch's machines (billed idle).]
+
+**WI LANDED 2026-09-04 18:25 UTC (NQ-Swap job-g3kw5 $0.90, counterfactual
+SQuAD job-cehc7 $0.87; 32,000 + 19,040 generations).** The context-
+faithful instruction alone: NQ-Swap accuracy against the document
+**0.578 → 0.655** (+7.7 points at the frame level), counterfactual
+SQuAD **0.674 → 0.725** (+5.1); collateral 10/462 (2.2%) and 3/321
+(0.9%) correct-majority rows broken. Repair share of conflict failures:
+**instruction 0.210 [0.157, 0.262] vs hint 0.323 [0.262, 0.384]**
+(NQ-Swap, 229 failures); **0.202 [0.125, 0.279] vs 0.365 [0.269,
+0.462]** (SQuAD-cf, 104). Overlap on NQ-Swap: 34 both, **40 hint-only**,
+14 instruction-only, 141 neither (71% of instruction-fixed rows are
+hint-fixed; 46% of hint-fixed rows are instruction-fixed); SQuAD-cf 17 /
+21 / 4 / 62. Instruction + hint together 0.459 / 0.452. The instruction
+halves the memory-answer share of samples on conflict failures (0.52 →
+0.27; 0.48 → 0.33) and is itself bimodal (175 at 0/8, 43 at 8/8 on
+NQ-Swap). Reading: as a frame-level mitigation the one-line instruction
+is at least as good as the blind grounded loop (+5 to +8 vs +3 to +6),
+and cheaper; the attention write reaches a set the instruction does not
+(17% of conflict failures on NQ-Swap, 20% on SQuAD-cf). The loop's
+deployment value, if any, is on top of the instruction → item WI′.
+
+[WU stage 1 LANDED 2026-09-04 18:25 UTC (job-qu4h8, $1.09).
+Qwen3.5-27B on NQ-Swap: std against the document 0.604, closed 0.020,
+hint-first 0.767; **memory rate 0.756**; 0/8 failures 192; conflict
+failures 136 (57% memory answers); **hint-repairable 37/136 = 0.272
+[0.199, 0.353]**; correct-majority 475; instrument gate PASS. Pins
+docs/wikihop_wu_pinned.json (seeds half 20260911 / draw 20260910 /
+donor 20260912): 120-row blind draw = 66 correct, 7 repairable conflict
+failures, 17 unrepairable, 13 other failures, 17 mixed; registered arm
+XA (51 rows, 18 WY donors) / XB (69, 18). Stage-2 input
+results/loop_screen/wu_stage2_input.jsonl.gz (800 + 36 third-frame
+rows). Expected yield is small (7 repairable rows in the draw); the
+prediction stands as registered.]
+
+### Item WI′ — does the grounded loop add on top of the instruction? (registered 2026-09-04 18:30 UTC, before any data)
+
+**Design.** A third uniform blind draw of 120 NQ-Swap rows disjoint from
+WK's and WK′'s (draw seed 20260914, halves 20260915), the WH job with
+**WH_FAITHFUL=1**: every test-row prompt (baseline, branches, text
+arm) carries the WI instruction; the frozen WikiHop direction is
+computed from the WX donors with their ordinary prompts, unchanged.
+Write L30 × 2× (rungs 1×/2×), loop at 2× k = 4, three seeded non-gold,
+text-hint gold k = 8, real-text L38 gauge for ties, seed 20260916; XA
+(WikiHop XA donors) / XB. Rules as WK′: grounded two-stage (registered),
+abstention / always / oracle (riders). The baseline in every reading is
+the instructed baseline (the loop's own k = 8 baseline generations under
+the instruction).
+
+**32nd registered prediction — GROUNDED-LOOP-STACKS-ON-INSTRUCTION.**
+Over the 120 rows the grounded two-stage rule's net over the instructed
+baseline is > 0 with the 95% CI lower bound > 0. CONFIRMED / NOT
+CONFIRMED on that CI. Pre-named riders: the instruction's own net on
+the same rows (from the WI grades, faithful − std per row); instruction
++ loop vs plain std; per-stratum. Budget ≈ $2 (two jobs).
