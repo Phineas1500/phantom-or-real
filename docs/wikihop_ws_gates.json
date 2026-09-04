@@ -1,0 +1,151 @@
+{
+ "arms": {
+  "wikihop_donors": {
+   "n_rows": 120,
+   "baseline_accuracy": 0.6354166666666666,
+   "delivery_bad_records": 0,
+   "n_branches": 1682,
+   "rules": {
+    "abstention": {
+     "frame_net": 0.007291666666666667,
+     "ci95": [
+      0.0,
+      0.019791666666666666
+     ],
+     "abstained_frac": 0.35,
+     "rule_accuracy": 0.6427083333333333,
+     "n_rows_improved": 2,
+     "n_rows_harmed": 0
+    },
+    "always": {
+     "frame_net": -0.025,
+     "ci95": [
+      -0.0875,
+      0.034401041666666764
+     ],
+     "abstained_frac": 0.0,
+     "rule_accuracy": 0.6104166666666666,
+     "n_rows_improved": 8,
+     "n_rows_harmed": 9
+    },
+    "grounded": {
+     "frame_net": 0.03333333333333333,
+     "ci95": [
+      0.008333333333333333,
+      0.06666666666666667
+     ],
+     "abstained_frac": 0.925,
+     "rule_accuracy": 0.66875,
+     "n_rows_improved": 4,
+     "n_rows_harmed": 0
+    },
+    "oracle": {
+     "frame_net": 0.078125,
+     "ci95": [
+      0.035416666666666666,
+      0.12815104166666674
+     ],
+     "abstained_frac": 0.775,
+     "rule_accuracy": 0.7135416666666666,
+     "n_rows_improved": 10,
+     "n_rows_harmed": 0
+    }
+   },
+   "strata": {
+    "conflict_failure_repairable": {
+     "n": 11,
+     "baseline": 0.03409090909090909,
+     "abstention_dP": 0.056818181818181816,
+     "abstention_ci95": [
+      0.0,
+      0.17045454545454544
+     ],
+     "always_dP": 0.14772727272727273,
+     "always_ci95": [
+      0.0,
+      0.3522727272727273
+     ],
+     "grounded_dP": 0.36363636363636365,
+     "grounded_ci95": [
+      0.09090909090909091,
+      0.6363636363636364
+     ]
+    },
+    "conflict_failure_unrepairable": {
+     "n": 14,
+     "baseline": 0.0,
+     "abstention_dP": 0.0,
+     "abstention_ci95": [
+      0.0,
+      0.0
+     ],
+     "always_dP": 0.14285714285714285,
+     "always_ci95": [
+      0.0,
+      0.35714285714285715
+     ],
+     "grounded_dP": 0.0,
+     "grounded_ci95": [
+      0.0,
+      0.0
+     ]
+    },
+    "correct_majority": {
+     "n": 76,
+     "baseline": 0.9950657894736842,
+     "abstention_dP": 0.0,
+     "abstention_ci95": [
+      0.0,
+      0.0
+     ],
+     "always_dP": -0.11348684210526316,
+     "always_ci95": [
+      -0.1924342105263158,
+      -0.04276315789473684
+     ],
+     "grounded_dP": 0.0,
+     "grounded_ci95": [
+      0.0,
+      0.0
+     ]
+    },
+    "other_failure": {
+     "n": 19,
+     "baseline": 0.013157894736842105,
+     "abstention_dP": 0.013157894736842105,
+     "abstention_ci95": [
+      0.0,
+      0.039473684210526314
+     ],
+     "always_dP": 0.10526315789473684,
+     "always_ci95": [
+      0.0,
+      0.23684210526315788
+     ],
+     "grounded_dP": 0.0,
+     "grounded_ci95": [
+      0.0,
+      0.0
+     ]
+    }
+   },
+   "write_on_repairable_conflict_rows": {
+    "n": 11,
+    "gold_1x_dP": 0.6477272727272727,
+    "gold_2x_dP": 0.7159090909090909,
+    "gold_2x_ci95": [
+     0.4659090909090909,
+     0.9318181818181818
+    ],
+    "nongold_address_gold_rate_2x": 0.19296750398724083,
+    "specificity_2x": 0.5570324960127592,
+    "specificity_ci95": [
+     0.3386772328548644,
+     0.7777665221291866
+    ],
+    "text_hint_gold": 1.0
+   }
+  }
+ },
+ "prediction_GROUNDED_TWO_STAGE_HELPS_BLIND": "CONFIRMED"
+}

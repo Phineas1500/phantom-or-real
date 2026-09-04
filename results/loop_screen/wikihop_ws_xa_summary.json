@@ -1,0 +1,6349 @@
+{
+ "n_rows": 64,
+ "rows_key": "wh_rows",
+ "shard_index": 0,
+ "shard_count": 1,
+ "loop": true,
+ "loop_rung": 2.0,
+ "n_fired_branches": 1149,
+ "write_layer": 30,
+ "gauge_layer": 38,
+ "rungs": [
+  1.0,
+  2.0
+ ],
+ "seed": 20260904,
+ "frozen": {
+  "norm_target": 3288.0375866406252,
+  "n_donors": 30,
+  "n_positions": 235,
+  "mean_delta_norm": 1557.2044149398957,
+  "mean_position_norm": 3288.0375866406252,
+  "vector_mode": "hint",
+  "vector_seed": null
+ },
+ "wx_job": "XA",
+ "w0_base_norm": 4736.823490844226,
+ "skipped": [],
+ "rows": [
+  {
+   "id": "SQ_dev_10006_cf",
+   "n_tokens": 299,
+   "n_candidates": 15,
+   "gold_positions": 13,
+   "nongold_fired": [
+    "u.s",
+    "united states",
+    "united methodist church"
+   ],
+   "base_gauge_score": -8.980208690902707,
+   "deltas": {
+    "newcastle student radio": {
+     "n_positions": 13,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 2954.777099609375,
+     "cos_frozen_vs_own_gold_delta": 0.17739843888943252
+    },
+    "2014": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "2015": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "africa": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "asia and europe": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "christian": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "pew research": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "protestant": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "southern baptist convention": {
+     "n_positions": 7,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "u.s": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "umc": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "united methodist church": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "united states": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "world council of churches": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "world methodist council": {
+     "n_positions": 7,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "SQ_dev_1300_cf",
+   "n_tokens": 185,
+   "n_candidates": 9,
+   "gold_positions": 7,
+   "nongold_fired": [
+    "1882",
+    "1884",
+    "france"
+   ],
+   "base_gauge_score": 2.504496411548511,
+   "deltas": {
+    "dyrrachium": {
+     "n_positions": 7,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 4225.232421875,
+     "cos_frozen_vs_own_gold_delta": 0.700545907668079
+    },
+    "1882": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1884": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "france": {
+     "n_positions": 1,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "june": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "nikola tesla": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "tesla": {
+     "n_positions": 5,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "thomas edison": {
+     "n_positions": 5,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "york city": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "SQ_dev_139_cf",
+   "n_tokens": 302,
+   "n_candidates": 18,
+   "gold_positions": 6,
+   "nongold_fired": [
+    "san francisco bay area",
+    "super bowl xliv",
+    "super bowl"
+   ],
+   "base_gauge_score": 11.209354628331061,
+   "deltas": {
+    "the deadly assassin": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 4038.87890625,
+     "cos_frozen_vs_own_gold_delta": 0.5543904885562767
+    },
+    "1985": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "2010": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "2012": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "2013": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "california": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "florida": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "may": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "miami": {
+     "n_positions": 5,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "october": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "orleans": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "san francisco bay area": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "south florida": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "stanford stadium in stanford": {
+     "n_positions": 10,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "sun life stadium": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "super bowl": {
+     "n_positions": 12,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "super bowl xix": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "super bowl xliv": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "SQ_dev_1422_cf",
+   "n_tokens": 350,
+   "n_candidates": 17,
+   "gold_positions": 3,
+   "nongold_fired": [
+    "december",
+    "tesla",
+    "x-rays"
+   ],
+   "base_gauge_score": 7.173486556134573,
+   "deltas": {
+    "construction": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 3479.279541015625,
+     "cos_frozen_vs_own_gold_delta": 0.5076279131812012
+    },
+    "1894": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1895": {
+     "n_positions": 12,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "avenue": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "crookes": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "december": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "geissler": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "march": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "mark twain": {
+     "n_positions": 5,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "nikola tesla": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "roentgen": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "soon": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "starting": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "tesla": {
+     "n_positions": 7,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "x-ray": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "x-rays": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "york times": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "SQ_dev_1534_cf",
+   "n_tokens": 226,
+   "n_candidates": 6,
+   "gold_positions": 16,
+   "nongold_fired": [
+    "vtol",
+    "nikola tesla",
+    "u.s. patent 1,655,114"
+   ],
+   "base_gauge_score": 3.288560582769852,
+   "deltas": {
+    "throughout the 1580s": {
+     "n_positions": 16,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 4715.55419921875,
+     "cos_frozen_vs_own_gold_delta": 0.6731404262248721
+    },
+    "1928": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "nikola tesla": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "throughout": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "u.s. patent 1,655,114": {
+     "n_positions": 15,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "vtol": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "SQ_dev_1852_cf",
+   "n_tokens": 412,
+   "n_candidates": 11,
+   "gold_positions": 6,
+   "nongold_fired": [
+    "1012",
+    "computational",
+    "1010"
+   ],
+   "base_gauge_score": -9.647921179188247,
+   "deltas": {
+    "new orangery": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 4258.57373046875,
+     "cos_frozen_vs_own_gold_delta": 0.7346296940974428
+    },
+    "1010": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1012": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "cobham": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "computational": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "edmonds": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "even": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "exptime-hard": {
+     "n_positions": 9,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "nevertheless": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "np-complete problems": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "orangery": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "SQ_dev_214_cf",
+   "n_tokens": 345,
+   "n_candidates": 18,
+   "gold_positions": 5,
+   "nongold_fired": [
+    "panthers",
+    "ten",
+    "carolina panthers"
+   ],
+   "base_gauge_score": 0.16369724433704702,
+   "deltas": {
+    "cam newton": {
+     "n_positions": 5,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 5236.67529296875,
+     "cos_frozen_vs_own_gold_delta": 0.763560258597909
+    },
+    "1978": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "2009": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "2011": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "acl": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "all-pro": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "carolina": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "carolina panthers": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "deangelo williams": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "green bay packers": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "kelvin benjamin": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "nfc": {
+     "n_positions": 7,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "nfc-best": {
+     "n_positions": 7,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "orleans saints": {
+     "n_positions": 5,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "panthers": {
+     "n_positions": 5,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "pro bowl": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "super bowl": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "ten": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "SQ_dev_2490_cf",
+   "n_tokens": 202,
+   "n_candidates": 13,
+   "gold_positions": 4,
+   "nongold_fired": [
+    "john of saxony",
+    "martin luther",
+    "philip of hesse"
+   ],
+   "base_gauge_score": 7.626685068040958,
+   "deltas": {
+    "scottish independence": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 2633.5966796875,
+     "cos_frozen_vs_own_gold_delta": 0.49003412794214674
+    },
+    "1530": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "eucharist": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "george": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "john of saxony": {
+     "n_positions": 7,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "marburg colloquy": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "margrave of brandenburg-ansbach": {
+     "n_positions": 16,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "martin luther": {
+     "n_positions": 5,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "philip of hesse": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "protestant": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "schmalkaldic league": {
+     "n_positions": 10,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "scottish": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "swiss": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "SQ_dev_2492_cf",
+   "n_tokens": 209,
+   "n_candidates": 13,
+   "gold_positions": 6,
+   "nongold_fired": [
+    "protestant",
+    "eucharist",
+    "margrave of brandenburg-ansbach"
+   ],
+   "base_gauge_score": -4.626530500713242,
+   "deltas": {
+    "fort william henry": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 4053.252685546875,
+     "cos_frozen_vs_own_gold_delta": 0.6143181426098585
+    },
+    "1530": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "augsburg confession": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "eucharist": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "george": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "john of saxony": {
+     "n_positions": 7,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "marburg colloquy": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "margrave of brandenburg-ansbach": {
+     "n_positions": 16,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "martin luther": {
+     "n_positions": 5,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "philip of hesse": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "protestant": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "schmalkaldic league": {
+     "n_positions": 10,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "the swiss cities": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "SQ_dev_269_cf",
+   "n_tokens": 568,
+   "n_candidates": 16,
+   "gold_positions": 5,
+   "nongold_fired": [
+    "1998",
+    "manning",
+    "osweiler"
+   ],
+   "base_gauge_score": 4.700830264868954,
+   "deltas": {
+    "sultan muhammad": {
+     "n_positions": 5,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 5414.00830078125,
+     "cos_frozen_vs_own_gold_delta": 0.7151274287131131
+    },
+    "1998": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "afc": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "brock osweiler": {
+     "n_positions": 7,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "denver broncos": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "gary kubiak": {
+     "n_positions": 7,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "indianapolis colts": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "john fox": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "kubiak": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "manning": {
+     "n_positions": 9,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "nfl": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "osweiler": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "san diego chargers": {
+     "n_positions": 7,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "super bowl": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "wade phillips": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "week": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "SQ_dev_2811_cf",
+   "n_tokens": 319,
+   "n_candidates": 14,
+   "gold_positions": 6,
+   "nongold_fired": [
+    "2016",
+    "premier league",
+    "may"
+   ],
+   "base_gauge_score": -4.61168226739357,
+   "deltas": {
+    "commissioners": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 3440.797119140625,
+     "cos_frozen_vs_own_gold_delta": 0.35785421697289144
+    },
+    "2006": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "2007": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "2015": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "2016": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "english fa": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "european commission": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "february": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "irish": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "may": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "premier league": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "setanta sports": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "sky": {
+     "n_positions": 1,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "united kingdom": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "SQ_dev_2894_cf",
+   "n_tokens": 297,
+   "n_candidates": 16,
+   "gold_positions": 6,
+   "nongold_fired": [
+    "2007",
+    "hd",
+    "united kingdom"
+   ],
+   "base_gauge_score": -4.560917566906111,
+   "deltas": {
+    "golden gate bridge": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 3842.203857421875,
+     "cos_frozen_vs_own_gold_delta": 0.6983727170437374
+    },
+    "2006": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "2007": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "2009": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "bbc hd": {
+     "n_positions": 5,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "hd": {
+     "n_positions": 10,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "hdtv": {
+     "n_positions": 5,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "itv hd": {
+     "n_positions": 5,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "july": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "nonetheless": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "november": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "ntl": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "sky": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "telewest": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "united kingdom": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "video on demand": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "SQ_dev_3095_cf",
+   "n_tokens": 223,
+   "n_candidates": 8,
+   "gold_positions": 6,
+   "nongold_fired": [
+    "staten island",
+    "national historic landmark",
+    "york harbor"
+   ],
+   "base_gauge_score": 8.686130684080732,
+   "deltas": {
+    "baltimore ravens": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 6223.31640625,
+     "cos_frozen_vs_own_gold_delta": 0.6942404615392552
+    },
+    "huguenot street historic district": {
+     "n_positions": 12,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "national historic landmark": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "new rochelle": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "paltz": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "staten island": {
+     "n_positions": 5,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "united states of america": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "york harbor": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "SQ_dev_3233_cf",
+   "n_tokens": 274,
+   "n_candidates": 15,
+   "gold_positions": 7,
+   "nongold_fired": [
+    "dutch",
+    "prevenient",
+    "pierre bayle"
+   ],
+   "base_gauge_score": -5.65208348743505,
+   "deltas": {
+    "prevenient grace": {
+     "n_positions": 7,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 3700.170654296875,
+     "cos_frozen_vs_own_gold_delta": 0.5943269948781842
+    },
+    "due": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "dutch": {
+     "n_positions": 7,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "dutch revolt": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "dutch sint nicolaas": {
+     "n_positions": 9,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "french": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "historical and critical dictionary": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "huguenots": {
+     "n_positions": 5,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "netherlands": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "pierre bayle": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "prevenient": {
+     "n_positions": 7,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "rotterdam": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "saint nicolas": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "sinterklaas": {
+     "n_positions": 7,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "us library of congress": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "SQ_dev_3251_cf",
+   "n_tokens": 306,
+   "n_candidates": 18,
+   "gold_positions": 11,
+   "nongold_fired": [
+    "elector of brandenburg",
+    "luftwaffe",
+    "interior"
+   ],
+   "base_gauge_score": 12.339983262399508,
+   "deltas": {
+    "the st. johns river": {
+     "n_positions": 11,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 4635.5732421875,
+     "cos_frozen_vs_own_gold_delta": 0.6950288894534522
+    },
+    "adolf galland": {
+     "n_positions": 7,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "elector of brandenburg": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "frederick william": {
+     "n_positions": 5,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "german democratic republic": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "german federal minister": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "hans-joachim marseille": {
+     "n_positions": 12,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "huguenot": {
+     "n_positions": 10,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "huguenots": {
+     "n_positions": 5,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "interior": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "johns river": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "lothar de maizi\u00e8re": {
+     "n_positions": 7,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "lothar von arnauld": {
+     "n_positions": 13,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "luftwaffe": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "luftwaffe general": {
+     "n_positions": 5,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "prussia": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "theodor fontane": {
+     "n_positions": 7,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "u-boat": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "SQ_dev_3277_cf",
+   "n_tokens": 335,
+   "n_candidates": 7,
+   "gold_positions": 4,
+   "nongold_fired": [
+    "steam",
+    "such",
+    "multiple"
+   ],
+   "base_gauge_score": 4.990172058856562,
+   "deltas": {
+    "freeview": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 4911.197265625,
+     "cos_frozen_vs_own_gold_delta": 0.6569802060070378
+    },
+    "multiple": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "olympic": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "steam": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "such": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "y-s-t": {
+     "n_positions": 10,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "yarrow-schlick-tweedy": {
+     "n_positions": 16,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "SQ_dev_3344_cf",
+   "n_tokens": 290,
+   "n_candidates": 19,
+   "gold_positions": 6,
+   "nongold_fired": [
+    "george stephenson",
+    "demand",
+    "1825"
+   ],
+   "base_gauge_score": -8.204314722193617,
+   "deltas": {
+    "video on demand": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 4915.59619140625,
+     "cos_frozen_vs_own_gold_delta": 0.6664435380939041
+    },
+    "1825": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1829": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1830": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "catch me who can": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "demand": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "george stephenson": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "liverpool and manchester railway": {
+     "n_positions": 10,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "locomotion": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "matthew murray": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "middleton railway": {
+     "n_positions": 5,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "only": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "rainhill trials": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "rocket": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "salamanca": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "steam": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "stockton and darlington railway": {
+     "n_positions": 10,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "trevithick": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "video": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "SQ_dev_3500_cf",
+   "n_tokens": 281,
+   "n_candidates": 8,
+   "gold_positions": 9,
+   "nongold_fired": [
+    "hgo",
+    "oxygen",
+    "priestley"
+   ],
+   "base_gauge_score": 4.010536076347214,
+   "deltas": {
+    "ryan seacrest": {
+     "n_positions": 9,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 5675.50146484375,
+     "cos_frozen_vs_own_gold_delta": 0.7112020440668231
+    },
+    "1774": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "august": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "british": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "hgo": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "joseph priestley": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "oxygen": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "priestley": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "SQ_dev_3759_cf",
+   "n_tokens": 251,
+   "n_candidates": 15,
+   "gold_positions": 6,
+   "nongold_fired": [
+    "six-day war",
+    "european economic community",
+    "1970"
+   ],
+   "base_gauge_score": 1.7046415581776795,
+   "deltas": {
+    "youngstown": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 3846.1484375,
+     "cos_frozen_vs_own_gold_delta": 0.6562411928508709
+    },
+    "1967": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1970": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1973": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "america": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "arabs": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "eec": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "europe": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "european economic community": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "israelis": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "netherlands": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "six-day war": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "ted heath": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "uk": {
+     "n_positions": 1,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "youngstown and france": {
+     "n_positions": 7,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "SQ_dev_3777_cf",
+   "n_tokens": 268,
+   "n_candidates": 14,
+   "gold_positions": 4,
+   "nongold_fired": [
+    "1977",
+    "1978",
+    "national energy act"
+   ],
+   "base_gauge_score": 5.392686940715504,
+   "deltas": {
+    "legislative assembly": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 3352.919189453125,
+     "cos_frozen_vs_own_gold_delta": 0.7233757095363534
+    },
+    "1973": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1974": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1975": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1977": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1978": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1995": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "bill clinton": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "department of energy": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "development": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "national energy act": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "national highway designation act": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "november": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "strategic petroleum reserve": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "SQ_dev_3798_cf",
+   "n_tokens": 267,
+   "n_candidates": 16,
+   "gold_positions": 18,
+   "nongold_fired": [
+    "cobham",
+    "dodge colt",
+    "datsun"
+   ],
+   "base_gauge_score": 15.950025277300764,
+   "deltas": {
+    "cobham\u2013edmonds thesis": {
+     "n_positions": 18,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 3834.689697265625,
+     "cos_frozen_vs_own_gold_delta": 0.5562165406496103
+    },
+    "1973": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "american v8": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "chrysler": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "cobham": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "datsun": {
+     "n_positions": 12,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "datsun b210": {
+     "n_positions": 14,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "dodge colt": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "edmonds": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "honda accord": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "honda civic": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "japanese imports": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "mitsubishi galant": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "subaru dl": {
+     "n_positions": 5,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "toyota corolla": {
+     "n_positions": 5,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "toyota corona": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "SQ_dev_3961_cf",
+   "n_tokens": 333,
+   "n_candidates": 20,
+   "gold_positions": 6,
+   "nongold_fired": [
+    "1966",
+    "command pilot",
+    "january"
+   ],
+   "base_gauge_score": 3.4158289212308657,
+   "deltas": {
+    "fort william henry": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 5190.2255859375,
+     "cos_frozen_vs_own_gold_delta": 0.7056980201440783
+    },
+    "1966": {
+     "n_positions": 12,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "as-204 on march": {
+     "n_positions": 14,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "chaffee": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "command pilot": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "deke slayton": {
+     "n_positions": 9,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "donn f. eisele": {
+     "n_positions": 5,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "eisele": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "gemini": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "gemini and apollo": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "grissom": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "january": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "kc135": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "mercury": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "nasa": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "russell l": {
+     "n_positions": 5,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "rusty": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "senior pilot": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "slayton": {
+     "n_positions": 10,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "white": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "SQ_dev_4012_cf",
+   "n_tokens": 285,
+   "n_candidates": 20,
+   "gold_positions": 15,
+   "nongold_fired": [
+    "april",
+    "command module pilot",
+    "ocean of storms"
+   ],
+   "base_gauge_score": 6.628722784818529,
+   "deltas": {
+    "dvb-compliant mpeg-2": {
+     "n_positions": 15,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 5821.873046875,
+     "cos_frozen_vs_own_gold_delta": 0.6817097191086583
+    },
+    "1967": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1969": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "alan l": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "april": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "bean": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "charles": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "command module pilot": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "conrad": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "conrad and bean": {
+     "n_positions": 7,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "evas": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "gemini": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "gordon": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "jr": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "november": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "ocean of storms": {
+     "n_positions": 7,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "pete": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "richard f": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "sun": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "surveyor 3": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "SQ_dev_4049_cf",
+   "n_tokens": 255,
+   "n_candidates": 13,
+   "gold_positions": 15,
+   "nongold_fired": [
+    "1968",
+    "christmas",
+    "apollo 8"
+   ],
+   "base_gauge_score": 9.73909862218751,
+   "deltas": {
+    "dvb-compliant mpeg-2": {
+     "n_positions": 15,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 7004.298828125,
+     "cos_frozen_vs_own_gold_delta": 0.6719745706535004
+    },
+    "1968": {
+     "n_positions": 12,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "apollo": {
+     "n_positions": 5,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "apollo 8": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "book of genesis": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "christmas": {
+     "n_positions": 5,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "christmas eve": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "jr": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "kennedy": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "martin luther king": {
+     "n_positions": 7,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "senator robert f": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "us": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "vietnam war": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "SQ_dev_405_cf",
+   "n_tokens": 385,
+   "n_candidates": 20,
+   "gold_positions": 6,
+   "nongold_fired": [
+    "super bowl xxi",
+    "xlviii",
+    "afc and nfc"
+   ],
+   "base_gauge_score": 5.152120645999265,
+   "deltas": {
+    "university of paris": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 4033.921142578125,
+     "cos_frozen_vs_own_gold_delta": 0.3673343275564354
+    },
+    "afc": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "afc and nfc": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "atlanta falcons": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "broncos": {
+     "n_positions": 5,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "denver qb": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "panthers": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "pittsburgh steelers": {
+     "n_positions": 7,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "seattle seahawks": {
+     "n_positions": 7,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "super bowl": {
+     "n_positions": 30,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "super bowl xii": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "super bowl xl": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "super bowl xxi": {
+     "n_positions": 7,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "super bowl xxxii": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "super bowl xxxiii": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "super bowls": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "we've": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "xlviii": {
+     "n_positions": 5,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "xxii": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "xxiv": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "SQ_dev_4375_cf",
+   "n_tokens": 244,
+   "n_candidates": 8,
+   "gold_positions": 7,
+   "nongold_fired": [
+    "south america",
+    "atlantic",
+    "calipso"
+   ],
+   "base_gauge_score": 25.194587927861743,
+   "deltas": {
+    "algeria": {
+     "n_positions": 7,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 3638.01904296875,
+     "cos_frozen_vs_own_gold_delta": 0.6637435223752015
+    },
+    "atlantic": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "atlantic ocean": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "calipso": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "caribbean sea": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "nasa's algeria": {
+     "n_positions": 10,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "sahara": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "south america": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "SQ_dev_453_cf",
+   "n_tokens": 210,
+   "n_candidates": 6,
+   "gold_positions": 6,
+   "nongold_fired": [
+    "nfl",
+    "super bowl-winning",
+    "golden super bowl"
+   ],
+   "base_gauge_score": 19.424574507593793,
+   "deltas": {
+    "fort william henry": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 3827.467529296875,
+     "cos_frozen_vs_own_gold_delta": 0.43272410066321004
+    },
+    "2015": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "golden super bowl": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "nfl": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "super bowl-winning": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "various": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "SQ_dev_454_cf",
+   "n_tokens": 219,
+   "n_candidates": 7,
+   "gold_positions": 6,
+   "nongold_fired": [
+    "gold footballs",
+    "golden super bowl",
+    "2015"
+   ],
+   "base_gauge_score": 4.9586534955955095,
+   "deltas": {
+    "christopher gist": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 5364.173828125,
+     "cos_frozen_vs_own_gold_delta": 0.7241708837051792
+    },
+    "2015": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "gold footballs": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "golden super bowl": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "nfl": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "super bowl-winning": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "various": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "SQ_dev_4617_cf",
+   "n_tokens": 276,
+   "n_candidates": 7,
+   "gold_positions": 5,
+   "nongold_fired": [
+    "velamen",
+    "ctenophora",
+    "cestids"
+   ],
+   "base_gauge_score": -2.7190179748576218,
+   "deltas": {
+    "nfl mobile": {
+     "n_positions": 5,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 4868.13671875,
+     "cos_frozen_vs_own_gold_delta": 0.6587600058669896
+    },
+    "cestids": {
+     "n_positions": 5,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "cestum": {
+     "n_positions": 5,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "ctenophora": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "the cestida": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "velamen": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "venus": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "SQ_dev_502_cf",
+   "n_tokens": 170,
+   "n_candidates": 7,
+   "gold_positions": 6,
+   "nongold_fired": [
+    "alongside",
+    "golden gate bridge",
+    "february"
+   ],
+   "base_gauge_score": 4.948167290605812,
+   "deltas": {
+    "lunar module pilot": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 3521.359619140625,
+     "cos_frozen_vs_own_gold_delta": 0.5301347551871167
+    },
+    "2016": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "alongside": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "february": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "golden gate bridge": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "monday": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "tuesday": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "SQ_dev_5313_cf",
+   "n_tokens": 354,
+   "n_candidates": 20,
+   "gold_positions": 6,
+   "nongold_fired": [
+    "northumbria university",
+    "germany",
+    "gosforth park"
+   ],
+   "base_gauge_score": 8.471155212801358,
+   "deltas": {
+    "cologne, germany": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 3900.829833984375,
+     "cos_frozen_vs_own_gold_delta": 0.6564962389509911
+    },
+    "bbl": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "blaydon": {
+     "n_positions": 15,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "blaydon race": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "british basketball league": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "brough park in byker": {
+     "n_positions": 12,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "cologne": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "eagles": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "gateshead": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "germany": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "gosforth park": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "great north run": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "june": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "newcastle diamonds": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "newcastle eagles": {
+     "n_positions": 5,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "northumbria university": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "south shields": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "sport central": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "tyne": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "tyne bridge": {
+     "n_positions": 5,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "SQ_dev_5350_cf",
+   "n_tokens": 353,
+   "n_candidates": 20,
+   "gold_positions": 10,
+   "nongold_fired": [
+    "go-ahead",
+    "sunderland",
+    "metrocentre"
+   ],
+   "base_gauge_score": -10.572787784283435,
+   "deltas": {
+    "finsteraarhorn": {
+     "n_positions": 10,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 5090.43017578125,
+     "cos_frozen_vs_own_gold_delta": 0.6681242808250355
+    },
+    "arriva": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "arriva north east": {
+     "n_positions": 7,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "bus services in newcastle": {
+     "n_positions": 9,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "county durham": {
+     "n_positions": 5,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "eldon square": {
+     "n_positions": 12,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "eldon square bus station": {
+     "n_positions": 15,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "gateshead": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "go-ahead": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "haymarket": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "haymarket bus station": {
+     "n_positions": 12,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "killingworth": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "metrocentre": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "northumberland and north tyneside": {
+     "n_positions": 13,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "south tyneside": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "stagecoach": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "sunderland": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "tyne": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "wallsend and ponteland": {
+     "n_positions": 10,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "west and east": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "SQ_dev_5387_cf",
+   "n_tokens": 256,
+   "n_candidates": 15,
+   "gold_positions": 8,
+   "nongold_fired": [
+    "immediately",
+    "2007",
+    "june"
+   ],
+   "base_gauge_score": 10.399176951022854,
+   "deltas": {
+    "immediately after decision time": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 4218.1875,
+     "cos_frozen_vs_own_gold_delta": 0.6675182111265447
+    },
+    "1951": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "2007": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "decision time": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "great north children's hospital": {
+     "n_positions": 12,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "hospedia": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "immediately": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "june": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "ne1fm": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "newcastle and gateshead": {
+     "n_positions": 9,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "newcastle royal victoria infirmary": {
+     "n_positions": 11,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "newcastle student radio": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "radio lollipop": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "radio tyneside": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "tyne": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "SQ_dev_5395_cf",
+   "n_tokens": 412,
+   "n_candidates": 20,
+   "gold_positions": 9,
+   "nongold_fired": [
+    "baron collingwood",
+    "isaac lowthian bell",
+    "1709"
+   ],
+   "base_gauge_score": 11.16483553257353,
+   "deltas": {
+    "hanna-barbera": {
+     "n_positions": 9,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 4366.3544921875,
+     "cos_frozen_vs_own_gold_delta": 0.7482526320562027
+    },
+    "1709": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1770": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1816": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1923": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "archbishop of westminster": {
+     "n_positions": 7,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "baron collingwood": {
+     "n_positions": 5,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "basil hume": {
+     "n_positions": 5,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "british": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "charles avison": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "george stephenson": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "ironmaster": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "isaac lowthian bell": {
+     "n_positions": 11,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "lord armstrong": {
+     "n_positions": 5,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "robert stephenson": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "sir charles parsons": {
+     "n_positions": 7,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "sir joseph swan": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "thailand": {
+     "n_positions": 1,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "tyne": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "vice admiral cuthbert collingwood": {
+     "n_positions": 11,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "SQ_dev_5541_cf",
+   "n_tokens": 263,
+   "n_candidates": 9,
+   "gold_positions": 9,
+   "nongold_fired": [
+    "search the collections",
+    "modes",
+    "word and image department"
+   ],
+   "base_gauge_score": -6.570645872211242,
+   "deltas": {
+    "lyndon b. johnson": {
+     "n_positions": 9,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 4891.7734375,
+     "cos_frozen_vs_own_gold_delta": 0.694053532697401
+    },
+    "ead": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "encoded archival description": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "johnson": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "lyndon b": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "modes": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "search the collections": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "victoria and albert museum": {
+     "n_positions": 21,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "word and image department": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "SQ_dev_5625_cf",
+   "n_tokens": 317,
+   "n_candidates": 16,
+   "gold_positions": 7,
+   "nongold_fired": [
+    "furniture and europe",
+    "deformational",
+    "bryan davies"
+   ],
+   "base_gauge_score": -6.421247030748814,
+   "deltas": {
+    "deformational events": {
+     "n_positions": 7,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 3645.808837890625,
+     "cos_frozen_vs_own_gold_delta": 0.7318444260273594
+    },
+    "1600": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1800": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "2010": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "british galleries": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "bryan davies": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "chris smith": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "deformational": {
+     "n_positions": 7,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "february": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "furniture and europe": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "horniman": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "horniman museum": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "medieval & renaissance galleries": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "musical instruments": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "parliamentary": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "victoria and albert museum": {
+     "n_positions": 9,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "SQ_dev_5929_cf",
+   "n_tokens": 280,
+   "n_candidates": 9,
+   "gold_positions": 2,
+   "nongold_fired": [
+    "fridays",
+    "2004",
+    "2009"
+   ],
+   "base_gauge_score": -14.730179011873952,
+   "deltas": {
+    "session": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 5650.10546875,
+     "cos_frozen_vs_own_gold_delta": 0.696428732300587
+    },
+    "2004": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "2009": {
+     "n_positions": 12,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "2010": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "american broadcasting company": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "brothers & sisters": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "fridays": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "lost": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "wednesdays": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "SQ_dev_5983_cf",
+   "n_tokens": 271,
+   "n_candidates": 11,
+   "gold_positions": 13,
+   "nongold_fired": [
+    "sports programs",
+    "always",
+    "american broadcasting company"
+   ],
+   "base_gauge_score": 4.705070616323761,
+   "deltas": {
+    "tyne and wear metro": {
+     "n_positions": 13,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 3781.7607421875,
+     "cos_frozen_vs_own_gold_delta": 0.5327788716426137
+    },
+    "abc sports": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "always": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "american broadcasting company": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "arledge": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "edgar scherick": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "inc": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "nbc and cbs": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "roone arledge": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "sports programs": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "wide world of sports": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "SQ_dev_5993_cf",
+   "n_tokens": 379,
+   "n_candidates": 18,
+   "gold_positions": 10,
+   "nongold_fired": [
+    "1981",
+    "three's company",
+    "aaron spelling"
+   ],
+   "base_gauge_score": 8.712686387427512,
+   "deltas": {
+    "alberta and british columbia": {
+     "n_positions": 10,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 5714.96630859375,
+     "cos_frozen_vs_own_gold_delta": 0.6671989830467062
+    },
+    "1981": {
+     "n_positions": 12,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "aaron spelling": {
+     "n_positions": 5,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "abc video services": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "alpha repertory television service": {
+     "n_positions": 10,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "american": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "american broadcasting company": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "arts": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "benson and happy days": {
+     "n_positions": 9,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "charlie's angels": {
+     "n_positions": 9,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "dynasty": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "hearst corporation": {
+     "n_positions": 5,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "mork & mindy": {
+     "n_positions": 5,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "nickelodeon": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "soap": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "three's company": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "too close for comfort": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "u.s": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "SQ_dev_6011_cf",
+   "n_tokens": 316,
+   "n_candidates": 19,
+   "gold_positions": 2,
+   "nongold_fired": [
+    "jersey",
+    "wmdt",
+    "alabama"
+   ],
+   "base_gauge_score": -6.294240531936498,
+   "deltas": {
+    "european": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 6533.95068359375,
+     "cos_frozen_vs_own_gold_delta": 0.7472752095584242
+    },
+    "alabama": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "american broadcasting company": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "bedford": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "birmingham": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "delaware": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "indiana": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "jersey": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "maryland": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "massachusetts-licensed wlne": {
+     "n_positions": 11,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "rhode island": {
+     "n_positions": 10,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "rhode island and delaware": {
+     "n_positions": 10,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "south bend": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "u.s": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "wbma-ld": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "wbnd-ld": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "wlqp-lp": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "wmdt": {
+     "n_positions": 5,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "wpvi and salisbury": {
+     "n_positions": 9,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "SQ_dev_6102_cf",
+   "n_tokens": 380,
+   "n_candidates": 20,
+   "gold_positions": 5,
+   "nongold_fired": [
+    "kmbc-tv and kqtv",
+    "kansas city",
+    "wwsb"
+   ],
+   "base_gauge_score": 1.214707872001725,
+   "deltas": {
+    "bbc": {
+     "n_positions": 5,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 3674.90625,
+     "cos_frozen_vs_own_gold_delta": 0.7406941352808897
+    },
+    "american broadcasting company": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "florida": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "grand rapids": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "joseph": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "kansas city": {
+     "n_positions": 7,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "kmbc-tv and kqtv": {
+     "n_positions": 14,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "kqtv": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "miami": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "michigan": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "missouri": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "nielsen": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "sarasota": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "st": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "wfts-tv and wwsb": {
+     "n_positions": 15,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "wplg": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "wtsp": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "wwsb": {
+     "n_positions": 15,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "wwsb and wotv": {
+     "n_positions": 13,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "wzzm and wotv": {
+     "n_positions": 14,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "SQ_dev_6161_cf",
+   "n_tokens": 235,
+   "n_candidates": 6,
+   "gold_positions": 12,
+   "nongold_fired": [
+    "jochi",
+    "genghis khan",
+    "keraite"
+   ],
+   "base_gauge_score": -10.063610640348871,
+   "deltas": {
+    "\u00f6gedei": {
+     "n_positions": 12,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 4011.6025390625,
+     "cos_frozen_vs_own_gold_delta": 0.6182526985440839
+    },
+    "genghis khan": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "jamukha": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "jochi": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "keraite": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "mongolian": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "SQ_dev_6254_cf",
+   "n_tokens": 376,
+   "n_candidates": 12,
+   "gold_positions": 12,
+   "nongold_fired": [
+    "rashid",
+    "ratchnevsky",
+    "khorasan"
+   ],
+   "base_gauge_score": -21.81852174261416,
+   "deltas": {
+    "god's punishment": {
+     "n_positions": 12,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 4100.1103515625,
+     "cos_frozen_vs_own_gold_delta": 0.773886616060242
+    },
+    "1223": {
+     "n_positions": 12,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1226": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "genghis khan": {
+     "n_positions": 15,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "juzjani": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "khan": {
+     "n_positions": 7,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "khorasan": {
+     "n_positions": 5,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "muslims": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "rashid": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "ratchnevsky": {
+     "n_positions": 7,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "sultan muhammad": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "urgench": {
+     "n_positions": 9,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "SQ_dev_6266_cf",
+   "n_tokens": 393,
+   "n_candidates": 20,
+   "gold_positions": 6,
+   "nongold_fired": [
+    "christmas invasion",
+    "xining",
+    "1954"
+   ],
+   "base_gauge_score": -8.220513117480229,
+   "deltas": {
+    "the christmas invasion": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 3144.758056640625,
+     "cos_frozen_vs_own_gold_delta": 0.704302829021735
+    },
+    "1939": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1949": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1954": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "chinese nationalist": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "christmas invasion": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "communist": {
+     "n_positions": 5,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "communist-held": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "dongshan dafo dian": {
+     "n_positions": 5,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "edsen khoroo": {
+     "n_positions": 9,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "kumbum monastery": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "lord's enclosure": {
+     "n_positions": 18,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "lord's enclosure in mongolia": {
+     "n_positions": 14,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "mongolia": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "mongolian": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "nationalist": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "ta'er shi": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "tibetan": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "xining": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "yan'an": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "SQ_dev_6715_cf",
+   "n_tokens": 301,
+   "n_candidates": 19,
+   "gold_positions": 7,
+   "nongold_fired": [
+    "singing revolution",
+    "baltic",
+    "rose revolution in georgia"
+   ],
+   "base_gauge_score": -1.805692467002525,
+   "deltas": {
+    "carolina panthers": {
+     "n_positions": 7,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 4760.1572265625,
+     "cos_frozen_vs_own_gold_delta": 0.6166779202650317
+    },
+    "1919": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "2003": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "2004": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "american civil rights movement": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "baltic": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "british": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "british empire": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "civil disobedience": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "czechoslovakia's velvet revolution": {
+     "n_positions": 11,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "east germany": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "egyptians": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "india": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "orange revolution in ukraine": {
+     "n_positions": 9,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "revolution": {
+     "n_positions": 10,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "rose revolution in georgia": {
+     "n_positions": 9,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "singing revolution": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "south africa": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "soviet union": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "SQ_dev_6727_cf",
+   "n_tokens": 212,
+   "n_candidates": 7,
+   "gold_positions": 6,
+   "nongold_fired": [
+    "civil",
+    "polynices",
+    "oedipus"
+   ],
+   "base_gauge_score": 0.1367895701529005,
+   "deltas": {
+    "go-ahead": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 5890.14208984375,
+     "cos_frozen_vs_own_gold_delta": 0.7079877188942618
+    },
+    "antigone": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "civil": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "creon": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "oedipus": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "polynices": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "sophocles": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "SQ_dev_7023_cf",
+   "n_tokens": 220,
+   "n_candidates": 11,
+   "gold_positions": 5,
+   "nongold_fired": [
+    "private",
+    "rochelle",
+    "religiously"
+   ],
+   "base_gauge_score": 5.796117577713223,
+   "deltas": {
+    "new rochelle": {
+     "n_positions": 5,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 4813.1376953125,
+     "cos_frozen_vs_own_gold_delta": 0.7096573966971198
+    },
+    "jews": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "k-12": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "muslims": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "orthodox christians": {
+     "n_positions": 5,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "others": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "private": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "protestants": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "religiously": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "rochelle": {
+     "n_positions": 5,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "roman catholic": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "SQ_dev_7029_cf",
+   "n_tokens": 317,
+   "n_candidates": 13,
+   "gold_positions": 7,
+   "nongold_fired": [
+    "riverview",
+    "st gregory's college",
+    "campbelltown"
+   ],
+   "base_gauge_score": -4.985517307654162,
+   "deltas": {
+    "gandhi's": {
+     "n_positions": 7,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 5040.62060546875,
+     "cos_frozen_vs_own_gold_delta": 0.4849343107773559
+    },
+    "campbelltown": {
+     "n_positions": 5,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "catholic": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "gregory terrace": {
+     "n_positions": 5,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "hunters hill": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "loreto kirribilli": {
+     "n_positions": 10,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "presbyterian": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "riverview": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "saint ignatius' college": {
+     "n_positions": 9,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "st aloysius' college": {
+     "n_positions": 12,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "st gregory's college": {
+     "n_positions": 11,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "st joseph's college": {
+     "n_positions": 15,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "sydney": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "SQ_dev_7259_cf",
+   "n_tokens": 393,
+   "n_candidates": 20,
+   "gold_positions": 9,
+   "nongold_fired": [
+    "american",
+    "johns river",
+    "augustine"
+   ],
+   "base_gauge_score": -12.710405306321375,
+   "deltas": {
+    "national galleries of scotland": {
+     "n_positions": 9,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 6121.2841796875,
+     "cos_frozen_vs_own_gold_delta": 0.7510060366635665
+    },
+    "1763": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1783": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "american": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "american revolutionary war": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "augustine": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "british": {
+     "n_positions": 5,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "cow ford": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "cowford": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "florida territory": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "french and indian war": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "georgia": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "jacksonville": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "johns river": {
+     "n_positions": 5,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "king's road": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "seminole": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "spain": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "st": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "united states": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "wacca pilatka": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "SQ_dev_7302_cf",
+   "n_tokens": 303,
+   "n_candidates": 14,
+   "gold_positions": 6,
+   "nongold_fired": [
+    "jacksonville beaches",
+    "st",
+    "clay and st"
+   ],
+   "base_gauge_score": 3.928902164417495,
+   "deltas": {
+    "lunar module pilot": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 3822.728515625,
+     "cos_frozen_vs_own_gold_delta": 0.4149136537969785
+    },
+    "atlantic ocean": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "baker county": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "baldwin": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "clay and st": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "florida": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "jacksonville beaches": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "johns county": {
+     "n_positions": 5,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "johns river": {
+     "n_positions": 7,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "nassau county": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "st": {
+     "n_positions": 5,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "the trout river": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "united states": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "united states census bureau": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "SQ_dev_748_cf",
+   "n_tokens": 340,
+   "n_candidates": 14,
+   "gold_positions": 6,
+   "nongold_fired": [
+    "corey brown",
+    "t. j. ward",
+    "denver"
+   ],
+   "base_gauge_score": 7.619191674624206,
+   "deltas": {
+    "lunar module pilot": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 3787.360107421875,
+     "cos_frozen_vs_own_gold_delta": 0.6174154006794051
+    },
+    "carolina": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "corey brown": {
+     "n_positions": 5,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "denver": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "emmanuel sanders": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "ginn": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "graham gano": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "manning": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "mcmanus": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "super bowl": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "t. j. ward": {
+     "n_positions": 5,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "ted ginn jr": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "trevathan": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "ward": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "SQ_dev_7860_cf",
+   "n_tokens": 244,
+   "n_candidates": 14,
+   "gold_positions": 9,
+   "nongold_fired": [
+    "canadian",
+    "december",
+    "october"
+   ],
+   "base_gauge_score": -1.159228968435057,
+   "deltas": {
+    "national galleries of scotland": {
+     "n_positions": 9,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 5256.2021484375,
+     "cos_frozen_vs_own_gold_delta": 0.7604608563986951
+    },
+    "2005": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "2006": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "canadian": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "cbc": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "cfl": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "christopher eccleston": {
+     "n_positions": 9,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "confidential": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "december": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "doctor": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "newfoundland and labrador": {
+     "n_positions": 7,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "october": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "thanksgiving": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "the christmas invasion": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "SQ_dev_7878_cf",
+   "n_tokens": 347,
+   "n_candidates": 20,
+   "gold_positions": 18,
+   "nongold_fired": [
+    "jo grant",
+    "elisabeth sladen",
+    "doctor"
+   ],
+   "base_gauge_score": -0.39240099524357286,
+   "deltas": {
+    "cobham\u2013edmonds thesis": {
+     "n_positions": 18,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 4768.8818359375,
+     "cos_frozen_vs_own_gold_delta": 0.6608259233851662
+    },
+    "2007": {
+     "n_positions": 12,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "2008": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "2009": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "2011": {
+     "n_positions": 12,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "brigadier lethbridge-stewart": {
+     "n_positions": 13,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "cbbc": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "cobham": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "david tennant": {
+     "n_positions": 7,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "doctor": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "edmonds": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "eleventh doctor": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "elisabeth sladen": {
+     "n_positions": 5,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "jo grant": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "katy manning": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "matt smith": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "sarah jane smith": {
+     "n_positions": 7,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "september": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "tenth doctor": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "year's day": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "SQ_dev_8073_cf",
+   "n_tokens": 319,
+   "n_candidates": 14,
+   "gold_positions": 7,
+   "nongold_fired": [
+    "1932",
+    "kuviasungnerk",
+    "doc films"
+   ],
+   "base_gauge_score": 12.593248703313039,
+   "deltas": {
+    "newcastle student radio": {
+     "n_positions": 7,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 3507.417724609375,
+     "cos_frozen_vs_own_gold_delta": 0.6616798085642683
+    },
+    "1932": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1946": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1963": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1987": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "doc films": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "every january": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "every may": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "festival of the arts": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "kangeiko": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "kuviasungnerk": {
+     "n_positions": 10,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "latke-hamantash debate": {
+     "n_positions": 14,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "summer breeze": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "university of chicago": {
+     "n_positions": 12,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "SQ_dev_8143_cf",
+   "n_tokens": 365,
+   "n_candidates": 20,
+   "gold_positions": 8,
+   "nongold_fired": [
+    "liu ni",
+    "han tumens",
+    "han generals zhang rou"
+   ],
+   "base_gauge_score": -7.448520367475824,
+   "deltas": {
+    "west irvine": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 4828.6943359375,
+     "cos_frozen_vs_own_gold_delta": 0.7429026621493839
+    },
+    "han chinese": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "han chinese and khitan": {
+     "n_positions": 10,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "han generals zhang rou": {
+     "n_positions": 9,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "han tumens": {
+     "n_positions": 9,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "jin": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "khan": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "khitan generals shimobeidier": {
+     "n_positions": 14,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "khitan tumens": {
+     "n_positions": 12,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "khitan west irvine": {
+     "n_positions": 9,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "liu heima": {
+     "n_positions": 15,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "liu ni": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "shi tianze": {
+     "n_positions": 13,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "tabuyir": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "tumen": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "tumens": {
+     "n_positions": 16,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "western xia": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "xiao zhala": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "xiaozhacizhizizhongxi": {
+     "n_positions": 18,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "yuan": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "SQ_dev_8263_cf",
+   "n_tokens": 247,
+   "n_candidates": 12,
+   "gold_positions": 6,
+   "nongold_fired": [
+    "chinese and mongols",
+    "mongols and semuren",
+    "cases"
+   ],
+   "base_gauge_score": 2.2534432193457534,
+   "deltas": {
+    "society of jesus": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 4139.44140625,
+     "cos_frozen_vs_own_gold_delta": 0.5375493330851512
+    },
+    "cases": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "chinese": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "chinese and mongols": {
+     "n_positions": 7,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "ministry of war": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "mongolian": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "mongols and semuren": {
+     "n_positions": 5,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "privy council": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "sinicized": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "six ministries": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "sui and tang": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "yuan": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "SQ_dev_8361_cf",
+   "n_tokens": 366,
+   "n_candidates": 20,
+   "gold_positions": 6,
+   "nongold_fired": [
+    "niger-congo",
+    "nilo-saharan and afroasiatic",
+    "european"
+   ],
+   "base_gauge_score": -12.77681883300953,
+   "deltas": {
+    "one in five": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 4415.64306640625,
+     "cos_frozen_vs_own_gold_delta": 0.7162820894858818
+    },
+    "1895": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1920": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "1963": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "ad": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "bantu": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "bantu and nilotic": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "british empire": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "december": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "early modern": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "east africa protectorate": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "european": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "european and arab": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "kenya": {
+     "n_positions": 9,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "kenya colony": {
+     "n_positions": 5,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "lower paleolithic period": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "mombasa": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "niger-congo": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "nilo-saharan and afroasiatic": {
+     "n_positions": 17,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "west-central africa": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "SQ_dev_841_cf",
+   "n_tokens": 192,
+   "n_candidates": 6,
+   "gold_positions": 7,
+   "nongold_fired": [
+    "eastern bloc",
+    "european union",
+    "central and eastern europe"
+   ],
+   "base_gauge_score": 2.698003244640215,
+   "deltas": {
+    "vistula river": {
+     "n_positions": 7,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 3959.81591796875,
+     "cos_frozen_vs_own_gold_delta": 0.5247927653683561
+    },
+    "central and eastern europe": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "eastern bloc": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "european union": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "poland": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "three-year plan": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "SQ_dev_844_cf",
+   "n_tokens": 228,
+   "n_candidates": 7,
+   "gold_positions": 5,
+   "nongold_fired": [
+    "institute of oncology",
+    "cmhi",
+    "poland"
+   ],
+   "base_gauge_score": -5.754186415854681,
+   "deltas": {
+    "peanuts": {
+     "n_positions": 5,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 4509.52587890625,
+     "cos_frozen_vs_own_gold_delta": 0.45487387465783047
+    },
+    "children's memorial health institute": {
+     "n_positions": 12,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "cmhi": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "institute of oncology": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "poland": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "poland and east-central europe": {
+     "n_positions": 13,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "warsaw": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "SQ_dev_9136_cf",
+   "n_tokens": 329,
+   "n_candidates": 20,
+   "gold_positions": 15,
+   "nongold_fired": [
+    "german",
+    "rhein",
+    "franco-german"
+   ],
+   "base_gauge_score": 7.535631082744669,
+   "deltas": {
+    "anheuser-busch inbev": {
+     "n_positions": 15,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 4825.37451171875,
+     "cos_frozen_vs_own_gold_delta": 0.7143936800292826
+    },
+    "central and western europe": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "cologne, germany": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "dutch": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "european": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "franco-german": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "french": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "german": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "netherlands": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "north sea": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "rein": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "rhein": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "rhineland": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "rijn": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "romansh": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "swiss": {
+     "n_positions": 10,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "swiss alps": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "swiss-austrian": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "swiss-german": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "swiss-liechtenstein": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "SQ_dev_9146_cf",
+   "n_tokens": 383,
+   "n_candidates": 20,
+   "gold_positions": 6,
+   "nongold_fired": [
+    "alemannic",
+    "old frankish",
+    "proto-germanic"
+   ],
+   "base_gauge_score": -5.2181838947581385,
+   "deltas": {
+    "the christmas invasion": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 2781.1376953125,
+     "cos_frozen_vs_own_gold_delta": 0.5153810045783013
+    },
+    "alemannic": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "bc": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "central german": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "christmas invasion": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "dutch rijn": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "gaulish": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "gaulish name r\u0113nos": {
+     "n_positions": 7,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "german rhein": {
+     "n_positions": 7,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "greek": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "latin rhenus": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "old frankish": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "palatine": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "proto-germanic": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "rain": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "rh- in english rhine": {
+     "n_positions": 11,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "rhijn": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "ripuarian rhing": {
+     "n_positions": 10,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "roman-era": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "romansh rein": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "SQ_dev_9240_cf",
+   "n_tokens": 195,
+   "n_candidates": 8,
+   "gold_positions": 6,
+   "nongold_fired": [
+    "upper rhine",
+    "century",
+    "plobsheim in alsace"
+   ],
+   "base_gauge_score": -2.95134687899416,
+   "deltas": {
+    "society of jesus": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 3572.865966796875,
+     "cos_frozen_vs_own_gold_delta": 0.6168723011989994
+    },
+    "bassin": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "century": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "dead": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "french": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "grand canal d'alsace": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "plobsheim in alsace": {
+     "n_positions": 11,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "upper rhine": {
+     "n_positions": 5,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "SQ_dev_9900_cf",
+   "n_tokens": 198,
+   "n_candidates": 8,
+   "gold_positions": 3,
+   "nongold_fired": [
+    "europe",
+    "european",
+    "1879"
+   ],
+   "base_gauge_score": 0.27163720796743973,
+   "deltas": {
+    "premier": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 5361.68115234375,
+     "cos_frozen_vs_own_gold_delta": 0.6946793108501407
+    },
+    "1879": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "along": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "anglo-zulu war": {
+     "n_positions": 10,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "europe": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "european": {
+     "n_positions": 1,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "imperialism": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "zulus in southern africa": {
+     "n_positions": 10,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  },
+  {
+   "id": "SQ_dev_9948_cf",
+   "n_tokens": 326,
+   "n_candidates": 17,
+   "gold_positions": 3,
+   "nongold_fired": [
+    "franco-german war",
+    "spanish",
+    "imperialism"
+   ],
+   "base_gauge_score": -3.8516145920077234,
+   "deltas": {
+    "coldplay": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "own_delta_mean_position_norm": 3814.057861328125,
+     "cos_frozen_vs_own_gold_delta": -0.0033057708424552574
+    },
+    "1862": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "austria": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "chancellor": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "concert of europe": {
+     "n_positions": 6,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "europe": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "european": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "franco-german war": {
+     "n_positions": 8,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "german": {
+     "n_positions": 7,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "german empire": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "germany": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "habsburg": {
+     "n_positions": 3,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "imperialism": {
+     "n_positions": 5,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "napoleon": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "otto von bismarck": {
+     "n_positions": 7,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "prussia": {
+     "n_positions": 4,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    },
+    "spanish": {
+     "n_positions": 2,
+     "mean_position_norm": 3288.0375866406252,
+     "write_kind": "frozen",
+     "text_arm": false
+    }
+   }
+  }
+ ],
+ "seconds": 741
+}

@@ -79,7 +79,7 @@ def rule_value(row, rule, docs=None, is_failure=None):
 
 def main() -> int:
     p = argparse.ArgumentParser(description=__doc__)
-    p.add_argument("--records", nargs="+", type=Path, required=True)
+    p.add_argument("--records", nargs="*", type=Path, default=[])
     p.add_argument("--xrecords", nargs="*", type=Path, default=[])
     p.add_argument("--rows", type=Path, default=Path("results/loop_screen/nqswap_rows.jsonl"))
     p.add_argument("--frame", type=Path, default=Path("results/loop_screen/wk_stage2_input.jsonl.gz"))
