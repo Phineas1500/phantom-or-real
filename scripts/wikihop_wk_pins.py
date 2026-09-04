@@ -40,6 +40,8 @@ def main() -> int:
     p.add_argument("--half-seed", type=int, default=20260890)
     p.add_argument("--draw-seed", type=int, default=20260891)
     p.add_argument("--donor-seed", type=int, default=20260892)
+    p.add_argument("--exclude-pins", nargs="*", type=Path, default=[], help="earlier pins whose drawn test rows are excluded from this draw and from the donor pools")
+    p.add_argument("--label", default="item WK")
     args = p.parse_args()
     frame = {json.loads(l)["id"]: json.loads(l) for l in gzip.open(args.frame, "rt")}
     per = collections.defaultdict(lambda: collections.defaultdict(list)); outs = collections.defaultdict(lambda: collections.defaultdict(list))
@@ -71,11 +73,15 @@ def main() -> int:
     share = len(rep_cf) / max(len(cf), 1); share_ci = boot_share([r["hint_repairable"] for r in cf])
     verdict = "CONFIRMED" if share >= 0.5 and share_ci[0] > 0.25 else "INTERMEDIATE" if share >= 0.25 else "NOT CONFIRMED"
     gate = 0.10 <= std_acc <= 0.90
+    excluded = set()
+    for f in args.exclude_pins:
+        for j in json.load(open(f))["jobs"].values():
+            excluded |= set(j["test_rows"])
     halves = list(ids); random.Random(args.half_seed).shuffle(halves); H0, H1 = set(halves[0::2]), set(halves[1::2])
-    draw = set(random.Random(args.draw_seed).sample(ids, args.n_draw))
+    draw = set(random.Random(args.draw_seed).sample(sorted(set(ids) - excluded), args.n_draw))
     test1, test0 = sorted(draw & H1), sorted(draw & H0)
     def donors(H):
-        pool = sorted(r["id"] for r in rep_cf if r["id"] in H and r["id"] not in draw)
+        pool = sorted(r["id"] for r in rep_cf if r["id"] in H and r["id"] not in draw and r["id"] not in excluded)
         return sorted(random.Random(args.donor_seed).sample(pool, args.max_donors)) if len(pool) > args.max_donors else pool
     dA, dB = donors(H0), donors(H1)
     wp = json.load(open(args.wp_pins))["jobs"]; xa, xb = wp["XA"]["donor_rows"], wp["XB"]["donor_rows"]
@@ -87,7 +93,7 @@ def main() -> int:
             f.write(json.dumps(wh[i], ensure_ascii=False) + "\n")
     strata = lambda t: collections.Counter("conflict_failure_repairable" if by[i]["conflict_failure"] and by[i]["hint_repairable"] else "conflict_failure_unrepairable" if by[i]["conflict_failure"]
                                            else "other_failure" if by[i]["std_n_correct"] == 0 else "correct_majority" if by[i]["correct_majority"] else "mixed" for i in t)
-    out = {"registered": "docs/causal_handle_directions.md item WK", "frame": str(args.frame), "grades": str(args.grades), "n_rows": len(rows),
+    out = {"registered": f"docs/causal_handle_directions.md {args.label}", "excluded_rows": sorted(excluded), "frame": str(args.frame), "grades": str(args.grades), "n_rows": len(rows),
            "std_accuracy_vs_document": std_acc, "closed_accuracy_vs_document": sum(r["closed_n_correct"] for r in rows) / (8 * len(rows)),
            "hint_first_accuracy": sum(r["hint_first_n_correct"] for r in rows) / (8 * len(rows)),
            "memory_rate_closed_modal_is_original": len(conflict) / len(rows), "closed_memory_sample_rate": sum(r["closed_n_memory"] for r in rows) / (8 * len(rows)),
