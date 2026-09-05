@@ -64,7 +64,14 @@ def fit_score(Dtr, Dte, key, tr_ids, te_ids):
         s_tr, s_te = Xtr[:, 0], Xte[:, 0]
     else:
         sc = StandardScaler().fit(Xtr); m = LogisticRegression(C=0.5, max_iter=3000).fit(sc.transform(Xtr), ytr)
-        s_tr, s_te = m.decision_function(sc.transform(Xtr)), m.decision_function(sc.transform(Xte))
+        s_te = m.decision_function(sc.transform(Xte))
+        # out-of-fold scores on the training rows set the operating point (in-sample scores of a near-separable probe are inflated)
+        rng = np.random.default_rng(20260922); folds = rng.integers(0, 5, len(tr_ids)); s_tr = np.zeros(len(tr_ids))
+        for f in range(5):
+            tr_m, te_m = folds != f, folds == f
+            if te_m.sum() == 0 or len(set(ytr[tr_m])) < 2: continue
+            scf = StandardScaler().fit(Xtr[tr_m]); mf = LogisticRegression(C=0.5, max_iter=3000).fit(scf.transform(Xtr[tr_m]), ytr[tr_m])
+            s_tr[te_m] = mf.decision_function(scf.transform(Xtr[te_m]))
     thr = float(np.percentile(s_tr[ytr == 0], 95))
     auc = float(roc_auc_score(yte, s_te)) if len(set(yte)) > 1 else float("nan")
     rec = float(np.mean(s_te[yte == 1] >= thr)) if (yte == 1).any() else float("nan"); fpr = float(np.mean(s_te[yte == 0] >= thr)) if (yte == 0).any() else float("nan")
@@ -97,11 +104,12 @@ def main() -> int:
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--out", type=Path, default=Path("docs/wikihop_wz_gates.json"))
     args = p.parse_args()
-    D = {n: load_frame(n) for n in FRAMES}
+    D = {n: load_frame(n) for n in FRAMES if (RS / FRAMES[n]["scores"]).exists() and (RS / FRAMES[n]["states"]).exists()}
+    print("frames available:", sorted(D))
     out = {"detectors": {}, "deployment": {}}
     keys = ["p_true"] + [f"L{L}_{pl}" for L in (20, 30, 38, 43, 48, 53) for pl in POOLINGS]
     print("| frame (train → test) | detector | AUROC | recall on failures @≤5% FPR (train thr) | FPR on test |\n|---|---|---|---|---|")
-    for n in FRAMES:
+    for n in D:
         out["detectors"][n] = {}
         for key in keys:
             if key != "p_true" and key not in D[n]["states"]:
@@ -109,6 +117,8 @@ def main() -> int:
             r = fit_score(D[n], D[n], key, D[n]["train"], D[n]["blind"]); out["detectors"][n][key] = {k: v for k, v in r.items() if k != "scores"}; out["detectors"][n][key]["scores"] = r["scores"]
             print(f"| {n} (own train → blind) | {key} | {r['auroc']:.3f} | {r['recall_at_5fpr']:.2f} | {r['fpr']:.2f} |")
     for a, b in (("nqswap", "squadcf"), ("squadcf", "nqswap"), ("nqswap", "wikihop")):
+        if a not in D or b not in D:
+            continue
         for key in ("p_true", "L30_mean", "L38_mean", "L43_last", "L48_mean"):
             if key != "p_true" and key not in D[a]["states"]:
                 continue
@@ -117,6 +127,7 @@ def main() -> int:
     # best detector on the pooled conflict blind rows (own-frame fits), by AUROC
     pooled_lab, pooled_scores = {}, defaultdict(dict)
     for n in ("nqswap", "squadcf"):
+        if n not in D: continue
         for i in D[n]["blind"]:
             pooled_lab[(n, i)] = D[n]["lab"][i]
             for key, r in out["detectors"][n].items():
@@ -127,7 +138,7 @@ def main() -> int:
     # deployment
     print("\n| frame | rule | frame net [CI] | up / down | paired vs grounded-vote [CI] |\n|---|---|---|---|---|")
     pooled_pairs = []
-    for n in FRAMES:
+    for n in D:
         cfg = D[n]["cfg"]; R = per_row([json.loads(l) for f in cfg["loop"] for l in open(RS / f)])
         R = {i: r for i, r in R.items() if i in D[n]["scores"] and D[n]["scores"][i]["blind"]}
         docs = {i: D[n]["frame"][i]["docs"].lower() for i in R}

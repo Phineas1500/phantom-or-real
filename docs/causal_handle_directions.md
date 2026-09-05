@@ -4963,3 +4963,49 @@ and about the same as or less than the blind grounded loop (+3 to +6),
 which is the only one of the three with near-zero collateral. The CAD
 reranker reading follows with WZ. Reader `scripts/wikihop_wc_reader.py`
 → docs/wikihop_wc_{nqswap,squadcf,wikihop}.json.
+
+**WZ conflict frames LANDED 2026-09-05 12:05 UTC (NQ-Swap job-u82kn $2.31,
+counterfactual SQuAD job-hqd3e $1.93). WikiHop job-meq6r FAILED (max
+duration exceeded after a preemption, $4.14; 219 rows scored, 58 of the
+219 per-candidate rows) — split rerun below.**
+Detectors on the blind rows (probes fit on the frame's non-blind rows):
+the **answer-token probe** (Orgad et al.) is near-perfect — L30 mean
+over answer tokens **AUROC 0.998 (NQ-Swap) / 0.995 (SQuAD-cf)**, recall
+on failures 0.98 / 0.93 at a test false-positive rate of 0.01 / 0.03;
+every answer-token pooling at L20–L53 scores 0.97–1.00; the final-
+prompt-token pooling (the old gauge's position) 0.83–0.95; cross-frame
+the probe transfers in ranking (AUROC 0.94–0.97) but not in threshold
+(FPR 0.12–0.21). **P(True)** (Kadavath et al.) is weak: AUROC 0.653 /
+0.658, recall 0.09–0.14 at 1–3% FPR — Gemma calls its own answer True
+almost regardless.
+**Implementation correction, disclosed:** the first reading set the
+≤ 5%-FPR operating point on *in-sample* training scores; a near-
+separable probe inflates those, the test FPR came out 0.17–0.35, the
+detector-driven rule broke 15 correct rows on NQ-Swap, and the 33rd read
+NOT CONFIRMED. The registered quantity ("≤ 5% false positives on the
+training rows") is properly estimated out-of-fold; with five-fold OOF
+scores on the training rows the test FPR is 0.01–0.03 and the reading
+below follows. The sequence is recorded because the verdict depends on
+it; a fresh-draw replication is the clean confirmation.
+**Deployment, two-stage rule, flag = groundedness ∨ probe (L30 mean, OOF
+threshold), output-vote selector:** NQ-Swap **+0.080 [+0.040, +0.123]**
+(23 up / 5 down; the oracle is +0.080), counterfactual SQuAD **+0.070
+[+0.030, +0.117]** (9 / 0; oracle +0.078). Paired against the
+groundedness rule alone: +0.024 / +0.036; **pooled +0.028 [+0.007,
++0.051] → 33rd registered prediction CONFIRMED** (AUROC ≥ 0.90 and
+paired CI > 0), subject to the disclosure above. P(True) as the selector
+among non-baseline branches is worse than the vote (−0.033 / −0.008
+paired). Rerankers without the loop on the same blind rows: argmax
+P(True) −0.007 / −0.002 (null); **context-aware decoding (α = 0.5)
++0.106 [+0.067, +0.148] / +0.115 [+0.062, +0.174]** — the strongest
+frame-level gain of any method on the conflict regime (instruction
++0.077 / +0.051; grounded loop +0.056 / +0.033; probe-driven loop
++0.080 / +0.070; CoT +0.007 / +0.028). Reader
+`scripts/wikihop_wz_gates.py` → docs/wikihop_wz_gates_conflict.json.
+
+[WZ WikiHop rerun launched 2026-09-05 12:10 UTC, context ctx (below):
+job (a) states + P(True) of the modal answer on all 800 rows with
+WZ_SKIP_CANDIDATES=1 (the 34th's detector); job (b) per-candidate P(True)
++ CAD pair on the 119 WE repairable + correct rows only (riders), with
+WZ_SKIP_STATES=1, 150-minute cap. The 34th's rule needs only (a) plus the
+existing WE loop records.]

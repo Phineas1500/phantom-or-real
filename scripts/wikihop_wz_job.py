@@ -111,6 +111,7 @@ def main():
         lp = forward(ids)
         return float(sum(lp[p - 1, ids[p]] for p in pos)), pos
 
+    skip_states = os.environ.get("WZ_SKIP_STATES") == "1"
     fout = open(os.path.join(outdir, "wikihop_wz_scores.jsonl"), "w")
     states = {f"L{L}_{k}": [] for L in LAYERS for k in ("mean", "last", "prompt")}
     state_ids = []
@@ -119,7 +120,7 @@ def main():
         rec = {"id": rid, "modal": modal, "blind": bool(t.get("blind", False))}
         rec["p_true_modal"], rec["logp_true_modal"] = p_true(ps["std"], modal)
         ids, pos = render_tf(ps["std"], modal)
-        if pos:
+        if pos and not skip_states:
             forward(ids)
             for L in LAYERS:
                 if L in store:
@@ -129,7 +130,7 @@ def main():
                     states[f"L{L}_prompt"].append(h[pos[0] - 1].numpy().astype(np.float16))
             state_ids.append(rid)
         rec["n_answer_tokens"] = len(pos)
-        if rec["blind"]:
+        if rec["blind"] and os.environ.get("WZ_SKIP_CANDIDATES") != "1":
             cands = t.get("candidates") or r["candidates"]
             per = {}
             for c in cands:
@@ -144,7 +145,7 @@ def main():
     fout.close()
     for h in handles:
         h.remove()
-    np.savez_compressed(os.path.join(outdir, "wikihop_wz_states.npz"), ids=np.array(state_ids), **{k: np.stack(v) for k, v in states.items() if v})
+    np.savez_compressed(os.path.join(outdir, "wikihop_wz_states.npz"), ids=np.array(state_ids), **({k: np.stack(v) for k, v in states.items() if v} if state_ids else {"empty": np.zeros(1)}))
     summary = {"n_rows": len(row_ids), "n_states": len(state_ids), "layers": LAYERS, "model": MODEL, "seconds": round(time.time() - t0)}
     with open(os.path.join(outdir, "wikihop_wz_summary.json"), "w") as f:
         json.dump(summary, f)
