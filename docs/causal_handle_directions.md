@@ -5061,3 +5061,55 @@ and the wrong candidate are in the passage; it is a knowledge-conflict
 tool. P(True) as the flagged-row selector: −0.001 vs +0.010 for the
 vote. WZ + WC total $20.37 over 10 jobs (one lost to the cap). Program:
 ≈ $165 across 149 jobs.]
+
+### Item WM — the retriever-addressed write on a haystack of tables: is a substantial blind gain available where failures are attention lapses? (registered 2026-09-05 15:10 UTC, before any data)
+
+**Motivation.** The blind number is small on every frame so far because
+most failures are firm beliefs and the fixable slice is a tenth of the
+questions. A long document of many tables should have failures that are
+mostly attention lapses (the wrong row, the wrong table), and no
+candidate list; the loop as built cannot act there, but the write can be
+aimed by a label-free retriever. This item tests that design.
+
+**Frame.** WikiTableQuestions examples whose answer is a unique table
+cell (unique across the target table, absent from the question), each
+target table concatenated with seeded distractor tables from other
+examples up to 12,000 characters (≈ 9 tables, ≈ 130 rows, prompts ≈ 5k
+tokens), order shuffled, rendered as markdown; the question prefixed
+with the target table's column names. Label-free BM25 retrievers over
+tables (question vs header + cells) and over rows within the top table
+(question vs header + row). `scripts/tables_haystack_frame.py`, seed
+20260923; 800 rows; file `results/loop_screen/wtq_haystack_input.jsonl.gz`.
+Candidates are empty: std / closed / hint prompts are the free-form ones.
+
+**Stage 1 (grade_hint, k = 8, seed 20260926): pre-named readings** — std
+accuracy against the cell; closed-book accuracy; the hint (naming the
+answer) as the attention ceiling; the fixable share of 0/8 failures
+(hint ≥ 4/8), against the quarter-to-third of every earlier frame;
+retriever recall: table top-1, gold row within top-3 of the top table.
+Instrument gate: std within [0.10, 0.90]; the model must fail somewhere
+for the frame to be informative (0/8 failures ≥ 10% of rows), else STOP.
+
+**Stage 2 (`scripts/tables_haystack_job.py`; blind draw of 120 rows,
+seed 20260925, two shards; donors = the WikiHop WX XA/XB rows, the
+cross-task vector computed in-job at L30; write at 2× the donor norm;
+k = 8 every arm; job seed 20260924).** Arms per row: baseline; **write
+@ retrieved rows** (the top-3 BM25 rows of the top BM25 table — the
+blind, label-free arm); write @ retrieved table (all rows of the top
+table; blind); write @ gold row (oracle ceiling); write @ three random
+rows of a random non-gold table (control); text hint naming the answer
+(ceiling); **retrieval-text baseline** (the same top-3 rows quoted before
+the documents, no write; blind). Frame net = mean over the 120 rows of
+(arm correct − baseline correct), row-bootstrap CI; delivery audit as
+always (hook fired, positions written ≥ 1 on every write branch).
+
+**35th registered prediction — RETRIEVER-ADDRESSED-WRITE-HELPS-BLIND.**
+Write @ retrieved rows nets > 0 over the baseline with the 95% CI lower
+bound > 0. **36th registered prediction — THE-WRITE-BEATS-QUOTING.**
+Write @ retrieved rows beats the retrieval-text baseline, row-paired,
+with the 95% CI lower bound > 0. Pre-named descriptive: "substantial" =
+a frame net ≥ +0.10; the oracle-row write as the ceiling; the control;
+write @ retrieved table; the gain conditional on the retriever hitting
+the gold row (address_hits_gold) vs not; per-row delivery. Budget ≈ $8
+(stage 1 ≈ $1.5 on ≈ 5k-token prompts; two stage-2 shards ≈ $3 each).
+Amendment policy as for WP.
