@@ -5009,3 +5009,6 @@ WZ_SKIP_CANDIDATES=1 (the 34th's detector); job (b) per-candidate P(True)
 + CAD pair on the 119 WE repairable + correct rows only (riders), with
 WZ_SKIP_STATES=1, 150-minute cap. The 34th's rule needs only (a) plus the
 existing WE loop records.]
+[WZ WikiHop rerun jobs: (a) job-z9jdx (800 rows, states + P(True), no
+candidates), (b) job-kikqy (119 WE rows, per-candidate, no states);
+context ctx-8ba66f7f; 2026-09-05 11:45 UTC.]
