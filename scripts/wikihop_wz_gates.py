@@ -41,7 +41,7 @@ def load_frame(name):
     rows = {json.loads(l)["id"]: json.loads(l) for l in open(RS / cfg["rows"])}
     frame = {json.loads(l)["id"]: json.loads(l) for l in gzip.open(RS / cfg["frame"], "rt")}
     scores = {json.loads(l)["id"]: json.loads(l) for l in open(RS / cfg["scores"])}
-    z = np.load(RS / cfg["states"]); sid = list(z["ids"]); states = {k: z[k].astype(np.float32) for k in z.files if k != "ids"}
+    z = np.load(RS / cfg["states"]); sid = list(z["ids"]); states = {k: np.nan_to_num(z[k].astype(np.float32), nan=0.0, posinf=65504.0, neginf=-65504.0) for k in z.files if k != "ids"}
     idx = {i: k for k, i in enumerate(sid)}
     lab = {}
     for i, r in rows.items():

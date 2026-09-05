@@ -1,0 +1,28 @@
+{
+ "n_rows": 800,
+ "k": 4,
+ "std_accuracy": 0.46640625,
+ "cot_accuracy": 0.4746875,
+ "delta": 0.008281249999999962,
+ "n_failures": 276,
+ "cot_repair_share_of_failures": 0.07608695652173914,
+ "cot_repair_ci": [
+  0.04710144927536232,
+  0.10869565217391304
+ ],
+ "hint_repairable": 59,
+ "cot_repair_share_of_hint_repairable": 0.22033898305084745,
+ "cot_repair_by_groundedness": {
+  "grounded_wrong_answer": 0.072992700729927,
+  "ungrounded_wrong_answer": 0.5,
+  "n_grounded": 274,
+  "n_ungrounded": 2
+ },
+ "collateral": {
+  "n_correct_majority": 372,
+  "n_broken": 33,
+  "share": 0.08870967741935484,
+  "cot_accuracy_on_correct_rows": 0.896505376344086
+ },
+ "parse_empty_share": 0.0
+}
