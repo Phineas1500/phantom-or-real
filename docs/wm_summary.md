@@ -36,3 +36,14 @@ already answers and misses on the ones it fails, which bounds the blind
 arm before stage 2: fixable × hit × repair ≈ 0.40 × 0.23 × 0.6 ≈ 5% of
 failures ≈ 1.5 points of the frame. The oracle-row arm gives the
 ceiling a perfect retriever would reach.
+
+**What the failures are (descriptive).** Among the 90 fixable failures
+the model's wrong answer is a cell of the *right* table in 77 cases: it
+found the table and picked the wrong row or column ("which peak has the
+most isolation" → a distance instead of the peak). Among the 131
+unfixable failures the wrong answer is also a right-table cell in 111
+cases, but the questions are ordinal or comparative ("the previous
+player signed before X", "the chip with the highest frequency", "the
+lowest position") — the model reads the table and computes the wrong
+comparison, and an attention nudge at the answer cell does not fix a
+comparison.
