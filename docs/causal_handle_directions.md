@@ -5113,3 +5113,15 @@ write @ retrieved table; the gain conditional on the retriever hitting
 the gold row (address_hits_gold) vs not; per-row delivery. Budget ≈ $8
 (stage 1 ≈ $1.5 on ≈ 5k-token prompts; two stage-2 shards ≈ $3 each).
 Amendment policy as for WP.
+
+[WM stage 1 launched 2026-09-05 16:42 UTC after registration commit
+39d0ddc (frame/pins commit db09eac): Gemma grade_hint on the table-
+haystack frame (context ctx-f7b7bf2f, seed 20260926, no cache mount;
+mission table-haystack-write). Frame as built: 800 rows, 11,023 chars
+and 8.5 tables / 126 rows per document on average, hint-prompt tokens
+3,531–5,924; BM25 table top-1 0.971, gold row within top-3 of the top
+table 0.444 (0.442 on the blind draw). Stage-2 context ctx-2b92c938
+uploaded and ready (WH-derived job, WM pins, 859-row input); fake-model
+dry run (1 row, k=2): seven arms emitted, write positions 70 / 1,063 /
+28 / 77 for retrieved rows / retrieved table / gold row / control,
+address flags correct. Stage 2 waits for the stage-1 gate.]
