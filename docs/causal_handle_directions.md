@@ -5142,3 +5142,9 @@ repair ≈ 0.40 × 0.23 × 0.6 ≈ 5% of failures before stage 2 runs. Gates
 PASS (std in band; failures ≥ 10%). Stage 2 launched 2026-09-05 17:27
 UTC: A job (60 rows) and B job (60 rows), context ctx-2b92c938, seed
 20260924, k = 8, L30 × 2×, 100-minute caps.]
+[WM stage 2 first attempt FAILED 2026-09-05 17:47 UTC: job-5ztc8 ($0.37)
+and job-anjwg ($0.11) died with CUDA out-of-memory in the first
+generation — eight return sequences on a ≈ 5k-token prompt replicate the
+prompt cache eight times; the WikiHop-length prompts never stressed
+this. Fix: generate in chunks of two sequences (the WH job's own
+pattern), no other change; resubmitted below.]

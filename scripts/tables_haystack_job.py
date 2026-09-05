@@ -60,14 +60,14 @@ def main():
     t0 = time.time()
     outdir = os.environ.get("GMN_OUTPUT_DIR", "/tmp")
     seed0 = int(os.environ.get("WM_SEED", "20260924")); write_layer = int(os.environ.get("WM_WRITE_LAYER", "30")); rung = float(os.environ.get("WM_RUNG", "2.0"))
-    k_gen = int(os.environ.get("WM_K", "8")); max_new = int(os.environ.get("WM_MAX_NEW_TOKENS", "32")); fake = os.environ.get("WM_FAKE_MODEL") == "1"
+    k_gen = int(os.environ.get("WM_K", "8")); k_chunk = int(os.environ.get("WM_K_CHUNK", "2")); max_new = int(os.environ.get("WM_MAX_NEW_TOKENS", "32")); fake = os.environ.get("WM_FAKE_MODEL") == "1"
     max_rows = int(os.environ.get("WM_MAX_ROWS", "100000")); job = os.environ.get("WM_JOB", "A")
     pins = json.load(open(os.path.join(APP, os.environ.get("WM_PINS_FILE", "wm_pinned.json"))))
     frame = {}
     for line in gzip.open(os.path.join(APP, "wikihop_port_input.jsonl.gz"), "rt"):
         r = json.loads(line); frame[r["id"]] = r
     row_ids = pins["jobs"][job]["test_rows"][:max_rows]; donor_ids = pins["jobs"][job]["donor_rows"][:max_rows]
-    print(f"rows={len(row_ids)} donors={len(donor_ids)} write=L{write_layer} rung={rung} k={k_gen}", flush=True)
+    print(f"rows={len(row_ids)} donors={len(donor_ids)} write=L{write_layer} rung={rung} k={k_gen} chunk={k_chunk}", flush=True)
     from transformers import AutoTokenizer
     tok = AutoTokenizer.from_pretrained(MODEL)
     if fake:
@@ -99,16 +99,24 @@ def main():
         return store["w"]
 
     def generate(ids, k, seed, writer=None):
-        handles = [layers[write_layer].register_forward_hook(writer)] if writer is not None else []
-        try:
-            torch.manual_seed(seed)
-            with torch.inference_mode():
-                out = model.generate(input_ids=torch.tensor([ids], device=dev), attention_mask=torch.ones(1, len(ids), dtype=torch.long, device=dev),
-                                     do_sample=True, temperature=0.7, max_new_tokens=max_new, num_return_sequences=k, eos_token_id=eos_ids, pad_token_id=pad_id)
-        finally:
-            for h in handles:
-                h.remove()
-        return [tok.decode(seq, skip_special_tokens=True).strip() for seq in out[:, len(ids):].detach().cpu().tolist()]
+        """Long prompts: k sequences in chunks of k_chunk so the replicated prompt cache fits; the write hook fires on every chunk's prefill."""
+        outs = []
+        for c0 in range(0, k, k_chunk):
+            kc = min(k_chunk, k - c0)
+            handles = [layers[write_layer].register_forward_hook(writer)] if writer is not None else []
+            try:
+                torch.manual_seed(seed + c0)
+                with torch.inference_mode():
+                    out = model.generate(input_ids=torch.tensor([ids], device=dev), attention_mask=torch.ones(1, len(ids), dtype=torch.long, device=dev),
+                                         do_sample=True, temperature=0.7, max_new_tokens=max_new, num_return_sequences=kc, eos_token_id=eos_ids, pad_token_id=pad_id)
+            finally:
+                for h in handles:
+                    h.remove()
+            outs += [tok.decode(seq, skip_special_tokens=True).strip() for seq in out[:, len(ids):].detach().cpu().tolist()]
+            del out
+            if not fake:
+                torch.cuda.empty_cache()
+        return outs
 
     def mention_positions(text, offsets, cand):
         import re
