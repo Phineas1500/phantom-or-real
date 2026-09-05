@@ -5012,3 +5012,17 @@ existing WE loop records.]
 [WZ WikiHop rerun jobs: (a) job-z9jdx (800 rows, states + P(True), no
 candidates), (b) job-kikqy (119 WE rows, per-candidate, no states);
 context ctx-8ba66f7f; 2026-09-05 11:45 UTC.]
+
+[Pre-WikiHop caveat on the answer-token probe, recorded 2026-09-05 12:20
+UTC before job-z9jdx unblinds. Diagnostic on the conflict blind rows:
+the probe separates grounded wrong answers from correct rows as well as
+ungrounded ones (L30 mean AUROC 0.997 / 0.992; recall at the OOF
+threshold 0.96 / 0.90 on grounded failures), so it is not a copied-vs-
+recalled detector. But on both conflict frames the correct answer is by
+construction the swapped, out-of-place entity, so a probe on the answer
+tokens could be reading "this entity does not belong in this passage"
+rather than correctness, and the cross-frame transfer (both frames are
+swap frames) does not exclude that. WikiHop has no swaps: the 34th's
+AUROC on the WE rows is the test. If it falls far below the conflict
+frames', the conflict-frame detector is a swap artifact and the 33rd's
+practical meaning shrinks to conflict frames built this way.]
