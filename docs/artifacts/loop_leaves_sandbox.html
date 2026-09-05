@@ -103,7 +103,7 @@
 </div>
 
 <div class="col">
-  <h2>What happened, in eleven findings</h2>
+  <h2>What happened, in twelve findings</h2>
 
   <div class="finding">
     <div class="num">1 / 528<small>gold repairs</small></div>
@@ -148,6 +148,10 @@
   <div class="finding">
     <div class="num meter">+8<small>points from one sentence</small></div>
     <p><strong>We tried to make the blind gain bigger, and learned that a sentence beats it.</strong> Four attempts, all registered in advance. A wider detector broke correct answers. A different layer or dose did not help: the recipe was already the best one for this regime. On a second model the effect appeared, five points, but with the vote we had relegated to a backup rather than the probe we had bet on, so the registered prediction failed. And the plainest baseline of all, telling the model in one sentence to follow the documents over its memory, raises whole-frame accuracy by five to eight points on its own, more than the loop, for free. Run on top of that sentence the loop adds about two more points, too few to call. The honest reading is that the nudge is a finding about mechanism, with a reach the sentence lacks: a fifth of the conflict failures are fixed only by attention, and a quarter of the failures the hint cannot touch still move under the write. As a product it is the smaller tool.</p>
+  </div>
+  <div class="finding">
+    <div class="num meter">0.87<small>best blind detector, real text</small></div>
+    <p><strong>We tried the literature's detectors, and found a mirage and a better baseline.</strong> Two published ideas promised to spot the wrong answers the passage check misses: a probe on the model's hidden state at the answer's own tokens, and asking the model whether its answer is true. On the swapped-fact tests the probe looked perfect, and the loop it drove reached the ceiling of a perfect detector. Then we ran it on real WikiHop text, where nothing was swapped: it fell to 0.87, and the version trained on swapped facts transferred at chance. On those tests the right answer is always the out-of-place entity, and the probe had learned to see the seam. Asking the model to grade itself was at chance everywhere. One thing did land: context-aware decoding, a published trick that compares what the model says with and without the passage, picks the right candidate well enough to gain ten to eleven points on the conflict tests, more than the loop, the sentence, or reasoning. The paper's comparison table now has it at the top.</p>
   </div>
 </div>
 
@@ -227,10 +231,10 @@
 
   <h2>Where it stands</h2>
   <div class="status">
-    <div><div class="big">32</div><div class="eyebrow">predictions registered before data</div></div>
-    <div><div class="big">25</div><div class="eyebrow">confirmed</div></div>
-    <div><div class="big">6</div><div class="eyebrow">refuted (all six about selection or deployment rules)</div></div>
-    <div><div class="big">$145</div><div class="eyebrow">139 H100 jobs, three days</div></div>
+    <div><div class="big">34</div><div class="eyebrow">predictions registered before data</div></div>
+    <div><div class="big">26</div><div class="eyebrow">confirmed</div></div>
+    <div><div class="big">7</div><div class="eyebrow">refuted (all about selection, deployment, or detection)</div></div>
+    <div><div class="big">$160</div><div class="eyebrow">149 H100 jobs, four days</div></div>
   </div>
   <p style="margin-top:22px">Every step was registered before launch, every intervention audited for delivery on independent channels, and every artifact is committed. Five settings on Gemma, two disjoint draws each on real and renamed text, the blind reading on both, a second model on the same questions and on a fresh frame, a depth ladder on both models, an attention read of the write, a content control against random and sign-reversed vectors, and two more reading tasks.</p>
 
@@ -266,6 +270,7 @@
     <tr><td class="n">WK</td><td>the knowledge-conflict regime, NQ-Swap, run blind</td><td>registered rule fails; groundedness check + loop gains 4–6 points blind, one row harmed <span class="pill meter">loop</span></td></tr>
     <tr><td class="n">WK′ · WS</td><td>the grounded rule registered and replicated: fresh draw, then counterfactual SQuAD</td><td>+5 and +3 points blind, no row harmed, one frozen vector <span class="pill meter">loop</span> <span class="pill good">replicated</span></td></tr>
     <tr><td class="n">WI · WJ · WU · WI′</td><td>four levers on the blind gain: a sentence, depth and dose, a second model, stacking</td><td>the sentence wins (+5 to +8); recipe confirmed; Qwen +5 with the backup vote; stacking +2, too few to call <span class="pill meter">loop</span></td></tr>
+    <tr><td class="n">WZ · WC</td><td>the literature's detectors, and reasoning and decoding baselines</td><td>answer-token probe perfect on swapped facts, 0.87 on real text (a swap artifact); self-grading at chance; context-aware decoding +10 to +11 <span class="pill meter">detect</span></td></tr>
   </table>
   </div>
 </div>
