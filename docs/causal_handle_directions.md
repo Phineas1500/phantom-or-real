@@ -5026,3 +5026,29 @@ swap frames) does not exclude that. WikiHop has no swaps: the 34th's
 AUROC on the WE rows is the test. If it falls far below the conflict
 frames', the conflict-frame detector is a swap artifact and the 33rd's
 practical meaning shrinks to conflict frames built this way.]
+
+**WZ WikiHop LANDED 2026-09-05 13:00 UTC (job-z9jdx $1.92; the failed
+job-meq6r $4.14; per-candidate riders job-kikqy pending).** On real
+WikiHop text (WF frame, probes fit on the 581 non-WE rows, scored on the
+219 WE rows) the answer-token probe is modest: **best L30 last-token
+AUROC 0.872, L30 mean 0.850**, recall on failures 0.44–0.53 at a test
+false-positive rate of 0.05–0.08; the final-prompt-token pooling (the
+old gauge's position) 0.76–0.79, so probing the answer tokens adds
+≈ 0.1 AUROC on natural text — real, and far below the bar. P(True) is
+at chance (0.521). **The pre-registered caveat is borne out:** the
+NQ-Swap-fit probe transfers to WikiHop at AUROC 0.51–0.60 (FPR 0.83–0.92
+at its threshold), so the 0.997 on the conflict frames was mostly the
+probe reading the swapped entity, not correctness. **34th registered
+prediction NOT CONFIRMED:** the two-stage rule with flag = groundedness
+∨ probe (L30 mean, OOF threshold), stratum-weighted over the WE rows,
+nets **+0.010 [−0.009, +0.026]** (12 rows up / 1 down unweighted;
+paired vs the inert groundedness rule +0.043 [+0.016, +0.075]
+unweighted); the oracle detector on the same rows +0.029 [+0.018,
++0.041]. The detector recovers about a third of WikiHop's small ceiling,
+not significantly. Reading for the 33rd: it stands as registered on the
+conflict frames, but its practical meaning is bounded to swap-built
+conflict frames; on natural text the best literature detector is a
+0.87-AUROC probe, and the grounded-lapse gap stays open. Program tally:
+**34 registered predictions — 26 confirmed, 7 not (13th, 14th, 19th,
+28th, 31st, 32nd, 34th), 1 intermediate (27th).** Reader outputs
+docs/wikihop_wz_gates.json.
