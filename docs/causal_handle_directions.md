@@ -4942,3 +4942,24 @@ job-d5dpu (seed 20260918), job-bmsjk (20260919), job-h54v4 (20260920).
 Fake-model dry run of the scoring job (2 rows, one blind): verdict-token
 ids resolved, answer tokens located, per-candidate P(True) and CAD pair
 written, states saved for six layers × three poolings.]
+
+**WC LANDED 2026-09-05 06:10 UTC (job-d5dpu $1.08, job-bmsjk $1.08,
+job-h54v4 $0.94; 8,304 generations of up to 384 tokens; parse failures
+0%).** Chain-of-thought (k = 4) against the document's answer:
+**NQ-Swap 0.578 → 0.585 (+0.7), counterfactual SQuAD 0.674 → 0.703
+(+2.8), WikiHop real 0.466 → 0.475 (+0.8).** Repair share of failures:
+0.150 [0.106, 0.195] of NQ-Swap conflict failures (0.338 of the hint-
+repairable ones), 0.243 [0.165, 0.330] on SQuAD-cf (0.564 of hint-
+repairable), 0.076 [0.047, 0.109] of WikiHop doc-dependent failures
+(0.220 of hint-repairable). By groundedness of the std wrong answer:
+CoT repairs 22.5% / 32.7% / 50% (2 rows) of ungrounded failures but only
+**6.6% / 16.7% / 7.3% of grounded ones** — reasoning does not reach the
+grounded lapses either. Collateral: **41/462 (8.9%), 16/322 (5.0%),
+33/372 (8.9%)** correct-majority rows broken (CoT accuracy on correct
+rows 0.89 / 0.94 / 0.90). Reading: chain-of-thought fixes a third to a
+half of the attention lapses on the conflict frames but pays for them
+in broken correct rows, netting less than the instruction (+5 to +8)
+and about the same as or less than the blind grounded loop (+3 to +6),
+which is the only one of the three with near-zero collateral. The CAD
+reranker reading follows with WZ. Reader `scripts/wikihop_wc_reader.py`
+→ docs/wikihop_wc_{nqswap,squadcf,wikihop}.json.
