@@ -5125,3 +5125,20 @@ uploaded and ready (WH-derived job, WM pins, 859-row input); fake-model
 dry run (1 row, k=2): seven arms emitted, write positions 70 / 1,063 /
 28 / 77 for retrieved rows / retrieved table / gold row / control,
 address flags correct. Stage 2 waits for the stage-1 gate.]
+
+[WM stage 1 LANDED 2026-09-05 17:25 UTC (job-wsfz3, $1.10, 19,200
+generations on ≈ 5k-token prompts). Table haystack, 800 rows: **std
+0.684**, closed-book 0.031 (no memory to hold), hint 0.783; 0/8
+failures **227 (28%)**; correct-majority 542; **fixable share of failures
+90/227 = 0.396 [0.330, 0.463]** — the highest of any frame, still not a
+majority: 131 failures do not move under the hint, and with closed-book
+at chance these are reasoning failures on WikiTableQuestions'
+comparative questions, not beliefs. Hint response bimodal again (131 at
+0/8, 81 at 8/8). **Retriever: table top-1 0.971; gold row within the
+top-3 of the top table 0.444 overall, 0.533 on correct rows, 0.242 on
+failures, 0.233 on the fixable failures** — the retriever misses where
+it is needed, which bounds the blind arm at roughly fixable × hit ×
+repair ≈ 0.40 × 0.23 × 0.6 ≈ 5% of failures before stage 2 runs. Gates
+PASS (std in band; failures ≥ 10%). Stage 2 launched 2026-09-05 17:27
+UTC: A job (60 rows) and B job (60 rows), context ctx-2b92c938, seed
+20260924, k = 8, L30 × 2×, 100-minute caps.]
