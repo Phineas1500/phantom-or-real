@@ -5148,3 +5148,9 @@ generation — eight return sequences on a ≈ 5k-token prompt replicate the
 prompt cache eight times; the WikiHop-length prompts never stressed
 this. Fix: generate in chunks of two sequences (the WH job's own
 pattern), no other change; resubmitted below.]
+[WM stage 2 resubmitted 2026-09-05 23:10 UTC with chunked generation
+(two sequences per call, PYTORCH_CUDA_ALLOC_CONF expandable segments),
+context ctx-c1bd52c9 (job commit 3280ec5), seed 20260924 unchanged:
+A job-b8aec, B job-v2jpx, 120-minute caps. Fake-model dry run of the
+chunked job (1 row, k = 8): 8 samples per arm, 4 prefill hook calls per
+write arm, positions as before.]
