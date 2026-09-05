@@ -4931,3 +4931,14 @@ conflict failures and of hint-repairable rows (the attention lapses)
 split by grounded vs ungrounded wrong answer; collateral on correct-
 majority rows; CAD reranker accuracy on the blind rows vs std and vs the
 grounded loop. Purpose: the paper's comparison table. Budget ≈ $3.
+
+[WZ + WC launched 2026-09-05 05:07 UTC after registration commit 5c9cfad;
+mission literature-detectors. Contexts (w0 + wz jobs, shared prompt
+module, fake model, frame, targets): NQ-Swap ctx-c89acf87, counterfactual
+SQuAD ctx-040f7b4d, WikiHop fresh ctx-296a2604. WZ scoring (prefill only):
+job-u82kn (NQ-Swap, 240 blind), job-hqd3e (SQuAD-cf, 120 blind),
+job-meq6r (WikiHop, 219 WE rows). WC chain-of-thought (k = 4, 384 tokens):
+job-d5dpu (seed 20260918), job-bmsjk (20260919), job-h54v4 (20260920).
+Fake-model dry run of the scoring job (2 rows, one blind): verdict-token
+ids resolved, answer tokens located, per-candidate P(True) and CAD pair
+written, states saved for six layers × three poolings.]
