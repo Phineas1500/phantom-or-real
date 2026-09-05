@@ -47,13 +47,15 @@ branch selector is worse than the output vote everywhere.
 ## Rerankers without the loop (same blind rows)
 | reranker | NQ-Swap | counterfactual SQuAD | WikiHop |
 |---|---|---|---|
-| argmax P(True) over candidates | −0.007 [−0.046, +0.034] | −0.002 [−0.052, +0.048] | (job-kikqy pending) |
-| **context-aware decoding, α = 0.5** (Shi et al.) | **+0.106 [+0.067, +0.148]** | **+0.115 [+0.062, +0.174]** | (pending) |
+| argmax P(True) over candidates | −0.007 [−0.046, +0.034] | −0.002 [−0.052, +0.048] | −0.004 [−0.045, +0.033] |
+| **context-aware decoding, α = 0.5** (Shi et al.) | **+0.106 [+0.067, +0.148]** | **+0.115 [+0.062, +0.174]** | −0.022 [−0.059, +0.014] |
 
 CAD as a plain candidate reranker is the strongest frame-level method
 on the conflict regime, ahead of the instruction (+0.077 / +0.051), the
 probe-driven loop (+0.080 / +0.070), the grounded loop (+0.056 /
-+0.033) and chain-of-thought.
++0.033) and chain-of-thought — and null on WikiHop, where both the
+right and the wrong candidate sit in the passage: it is a knowledge-
+conflict tool, not a reading tool.
 
 ## WC — chain-of-thought (k = 4, 384 tokens, answer parsed from the last "Answer:" line)
 | | NQ-Swap | counterfactual SQuAD | WikiHop real |
@@ -73,7 +75,7 @@ near-zero collateral.
 ## The comparison table the paper needs (frame-level accuracy change, blind, Gemma-3-27B)
 | method | NQ-Swap | counterfactual SQuAD | WikiHop real | collateral |
 |---|---|---|---|---|
-| context-aware decoding reranker | **+0.106** | **+0.115** | pending | in the net |
+| context-aware decoding reranker | **+0.106** | **+0.115** | −0.022 n.s. | in the net |
 | instruction alone (WI) | +0.077 | +0.051 | — | 1–2% |
 | grounded loop ∨ answer-token probe (WZ) | +0.080 | +0.070 | +0.010 n.s. | 5 / 0 rows |
 | grounded loop (WK′ / WS) | +0.050 | +0.033 | 0 (inert) | 0 rows |
@@ -91,5 +93,5 @@ distinct, collateral-free reach, not the best product.
 
 ## Program tally after WZ + WC
 34 registered predictions: **26 confirmed**, 7 not (13th, 14th, 19th,
-28th, 31st, 32nd, 34th), 1 intermediate (27th). ≈ $160 across 149 H100
-jobs (WZ ≈ $10 + job-kikqy; WC $3.10).
+28th, 31st, 32nd, 34th), 1 intermediate (27th). ≈ $165 across 149 H100
+jobs (WZ $17.27 over 7 jobs incl. one lost to the cap; WC $3.10).

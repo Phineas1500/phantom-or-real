@@ -151,7 +151,7 @@
   </div>
   <div class="finding">
     <div class="num meter">0.87<small>best blind detector, real text</small></div>
-    <p><strong>We tried the literature's detectors, and found a mirage and a better baseline.</strong> Two published ideas promised to spot the wrong answers the passage check misses: a probe on the model's hidden state at the answer's own tokens, and asking the model whether its answer is true. On the swapped-fact tests the probe looked perfect, and the loop it drove reached the ceiling of a perfect detector. Then we ran it on real WikiHop text, where nothing was swapped: it fell to 0.87, and the version trained on swapped facts transferred at chance. On those tests the right answer is always the out-of-place entity, and the probe had learned to see the seam. Asking the model to grade itself was at chance everywhere. One thing did land: context-aware decoding, a published trick that compares what the model says with and without the passage, picks the right candidate well enough to gain ten to eleven points on the conflict tests, more than the loop, the sentence, or reasoning. The paper's comparison table now has it at the top.</p>
+    <p><strong>We tried the literature's detectors, and found a mirage and a better baseline.</strong> Two published ideas promised to spot the wrong answers the passage check misses: a probe on the model's hidden state at the answer's own tokens, and asking the model whether its answer is true. On the swapped-fact tests the probe looked perfect, and the loop it drove reached the ceiling of a perfect detector. Then we ran it on real WikiHop text, where nothing was swapped: it fell to 0.87, and the version trained on swapped facts transferred at chance. On those tests the right answer is always the out-of-place entity, and the probe had learned to see the seam. Asking the model to grade itself was at chance everywhere. One thing did land: context-aware decoding, a published trick that compares what the model says with and without the passage, picks the right candidate well enough to gain ten to eleven points on the conflict tests, more than the loop, the sentence, or reasoning, and nothing at all on WikiHop, where both candidates are in the passage. The paper's comparison table now has it at the top for the conflict regime.</p>
   </div>
 </div>
 
@@ -234,7 +234,7 @@
     <div><div class="big">34</div><div class="eyebrow">predictions registered before data</div></div>
     <div><div class="big">26</div><div class="eyebrow">confirmed</div></div>
     <div><div class="big">7</div><div class="eyebrow">refuted (all about selection, deployment, or detection)</div></div>
-    <div><div class="big">$160</div><div class="eyebrow">149 H100 jobs, four days</div></div>
+    <div><div class="big">$165</div><div class="eyebrow">149 H100 jobs, four days</div></div>
   </div>
   <p style="margin-top:22px">Every step was registered before launch, every intervention audited for delivery on independent channels, and every artifact is committed. Five settings on Gemma, two disjoint draws each on real and renamed text, the blind reading on both, a second model on the same questions and on a fresh frame, a depth ladder on both models, an attention read of the write, a content control against random and sign-reversed vectors, and two more reading tasks.</p>
 

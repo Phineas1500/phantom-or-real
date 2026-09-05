@@ -5052,3 +5052,12 @@ conflict frames; on natural text the best literature detector is a
 **34 registered predictions — 26 confirmed, 7 not (13th, 14th, 19th,
 28th, 31st, 32nd, 34th), 1 intermediate (27th).** Reader outputs
 docs/wikihop_wz_gates.json.
+[WZ WikiHop riders LANDED 2026-09-05 14:35 UTC (job-kikqy $6.97; the
+119 WE repairable + correct rows, ≈ 47–78 s per row on WikiHop's long
+documents). Rerankers without the loop on those rows: argmax P(True)
+−0.004 [−0.045, +0.033]; **context-aware decoding −0.022 [−0.059,
++0.014]** — CAD does not help on ordinary reading, where both the right
+and the wrong candidate are in the passage; it is a knowledge-conflict
+tool. P(True) as the flagged-row selector: −0.001 vs +0.010 for the
+vote. WZ + WC total $20.37 over 10 jobs (one lost to the cap). Program:
+≈ $165 across 149 jobs.]
