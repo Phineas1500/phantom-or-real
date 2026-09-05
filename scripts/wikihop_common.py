@@ -65,3 +65,22 @@ def faithful_prompt(r):
     """Item WI: the context-faithful instruction baseline — the std prompt with a
     one-sentence instruction to prefer the documents over memory."""
     return FAITHFUL_INSTRUCTION + std_closed_prompts(r)["std"]
+
+
+COT_INSTRUCTION = ("\n\nFirst, think step by step about which phrase in the documents answers the question. "
+                   "Then, on the last line, write 'Answer:' followed by exactly one candidate and nothing else.")
+
+
+def cot_prompt(r):
+    """Item WC: the chain-of-thought baseline — the std prompt plus a reasoning
+    instruction; the answer is parsed from the last 'Answer:' line."""
+    return std_closed_prompts(r)["std"] + COT_INSTRUCTION
+
+
+def parse_cot_answer(text):
+    lines = [l.strip() for l in text.strip().split("\n") if l.strip()]
+    for l in reversed(lines):
+        low = l.lower()
+        if "answer:" in low:
+            return l[low.rfind("answer:") + 7:].strip().strip("*").strip()
+    return lines[-1] if lines else ""

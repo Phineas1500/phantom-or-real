@@ -4862,3 +4862,72 @@ blind tool it is worth 3–6 points where the model ignores the passage.
 Program tally: **32 registered predictions — 25 confirmed, 6 not (13th,
 14th, 19th, 28th, 31st, 32nd), 1 intermediate (27th); ≈ $145 across 139
 jobs.** Summary docs/wikihop_levers_summary.md.
+
+### Item WZ — label-free detectors from the literature: answer-token probes and the model's own verdict (registered 2026-09-04 20:10 UTC, before any data)
+
+**Motivation.** The blind loop's reach stops at the groundedness check:
+attention lapses whose wrong answer is another passage span (45% of
+fixable conflict failures; 97–100% on WikiHop and HotpotQA) are
+invisible to it, and among flagged rows the output vote loses ties
+between a parent and its child. Two published label-free signals have
+not been tried here: probes on the hidden states of the *answer tokens*
+rather than the final prompt token (Orgad et al. 2024, who report a
+large detection gain and that the right answer is often encoded while a
+wrong one is output), and the model's own calibrated verdict on its
+answer, P(True) (Kadavath et al. 2022).
+
+**Job (`scripts/wikihop_wz_job.py`, one per frame; NQ-Swap 800 rows,
+counterfactual SQuAD 476, WikiHop fresh 800; the model's stage-1 modal
+std answer is the proposed answer).** Per row: P(True) of the modal
+answer (verification prompt; logp True − logp False on the first
+verdict token); hidden states at the modal answer's tokens (teacher-
+forced assistant turn) at L20/30/38/43/48/53 — mean over answer tokens,
+last answer token, and the final prompt token. Per candidate on the
+blind rows (WK + WK′ 240 NQ-Swap; WS 120; WE 219 WikiHop real): P(True)
+and the context-aware-decoding pair logp(c | documents), logp(c |
+question only). Seeds are irrelevant (prefill only).
+
+**Analysis (`scripts/wikihop_wz_gates.py`, pre-named).** Labels = stage-1
+correct-majority (≥ 5/8) vs 0/8 failure. Probes: logistic regression per
+(layer, pooling), fit on the frame's *non-blind* rows, scored on the
+blind rows; also cross-frame. Detectors compared: the current gauge,
+each probe, P(True), and the groundedness check, by AUROC and by recall
+on failures at the operating point that gives ≤ 5% false positives on
+the training rows. Deployment reading: the two-stage rule with flag =
+groundedness ∨ detector(≥ threshold) on the blind rows' existing loop
+records (WK, WK′, WS with the WikiHop vector; WE with own donors,
+stratum-weighted), the selector on flagged rows being (i) the output
+vote (as now), (ii) argmax P(True) among non-baseline branches, (iii)
+argmax answer-token probe among branches — the branch answers being the
+candidates. Baseline rerankers without the loop: argmax P(True) over all
+candidates; argmax CAD score (1+α) logp_ctx − α logp_noctx, α = 0.5.
+
+**33rd registered prediction — A-LITERATURE-DETECTOR-CROSSES-THE-BAR.**
+On the pooled conflict blind rows (360), at least one of {best answer-
+token probe, P(True)} reaches AUROC ≥ 0.90 (failure vs correct-majority)
+AND the two-stage rule driven by it (flag = groundedness ∨ detector at
+the ≤ 5% FPR threshold chosen on training rows; output-vote selector)
+nets more than the groundedness rule alone, row-paired, with the 95% CI
+lower bound > 0. Both conditions → CONFIRMED.
+
+**34th registered prediction — THE BLIND LOOP REACHES WIKIHOP.** On the
+WE rows (real WikiHop; stratum-weighted frame net as in WE), the same
+rule with the best detector from the 33rd's training nets > 0 with the
+95% CI lower bound > 0 (the groundedness rule alone is inert there).
+Riders: the selector variants; the rerankers; per-stratum. Budget ≈ $4
+(three prefill jobs).
+
+### Item WC — the reasoning and decoding baselines: chain-of-thought and context-aware decoding (registered 2026-09-04 20:10 UTC; descriptive)
+
+Chain-of-thought (`W0_MODE=cot`): the std prompt plus "First, think step
+by step about which phrase in the documents answers the question. Then,
+on the last line, write 'Answer:' followed by exactly one candidate";
+k = 4, temperature 0.7, 384 tokens, the answer parsed from the last
+'Answer:' line; on NQ-Swap, counterfactual SQuAD and WikiHop fresh
+(seeds 20260918/19/20). Context-aware decoding: the candidate reranker
+from WZ's CAD pair (α = 0.5) on the blind rows. Pre-named readings: CoT
+accuracy against the document's answer vs std; CoT's repair share of
+conflict failures and of hint-repairable rows (the attention lapses)
+split by grounded vs ungrounded wrong answer; collateral on correct-
+majority rows; CAD reranker accuracy on the blind rows vs std and vs the
+grounded loop. Purpose: the paper's comparison table. Budget ≈ $3.

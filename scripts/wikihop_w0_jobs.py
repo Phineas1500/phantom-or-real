@@ -66,6 +66,22 @@ def main():
                                         "model_output": c.text}, ensure_ascii=False) + "\n")
                     n += 1
         summary = {"mode": mode, "n_rows": len(ids), "n_generations": n, "seed": seed, "seconds": round(time.time() - t0)}
+    elif mode == "cot":
+        from vllm import LLM, SamplingParams
+        import sys
+        sys.path.insert(0, "/app")
+        from wikihop_common import cot_prompt
+        llm = LLM(model=MODEL, max_model_len=8192, gpu_memory_utilization=0.92, **LLM_KW)
+        convs = [[{"role": "user", "content": SYSTEM + "\n\n" + cot_prompt(r)}] for r in rows]
+        outs = llm.chat(convs, SamplingParams(n=int(os.environ.get("W0_COT_K", "4")), temperature=0.7, max_tokens=int(os.environ.get("W0_COT_MAX_TOKENS", "384")),
+                                              seed=int(os.environ.get("W0_SEED", "20260821"))), chat_template_kwargs=CT_KW or None)
+        n = 0
+        with open(os.path.join(outdir, "wikihop_w0_grades.jsonl"), "w") as f:
+            for r, o in zip(rows, outs):
+                for s, c in enumerate(o.outputs):
+                    f.write(json.dumps({"id": r["id"], "arm": "cot", "sample_index": s, "model_output": c.text}, ensure_ascii=False) + "\n")
+                    n += 1
+        summary = {"mode": mode, "n_generations": n, "seconds": round(time.time() - t0)}
     elif mode in ("grade", "grade_hint"):
         from vllm import LLM, SamplingParams
         if mode == "grade_hint":
