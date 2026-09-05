@@ -152,17 +152,7 @@ def main() -> int:
                 vals = two_stage(R, fl, sel, docs, pt)
                 if weights:
                     rng = np.random.default_rng(20260921); ids = list(R)
-                    draws = []
-                    for _ in range(2000):
-                        # stratified bootstrap
-                        samp = []
-                        for s in ("rep", "unrep", "cor"):
-                            members = [k for k, i in enumerate(ids) if strat[i] == s]; samp += list(rng.choice(members, len(members)))
-                        vv = np.zeros(len(ids)); 
-                        vsub = {}
-                        draws.append(np.mean([0]))  # placeholder replaced below
-                    fn = weights(vals); ci = None
-                    # stratified CI via per-stratum bootstrap of means
+                    fn = weights(vals)
                     draws = []
                     for _ in range(3000):
                         vs = {}
