@@ -5311,3 +5311,50 @@ highest mean gold-row share on the *other* shard's correct rows.
 `python: command not found` inside the bash wrapper ($0.10 total; every
 earlier job used `python3`). Resubmitted with `python3`, same context:
 shard A **job-c7iqm**, shard B **job-8tcs9** (image cached, queued at position 1).
+
+**WN LANDED 2026-09-06 04:50 UTC (A job-c7iqm $1.51, B job-8tcs9 $1.53;
+failed first attempts job-fcqgb / job-mavbj $0.10; WN total $3.14, 4
+jobs).** 270 rows (90 fixable, 90 unfixable, 90 correct), 135 per
+shard, all rows scored. **37th CONFIRMED at the bar:
+retrieval-head attention, gold row in the top 3 on the 90 fixable
+failures 0.522 [0.422, 0.622]** (recall@1 0.21, @5 0.73, @10 0.91) —
+the point estimate clears 0.50 by two rows and the interval excludes
+BM25's 0.23 (0.233 on the same rows) as registered, while straddling
+the bar itself. The other aimers on fixable failures (recall@1 / @3):
+self-selection 0.27 / 0.36; raw attention 0.19 / 0.37; calibrated
+attention 0.19 / 0.41; all-layer mean 0.00 / 0.04 (the 52
+sliding-window layers drown the signal); contrastive perplexity 0.01 /
+0.02. Unfixable failures: retrieval heads 0.20 / 0.49, self-selection
+0.29 / 0.41. Correct rows: self-selection 0.96 / 0.98, retrieval heads
+0.88 / 0.94, raw attention 0.82 / 0.92, BM25 0.39 / 0.63. Union of the
+model aimers at 3: fixable 0.67, unfixable 0.59, correct 0.99. The
+retrieval heads are stable: 14 of the 16 chosen on each shard's
+correct rows coincide, all in global layers 35–53 (by count 41: 9, 47:
+12, 53: 8, 35: 3); head (47, 0) alone puts 0.75 / 0.62 of its
+attention on the gold row on correct rows; per-layer head means peak at
+L47 (fixable 0.46, correct 0.94) and the early global layers (5–23)
+read nothing. On failures the retrieval heads still place 0.14 / 0.15
+of their attention on the gold row (correct rows 0.48). Self-selection
+copies a verbatim row 79–87% of the time but names the gold row at
+0.27 on failures against 0.96 on correct rows: the self-report follows
+the answer. **Detector reading (descriptive):** the retrieval heads'
+peak share on any single row is lower on failures (fixable 0.28,
+unfixable 0.34, correct 0.49); as a label-free failure signal (low
+peak = failure) AUROC 0.76 failure vs correct, 0.80 fixable vs correct,
+0.62 fixable vs unfixable; attention entropy 0.60, document mass 0.62.
+Complementarity on the fixable rows: retrieval heads@3 only 28,
+self-selection@1 only 5, both 19, neither 38. Reading: aiming is half a
+wall — the model's own retrieval circuit knows where to look on half
+of the failures the hint repairs, which is what WM's retriever lacked
+(0.23), and the same circuit's confidence is the first label-free
+failure detector on natural text in the program that is not a swap
+artifact (the strata here are 0/8 failures against majority-correct
+rows, the easy extremes). Step 2 per the item text is now admissible:
+an intervention comparison on a fresh blind draw aimed by the
+retrieval heads, with the attention-steering form (PASTA-style bias
+in the global layers) rather than the residual write that WM showed
+corrupts a row. Reader outputs docs/wn_gates.json; per-row ranks
+results/loop_screen/wn_ranks.jsonl; full records (61 MB each,
+untracked) results/loop_screen/wn_{a,b}.jsonl. Program: 37
+predictions, 27 confirmed, 9 not, 1 intermediate; ≈ $177 across 161
+jobs.

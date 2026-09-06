@@ -47,7 +47,7 @@ def boot_ci(x, n=4000, seed=0):
 
 def main():
     ap = argparse.ArgumentParser(); ap.add_argument("--records", nargs="+", required=True); ap.add_argument("--pins", default="docs/wn_pinned.json")
-    ap.add_argument("--frame", default="results/loop_screen/wtq_haystack_input.jsonl.gz"); ap.add_argument("--out", default="docs/wn_gates.json"); a = ap.parse_args()
+    ap.add_argument("--frame", default="results/loop_screen/wtq_haystack_input.jsonl.gz"); ap.add_argument("--out", default="docs/wn_gates.json"); ap.add_argument("--rows-out", default="results/loop_screen/wn_ranks.jsonl"); a = ap.parse_args()
     pins = json.load(open(a.pins)); strata = pins["strata"]; shard_of = {i: s for s, ids in pins["jobs"].items() for i in ids}
     frame = {}
     for line in gzip.open(a.frame, "rt"):
@@ -121,6 +121,9 @@ def main():
                          "confirmed": bool(fx[best]["recall_at_3"] >= BAR and lo is not None and lo > REFERENCE_BM25)}
     print("37th:", json.dumps(out["verdict_37"]))
     json.dump(out, open(a.out, "w"), indent=1)
+    with open(a.rows_out, "w") as f:
+        for rid in recs:
+            f.write(json.dumps({"id": rid, "stratum": strata[rid], "shard": shard_of.get(rid), "n_spans": recs[rid]["n_spans"], "ranks": {am: ranks[am][rid] for am in aimers}, "detector": detector.get(rid, {}), "selection": recs[rid]["selection"]}) + "\n")
 
 
 if __name__ == "__main__":

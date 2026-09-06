@@ -1,0 +1,423 @@
+{
+ "n": 270,
+ "profile_bins": {
+  "0": 0.00014059441581983577,
+  "1": 9.071127622691608e-05,
+  "2": 0.00012022455285883138,
+  "3": 0.00010473249860829856,
+  "4": 9.837502453499908e-05,
+  "5": 8.54450741407127e-05,
+  "6": 9.584094945192523e-05,
+  "7": 8.52976097186655e-05,
+  "8": 9.285556876984863e-05,
+  "9": 9.112096387719903e-05,
+  "10": 8.712933190899441e-05,
+  "11": 8.505397384387127e-05,
+  "12": 9.608035839173849e-05,
+  "13": 9.600516201072053e-05,
+  "14": 0.00010031382314912058,
+  "15": 9.587189467439451e-05,
+  "16": 9.605788584613178e-05,
+  "17": 8.886117176093188e-05,
+  "18": 9.697013457389807e-05,
+  "19": 0.00010360050688158075
+ },
+ "retrieval_heads": {
+  "B": [
+   [
+    "47",
+    0
+   ],
+   [
+    "47",
+    12
+   ],
+   [
+    "53",
+    23
+   ],
+   [
+    "41",
+    15
+   ],
+   [
+    "53",
+    14
+   ],
+   [
+    "47",
+    1
+   ],
+   [
+    "47",
+    5
+   ],
+   [
+    "35",
+    8
+   ],
+   [
+    "53",
+    0
+   ],
+   [
+    "47",
+    21
+   ],
+   [
+    "41",
+    27
+   ],
+   [
+    "41",
+    19
+   ],
+   [
+    "47",
+    4
+   ],
+   [
+    "53",
+    19
+   ],
+   [
+    "41",
+    9
+   ],
+   [
+    "35",
+    3
+   ]
+  ],
+  "A": [
+   [
+    "47",
+    0
+   ],
+   [
+    "47",
+    12
+   ],
+   [
+    "53",
+    23
+   ],
+   [
+    "47",
+    1
+   ],
+   [
+    "41",
+    15
+   ],
+   [
+    "53",
+    14
+   ],
+   [
+    "41",
+    27
+   ],
+   [
+    "53",
+    0
+   ],
+   [
+    "35",
+    8
+   ],
+   [
+    "53",
+    19
+   ],
+   [
+    "41",
+    9
+   ],
+   [
+    "47",
+    21
+   ],
+   [
+    "47",
+    5
+   ],
+   [
+    "41",
+    19
+   ],
+   [
+    "41",
+    26
+   ],
+   [
+    "47",
+    31
+   ]
+  ]
+ },
+ "recall": {
+  "fixable": {
+   "n": 90,
+   "bm25": {
+    "recall_at_1": 0.089,
+    "recall_at_3": 0.233,
+    "ci_at_3": [
+     0.144,
+     0.322
+    ],
+    "median_rank": 118.5
+   },
+   "self_selection": {
+    "recall_at_1": 0.267,
+    "recall_at_3": 0.356,
+    "ci_at_3": [
+     0.256,
+     0.456
+    ],
+    "median_rank": 7.0
+   },
+   "attn_raw": {
+    "recall_at_1": 0.189,
+    "recall_at_3": 0.367,
+    "ci_at_3": [
+     0.267,
+     0.467
+    ],
+    "median_rank": 7.0
+   },
+   "attn_calibrated": {
+    "recall_at_1": 0.189,
+    "recall_at_3": 0.411,
+    "ci_at_3": [
+     0.311,
+     0.511
+    ],
+    "median_rank": 6.0
+   },
+   "attn_all_layers": {
+    "recall_at_1": 0.0,
+    "recall_at_3": 0.044,
+    "ci_at_3": [
+     0.011,
+     0.089
+    ],
+    "median_rank": 20.0
+   },
+   "retrieval_heads": {
+    "recall_at_1": 0.211,
+    "recall_at_3": 0.522,
+    "ci_at_3": [
+     0.422,
+     0.622
+    ],
+    "median_rank": 3.0
+   },
+   "cp": {
+    "recall_at_1": 0.011,
+    "recall_at_3": 0.022,
+    "ci_at_3": [
+     0.0,
+     0.056
+    ],
+    "median_rank": 100.5
+   }
+  },
+  "unfixable": {
+   "n": 90,
+   "bm25": {
+    "recall_at_1": 0.133,
+    "recall_at_3": 0.256,
+    "ci_at_3": [
+     0.167,
+     0.356
+    ],
+    "median_rank": 117.5
+   },
+   "self_selection": {
+    "recall_at_1": 0.289,
+    "recall_at_3": 0.411,
+    "ci_at_3": [
+     0.311,
+     0.511
+    ],
+    "median_rank": 5.0
+   },
+   "attn_raw": {
+    "recall_at_1": 0.244,
+    "recall_at_3": 0.389,
+    "ci_at_3": [
+     0.289,
+     0.489
+    ],
+    "median_rank": 8.0
+   },
+   "attn_calibrated": {
+    "recall_at_1": 0.2,
+    "recall_at_3": 0.333,
+    "ci_at_3": [
+     0.233,
+     0.433
+    ],
+    "median_rank": 8.0
+   },
+   "attn_all_layers": {
+    "recall_at_1": 0.0,
+    "recall_at_3": 0.044,
+    "ci_at_3": [
+     0.011,
+     0.089
+    ],
+    "median_rank": 24.5
+   },
+   "retrieval_heads": {
+    "recall_at_1": 0.2,
+    "recall_at_3": 0.489,
+    "ci_at_3": [
+     0.389,
+     0.6
+    ],
+    "median_rank": 4.0
+   },
+   "cp": {
+    "recall_at_1": 0.0,
+    "recall_at_3": 0.0,
+    "ci_at_3": [
+     0.0,
+     0.0
+    ],
+    "median_rank": 99.5
+   }
+  },
+  "correct": {
+   "n": 90,
+   "bm25": {
+    "recall_at_1": 0.389,
+    "recall_at_3": 0.633,
+    "ci_at_3": [
+     0.533,
+     0.722
+    ],
+    "median_rank": 2.0
+   },
+   "self_selection": {
+    "recall_at_1": 0.956,
+    "recall_at_3": 0.978,
+    "ci_at_3": [
+     0.944,
+     1.0
+    ],
+    "median_rank": 1.0
+   },
+   "attn_raw": {
+    "recall_at_1": 0.822,
+    "recall_at_3": 0.922,
+    "ci_at_3": [
+     0.867,
+     0.967
+    ],
+    "median_rank": 1.0
+   },
+   "attn_calibrated": {
+    "recall_at_1": 0.811,
+    "recall_at_3": 0.9,
+    "ci_at_3": [
+     0.833,
+     0.956
+    ],
+    "median_rank": 1.0
+   },
+   "attn_all_layers": {
+    "recall_at_1": 0.011,
+    "recall_at_3": 0.033,
+    "ci_at_3": [
+     0.0,
+     0.078
+    ],
+    "median_rank": 8.0
+   },
+   "retrieval_heads": {
+    "recall_at_1": 0.878,
+    "recall_at_3": 0.944,
+    "ci_at_3": [
+     0.889,
+     0.989
+    ],
+    "median_rank": 1.0
+   },
+   "cp": {
+    "recall_at_1": 0.067,
+    "recall_at_3": 0.089,
+    "ci_at_3": [
+     0.033,
+     0.156
+    ],
+    "median_rank": 99.0
+   }
+  }
+ },
+ "union": {
+  "fixable": {
+   "recall_at_3_any_model_aimer": 0.667
+  },
+  "unfixable": {
+   "recall_at_3_any_model_aimer": 0.589
+  },
+  "correct": {
+   "recall_at_3_any_model_aimer": 0.989
+  }
+ },
+ "detector": {
+  "rh_peak": {
+   "mean": {
+    "fixable": 0.2755,
+    "unfixable": 0.34,
+    "correct": 0.4897
+   },
+   "auroc_failure_vs_correct": 0.23925925925925925,
+   "auroc_fixable_vs_correct": 0.19950617283950617,
+   "auroc_fixable_vs_unfixable": 0.38407407407407407
+  },
+  "rh_gold_share": {
+   "mean": {
+    "fixable": 0.139,
+    "unfixable": 0.15,
+    "correct": 0.4787
+   },
+   "auroc_failure_vs_correct": 0.12092592592592592,
+   "auroc_fixable_vs_correct": 0.11234567901234568,
+   "auroc_fixable_vs_unfixable": 0.5477777777777778
+  },
+  "entropy": {
+   "mean": {
+    "fixable": 3.9426,
+    "unfixable": 3.892,
+    "correct": 3.8334
+   },
+   "auroc_failure_vs_correct": 0.6036419753086419,
+   "auroc_fixable_vs_correct": 0.6307407407407407,
+   "auroc_fixable_vs_unfixable": 0.5648148148148148
+  },
+  "doc_mass": {
+   "mean": {
+    "fixable": 0.3891,
+    "unfixable": 0.3902,
+    "correct": 0.3733
+   },
+   "auroc_failure_vs_correct": 0.6230246913580247,
+   "auroc_fixable_vs_correct": 0.6240740740740741,
+   "auroc_fixable_vs_unfixable": 0.5083950617283951
+  }
+ },
+ "verdict_37": {
+  "best_aimer": "retrieval_heads",
+  "recall_at_3": 0.522,
+  "ci": [
+   0.422,
+   0.622
+  ],
+  "bar": 0.5,
+  "reference_bm25": 0.23,
+  "confirmed": true
+ }
+}
