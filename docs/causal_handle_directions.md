@@ -5449,3 +5449,15 @@ bit-identical to stock eager attention on the CPU model — and FB
 resubmitted as FB1 (23 rows) / FB2 (22 rows) from the same pinned
 rows; half-shard entries were added to docs/ww_pinned.json for any
 other shard that dies the same way. No registered quantity changed.
+*Correction to the resubmit note (06:08 UTC):* B2 (job-g2wus, $0.70)
+died of the same out-of-memory about ten rows in, and a token count of
+the pinned rows showed FA and B1 hold rows of the same length, so both
+were canceled before their own failure (FA at row 7 of 45, B1 at row 6
+of 60; billed pending) and all four shards were resubmitted at their
+original sizes from the patched context ctx-e2bdd737 with 120-minute
+caps instead of the half shards named above: FA **job-t88ur**, FB
+**job-dfwrm**, B1 **job-2rrs2**, B2 **job-i7j7a**. Budget revision:
+eager attention runs at ≈ 85 s per fixable row (7 arms) and ≈ 63 s per
+blind row (5 arms), about twice the estimate behind the registered
+"≈ $8"; the four shards will cost ≈ $13–14 and the item ≈ $18 with the
+four lost attempts. No registered quantity changed.
