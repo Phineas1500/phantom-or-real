@@ -5299,3 +5299,11 @@ winner's recall must exclude 0.23). CONFIRMED / NOT CONFIRMED. If NOT,
 aiming is the wall for blind intervention on this regime and no
 steering job follows. Budget ≈ $3 (two shards, one eager-attention
 forward + two teacher-forced forwards + one short generation per row).
+
+*Launch note (2026-09-06 03:40 UTC):* context ctx-fe705777 (job commit
+37b7a89, registration b5473b3); shard A **job-fcqgb**, shard B
+**job-mavbj** (mission wn-table-aimers); 135 rows each; reader
+`scripts/tables_aimers_reader.py`. Attention is captured from the ten
+global layers (5, 11, …, 59) per head and from all 62 layers as a head
+mean; retrieval heads = the 16 (global layer, head) pairs with the
+highest mean gold-row share on the *other* shard's correct rows.
