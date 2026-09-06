@@ -1,0 +1,363 @@
+{
+ "n_rows": 210,
+ "arms": [
+  "baseline",
+  "quote_heads3",
+  "steer_control:0.01",
+  "steer_gold:0.01",
+  "steer_gold:0.1",
+  "steer_heads3:0.01",
+  "steer_heads3:0.1"
+ ],
+ "delivery": {
+  "steered_row_arms": 810,
+  "bias_fired_all": true,
+  "share_rose_frac": 1.0,
+  "mean_share_before": 0.333,
+  "mean_share_after_by_arm": {
+   "steer_control:0.01": 0.175,
+   "steer_gold:0.01": 0.842,
+   "steer_gold:0.1": 0.396,
+   "steer_heads3:0.01": 0.97,
+   "steer_heads3:0.1": 0.822
+  },
+  "gate_pass": true
+ },
+ "fixable": {
+  "n": 90,
+  "baseline_rate": 0.029,
+  "baseline_majority": 0.022,
+  "aim_hits_gold": 0.533,
+  "gated_frac": 0.367,
+  "arms": {
+   "quote_heads3": {
+    "rate": 0.235,
+    "dP": 0.206,
+    "ci": [
+     0.122,
+     0.29
+    ],
+    "up": 22,
+    "down": 2,
+    "majority": 0.233,
+    "d_majority": 0.211,
+    "ci_majority": [
+     0.122,
+     0.3
+    ],
+    "dP_aim_hits_gold": 0.323,
+    "dP_aim_misses": 0.071
+   },
+   "steer_control:0.01": {
+    "rate": 0.035,
+    "dP": 0.006,
+    "ci": [
+     -0.022,
+     0.035
+    ],
+    "up": 4,
+    "down": 4,
+    "majority": 0.022,
+    "d_majority": 0.0,
+    "ci_majority": [
+     -0.044,
+     0.044
+    ],
+    "dP_aim_hits_gold": 0.01,
+    "dP_aim_misses": 0.0
+   },
+   "steer_gold:0.01": {
+    "rate": 0.654,
+    "dP": 0.625,
+    "ci": [
+     0.528,
+     0.718
+    ],
+    "up": 62,
+    "down": 2,
+    "majority": 0.644,
+    "d_majority": 0.622,
+    "ci_majority": [
+     0.522,
+     0.722
+    ],
+    "dP_aim_hits_gold": 0.591,
+    "dP_aim_misses": 0.664
+   },
+   "steer_gold:0.1": {
+    "rate": 0.397,
+    "dP": 0.368,
+    "ci": [
+     0.274,
+     0.464
+    ],
+    "up": 37,
+    "down": 2,
+    "majority": 0.4,
+    "d_majority": 0.378,
+    "ci_majority": [
+     0.278,
+     0.478
+    ],
+    "dP_aim_hits_gold": 0.417,
+    "dP_aim_misses": 0.312
+   },
+   "steer_heads3:0.01": {
+    "rate": 0.076,
+    "dP": 0.047,
+    "ci": [
+     0.008,
+     0.094
+    ],
+    "up": 7,
+    "down": 2,
+    "majority": 0.078,
+    "d_majority": 0.056,
+    "ci_majority": [
+     0.011,
+     0.111
+    ],
+    "dP_aim_hits_gold": 0.089,
+    "dP_aim_misses": 0.0
+   },
+   "steer_heads3:0.1": {
+    "rate": 0.067,
+    "dP": 0.037,
+    "ci": [
+     0.004,
+     0.076
+    ],
+    "up": 7,
+    "down": 2,
+    "majority": 0.067,
+    "d_majority": 0.044,
+    "ci_majority": [
+     0.011,
+     0.089
+    ],
+    "dP_aim_hits_gold": 0.065,
+    "dP_aim_misses": 0.006
+   }
+  },
+  "steer_heads3_vs_control": {
+   "diff": 0.042,
+   "ci": [
+    -0.001,
+    0.092
+   ]
+  },
+  "steer_heads3_vs_quote": {
+   "diff": -0.158,
+   "ci": [
+    -0.25,
+    -0.064
+   ]
+  },
+  "steer_gold_vs_heads3": {
+   "diff": 0.578,
+   "ci": [
+    0.479,
+    0.678
+   ]
+  }
+ },
+ "blind": {
+  "n": 120,
+  "baseline_rate": 0.823,
+  "baseline_majority": 0.825,
+  "aim_hits_gold": 0.925,
+  "gated_frac": 0.042,
+  "arms": {
+   "quote_heads3": {
+    "rate": 0.814,
+    "dP": -0.009,
+    "ci": [
+     -0.061,
+     0.045
+    ],
+    "up": 8,
+    "down": 9,
+    "majority": 0.817,
+    "d_majority": -0.008,
+    "ci_majority": [
+     -0.058,
+     0.05
+    ],
+    "dP_aim_hits_gold": -0.014,
+    "dP_aim_misses": 0.042,
+    "collateral_on_correct_rate": -0.049,
+    "gain_on_failures_rate": 0.179
+   },
+   "steer_gold:0.01": {
+    "rate": 0.878,
+    "dP": 0.055,
+    "ci": [
+     0.015,
+     0.102
+    ],
+    "up": 11,
+    "down": 3,
+    "majority": 0.883,
+    "d_majority": 0.058,
+    "ci_majority": [
+     0.017,
+     0.108
+    ],
+    "dP_aim_hits_gold": 0.05,
+    "dP_aim_misses": 0.125,
+    "collateral_on_correct_rate": 0.0,
+    "gain_on_failures_rate": 0.315
+   },
+   "steer_heads3:0.01": {
+    "rate": 0.801,
+    "dP": -0.022,
+    "ci": [
+     -0.051,
+     0.007
+    ],
+    "up": 1,
+    "down": 8,
+    "majority": 0.8,
+    "d_majority": -0.025,
+    "ci_majority": [
+     -0.059,
+     0.008
+    ],
+    "dP_aim_hits_gold": -0.01,
+    "dP_aim_misses": -0.167,
+    "collateral_on_correct_rate": -0.027,
+    "gain_on_failures_rate": 0.0
+   },
+   "steer_heads3:0.1": {
+    "rate": 0.809,
+    "dP": -0.014,
+    "ci": [
+     -0.041,
+     0.014
+    ],
+    "up": 2,
+    "down": 7,
+    "majority": 0.8,
+    "d_majority": -0.025,
+    "ci_majority": [
+     -0.059,
+     0.008
+    ],
+    "dP_aim_hits_gold": -0.003,
+    "dP_aim_misses": -0.139,
+    "collateral_on_correct_rate": -0.021,
+    "gain_on_failures_rate": 0.024
+   }
+  },
+  "steer_heads3_vs_control": null,
+  "steer_heads3_vs_quote": {
+   "diff": -0.013,
+   "ci": [
+    -0.075,
+    0.049
+   ]
+  },
+  "steer_gold_vs_heads3": {
+   "diff": 0.077,
+   "ci": [
+    0.03,
+    0.128
+   ]
+  },
+  "rule_steer_heads3:0.01": {
+   "frame_net_majority": -0.017,
+   "ci": [
+    -0.042,
+    0.0
+   ],
+   "up": 0,
+   "down": 2,
+   "frame_net_rate": -0.01,
+   "ci_rate": [
+    -0.025,
+    0.0
+   ],
+   "gated": 5
+  },
+  "rule_steer_heads3:0.1": {
+   "frame_net_majority": -0.017,
+   "ci": [
+    -0.042,
+    0.0
+   ],
+   "up": 0,
+   "down": 2,
+   "frame_net_rate": -0.008,
+   "ci_rate": [
+    -0.019,
+    0.0
+   ],
+   "gated": 5
+  },
+  "rule_wide_steer_heads3:0.01": {
+   "frame_net_majority": -0.017,
+   "ci": [
+    -0.05,
+    0.017
+   ],
+   "up": 1,
+   "down": 3,
+   "frame_net_rate": -0.013,
+   "ci_rate": [
+    -0.04,
+    0.015
+   ],
+   "gated": 24
+  },
+  "rule_wide_steer_heads3:0.1": {
+   "frame_net_majority": -0.017,
+   "ci": [
+    -0.05,
+    0.017
+   ],
+   "up": 1,
+   "down": 3,
+   "frame_net_rate": -0.009,
+   "ci_rate": [
+    -0.036,
+    0.017
+   ],
+   "gated": 24
+  },
+  "n_correct_majority": 99,
+  "n_failures_majority": 21
+ },
+ "verdicts": {
+  "38th": {
+   "dP": 0.625,
+   "ci": [
+    0.528,
+    0.718
+   ],
+   "confirmed": true
+  },
+  "39th": {
+   "dP": 0.047,
+   "ci": [
+    0.008,
+    0.094
+   ],
+   "vs_control": {
+    "diff": 0.042,
+    "ci": [
+     -0.001,
+     0.092
+    ]
+   },
+   "confirmed": false
+  },
+  "40th": {
+   "net": -0.017,
+   "ci": [
+    -0.042,
+    0.0
+   ],
+   "confirmed": false
+  }
+ }
+}

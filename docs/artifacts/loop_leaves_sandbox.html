@@ -103,7 +103,7 @@
 </div>
 
 <div class="col">
-  <h2>What happened, in fourteen findings</h2>
+  <h2>What happened, in fifteen findings</h2>
 
   <div class="finding">
     <div class="num">1 / 528<small>gold repairs</small></div>
@@ -160,6 +160,10 @@
   <div class="finding">
     <div class="num meter">52%<small>of fixable failures, aimed by the model's own heads</small></div>
     <p><strong>The model knows where to look more often than it looks there, and a handful of its attention heads will tell you.</strong> We asked whether anything label-free could aim at the right row where the keyword retriever failed. Six candidates from the model's own insides were scored on the same tables: asking the model to copy the supporting row, its attention from the answer position, that attention corrected for position, its retrieval heads, and a perplexity test. The retrieval heads won: sixteen heads in the network's global layers, the same heads on both halves of the data, rank the right row in their top three on 52 percent of the fixable failures, and in the top five on 73 percent, against the retriever's 23. Asking the model to name its row was near-perfect when it was right and useless when it was wrong; it reports the row behind the answer it already gave. And the same heads carry a warning light: how much of their attention lands on their single favourite row is far lower on failures than on successes, which separates the two with no label and no probe, at 0.76 to 0.80. Aiming is half a wall now. The nudge that would use the aim is still the other half.</p>
+  </div>
+  <div class="finding">
+    <div class="num">+0.63<small>steering the heads onto the right row</small></div>
+    <p><strong>A different kind of nudge works on the tables, and the model's own aim still does not.</strong> Instead of writing into the model's hidden state, we turned down the retrieval heads' attention to everything except a chosen row, the way the attention-steering literature does, touching nothing inside the row. Pointed at the right row, that repairs 62 of the 90 fixable failures, the largest repair in the whole program and exactly where the earlier nudge had wrecked the row; pointed at rows of an unrelated table it does nothing; run blind on fresh questions with a perfect aim it adds five and a half points and breaks no correct answer. So the intervention half of the wall is gone. But pointed at the three rows the model's own heads rank highest, which contain the right row half the time, it repairs almost nothing, and on most of those questions the answer does not change at all. Turning down everything else leaves the model's ordering among the three rows exactly as it was, and that ordering is the mistake. Quoting the same three rows as text lets the model reorder them and repairs a fifth of the failures, but blind it breaks as many correct answers as it fixes. The aim, not the nudge, is now the whole of the problem.</p>
   </div>
 </div>
 
@@ -239,10 +243,10 @@
 
   <h2>Where it stands</h2>
   <div class="status">
-    <div><div class="big">37</div><div class="eyebrow">predictions registered before data</div></div>
-    <div><div class="big">27</div><div class="eyebrow">confirmed</div></div>
-    <div><div class="big">9</div><div class="eyebrow">refuted (selection, deployment, detection, and length)</div></div>
-    <div><div class="big">$177</div><div class="eyebrow">161 H100 jobs, four days</div></div>
+    <div><div class="big">40</div><div class="eyebrow">predictions registered before data</div></div>
+    <div><div class="big">28</div><div class="eyebrow">confirmed</div></div>
+    <div><div class="big">11</div><div class="eyebrow">refuted (selection, deployment, detection, length, and aim)</div></div>
+    <div><div class="big">$196</div><div class="eyebrow">169 H100 jobs, five days</div></div>
   </div>
   <p style="margin-top:22px">Every step was registered before launch, every intervention audited for delivery on independent channels, and every artifact is committed. Five settings on Gemma, two disjoint draws each on real and renamed text, the blind reading on both, a second model on the same questions and on a fresh frame, a depth ladder on both models, an attention read of the write, a content control against random and sign-reversed vectors, and two more reading tasks.</p>
 
@@ -281,6 +285,7 @@
     <tr><td class="n">WZ · WC</td><td>the literature's detectors, and reasoning and decoding baselines</td><td>answer-token probe perfect on swapped facts, 0.87 on real text (a swap artifact); self-grading at chance; context-aware decoding +10 to +11 <span class="pill meter">detect</span></td></tr>
     <tr><td class="n">WM</td><td>a haystack of tables, the nudge aimed by a retriever</td><td>−19 points blind, −42 aimed at the right row; harmless but inert at the answer's own tokens; the text hint +8.5 <span class="pill">write</span></td></tr>
     <tr><td class="n">WN</td><td>six label-free aimers on the same tables, no steering</td><td>the retrieval heads find the row on 52% of fixable failures (retriever 23%); self-selection follows the answer; the heads' confidence detects failures at 0.76–0.80 <span class="pill meter">read</span></td></tr>
+    <tr><td class="n">WW</td><td>attention steering in the retrieval heads, aimed by the heads or by the answer</td><td>at the right row +0.63, the largest repair in the program, five points blind with a perfect aim; aimed by the heads it leaves the answer unchanged <span class="pill">write</span></td></tr>
   </table>
   </div>
 </div>

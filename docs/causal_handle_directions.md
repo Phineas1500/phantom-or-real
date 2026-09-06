@@ -5461,3 +5461,49 @@ eager attention runs at ≈ 85 s per fixable row (7 arms) and ≈ 63 s per
 blind row (5 arms), about twice the estimate behind the registered
 "≈ $8"; the four shards will cost ≈ $13–14 and the item ≈ $18 with the
 four lost attempts. No registered quantity changed.
+
+**WW LANDED 2026-09-06 13:55 UTC (FA job-t88ur $4.18, FB job-dfwrm
+$4.13, B1 job-2rrs2 $3.86, B2 job-i7j7a $3.53; lost attempts job-pdeae
+$0.64, job-g2wus $0.70, job-6z46i $1.07, job-fta6b $1.08; WW total
+$19.19, 8 jobs).** Delivery gate PASSED: 810 of 810 steered row-arms
+fired on every chunk and the pinned heads' highlight share at the
+final prompt token rose on 100% (mean 0.333 → 0.842 gold α 0.01, 0.970
+heads-top-3 α 0.01, 0.396 gold α 0.1, 0.822 heads α 0.1, 0.175
+control). **Fixable pool** (90 rows, in-job baseline 0.029; the heads'
+top 3 holds the gold row on 48, the top 1 on 19): **38th CONFIRMED —
+steer_gold α 0.01 0.654, dP +0.625 [+0.528, +0.718], 62 up / 2 down**
+(hit / miss of the label-free aim +0.591 / +0.664: the gold-aimed
+repair does not depend on the heads); α 0.1 +0.368 [+0.274, +0.464];
+control (three rows of another table) +0.006 [−0.022, +0.035], 4 / 4;
+**39th NOT CONFIRMED — steer_heads3 α 0.01 +0.047 [+0.008, +0.094]**
+(7 / 2; below the +0.10 bar) **and vs control +0.042 [−0.001, +0.092]**
+(straddles zero); α 0.1 +0.037; gold vs heads paired +0.578 [+0.479,
++0.678]. On the 48 rows where the gold row is among the three
+highlighted, heads-aimed steering repairs +0.089 and leaves the
+majority answer identical to the baseline's on 39: PASTA's α-scaling
+redistributes the heads' attention among the highlighted rows in
+proportion to the model's prior, and the prior already prefers the
+wrong neighbour. **quote_heads3** (the same three rows as text)
++0.206 [+0.122, +0.290], 22 / 2 (aim hit +0.323 / miss +0.071),
+beating steering at the same rows paired +0.158 [+0.064, +0.250].
+**Blind pool** (120 fresh rows, baseline 0.823, 99 correct-majority /
+21 failures; the heads' top 3 holds the gold row on 0.925): steer_gold
+α 0.01 **+0.055 [+0.015, +0.102]**, 11 / 3, collateral on correct rows
+0.000, failures +0.315 (the oracle-aim ceiling); steer_heads3 α 0.01
+−0.022 [−0.051, +0.007], 1 / 8 (collateral −0.027, failures 0.000);
+α 0.1 −0.014; quote_heads3 −0.009 [−0.061, +0.045] (collateral −0.049,
+failures +0.179). **40th NOT CONFIRMED — two-stage rule (peak share
+< 0.1957 → steer_heads3 α 0.01) −0.017 [−0.042, 0.000]**, 5 rows
+gated, 0 up / 2 down; wider gate (0.3201) −0.017 [−0.050, +0.017], 24
+gated, 1 / 3. Reading: the intervention half of WM's wall is open —
+attention steering at the row the model needs repairs 62 of 90
+fixable failures with an inert control and, aimed by an oracle, lifts
+the blind frame +5.5 points at zero collateral, where the residual
+write at the same rows gave 0.000 and −0.42 — but the label-free aim
+does not compose with it, because the heads' residual error is the
+ordering inside their top 3 and α-scaling cannot reorder what it
+highlights. Quoting the top 3 lets the model reorder them in text
+(+0.21 on fixable failures) but nets nothing blind. Reader outputs
+docs/ww_gates.json; rows results/loop_screen/ww_{fa,fb,b1,b2}.jsonl.
+Program: 40 predictions, 28 confirmed, 11 not, 1 intermediate;
+≈ $196 across 169 jobs.
