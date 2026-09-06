@@ -14,7 +14,7 @@ import numpy as np
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from wikihop_w1_gates import boot_ci  # noqa: E402
 
-ARMS = ["baseline", "retrieved_rows", "retrieved_table", "gold_row", "control_rows", "hint", "retrieval_text"]
+REGISTERED_ARMS = ["baseline", "retrieved_rows", "retrieved_table", "gold_row", "control_rows", "hint", "retrieval_text"]
 
 
 def main() -> int:
@@ -32,6 +32,8 @@ def main() -> int:
         if r["condition"] == "delta_write" and not r.get("hook_positions_written"): bad += 1
         if "address_hits_gold" in r: hits[(r["id"], r["arm"])] = r["address_hits_gold"]
     ids = sorted(per); strata = {}
+    seen = {a for i in per for a in per[i]}
+    ARMS = ["baseline"] + [a for a in REGISTERED_ARMS[1:] if a in seen] + sorted(a for a in seen if a not in REGISTERED_ARMS)
     if args.rows and args.rows.exists():
         rows = {json.loads(l)["id"]: json.loads(l) for l in open(args.rows)}
         strata = {i: ("fixable_failure" if rows[i]["failing"] and rows[i]["hint_repairable"] else "unfixable_failure" if rows[i]["failing"] else "correct" if rows[i]["correct_majority"] else "mixed") for i in ids if i in rows}
@@ -43,24 +45,26 @@ def main() -> int:
         d = M[a] - base; ok = ~np.isnan(d); dd = d[ok]
         out["arms"][a] = {"accuracy": float(np.nanmean(M[a])), "frame_net": float(dd.mean()), "ci95": boot_ci(list(dd)), "up": int((dd > 0).sum()), "down": int((dd < 0).sum()), "n": int(ok.sum())}
         o = out["arms"][a]; print(f"| {a} | {o['accuracy']:.3f} | **{o['frame_net']:+.3f}** [{o['ci95'][0]:+.3f}, {o['ci95'][1]:+.3f}] | {o['up']} / {o['down']} |")
-    pr = M["retrieved_rows"] - M["retrieval_text"]; pr = pr[~np.isnan(pr)]
-    out["paired_write_vs_retrieval_text"] = {"delta": float(pr.mean()), "ci95": boot_ci(list(pr))}
-    a35 = out["arms"]["retrieved_rows"]; out["prediction_35"] = "CONFIRMED" if a35["ci95"][0] > 0 else "NOT CONFIRMED"
-    out["prediction_36"] = "CONFIRMED" if out["paired_write_vs_retrieval_text"]["ci95"][0] > 0 else "NOT CONFIRMED"
-    out["substantial_ge_0.10"] = a35["frame_net"] >= 0.10
-    hit = np.array([hits.get((i, "retrieved_rows"), False) for i in ids]); d = M["retrieved_rows"] - base
-    out["conditional_on_address"] = {"hit_gold": {"n": int(hit.sum()), "dP": float(np.nanmean(d[hit])) if hit.any() else None}, "miss_gold": {"n": int((~hit).sum()), "dP": float(np.nanmean(d[~hit])) if (~hit).any() else None}}
-    print(f"\nwrite@retrieved rows vs retrieval-text (paired): {pr.mean():+.3f} {boot_ci(list(pr))}")
-    print(f"conditional on the retriever hitting the gold row: hit n={int(hit.sum())} dP={out['conditional_on_address']['hit_gold']['dP']} | miss n={int((~hit).sum())} dP={out['conditional_on_address']['miss_gold']['dP']}")
+    if "retrieved_rows" in M and "retrieval_text" in M:
+        pr = M["retrieved_rows"] - M["retrieval_text"]; pr = pr[~np.isnan(pr)]
+        out["paired_write_vs_retrieval_text"] = {"delta": float(pr.mean()), "ci95": boot_ci(list(pr))}
+        a35 = out["arms"]["retrieved_rows"]; out["prediction_35"] = "CONFIRMED" if a35["ci95"][0] > 0 else "NOT CONFIRMED"
+        out["prediction_36"] = "CONFIRMED" if out["paired_write_vs_retrieval_text"]["ci95"][0] > 0 else "NOT CONFIRMED"
+        out["substantial_ge_0.10"] = a35["frame_net"] >= 0.10
+        hit = np.array([hits.get((i, "retrieved_rows"), False) for i in ids]); d = M["retrieved_rows"] - base
+        out["conditional_on_address"] = {"hit_gold": {"n": int(hit.sum()), "dP": float(np.nanmean(d[hit])) if hit.any() else None}, "miss_gold": {"n": int((~hit).sum()), "dP": float(np.nanmean(d[~hit])) if (~hit).any() else None}}
+        print(f"\nwrite@retrieved rows vs retrieval-text (paired): {pr.mean():+.3f} {boot_ci(list(pr))}")
+        print(f"conditional on the retriever hitting the gold row: hit n={int(hit.sum())} dP={out['conditional_on_address']['hit_gold']['dP']} | miss n={int((~hit).sum())} dP={out['conditional_on_address']['miss_gold']['dP']}")
     if strata:
         out["strata"] = {}
-        print("\n| stratum | n | baseline | write@retrieved | retrieval-text | gold row | hint |\n|---|---|---|---|---|---|---|")
+        print("\n| stratum | n | per-arm accuracy |\n|---|---|---|")
         for s in ("fixable_failure", "unfixable_failure", "correct", "mixed"):
             g = [k for k, i in enumerate(ids) if strata.get(i) == s]
             if not g: continue
             row = {a: float(np.nanmean(M[a][g])) for a in ARMS}; out["strata"][s] = {"n": len(g), **row}
-            print(f"| {s} | {len(g)} | {row['baseline']:.3f} | {row['retrieved_rows']:.3f} | {row['retrieval_text']:.3f} | {row['gold_row']:.3f} | {row['hint']:.3f} |")
-    print(f"\n35th: {out['prediction_35']} | 36th: {out['prediction_36']} | substantial (≥ +0.10): {out['substantial_ge_0.10']}")
+            print(f"| {s} | {len(g)} | " + " | ".join(f"{a} {row[a]:.3f}" for a in ARMS[1:]) + " |")
+    if "prediction_35" in out:
+        print(f"\n35th: {out['prediction_35']} | 36th: {out['prediction_36']} | substantial (≥ +0.10): {out['substantial_ge_0.10']}")
     args.out.write_text(json.dumps(out, indent=1) + "\n")
     return 0
 

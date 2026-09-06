@@ -5190,3 +5190,10 @@ repairs the fixable failures and spares the correct rows, the mechanism
 holds in long table contexts and the failure was the row address; if it
 also harms, the write does not transfer to ≈ 5k-token table contexts as
 scaled. Budget ≈ $2.5.
+[WM rider launched 2026-09-06 00:19 UTC: job-nfpp4 on shard B's 60 rows
+(context ctx-62f3c9ae, job commit with WM_ARMS; seed 20260924; k = 8,
+chunked); arms answer_mentions @ 2× / 1× / 0.5×, gold_row_label @ 1×,
+retrieved_row_labels @ 1×; text arms off. Shard A rerun job-3385k
+running. Fake-model dry run of the rider (1 row, k=4): five write arms
+emitted, mention positions 4, label positions 4 / 12, address flags
+correct.]
