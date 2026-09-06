@@ -5551,3 +5551,9 @@ pick5_steer on both pools and its gated rule; always-on pick3_steer
 blind net and collateral on correct rows; the peak-share gate
 (0.1957) applied to pick3_steer; repair conditional on the pick being
 gold. Budget ≈ $6 (2 jobs).
+
+*Launch note (2026-09-06 14:04 UTC):* context ctx-d94296d3 (job commit
+b7bd762, registration 111534d); F **job-35zpa** (90 fixable rows), B
+**job-6j3g2** (120 blind rows); arms pick3_steer / pick5_steer at
+α 0.01; mission wwp-pick-then-steer. Reader
+`scripts/tables_pick_reader.py` (pairs against WW's records).
