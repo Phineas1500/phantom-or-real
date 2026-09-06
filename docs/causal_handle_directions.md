@@ -5575,3 +5575,6 @@ A, B or C) contains the answer? Reply with the row's letter only.",
 parsed as a single letter; everything else pinned as WW′. The 41st
 and 42nd are read on the rider's arms when they land; WW′'s own
 readings stand as the record of the flawed instrument.
+*Rider launch (15:35 UTC):* context ctx-437f317b (commit 7646308);
+WW′-r F **job-weedn**, B **job-ehbuf**; same rows,
+arms and seeds as WW′, letter-labelled pick.
