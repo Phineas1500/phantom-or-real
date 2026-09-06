@@ -5599,3 +5599,31 @@ prompt; the 41st and 42nd are read again on rider WW′-r (job-weedn /
 job-ehbuf), whose pick instrument was corrected on the telemetry
 above. Reader outputs docs/wwp_gates.json; rows
 results/loop_screen/wwp_{f,b}.jsonl.
+
+**WW′-r LANDED 2026-09-06 17:05 UTC (F job-weedn $2.56, B job-ehbuf
+$3.47; WW′ + rider $12.20 over 4 jobs).** Delivery 420 / 420 fired,
+share rose on 100%; the letter pick parsed on 210 / 210 row-arms.
+**Fixable pool (90):** the model names the gold row among the heads'
+top 3 on **15 / 90** (the heads' own top 1: 19 / 90; gold present on
+48) and names the first-listed row on 51; pick3_steer 0.076, **dP
++0.047 [+0.001, +0.101]**, 6 / 4 — **41st NOT CONFIRMED**; +0.358 on
+the 15 rows where the pick is gold, −0.015 otherwise; vs quote_heads3
+−0.158 [−0.244, −0.079]; vs steer_heads3 +0.000 [−0.060, +0.062]; vs
+steer_gold −0.578. pick5_steer: pick = gold 20 / 90 (present on 66),
++0.082 [+0.022, +0.146]. **Blind pool (120):** pick = gold 89 / 120
+(present on 111; first-listed 99); pick3_steer −0.028 [−0.068,
++0.013], 3 / 10, collateral on correct rows −0.042, failures +0.036;
+disagreement gate 53 rows, **rule −0.033 [−0.075, +0.008]**, 2 / 6 —
+**42nd NOT CONFIRMED**; peak gate 5 rows −0.008; pick5 −0.060 [−0.106,
+−0.018], its rule −0.058. Reading: the model's explicit choice among
+its heads' candidates carries the same wrong preference as the heads
+— it names the first-listed row on 57% of fixable rows and the gold
+row less often than the heads' top 1 — so the aim half of the table
+wall does not open from inside the model. The intervention stays
+strong wherever the aim is right (+0.36 on picked-gold rows, +0.625
+at the gold row), and the text route (quote the top 3, +0.206) remains
+the best label-free repair on fixable rows and still nets nothing
+blind. The table chain closes here. Reader outputs docs/wwpr_gates.json
+(numbered instrument: docs/wwp_gates.json); rows
+results/loop_screen/wwpr_{f,b}.jsonl. Program: 42 predictions, 28
+confirmed, 13 not, 1 intermediate; ≈ $208 across 173 jobs.
