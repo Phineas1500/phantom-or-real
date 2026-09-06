@@ -47,3 +47,22 @@ player signed before X", "the chip with the highest frequency", "the
 lowest position") — the model reads the table and computes the wrong
 comparison, and an attention nudge at the answer cell does not fix a
 comparison.
+
+## Stage 2 — the registered arms (120 blind rows, baseline 0.731)
+| arm (k = 8) | accuracy | frame net vs baseline [CI] | up / down |
+|---|---|---|---|
+| **write @ retrieved rows (REGISTERED, 35th)** | 0.537 | **−0.194 [−0.273, −0.122]** | 4 / 29 |
+| write @ retrieved table | 0.419 | −0.312 [−0.402, −0.222] | 5 / 45 |
+| write @ gold row (the intended ceiling) | 0.311 | **−0.420 [−0.506, −0.331]** | 0 / 53 |
+| control: random rows of another table | 0.741 | +0.009 [+0.001, +0.021] | 5 / 0 |
+| text hint naming the answer | 0.817 | +0.085 [+0.028, +0.147] | 15 / 3 |
+| quoting the retrieved rows (no write) | 0.657 | −0.074 [−0.157, +0.006] | 12 / 20 |
+
+**35th NOT CONFIRMED. 36th NOT CONFIRMED** (write vs quoting, paired
+−0.120 [−0.223, −0.015]). The harm is specific: when the retriever hits
+the gold row the write costs −0.434, when it misses −0.004; the control
+on an irrelevant table costs nothing. Under the gold-row write the
+model's answers come from other rows and tables in every broken sample
+— the direction written across a whole row corrupts the row rather
+than spotlighting it. Every earlier frame wrote at the answer's own
+mention tokens; the rider below runs that operation here.

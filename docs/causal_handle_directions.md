@@ -5197,3 +5197,29 @@ retrieved_row_labels @ 1×; text arms off. Shard A rerun job-3385k
 running. Fake-model dry run of the rider (1 row, k=4): five write arms
 emitted, mention positions 4, label positions 4 / 12, address flags
 correct.]
+
+**WM LANDED (registered arms) 2026-09-06 01:10 UTC (A job-3385k $2.28, B
+job-v2jpx $2.34; plus the failed attempts job-5ztc8 $0.37, job-anjwg
+$0.11, job-b8aec $1.17; stage 1 $1.10; WM registered total $7.37).** 120
+blind rows, baseline **0.731**, 480 write branches fired, none skipped.
+**35th NOT CONFIRMED: write @ retrieved rows −0.194 [−0.273, −0.122]**
+(4 up / 29 down). **36th NOT CONFIRMED: write @ retrieved rows vs
+quoting the same rows, paired −0.120 [−0.223, −0.015]** — the write is
+worse than the text. Write @ retrieved table −0.312 [−0.402, −0.222];
+**write @ gold row −0.420 [−0.506, −0.331], 0 up / 53 down**; control
+(random rows of another table) +0.009 [+0.001, +0.021]; text hint
++0.085 [+0.028, +0.147] (fixable failures 0.889); quoting the retrieved
+rows −0.074 [−0.157, +0.006]. Conditional on the retriever hitting the
+gold row: write dP −0.434 (n = 53) vs −0.004 when it misses (n = 67) —
+the harm is the write landing on the row the model needs. Strata under
+the gold-row write: correct rows 0.966 → 0.420, fixable failures 0.000.
+Reading: as designed (the direction written at 2× across a whole table
+row, 33–441 positions of pipes, numbers and cells), the write corrupts
+the addressed row and the model reads elsewhere; this is not the
+operation validated on every earlier frame (the answer's own mention
+tokens), and the rider (job-nfpp4) tests that operation directly. On
+the design question the item was built to answer: the retriever-aimed
+write, as built, is not a route to a blind gain on long table
+documents, and quoting the retriever's rows is not either (the rows are
+wrong more often than right on the failures). Reader outputs
+docs/wm_gates.json; rows results/loop_screen/wm_{a,b}.jsonl.

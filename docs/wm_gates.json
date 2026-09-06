@@ -1,0 +1,136 @@
+{
+ "n_rows": 120,
+ "delivery_bad_records": 0,
+ "skipped_arms": {},
+ "baseline_accuracy": 0.73125,
+ "arms": {
+  "retrieved_rows": {
+   "accuracy": 0.5375,
+   "frame_net": -0.19375,
+   "ci95": [
+    -0.2729427083333333,
+    -0.121875
+   ],
+   "up": 4,
+   "down": 29,
+   "n": 120
+  },
+  "retrieved_table": {
+   "accuracy": 0.41875,
+   "frame_net": -0.3125,
+   "ci95": [
+    -0.40208333333333335,
+    -0.221875
+   ],
+   "up": 5,
+   "down": 45,
+   "n": 120
+  },
+  "gold_row": {
+   "accuracy": 0.31145833333333334,
+   "frame_net": -0.4197916666666667,
+   "ci95": [
+    -0.5062760416666666,
+    -0.33122395833333323
+   ],
+   "up": 0,
+   "down": 53,
+   "n": 120
+  },
+  "control_rows": {
+   "accuracy": 0.740625,
+   "frame_net": 0.009375,
+   "ci95": [
+    0.0010416666666666667,
+    0.020833333333333332
+   ],
+   "up": 5,
+   "down": 0,
+   "n": 120
+  },
+  "hint": {
+   "accuracy": 0.8166666666666667,
+   "frame_net": 0.08541666666666667,
+   "ci95": [
+    0.028125,
+    0.146875
+   ],
+   "up": 15,
+   "down": 3,
+   "n": 120
+  },
+  "retrieval_text": {
+   "accuracy": 0.6572916666666667,
+   "frame_net": -0.07395833333333333,
+   "ci95": [
+    -0.15729166666666666,
+    0.00625
+   ],
+   "up": 12,
+   "down": 20,
+   "n": 120
+  }
+ },
+ "paired_write_vs_retrieval_text": {
+  "delta": -0.11979166666666667,
+  "ci95": [
+   -0.22291666666666668,
+   -0.014583333333333334
+  ]
+ },
+ "prediction_35": "NOT CONFIRMED",
+ "prediction_36": "NOT CONFIRMED",
+ "substantial_ge_0.10": false,
+ "conditional_on_address": {
+  "hit_gold": {
+   "n": 53,
+   "dP": -0.4339622641509434
+  },
+  "miss_gold": {
+   "n": 67,
+   "dP": -0.0037313432835820895
+  }
+ },
+ "strata": {
+  "fixable_failure": {
+   "n": 9,
+   "baseline": 0.013888888888888888,
+   "retrieved_rows": 0.06944444444444445,
+   "retrieved_table": 0.18055555555555555,
+   "gold_row": 0.0,
+   "control_rows": 0.06944444444444445,
+   "hint": 0.8888888888888888,
+   "retrieval_text": 0.2777777777777778
+  },
+  "unfixable_failure": {
+   "n": 18,
+   "baseline": 0.05555555555555555,
+   "retrieved_rows": 0.0,
+   "retrieved_table": 0.09722222222222222,
+   "gold_row": 0.0,
+   "control_rows": 0.05555555555555555,
+   "hint": 0.05555555555555555,
+   "retrieval_text": 0.06944444444444445
+  },
+  "correct": {
+   "n": 89,
+   "baseline": 0.9634831460674157,
+   "retrieved_rows": 0.7148876404494382,
+   "retrieved_table": 0.5154494382022472,
+   "gold_row": 0.4199438202247191,
+   "control_rows": 0.9662921348314607,
+   "hint": 0.9662921348314607,
+   "retrieval_text": 0.8103932584269663
+  },
+  "mixed": {
+   "n": 4,
+   "baseline": 0.21875,
+   "retrieved_rows": 0.0625,
+   "retrieved_table": 0.25,
+   "gold_row": 0.0,
+   "control_rows": 0.3125,
+   "hint": 0.75,
+   "retrieval_text": 0.75
+  }
+ }
+}
