@@ -5428,3 +5428,13 @@ wider gate; α = 0.1 doses; steer_heads3 vs quote_heads3 paired;
 steer_gold on the blind rows (ceiling); repair conditional on the aim
 hitting the gold row; the highlight-share rise per arm. Budget ≈ $8
 (4 jobs, eager attention throughout, k = 8 chunked by 2).
+
+*Launch note (2026-09-06 05:28 UTC):* context ctx-27890e69 (commit
+de634a2); FA **job-6z46i**, FB **job-pdeae** (45 fixable rows each, 7
+arms), B1 **job-fta6b**, B2 **job-g2wus** (60 blind rows each, 5 arms);
+mission ww-table-steering. The attention patch was verified before
+launch on a random 6-layer Gemma-3 on CPU (transformers 5.5.4): bias
+fires on prefill and every decode step, the pinned heads' highlight
+share rises 0.12 → 0.93, queries before the documents' end and
+non-pinned heads are bit-identical. Reader
+`scripts/tables_steer_reader.py`.
