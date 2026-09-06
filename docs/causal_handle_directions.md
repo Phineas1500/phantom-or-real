@@ -5154,3 +5154,15 @@ context ctx-c1bd52c9 (job commit 3280ec5), seed 20260924 unchanged:
 A job-b8aec, B job-v2jpx, 120-minute caps. Fake-model dry run of the
 chunked job (1 row, k = 8): 8 samples per arm, 4 prefill hook calls per
 write arm, positions as before.]
+[WM stage 2: shard B (job-v2jpx, $2.34) LANDED 2026-09-06 00:16 UTC, 60
+rows, 240 write branches fired, none skipped. Shard A (job-b8aec, $1.17)
+FAILED at 23 minutes on a worker whose disk filled (0 bytes free; the
+artifact could not upload) — the platform failure mode of tkt-qzgmz;
+resubmitted as job-3385k (same context, same seed). Preliminary shard-B
+reading, recorded before A lands (the verdicts are on 120 rows):
+baseline 0.698; write @ retrieved rows −0.146 [−0.237, −0.062]; write @
+retrieved table −0.190; **write @ gold row −0.331 [−0.452, −0.219], 0 up
+/ 22 down**; control +0.017; text hint +0.119 [+0.027, +0.219]; quoting
+−0.037. The write aimed at a whole table row is destructive, including
+where it is aimed correctly — a different address than the candidate-
+name mentions of every earlier frame. Diagnosis in progress.]
