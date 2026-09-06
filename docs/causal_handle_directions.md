@@ -5248,3 +5248,54 @@ not the tool that reaches them. Program tally: **36 registered
 predictions — 26 confirmed, 9 not (13th, 14th, 19th, 28th, 31st, 32nd,
 34th, 35th, 36th), 1 intermediate (27th); ≈ $174 across 157 jobs.**
 Summary docs/wm_summary.md; rider outputs docs/wm_rider_gates.json.
+
+### Item WN — the aimer bake-off: can a label-free signal find the row the model needs on a haystack of tables? (registered 2026-09-06 02:10 UTC, before any data)
+
+**Motivation.** WM showed the fixable lapses exist (40% of failures, the
+text hint repairs 89%) and that the keyword retriever finds the gold row
+for only 23% of them. The literature offers label-free aimers that use
+the model itself: its own span selection (AutoPASTA, Zhang et al.
+2024), its bias-corrected attention from the answer position
+(Found-in-the-Middle, Hsieh et al. 2024), the attention of its retrieval
+heads (Wu et al. 2024), and question-conditioned contrastive perplexity
+(LongLLMLingua, Jiang et al. 2023). None has been scored on rows the
+model fails. This item scores all four on the same rows, with no
+steering, as the gate for any further intervention.
+
+**Rows.** From the WM stage-1 rows: all 90 fixable failures (0/8 std,
+hint ≥ 4/8), 90 unfixable failures (0/8 std, hint 0/8; seeded sample of
+131), 90 correct-majority rows (seeded sample of 542); two shards.
+Gemma-3-27B, `attn_implementation="eager"`. Gemma-3 alternates five
+sliding-window (1,024-token) layers with one global layer; only the
+global layers (every sixth) can attend across a ≈ 5k-token document, so
+attention aimers are read from the global layers, with all-layer means
+kept for comparison.
+
+**Aimers (all label-free; each ranks the ≈ 130 rows of a document):**
+(1) BM25 rows within the top BM25 table (WM's aimer, the reference);
+(2) **self-selection**: the model is asked to copy the single table row
+that contains the answer (greedy, 64 tokens), mapped to a row by token
+F1; (3) **raw attention**: mass from the final prompt token onto each
+row's tokens, mean over heads and global layers; (4) **calibrated
+attention**: (3) divided by the frame-average attention profile over
+relative position, estimated on all scored rows without labels
+(Found-in-the-Middle's correction, estimated from the frame instead of
+a dummy document); (5) **retrieval-head attention**: the 16 (global-
+layer, head) pairs whose attention to the gold row is highest on the
+correct rows of shard A, applied cross-fit to shard B's rows and vice
+versa; (6) **contrastive perplexity**: per row, the mean over its tokens
+of logp(token | question first) − logp(token | no question).
+**Readings:** gold-row recall@1 and @3 per aimer per stratum (fixable /
+unfixable / correct), the pre-named bar being recall@3 ≥ 0.50 on the
+fixable failures; the union of (2)–(6); and a **detector reading**: the
+retrieval heads' peak attention mass on any single row, and the entropy
+of the answer-position attention over rows, as label-free failure
+signals (AUROC failure vs correct; descriptive).
+
+**37th registered prediction — A-LABEL-FREE-AIMER-FINDS-THE-ROW.** At
+least one of aimers (2)–(6) reaches gold-row recall@3 ≥ 0.50 on the 90
+fixable failures (BM25's 0.23 is the reference; the 95% CI of the
+winner's recall must exclude 0.23). CONFIRMED / NOT CONFIRMED. If NOT,
+aiming is the wall for blind intervention on this regime and no
+steering job follows. Budget ≈ $3 (two shards, one eager-attention
+forward + two teacher-forced forwards + one short generation per row).
