@@ -34,11 +34,11 @@ def install_patch():
         if scaling is None:
             scaling = module.head_dim ** -0.5
         key_states = repeat_kv(key, module.num_key_value_groups); value_states = repeat_kv(value, module.num_key_value_groups)
-        attn_weights = torch.matmul(query, key_states.transpose(2, 3)) * scaling
+        attn_weights = torch.matmul(query, key_states.transpose(2, 3)).mul_(scaling)
         if softcap is not None:
             attn_weights = torch.tanh(attn_weights / softcap) * softcap
         if attention_mask is not None:
-            attn_weights = attn_weights + attention_mask[:, :, :, : key_states.shape[-2]]
+            attn_weights.add_(attention_mask[:, :, :, : key_states.shape[-2]].to(attn_weights.dtype))
         L = module.layer_idx; hs = STEER["layer_heads"].get(L)
         if hs and STEER["active"]:
             q_len, k_len = attn_weights.shape[-2], attn_weights.shape[-1]; q0 = k_len - q_len; i0 = max(0, STEER["q_start"] - q0)
@@ -47,7 +47,8 @@ def install_patch():
                 bias = b[:k_len] if k_len <= b.shape[0] else torch.cat([b, b.new_full((k_len - b.shape[0],), float(STEER["log_alpha"]))])
                 attn_weights[:, hs, i0:, :] = attn_weights[:, hs, i0:, :] + bias.to(attn_weights.dtype)
                 STEER["fired"] += 1
-        attn_weights = torch.nn.functional.softmax(attn_weights, dim=-1, dtype=torch.float32).to(query.dtype)
+        for h0 in range(0, attn_weights.shape[1], 8):  # per-head-chunk float32 softmax: same numerics, a quarter of the transient
+            attn_weights[:, h0:h0 + 8] = torch.nn.functional.softmax(attn_weights[:, h0:h0 + 8], dim=-1, dtype=torch.float32).to(query.dtype)
         if hs and (STEER["measure"] or STEER["active"]) and attn_weights.shape[-2] > 1:
             STEER["rows"][L] = attn_weights[0, hs, -1, :].detach().float().cpu()
         attn_weights = torch.nn.functional.dropout(attn_weights, p=dropout, training=module.training)

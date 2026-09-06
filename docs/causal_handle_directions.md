@@ -5438,3 +5438,14 @@ fires on prefill and every decode step, the pinned heads' highlight
 share rises 0.12 → 0.93, queries before the documents' end and
 non-pinned heads are bit-identical. Reader
 `scripts/tables_steer_reader.py`.
+*Resubmit note (06:15 UTC):* FB (job-pdeae, $0.64) died of CUDA
+out-of-memory in the eager softmax on its second row (the first row,
+5,799 tokens, completed all six steered arms; its records show the
+bias firing on every chunk and the pinned heads' highlight share at
+the final prompt token rising 0.03 → 0.65 for the gold row at α 0.01
+and 0.38 → 0.97 for the heads' rows). Job patched for memory only —
+in-place mask addition and a per-head-chunk float32 softmax, verified
+bit-identical to stock eager attention on the CPU model — and FB
+resubmitted as FB1 (23 rows) / FB2 (22 rows) from the same pinned
+rows; half-shard entries were added to docs/ww_pinned.json for any
+other shard that dies the same way. No registered quantity changed.
