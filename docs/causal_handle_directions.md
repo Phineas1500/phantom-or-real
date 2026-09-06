@@ -5358,3 +5358,73 @@ results/loop_screen/wn_ranks.jsonl; full records (61 MB each,
 untracked) results/loop_screen/wn_{a,b}.jsonl. Program: 37
 predictions, 27 confirmed, 9 not, 1 intermediate; ≈ $177 across 161
 jobs.
+
+### Item WW — attention steering aimed by the model's own retrieval heads: does aiming plus a non-corrupting intervention give a blind gain on the table haystack? (registered 2026-09-06 05:20 UTC, before any data)
+
+**Motivation.** WM: the residual write corrupts a table row (gold-row
+write −0.42) and is inert at the answer's tokens; the keyword aimer
+finds the gold row on 0.23 of fixable failures. WN: the model's own
+retrieval heads find it on 0.52 (top 3) / 0.73 (top 5), and their peak
+share detects failures at AUROC 0.76–0.80 label-free. The intervention
+that fits an attention-lapse regime is the literature's attention
+steering (PASTA, Zhang et al. 2023; AutoPASTA 2024): in a chosen set of
+heads, scale the attention to every non-highlighted token by α and
+renormalize — nothing is written into the row's representation. This
+item tests it with an oracle aim (the gold row), the label-free aim
+(the retrieval heads' top 3), a specificity control, and the text
+alternative, on the fixable failures and on a fresh blind draw.
+
+**Pins (docs/ww_pinned.json).** Heads: the 14 (layer, head) pairs
+common to WN's two cross-fit sets — L35: 8; L41: 9, 15, 19, 27; L47: 0,
+1, 5, 12, 21; L53: 0, 14, 19, 23. Steering: in those heads only, for
+every query at or after the first token following the documents (the
+question, the instruction, and every generated token), add log α to
+the attention logits of all keys outside the highlighted rows before
+the softmax, on prefill and on every decode step (PASTA's α-scaling;
+PASTA steers all queries — restricted here to the reading queries
+because WM showed that disturbing the rows' own processing corrupts
+them). α = 0.01 (PASTA's default) is the registered dose; α = 0.1 a
+pre-named dose reading. Aim: one unsteered forward per row reads the 14
+heads' attention from the final prompt token, summed over each row's
+tokens and averaged over heads; the top 3 rows are the label-free
+target; the peak share (largest row's share of the total over rows) is
+the gate, threshold **0.1957** (WN correct-row false-positive rate 0.10
+with these 14 heads; flags 0.37 of fixable, 0.21 of unfixable, 0.10 of
+correct WN rows), with 0.3201 (FPR 0.20) pre-named as the wider gate.
+Delivery gate: the bias must fire on every steered chunk and the pinned
+heads' highlight share at the final prompt token must rise under
+steering on ≥ 95% of steered row-arms, else execution-invalid. k = 8
+samples at temperature 0.7 per arm, seeds fixed per row and arm
+(WW_SEED 20260929), WM's grading (normalized exact match).
+
+**Rows.** Fixable pool: WN's 90 fixable failures (0/8 std, hint ≥ 4/8;
+never used to fit anything — the heads were chosen on correct rows),
+shards FA/FB of 45. Blind pool: 120 rows drawn uniformly (seed
+20260928) from the 800-row frame minus WN's 270 and WM's 240 stage-2
+rows (pool 447), shards B1/B2 of 60. **Arms**, fixable pool: baseline;
+steer_gold α 0.01 / 0.1; steer_heads3 α 0.01 / 0.1; steer_control α
+0.01 (3 seeded rows of another table, WM's control); quote_heads3 (the
+top-3 rows quoted before the prompt, no steering). Blind pool:
+baseline; steer_gold 0.01 (ceiling); steer_heads3 0.01 / 0.1;
+quote_heads3. Paired readings are row-level differences of k = 8 gold
+rates with row-bootstrap 95% CIs.
+
+**38th registered prediction — STEERING-AT-THE-GOLD-ROW-REPAIRS.** On
+the 90 fixable failures, steer_gold at α = 0.01 raises the gold rate
+over the in-job baseline by ≥ +0.20 with CI > 0 (WM's residual write
+at the same rows: 0.000; the text hint: 0.889). CONFIRMED / NOT.
+**39th — THE-HEADS-AIM-IT-BLIND.** On the same rows, steer_heads3 at
+α = 0.01 (label-free) gains ≥ +0.10 over baseline with CI > 0, and
+exceeds steer_control with CI > 0. CONFIRMED / NOT.
+**40th — BLIND-STEERING-NETS-POSITIVE.** On the 120 blind rows, the
+two-stage rule — rows with peak share < 0.1957 answer with
+steer_heads3 α 0.01 (majority of k = 8), all others with the baseline —
+nets > 0 over the baseline frame accuracy with CI > 0. CONFIRMED / NOT;
+minimum detectable effect ≈ 0.04 at n = 120 (a positive point estimate
+inside the interval is NOT CONFIRMED and is reported as such).
+**Pre-named descriptive readings:** always-on steer_heads3 frame net
+and its collateral on the blind rows' correct-majority subset; the
+wider gate; α = 0.1 doses; steer_heads3 vs quote_heads3 paired;
+steer_gold on the blind rows (ceiling); repair conditional on the aim
+hitting the gold row; the highlight-share rise per arm. Budget ≈ $8
+(4 jobs, eager attention throughout, k = 8 chunked by 2).
