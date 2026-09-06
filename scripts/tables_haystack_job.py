@@ -62,6 +62,9 @@ def main():
     seed0 = int(os.environ.get("WM_SEED", "20260924")); write_layer = int(os.environ.get("WM_WRITE_LAYER", "30")); rung = float(os.environ.get("WM_RUNG", "2.0"))
     k_gen = int(os.environ.get("WM_K", "8")); k_chunk = int(os.environ.get("WM_K_CHUNK", "2")); max_new = int(os.environ.get("WM_MAX_NEW_TOKENS", "32")); fake = os.environ.get("WM_FAKE_MODEL") == "1"
     max_rows = int(os.environ.get("WM_MAX_ROWS", "100000")); job = os.environ.get("WM_JOB", "A")
+    # WM_ARMS: comma list of address:rung; addresses = retrieved_rows | retrieved_table | gold_row | control_rows | answer_mentions | retrieved_row_labels | gold_row_label
+    arm_spec = [(a.split(":")[0], float(a.split(":")[1]) if ":" in a else rung) for a in os.environ.get("WM_ARMS", "retrieved_rows,retrieved_table,gold_row,control_rows").split(",") if a]
+    text_arms = os.environ.get("WM_TEXT_ARMS", "1") == "1"
     pins = json.load(open(os.path.join(APP, os.environ.get("WM_PINS_FILE", "wm_pinned.json"))))
     frame = {}
     for line in gzip.open(os.path.join(APP, "wikihop_port_input.jsonl.gz"), "rt"):
@@ -168,16 +171,29 @@ def main():
         top_t = r["retrieved_tables"][0]; rows_top = r["retrieved_rows_in_top_table"]; all_top = [i for i, sp in enumerate(r["spans"]) if sp["t"] == top_t]
         non_gold_tables = [t for t in range(r["n_tables"]) if t != r["gold_table"]]; ctrl_t = rng.choice(non_gold_tables)
         ctrl_rows = rng.sample([i for i, sp in enumerate(r["spans"]) if sp["t"] == ctrl_t], min(3, sum(1 for sp in r["spans"] if sp["t"] == ctrl_t)))
-        arms = {"retrieved_rows": rows_top, "retrieved_table": all_top, "gold_row": [r["gold_span_index"]], "control_rows": ctrl_rows}
+        def label_positions(idx_list):
+            pos = []
+            for i in idx_list:
+                sp = r["spans"][i]; line = r["docs"][sp["start"]:sp["end"]]; first = line.strip("| ").split(" | ")[0]
+                a = doc_start + sp["start"] + line.find(first); b = a + len(first)
+                pos += [j for j, (x, y) in enumerate(off_s) if x >= a and y <= b and y > x]
+            return sorted(set(pos))
+        addresses = {"retrieved_rows": lambda: (span_positions(rows_top), r["gold_span_index"] in rows_top), "retrieved_table": lambda: (span_positions(all_top), r["gold_span_index"] in all_top),
+                     "gold_row": lambda: (span_positions([r["gold_span_index"]]), True), "control_rows": lambda: (span_positions(ctrl_rows), False),
+                     "answer_mentions": lambda: (mention_positions(text_s, off_s, r["answer_cased"]), True), "retrieved_row_labels": lambda: (label_positions(rows_top), r["gold_span_index"] in rows_top),
+                     "gold_row_label": lambda: (label_positions([r["gold_span_index"]]), True)}
         emit(rid, ri, "baseline", "baseline", generate(ids_s, k_gen, row_seed), gold)
-        for ai, (arm, idx) in enumerate(arms.items()):
-            pos = span_positions(idx)
+        for ai, (address, arung) in enumerate(arm_spec):
+            pos, hits = addresses[address]()
+            arm = address if arung == rung else f"{address}@{arung:g}x"
             if not pos:
                 emit(rid, ri, "skipped", arm, [], gold); continue
-            mat = torch.from_numpy(np.tile((unit * norm_target * rung).astype(np.float32), (len(pos), 1)))
+            mat = torch.from_numpy(np.tile((unit * norm_target * arung).astype(np.float32), (len(pos), 1)))
             w = PerPositionWriter(mat, pos)
             emit(rid, ri, "delta_write", arm, generate(ids_s, k_gen, row_seed + 100 + ai * 10, writer=w), gold, npos=len(pos), writer=w,
-                 extra={"address_hits_gold": r["gold_span_index"] in idx, "n_spans": len(idx)})
+                 extra={"address_hits_gold": hits, "address": address, "arm_rung": arung})
+        if not text_arms:
+            fout.flush(); print(f"row {ri+1}/{len(row_ids)} {rid}: {len(ids_s)} tokens ({time.time()-t0:.0f}s)", flush=True); continue
         _, ids_h, _ = render(hint_first_prompt(r, r["answer_cased"]))
         emit(rid, ri, "text_hint", "hint", generate(ids_h, k_gen, row_seed + 500), gold)
         quoted = "\n".join(r["docs"][r["spans"][i]["start"]:r["spans"][i]["end"]] for i in rows_top)

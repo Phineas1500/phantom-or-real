@@ -5166,3 +5166,27 @@ retrieved table −0.190; **write @ gold row −0.331 [−0.452, −0.219], 0 up
 −0.037. The write aimed at a whole table row is destructive, including
 where it is aimed correctly — a different address than the candidate-
 name mentions of every earlier frame. Diagnosis in progress.]
+
+**WM rider registered 2026-09-06 00:40 UTC (pre-named, descriptive; an
+amendment on independent evidence, the registered arms untouched).**
+Under the gold-row write the model's answers on broken rows come from
+other rows and other tables in 152 of 152 samples, never from another
+cell of the addressed row: writing the direction across a whole table
+row (median 33 positions of pipes, numbers and cells) corrupts the row
+rather than spotlighting it, so the model reads around it. The row was
+a different address than every earlier frame's, which wrote only at the
+answer string's own mention tokens (5–40 name tokens), so the registered
+"gold row" arm is not the ceiling it was meant to be. Rider, on shard
+B's 60 rows (same seed, baseline regenerated in-job), arms: **write @
+the answer's mention tokens** at 2×, 1× and 0.5× (the exact analog of
+every prior frame; the ceiling the design needs); write @ the gold
+row's first cell only at 1×; **write @ the first cell of each of the
+top-3 retrieved rows at 1×** (a blind arm that marks candidates, not
+rows). Pre-named readings: dP over baseline per arm and stratum; the
+mention-token arm on the fixable failures against the text hint's
+1.000; whether harm on correct rows disappears when the address is the
+answer's own tokens. Interpretation rule: if the mention-token write
+repairs the fixable failures and spares the correct rows, the mechanism
+holds in long table contexts and the failure was the row address; if it
+also harms, the write does not transfer to ≈ 5k-token table contexts as
+scaled. Budget ≈ $2.5.
