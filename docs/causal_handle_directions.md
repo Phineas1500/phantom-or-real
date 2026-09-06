@@ -5507,3 +5507,47 @@ highlights. Quoting the top 3 lets the model reorder them in text
 docs/ww_gates.json; rows results/loop_screen/ww_{fa,fb,b1,b2}.jsonl.
 Program: 40 predictions, 28 confirmed, 11 not, 1 intermediate;
 ≈ $196 across 169 jobs.
+
+### Item WW′ — pick-then-steer: can the model's own pick among the heads' candidates supply the aim? (registered 2026-09-06 14:20 UTC, before any data)
+
+**Motivation.** WW: steering at the gold row repairs +0.625 and, aimed
+by an oracle, +0.055 blind at zero collateral; aimed by the heads' top
+3 it leaves the answer unchanged on 39 of 48 hit rows, because
+α-scaling keeps the model's ordering among the highlighted rows and
+the ordering is the error. Quoting the same 3 rows as text repairs
++0.206 — the model can reorder candidates in a short context. This
+item uses that reordering as the aim: quote the candidates, ask the
+model which one holds the answer, steer at the one it names.
+
+**Rows, pins.** WW's 90 fixable failures (job F) and 120 blind rows
+(job B), same order, same image, same seed scheme (WW_SEED 20260929),
+so WW's baseline, quote_heads3, steer_gold and steer_heads3 arms pair
+row-by-row; no in-job baseline is re-run. Heads, α = 0.01, steering
+scope and delivery gate as WW (docs/wwp_pinned.json).
+**Pick:** the heads' top-n rows (n = 3 primary, n = 5 descriptive;
+recall on fixable failures 0.52 / 0.73) are quoted as numbered
+candidates before the standard prompt with the instruction "Which
+candidate row contains the answer to the question? Reply with its
+number only." (greedy, 4 tokens); an unparsable reply falls back to
+the heads' top 1. **Arms:** pick3_steer (steer at the named row of the
+top 3), pick5_steer (of the top 5), k = 8 each.
+**Disagreement gate (label-free):** the row holding the baseline's
+majority answer is located in the document by string match; the rule
+steers at the pick only when the pick is a different row (or the
+baseline answer is not found in any row), else keeps the baseline.
+
+**41st registered prediction — PICK-THEN-STEER-REPAIRS.** On the 90
+fixable failures, pick3_steer − WW baseline ≥ +0.20 with CI > 0
+(matching the quote arm's +0.206; pre-named paired contrast
+pick3_steer − quote_heads3, and pick3_steer − steer_heads3).
+CONFIRMED / NOT.
+**42nd — DISAGREEMENT-GATED-STEERING-NETS-POSITIVE.** On the 120
+blind rows, the disagreement-gated pick3 rule nets > 0 over the WW
+baseline with CI > 0 (majority answers, row bootstrap). CONFIRMED /
+NOT; MDE ≈ 0.04.
+**Pre-named descriptive:** pick accuracy (named row = gold) on both
+pools against the heads' top 1 (19 / 90) and top 3 (48 / 90);
+pick5_steer on both pools and its gated rule; always-on pick3_steer
+blind net and collateral on correct rows; the peak-share gate
+(0.1957) applied to pick3_steer; repair conditional on the pick being
+gold. Budget ≈ $6 (2 jobs).
