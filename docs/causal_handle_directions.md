@@ -5307,3 +5307,7 @@ forward + two teacher-forced forwards + one short generation per row).
 global layers (5, 11, …, 59) per head and from all 62 layers as a head
 mean; retrieval heads = the 16 (global layer, head) pairs with the
 highest mean gold-row share on the *other* shard's correct rows.
+*Resubmit (04:05 UTC):* job-fcqgb / job-mavbj died at once on
+`python: command not found` inside the bash wrapper ($0.10 total; every
+earlier job used `python3`). Resubmitted with `python3`, same context:
+shard A **job-c7iqm**, shard B **job-8tcs9** (image cached, queued at position 1).
