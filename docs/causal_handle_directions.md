@@ -5578,3 +5578,24 @@ readings stand as the record of the flawed instrument.
 *Rider launch (15:35 UTC):* context ctx-437f317b (commit 7646308);
 WW′-r F **job-weedn**, B **job-ehbuf**; same rows,
 arms and seeds as WW′, letter-labelled pick.
+
+**WW′ (numbered-pick instrument) LANDED 2026-09-06 15:40 UTC (F
+job-35zpa $2.60, B job-6j3g2 $3.57; delivery 420 / 420 fired, share
+rose on 100%).** Read as registered, with the pick fallback firing on
+78 / 90 fixable and 102 / 120 blind rows (pick parsed 0.27 / 0.41):
+fixable pick3_steer 0.111, dP vs WW baseline **+0.082 [+0.032,
++0.138]** (11 / 2; pick = gold 0.21; +0.349 on the 19 rows where the
+pick was parsed and gold, +0.011 otherwise; vs quote −0.124 [−0.212,
+−0.036], vs steer_heads3 +0.035 [−0.021, +0.093]); pick5_steer +0.096
+[+0.033, +0.163] (pick = gold 0.22). **41st NOT CONFIRMED on this
+instrument.** Blind pick3_steer −0.047 [−0.102, +0.009] (5 / 14;
+collateral on correct rows −0.085, failures +0.131; pick = gold 0.74
+against the heads' top-1 0.85); the disagreement gate fired on 57 rows
+(the fallback pick differs from the baseline's row whenever the reply
+did not parse) and the rule nets **−0.042 [−0.100, +0.017]**, 4 / 9;
+**42nd NOT CONFIRMED on this instrument**; peak gate 5 rows, 0.000;
+always-on −0.050. These readings stand as the record of the numbered
+prompt; the 41st and 42nd are read again on rider WW′-r (job-weedn /
+job-ehbuf), whose pick instrument was corrected on the telemetry
+above. Reader outputs docs/wwp_gates.json; rows
+results/loop_screen/wwp_{f,b}.jsonl.
