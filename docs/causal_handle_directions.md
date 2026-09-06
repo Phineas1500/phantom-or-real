@@ -5557,3 +5557,21 @@ b7bd762, registration 111534d); F **job-35zpa** (90 fixable rows), B
 **job-6j3g2** (120 blind rows); arms pick3_steer / pick5_steer at
 α 0.01; mission wwp-pick-then-steer. Reader
 `scripts/tables_pick_reader.py` (pairs against WW's records).
+
+*Instrument amendment, on telemetry (2026-09-06 15:30 UTC, before the
+blind shard landed; the fixable shard job-35zpa is read as registered
+below).* The pick instrument failed: with numbered candidates and
+"Reply with its number only", the reply parsed as a candidate index on
+24 of 90 fixable rows (pick3) and 44 of 90 (pick5); of the 66
+unparsed pick3 replies, 30 name a cell of a candidate row, 8 a
+candidate's first cell, 7 the baseline's own answer, 3 the gold
+answer, 18 something else — the model read "its number" as the
+number that answers the question. The registered fallback (the
+heads' top 1) therefore fired on 78 of 90 rows and the arm collapsed
+onto steer-at-top-1. **Rider WW′-r** (registered now, ≈ $5): the same
+two arms with the candidates labelled Row A / B / C (/ D / E) and the
+instruction "Do not answer the question yet. Which candidate row (Row
+A, B or C) contains the answer? Reply with the row's letter only.",
+parsed as a single letter; everything else pinned as WW′. The 41st
+and 42nd are read on the rider's arms when they land; WW′'s own
+readings stand as the record of the flawed instrument.

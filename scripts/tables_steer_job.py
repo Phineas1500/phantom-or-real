@@ -121,7 +121,7 @@ def main():
 
     def generate_greedy(ids, max_new):
         if fake:
-            return "2"
+            return "B"
         with torch.inference_mode():
             out = model.generate(input_ids=torch.tensor([ids], device=dev), attention_mask=torch.ones(1, len(ids), dtype=torch.long, device=dev), do_sample=False, max_new_tokens=max_new, eos_token_id=eos_ids, pad_token_id=pad_id)
         text = tok.decode(out[0, len(ids):], skip_special_tokens=True).strip(); del out; torch.cuda.empty_cache(); return text
@@ -176,9 +176,15 @@ def main():
                 _, ids_q, _ = render(f"Possibly relevant rows:\n{quoted}\n\n" + ps["std"]); emit(rid, ri, arm, generate(ids_q, k_gen, seed), gold, extra); continue
             if name.startswith("pick"):
                 cands = top3 if name.startswith("pick3") else top5
-                listed = "\n".join(f"[{k+1}] " + r["docs"][r["spans"][i]["start"]:r["spans"][i]["end"]] for k, i in enumerate(cands))
-                _, ids_p, _ = render(f"Candidate rows:\n{listed}\n\n" + ps["std"] + "\n\nWhich candidate row contains the answer to the question? Reply with its number only.")
-                reply = generate_greedy(ids_p, 4); digits = re.findall(r"\d+", reply); k = int(digits[0]) - 1 if digits else -1
+                if os.environ.get("WW_PICK_LABELS", "letters") == "letters":
+                    labels = "ABCDE"[:len(cands)]; listed = "\n".join(f"Row {labels[k]}: " + r["docs"][r["spans"][i]["start"]:r["spans"][i]["end"]] for k, i in enumerate(cands))
+                    choices = ", ".join(labels[:-1]) + f" or {labels[-1]}"
+                    _, ids_p, _ = render(f"Candidate rows:\n{listed}\n\n" + ps["std"] + f"\n\nDo not answer the question yet. Which candidate row (Row {choices}) contains the answer? Reply with the row's letter only.")
+                    reply = generate_greedy(ids_p, 4); mm = re.search(r"\b([A-E])\b", reply.upper()); k = labels.find(mm.group(1)) if mm else -1
+                else:
+                    listed = "\n".join(f"[{k+1}] " + r["docs"][r["spans"][i]["start"]:r["spans"][i]["end"]] for k, i in enumerate(cands))
+                    _, ids_p, _ = render(f"Candidate rows:\n{listed}\n\n" + ps["std"] + "\n\nWhich candidate row contains the answer to the question? Reply with its number only.")
+                    reply = generate_greedy(ids_p, 4); digits = re.findall(r"\d+", reply); k = int(digits[0]) - 1 if digits else -1
                 picked = cands[k] if 0 <= k < len(cands) else cands[0]
                 extra.update(pick_reply=reply, pick_candidates=cands, pick_row=picked, pick_is_gold=picked == gsi, pick_parsed=0 <= k < len(cands), pick_is_heads_top1=picked == top3[0])
                 target = [picked]
