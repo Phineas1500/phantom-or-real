@@ -79,7 +79,7 @@
   <div class="col">
     <div class="eyebrow">Phantom or Real · WikiHop port · September 2–3, 2026</div>
     <h1>The Loop Leaves the Sandbox</h1>
-    <p class="lede">We could always read, from a model's hidden state, whether it was about to be right. The question was whether that signal is something the model uses or a coincidence it carries. On a synthetic puzzle task the answer was "uses." This is what happened when we tried the same trick on real reading-comprehension questions, then on a second model, then on two more tasks, then blind, where the passage contradicts what the model remembers.</p>
+    <p class="lede">We could always read, from a model's hidden state, whether it was about to be right. The question was whether that signal is something the model uses or a coincidence it carries. On a synthetic puzzle task the answer was "uses." This is what happened when we tried the same trick on real reading-comprehension questions, then on a second model, then on two more tasks, then blind, where the passage contradicts what the model remembers, and finally on long documents full of tables.</p>
   </div>
 </header>
 
@@ -103,7 +103,7 @@
 </div>
 
 <div class="col">
-  <h2>What happened, in twelve findings</h2>
+  <h2>What happened, in thirteen findings</h2>
 
   <div class="finding">
     <div class="num">1 / 528<small>gold repairs</small></div>
@@ -152,6 +152,10 @@
   <div class="finding">
     <div class="num meter">0.87<small>best blind detector, real text</small></div>
     <p><strong>We tried the literature's detectors, and found a mirage and a better baseline.</strong> Two published ideas promised to spot the wrong answers the passage check misses: a probe on the model's hidden state at the answer's own tokens, and asking the model whether its answer is true. On the swapped-fact tests the probe looked perfect, and the loop it drove reached the ceiling of a perfect detector. Then we ran it on real WikiHop text, where nothing was swapped: it fell to 0.87, and the version trained on swapped facts transferred at chance. On those tests the right answer is always the out-of-place entity, and the probe had learned to see the seam. Asking the model to grade itself was at chance everywhere. One thing did land: context-aware decoding, a published trick that compares what the model says with and without the passage, picks the right candidate well enough to gain ten to eleven points on the conflict tests, more than the loop, the sentence, or reasoning, and nothing at all on WikiHop, where both candidates are in the passage. The paper's comparison table now has it at the top for the conflict regime.</p>
+  </div>
+  <div class="finding">
+    <div class="num">−19<small>points, tables, blind</small></div>
+    <p><strong>Long documents full of tables were the last hope for a big blind gain, and the nudge does not survive them.</strong> We buried each answer's table among eight others, five thousand tokens of markdown. Here the model has nothing to remember, and 40 percent of its failures are the fixable kind, the most of any test; a text hint fixes nine in ten of them. But a keyword retriever meant to aim the nudge finds the right row for only a quarter of those, and the nudge itself misbehaves at this length: written across a row it wrecks the row and the model answers from somewhere else, losing 19 points blind and 42 when aimed at the right row; written only at the answer's own few tokens it either still harms, at the usual strength, or does nothing at a gentler one. The same nudge that fixed 55 to 75 percent of fixable failures on short passages fixes a tenth to a fifth here. The attention lapses are real and reachable by text. They are not reachable, blind or otherwise, by this nudge at this length.</p>
   </div>
 </div>
 
@@ -231,10 +235,10 @@
 
   <h2>Where it stands</h2>
   <div class="status">
-    <div><div class="big">34</div><div class="eyebrow">predictions registered before data</div></div>
+    <div><div class="big">36</div><div class="eyebrow">predictions registered before data</div></div>
     <div><div class="big">26</div><div class="eyebrow">confirmed</div></div>
-    <div><div class="big">7</div><div class="eyebrow">refuted (all about selection, deployment, or detection)</div></div>
-    <div><div class="big">$165</div><div class="eyebrow">149 H100 jobs, four days</div></div>
+    <div><div class="big">9</div><div class="eyebrow">refuted (selection, deployment, detection, and length)</div></div>
+    <div><div class="big">$174</div><div class="eyebrow">157 H100 jobs, four days</div></div>
   </div>
   <p style="margin-top:22px">Every step was registered before launch, every intervention audited for delivery on independent channels, and every artifact is committed. Five settings on Gemma, two disjoint draws each on real and renamed text, the blind reading on both, a second model on the same questions and on a fresh frame, a depth ladder on both models, an attention read of the write, a content control against random and sign-reversed vectors, and two more reading tasks.</p>
 
@@ -271,6 +275,7 @@
     <tr><td class="n">WK′ · WS</td><td>the grounded rule registered and replicated: fresh draw, then counterfactual SQuAD</td><td>+5 and +3 points blind, no row harmed, one frozen vector <span class="pill meter">loop</span> <span class="pill good">replicated</span></td></tr>
     <tr><td class="n">WI · WJ · WU · WI′</td><td>four levers on the blind gain: a sentence, depth and dose, a second model, stacking</td><td>the sentence wins (+5 to +8); recipe confirmed; Qwen +5 with the backup vote; stacking +2, too few to call <span class="pill meter">loop</span></td></tr>
     <tr><td class="n">WZ · WC</td><td>the literature's detectors, and reasoning and decoding baselines</td><td>answer-token probe perfect on swapped facts, 0.87 on real text (a swap artifact); self-grading at chance; context-aware decoding +10 to +11 <span class="pill meter">detect</span></td></tr>
+    <tr><td class="n">WM</td><td>a haystack of tables, the nudge aimed by a retriever</td><td>−19 points blind, −42 aimed at the right row; harmless but inert at the answer's own tokens; the text hint +8.5 <span class="pill">write</span></td></tr>
   </table>
   </div>
 </div>

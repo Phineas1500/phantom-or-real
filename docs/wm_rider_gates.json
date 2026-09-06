@@ -1,0 +1,101 @@
+{
+ "n_rows": 60,
+ "delivery_bad_records": 0,
+ "skipped_arms": {},
+ "baseline_accuracy": 0.6979166666666666,
+ "arms": {
+  "answer_mentions": {
+   "accuracy": 0.5657894736842105,
+   "frame_net": -0.1162280701754386,
+   "ci95": [
+    -0.20833333333333334,
+    -0.039473684210526314
+   ],
+   "up": 2,
+   "down": 8,
+   "n": 57
+  },
+  "answer_mentions@0.5x": {
+   "accuracy": 0.7017543859649122,
+   "frame_net": 0.019736842105263157,
+   "ci95": [
+    -0.021929824561403508,
+    0.07017543859649122
+   ],
+   "up": 4,
+   "down": 3,
+   "n": 57
+  },
+  "answer_mentions@1x": {
+   "accuracy": 0.706140350877193,
+   "frame_net": 0.02412280701754386,
+   "ci95": [
+    -0.013157894736842105,
+    0.07017543859649122
+   ],
+   "up": 5,
+   "down": 2,
+   "n": 57
+  },
+  "gold_row_label@1x": {
+   "accuracy": 0.7199074074074074,
+   "frame_net": 0.037037037037037035,
+   "ci95": [
+    -0.004629629629629629,
+    0.08796296296296297
+   ],
+   "up": 5,
+   "down": 1,
+   "n": 54
+  },
+  "retrieved_row_labels@1x": {
+   "accuracy": 0.7068181818181818,
+   "frame_net": 0.01818181818181818,
+   "ci95": [
+    -0.013636363636363636,
+    0.05
+   ],
+   "up": 5,
+   "down": 1,
+   "n": 55
+  }
+ },
+ "strata": {
+  "fixable_failure": {
+   "n": 7,
+   "baseline": 0.017857142857142856,
+   "answer_mentions": 0.03571428571428571,
+   "answer_mentions@0.5x": 0.21428571428571427,
+   "answer_mentions@1x": 0.10714285714285714,
+   "gold_row_label@1x": 0.19642857142857142,
+   "retrieved_row_labels@1x": 0.08928571428571429
+  },
+  "unfixable_failure": {
+   "n": 9,
+   "baseline": 0.1111111111111111,
+   "answer_mentions": 0.1111111111111111,
+   "answer_mentions@0.5x": 0.125,
+   "answer_mentions@1x": 0.1111111111111111,
+   "gold_row_label@1x": 0.0,
+   "retrieved_row_labels@1x": 0.0
+  },
+  "correct": {
+   "n": 41,
+   "baseline": 0.9725609756097561,
+   "answer_mentions": 0.8157894736842105,
+   "answer_mentions@0.5x": 0.9605263157894737,
+   "answer_mentions@1x": 0.993421052631579,
+   "gold_row_label@1x": 0.9898648648648649,
+   "retrieved_row_labels@1x": 0.9736842105263158
+  },
+  "mixed": {
+   "n": 3,
+   "baseline": 0.2916666666666667,
+   "answer_mentions": 0.0,
+   "answer_mentions@0.5x": 0.2916666666666667,
+   "answer_mentions@1x": 0.25,
+   "gold_row_label@1x": 0.2916666666666667,
+   "retrieved_row_labels@1x": 0.4166666666666667
+  }
+ }
+}

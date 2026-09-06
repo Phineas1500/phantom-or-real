@@ -66,3 +66,40 @@ model's answers come from other rows and tables in every broken sample
 — the direction written across a whole row corrupts the row rather
 than spotlighting it. Every earlier frame wrote at the answer's own
 mention tokens; the rider below runs that operation here.
+
+## The rider — the write at its proper address (shard B, 60 rows, baseline 0.698)
+| arm (k = 8) | frame net [CI] | correct rows | fixable failures |
+|---|---|---|---|
+| write @ answer's mention tokens, 2× | −0.116 [−0.208, −0.039] | 0.816 | 0.036 |
+| write @ answer's mention tokens, 1× | +0.024 [−0.013, +0.070] | 0.993 | 0.107 |
+| write @ answer's mention tokens, 0.5× | +0.020 [−0.022, +0.070] | 0.961 | 0.214 |
+| write @ gold row's first cell, 1× | +0.037 [−0.005, +0.088] | 0.990 | 0.196 |
+| write @ retrieved rows' first cells, 1× (blind) | +0.018 [−0.014, +0.050] | 0.974 | 0.089 |
+| text hint naming the answer (registered arm) | +0.085 [+0.028, +0.147] | 0.966 | **0.889** |
+
+Even at the address every earlier frame used, the write is either
+harmful (2×) or nearly inert (1×, 0.5×): it repairs a tenth to a fifth
+of the fixable failures where the text hint repairs nine tenths and
+where, on WikiHop, HotpotQA, SQuAD and the conflict frames, the same
+write repaired 55–75%. The donor norm was set on 300-token prompts; at
+5,000 tokens the window between "corrupts the row" and "does nothing"
+is narrow, and the answer tokens are numbers and codes rather than the
+names the direction was learned on.
+
+## Verdict
+**NO-BLIND-GAIN-ON-TABLES / WRITE-DOES-NOT-TRANSFER-TO-LONG-TABLE-
+CONTEXTS.** The regime has what the design needed on the failure side —
+no memory to defend, the highest fixable share of any frame — but the
+two other pieces fail: the label-free retriever misses three quarters
+of the fixable rows, and the write, at any address and dose tried, does
+not do on 5k-token tables what it does on 300-token passages. The text
+hint does, which says the attention lapses are real and reachable by
+text; a substantial blind gain on long table documents would need a
+retriever that finds the row on the failures and an intervention that
+survives the context length, and this program has neither.
+
+## Program tally after WM
+36 registered predictions: **26 confirmed**, 9 not (13th, 14th, 19th,
+28th, 31st, 32nd, 34th, 35th, 36th), 1 intermediate (27th). ≈ $174
+across 157 H100 jobs (WM $9.23 over 8, three lost to out-of-memory and
+a full-disk worker).

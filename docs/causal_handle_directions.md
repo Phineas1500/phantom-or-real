@@ -5223,3 +5223,28 @@ write, as built, is not a route to a blind gain on long table
 documents, and quoting the retriever's rows is not either (the rows are
 wrong more often than right on the failures). Reader outputs
 docs/wm_gates.json; rows results/loop_screen/wm_{a,b}.jsonl.
+
+**WM rider LANDED 2026-09-06 01:20 UTC (job-nfpp4, $1.86; shard B's 60
+rows, 280 write branches, none skipped; WM total $9.23 over 8 jobs).**
+With the answer's own mention tokens as the address (median 4
+positions — the operation of every earlier frame): **at 2× the write
+still harms, −0.116 [−0.208, −0.039]** (correct rows 0.973 → 0.816,
+broken outputs from elsewhere in the document); **at 1× +0.024 [−0.013,
++0.070] and at 0.5× +0.020 [−0.022, +0.070]**, harmless (correct rows
+0.993 / 0.961) but nearly inert: **fixable failures 0.107 / 0.214
+against the text hint's 0.889** — on every earlier frame the same
+write repaired 0.55–0.75 of the fixable rows. Row-label addresses: gold
+row's first cell @ 1× +0.037 [−0.005, +0.088] (fixable 0.196), the
+retrieved rows' first cells @ 1× +0.018 [−0.014, +0.050]. By the
+interpretation rule registered with the rider: **the write does not
+transfer to ≈ 5k-token table contexts as scaled** — the window between
+harmful and inert is narrow, the donor norm comes from 300-token
+WikiHop prompts, and the answer tokens here are numbers, dates and
+codes rather than names. **WM verdict: NO-BLIND-GAIN-ON-TABLES /
+WRITE-DOES-NOT-TRANSFER-TO-LONG-TABLE-CONTEXTS.** The attention lapses
+are there (40% of failures, the text hint fixes 89% of them), the
+label-free retriever misses three quarters of them, and the write is
+not the tool that reaches them. Program tally: **36 registered
+predictions — 26 confirmed, 9 not (13th, 14th, 19th, 28th, 31st, 32nd,
+34th, 35th, 36th), 1 intermediate (27th); ≈ $174 across 157 jobs.**
+Summary docs/wm_summary.md; rider outputs docs/wm_rider_gates.json.
