@@ -5734,3 +5734,56 @@ no cache mount (context ctx-fa996dab; mission nx-neuron-decomposition):
 source A job-yx2aw / B job-g2aub; read A job-y9k5z / B job-6dygy.
 Fake-model dry run (40 layers, d 64) of both stages: decomposition
 reconstruction 1.0000, every hook delivered, reader ran end to end.]
+
+**NX stages 1–3 LANDED 2026-10-15 19:35 UTC (source A job-yx2aw, B
+job-g2aub; read A job-y9k5z, B job-6dygy; $2.00 over 4 jobs; two
+attempts preempted and rerun, billed once).** Delivery 3,540 / 3,540
+fired records. u reproduces WX exactly (|mean δ| 1,557.2 / 1,529.5; N
+3,288.0 / 3,212.9). **Stage 1:** reconstruction 0.985 / 1.010 (valid).
+The net projection of the mean hint-delta on u is carried by attention
+heads (+1.63 / +1.58 of it) against the MLPs (−0.65 / −0.57); MLP
+mass is broad (top-64 positive neurons = 5% of the positive MLP mass,
+top-16,384 = 67%). u puts **41% / 48% of its norm² in the massive dims
+104 / 2733**. Descriptive, not pre-named: the same 8 heads carry 100% of
+the net projection in BOTH donor shards (L27 h3 0.25 / 0.29, L25 h22
+0.19 / 0.19, L29 h18 0.15 / 0.13, L23 h4, L27 h24, L29 h0, L27 h29, L29
+h30). **Stage 2 (59 rows, baseline 0.017):** U 0.373 (+0.356 [+0.237,
++0.475], WX 0.377); NEURON_16 +0.000, **NEURON_64 +0.013 [+0.000,
++0.038]**, NEURON_256 +0.008, NEURON_1024 +0.034 [+0.004, +0.076];
+RANDOM_64 −0.017 (both draws); NEURON_64 − RANDOM_64 +0.030 [0.000,
++0.076] → **43rd NOT CONFIRMED: DISTRIBUTED-SOURCE.** (The neuron
+writes have cosine 0.65–0.71 with u at α 3.5–9; their direct projection
+matches the WX write's, delivered at the neurons' own layers.)
+U_NOMASSIVE +0.301 [+0.178, +0.428]; U_NOMASSIVE − U −0.055 [−0.114,
+−0.008]. **Stage 3:** U +0.356 (reproduced); **FREEZE_MLP +0.369 —
+retains 104% → gate: QK-DIRECT** (U − FREEZE −0.013 [−0.047, +0.008]);
+CLAMP_TOP +0.373, CLAMP_RAND +0.360 (reported, 44th not read). Top-64
+downstream neurons hold 3% of the ranking score. Reader
+docs/nx_gates.json; rows results/loop_screen/nx/. Stage 4 mining
+launched: job-z8b6q (context ctx-52002e69, neuron list
+results/loop_screen/nx/nx_neurons.json).
+
+### Rider NX-h — the source as heads (registered 2026-10-15 19:50 UTC, after stage 1–3 data, before any rider data)
+
+Stage 1 located the net projection in 8 heads (L23–L29), identical
+across the two donor shards. NX-h asks whether those heads' write is
+sufficient, under the delivery that failed for neurons. Arms (source
+stage, same rows, seeds, baseline and U as NX): HEAD_8 — the top 8
+heads by donor-mean projection (selected in-job from the job's own
+donors), each head's donor-mean post-norm contribution vector
+(o_proj slice · post-attention scale ⊙ (1 + w)) added at its own
+layer's output at the candidate's mentions, one α so the summed direct
+projection on u equals 2 × N; RANDOM_HEAD_8 × 2 draws (seeds 20261021 /
+20261022; 8 heads uniform over layers 0–30, their own contribution
+vectors, norm-matched to HEAD_8); NEURON_64_L30 — NX's NEURON_64 vector
+summed and written at L30 instead of at the neurons' layers (delivery
+check on the 43rd's null). Gold address; HEAD_8 also at the 3 seeded
+non-gold addresses.
+**46th registered prediction — FEW-HEADS-SUFFICE:** HEAD_8 at the gold
+address gains ≥ +0.18 over the in-job baseline with CI > 0 AND exceeds
+RANDOM_HEAD_8 (draws pooled per row) row-paired with CI > 0. Failure
+reading: the head-level concentration is a property of the projection,
+not of the lever. Descriptive: NEURON_64_L30 vs NEURON_64 (if the L30
+version repairs, the 43rd's null is about delivery through layers, and
+is reported as such), HEAD_8 specificity. 2 jobs (A/B), ≈ $1.5.
+Tooling: NX_ARMS selects the arm list in the source stage.

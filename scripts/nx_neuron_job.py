@@ -374,13 +374,47 @@ def main():
             arm_meta[f"RANDOM_64_s{s}"] = {"seed": s, "scale": scale, "direct_projection": float(flat[idx].sum()),
                                           "cos_sum_u": float(tot @ u.cpu() / tot.norm()),
                                           "neurons": [list(unit(i)) for i in idx]}
+        def head_vectors(flat_idx):
+            """Per-layer sums of the chosen heads' donor-mean post-norm contribution vectors."""
+            out = {}
+            for i in flat_idx:
+                L, h = src_layers[int(i) // n_heads], int(i) % n_heads
+                lay = layers[L]
+                sl = slice(h * head_dim, (h + 1) * head_dim)
+                wo = lay.self_attn.o_proj.weight.detach().float()[:, sl] * norm_gain(L, "post_attention_layernorm")[:, None]
+                v = (wo @ (acc_z[L].float()[sl] / n_pos).to(wo.device)).cpu()
+                out[L] = out.get(L, 0) + v
+            return out
+
+        h_idx = h_order[:8].tolist()
+        hv = head_vectors(h_idx)
+        h_proj = float(head_flat[h_order[:8]].sum())
+        h_alpha = rung * N / h_proj
+        arm_vecs["HEAD_8"] = {L: h_alpha * x for L, x in hv.items()}
+        h_tot = sum(arm_vecs["HEAD_8"].values())
+        arm_meta["HEAD_8"] = {"alpha": h_alpha, "direct_projection": h_proj, "summed_norm": float(h_tot.norm()),
+                              "cos_sum_u": float(h_tot @ u.cpu() / h_tot.norm()),
+                              "heads": [[src_layers[int(i) // n_heads], int(i) % n_heads] for i in h_idx]}
+        for s in int_list(os.environ.get("NX_HEAD_SEEDS", "20261021,20261022")):
+            idx = np.random.default_rng(s).choice(len(head_flat), size=8, replace=False).tolist()
+            v = head_vectors(idx)
+            tot = sum(v.values())
+            scale = float(h_tot.norm() / tot.norm())
+            arm_vecs[f"RANDOM_HEAD_8_s{s}"] = {L: scale * x for L, x in v.items()}
+            arm_meta[f"RANDOM_HEAD_8_s{s}"] = {"seed": s, "scale": scale, "direct_projection": float(head_flat[idx].sum()),
+                                              "cos_sum_u": float(tot @ u.cpu() / tot.norm()),
+                                              "heads": [[src_layers[int(i) // n_heads], int(i) % n_heads] for i in idx]}
+        if "NEURON_64" in arm_vecs:
+            n64 = sum(arm_vecs["NEURON_64"].values())
+            arm_vecs["NEURON_64_L30"] = {write_layer: n64}
+            arm_meta["NEURON_64_L30"] = {"summed_norm": float(n64.norm()), "cos_sum_u": float(n64 @ u.cpu() / n64.norm())}
         u_nm = u.clone()
         u_nm[massive] = 0
         u_nm = u_nm / u_nm.norm()
         arm_vecs["U"] = {write_layer: u_write.cpu()}
         arm_vecs["U_NOMASSIVE"] = {write_layer: (u_nm * rung * N).cpu()}
         summary["arms"] = arm_meta
-        nongold_arms = {"NEURON_64"} & set(arm_vecs)
+        nongold_arms = {"NEURON_64", "HEAD_8"} & set(arm_vecs)
         np.savez_compressed(os.path.join(outdir, "nx_source.npz"), u=u.cpu().numpy(), flat_c=flat.numpy().astype(np.float32),
                             head_c=head_flat.numpy().astype(np.float32), n_inter=np.array([n_inter]), src_layers=np.array(src_layers))
 
@@ -390,6 +424,9 @@ def main():
                 hs.append(("fwd", layers[L], ResidualAdd(v, positions)))
             return hs
         arm_names = ["U", "U_NOMASSIVE"] + [f"NEURON_{k}" for k in ks] + [f"RANDOM_64_s{s}" for s in rand_seeds]
+        if os.environ.get("NX_ARMS"):
+            arm_names = [a for a in os.environ["NX_ARMS"].split(",") if a]
+            assert all(a in arm_vecs for a in arm_names), f"unknown arm in NX_ARMS: {arm_names}"
     else:
         # ---- read stage: rank downstream neurons at the written positions on donors ----
         acc_r = {L: torch.zeros(n_inter, dtype=torch.float64, device=dev) for L in read_layers}

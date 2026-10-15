@@ -111,6 +111,7 @@ def main() -> int:
     p.add_argument("--source", type=Path, nargs="*", default=[])
     p.add_argument("--read", type=Path, nargs="*", default=[])
     p.add_argument("--summaries", type=Path, nargs="*", default=[])
+    p.add_argument("--rider", type=Path, nargs="*", default=[], help="rider NX-h records (HEAD_8, RANDOM_HEAD_8_*, NEURON_64_L30)")
     p.add_argument("--out", type=Path, default=Path("docs/nx_gates.json"))
     p.add_argument("--emit-neurons", type=Path, help="write the stage-4 neuron list (needs --source-npz and --summaries) and exit")
     p.add_argument("--source-npz", type=Path, nargs="*", default=[])
@@ -168,6 +169,22 @@ def main() -> int:
             verdict.append("U-NOT-REPRODUCED (stage 3 void)")
         else:
             verdict.append("QK-DIRECT" if gate_qk else ("FEW-NEURONS-READ-IT" if p44 else "DISTRIBUTED-READ"))
+        if not audit["valid"]:
+            verdict[-1] += " (EXECUTION-INVALID)"
+    if args.rider:
+        gold, nongold, base, audit = load(args.rider)
+        arms = arm_table(gold, nongold, base)
+        rand = defaultdict(list)
+        for arm, g in gold.items():
+            if arm.startswith("RANDOM_HEAD_8"):
+                for i, v in g.items():
+                    rand[i].append(v)
+        rand = {i: float(np.mean(v)) for i, v in rand.items()}
+        h8 = arms["HEAD_8"]
+        vs_rand = paired(gold["HEAD_8"], rand)
+        p46 = h8["dP"] >= 0.18 and h8["dP_ci"][0] > 0 and vs_rand["ci"][0] > 0
+        out["rider_h"] = {"audit": audit, "arms": arms, "head8_minus_random_head8": vs_rand, "prediction_46": {"pass": bool(p46), "bar_dP": 0.18}}
+        verdict.append("FEW-HEADS-SUFFICE" if p46 else "HEADS-NOT-SUFFICIENT")
         if not audit["valid"]:
             verdict[-1] += " (EXECUTION-INVALID)"
     if args.explanations and args.scored:
