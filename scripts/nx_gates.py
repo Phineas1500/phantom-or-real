@@ -51,13 +51,76 @@ def paired(a, b):
     return {"n": len(rows), "mean": float(np.mean(d)), "ci": boot_ci(d)}
 
 
+def emit_neurons(source_npz, summaries, path, n=32, seed=20261020, n_inter=21504, rand_layers=37):
+    """Stage-4 neuron list: stage-1 top n by c pooled (mean) over the two cross-fit
+    jobs' full vectors, pole = sign of the donor-mean activation change; stage-3
+    top n by score summed over the jobs' top-256 lists, pole likewise; n seeded
+    random neurons from layers 0..rand_layers-1, positive pole."""
+    flats = [np.load(f)["flat_c"] for f in source_npz]
+    c = np.mean(flats, axis=0)
+    src_layers = np.load(source_npz[0])["src_layers"]
+    dact, read_score, read_dact = {}, defaultdict(float), {}
+    for s in summaries:
+        j = json.loads(s.read_text())
+        for t in j.get("top_neurons", []):
+            dact.setdefault((t["layer"], t["neuron"]), t["dact_mean"])
+        for t in j.get("read_ranking", {}).get("top", []):
+            read_score[(t["layer"], t["neuron"])] += t["score"]
+            read_dact.setdefault((t["layer"], t["neuron"]), t["dact_mean"])
+    out = []
+    for i in np.argsort(-c)[:n]:
+        L, j = int(src_layers[i // n_inter]), int(i % n_inter)
+        out.append({"set": "source", "layer": L, "neuron": j, "pole": 1 if dact.get((L, j), 1.0) >= 0 else -1, "c_pooled": float(c[i])})
+    for (L, j), sc in sorted(read_score.items(), key=lambda kv: -kv[1])[:n]:
+        out.append({"set": "read", "layer": L, "neuron": j, "pole": 1 if read_dact[(L, j)] >= 0 else -1, "score_pooled": sc})
+    for i in np.random.default_rng(seed).choice(rand_layers * n_inter, size=n, replace=False):
+        out.append({"set": "random", "layer": int(i // n_inter), "neuron": int(i % n_inter), "pole": 1})
+    path.write_text(json.dumps({"neurons": out}, indent=1) + "\n")
+    return out
+
+
+def legibility(explanations, scored, frac=0.2):
+    """45th: per neuron, fire = max pole-signed activation >= frac x its corpus fire
+    scale; win if positives fire more often than near misses."""
+    ex = {f"{n['set']}:{n['layer']}:{n['neuron']}": n for n in json.loads(explanations.read_text())["neurons"]}
+    per_set = defaultdict(list)
+    rows = []
+    for rec in json.loads(scored.read_text())["scored"]:
+        n = ex[rec["key"]]
+        thr = frac * n["fire_scale"]
+        rate = {k: float(np.mean([v >= thr for v in vals])) if vals else float("nan") for k, vals in rec["maxact"].items()}
+        outcome = "win" if rate["positive"] > rate["near_miss"] else ("tie" if rate["positive"] == rate["near_miss"] else "lose")
+        per_set[n["set"]].append(outcome == "win")
+        rows.append({"key": rec["key"], "set": n["set"], "explanation": n["explanation"], "bin": n["bin"], "fire_rates": rate, "outcome": outcome})
+    summary = {}
+    for k, v in per_set.items():
+        summary[k] = {"n": len(v), "win_rate": float(np.mean(v)),
+                      "outcomes": {o: sum(r["outcome"] == o for r in rows if r["set"] == k) for o in ("win", "tie", "lose")},
+                      "bins": {b: sum(r["bin"] == b for r in rows if r["set"] == k) for b in sorted({r["bin"] for r in rows})}}
+    src, rnd = np.array(per_set.get("source", []), float), np.array(per_set.get("random", []), float)
+    rng = np.random.default_rng(20260822)
+    diffs = [rng.choice(src, len(src)).mean() - rng.choice(rnd, len(rnd)).mean() for _ in range(4000)] if len(src) and len(rnd) else []
+    ci = [float(np.percentile(diffs, 2.5)), float(np.percentile(diffs, 97.5))] if diffs else None
+    p45 = bool(len(src) and src.mean() >= 0.75 and ci and ci[0] > 0)
+    return {"sets": summary, "source_minus_random": {"diff": float(src.mean() - rnd.mean()) if diffs else None, "ci": ci},
+            "prediction_45": {"pass": p45}, "neurons": rows}
+
+
 def main() -> int:
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--source", type=Path, nargs="*", default=[])
     p.add_argument("--read", type=Path, nargs="*", default=[])
     p.add_argument("--summaries", type=Path, nargs="*", default=[])
     p.add_argument("--out", type=Path, default=Path("docs/nx_gates.json"))
+    p.add_argument("--emit-neurons", type=Path, help="write the stage-4 neuron list (needs --source-npz and --summaries) and exit")
+    p.add_argument("--source-npz", type=Path, nargs="*", default=[])
+    p.add_argument("--explanations", type=Path)
+    p.add_argument("--scored", type=Path)
     args = p.parse_args()
+    if args.emit_neurons:
+        ns = emit_neurons(args.source_npz, args.summaries, args.emit_neurons)
+        print(f"{len(ns)} neurons -> {args.emit_neurons}")
+        return 0
     out = {"summaries": {}}
     for s in args.summaries:
         j = json.loads(s.read_text())
@@ -107,6 +170,9 @@ def main() -> int:
             verdict.append("QK-DIRECT" if gate_qk else ("FEW-NEURONS-READ-IT" if p44 else "DISTRIBUTED-READ"))
         if not audit["valid"]:
             verdict[-1] += " (EXECUTION-INVALID)"
+    if args.explanations and args.scored:
+        out["stage4"] = legibility(args.explanations, args.scored)
+        verdict.append("SOURCE-NEURONS-LEGIBLE" if out["stage4"]["prediction_45"]["pass"] else "NOT-LEGIBLE-AT-THE-BAR")
     out["verdict"] = " / ".join(verdict)
     args.out.write_text(json.dumps(out, indent=1) + "\n")
     print(json.dumps({k: v for k, v in out.items() if k != "summaries"}, indent=1))
