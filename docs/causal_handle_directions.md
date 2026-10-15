@@ -5837,5 +5837,5 @@ MLPs, and the MLP neurons that align with it are weak, diffuse and
 illegible while random neurons are legible. On this mechanism the
 essay's neuron-first picture holds for neurons in general and misses
 the lever: the clean unit is the head. Tally: 46 predictions, 29
-confirmed, 16 not, 1 intermediate; NX ≈ $3.2 over 8 jobs (program ≈
+confirmed, 15 not, 1 intermediate, 1 not read (44th, gated out); NX ≈ $3.2 over 8 jobs (program ≈
 $211 / 181 jobs). Summary docs/nx_summary.md.
