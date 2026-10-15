@@ -5812,3 +5812,30 @@ Mean fire rates positive / near miss / distant: source 0.21 / 0.21 /
 entity / copy, 13 other, 4 answer format. Reader docs/nx_gates.json
 (stage4); explanations docs/nx_explanations.json. NX total so far
 $2.35 over 6 jobs (+ rider NX-h, building).
+
+**NX-h LANDED 2026-10-15 20:36 UTC (A job-e9kp6 $0.41, B job-twfbh
+$0.40; A preempted once, billed once).** Delivery 1,888 / 1,888. Same
+8 heads selected in both shards (L27 h3, L25 h22, L29 h18, L23 h4, L27
+h24, L29 h0, L27 h29, L29 h30), α 4.2, summed vector cosine 0.76 / 0.78
+with u. **HEAD_8 at the gold address 0.496: +0.479 [+0.360, +0.597],
+specificity +0.476 [+0.359, +0.595]; RANDOM_HEAD_8 +0.034 / +0.017
+(norm-matched, cosine 0.51–0.55 and −0.30 to −0.42 with u); HEAD_8 −
+RANDOM_HEAD_8 +0.453 [+0.335, +0.576] → 46th CONFIRMED:
+FEW-HEADS-SUFFICE.** Descriptive: HEAD_8 − U (in-job, +0.356) +0.123
+[+0.021, +0.233] — the 8 heads' own write, delivered at their layers,
+repairs more than the frozen direction at L30; HEAD_8 at non-gold
+addresses names the addressed candidate on 12% of samples.
+**NEURON_64_L30 +0.004 [0.000, +0.013]** (cosine 0.66 / 0.71 with u):
+the 43rd's null is not delivery through layers — the top neurons' write
+is inert even at L30.
+
+**NX verdict (all stages): DISTRIBUTED-SOURCE (43rd NOT) / QK-DIRECT
+(44th not read) / FEW-HEADS-SUFFICE (46th CONFIRMED) /
+NOT-LEGIBLE-AT-THE-BAR, reversed (45th NOT).** The lever is written by
+eight mid-depth attention heads, read by attention without the span
+MLPs, and the MLP neurons that align with it are weak, diffuse and
+illegible while random neurons are legible. On this mechanism the
+essay's neuron-first picture holds for neurons in general and misses
+the lever: the clean unit is the head. Tally: 46 predictions, 29
+confirmed, 16 not, 1 intermediate; NX ≈ $3.2 over 8 jobs (program ≈
+$211 / 181 jobs). Summary docs/nx_summary.md.
