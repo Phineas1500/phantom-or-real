@@ -5791,3 +5791,8 @@ Tooling: NX_ARMS selects the arm list in the source stage.
 (context ctx-b0a9c05c, no cache mount): A job-e9kp6 / B job-twfbh.
 Fake-model dry run of the rider arms passed (delivery, non-gold HEAD_8,
 reader).]
+[NX stage 4: mine LANDED (job-z8b6q, $0.24; 2,800 texts, 96 neurons);
+judge run (gpt-5.4-mini, three separate calls; explanations
+docs/nx_explanations.json; 1 neuron with fewer than 10 texts in one
+kind); score job-5ihxt launched 2026-10-15 19:59 UTC (context
+ctx-91399c89).]
