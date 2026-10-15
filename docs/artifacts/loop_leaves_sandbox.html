@@ -79,7 +79,7 @@
   <div class="col">
     <div class="eyebrow">Phantom or Real · WikiHop port · September 2–3, 2026</div>
     <h1>The Loop Leaves the Sandbox</h1>
-    <p class="lede">We could always read, from a model's hidden state, whether it was about to be right. The question was whether that signal is something the model uses or a coincidence it carries. On a synthetic puzzle task the answer was "uses." This is what happened when we tried the same trick on real reading-comprehension questions, then on a second model, then on two more tasks, then blind, where the passage contradicts what the model remembers, and finally on long documents full of tables.</p>
+    <p class="lede">We could always read, from a model's hidden state, whether it was about to be right. The question was whether that signal is something the model uses or a coincidence it carries. On a synthetic puzzle task the answer was "uses." This is what happened when we tried the same trick on real reading-comprehension questions, then on a second model, then on two more tasks, then blind, where the passage contradicts what the model remembers, on long documents full of tables, and finally inside the model, to see which of its parts write the nudge.</p>
   </div>
 </header>
 
@@ -103,7 +103,7 @@
 </div>
 
 <div class="col">
-  <h2>What happened, in sixteen findings</h2>
+  <h2>What happened, in seventeen findings</h2>
 
   <div class="finding">
     <div class="num">1 / 528<small>gold repairs</small></div>
@@ -168,6 +168,10 @@
   <div class="finding">
     <div class="num">15 / 90<small>the model's own pick finds the right row</small></div>
     <p><strong>Asked to choose, the model chooses the same wrong row its heads did.</strong> The last thing to try was to let the model aim for itself: show it the three rows its heads ranked highest, ask which one holds the answer, and point the steering at its choice. The first version of the question failed on its own terms, the model answering "which row" with a cell value most of the time, and was replaced by a labelled version that it answered every time. It named the right row on 15 of the 90 fixable failures, fewer than its heads' first guess, and the first-listed row on 51. Steering at its choice repaired 5 percent of those failures, and where the choice happened to be right it repaired a third of them, so the tool is still fine. Run blind with a rule that only steers when the model's choice disagrees with its own answer, it lost three points. Every way of asking the model where to look, its retriever, its attention heads, its explicit judgment, prefers the same neighbouring row, and that is where the table work ends.</p>
+  </div>
+  <div class="finding">
+    <div class="num">8 heads<small>write the nudge; +0.48 on their own</small></div>
+    <p><strong>The nudge is written by eight attention heads, and the neurons that line up with it are the unreadable ones.</strong> An essay from Goodfire argued that most of a model's neurons each do one nameable job, so a mechanism should come down to a few legible neurons. We tested that on the nudge. The change a hint makes at the candidate's mentions can be split exactly into the share written by every neuron and every attention head of the first 30 layers. On net the heads write all of it and the neurons push the other way; eight heads between layers 23 and 29 account for the whole amount, and the same eight come out of both halves of the data. Writing those eight heads' own contribution, at their own layers, repairs 48 percent of samples on the failures, more than the original vector, while eight random heads repair nothing. The 64 neurons that line up best with the nudge repair one percent, even added straight at layer 30. Freezing every neuron at the written words after the nudge changes nothing, so later attention reads the nudge directly. And the essay's own test of readability splits the neurons in two: random neurons get explanations that predict when they fire 63 percent of the time, while the neurons most aligned with the nudge are weak, fire on a fifth of all text alike, and get explanations that hold for 3 of 32. For this mechanism the clean unit is the head, not the neuron.</p>
   </div>
 </div>
 
@@ -247,10 +251,10 @@
 
   <h2>Where it stands</h2>
   <div class="status">
-    <div><div class="big">42</div><div class="eyebrow">predictions registered before data</div></div>
-    <div><div class="big">28</div><div class="eyebrow">confirmed</div></div>
-    <div><div class="big">13</div><div class="eyebrow">refuted (selection, deployment, detection, length, and aim)</div></div>
-    <div><div class="big">$208</div><div class="eyebrow">173 H100 jobs, five days</div></div>
+    <div><div class="big">46</div><div class="eyebrow">predictions registered before data</div></div>
+    <div><div class="big">29</div><div class="eyebrow">confirmed</div></div>
+    <div><div class="big">15</div><div class="eyebrow">refuted (selection, deployment, detection, length, aim, and the neuron account)</div></div>
+    <div><div class="big">$211</div><div class="eyebrow">181 H100 jobs</div></div>
   </div>
   <p style="margin-top:22px">Every step was registered before launch, every intervention audited for delivery on independent channels, and every artifact is committed. Five settings on Gemma, two disjoint draws each on real and renamed text, the blind reading on both, a second model on the same questions and on a fresh frame, a depth ladder on both models, an attention read of the write, a content control against random and sign-reversed vectors, and two more reading tasks.</p>
 
@@ -291,6 +295,7 @@
     <tr><td class="n">WN</td><td>six label-free aimers on the same tables, no steering</td><td>the retrieval heads find the row on 52% of fixable failures (retriever 23%); self-selection follows the answer; the heads' confidence detects failures at 0.76–0.80 <span class="pill meter">read</span></td></tr>
     <tr><td class="n">WW</td><td>attention steering in the retrieval heads, aimed by the heads or by the answer</td><td>at the right row +0.63, the largest repair in the program, five points blind with a perfect aim; aimed by the heads it leaves the answer unchanged <span class="pill">write</span></td></tr>
     <tr><td class="n">WW′</td><td>the model picks the row among its heads' candidates, steering aims at the pick</td><td>picks the right row 15 times in 90, fewer than its heads; +5 on failures, −3 blind; the table chain closes <span class="pill">write</span></td></tr>
+    <tr><td class="n">NX · NX-h</td><td>which units write and read the nudge: neurons, heads, and the essay's readability test</td><td>eight heads write it (+0.48 alone); top neurons inert; read by attention directly; aligned neurons unreadable (3 / 32 vs random 20 / 32) <span class="pill">write</span></td></tr>
   </table>
   </div>
 </div>
