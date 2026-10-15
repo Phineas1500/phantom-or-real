@@ -5729,3 +5729,8 @@ execution-invalid (the job raises). Stage 1's reconstruction outside
 reading). Cost ≈ $15 for stages 1–3 (4 H100 jobs: source A/B, read A/B;
 no cache mount), ≈ $5 for stage 4; cap $45. Amendments only on
 independent-telemetry evidence, per policy.
+[NX launched after registration commit bbf3ffb, 2026-10-15 19:06 UTC,
+no cache mount (context ctx-fa996dab; mission nx-neuron-decomposition):
+source A job-yx2aw / B job-g2aub; read A job-y9k5z / B job-6dygy.
+Fake-model dry run (40 layers, d 64) of both stages: decomposition
+reconstruction 1.0000, every hook delivered, reader ran end to end.]
