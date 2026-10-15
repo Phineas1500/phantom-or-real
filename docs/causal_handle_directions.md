@@ -5627,3 +5627,105 @@ blind. The table chain closes here. Reader outputs docs/wwpr_gates.json
 (numbered instrument: docs/wwp_gates.json); rows
 results/loop_screen/wwpr_{f,b}.jsonl. Program: 42 predictions, 28
 confirmed, 13 not, 1 intermediate; ≈ $208 across 173 jobs.
+
+### Item NX — does the frozen write decompose into a few MLP neurons? (registered 2026-10-15, before any data)
+
+**Motivation.** Cammarata, "Neural Networks Are Already Clean" (Goodfire,
+2026-10-15) argues that most MLP neurons have one main job and that
+superposition is rare, so a mechanism should be statable in a handful of
+legible neurons. Our lever on WikiHop is a residual-stream direction: the
+frozen hint-delta u at L30 × 2× repairs +0.360 at the gold address (WX),
+the flipped and random vectors repair nothing (WV), and the write routes
+L31–33 attention onto the written span (WT). Our own prior cuts the other
+way: on InAbHyD the rank core was visible in Gemma Scope residual SAEs but
+spread across thousands of rows (top 20 ≈ 1% of overlap mass). NX asks
+whether u is produced by, and read through, a few neurons. Scope draft:
+docs/nx_neuron_decomposition_scope.md.
+
+**Frame (frozen).** Gemma-3-27B bf16; the 59 WX rows, cross-fit exactly
+as WX (pins docs/wikihop_wx_pinned.json; job A tests shard 1 with shard
+0 donors, B the reverse); u and N fitted in-job from the donors as in
+WX; the write at the candidate's whole-word mentions in the std prompt;
+k = 4 samples per arm-address at temperature 0.7, std baseline k = 8,
+normalized exact match. A neuron is one coordinate of a layer's
+down_proj input (the GeGLU product), signed; its residual contribution
+at a position is a_i · s · (W_down[:, i] ⊙ (1 + w_postFF)), s the
+post-feedforward RMSNorm scale of that position, so the per-layer sum
+over neurons is that layer's MLP write exactly; heads likewise through
+o_proj and the post-attention norm. Seeds: NX_SEED 20261016; random
+neuron draws 20261017 / 20261018; clamp-random draw 20261019. Job script
+scripts/nx_neuron_job.py; reader scripts/nx_gates.py.
+
+**Stage 1 — source decomposition (descriptive).** In the donor forwards
+that fit u (std and hint-first prompts, gold mentions), each neuron's
+and each head's contribution change, hint minus std, projected on u and
+averaged over donor positions (c_i). Reported: reconstruction (Σ c over
+layers 0–30 / mean δ·u; the decomposition is valid if within 0.95–1.05),
+MLP vs head share, the concentration curve (top-k share of the net
+projection, k = 1 … 16,384), per-layer totals, top heads, u's norm²
+share in the massive dims 104 / 2733.
+
+**Stage 2 — sufficiency.** NEURON_k (k ∈ {16, 64, 256, 1024}): the
+top-k neurons by c_i (positive contributors), each one's donor-mean
+contribution vector added at its own layer's output at the candidate's
+mentions, all scaled by one α so the summed direct projection on u
+equals the WX write's (2 × N). RANDOM_64 × 2 draws: 64 neurons uniform
+over layers 0–30, their own donor-mean contribution vectors, scaled so
+the summed vector's norm equals NEURON_64's. U (the WX write, in-job
+reference) and U_NOMASSIVE (u with dims 104 / 2733 zeroed,
+renormalized). Gold address for every arm; NEURON_64 also at three
+seeded non-gold addresses.
+**43rd registered prediction — FEW-NEURONS-SUFFICE.** On the 59 rows,
+NEURON_64 at the gold address raises the gold rate over the in-job
+baseline by ≥ +0.18 (half of WX's +0.360) with CI > 0, AND exceeds
+RANDOM_64 (the two draws pooled per row) row-paired with CI > 0.
+Failure reading: DISTRIBUTED-SOURCE (the lever is a direction many
+neurons contribute to). Descriptive: the k-ladder, NEURON_64's address
+specificity, U's reproduction of WX (0.377), U_NOMASSIVE vs U.
+
+**Stage 3 — what reads the write.** Gate arm FREEZE_MLP: the U write,
+with each MLP's output at the written positions in L31–L36 clamped to
+its no-write value (one no-write forward per row). Downstream ranking
+(on the donors, with the U write at their gold mentions): neurons in
+L31–L36 at the written positions by |donor-mean change of a_i · s| ×
+|post-norm column|; CLAMP_TOP: the U write with the top-64 neurons'
+activations at the written positions clamped to their no-write values;
+CLAMP_RAND: the same for 64 seeded random neurons from L31–L36.
+**Gate:** if FREEZE_MLP retains ≥ half of U's in-job repair (gold rate
+− baseline ≥ 0.5 × (U − baseline)), the verdict is QK-DIRECT (the
+residual write is read without the span MLPs in between) and the 44th
+is reported but not read. Stage 3 is void if U's in-job repair does
+not reproduce (dP CI lower bound ≤ 0). **44th registered prediction —
+FEW-NEURONS-READ-IT** (read only if the gate fails): CLAMP_TOP removes
+≥ half of U's in-job repair (U − CLAMP_TOP ≥ 0.5 × (U − baseline)) AND
+CLAMP_RAND − CLAMP_TOP row-paired CI > 0. Failure reading:
+DISTRIBUTED-READ.
+
+**Stage 4 — legibility (the essay's test, run after stages 1–3).**
+Neurons: the top 32 of stage 1 (the pole along their donor-mean
+change), the top 32 of stage 3, and 32 seeded random neurons from
+layers 0–36 (seed 20261020, positive pole). Top activations over a
+mining corpus fixed now: the WF frame's documents plus the first 2,000
+documents of HuggingFaceFW/fineweb sample-10BT (streaming, train split
+order), each truncated to 512 tokens, std chat template not applied.
+An explainer call (gpt-5.4-mini) sees the top 20 contexts with the
+firing token marked and writes a one-sentence explanation; a SEPARATE
+call sees only the explanation and writes 10 texts that should fire, 10
+near misses (same surface words or topic, without the property), and 10
+distant texts. A neuron "fires" on a text if its max activation (in its
+pole) over the text's tokens reaches 20% of its mean top-20 activation
+in the corpus. Win: positive fire rate > near-miss fire rate; tie:
+equal; lose: lower (the essay's criterion; its benchmark 164 / 183).
+**45th registered prediction — THE-SOURCE-NEURONS-ARE-LEGIBLE:** the
+stage-1 top 32 win at a rate ≥ 0.75 AND above the random 32's rate
+(two-proportion bootstrap CI > 0). Descriptive: stage-3 neurons' win
+rate; explanation bins pre-named — entity / copy, document reference,
+question relation, answer format, other — assigned by a third call.
+
+**Delivery and validity.** Every hook wraps generate and counts prefill
+calls and positions touched; any arm-address with a zero is
+execution-invalid (the job raises). Stage 1's reconstruction outside
+0.95–1.05 voids stage 1–2's neuron arms (re-registration before any
+reading). Cost ≈ $15 for stages 1–3 (4 H100 jobs: source A/B, read A/B;
+no cache mount), ≈ $5 for stage 4; cap $45. Amendments only on
+independent-telemetry evidence, per policy.

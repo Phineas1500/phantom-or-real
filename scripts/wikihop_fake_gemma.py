@@ -15,24 +15,82 @@ class FakeLayer(nn.Module):
         return (h + 0.01 * self.proj(h),)
 
 
-class _LM(nn.Module):
-    def __init__(self, n_layers, d):
+class FakeRMSNorm(nn.Module):
+    def __init__(self, d, eps=1e-6):
         super().__init__()
-        self.layers = nn.ModuleList([FakeLayer(d) for _ in range(n_layers)])
+        self.eps = eps
+        self.weight = nn.Parameter(0.1 * torch.randn(d))
+
+    def forward(self, x):
+        out = x.float() * torch.rsqrt(x.float().pow(2).mean(-1, keepdim=True) + self.eps)
+        return (out * (1.0 + self.weight.float())).type_as(x)
+
+
+class FakeMLP(nn.Module):
+    def __init__(self, d, inter):
+        super().__init__()
+        self.gate_proj = nn.Linear(d, inter, bias=False)
+        self.up_proj = nn.Linear(d, inter, bias=False)
+        self.down_proj = nn.Linear(inter, d, bias=False)
+        self.act_fn = nn.GELU(approximate="tanh")
+
+    def forward(self, x):
+        return self.down_proj(self.act_fn(self.gate_proj(x)) * self.up_proj(x))
+
+
+class FakeAttn(nn.Module):
+    """Mixes each position with the running mean of the prefix, so a write
+    upstream reaches later positions as attention would."""
+
+    def __init__(self, d, n_heads, head_dim):
+        super().__init__()
+        self.head_dim = head_dim
+        self.v_proj = nn.Linear(d, n_heads * head_dim, bias=False)
+        self.o_proj = nn.Linear(n_heads * head_dim, d, bias=False)
+
+    def forward(self, x):
+        v = self.v_proj(x)
+        v = torch.cumsum(v, dim=1) / torch.arange(1, v.shape[1] + 1, device=v.device).view(1, -1, 1)
+        return self.o_proj(v), None
+
+
+class AnatomicalLayer(nn.Module):
+    """Gemma-3 decoder-layer anatomy: pre/post norms around attention and the
+    gated MLP, residual adds after the post norms."""
+
+    def __init__(self, d, inter, n_heads, head_dim):
+        super().__init__()
+        self.input_layernorm = FakeRMSNorm(d)
+        self.self_attn = FakeAttn(d, n_heads, head_dim)
+        self.post_attention_layernorm = FakeRMSNorm(d)
+        self.pre_feedforward_layernorm = FakeRMSNorm(d)
+        self.mlp = FakeMLP(d, inter)
+        self.post_feedforward_layernorm = FakeRMSNorm(d)
+
+    def forward(self, h, **kw):
+        h = h + self.post_attention_layernorm(self.self_attn(self.input_layernorm(h))[0])
+        return (h + self.post_feedforward_layernorm(self.mlp(self.pre_feedforward_layernorm(h))),)
+
+
+class _LM(nn.Module):
+    def __init__(self, n_layers, d, inter=None, n_heads=None, head_dim=None):
+        super().__init__()
+        self.layers = nn.ModuleList([AnatomicalLayer(d, inter, n_heads, head_dim) if inter else FakeLayer(d)
+                                     for _ in range(n_layers)])
 
 
 class _Inner(nn.Module):
-    def __init__(self, n_layers, d):
+    def __init__(self, n_layers, d, **kw):
         super().__init__()
-        self.language_model = _LM(n_layers, d)
+        self.language_model = _LM(n_layers, d, **kw)
 
 
 class FakeGemma(nn.Module):
-    def __init__(self, n_layers, d, vocab):
+    def __init__(self, n_layers, d, vocab, inter=None, n_heads=None, head_dim=None):
         super().__init__()
         torch.manual_seed(0)
         self.emb = nn.Embedding(vocab, d)
-        self.model = _Inner(n_layers, d)
+        self.model = _Inner(n_layers, d, inter=inter, n_heads=n_heads, head_dim=head_dim)
         self.vocab = vocab
 
     def forward(self, input_ids, attention_mask=None, use_cache=False, **kw):
