@@ -5796,3 +5796,19 @@ judge run (gpt-5.4-mini, three separate calls; explanations
 docs/nx_explanations.json; 1 neuron with fewer than 10 texts in one
 kind); score job-5ihxt launched 2026-10-15 19:59 UTC (context
 ctx-91399c89).]
+
+**NX stage 4 LANDED 2026-10-15 20:15 UTC (mine job-z8b6q $0.24, score
+job-5ihxt $0.11, judge gpt-5.4-mini).** Win rates (positives fire more
+often than near misses): **source top 32: 3 / 32 = 0.094** (23 ties, 18
+of them at 0 / 0 — the explanation's positives never fire the neuron);
+read top 32: 8 / 32 = 0.25; **random 32: 20 / 32 = 0.625** (never fire
+on distant texts). Source − random −0.53 [−0.72, −0.34] → **45th NOT
+CONFIRMED — and reversed: the random neurons are legible at roughly the
+essay's level, the neurons that carry the lever's projection are not.**
+Mean fire rates positive / near miss / distant: source 0.21 / 0.21 /
+0.18, read 0.19 / 0.15 / 0.09, random 0.49 / 0.27 / 0.00. Fire scale
+(mean top-20 activation) median 1.4 (source) vs 5.0 (read) vs 6.2
+(random): the source neurons are weak and diffuse. Bins: source 15
+entity / copy, 13 other, 4 answer format. Reader docs/nx_gates.json
+(stage4); explanations docs/nx_explanations.json. NX total so far
+$2.35 over 6 jobs (+ rider NX-h, building).

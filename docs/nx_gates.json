@@ -1929,5 +1929,1218 @@
   },
   "u_reproduced": true
  },
- "verdict": "DISTRIBUTED-SOURCE / QK-DIRECT"
+ "stage4": {
+  "sets": {
+   "source": {
+    "n": 32,
+    "win_rate": 0.09375,
+    "outcomes": {
+     "win": 3,
+     "tie": 23,
+     "lose": 6
+    },
+    "bins": {
+     "answer format": 4,
+     "entity / copy": 15,
+     "other": 13,
+     "question relation": 0
+    }
+   },
+   "read": {
+    "n": 32,
+    "win_rate": 0.25,
+    "outcomes": {
+     "win": 8,
+     "tie": 22,
+     "lose": 2
+    },
+    "bins": {
+     "answer format": 1,
+     "entity / copy": 13,
+     "other": 18,
+     "question relation": 0
+    }
+   },
+   "random": {
+    "n": 32,
+    "win_rate": 0.625,
+    "outcomes": {
+     "win": 20,
+     "tie": 9,
+     "lose": 3
+    },
+    "bins": {
+     "answer format": 0,
+     "entity / copy": 4,
+     "other": 27,
+     "question relation": 1
+    }
+   }
+  },
+  "source_minus_random": {
+   "diff": -0.53125,
+   "ci": [
+    -0.71875,
+    -0.34375
+   ]
+  },
+  "prediction_45": {
+   "pass": false
+  },
+  "neurons": [
+   {
+    "key": "source:24:17865",
+    "set": "source",
+    "explanation": "This neuron responds to tokens that complete or strongly suggest proper names, especially place names, people names, and title/franchise names in structured prose or lists.",
+    "bin": "entity / copy",
+    "fire_rates": {
+     "positive": 0.0,
+     "near_miss": 0.0,
+     "distant": 0.0
+    },
+    "outcome": "tie"
+   },
+   {
+    "key": "source:25:7883",
+    "set": "source",
+    "explanation": "This neuron responds to words or morphemes that complete a common word or phrase in a strongly surface-form, often suffix- or continuation-based way (especially short continuations like \u201c-us,\u201d \u201c-es,\u201d \u201c-head,\u201d \u201c-tron,\u201d or closing a familiar multiword expression), rather than to a single semantic topic.",
+    "bin": "other",
+    "fire_rates": {
+     "positive": 0.0,
+     "near_miss": 0.0,
+     "distant": 0.0
+    },
+    "outcome": "tie"
+   },
+   {
+    "key": "source:26:5332",
+    "set": "source",
+    "explanation": "This neuron fires on tokens that begin or complete proper names, especially surnames and named entities in biographical or topical text (e.g., \u201cLadytron,\u201d \u201cMunich,\u201d \u201cNewton,\u201d \u201cretriEver\u201d), rather than on ordinary common nouns or function words.",
+    "bin": "entity / copy",
+    "fire_rates": {
+     "positive": 0.6,
+     "near_miss": 1.0,
+     "distant": 0.8
+    },
+    "outcome": "lose"
+   },
+   {
+    "key": "source:23:19397",
+    "set": "source",
+    "explanation": "This neuron responds to proper names of people, places, teams, and organizations in text about biographies, news, and encyclopedic descriptions, especially when the name begins at or spans a token boundary.",
+    "bin": "entity / copy",
+    "fire_rates": {
+     "positive": 0.0,
+     "near_miss": 0.0,
+     "distant": 0.0
+    },
+    "outcome": "tie"
+   },
+   {
+    "key": "source:24:9270",
+    "set": "source",
+    "explanation": "This neuron responds to sentence-final punctuation and discourse turns where a speaker is expressing a judgment, reaction, or quoted speech in a conversational or forum-style context.",
+    "bin": "other",
+    "fire_rates": {
+     "positive": 0.1,
+     "near_miss": 0.2,
+     "distant": 0.1
+    },
+    "outcome": "lose"
+   },
+   {
+    "key": "source:24:3663",
+    "set": "source",
+    "explanation": "This neuron responds to tokens that begin or strongly identify proper nouns and fixed multiword names\u2014especially the beginnings of place names, people\u2019s surnames, and specific institutional or geographic terms in phrases like \u201cU.S.\u201d, \u201ccauseway,\u201d \u201cSouth America,\u201d \u201cBBC One Isle of Man,\u201d or \u201cbottom line.\u201d",
+    "bin": "entity / copy",
+    "fire_rates": {
+     "positive": 0.0,
+     "near_miss": 0.0,
+     "distant": 0.0
+    },
+    "outcome": "tie"
+   },
+   {
+    "key": "source:29:5240",
+    "set": "source",
+    "explanation": "This neuron responds to numeric tokens in the middle of decimal and percentage-like expressions, especially digit sequences split by punctuation or spacing (e.g., \u201c37, [[0]] 86\u201d, \u201c14,254\u201d, \u201c298 [[ ]] 298\u201d, \u201c[[1]] 4-16\u201d).",
+    "bin": "other",
+    "fire_rates": {
+     "positive": 0.7,
+     "near_miss": 0.7,
+     "distant": 0.1
+    },
+    "outcome": "tie"
+   },
+   {
+    "key": "source:24:2938",
+    "set": "source",
+    "explanation": "This neuron fires on sentence-final punctuation, especially the period at the end of a declarative statement.",
+    "bin": "other",
+    "fire_rates": {
+     "positive": 1.0,
+     "near_miss": 1.0,
+     "distant": 1.0
+    },
+    "outcome": "tie"
+   },
+   {
+    "key": "source:25:17654",
+    "set": "source",
+    "explanation": "This neuron responds to text about specific named entities and proper nouns\u2014especially when a recognizable name or title is being completed or mentioned in context (e.g., people, places, works, or branded terms).",
+    "bin": "entity / copy",
+    "fire_rates": {
+     "positive": 0.7,
+     "near_miss": 0.5,
+     "distant": 0.3
+    },
+    "outcome": "win"
+   },
+   {
+    "key": "source:27:16747",
+    "set": "source",
+    "explanation": "This neuron strongly responds to text that is completing a proper noun or fixed phrase at a boundary, especially names, titles, and location/organizational names after a partial prefix or before punctuation.",
+    "bin": "entity / copy",
+    "fire_rates": {
+     "positive": 0.0,
+     "near_miss": 0.0,
+     "distant": 0.0
+    },
+    "outcome": "tie"
+   },
+   {
+    "key": "source:28:16623",
+    "set": "source",
+    "explanation": "This neuron fires on tokenization/formatting cues for text boundaries and inline punctuation or markup\u2014especially things like periods, commas, brackets, hyphens, percentages, and parenthesized or quoted fragments in structured prose.",
+    "bin": "answer format",
+    "fire_rates": {
+     "positive": 0.1,
+     "near_miss": 0.1,
+     "distant": 0.0
+    },
+    "outcome": "tie"
+   },
+   {
+    "key": "source:25:79",
+    "set": "source",
+    "explanation": "This neuron responds to year-like numeric tokens and abbreviated date/time or version-style number patterns, especially in contexts such as biographies, timelines, logs, URLs, and measurements.",
+    "bin": "other",
+    "fire_rates": {
+     "positive": 0.0,
+     "near_miss": 0.0,
+     "distant": 0.0
+    },
+    "outcome": "tie"
+   },
+   {
+    "key": "source:29:1558",
+    "set": "source",
+    "explanation": "This neuron responds to tokens that complete or continue proper nouns, names, and title-like abbreviations in text, especially within names, dates, organizations, and entity mentions.",
+    "bin": "entity / copy",
+    "fire_rates": {
+     "positive": 0.0,
+     "near_miss": 0.0,
+     "distant": 0.0
+    },
+    "outcome": "tie"
+   },
+   {
+    "key": "source:27:788",
+    "set": "source",
+    "explanation": "This neuron responds to proper names and named entities\u2014especially person names, place names, and organization names, often appearing in news-like biographical or list contexts.",
+    "bin": "entity / copy",
+    "fire_rates": {
+     "positive": 0.2,
+     "near_miss": 0.2,
+     "distant": 0.0
+    },
+    "outcome": "tie"
+   },
+   {
+    "key": "source:30:11974",
+    "set": "source",
+    "explanation": "This neuron responds to the beginnings of proper names and formal titles/labels where a common noun is capitalized as the first word of a multiword named entity or phrase, especially in contexts like \u201cFederal Aviation,\u201d \u201cTime Warner,\u201d \u201cPublic Speaking,\u201d \u201cstate highway,\u201d and similar name-like constructions.",
+    "bin": "entity / copy",
+    "fire_rates": {
+     "positive": 0.0,
+     "near_miss": 0.0,
+     "distant": 0.0
+    },
+    "outcome": "tie"
+   },
+   {
+    "key": "source:27:2258",
+    "set": "source",
+    "explanation": "This neuron responds to tokens that complete or are strongly associated with the numerals, punctuation, and function words in well-formed formatted text\u2014especially dates, years, decimal numbers, citations, parenthetical/quoting punctuation, and common connective words like \u201cthe,\u201d \u201cthat,\u201d \u201cof,\u201d \u201calong,\u201d and \u201cimpact\u201d when they appear in structured prose.",
+    "bin": "answer format",
+    "fire_rates": {
+     "positive": 0.4,
+     "near_miss": 0.0,
+     "distant": 0.0
+    },
+    "outcome": "win"
+   },
+   {
+    "key": "source:24:19249",
+    "set": "source",
+    "explanation": "This neuron responds to text listing named entities or items in a sequence where a target word is being completed by a split token prefix, especially in encyclopedic or list-like prose.",
+    "bin": "entity / copy",
+    "fire_rates": {
+     "positive": 0.0,
+     "near_miss": 0.0,
+     "distant": 0.0
+    },
+    "outcome": "tie"
+   },
+   {
+    "key": "source:23:18597",
+    "set": "source",
+    "explanation": "This neuron fires on boundary punctuation and function-word/collocation completions\u2014especially commas, parentheses, and short connective/prepositional tokens that naturally follow names, lists, appositives, and fixed phrases.",
+    "bin": "other",
+    "fire_rates": {
+     "positive": 0.0,
+     "near_miss": 0.0,
+     "distant": 0.0
+    },
+    "outcome": "tie"
+   },
+   {
+    "key": "source:28:4844",
+    "set": "source",
+    "explanation": "This neuron responds to proper names and named entities that are strongly suggestive of a Wikipedia-style page or article context, especially location, person, organization, product, or title names appearing as the next token in a phrase.",
+    "bin": "entity / copy",
+    "fire_rates": {
+     "positive": 0.0,
+     "near_miss": 0.0,
+     "distant": 0.0
+    },
+    "outcome": "tie"
+   },
+   {
+    "key": "source:24:14895",
+    "set": "source",
+    "explanation": "This neuron responds to exact wordpiece fragments that are the beginnings, endings, or internal hyphenated pieces of proper names and title-like named entities, especially when a larger named entity is being spelled out across the token.",
+    "bin": "entity / copy",
+    "fire_rates": {
+     "positive": 0.0,
+     "near_miss": 0.1,
+     "distant": 0.0
+    },
+    "outcome": "lose"
+   },
+   {
+    "key": "source:26:11660",
+    "set": "source",
+    "explanation": "This neuron responds to closing punctuation and end-of-list/list-structure tokens, especially brackets/parentheses, commas, and spaces that occur at the ends of names, numbers, or bullet-style entries.",
+    "bin": "answer format",
+    "fire_rates": {
+     "positive": 0.0,
+     "near_miss": 0.0,
+     "distant": 0.0
+    },
+    "outcome": "tie"
+   },
+   {
+    "key": "source:25:4874",
+    "set": "source",
+    "explanation": "This neuron responds to tokens that begin or complete recognizable **clich\u00e9 or formulaic text fragments**\u2014especially common fixed words, numbers, punctuation, and obvious autocomplete-like continuations in ordinary written English, including headlines, dates, lists, and standard phrases.",
+    "bin": "other",
+    "fire_rates": {
+     "positive": 1.0,
+     "near_miss": 1.0,
+     "distant": 0.9
+    },
+    "outcome": "tie"
+   },
+   {
+    "key": "source:24:16202",
+    "set": "source",
+    "explanation": "This neuron responds to sentence-internal grammatical glue and function-word continuations that complete common fixed expressions or constructions (e.g., commas, prepositions, auxiliaries, particles, contractions, and short stopwords like \u201cin,\u201d \u201cto,\u201d \u201cas,\u201d \u201cif,\u201d \u201cfor,\u201d \u201cone,\u201d \u201cthe,\u201d \u201ca,\u201d \u201c\u2019s\u201d), rather than to topical content words.",
+    "bin": "other",
+    "fire_rates": {
+     "positive": 0.0,
+     "near_miss": 0.0,
+     "distant": 0.0
+    },
+    "outcome": "tie"
+   },
+   {
+    "key": "source:25:7194",
+    "set": "source",
+    "explanation": "This neuron responds to tokens that are part of named entities and proper-noun phrases, especially capitalized words, initials, punctuation in names, and multiword place/organization names.",
+    "bin": "entity / copy",
+    "fire_rates": {
+     "positive": 0.0,
+     "near_miss": 0.0,
+     "distant": 0.0
+    },
+    "outcome": "tie"
+   },
+   {
+    "key": "source:24:7283",
+    "set": "source",
+    "explanation": "This neuron responds to words or names beginning with \u201cH\u201d/\u201cG\u201d at the start of proper nouns and place/person titles, especially in encyclopedia-style text.",
+    "bin": "other",
+    "fire_rates": {
+     "positive": 0.5,
+     "near_miss": 0.8,
+     "distant": 0.9
+    },
+    "outcome": "lose"
+   },
+   {
+    "key": "source:28:19570",
+    "set": "source",
+    "explanation": "This neuron responds to comma-like separators and adjacent structural punctuation in lists, quotations, and formatted text, especially when the current token is a comma, bracket, dash, serials-style heading, or other boundary marker in otherwise list-like or enumerated prose.",
+    "bin": "answer format",
+    "fire_rates": {
+     "positive": 0.0,
+     "near_miss": 0.0,
+     "distant": 0.0
+    },
+    "outcome": "tie"
+   },
+   {
+    "key": "source:28:5446",
+    "set": "source",
+    "explanation": "This neuron responds to exact token-level completions of common written phrases and names, especially frequent word continuations in fluent prose and lists (e.g., \u201cdown,\u201d \u201cyou,\u201d \u201c4,\u201d \u201call,\u201d punctuation, and specific name fragments), rather than to any single topic or meaning.",
+    "bin": "other",
+    "fire_rates": {
+     "positive": 0.0,
+     "near_miss": 0.0,
+     "distant": 0.0
+    },
+    "outcome": "tie"
+   },
+   {
+    "key": "source:25:3154",
+    "set": "source",
+    "explanation": "This neuron responds to continuations of proper names and named entities, especially when a multi-token name is being completed from a prefix or from a list of place/person names.",
+    "bin": "entity / copy",
+    "fire_rates": {
+     "positive": 0.0,
+     "near_miss": 0.0,
+     "distant": 0.0
+    },
+    "outcome": "tie"
+   },
+   {
+    "key": "source:25:5361",
+    "set": "source",
+    "explanation": "This neuron responds to tokens that are parts of common named-entity or technical-formula continuations where a word is being completed from a likely prefix or substring, especially in mixed text like acronyms, proper nouns, abbreviations, and numeric patterns (for example \u201cCan-\u201d \u2192 \u201cada\u201d, \u201cAp-\u201d \u2192 \u201cocalypse\u201d, \u201cW-\u201d \u2192 \u201cNIT\u201d, \u201c5\u201d \u2192 \u201cG\u201d, \u201c8\u201d \u2192 \u201c00\u201d, or \u201ciB\u201d \u2192 \u201cFT\u201d).",
+    "bin": "entity / copy",
+    "fire_rates": {
+     "positive": 0.0,
+     "near_miss": 0.1,
+     "distant": 0.2
+    },
+    "outcome": "lose"
+   },
+   {
+    "key": "source:25:1201",
+    "set": "source",
+    "explanation": "This neuron responds to morpheme-like word beginnings and lexical boundaries where a familiar prefix, stem, or quoted word fragment is being completed or highlighted, especially in dictionary-style or etymological contexts.",
+    "bin": "other",
+    "fire_rates": {
+     "positive": 0.7,
+     "near_miss": 0.1,
+     "distant": 0.3
+    },
+    "outcome": "win"
+   },
+   {
+    "key": "source:27:20721",
+    "set": "source",
+    "explanation": "This neuron responds to year-like numeric tokens that complete a date or year in biographical and encyclopedic text, especially four-digit years in the 1900s or 2000s appearing in patterns like \u201cfrom 19[[85]] until\u2026\u201d or \u201cin 20[[08]].\u201d",
+    "bin": "other",
+    "fire_rates": {
+     "positive": 0.0,
+     "near_miss": 0.0,
+     "distant": 0.1
+    },
+    "outcome": "tie"
+   },
+   {
+    "key": "source:26:20656",
+    "set": "source",
+    "explanation": "This neuron strongly responds to date-like tokens and calendar/time markers in structured text, especially month names and related words in lists, biographies, schedules, and news-like writing.",
+    "bin": "other",
+    "fire_rates": {
+     "positive": 0.8,
+     "near_miss": 1.0,
+     "distant": 1.0
+    },
+    "outcome": "lose"
+   },
+   {
+    "key": "read:31:20572",
+    "set": "read",
+    "explanation": "This neuron responds to the start of noun phrases where a head noun follows a modifier or determiner, especially in list-like or article-style prose introducing concrete, named categories or topics.",
+    "bin": "other",
+    "fire_rates": {
+     "positive": 0.0,
+     "near_miss": 0.0,
+     "distant": 0.0
+    },
+    "outcome": "tie"
+   },
+   {
+    "key": "read:32:9413",
+    "set": "read",
+    "explanation": "This neuron responds to tokens that complete or strongly signal a web-page style entity/title suffix or CTA phrase, especially common ending words like \u201csale,\u201d \u201cgames,\u201d \u201cjobs,\u201d \u201cdownload,\u201d \u201chere,\u201d \u201conline,\u201d \u201csingles,\u201d and similar clickable or category-label continuations.",
+    "bin": "other",
+    "fire_rates": {
+     "positive": 0.0,
+     "near_miss": 0.0,
+     "distant": 0.0
+    },
+    "outcome": "tie"
+   },
+   {
+    "key": "read:32:16150",
+    "set": "read",
+    "explanation": "This neuron responds to tokenized name-like strings and word fragments, especially proper nouns, abbreviations, suffixes, and punctuation/formatting patterns in factual or list-like text.",
+    "bin": "entity / copy",
+    "fire_rates": {
+     "positive": 0.1,
+     "near_miss": 0.0,
+     "distant": 0.0
+    },
+    "outcome": "win"
+   },
+   {
+    "key": "read:32:14034",
+    "set": "read",
+    "explanation": "This neuron responds to text that names places or entities immediately preceded by a parenthetical alias, abbreviation, transliteration, or otherwise standardized alternate form of the same name (e.g., \u201cX (or \u2018Y\u2019) is\u2026\u201d, \u201cX, abbreviated as\u2026\u201d, \u201cX in Chinese: \u2026\u201d).",
+    "bin": "entity / copy",
+    "fire_rates": {
+     "positive": 0.0,
+     "near_miss": 0.0,
+     "distant": 0.0
+    },
+    "outcome": "tie"
+   },
+   {
+    "key": "read:36:20125",
+    "set": "read",
+    "explanation": "This neuron responds to closing punctuation and sentence-final boundary markers, especially periods and semicolons at the ends of clauses or quoted material.",
+    "bin": "other",
+    "fire_rates": {
+     "positive": 0.8,
+     "near_miss": 0.6,
+     "distant": 0.8
+    },
+    "outcome": "win"
+   },
+   {
+    "key": "read:31:4595",
+    "set": "read",
+    "explanation": "This neuron responds to tokens that complete or abbreviate words and fragments in messy web text, especially short word endings, common suffixes, and partial substrings inside larger terms or file/page snippets.",
+    "bin": "other",
+    "fire_rates": {
+     "positive": 0.0,
+     "near_miss": 0.0,
+     "distant": 0.0
+    },
+    "outcome": "tie"
+   },
+   {
+    "key": "read:31:10274",
+    "set": "read",
+    "explanation": "This neuron fires on text containing proper names and place names, especially in lists or article-style prose with capitalized geographic/personal entities, and it is not just responding to generic capitalization or punctuation.",
+    "bin": "entity / copy",
+    "fire_rates": {
+     "positive": 0.0,
+     "near_miss": 0.0,
+     "distant": 0.0
+    },
+    "outcome": "tie"
+   },
+   {
+    "key": "read:36:17830",
+    "set": "read",
+    "explanation": "This neuron responds to inserted inflectional or orthographic continuations that complete a word or token boundary in running text, especially common suffixes, punctuation, and function-word fragments like \u201cwas,\u201d \u201cand,\u201d \u201capplications,\u201d \u201cfirm,\u201d \u201ctacos,\u201d \u201cbetween,\u201d \u201cnow,\u201d \u201cages,\u201d and \u201cdepending.\u201d",
+    "bin": "other",
+    "fire_rates": {
+     "positive": 0.8,
+     "near_miss": 0.9,
+     "distant": 0.5
+    },
+    "outcome": "lose"
+   },
+   {
+    "key": "read:31:6312",
+    "set": "read",
+    "explanation": "This neuron responds to words that complete a country or place-name mention, especially geographic proper nouns and demonyms in encyclopedic text.",
+    "bin": "entity / copy",
+    "fire_rates": {
+     "positive": 0.0,
+     "near_miss": 0.0,
+     "distant": 0.0
+    },
+    "outcome": "tie"
+   },
+   {
+    "key": "read:31:15605",
+    "set": "read",
+    "explanation": "This neuron responds to words and morphemes that are common standalone English morphemes or prefixes/suffixes used in dictionary-style, etymological, or definitional prose\u2014especially short bound forms and near-homographs like \u201c-able,\u201d \u201c-ing,\u201d \u201csub-,\u201d \u201cun-,\u201d \u201cfree,\u201d \u201chost,\u201d \u201cshare,\u201d \u201cgiven,\u201d \u201cformulae,\u201d and similar explanatory contexts.",
+    "bin": "other",
+    "fire_rates": {
+     "positive": 0.5,
+     "near_miss": 0.3,
+     "distant": 0.0
+    },
+    "outcome": "win"
+   },
+   {
+    "key": "read:34:18191",
+    "set": "read",
+    "explanation": "This neuron responds to text about images, figures, and visual details being shown or described, especially phrases like \u201cdetail shot,\u201d \u201cview,\u201d \u201cphoto,\u201d or references to a specific pictured object.",
+    "bin": "other",
+    "fire_rates": {
+     "positive": 0.1,
+     "near_miss": 0.1,
+     "distant": 0.0
+    },
+    "outcome": "tie"
+   },
+   {
+    "key": "read:33:10976",
+    "set": "read",
+    "explanation": "This neuron responds to word-initial capitalization patterns, especially the beginnings of named entities or titles that follow a preceding context cue (including punctuation or numbering), such as the first word of proper names, album/book/movie titles, and disambiguated headings.",
+    "bin": "entity / copy",
+    "fire_rates": {
+     "positive": 0.3,
+     "near_miss": 0.3,
+     "distant": 0.0
+    },
+    "outcome": "tie"
+   },
+   {
+    "key": "read:32:8749",
+    "set": "read",
+    "explanation": "This neuron strongly responds to text about names and labels in structured or promotional contexts\u2014especially phrases involving proper names, titles, categories, or product/organization descriptors that complete a familiar collocation or list item.",
+    "bin": "answer format",
+    "fire_rates": {
+     "positive": 0.0,
+     "near_miss": 0.0,
+     "distant": 0.0
+    },
+    "outcome": "tie"
+   },
+   {
+    "key": "read:36:15763",
+    "set": "read",
+    "explanation": "This neuron responds to text about patterns of numbers, dates, and coded identifiers\u2014especially digits, phone numbers, years, page/article numbers, and hyphenated number-like formatting.",
+    "bin": "other",
+    "fire_rates": {
+     "positive": 0.5,
+     "near_miss": 0.3,
+     "distant": 0.2
+    },
+    "outcome": "win"
+   },
+   {
+    "key": "read:32:4854",
+    "set": "read",
+    "explanation": "This neuron responds to text about proper names and title-like phrases where the active token is a capitalized word completing a named entity or fixed name, especially in lists, citations, and sports/team or organization names.",
+    "bin": "entity / copy",
+    "fire_rates": {
+     "positive": 0.0,
+     "near_miss": 0.0,
+     "distant": 0.0
+    },
+    "outcome": "tie"
+   },
+   {
+    "key": "read:32:7263",
+    "set": "read",
+    "explanation": "This neuron responds to text about generic fill-in function words and punctuation in everyday prose, especially common stopwords and boilerplate grammatical continuations like articles, prepositions, pronouns, commas, parentheses, and short auxiliary phrases.",
+    "bin": "other",
+    "fire_rates": {
+     "positive": 0.3,
+     "near_miss": 0.3,
+     "distant": 0.1
+    },
+    "outcome": "tie"
+   },
+   {
+    "key": "read:34:4415",
+    "set": "read",
+    "explanation": "This neuron responds to tokens completing common continuations in text, especially predictable suffixes, inflected endings, and short grammatical/function-word continuations like \u201cto,\u201d \u201cof,\u201d \u201chas,\u201d \u201csale,\u201d \u201ctransaction,\u201d or language-specific endings such as \u201chistorie\u201d and \u201cczy,\u201d rather than to the semantic topic of the passage.",
+    "bin": "other",
+    "fire_rates": {
+     "positive": 0.5,
+     "near_miss": 0.3,
+     "distant": 0.0
+    },
+    "outcome": "win"
+   },
+   {
+    "key": "read:33:19203",
+    "set": "read",
+    "explanation": "This neuron responds to quotation-mark tokens, especially when opening or closing quoted speech/text.",
+    "bin": "other",
+    "fire_rates": {
+     "positive": 0.2,
+     "near_miss": 0.0,
+     "distant": 0.1
+    },
+    "outcome": "win"
+   },
+   {
+    "key": "read:34:18327",
+    "set": "read",
+    "explanation": "This neuron responds to year-like four-digit numbers and date expressions, especially when they appear in biographies, historical facts, or citation-style contexts.",
+    "bin": "other",
+    "fire_rates": {
+     "positive": 0.2,
+     "near_miss": 0.0,
+     "distant": 0.0
+    },
+    "outcome": "win"
+   },
+   {
+    "key": "read:32:16064",
+    "set": "read",
+    "explanation": "This neuron responds to the beginnings of proper names\u2014especially the first syllable of person and place names, often in biography or entity-description text\u2014so it fires on prefixes like \u201cCol-,\u201d \u201cTar-,\u201d \u201cBin-,\u201d \u201cDe-,\u201d \u201cPret-,\u201d and similar name starts.",
+    "bin": "entity / copy",
+    "fire_rates": {
+     "positive": 0.0,
+     "near_miss": 0.0,
+     "distant": 0.0
+    },
+    "outcome": "tie"
+   },
+   {
+    "key": "read:31:13317",
+    "set": "read",
+    "explanation": "This neuron responds to text mentioning proper-name compounds or brand/product names in titles and phrases where a common word is followed by a capitalized or distinctive proper noun, especially \u201cX of Y\u201d constructions, and it does not fire on superficially similar generic phrases without that named-entity pattern.",
+    "bin": "entity / copy",
+    "fire_rates": {
+     "positive": 0.0,
+     "near_miss": 0.0,
+     "distant": 0.1
+    },
+    "outcome": "tie"
+   },
+   {
+    "key": "read:34:10157",
+    "set": "read",
+    "explanation": "This neuron responds to text mentioning proper nouns and compound names that begin with short substrings it seems to complete into the full name or term, especially in news/wiki-style prose.",
+    "bin": "entity / copy",
+    "fire_rates": {
+     "positive": 0.0,
+     "near_miss": 0.0,
+     "distant": 0.0
+    },
+    "outcome": "tie"
+   },
+   {
+    "key": "read:31:5221",
+    "set": "read",
+    "explanation": "This neuron responds to word-initial capitalized proper nouns and abbreviations, especially at the start of names, organizations, publications, and acronyms, rather than to lowercase common words or punctuation alone.",
+    "bin": "entity / copy",
+    "fire_rates": {
+     "positive": 0.0,
+     "near_miss": 0.0,
+     "distant": 0.0
+    },
+    "outcome": "tie"
+   },
+   {
+    "key": "read:32:12988",
+    "set": "read",
+    "explanation": "This neuron responds to tokens that begin a proper name or word fragment completing a specific lexical item, especially in encyclopedia-style text and listings (e.g., the start of names like \u201cMeg-,\u201d \u201cLod-,\u201d \u201cDel-,\u201d \u201cAm-,\u201d \u201cEv-\u201d), rather than to the surrounding topic itself.",
+    "bin": "entity / copy",
+    "fire_rates": {
+     "positive": 0.0,
+     "near_miss": 0.0,
+     "distant": 0.0
+    },
+    "outcome": "tie"
+   },
+   {
+    "key": "read:32:18967",
+    "set": "read",
+    "explanation": "This neuron responds to tokens that complete or begin proper nouns and common words in geography/location and structured lists, especially place names and directional phrases like \u201cnorth,\u201d \u201csouth,\u201d and county/city names.",
+    "bin": "entity / copy",
+    "fire_rates": {
+     "positive": 0.0,
+     "near_miss": 0.0,
+     "distant": 0.0
+    },
+    "outcome": "tie"
+   },
+   {
+    "key": "read:34:19824",
+    "set": "read",
+    "explanation": "This neuron responds to tokens that complete common fixed phrases and collocations, especially short function-word or morpheme continuations in encyclopedia-style text (e.g., \u201cof,\u201d \u201cthe,\u201d \u201cand,\u201d \u201ca,\u201d \u201c\u2019s,\u201d \u201c-western,\u201d \u201cab-\u201d, \u201cAl-\u201d).",
+    "bin": "other",
+    "fire_rates": {
+     "positive": 1.0,
+     "near_miss": 1.0,
+     "distant": 1.0
+    },
+    "outcome": "tie"
+   },
+   {
+    "key": "read:32:4279",
+    "set": "read",
+    "explanation": "This neuron responds to the start of a new blog/article entry after a date or heading, especially in personal or newsy posts introducing the main content.",
+    "bin": "other",
+    "fire_rates": {
+     "positive": 0.6,
+     "near_miss": 0.7,
+     "distant": 0.0
+    },
+    "outcome": "lose"
+   },
+   {
+    "key": "read:35:8590",
+    "set": "read",
+    "explanation": "This neuron responds to tokens in month/date or title-like contexts where a specific word or abbreviation completes a familiar phrase or structured label, especially in names, headings, and timestamps.",
+    "bin": "other",
+    "fire_rates": {
+     "positive": 0.0,
+     "near_miss": 0.0,
+     "distant": 0.0
+    },
+    "outcome": "tie"
+   },
+   {
+    "key": "read:35:872",
+    "set": "read",
+    "explanation": "This neuron responds to the beginnings of proper nouns\u2014especially the first syllable or morpheme of place names, company names, and personal names\u2014where a capitalized token starts a multi-token named entity (e.g., \u201cDe-\u201d, \u201cBor-\u201d, \u201cScho-\u201d, \u201cKn-\u201d).",
+    "bin": "entity / copy",
+    "fire_rates": {
+     "positive": 0.0,
+     "near_miss": 0.0,
+     "distant": 0.0
+    },
+    "outcome": "tie"
+   },
+   {
+    "key": "read:34:923",
+    "set": "read",
+    "explanation": "This neuron responds to punctuation and formatting tokens that act as textual separators or grammatical glue\u2014especially commas, periods, apostrophes, parentheses, hyphens, underscores, spaces, and line breaks\u2014rather than to the surrounding words themselves.",
+    "bin": "other",
+    "fire_rates": {
+     "positive": 0.0,
+     "near_miss": 0.0,
+     "distant": 0.0
+    },
+    "outcome": "tie"
+   },
+   {
+    "key": "read:32:21221",
+    "set": "read",
+    "explanation": "This neuron responds to sentence-boundary or clause-level connective/function tokens that mark grammatical structure and numeric/date formatting\u2014especially common short words and symbols like \u201cat,\u201d \u201cof,\u201d \u201cwith,\u201d \u201cby,\u201d punctuation, and digits in contexts such as headlines, lists, and formal prose.",
+    "bin": "other",
+    "fire_rates": {
+     "positive": 0.3,
+     "near_miss": 0.0,
+     "distant": 0.0
+    },
+    "outcome": "win"
+   },
+   {
+    "key": "read:35:14199",
+    "set": "read",
+    "explanation": "This neuron responds to text containing tokenization-sensitive language patterns around punctuation, formatting, and inline symbols\u2014especially commas, parentheses, hyphens, slashes, numbers, and other markup-like characters embedded in otherwise ordinary text.",
+    "bin": "other",
+    "fire_rates": {
+     "positive": 0.0,
+     "near_miss": 0.0,
+     "distant": 0.0
+    },
+    "outcome": "tie"
+   },
+   {
+    "key": "random:3:7551",
+    "set": "random",
+    "explanation": "This neuron responds to mentions of academic and professional institutions or credentials in law and medicine, especially phrases like \u201claw school,\u201d \u201claw review,\u201d \u201cmedical school,\u201d \u201cmedical doctors,\u201d \u201cdoctor,\u201d or \u201cdegree.\u201d",
+    "bin": "other",
+    "fire_rates": {
+     "positive": 1.0,
+     "near_miss": 0.5,
+     "distant": 0.0
+    },
+    "outcome": "win"
+   },
+   {
+    "key": "random:20:3943",
+    "set": "random",
+    "explanation": "This neuron responds to patterns of certainty or inevitability in text\u2014especially words and phrases like \u201cif/when,\u201d \u201cwill,\u201d \u201cas/than,\u201d \u201cregardless,\u201d \u201csurely,\u201d and percentages/fractions in factual claims\u2014where the marked token often completes a statement of confidence, comparison, or expectation.",
+    "bin": "other",
+    "fire_rates": {
+     "positive": 0.3,
+     "near_miss": 0.0,
+     "distant": 0.0
+    },
+    "outcome": "win"
+   },
+   {
+    "key": "random:4:2587",
+    "set": "random",
+    "explanation": "This neuron responds to the verb/noun family around \u201ctend\u201d and \u201ctendency\u201d used in generic statements about a subject\u2019s usual behavior, inclination, or propensity (especially in phrases like \u201ctend to,\u201d \u201chave a tendency to,\u201d or \u201cshow a tendency to\u201d), rather than to the unrelated word \u201ctendrils\u201d or other similar-looking text.",
+    "bin": "other",
+    "fire_rates": {
+     "positive": 0.6,
+     "near_miss": 0.4,
+     "distant": 0.0
+    },
+    "outcome": "win"
+   },
+   {
+    "key": "random:21:8775",
+    "set": "random",
+    "explanation": "This neuron responds to text about proper nouns and named entities that complete common multiword phrases or titles, especially names of places, organizations, people, and media terms like \u201cdistribution,\u201d \u201clicence,\u201d \u201cprogramme,\u201d \u201cvideo,\u201d and partial name continuations.",
+    "bin": "entity / copy",
+    "fire_rates": {
+     "positive": 0.0,
+     "near_miss": 0.1,
+     "distant": 0.0
+    },
+    "outcome": "lose"
+   },
+   {
+    "key": "random:10:2115",
+    "set": "random",
+    "explanation": "This neuron responds to copyright/footer and legal boilerplate text in webpages, especially phrases like \u201cAll Rights Reserved,\u201d terms/permissions notices, site ownership lines, and similar web page closing metadata.",
+    "bin": "other",
+    "fire_rates": {
+     "positive": 0.9,
+     "near_miss": 0.2,
+     "distant": 0.0
+    },
+    "outcome": "win"
+   },
+   {
+    "key": "random:26:8639",
+    "set": "random",
+    "explanation": "This neuron responds to website navigation/link-label words and short UI function words in lists, menus, and boilerplate page text, especially terms like \u201cthe,\u201d \u201cby,\u201d \u201cout,\u201d \u201cthis,\u201d \u201chelp,\u201d \u201csummary,\u201d \u201cUpcoming,\u201d \u201cRSS,\u201d and \u201cFax\u201d that appear in clickable or form-like contexts.",
+    "bin": "other",
+    "fire_rates": {
+     "positive": 0.1,
+     "near_miss": 0.0,
+     "distant": 0.0
+    },
+    "outcome": "win"
+   },
+   {
+    "key": "random:18:6633",
+    "set": "random",
+    "explanation": "This neuron responds to formal title-and-honorific patterns in encyclopedic biographical and legal text\u2014especially abbreviations like \u201cJr.\u201d, \u201cEsq.\u201d, \u201cShri\u201d, and phrases like \u201cTitle 10 / Chapter / Section / College / of\u201d that introduce proper names, statutes, or institutions.",
+    "bin": "entity / copy",
+    "fire_rates": {
+     "positive": 0.8,
+     "near_miss": 0.4,
+     "distant": 0.0
+    },
+    "outcome": "win"
+   },
+   {
+    "key": "random:30:6538",
+    "set": "random",
+    "explanation": "This neuron responds to Irish/Scottish surname prefixes in personal names, especially the apostrophe/space after an initial O\u2019 or Mc/ Mac-style surname marker (e.g., O\u2019Neill, O\u2019Brien, McLeod), and fires at the prefix token itself.",
+    "bin": "entity / copy",
+    "fire_rates": {
+     "positive": 0.5,
+     "near_miss": 0.0,
+     "distant": 0.0
+    },
+    "outcome": "win"
+   },
+   {
+    "key": "random:4:20583",
+    "set": "random",
+    "explanation": "This neuron strongly responds to numeric patterns in text\u2014especially years, counts, measurements, addresses, percentages, sizes, and other digit-based quantities embedded in otherwise natural language.",
+    "bin": "other",
+    "fire_rates": {
+     "positive": 0.0,
+     "near_miss": 0.0,
+     "distant": 0.0
+    },
+    "outcome": "tie"
+   },
+   {
+    "key": "random:32:11938",
+    "set": "random",
+    "explanation": "This neuron responds to spans containing standalone years, centuries, eras, and date-like numeric expressions with ordinal or BC/AD/CE markers (e.g., \u201c4th century BC,\u201d \u201cAD 19,\u201d \u201c650 CE,\u201d \u201c20\u00b0 south\u201d), especially when discussing historical periods or ranges.",
+    "bin": "other",
+    "fire_rates": {
+     "positive": 0.3,
+     "near_miss": 0.0,
+     "distant": 0.0
+    },
+    "outcome": "win"
+   },
+   {
+    "key": "random:16:19666",
+    "set": "random",
+    "explanation": "This neuron responds to quantity/packaging and unit labels\u2014especially list or catalog text naming counts or sizes of physical things and media/container terms like boxes, rows, trays, sheets, volumes, CDs, discs, storage, and \u201cof\u201d following such count nouns.",
+    "bin": "other",
+    "fire_rates": {
+     "positive": 1.0,
+     "near_miss": 0.9,
+     "distant": 0.0
+    },
+    "outcome": "win"
+   },
+   {
+    "key": "random:26:19468",
+    "set": "random",
+    "explanation": "This neuron responds to dictionary-style or encyclopedia text that is explicitly defining, naming, or explaining a concept or term (often with \u201cis/means/also called/defined as\u201d), especially when the target word is a key technical, categorical, or proper-name term.",
+    "bin": "other",
+    "fire_rates": {
+     "positive": 0.0,
+     "near_miss": 0.2,
+     "distant": 0.1
+    },
+    "outcome": "lose"
+   },
+   {
+    "key": "random:22:9344",
+    "set": "random",
+    "explanation": "This neuron responds to the phrase \u201csuch\u201d when it introduces a following example or class of things\u2014especially in patterns like \u201csuch a/an [adj] [noun],\u201d \u201csuch [plural noun] as X, Y, and Z,\u201d or \u201csuch major cities as \u2026\u201d.",
+    "bin": "other",
+    "fire_rates": {
+     "positive": 0.7,
+     "near_miss": 0.2,
+     "distant": 0.0
+    },
+    "outcome": "win"
+   },
+   {
+    "key": "random:33:10826",
+    "set": "random",
+    "explanation": "This neuron responds to webpage text about filling in online contact/enquiry forms or submitting information through a form, especially phrases like \u201cfill in the form below,\u201d \u201ccontact form,\u201d \u201csend your information,\u201d and similar call-to-action instructions.",
+    "bin": "other",
+    "fire_rates": {
+     "positive": 0.9,
+     "near_miss": 0.8,
+     "distant": 0.0
+    },
+    "outcome": "win"
+   },
+   {
+    "key": "random:34:19194",
+    "set": "random",
+    "explanation": "This neuron responds to formal prose that marks or introduces a definitional, explanatory, or narrative transition at the point of a clause boundary\u2014especially after commas or periods in factual articles where the next word is often a function word or noun like \u201cwas,\u201d \u201cis,\u201d \u201cwhen,\u201d \u201cdecision,\u201d or \u201cname.\u201d",
+    "bin": "other",
+    "fire_rates": {
+     "positive": 0.4,
+     "near_miss": 0.5,
+     "distant": 0.0
+    },
+    "outcome": "lose"
+   },
+   {
+    "key": "random:13:16952",
+    "set": "random",
+    "explanation": "This neuron responds to sexual or erotic language about arousal and genital acts or anatomy\u2014especially words like \u201cerection,\u201d \u201cmasturbate,\u201d \u201cwet,\u201d \u201cdesire,\u201d and explicit porn/sex contexts\u2014rather than merely any figurative use of the same fragments.",
+    "bin": "other",
+    "fire_rates": {
+     "positive": 0.9,
+     "near_miss": 0.5,
+     "distant": 0.0
+    },
+    "outcome": "win"
+   },
+   {
+    "key": "random:31:10925",
+    "set": "random",
+    "explanation": "This neuron responds to tokens that introduce or complete simple grammatical and statistical relationship phrases\u2014especially connectors, prepositions, and function-word continuations such as \u201chad,\u201d \u201cmay,\u201d \u201cI,\u201d \u201cwith,\u201d \u201cand,\u201d \u201conly,\u201d \u201croutinely,\u201d and punctuation in context where the model is continuing a structured fact or comparison.",
+    "bin": "other",
+    "fire_rates": {
+     "positive": 0.1,
+     "near_miss": 0.0,
+     "distant": 0.0
+    },
+    "outcome": "win"
+   },
+   {
+    "key": "random:18:21121",
+    "set": "random",
+    "explanation": "This neuron responds to words naming broad human/animal/cultural categories and especially plural nouns after phrases like \u201cin the world of X\u201d or \u201cX of Y,\u201d with strong activation on the head noun itself (e.g., flowers, restaurants, pigs, football, universities, food, bowls, orchids, architecture, cinema, music, sports, developers, photographs, tomato, Americans, companies).",
+    "bin": "other",
+    "fire_rates": {
+     "positive": 0.1,
+     "near_miss": 0.1,
+     "distant": 0.0
+    },
+    "outcome": "tie"
+   },
+   {
+    "key": "random:14:18202",
+    "set": "random",
+    "explanation": "This neuron responds to phrases expressing an attempt or effort to do something, especially the \u201ctry to/and/\u2026\u201d, \u201cattempt to\u201d, \u201cdo everything we can to\u201d, and similar purposive action constructions.",
+    "bin": "other",
+    "fire_rates": {
+     "positive": 0.7,
+     "near_miss": 0.0,
+     "distant": 0.0
+    },
+    "outcome": "win"
+   },
+   {
+    "key": "random:31:17953",
+    "set": "random",
+    "explanation": "This neuron responds to occurrences of the word \u201cdata\u201d in contexts about information systems, storage, databases, and tech/legal/marketing copy, often when \u201cdata\u201d is part of a fixed collocation like \u201cdata center,\u201d \u201cdata processing,\u201d or \u201cdata repository,\u201d rather than when it is used in an unrelated sense or just as a generic standalone word.",
+    "bin": "other",
+    "fire_rates": {
+     "positive": 1.0,
+     "near_miss": 1.0,
+     "distant": 0.0
+    },
+    "outcome": "tie"
+   },
+   {
+    "key": "random:36:18020",
+    "set": "random",
+    "explanation": "This neuron responds to lists of geographic regions, countries, or territories joined by coordinators like \u201cand,\u201d \u201cor,\u201d \u201cplus,\u201d or commas, especially in encyclopedic definitions and scope descriptions.",
+    "bin": "other",
+    "fire_rates": {
+     "positive": 0.6,
+     "near_miss": 0.6,
+     "distant": 0.0
+    },
+    "outcome": "tie"
+   },
+   {
+    "key": "random:33:18739",
+    "set": "random",
+    "explanation": "This neuron responds to phrases describing something being done entirely or collaboratively by a person or group, especially in appositive/product-description contexts with verbs like \u201cmade,\u201d \u201cdesigned,\u201d \u201cengineers,\u201d \u201cdrawn,\u201d \u201cprinted,\u201d or \u201cworked,\u201d often triggering on completions such as \u201cand,\u201d \u201call,\u201d \u201centirely,\u201d \u201ccompletely,\u201d or \u201cby.\u201d",
+    "bin": "other",
+    "fire_rates": {
+     "positive": 1.0,
+     "near_miss": 0.5,
+     "distant": 0.0
+    },
+    "outcome": "win"
+   },
+   {
+    "key": "random:6:1982",
+    "set": "random",
+    "explanation": "This neuron responds to phrases expressing that something is determined, classified, ranked, or differs only in a conditional way \u201cby/based according to\u201d some factor, criterion, source, size, region, or device.",
+    "bin": "other",
+    "fire_rates": {
+     "positive": 0.8,
+     "near_miss": 0.0,
+     "distant": 0.0
+    },
+    "outcome": "win"
+   },
+   {
+    "key": "random:5:13225",
+    "set": "random",
+    "explanation": "This neuron responds to the phrase \u201cneedless to say\u201d and similar discourse markers that introduce an obvious, predictable, or parenthetical continuation, especially the token \u201cto\u201d in that fixed expression.",
+    "bin": "other",
+    "fire_rates": {
+     "positive": 1.0,
+     "near_miss": 0.3,
+     "distant": 0.0
+    },
+    "outcome": "win"
+   },
+   {
+    "key": "random:15:18326",
+    "set": "random",
+    "explanation": "This neuron responds to text about spending, budgets, costs, and allocation of money or resources, especially verbs and nouns like \u201cspend,\u201d \u201cspending,\u201d \u201cdevote,\u201d \u201callocate,\u201d and related phrases about how much is used or assigned.",
+    "bin": "other",
+    "fire_rates": {
+     "positive": 0.9,
+     "near_miss": 0.9,
+     "distant": 0.0
+    },
+    "outcome": "tie"
+   },
+   {
+    "key": "random:7:7289",
+    "set": "random",
+    "explanation": "This neuron strongly responds to the English contraction \u201cdoesn\u2019t/won\u2019t/can\u2019t\u201d in contexts where it expresses inability, failure, denial, or absence\u2014often introducing a negated assessment or explanation.",
+    "bin": "other",
+    "fire_rates": {
+     "positive": 0.0,
+     "near_miss": 0.0,
+     "distant": 0.0
+    },
+    "outcome": "tie"
+   },
+   {
+    "key": "random:23:10988",
+    "set": "random",
+    "explanation": "This neuron responds to geographic or regional modifiers in noun phrases\u2014especially short place-name words and prepositions or punctuation introducing locations or groups, such as \u201cacross the world,\u201d \u201cin Oakland,\u201d \u201caround the County,\u201d \u201cin Vermont,\u201d \u201cin Bengal,\u201d \u201cin your country,\u201d or \u201cMassachusetts Bay.\u201d",
+    "bin": "question relation",
+    "fire_rates": {
+     "positive": 0.1,
+     "near_miss": 0.0,
+     "distant": 0.0
+    },
+    "outcome": "win"
+   },
+   {
+    "key": "random:8:10159",
+    "set": "random",
+    "explanation": "This neuron responds to adjectival and adverbial morphology formed by the suffixes \u201c-ly\u201d and especially \u201c-ally/-ically/-ically/-ically\u201d in descriptive, often encyclopedic or explanatory contexts, such as words like \u201clegally,\u201d \u201cbiologically,\u201d \u201cspiritually,\u201d \u201clogically,\u201d and \u201csexually.\u201d",
+    "bin": "other",
+    "fire_rates": {
+     "positive": 0.3,
+     "near_miss": 0.0,
+     "distant": 0.0
+    },
+    "outcome": "win"
+   },
+   {
+    "key": "random:27:2214",
+    "set": "random",
+    "explanation": "This neuron responds to words that express changing something by reducing or removing it\u2014especially actions like cutting back, phasing out, pulling out, taking back, or otherwise lessening/ending something.",
+    "bin": "other",
+    "fire_rates": {
+     "positive": 0.4,
+     "near_miss": 0.4,
+     "distant": 0.0
+    },
+    "outcome": "tie"
+   },
+   {
+    "key": "random:33:3478",
+    "set": "random",
+    "explanation": "This neuron fires on words that signal continuation, succession, or direct derivation/comparison in explanatory prose, especially near phrases like \u201cthe continuation of,\u201d \u201cthe successor to,\u201d \u201cderived from,\u201d \u201caligned with,\u201d or \u201cmeant/means,\u201d rather than on merely related but non-sequential content.",
+    "bin": "other",
+    "fire_rates": {
+     "positive": 0.2,
+     "near_miss": 0.2,
+     "distant": 0.0
+    },
+    "outcome": "tie"
+   },
+   {
+    "key": "random:14:9728",
+    "set": "random",
+    "explanation": "This neuron responds to proper nouns and foreign or institutional names that are being introduced in appositive biographical or descriptive contexts, especially around punctuation like parentheses, commas, semicolons, and periods.",
+    "bin": "entity / copy",
+    "fire_rates": {
+     "positive": 0.0,
+     "near_miss": 0.0,
+     "distant": 0.0
+    },
+    "outcome": "tie"
+   },
+   {
+    "key": "random:32:3961",
+    "set": "random",
+    "explanation": "This neuron responds to text about formal rules, policies, or instructions using a possessive noun phrase after \u201cthe/your/their\u201d that often introduces an entity, account, benefit, card, license, school, or program in a legal/administrative context.",
+    "bin": "other",
+    "fire_rates": {
+     "positive": 0.2,
+     "near_miss": 0.0,
+     "distant": 0.0
+    },
+    "outcome": "win"
+   }
+  ]
+ },
+ "verdict": "DISTRIBUTED-SOURCE / QK-DIRECT / NOT-LEGIBLE-AT-THE-BAR"
 }
