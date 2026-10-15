@@ -5787,3 +5787,7 @@ not of the lever. Descriptive: NEURON_64_L30 vs NEURON_64 (if the L30
 version repairs, the 43rd's null is about delivery through layers, and
 is reported as such), HEAD_8 specificity. 2 jobs (A/B), ≈ $1.5.
 Tooling: NX_ARMS selects the arm list in the source stage.
+[NX-h launched after registration commit e49d031, 2026-10-15 19:44 UTC
+(context ctx-b0a9c05c, no cache mount): A job-e9kp6 / B job-twfbh.
+Fake-model dry run of the rider arms passed (delivery, non-gold HEAD_8,
+reader).]
