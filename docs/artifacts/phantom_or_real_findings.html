@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Phantom or Real?</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Mono:wght@400;500&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&display=swap">
+<style>
+/* Layout: one reading column; each part opens with a margin label (part number and month) that sits beside the text on wide screens. Two semantic hues: brass for the gauge (the readout), teal for the lever (the control). */
+:root {
+  color-scheme: light;
+  --paper: #f2f4f3;
+  --panel: #e6ebe8;
+  --ink: #18211e;
+  --muted: #56645e;
+  --rule: #cfd8d3;
+  --lever: #0d7466;
+  --gauge: #8c6614;
+  --neg: #a83c38;
+  --display: "Bricolage Grotesque", "Avenir Next", "Segoe UI", sans-serif;
+  --body: "Literata", "Iowan Old Style", Georgia, serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --paper: #111715;
+    --panel: #1a2320;
+    --ink: #e2eae6;
+    --muted: #97a59f;
+    --rule: #2b3632;
+    --lever: #4cc4b1;
+    --gauge: #d6ad52;
+    --neg: #e57f77;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --paper: #111715;
+  --panel: #1a2320;
+  --ink: #e2eae6;
+  --muted: #97a59f;
+  --rule: #2b3632;
+  --lever: #4cc4b1;
+  --gauge: #d6ad52;
+  --neg: #e57f77;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 17px;
+  line-height: 1.62;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+main {
+  max-width: 980px;
+  margin: 0 auto;
+  padding-block: 48px 72px;
+  display: flex;
+  flex-direction: column;
+  gap: 56px;
+}
+.col { max-width: 680px; }
+h1, h2, h3 { font-family: var(--display); line-height: 1.15; text-wrap: balance; margin: 0; }
+h1 { font-size: clamp(2.4rem, 6vw, 3.6rem); font-weight: 700; letter-spacing: -0.01em; }
+h2 { font-size: 1.75rem; font-weight: 700; }
+h3 { font-size: 1.15rem; font-weight: 500; }
+p { margin: 0; }
+a { color: var(--lever); }
+a:focus-visible { outline: 2px solid var(--lever); outline-offset: 2px; }
+.eyebrow {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.stack { display: flex; flex-direction: column; gap: 16px; }
+.stack-lg { display: flex; flex-direction: column; gap: 28px; }
+.lede { font-size: 1.15rem; color: var(--muted); }
+.g { color: var(--gauge); font-weight: 600; }
+.l { color: var(--lever); font-weight: 600; }
+.num { font-family: var(--mono); font-size: 0.92em; font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+/* header */
+header { display: flex; flex-direction: column; gap: 18px; }
+.answer {
+  border-left: 3px solid var(--lever);
+  padding: 4px 0 4px 20px;
+  display: flex; flex-direction: column; gap: 12px;
+  font-size: 1.08rem;
+}
+
+/* glossary */
+.terms {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 0;
+  border-top: 1px solid var(--rule);
+}
+.terms div { padding: 14px 18px 14px 0; border-bottom: 1px solid var(--rule); display: flex; flex-direction: column; gap: 4px; }
+.terms dt { font-family: var(--display); font-weight: 500; }
+.terms dd { margin: 0; font-size: 0.95rem; color: var(--muted); }
+
+/* parts */
+.part { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 32px; }
+.part > .rail { display: flex; flex-direction: column; gap: 4px; padding-top: 6px; border-top: 2px solid var(--ink); }
+.rail .pn { font-family: var(--display); font-size: 2rem; font-weight: 700; line-height: 1; }
+.rail .when { font-family: var(--mono); font-size: 0.78rem; color: var(--muted); }
+@media (max-width: 760px) {
+  .part { grid-template-columns: 1fr; gap: 16px; }
+  .part > .rail { flex-direction: row; align-items: baseline; gap: 12px; }
+}
+.finding { display: flex; flex-direction: column; gap: 8px; }
+.finding h3 { display: flex; gap: 12px; align-items: baseline; flex-wrap: wrap; }
+.finding h3 .num { font-size: 0.85rem; color: var(--lever); font-weight: 500; }
+.finding h3 .num.neg { color: var(--neg); }
+.finding h3 .num.gz { color: var(--gauge); }
+
+/* example card */
+.example {
+  background: var(--panel);
+  border-radius: 6px;
+  padding: 18px 20px;
+  font-family: var(--mono);
+  font-size: 0.86rem;
+  line-height: 1.6;
+  display: flex; flex-direction: column; gap: 10px;
+  overflow-x: auto;
+}
+.example .k { color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.72rem; }
+.example mark { background: transparent; color: var(--lever); font-weight: 500; border-bottom: 2px solid var(--lever); }
+
+/* charts */
+figure { margin: 0; display: flex; flex-direction: column; gap: 10px; }
+.chart { overflow-x: auto; }
+.chart svg { display: block; width: 100%; min-width: 560px; height: auto; }
+figcaption { font-size: 0.9rem; color: var(--muted); max-width: 680px; }
+svg text { font-family: var(--mono); font-size: 12px; fill: var(--ink); }
+svg .lab { font-family: var(--body); font-size: 13px; }
+svg .grp { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.08em; fill: var(--muted); }
+svg .tick { fill: var(--muted); font-size: 11px; }
+svg .grid { stroke: var(--rule); stroke-width: 1; }
+svg .zero { stroke: var(--ink); stroke-width: 1.2; }
+svg .b-lever { fill: var(--lever); }
+svg .b-gauge { fill: var(--gauge); }
+svg .b-neg { fill: var(--neg); }
+svg .b-null { fill: var(--muted); }
+svg .ci { stroke: var(--ink); stroke-width: 1.4; fill: none; }
+
+/* table */
+.tablewrap { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; min-width: 520px; font-size: 0.95rem; }
+th, td { text-align: left; padding: 10px 12px 10px 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
+th { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); font-weight: 400; }
+td.v { font-family: var(--mono); font-variant-numeric: tabular-nums; white-space: nowrap; text-align: right; padding-right: 0; }
+th.v { text-align: right; padding-right: 0; }
+tr.best td { font-weight: 600; }
+
+/* explainers */
+.explain { background: var(--panel); border-radius: 6px; padding: 20px 22px; display: flex; flex-direction: column; gap: 12px; }
+ol.steps { margin: 0; padding-left: 1.3em; display: flex; flex-direction: column; gap: 10px; }
+.hint { font-size: 0.85rem; color: var(--muted); margin-top: -18px; }
+.sum { border-top: 1px solid var(--rule); padding-top: 14px; }
+
+/* takeaways */
+.takeaways { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; }
+.takeaways div { display: flex; flex-direction: column; gap: 8px; padding-top: 12px; border-top: 3px solid var(--rule); }
+.takeaways div.tg { border-top-color: var(--gauge); }
+.takeaways div.tl { border-top-color: var(--lever); }
+.takeaways div.tn { border-top-color: var(--neg); }
+
+ul.plain { margin: 0; padding-left: 1.1em; display: flex; flex-direction: column; gap: 8px; }
+
+.tally { display: flex; flex-wrap: wrap; gap: 28px 40px; }
+.tally div { display: flex; flex-direction: column; gap: 2px; }
+.tally .big { font-family: var(--display); font-size: 2rem; font-weight: 700; line-height: 1; font-variant-numeric: tabular-nums; }
+.tally .cap { font-size: 0.85rem; color: var(--muted); }
+
+footer { font-size: 0.85rem; color: var(--muted); border-top: 1px solid var(--rule); padding-top: 16px; }
+@media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; } }
+</style>
+</head>
+<body>
+<main>
+
+<header class="col">
+  <p class="eyebrow">Research summary · as of October 30, 2026</p>
+  <h1>Phantom or Real?</h1>
+  <p class="lede">A language model's insides predict whether it is about to answer correctly. We spent the year asking whether that signal does anything, and what actually decides the answer.</p>
+  <div class="answer">
+    <p><strong>The short answer.</strong> The signal is a <span class="g">gauge</span>: an accurate readout that the model doesn't use. Deleting it entirely changes nothing.</p>
+    <p>The answer is decided by a different internal variable, the <span class="l">lever</span>: which concept or candidate the model has settled on. We can write to that variable directly. One fixed vector added at the right words repairs a third to two-thirds of the mistakes that are fixable at all, on logic puzzles and on real reading questions, in two different models.</p>
+    <p>What we could not do is use this blind. Without being told which answers are wrong and where to write, the gains shrink to a few points, and a one-sentence instruction in the prompt does as well.</p>
+  </div>
+</header>
+
+<section class="stack col" aria-labelledby="terms-h">
+  <h2 id="terms-h">Six terms used below</h2>
+  <dl class="terms">
+    <div><dt>Hidden state</dt><dd>The list of 5,376 numbers the model holds for each word at each of its 62 layers. This is where we read and write.</dd></div>
+    <div><dt>Probe</dt><dd>A weighted sum of the hidden state, fit to predict something, here whether the answer will be correct.</dd></div>
+    <div><dt>Gauge</dt><dd>Our name for the "am I about to be right?" signal a probe can read.</dd></div>
+    <div><dt>Lever, or nudge</dt><dd>A vector we add to the hidden state at specific words to change what the model answers.</dd></div>
+    <div><dt>Fixable failure</dt><dd>A question the model gets wrong every time, but gets right once a hint points at the right concept or candidate.</dd></div>
+    <div><dt>Registered prediction</dt><dd>A pass/fail rule committed to the repository before the data came in, so results can't be reinterpreted afterwards.</dd></div>
+  </dl>
+</section>
+
+<!-- PART 1 -->
+<section class="part" aria-labelledby="p1-h">
+  <div class="rail"><span class="pn">1</span><span class="when">June – August</span></div>
+  <div class="stack-lg col">
+    <div class="stack">
+      <h2 id="p1-h">Logic puzzles: the gauge and the lever</h2>
+      <p>We started with InAbHyD, a benchmark of small invented-creature puzzles where the model must propose the rule that explains some observations. The main model is Gemma 3 27B.</p>
+    </div>
+    <div class="example" role="figure" aria-label="Example puzzle">
+      <span class="k">Given</span>
+      <span>Every <mark>zumpus</mark> is a wumpus. Every wumpus is a yumpus. Stella is a <mark>zumpus</mark>.</span>
+      <span class="k">Observed</span>
+      <span>Stella is bright. Stella is not dull.</span>
+      <span class="k">Correct answer</span>
+      <span>Every <mark>zumpus</mark> is bright.</span>
+      <span class="k">Typical mistake</span>
+      <span>Every yumpus is bright. (The right idea at the wrong level.)</span>
+    </div>
+
+    <div class="finding">
+      <h3>The gauge exists <span class="num gz">AUC 0.90</span></h3>
+      <p>Before the model writes a word, a probe on its hidden state predicts whether the answer will be correct. Given one puzzle it will solve and one it will fail, the probe ranks them correctly 90 times in 100 (94 in Qwen3.5-27B). This is readable at many layers, and survives renaming every creature.</p>
+    </div>
+
+    <div class="finding">
+      <h3>Deleting the gauge costs nothing <span class="num">+0.05 vs −0.38</span></h3>
+      <p>Months of attempts to push the gauge toward "correct" never fixed anything. So we ran the decisive test the other way: erase every direction the probes can read, at all five readable layers and every word. Accuracy didn't move. Erasing a random block of the same size wrecked the model. The gauge reports on the computation without taking part in it.</p>
+    </div>
+    <figure>
+      <div class="chart"><svg viewBox="0 0 620 104" role="img" aria-label="bar chart"><line class="grid" x1="281.2" x2="281.2" y1="22" y2="98"/><text class="tick" x="281.2" y="14" text-anchor="middle">−0.40</text><line class="grid" x1="363.8" x2="363.8" y1="22" y2="98"/><text class="tick" x="363.8" y="14" text-anchor="middle">−0.20</text><line class="zero" x1="446.2" x2="446.2" y1="22" y2="98"/><text class="tick" x="446.2" y="14" text-anchor="middle">0</text><line class="grid" x1="528.8" x2="528.8" y1="22" y2="98"/><text class="tick" x="528.8" y="14" text-anchor="middle">+0.20</text><text class="lab" x="0" y="47">Erase the whole readable gauge</text><rect class="b-gauge" x="446.2" y="37" width="20.6" height="14" rx="1.5"/><path class="ci" d="M417.4 44H528.8M417.4 39V49M528.8 39V49"/><text x="534.8" y="48">+0.05</text><text class="lab" x="0" y="77">Erase a random block, same size</text><rect class="b-neg" x="289.5" y="67" width="156.8" height="14" rx="1.5"/><text x="452.2" y="78">−0.38</text></svg></div>
+      <figcaption>Change in the probability of a correct answer after erasure, Gemma 3 27B. Whisker is the 95% interval. A similar paper (arXiv 2605.05715) found that erasure hurt; ours, deleting the whole readable signal, found no cost.</figcaption>
+    </figure>
+
+    <div class="finding">
+      <h3>The lever: which concept the model locks onto <span class="num">+0.25</span></h3>
+      <p>The model usually has every ingredient right and picks the wrong creature level early, while still reading. A one-line hint naming the right concept takes it from near zero to near perfect. Copying the hinted run's hidden state into the unhinted run repairs it, but only at the words where that concept is mentioned. That repair compresses to 8 directions out of 5,376 and fixes a quarter of samples on puzzles it was never tuned on. Random 8-direction blocks of the same size do nothing (−0.04).</p>
+    </div>
+
+    <div class="finding">
+      <h3>It works without the answer key <span class="num">+0.40</span></h3>
+      <p>Take the average hidden-state difference between runs the model got right and runs it got wrong, squeeze it into those 8 directions, and add it to failing runs. Accuracy on the hardest puzzles rises from 0.12 to 0.52. Majority voting over 8 samples scores 0.000 on the same puzzles. Scramble the right/wrong labels and the effect vanishes (−0.04); flip the vector and it hurts (−0.12).</p>
+    </div>
+
+    <div class="finding">
+      <h3>A second model has the same structure</h3>
+      <p>Qwen3.5-27B, from a different lab, fails the same way and is repaired the same way. Its lever sits deeper (two-thirds of the way up the network against halfway in Gemma) and is wider (about 16 directions against 8).</p>
+    </div>
+    <p>This phase closed on August 19 with 34 registered verdicts. It is written up as the draft paper <em>Gauge, Not Lever</em>.</p>
+  </div>
+</section>
+
+<!-- PART 2 -->
+<section class="part" aria-labelledby="p2-h">
+  <div class="rail"><span class="pn">2</span><span class="when">September</span></div>
+  <div class="stack-lg col">
+    <div class="stack">
+      <h2 id="p2-h">Real reading questions</h2>
+      <p>Part 1 used invented words, so the model could only reason from the puzzle. The natural next question: does the lever exist on real text, where the model also remembers facts from training? We moved to <strong>WikiHop</strong>, a dataset where the model reads a few Wikipedia passages and picks the answer from a list of candidates.</p>
+    </div>
+
+    <div class="example" role="figure" aria-label="Illustrative WikiHop-style question">
+      <span class="k">Passages (shortened)</span>
+      <span>Boléro is a one-movement orchestral piece by the French composer Maurice Ravel. …<br>Maurice Ravel was born in the Basque town of <mark>Ciboure</mark>, France. His family moved to Paris three months later. …</span>
+      <span class="k">Question</span>
+      <span>Where was the composer of Boléro born?</span>
+      <span class="k">Candidates</span>
+      <span><mark>Ciboure</mark> · Paris · France · Biarritz</span>
+      <span class="k">Typical mistake</span>
+      <span>Paris. The right town is in the passage; the model reads past it.</span>
+    </div>
+    <p class="hint">An illustrative example in WikiHop's format, written for this page. The real questions follow the same pattern.</p>
+
+    <div class="finding">
+      <h3>First, sort the mistakes <span class="num">27% are fixable</span></h3>
+      <p>We took questions the model gets wrong all eight times we ask, even though the answer is in the passages. Then we added one line to the prompt: "Hint: pay attention to Ciboure." About a quarter of the mistakes flip to the right answer. Those are <em>lapses</em>: the model had the answer in front of it and looked in the wrong place, often at a close neighbour (Paris instead of Ciboure, "mammal" instead of a specific mammal group).</p>
+      <p>The other three quarters don't move even with the hint. The model firmly believes another answer, usually from memory, or the dataset's label is debatable. Nothing we build from the inside can do better than the hint, so every repair number below is measured on the fixable quarter.</p>
+    </div>
+
+    <div class="finding">
+      <h3>The nudge: a hint written into the model <span class="num">+0.33</span></h3>
+      <p>Instead of typing the hint, we add a vector to the model's hidden state at layer 30, at each place the candidate's name appears in the passages. In the example, that means at every "Ciboure."</p>
+      <p>The vector is built once and reused for every question. It is the average change that typed hints make to the hidden state, measured on <em>other</em> questions. It roughly means "this one matters." It says nothing about Ciboure in particular. Which candidate it promotes depends only on <em>where</em> we add it.</p>
+      <p>On fixable questions, where the model was 0 for 8, adding the nudge at the right candidate gets it right in about a third of tries. Adding the same nudge at a wrong candidate almost never makes the model choose that wrong candidate. The result repeated on a second, separate set of questions.</p>
+    </div>
+
+    <div class="finding">
+      <h3>It works best when memory is taken away <span class="num">+0.65</span></h3>
+      <p>We then renamed every person and place in the passages with made-up names, so the model can't answer from memory. Without the passages, the model could answer 45% of the questions from memory before renaming, and only 12% after. The same nudge now fixes about two-thirds of the fixable mistakes. This matches part 1: the lever works on what the model reads, and memory is what competes with it.</p>
+    </div>
+
+    <div class="explain">
+      <h3>The loop: using the nudge without knowing the answer</h3>
+      <p>Everything so far assumed we knew the right candidate. To use the nudge for real, the model has to choose without help:</p>
+      <ol class="steps">
+        <li><strong>Branch.</strong> Run the model once per candidate, each time adding the nudge at that candidate's mentions. Questions have about a dozen candidates, so that is about a dozen answers.</li>
+        <li><strong>Check.</strong> In each branch, see whether the model <em>accepted</em> the nudge, meaning it answered with the candidate it was pushed toward.</li>
+        <li><strong>Choose.</strong> Keep the branch the model accepts. Nudged toward Ciboure, it agrees ("oh, it was born there"). Nudged toward Biarritz, it usually still refuses, because the passage doesn't support it.</li>
+      </ol>
+    </div>
+
+    <div class="finding">
+      <h3>The loop picks right more than half as often as a perfect judge <span class="num">0.36</span></h3>
+      <p>We compared three ways of choosing a branch. A <em>perfect judge</em> that knows the answer picks right on 69% of fixable questions; that is the ceiling, since on the rest no branch is right. Choosing by "did the model accept the nudge?" picks right 36% of the time. Choosing by the gauge probe from part 1 picks right 22% of the time. The model on its own gets about 1%. So the model can partly recognise which of its nudged answers is correct, and watching its behaviour works better than reading its insides.</p>
+    </div>
+
+    <div class="explain">
+      <h3>What attention is</h3>
+      <p>At every layer, each word position decides how much to <em>look at</em> each earlier word and copies information from the ones it looks at. That weighting is called attention. Small units called <em>attention heads</em> each do their own looking. The position where the model produces its answer has to look back at the passages to find it.</p>
+    </div>
+
+    <div class="finding">
+      <h3>The nudge works by redirecting attention <span class="num">×8</span></h3>
+      <p>Right after the nudge, the answer-producing position looks up to eight times harder at the nudged candidate. The more it looks, the more likely the model is to answer with it. A random vector of the same size, or our vector flipped around, changes neither the attention nor the answer. So the specific direction carries the "look here" message. The nudge also only works when added in a middle band of the network, about a quarter of its depth.</p>
+    </div>
+
+    <div class="finding">
+      <h3>It carries over to another model and other datasets <span class="num">+0.37 Qwen · +0.49 HotpotQA</span></h3>
+      <p>On Qwen3.5-27B, a nudge built the same way repairs as strongly as on Gemma. On two other question datasets, HotpotQA and SQuAD, the same quarter of mistakes is fixable, and the nudge built from WikiHop works better there than nudges built from their own questions. One thing did not carry over: on Qwen, "did the model accept the nudge?" picks branches at chance, because Qwen goes along with wrong nudges too. A probe has to choose for it.</p>
+    </div>
+
+    <div class="explain">
+      <h3>Why "blind" is the hard test</h3>
+      <p>All the numbers above come from questions we already knew the model got wrong. In real use you don't know that. The loop then runs on every question, including the ones the model already had right, and any of those it changes is a new mistake. It is like a drug tested only on sick patients: the real question is what it does to everyone.</p>
+    </div>
+
+    <div class="finding">
+      <h3>Blind, the gains shrink to a few points <span class="num neg">≈ 0 on real WikiHop</span></h3>
+      <p>Run on everything, the loop still fixes some wrong answers, but it also breaks about one in ten answers the model already had right. On real WikiHop the two cancel out. A cautious version that only overrides the model when one branch clearly wins breaks almost nothing, but also gains almost nothing.</p>
+      <p>We then built tests where the passage deliberately contradicts the model's memory: the answer in a Wikipedia paragraph is swapped for a different name, and the correct answer is whatever the passage says. Here the model's typical mistake is answering from memory. A simple check, "is the model's answer actually in the passage?", spots those mistakes. Running the loop only when the check fails gained 3 to 5 points across the whole test while breaking almost no correct answers. That was the first blind gain on real text, and it repeated on two fresh tests.</p>
+      <p>But a plain sentence in the prompt, "use the documents, not your memory," gained 5 to 8 points on its own, and an existing technique from the literature, which compares the model's output with and without the passage, gained 10 to 11.</p>
+    </div>
+    <figure>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th>Method, run on every question</th><th>Test</th><th class="v">Accuracy gain</th></tr></thead>
+          <tbody>
+            <tr><td>Loop, only overriding when one branch clearly wins</td><td>WikiHop, real text</td><td class="v">0.00</td></tr>
+            <tr><td>Same loop</td><td>WikiHop, names replaced</td><td class="v">+0.02</td></tr>
+            <tr><td>Loop only when the answer isn't in the passage</td><td>Passage contradicts memory</td><td class="v">+0.03 to +0.05</td></tr>
+            <tr><td>One sentence: follow the documents</td><td>Passage contradicts memory</td><td class="v">+0.05 to +0.08</td></tr>
+            <tr class="best"><td>Context-aware decoding (published baseline)</td><td>Passage contradicts memory</td><td class="v">+0.10 to +0.11</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <figcaption>Gains in accuracy over a whole test when nothing tells the method which questions are wrong. Our method helps, but simpler existing tools help as much or more.</figcaption>
+    </figure>
+
+    <div class="finding">
+      <h3>Better mistake detectors didn't pan out <span class="num neg">0.87, then chance</span></h3>
+      <p>Since knowing which answers are wrong is the bottleneck, we tried two detectors from recent papers. A probe on the model's internals at the answer's own words looked perfect on the swapped-passage tests. On normal WikiHop it dropped to 0.87, and a version trained on swapped passages scored at chance. It had learned to spot the out-of-place swapped name, which doesn't exist in real text. Asking the model "is your answer true?" was at chance everywhere.</p>
+    </div>
+
+    <p class="sum"><strong>Part 2 in one line:</strong> the lever exists on real text and in a second model, and it works by steering attention. It is a precise repair tool when you know the answer is wrong, and a weak one when you don't.</p>
+  </div>
+</section>
+
+<!-- PART 3 -->
+<section class="part" aria-labelledby="p3-h">
+  <div class="rail"><span class="pn">3</span><span class="when">Early September</span></div>
+  <div class="stack-lg col">
+    <div class="stack">
+      <h2 id="p3-h">Long documents full of tables</h2>
+      <p>Since the nudge helps the model look at the right place, long documents seemed like its best chance. We gave the model nine tables, about 5,000 words of markdown, and asked a question answered by one cell in one row.</p>
+    </div>
+
+    <div class="example" role="figure" aria-label="Illustrative table question">
+      <span class="k">One of nine tables</span>
+      <span>| Year | City     | Visitors |<br>| 2019 | Lyon     | 6.1 M    |<br><mark>| 2020 | Lyon     | 3.4 M    |</mark><br>| 2021 | Lyon     | 4.0 M    |</span>
+      <span class="k">Question</span>
+      <span>How many visitors did Lyon have in 2020?</span>
+      <span class="k">Typical mistake</span>
+      <span>6.1 M or 4.0 M: a number from the row next door.</span>
+    </div>
+    <p class="hint">Illustrative example written for this page.</p>
+
+    <p>The model can't answer these from memory, and 40% of its mistakes are fixable with a typed hint ("the answer is in the 2020 row"), the most of any test. A hint fixes nine in ten of those.</p>
+
+    <div class="finding">
+      <h3>The nudge breaks tables <span class="num neg">−0.42</span></h3>
+      <p>On WikiHop the nudge goes on a name like "Ciboure." In a table, the thing to point at is a whole row of numbers and separators. Adding the vector across all those tokens scrambles the row, so the model stops trusting it and answers from elsewhere. Aimed at the right row, the nudge made results 42 points <em>worse</em>. Added only at the answer's own few characters, it did no harm but also no good.</p>
+    </div>
+
+    <div class="finding">
+      <h3>Steering attention directly works very well <span class="num">+0.63</span></h3>
+      <p>So we stopped writing into the row and changed how the model reads instead. The model has about 14 <em>retrieval heads</em>: attention heads whose job is to find and copy content from the input. We turned down how much those heads look at everything except one row, like dimming the lights everywhere but one line of the page. The row itself is untouched. Aimed at the right row, this fixed 62 of 90 fixable mistakes, the largest repair in the project. Aimed at a row of an unrelated table, it did nothing.</p>
+    </div>
+
+    <div class="finding">
+      <h3>But the model can't tell us where to aim <span class="num neg">15 of 90</span></h3>
+      <p>That repair needs someone to know the right row. We tried every label-free way to get it:</p>
+      <ul class="plain">
+        <li>A keyword search over the rows finds the right row in its top three only 23% of the time.</li>
+        <li>The model's own retrieval heads do better: the right row is in their top three 52% of the time.</li>
+        <li>Steering toward those top three rows changes nothing, because the mistake is the order <em>within</em> those three: the model already looks at the right row and its neighbour, and prefers the neighbour.</li>
+        <li>Asking the model "which of these three rows holds the answer?" got it right 15 times out of 90. It names the same neighbouring row it answered from.</li>
+      </ul>
+    </div>
+
+    <p class="sum"><strong>Part 3 in one line:</strong> on long tables, steering attention fixes most mistakes if you know the right row, and nothing available to the model knows it.</p>
+  </div>
+</section>
+
+<!-- PART 4 -->
+<section class="part" aria-labelledby="p4-h">
+  <div class="rail"><span class="pn">4</span><span class="when">October</span></div>
+  <div class="stack-lg col">
+    <div class="stack">
+      <h2 id="p4-h">Which parts of the model write the nudge</h2>
+      <p>The nudge is a vector we copy from what hints do. This part asks which pieces of the model produce that vector when a real hint is present.</p>
+    </div>
+
+    <div class="explain">
+      <h3>The model's two kinds of parts</h3>
+      <p>Each of the model's 62 layers has two kinds of units, and each adds its output to the hidden state:</p>
+      <ul class="plain">
+        <li><strong>Attention heads</strong> (32 per layer) move information between words: "look over there and bring back what you find."</li>
+        <li><strong>Neurons</strong> (about 21,500 per layer) work on one word at a time, each switching on for some pattern.</li>
+      </ul>
+      <p>Because everything is added together, the change a hint makes at "Ciboure" splits exactly into a share from every head and every neuron. We can measure each share.</p>
+    </div>
+
+    <div class="finding">
+      <h3>Why we asked</h3>
+      <p>An October essay from Goodfire, an interpretability company, argued that most individual neurons do one nameable job, so a mechanism like ours should come down to a few neurons you can describe in words. That would be a much more readable story than "a direction in a 5,376-number space," so we tested it.</p>
+    </div>
+
+    <div class="finding">
+      <h3>Eight attention heads write the whole nudge <span class="num">+0.48</span></h3>
+      <p>Added up, the heads produce all of the hint's effect, and the neurons push slightly the other way. Just eight heads, in layers 23 to 29, account for the whole thing, and the same eight showed up in both halves of the data. Copying only those eight heads' output from a hinted run fixes 48% of fixable mistakes, more than our original nudge. Eight randomly chosen heads fix 3%.</p>
+    </div>
+
+    <div class="finding">
+      <h3>Neurons don't write it or read it <span class="num neg">+0.01</span></h3>
+      <p>The 64 neurons whose output lines up best with the nudge fix 1% of mistakes, even when added directly at layer 30 where the nudge goes. And after the nudge is in place, freezing every neuron changes nothing. So later layers pick up the nudge through attention, which fits part 2's finding that it redirects attention.</p>
+    </div>
+
+    <div class="finding">
+      <h3>The neurons that line up with it are hard to describe <span class="num neg">3 of 32</span></h3>
+      <p>We used the essay's own readability test. A language model reads the 20 snippets where a neuron fires hardest and writes a one-sentence description. It then writes new texts that, by that description, should and shouldn't make the neuron fire, and we check whether the neuron agrees. Random neurons passed 20 of 32 times. The neurons aligned with our nudge passed 3 of 32: they fire weakly and on a fifth of all text alike.</p>
+    </div>
+
+    <p class="sum"><strong>Part 4 in one line:</strong> the lever is an attention signal, written by a handful of heads and read by attention. For this mechanism the head is the readable unit; the neurons are not.</p>
+  </div>
+</section>
+<section class="stack-lg" aria-labelledby="all-h">
+  <div class="stack col">
+    <h2 id="all-h">Every repair on one scale</h2>
+    <p>Gain in the probability of a correct answer on fixable failures, for the main intervention in each part and its control.</p>
+  </div>
+  <figure>
+    <div class="chart"><svg viewBox="0 0 670 462" role="img" aria-label="bar chart"><line class="grid" x1="290.0" x2="290.0" y1="22" y2="456"/><text class="tick" x="290.0" y="14" text-anchor="middle">−0.40</text><line class="grid" x1="350.0" x2="350.0" y1="22" y2="456"/><text class="tick" x="350.0" y="14" text-anchor="middle">−0.20</text><line class="zero" x1="410.0" x2="410.0" y1="22" y2="456"/><text class="tick" x="410.0" y="14" text-anchor="middle">0</text><line class="grid" x1="470.0" x2="470.0" y1="22" y2="456"/><text class="tick" x="470.0" y="14" text-anchor="middle">+0.20</text><line class="grid" x1="530.0" x2="530.0" y1="22" y2="456"/><text class="tick" x="530.0" y="14" text-anchor="middle">+0.40</text><line class="grid" x1="590.0" x2="590.0" y1="22" y2="456"/><text class="tick" x="590.0" y="14" text-anchor="middle">+0.60</text><text class="grp" x="0" y="46">1 · PUZZLES</text><text class="lab" x="0" y="69">8-direction recipe, new puzzles</text><rect class="b-lever" x="410.0" y="59" width="75.0" height="14" rx="1.5"/><text x="491.0" y="70">+0.25</text><text class="lab" x="0" y="95">Answer-free direction</text><rect class="b-lever" x="410.0" y="85" width="120.0" height="14" rx="1.5"/><text x="536.0" y="96">+0.40</text><text class="lab" x="0" y="121">Random 8 directions</text><rect class="b-null" x="398.0" y="111" width="12.0" height="14" rx="1.5"/><text x="416.0" y="122">−0.04</text><text class="grp" x="0" y="152">2 · REAL TEXT</text><text class="lab" x="0" y="175">WikiHop, one frozen vector</text><rect class="b-lever" x="410.0" y="165" width="99.0" height="14" rx="1.5"/><text x="515.0" y="176">+0.33</text><text class="lab" x="0" y="201">WikiHop, names replaced</text><rect class="b-lever" x="410.0" y="191" width="195.0" height="14" rx="1.5"/><text x="611.0" y="202">+0.65</text><text class="lab" x="0" y="227">HotpotQA, WikiHop's vector</text><rect class="b-lever" x="410.0" y="217" width="147.0" height="14" rx="1.5"/><text x="563.0" y="228">+0.49</text><text class="lab" x="0" y="253">Qwen3.5-27B, WikiHop</text><rect class="b-lever" x="410.0" y="243" width="111.0" height="14" rx="1.5"/><text x="527.0" y="254">+0.37</text><text class="grp" x="0" y="284">3 · TABLES</text><text class="lab" x="0" y="307">Same vector, at the right row</text><rect class="b-neg" x="284.0" y="297" width="126.0" height="14" rx="1.5"/><text x="416.0" y="308">−0.42</text><text class="lab" x="0" y="333">Attention steering, right row</text><rect class="b-lever" x="410.0" y="323" width="189.0" height="14" rx="1.5"/><text x="605.0" y="334">+0.63</text><text class="grp" x="0" y="364">4 · INSIDE THE NUDGE</text><text class="lab" x="0" y="387">The 8 writer heads alone</text><rect class="b-lever" x="410.0" y="377" width="144.0" height="14" rx="1.5"/><text x="560.0" y="388">+0.48</text><text class="lab" x="0" y="413">8 random heads</text><rect class="b-null" x="410.0" y="403" width="9.0" height="14" rx="1.5"/><text x="425.0" y="414">+0.03</text><text class="lab" x="0" y="439">64 most-aligned neurons</text><rect class="b-null" x="410.0" y="429" width="3.0" height="14" rx="1.5"/><text x="419.0" y="440">+0.01</text></svg></div>
+    <figcaption>Teal bars are interventions on the lever; grey bars are controls; red bars are harm. Values are pooled point estimates from the registered results.</figcaption>
+  </figure>
+</section>
+
+<section class="stack-lg" aria-labelledby="mean-h">
+  <h2 id="mean-h" class="col">What it adds up to</h2>
+  <div class="takeaways">
+    <div class="tg"><h3>The gauge is real and idle</h3><p>Models carry an accurate prediction of their own success. It is a readout. Removing it doesn't affect the answer, and pushing on it doesn't fix the answer.</p></div>
+    <div class="tl"><h3>The lever is real and small</h3><p>What the model commits to is decided by a compact variable that attention heads write and read. A single fixed vector controls it across puzzles, three reading tasks and two models.</p></div>
+    <div class="tn"><h3>Aim is the open problem</h3><p>The fix works when someone knows the answer is wrong and where to write. Without that, the gains are a few points, and a plain prompt instruction or an existing decoding method matches them.</p></div>
+  </div>
+</section>
+
+<section class="part" aria-labelledby="where-h">
+  <div class="rail"><span class="pn">Now</span><span class="when">October 30</span></div>
+  <div class="stack-lg col">
+    <h2 id="where-h">Where the project stands</h2>
+    <div class="tally">
+      <div><span class="big">46</span><span class="cap">registered predictions since the loop work began</span></div>
+      <div><span class="big l">29</span><span class="cap">confirmed</span></div>
+      <div><span class="big" style="color: var(--neg)">15</span><span class="cap">not confirmed</span></div>
+      <div><span class="big">181</span><span class="cap">GPU jobs, about $211</span></div>
+    </div>
+    <p>One more prediction came out intermediate and one was never read because its gate ruled it out. The predictions that failed cluster in a few places: picking branches with a probe, running blind without harming correct answers, detecting failures from the hidden state, steering in long tables, aiming without labels, and explaining the lever with neurons.</p>
+    <div class="stack">
+      <h3>Next</h3>
+      <ul class="plain">
+        <li>Fold the real-text, table and neuron results into the paper draft, which currently stops at the puzzles.</li>
+        <li>Add the related work published since August, including arXiv 2605.05715, 2609.36138, 2610.20067 and PatchBench.</li>
+        <li>Optional: check whether Qwen also writes its lever with a handful of heads.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<footer class="col">Phantom or Real, a study of Gemma 3 27B and Qwen3.5-27B. Every number here comes from a registered result in the project repository (<code>docs/causal_handle_directions.md</code>, the per-item summaries in <code>docs/</code>, and <code>paper/gauge_not_lever.tex</code>).</footer>
+</main>
+</body>
+</html>

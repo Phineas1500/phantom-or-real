@@ -3,7 +3,7 @@
 Stage 1 of the project: generate InAbHyD reasoning examples, run Gemma 3 4B-IT
 and Gemma 3 27B-IT inference, score correctness, annotate structural features,
 and ship a labeled JSONL dataset for Teammate B (probes) and Ram (causal
-validation). Full spec in `BEHAVIORAL_DATA_PLAN.md`.
+validation). Full spec in `docs/BEHAVIORAL_DATA_PLAN.md`.
 
 ## Layout
 
@@ -71,7 +71,7 @@ requirements.txt         — pip freeze
   Probe-position reconstruction must do the same — see `results/README.md`.
 - **Structured FOL schema.** `ontology_fol_structured` is a single flat KB
   with keys `{membership, inheritance, properties, negated_properties, hypothesis}`
-  (matching BEHAVIORAL_DATA_PLAN.md §2.2), built by combining theories +
+  (matching docs/BEHAVIORAL_DATA_PLAN.md §2.2), built by combining theories +
   observations into one KnowledgeBase.
 
 ## Common commands
